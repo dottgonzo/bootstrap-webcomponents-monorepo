@@ -15,4 +15,5 @@ const Template: Story<BootstrapDialogProps> = (args) =>
 export const BasicBootstapModal = Template.bind({});
 BasicBootstapModal.args = {
   id: "BasicBootstapModal",
+  show: "yes",
 };
