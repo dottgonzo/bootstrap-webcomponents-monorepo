@@ -14,6 +14,8 @@ from the consumer point of view, it needs only to:
 
 These components wants to cover not only "small" components like buttons or badge or avatar etc... but also "high level" of components like an entire layout with sidebar, footer, utilities like cookie law notifier, tables with custom confirm modals, and of course something smaller like pagination and dropdown, that are also nested inside the bigger components.
 
+all packages is published as npm @htmlbricks packages
+
 <!--
 ## MAIN GOAL
 
