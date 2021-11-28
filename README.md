@@ -74,7 +74,11 @@ on this repo is present storybook it allows to debu/test the components, you nee
 
 ### bootstrap 5
 
-the main css library involved inside this repo is bootstrap 5 updating the tag :root with :host. It was choosen because their elasticity and next will be experimented the ability to configure it's variables passing css vars
+the main css library involved inside this repo is bootstrap 5 updating the tag :root with :host.
+To get a different default axpect to default bootstrap 5 template there is an overryde file to change some default colors for bootstrap scss variables.
+The bootstraps scss files needed is imported from packages
+
+Bootstrap 5 was choosen because their elasticity and next will be experimented the ability to configure it's variables passing css vars
 
 ### HOW TO WORK WITH STORYBOOK TO SHOW/DEBUG COMPONENTS
 
