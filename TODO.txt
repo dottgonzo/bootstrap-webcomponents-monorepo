@@ -9,7 +9,10 @@
 - map with markers
 - notifications
 - cart dropdown
-- shop item
+- shop item (square card with image)
+- shop item (list with small thumbnail)
+- products comparison with price
+- search bar with suggestions
 
 ## complex nested components
 - contact form for SPA sites
@@ -17,6 +20,7 @@
 - chat
 - better offcanvas/sidebar
 - video editor (cut)
+- funnel
 
 
 ## legal
@@ -27,6 +31,8 @@
 - blog web page
 - article web page
 - cart
+- item of a shop with images
+- contact detail
 
 
 ## graph
@@ -35,6 +41,6 @@
 - circular graph
 - gauges
 
-## mappe
+## maps
 - directions
 - area selection
