@@ -58,7 +58,7 @@ To be able to install packages dependency is needed to:
 
 - install all packages dependencies and build the components
 
-to do it, you can to:
+to do it, you can do:
 
 install lerna and run on the working dir:
 
@@ -88,7 +88,7 @@ after bootstrapping the app (that includes the builds for the packages) install 
 
 ### RACCOMANDATIONS
 
-when is needed to publish one/more packages version update, is needed to publish ALL packages and not only the one changed, because of the dependencies between packages it selfs
+when is needed to publish one/more packages version update, is needed to publish ALL packages and not only the one changed, because of the dependencies between packages it self
 
 ## PLANNED COMPONENTS:
 
