@@ -36,8 +36,8 @@ export default {
 	output: {
 		sourcemap: true,
 		format: "iife",
-		file: "dist/videocardbootstrap.js",
-		name: "videocardbootstrap",
+		file: "dist/videoeditorbootstrap.js",
+		name: "videoeditorbootstrap",
 	},
 	plugins: [
 		json(),
@@ -93,11 +93,11 @@ export default {
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
 		production &&
-			terser({
-				output: {
-					comments: false,
-				},
-			}),
+		terser({
+			output: {
+				comments: false,
+			},
+		}),
 	],
 
 	watch: {
