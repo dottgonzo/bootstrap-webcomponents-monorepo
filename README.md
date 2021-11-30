@@ -70,13 +70,13 @@ or without installing lerna globally, go to the working dir and run:
 
 ### storybook
 
-on this repo is present storybook it allows to debu/test the components, you need to install it globally
+on this repo is present storybook it allows to debug/test the components, you need to install it globally
 
 ### bootstrap 5
 
-the main css library involved inside this repo is bootstrap 5 updating the tag :root with :host.
-To get a different default axpect to default bootstrap 5 template there is an overryde file to change some default colors for bootstrap scss variables.
-The bootstraps scss files needed is imported from packages
+the main css library involved inside this repo is bootstrap 5, the sole change needed from the official one is update the tag :root with :host on scss files.
+To get a different default axpect to default bootstrap 5 template there is an override file to change some default colors for bootstrap scss variables.
+The bootstraps scss files needed is imported from the components, then rollup will transpile the bundle alongside html and js.
 
 Bootstrap 5 was choosen because their elasticity and next will be experimented the ability to configure it's variables passing css vars
 
