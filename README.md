@@ -14,6 +14,8 @@ from the consumer point of view, it needs only to:
 
 These components wants to cover not only "small" components like buttons or badge or avatar etc... but also "high level" of components like an entire layout with sidebar, footer, utilities like cookie law notifier, tables with custom confirm modals, and of course something smaller like pagination and dropdown, that are also nested inside the bigger components.
 
+all packages is published as npm @htmlbricks packages
+
 <!--
 ## MAIN GOAL
 
@@ -56,7 +58,7 @@ To be able to install packages dependency is needed to:
 
 - install all packages dependencies and build the components
 
-to do it, you can to:
+to do it, you can do:
 
 install lerna and run on the working dir:
 
@@ -68,11 +70,15 @@ or without installing lerna globally, go to the working dir and run:
 
 ### storybook
 
-on this repo is present storybook it allows to debu/test the components, you need to install it globally
+on this repo is present storybook it allows to debug/test the components, you need to install it globally
 
 ### bootstrap 5
 
-the main css library involved inside this repo is bootstrap 5. It was choosen because their elasticity and next will be experimented the ability to configure it's variables passing css vars
+the main css library involved inside this repo is bootstrap 5, the sole change needed from the official one is update the tag :root with :host on scss files.
+To get a different default axpect to default bootstrap 5 template there is an override file to change some default colors for bootstrap scss variables.
+The bootstraps scss files needed is imported from the components, then rollup will transpile the bundle alongside html and js.
+
+Bootstrap 5 was choosen because their elasticity and next will be experimented the ability to configure it's variables passing css vars
 
 ### HOW TO WORK WITH STORYBOOK TO SHOW/DEBUG COMPONENTS
 
@@ -82,7 +88,7 @@ after bootstrapping the app (that includes the builds for the packages) install 
 
 ### RACCOMANDATIONS
 
-when is needed to publish one/more packages version update, is needed to publish ALL packages and not only the one changed, because of the dependencies between packages it selfs
+when is needed to publish one/more packages version update, is needed to publish ALL packages and not only the one changed, because of the dependencies between packages it self
 
 ## PLANNED COMPONENTS:
 
