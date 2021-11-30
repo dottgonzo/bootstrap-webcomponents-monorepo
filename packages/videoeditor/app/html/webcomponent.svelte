@@ -19,7 +19,10 @@
 	}
 </script>
 
-<div>ciao</div>
+<div class="slidecontainer">
+	<input type="range" min="1" max="100" value="50" class="slider" id="myRange" />
+	<input type="range" min="1" max="100" value="50" class="slider" id="myRange2" />
+</div>
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
