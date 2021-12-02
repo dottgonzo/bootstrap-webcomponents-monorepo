@@ -69,7 +69,11 @@
 		console.log("status", status);
 	}
 	function changeValMin(e) {
-		minval = Number(e.target.value);
+		if (Number(e.target.value) < maxprop && Number(e.target.value) < maxval) minval = Number(e.target.value);
+		else {
+			minval = maxprop > maxval ? maxval : maxprop;
+			e.preventDefault();
+		}
 	}
 	function changeValMax(e) {
 		maxval = Number(e.target.value);
