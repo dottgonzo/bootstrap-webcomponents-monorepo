@@ -10,10 +10,15 @@
 	 * @license: MIT License
 	 *
 	 */
+	import { createEventDispatcher } from "svelte";
+	import { get_current_component } from "svelte/internal";
+
+	const component = get_current_component();
+	const svelteDispatch = createEventDispatcher();
 
 	export let id: string;
-	export let min: number = 0;
-	export let max: number = 300;
+	export let min: number = 60;
+	export let max: number = 3000;
 	export let videoval: number;
 
 	const minprop = 0;
@@ -50,17 +55,24 @@
 		}
 		fromleft = (minval / maxprop) * 100;
 		fromright = (maxval / maxprop) * 100;
-		minValReal = ((max - min) / 100) * minval;
-		maxValReal = ((max - min) / 100) * maxval;
-		console.log(minprop, maxprop, minval, maxval, fromleft, fromright);
+		minValReal = min + ((max - min) / 100) * minval;
+		maxValReal = min + ((max - min) / 100) * maxval;
+	}
+	function dispatch(name, detail) {
+		// console.log(`svelte: ${name}`);
+		svelteDispatch(name, detail);
+		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
+	}
+	function dispatchVals() {
+		const status = { minValue: minValReal, maxValue: maxValReal };
+		dispatch("newValues", status);
+		console.log("status", status);
 	}
 	function changeValMin(e) {
 		minval = Number(e.target.value);
-		console.log("minval", minval, minValReal);
 	}
 	function changeValMax(e) {
 		maxval = Number(e.target.value);
-		console.log("maxval", maxval, maxValReal);
 	}
 </script>
 
@@ -72,8 +84,8 @@
 		<span the-thumb style="left:{fromleft}%;" />
 		<span the-thumb style="left:{fromright}%;" />
 	</div>
-	<input type="range" tabindex="0" value={minval} max={maxprop} min={minprop} step="0.01" on:input={changeValMin} />
-	<input type="range" tabindex="0" value={maxval} max={maxprop} min={minprop} step="0.01" on:input={changeValMax} />
+	<input type="range" tabindex="0" value={minval} max={maxprop} min={minprop} step="0.0001" on:input={changeValMin} on:change={dispatchVals} />
+	<input type="range" tabindex="0" value={maxval} max={maxprop} min={minprop} step="0.0001" on:input={changeValMax} on:change={dispatchVals} />
 </div>
 <button type="submit">send</button>
 
