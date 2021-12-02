@@ -11,73 +11,76 @@
 	 *
 	 */
 
-	import { text } from "svelte/internal";
-
 	export let id: string;
-	export let min: number;
-	export let max: number;
+	export let min: number = 0;
+	export let max: number = 300;
 	export let videoval: number;
+
+	const minprop = 0;
+	const maxprop = 100;
+
+	let minValReal: number;
+	let maxValReal: number;
 
 	let minval: number;
 	let maxval: number;
+
 	let fromleft: number;
 	let fromright: number;
+
 	$: {
 		if (!id) {
 			id = "";
 		}
-		if (!minval) {
-			minval = 0;
-		}
-		if (!maxval) {
-			maxval = 100;
-		}
+
 		if (!min) {
-			min = 0;
+			min = minprop;
 		}
 		if (!max) {
-			max = maxval;
+			max = maxprop;
+		}
+		if (!minval) {
+			minval = minprop;
+		}
+		if (!maxval) {
+			maxval = maxprop;
 		}
 		if (!videoval) {
 			videoval = minval;
 		}
-		fromleft = (minval / max) * 100;
-		fromright = (maxval / max) * 100;
-		console.log(min, max, minval, maxval, fromleft, fromright);
+		fromleft = (minval / maxprop) * 100;
+		fromright = (maxval / maxprop) * 100;
+		minValReal = ((max - min) / 100) * minval;
+		maxValReal = ((max - min) / 100) * maxval;
+		console.log(minprop, maxprop, minval, maxval, fromleft, fromright);
 	}
 	function changeValMin(e) {
-		minval = e.target.value;
+		minval = Number(e.target.value);
+		console.log("minval", minval, minValReal);
 	}
 	function changeValMax(e) {
-		console.log("max");
-		maxval = e.target.value;
+		maxval = Number(e.target.value);
+		console.log("maxval", maxval, maxValReal);
 	}
 </script>
 
-<div slider id="slider-distance">
+<div the-slider id="slider-distance">
 	<div>
 		<div inverse-left style="width:{fromleft + 100 - fromright}%;" />
 		<div inverse-right style="width:{fromleft + 100 - fromright}%;" />
-		<div range style="left:{fromleft}%;right:{100 - fromright}%;" />
-		<span thumb style="left:{fromleft}%;" />
-		<span thumb style="left:{fromright}%;" />
-		<div sign style="left:{fromleft}%;">
-			<span>{minval}</span>
-		</div>
-		<div sign style="left:{fromright}%;">
-			<span>{maxval}</span>
-		</div>
+		<div the-range style="left:{fromleft}%;right:{100 - fromright}%;" />
+		<span the-thumb style="left:{fromleft}%;" />
+		<span the-thumb style="left:{fromright}%;" />
 	</div>
-	<input type="range" tabindex="0" value={minval} {max} {min} step="1" on:input={changeValMin} />
-
-	<input type="range" tabindex="0" value={maxval} {max} {min} step="1" on:input={changeValMax} />
+	<input type="range" tabindex="0" value={minval} max={maxprop} min={minprop} step="0.01" on:input={changeValMin} />
+	<input type="range" tabindex="0" value={maxval} max={maxprop} min={minprop} step="0.01" on:input={changeValMax} />
 </div>
 <button type="submit">send</button>
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
 
-	[slider] {
+	[the-slider] {
 		position: relative;
 		height: 14px;
 		border-radius: 10px;
@@ -85,14 +88,14 @@
 		margin: 45px 0 10px 0;
 	}
 
-	[slider] > div {
+	[the-slider] > div {
 		position: absolute;
 		left: 13px;
 		right: 15px;
 		height: 14px;
 	}
 
-	[slider] > div > [inverse-left] {
+	[the-slider] > div > [inverse-left] {
 		position: absolute;
 		left: 0;
 		height: 14px;
@@ -101,7 +104,7 @@
 		margin: 0 7px;
 	}
 
-	[slider] > div > [inverse-right] {
+	[the-slider] > div > [inverse-right] {
 		position: absolute;
 		right: 0;
 		height: 14px;
@@ -110,7 +113,7 @@
 		margin: 0 7px;
 	}
 
-	[slider] > div > [range] {
+	[the-slider] > div > [the-range] {
 		position: absolute;
 		left: 0;
 		height: 14px;
@@ -118,7 +121,7 @@
 		background-color: #1abc9c;
 	}
 
-	[slider] > div > [thumb] {
+	[the-slider] > div > [the-thumb] {
 		position: absolute;
 		top: -7px;
 		z-index: 2;
@@ -133,7 +136,7 @@
 		outline: none;
 	}
 
-	[slider] > input[type="range"] {
+	[the-slider] > input[type="range"] {
 		position: absolute;
 		pointer-events: none;
 		-webkit-appearance: none;
@@ -147,28 +150,28 @@
 		opacity: 0;
 	}
 
-	div[slider] > input[type="range"]::-ms-track {
+	div[the-slider] > input[type="range"]::-ms-track {
 		-webkit-appearance: none;
 		background: transparent;
 		color: transparent;
 	}
 
-	div[slider] > input[type="range"]::-moz-range-track {
+	div[the-slider] > input[type="range"]::-moz-range-track {
 		-moz-appearance: none;
 		background: transparent;
 		color: transparent;
 	}
 
-	div[slider] > input[type="range"]:focus::-webkit-slider-runnable-track {
+	div[the-slider] > input[type="range"]:focus::-webkit-slider-runnable-track {
 		background: transparent;
 		border: transparent;
 	}
 
-	div[slider] > input[type="range"]:focus {
+	div[the-slider] > input[type="range"]:focus {
 		outline: none;
 	}
 
-	div[slider] > input[type="range"]::-ms-thumb {
+	div[the-slider] > input[type="range"]::-ms-thumb {
 		pointer-events: all;
 		width: 28px;
 		height: 28px;
@@ -177,7 +180,7 @@
 		background: red;
 	}
 
-	div[slider] > input[type="range"]::-moz-range-thumb {
+	div[the-slider] > input[type="range"]::-moz-range-thumb {
 		pointer-events: all;
 		width: 28px;
 		height: 28px;
@@ -186,7 +189,7 @@
 		background: red;
 	}
 
-	div[slider] > input[type="range"]::-webkit-slider-thumb {
+	div[the-slider] > input[type="range"]::-webkit-slider-thumb {
 		pointer-events: all;
 		width: 28px;
 		height: 28px;
@@ -196,58 +199,17 @@
 		-webkit-appearance: none;
 	}
 
-	div[slider] > input[type="range"]::-ms-fill-lower {
+	div[the-slider] > input[type="range"]::-ms-fill-lower {
 		background: transparent;
 		border: 0 none;
 	}
 
-	div[slider] > input[type="range"]::-ms-fill-upper {
+	div[the-slider] > input[type="range"]::-ms-fill-upper {
 		background: transparent;
 		border: 0 none;
 	}
 
-	div[slider] > input[type="range"]::-ms-tooltip {
+	div[the-slider] > input[type="range"]::-ms-tooltip {
 		display: none;
-	}
-
-	[slider] > div > [sign] {
-		opacity: 0;
-		position: absolute;
-		margin-left: -11px;
-		top: -39px;
-		z-index: 3;
-		background-color: #1abc9c;
-		color: #fff;
-		width: 28px;
-		height: 28px;
-		border-radius: 28px;
-		-webkit-border-radius: 28px;
-		align-items: center;
-		-webkit-justify-content: center;
-		justify-content: center;
-		text-align: center;
-	}
-
-	[slider] > div > [sign]:after {
-		position: absolute;
-		content: "";
-		left: 0;
-		border-radius: 16px;
-		top: 19px;
-		border-left: 14px solid transparent;
-		border-right: 14px solid transparent;
-		border-top-width: 16px;
-		border-top-style: solid;
-		border-top-color: #1abc9c;
-	}
-
-	[slider] > div > [sign] > span {
-		font-size: 12px;
-		font-weight: 700;
-		line-height: 28px;
-	}
-
-	[slider]:hover > div > [sign] {
-		opacity: 1;
 	}
 </style>
