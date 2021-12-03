@@ -69,6 +69,9 @@
 		console.log("status", status, minval, maxval);
 	}
 	function changeValMin(e) {
+		if (!e?.target?.value || Number(e.target.value) === Infinity || isNaN(Number(e.target.value)))
+			return console.error(`invalid value ${e?.target?.value}`);
+
 		if (Number(e.target.value) < maxprop && Number(e.target.value) < maxval) {
 			minval = Number(e.target.value);
 		} else {
@@ -76,6 +79,9 @@
 		}
 	}
 	function changeValMax(e) {
+		if (!e?.target?.value || Number(e.target.value) === Infinity || isNaN(Number(e.target.value)))
+			return console.error(`invalid value ${e?.target?.value}`);
+
 		if (Number(e.target.value) > minprop && Number(e.target.value) > minval) {
 			maxval = Number(e.target.value);
 		} else {
@@ -86,8 +92,8 @@
 
 <div id="slider-distance">
 	<div>
-		<div id="inverse-left" style="width:{fromleft + 100 - fromright}%;" />
-		<div id="inverse-right" style="width:{fromleft + 100 - fromright}%;" />
+		<div class="inverse" id="inverse-left" style="width:{fromleft + 100 - fromright}%;" />
+		<div class="inverse" id="inverse-right" style="width:{fromleft + 100 - fromright}%;" />
 		<div id="the-range" style="left:{fromleft}%;right:{100 - fromright}%;" />
 		<span class="the-thumb" style="left:{fromleft}%;" />
 		<span class="the-thumb" style="left:{fromright}%;" />
@@ -116,22 +122,20 @@
 		height: 14px;
 	}
 
-	#inverse-left {
+	.inverse {
 		position: absolute;
-		left: 0;
 		height: 14px;
 		border-radius: 10px;
 		background-color: #ccc;
 		margin: 0 7px;
 	}
 
+	#inverse-left {
+		left: 0;
+	}
+
 	#inverse-right {
-		position: absolute;
 		right: 0;
-		height: 14px;
-		border-radius: 10px;
-		background-color: #ccc;
-		margin: 0 7px;
 	}
 
 	#the-range {
