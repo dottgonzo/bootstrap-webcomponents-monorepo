@@ -17,15 +17,19 @@
 	const svelteDispatch = createEventDispatcher();
 
 	export let id: string;
-	export let min: number = 60;
-	export let max: number = 3000;
+	export let min: number;
+	export let max: number;
 	export let videoval: number;
+	export let istime: boolean;
 
 	const minprop = 0;
 	const maxprop = 100;
 
 	let minValReal: number;
 	let maxValReal: number;
+
+	let minTimeReal: string;
+	let maxTimeReal: string;
 
 	let minval: number;
 	let maxval: number;
@@ -37,7 +41,9 @@
 		if (!id) {
 			id = "";
 		}
-
+		if (!istime) {
+			istime = false;
+		}
 		if (!min) {
 			min = minprop;
 		}
@@ -57,6 +63,9 @@
 		fromright = (maxval / maxprop) * 100;
 		minValReal = min + ((max - min) / 100) * minval;
 		maxValReal = min + ((max - min) / 100) * maxval;
+
+		minTimeReal = "minValReal";
+		maxTimeReal = "maxValReal";
 	}
 	function dispatch(name, detail) {
 		// console.log(`svelte: ${name}`);
@@ -97,6 +106,12 @@
 		<div id="the-range" part="the-range" style="left:{fromleft}%;right:{100 - fromright}%;" />
 		<span class="the-thumb" part="the-thumb" style="left:{fromleft}%;" />
 		<span class="the-thumb" part="the-thumb" style="left:{fromright}%;" />
+		<div class="sign" style="left:{fromleft}%;">
+			<span id="value">{istime ? minTimeReal : Math.round(minValReal)}</span>
+		</div>
+		<div class="sign" style="left:{fromright}%;">
+			<span id="value">{istime ? maxTimeReal : Math.round(maxValReal)}</span>
+		</div>
 	</div>
 	<input type="range" tabindex="0" bind:value={minval} max={maxprop} min={minprop} step="0.0001" on:input={(e) => changeValMin(e)} on:change={dispatchVals} />
 	<input type="range" tabindex="0" bind:value={maxval} max={maxprop} min={minprop} step="0.0001" on:input={(e) => changeValMax(e)} on:change={dispatchVals} />
@@ -234,5 +249,41 @@
 
 	input[type="range"]::-ms-tooltip {
 		display: none;
+	}
+
+	.sign {
+		position: absolute;
+		margin-left: -11px;
+		top: -39px;
+		z-index: 3;
+		background-color: #1abc9c;
+		color: #fff;
+		width: 28px;
+		height: 28px;
+		border-radius: 28px;
+		-webkit-border-radius: 28px;
+		align-items: center;
+		-webkit-justify-content: center;
+		justify-content: center;
+		text-align: center;
+	}
+
+	.sign:after {
+		position: absolute;
+		content: "";
+		left: 0;
+		border-radius: 16px;
+		top: 19px;
+		border-left: 14px solid transparent;
+		border-right: 14px solid transparent;
+		border-top-width: 16px;
+		border-top-style: solid;
+		border-top-color: #1abc9c;
+	}
+
+	.sign > span {
+		font-size: 12px;
+		font-weight: 700;
+		line-height: 28px;
 	}
 </style>

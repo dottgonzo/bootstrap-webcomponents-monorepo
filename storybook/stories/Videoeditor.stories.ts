@@ -2,7 +2,7 @@ import { Story, Meta } from "@storybook/html";
 import { createVideoeditor, VideoeditorProps } from "./Videoeditor";
 
 export default {
-  title: "Components/VideoEditor",
+  title: "Contents/VideoEditor",
   argTypes: {
     id: { control: { disable: true } },
   },
