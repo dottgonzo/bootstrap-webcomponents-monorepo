@@ -63,7 +63,7 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	function dispatchVals(changed: string, e) {
+	function dispatchVals() {
 		const status = { minValue: minValReal, maxValue: maxValReal };
 		dispatch("newValues", status);
 		console.log("status", status, minval, maxval);
@@ -92,26 +92,8 @@
 		<span the-thumb style="left:{fromleft}%;" />
 		<span the-thumb style="left:{fromright}%;" />
 	</div>
-	<input
-		type="range"
-		tabindex="0"
-		bind:value={minval}
-		max={maxprop}
-		min={minprop}
-		step="0.0001"
-		on:input={(e) => changeValMin(e)}
-		on:change={(e) => dispatchVals("min", e)}
-	/>
-	<input
-		type="range"
-		tabindex="0"
-		bind:value={maxval}
-		max={maxprop}
-		min={minprop}
-		step="0.0001"
-		on:input={(e) => changeValMax(e)}
-		on:change={(e) => dispatchVals("max", e)}
-	/>
+	<input type="range" tabindex="0" bind:value={minval} max={maxprop} min={minprop} step="0.0001" on:input={(e) => changeValMin(e)} on:change={dispatchVals} />
+	<input type="range" tabindex="0" bind:value={maxval} max={maxprop} min={minprop} step="0.0001" on:input={(e) => changeValMax(e)} on:change={dispatchVals} />
 </div>
 
 <button type="submit">send</button>
