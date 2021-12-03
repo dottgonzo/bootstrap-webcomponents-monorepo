@@ -84,13 +84,13 @@
 	}
 </script>
 
-<div the-slider id="slider-distance">
+<div id="slider-distance">
 	<div>
-		<div inverse-left style="width:{fromleft + 100 - fromright}%;" />
-		<div inverse-right style="width:{fromleft + 100 - fromright}%;" />
-		<div the-range style="left:{fromleft}%;right:{100 - fromright}%;" />
-		<span the-thumb style="left:{fromleft}%;" />
-		<span the-thumb style="left:{fromright}%;" />
+		<div id="inverse-left" style="width:{fromleft + 100 - fromright}%;" />
+		<div id="inverse-right" style="width:{fromleft + 100 - fromright}%;" />
+		<div id="the-range" style="left:{fromleft}%;right:{100 - fromright}%;" />
+		<span class="the-thumb" style="left:{fromleft}%;" />
+		<span class="the-thumb" style="left:{fromright}%;" />
 	</div>
 	<input type="range" tabindex="0" bind:value={minval} max={maxprop} min={minprop} step="0.0001" on:input={(e) => changeValMin(e)} on:change={dispatchVals} />
 	<input type="range" tabindex="0" bind:value={maxval} max={maxprop} min={minprop} step="0.0001" on:input={(e) => changeValMax(e)} on:change={dispatchVals} />
@@ -101,7 +101,7 @@
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
 
-	[the-slider] {
+	#slider-distance {
 		position: relative;
 		height: 14px;
 		border-radius: 10px;
@@ -109,14 +109,14 @@
 		margin: 45px 0 10px 0;
 	}
 
-	[the-slider] > div {
+	#slider-distance > div {
 		position: absolute;
 		left: 13px;
 		right: 15px;
 		height: 14px;
 	}
 
-	[the-slider] > div > [inverse-left] {
+	#inverse-left {
 		position: absolute;
 		left: 0;
 		height: 14px;
@@ -125,7 +125,7 @@
 		margin: 0 7px;
 	}
 
-	[the-slider] > div > [inverse-right] {
+	#inverse-right {
 		position: absolute;
 		right: 0;
 		height: 14px;
@@ -134,7 +134,7 @@
 		margin: 0 7px;
 	}
 
-	[the-slider] > div > [the-range] {
+	#the-range {
 		position: absolute;
 		left: 0;
 		height: 14px;
@@ -142,7 +142,7 @@
 		background-color: #1abc9c;
 	}
 
-	[the-slider] > div > [the-thumb] {
+	.the-thumb {
 		position: absolute;
 		top: -7px;
 		z-index: 2;
@@ -157,7 +157,7 @@
 		outline: none;
 	}
 
-	[the-slider] > input[type="range"] {
+	input[type="range"] {
 		position: absolute;
 		pointer-events: none;
 		-webkit-appearance: none;
@@ -171,28 +171,28 @@
 		opacity: 0;
 	}
 
-	div[the-slider] > input[type="range"]::-ms-track {
+	input[type="range"]::-ms-track {
 		-webkit-appearance: none;
 		background: transparent;
 		color: transparent;
 	}
 
-	div[the-slider] > input[type="range"]::-moz-range-track {
+	input[type="range"]::-moz-range-track {
 		-moz-appearance: none;
 		background: transparent;
 		color: transparent;
 	}
 
-	div[the-slider] > input[type="range"]:focus::-webkit-slider-runnable-track {
+	input[type="range"]:focus::-webkit-slider-runnable-track {
 		background: transparent;
 		border: transparent;
 	}
 
-	div[the-slider] > input[type="range"]:focus {
+	input[type="range"]:focus {
 		outline: none;
 	}
 
-	div[the-slider] > input[type="range"]::-ms-thumb {
+	input[type="range"]::-ms-thumb {
 		pointer-events: all;
 		width: 28px;
 		height: 28px;
@@ -201,7 +201,7 @@
 		background: red;
 	}
 
-	div[the-slider] > input[type="range"]::-moz-range-thumb {
+	input[type="range"]::-moz-range-thumb {
 		pointer-events: all;
 		width: 28px;
 		height: 28px;
@@ -210,7 +210,7 @@
 		background: red;
 	}
 
-	div[the-slider] > input[type="range"]::-webkit-slider-thumb {
+	input[type="range"]::-webkit-slider-thumb {
 		pointer-events: all;
 		width: 28px;
 		height: 28px;
@@ -220,17 +220,17 @@
 		-webkit-appearance: none;
 	}
 
-	div[the-slider] > input[type="range"]::-ms-fill-lower {
+	input[type="range"]::-ms-fill-lower {
 		background: transparent;
 		border: 0 none;
 	}
 
-	div[the-slider] > input[type="range"]::-ms-fill-upper {
+	input[type="range"]::-ms-fill-upper {
 		background: transparent;
 		border: 0 none;
 	}
 
-	div[the-slider] > input[type="range"]::-ms-tooltip {
+	input[type="range"]::-ms-tooltip {
 		display: none;
 	}
 </style>
