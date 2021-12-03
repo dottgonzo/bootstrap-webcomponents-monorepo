@@ -90,13 +90,13 @@
 	}
 </script>
 
-<div id="slider-distance">
-	<div>
-		<div class="inverse" id="inverse-left" style="width:{fromleft + 100 - fromright}%;" />
-		<div class="inverse" id="inverse-right" style="width:{fromleft + 100 - fromright}%;" />
-		<div id="the-range" style="left:{fromleft}%;right:{100 - fromright}%;" />
-		<span class="the-thumb" style="left:{fromleft}%;" />
-		<span class="the-thumb" style="left:{fromright}%;" />
+<div id="slider-distance-container">
+	<div id="slider-distance-content">
+		<div class="inverse" part="inverse" id="inverse-left" style="width:{fromleft + 100 - fromright}%;" />
+		<div class="inverse" part="inverse" id="inverse-right" style="width:{fromleft + 100 - fromright}%;" />
+		<div id="the-range" part="the-range" style="left:{fromleft}%;right:{100 - fromright}%;" />
+		<span class="the-thumb" part="the-thumb" style="left:{fromleft}%;" />
+		<span class="the-thumb" part="the-thumb" style="left:{fromright}%;" />
 	</div>
 	<input type="range" tabindex="0" bind:value={minval} max={maxprop} min={minprop} step="0.0001" on:input={(e) => changeValMin(e)} on:change={dispatchVals} />
 	<input type="range" tabindex="0" bind:value={maxval} max={maxprop} min={minprop} step="0.0001" on:input={(e) => changeValMax(e)} on:change={dispatchVals} />
@@ -107,7 +107,7 @@
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
 
-	#slider-distance {
+	#slider-distance-container {
 		position: relative;
 		height: 14px;
 		border-radius: 10px;
@@ -115,7 +115,7 @@
 		margin: 45px 0 10px 0;
 	}
 
-	#slider-distance > div {
+	#slider-distance-content {
 		position: absolute;
 		left: 13px;
 		right: 15px;
