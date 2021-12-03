@@ -63,20 +63,24 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	function dispatchVals() {
+	function dispatchVals(changed: string, e) {
 		const status = { minValue: minValReal, maxValue: maxValReal };
 		dispatch("newValues", status);
-		console.log("status", status);
+		console.log("status", status, minval, maxval);
 	}
 	function changeValMin(e) {
-		if (Number(e.target.value) < maxprop && Number(e.target.value) < maxval) minval = Number(e.target.value);
-		else {
+		if (Number(e.target.value) < maxprop && Number(e.target.value) < maxval) {
+			minval = Number(e.target.value);
+		} else {
 			minval = maxprop > maxval ? maxval : maxprop;
-			e.preventDefault();
 		}
 	}
 	function changeValMax(e) {
-		maxval = Number(e.target.value);
+		if (Number(e.target.value) > minprop && Number(e.target.value) > minval) {
+			maxval = Number(e.target.value);
+		} else {
+			maxval = minprop > minval ? minprop : minval;
+		}
 	}
 </script>
 
@@ -88,9 +92,28 @@
 		<span the-thumb style="left:{fromleft}%;" />
 		<span the-thumb style="left:{fromright}%;" />
 	</div>
-	<input type="range" tabindex="0" value={minval} max={maxprop} min={minprop} step="0.0001" on:input={changeValMin} on:change={dispatchVals} />
-	<input type="range" tabindex="0" value={maxval} max={maxprop} min={minprop} step="0.0001" on:input={changeValMax} on:change={dispatchVals} />
+	<input
+		type="range"
+		tabindex="0"
+		bind:value={minval}
+		max={maxprop}
+		min={minprop}
+		step="0.0001"
+		on:input={(e) => changeValMin(e)}
+		on:change={(e) => dispatchVals("min", e)}
+	/>
+	<input
+		type="range"
+		tabindex="0"
+		bind:value={maxval}
+		max={maxprop}
+		min={minprop}
+		step="0.0001"
+		on:input={(e) => changeValMax(e)}
+		on:change={(e) => dispatchVals("max", e)}
+	/>
 </div>
+
 <button type="submit">send</button>
 
 <style lang="scss">
