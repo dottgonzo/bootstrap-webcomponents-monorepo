@@ -1,7 +1,8 @@
 export interface RangesliderProps {
   id: string;
+  withbubbles?: boolean;
 }
-export const createRangeslider = ({ id }: RangesliderProps) => {
+export const createRangeslider = ({ id, withbubbles }: RangesliderProps) => {
   if (!document.getElementById("rangesliderscript")) {
     const script = document.createElement("script");
     script.id = "rangesliderscript";
@@ -15,6 +16,10 @@ export const createRangeslider = ({ id }: RangesliderProps) => {
     c = document.createElement("range-slider-component");
     c.id = id;
   }
-
+  if (withbubbles) {
+    c.setAttribute("withbubbles", "yes");
+  } else {
+    if (c.hasAttribute("withbubbles")) c.removeAttribute("withbubbles");
+  }
   return c;
 };

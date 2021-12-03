@@ -14,7 +14,8 @@ export const BasicRangeslider = Template.bind({});
 BasicRangeslider.args = {
   id: "BasicRangeslider",
 };
-export const BasicRangesliderWithTime = Template.bind({});
-BasicRangesliderWithTime.args = {
-  id: "BasicRangesliderWithTime",
+export const BasicRangesliderWithBubbles = Template.bind({});
+BasicRangesliderWithBubbles.args = {
+  id: "BasicRangesliderWithBubbles",
+  withbubbles: true,
 };

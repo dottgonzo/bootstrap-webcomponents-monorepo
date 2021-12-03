@@ -19,10 +19,18 @@
 	const svelteDispatch = createEventDispatcher();
 
 	export let id: string;
-
+	export let starttime: Date;
+	export let endtime: Date;
+	let timeDiffInSeconds: number;
 	$: {
 		if (!id) {
 			id = "";
+		}
+		if (!starttime) {
+			starttime = new Date();
+		}
+		if (!endtime) {
+			endtime = new Date();
 		}
 	}
 	function dispatch(name, detail) {
@@ -44,6 +52,7 @@
 </script>
 
 <range-slider-component />
+
 <button type="submit">send</button>
 
 <style lang="scss">

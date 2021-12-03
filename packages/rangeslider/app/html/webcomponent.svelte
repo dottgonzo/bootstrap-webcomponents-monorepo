@@ -20,7 +20,7 @@
 	export let min: number;
 	export let max: number;
 	export let videoval: number;
-	export let istime: boolean;
+	export let withbubbles: boolean;
 
 	const minprop = 0;
 	const maxprop = 100;
@@ -41,8 +41,10 @@
 		if (!id) {
 			id = "";
 		}
-		if (!istime) {
-			istime = false;
+		if (!withbubbles && (withbubbles as unknown as string) !== "") {
+			withbubbles = false;
+		} else {
+			withbubbles = true;
 		}
 		if (!min) {
 			min = minprop;
@@ -106,12 +108,14 @@
 		<div id="the-range" part="the-range" style="left:{fromleft}%;right:{100 - fromright}%;" />
 		<span class="the-thumb" part="the-thumb" style="left:{fromleft}%;" />
 		<span class="the-thumb" part="the-thumb" style="left:{fromright}%;" />
-		<div class="sign" style="left:{fromleft}%;">
-			<span id="value">{istime ? minTimeReal : Math.round(minValReal)}</span>
-		</div>
-		<div class="sign" style="left:{fromright}%;">
-			<span id="value">{istime ? maxTimeReal : Math.round(maxValReal)}</span>
-		</div>
+		{#if withbubbles}
+			<div class="sign" part="sign" style="left:{fromleft}%;">
+				<span id="value">{Math.round(minValReal)}</span>
+			</div>
+			<div class="sign" part="sign" style="left:{fromright}%;">
+				<span id="value">{Math.round(maxValReal)}</span>
+			</div>
+		{/if}
 	</div>
 	<input type="range" tabindex="0" bind:value={minval} max={maxprop} min={minprop} step="0.0001" on:input={(e) => changeValMin(e)} on:change={dispatchVals} />
 	<input type="range" tabindex="0" bind:value={maxval} max={maxprop} min={minprop} step="0.0001" on:input={(e) => changeValMax(e)} on:change={dispatchVals} />
