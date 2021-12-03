@@ -11,7 +11,7 @@
 	 *
 	 */
 
-	import moment from "moment";
+	import dayjs from "dayjs";
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
 
@@ -106,7 +106,7 @@
 					console.warn("UNABLE TO ACTIVATE SEARCH FILTER!");
 					break;
 				}
-				c.time = moment(c.time).toDate();
+				c.time = dayjs(c.time).toDate();
 				if (!initialdate || initialdate.valueOf() > c.time.valueOf()) {
 					initialdate = c.time;
 				}
@@ -188,22 +188,22 @@
 		const newDate = node.target.value;
 
 		dispatch("dateFilterVideos", {
-			start: moment(newDate, "YYYY-MM-DD").startOf("day").toDate(),
+			start: dayjs(newDate, "YYYY-MM-DD").startOf("day").toDate(),
 			dateKey: "start",
 		});
 
 		// console.log(newDate);
-		if (!externalfilter) firstCardData = moment(newDate, "YYYY-MM-DD").startOf("day").toDate();
+		if (!externalfilter) firstCardData = dayjs(newDate, "YYYY-MM-DD").startOf("day").toDate();
 		filter = null;
 	}
 	function changeEndDate(node) {
 		const newDate = node.target.value;
 		dispatch("dateFilterVideos", {
-			end: moment(newDate, "YYYY-MM-DD").startOf("day").toDate(),
+			end: dayjs(newDate, "YYYY-MM-DD").startOf("day").toDate(),
 			dateKey: "end",
 		});
 		// console.log(newDate);
-		if (!externalfilter) lastCardData = moment(newDate, "YYYY-MM-DD").endOf("day").toDate();
+		if (!externalfilter) lastCardData = dayjs(newDate, "YYYY-MM-DD").endOf("day").toDate();
 		filter = null;
 	}
 	// async function getHelloWorld() {
@@ -277,14 +277,14 @@
 								type="date"
 								class="form-control"
 								style="max-width: 200px"
-								value={moment(initialdate).format("YYYY-MM-DD")}
+								value={dayjs(initialdate).format("YYYY-MM-DD")}
 							/>
 							<input
 								on:input={changeEndDate}
 								type="date"
 								class="form-control"
 								style="max-width: 200px"
-								value={moment(lastdate).format("YYYY-MM-DD")}
+								value={dayjs(lastdate).format("YYYY-MM-DD")}
 							/>
 						</div>
 					{/if}
@@ -322,7 +322,7 @@
 						<videocardbootstrap-component
 							title={item.title || ""}
 							description={item.description || ""}
-							time={item.time ? moment(item.time).format() : undefined}
+							time={item.time ? dayjs(item.time).format() : undefined}
 							dateformat={dateformat || ""}
 							pageuri={item.pageUri || ""}
 							videosrc={item.videoSrc || ""}

@@ -67,7 +67,7 @@
 	],
 	"contributors": [],
 	"dependencies": {
-		"moment": "^2.29.1"
+		"dayjs": "^1.10.7"
 	},
 	"gitHead": "fcd4bcbd121db922ebc774083c82f37e69dcb2c3"
 }

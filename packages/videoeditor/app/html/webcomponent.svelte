@@ -21,6 +21,7 @@
 	export let id: string;
 	export let starttime: Date;
 	export let endtime: Date;
+	import dayjs from "dayjs";
 	let timeDiffInSeconds: number;
 	$: {
 		if (!id) {
@@ -32,6 +33,7 @@
 		if (!endtime) {
 			endtime = new Date();
 		}
+		timeDiffInSeconds = dayjs(endtime).diff(dayjs(starttime), "s");
 	}
 	function dispatch(name, detail) {
 		// console.log(`svelte: ${name}`);
