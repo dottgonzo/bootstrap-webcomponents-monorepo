@@ -11,7 +11,9 @@
 	 *
 	 */
 
-	import moment from "moment-with-locales-es6";
+	import dayjs from "dayjs";
+	import "dayjs/locale/it";
+
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	import type { IActionButton, IFilter, IRow, ITableHeader } from "@app/functions/interfaces";
@@ -124,10 +126,10 @@
 				for (const filter of filters) {
 					if (filter.type === "datetime") {
 						if (filter.start) {
-							rowItems = rowItems.filter((f) => moment(getObjVal(f, filter)).valueOf() >= moment(filter.start).valueOf());
+							rowItems = rowItems.filter((f) => dayjs(getObjVal(f, filter)).valueOf() >= dayjs(filter.start).valueOf());
 						}
 						if (filter.end) {
-							rowItems = rowItems.filter((f) => moment(getObjVal(f, filter)).valueOf() <= moment(filter.end).valueOf());
+							rowItems = rowItems.filter((f) => dayjs(getObjVal(f, filter)).valueOf() <= dayjs(filter.end).valueOf());
 						}
 					} else {
 						rowItems = rowItems.filter((f) => getObjVal(f, filter).includes(filter.value));
@@ -244,7 +246,7 @@
 		} else if (!opts.type || opts.type === "string" || opts.type === "enum") {
 			return value;
 		} else if (opts.type === "datetime") {
-			return opts.format ? moment(value).format(opts.format) : moment(value).format();
+			return opts.format ? dayjs(value).format(opts.format) : dayjs(value).format();
 		} else {
 			return "";
 		}
@@ -306,7 +308,7 @@
 		setFilter({
 			key: th.key,
 			type: th.type,
-			start: moment(newDate, "YYYY-MM-DD").toDate(),
+			start: dayjs(newDate, "YYYY-MM-DD").toDate(),
 			end: filterExists && filterExists.end ? filterExists.end : undefined,
 		});
 	}
@@ -317,7 +319,7 @@
 		setFilter({
 			key: th.key,
 			type: th.type,
-			end: moment(newDate, "YYYY-MM-DD").toDate(),
+			end: dayjs(newDate, "YYYY-MM-DD").toDate(),
 			start: filterExists && filterExists.start ? filterExists.start : undefined,
 		});
 	}

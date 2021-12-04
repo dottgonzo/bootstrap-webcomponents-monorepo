@@ -1,4 +1,4 @@
-import moment from "moment";
+	import dayjs from "dayjs";
 import pkg from "../../lerna.json";
 
 export interface VideoCardProps {
@@ -54,8 +54,8 @@ export const createVideoCard = ({
   }
 
   if (time) {
-    console.log(time, moment(time).isValid());
-    c.setAttribute("time", moment(time).format());
+    console.log(time, dayjs(time).isValid());
+    c.setAttribute("time", dayjs(time).format());
   } else {
     if (c.hasAttribute("time")) c.removeAttribute("time");
   }

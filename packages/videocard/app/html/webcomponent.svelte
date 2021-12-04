@@ -11,7 +11,8 @@
 	 *
 	 */
 
-	import moment from "moment-with-locales-es6";
+	import dayjs from "dayjs";
+	import "dayjs/locale/it";
 
 	export let title: string;
 	export let description: string;
@@ -103,7 +104,7 @@
 		<div class="card-footer">
 			<slot name="card-footer">
 				<small class="text-muted"
-					><i class="bi bi-clock" style="margin-right:8px" />{moment(time)
+					><i class="bi bi-clock" style="margin-right:8px" />{dayjs(time)
 						.locale(navigator.language)
 						.format(dateformat)
 						.replace(/\b\w/g, (l) => l.toUpperCase())}</small
