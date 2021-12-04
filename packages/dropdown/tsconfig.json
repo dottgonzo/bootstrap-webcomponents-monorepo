@@ -15,8 +15,6 @@
 		"allowJs": true,
 		"types": ["svelte"],
 		"paths": {
-			"@translations/*": ["./app/translations/*"],
-			"@configs/*": ["./app/configs/*"],
 			"@app/*": ["./app/*"]
 		},
 		"typeRoots": ["app/**/types", "node_modules/@types"],
