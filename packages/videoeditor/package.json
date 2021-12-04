@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/videoeditorbootstrap-component",
 	"displayName": "Svelte Boostrap Video Card WebComponent",
 	"description": "Svelte Boostrap Video Card WebComponent",
-	"version": "0.1.26",
+	"version": "0.1.27",
 	"main": "release/videoeditorbootstrap.js",
 	"publishConfig": {
 		"access": "public"
