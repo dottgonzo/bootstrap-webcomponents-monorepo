@@ -18,7 +18,7 @@
 		group?: string;
 	}
 
-	import { dictionary } from "../functions/i18n";
+	import { dictionary } from "@app/functions/i18n";
 
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";

@@ -17,7 +17,7 @@
 
 	import pkg from "../../package.json";
 
-	import { groupMultipleBy } from "../functions/utils";
+	import { groupMultipleBy } from "@app/functions/utils";
 
 	type IComponentName =
 		| "formrenderer-selectinput"
