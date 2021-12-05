@@ -66,6 +66,8 @@
 	addComponent("range-slider-component", "rangeslider.js", "rangesliderscript", "rangeslider");
 
 	function dispatchTrackVals(trackStatus: IDispatchValsEvent) {
+		track.minValue = trackStatus.minValue;
+		track.maxValue = trackStatus.maxValue;
 		dispatch("changeTrackValues", trackStatus);
 	}
 	function dispatchTrack() {
