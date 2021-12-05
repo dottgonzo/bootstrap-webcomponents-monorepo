@@ -24,7 +24,7 @@
 	export let id: string;
 
 	export let videosrc: string;
-	export let tracks: ITrack[];
+	export let track: ITrack;
 
 	let durationInSeconds: number;
 	$: {
@@ -38,18 +38,15 @@
 			videosrc = "";
 		}
 
-		if (!tracks) {
-			tracks = [
-				{
-					maxValue: 100,
-					minValue: 0,
-					name: "track1",
-				},
-			];
-		} else if (tracks && typeof tracks === "string") {
-			tracks = JSON.parse(tracks);
+		if (!track) {
+			track = {
+				maxValue: 100,
+				minValue: 0,
+			};
+		} else if (track && typeof track === "string") {
+			track = JSON.parse(track);
 		}
-		console.log(tracks);
+		console.log(track);
 	}
 	function dispatch(name, detail) {
 		// console.log(`svelte: ${name}`);
@@ -68,21 +65,12 @@
 	}
 	addComponent("range-slider-component", "rangeslider.js", "rangesliderscript", "rangeslider");
 
-	function dispatchTrackVals(name: string, status: IDispatchValsEvent) {
-		const trackStatus: ITrack = Object.assign({ name }, status);
-		const registeredTrack: ITrack = tracks.find((f) => f.name === name);
-		if (registeredTrack) {
-			registeredTrack.maxValue = trackStatus.maxValue;
-			registeredTrack.minValue = trackStatus.minValue;
-			dispatch("changeTrackValues", trackStatus);
-		} else {
-			tracks.push(trackStatus);
-			dispatch("changeTrackValues", trackStatus);
-		}
+	function dispatchTrackVals(trackStatus: IDispatchValsEvent) {
+		dispatch("changeTrackValues", trackStatus);
 	}
-	function dispatchTracks() {
-		dispatch("dispatchTracks", tracks);
-		console.log(tracks);
+	function dispatchTrack() {
+		dispatch("dispatchTrack", track);
+		console.log(track);
 	}
 	function videoLoad(e) {
 		console.log(e, e.target);
@@ -100,24 +88,23 @@
 	</div>
 
 	<div class="card-body">
-		{#each tracks as track (track.name)}
-			<div style="display:flex;align-items:center">
-				<div style="width: 200px"><input type="number" />h <input type="number" />m <input type="number" />s</div>
-				<div style="width: 100%;margin:20px">
-					<range-slider-component
-						maxvalue={track.maxValue.toString()}
-						minvalue={track.minValue.toString()}
-						on:changeRangeValues={(e) => {
-							dispatchTrackVals(track.name, e.detail);
-						}}
-					/>
-				</div>
-				<div style="width: 200px"><input type="number" />h <input type="number" />m <input type="number" />s</div>
-			</div>
-		{/each}
+		<div style="display:flex;align-items:center">
+			<div style="width: 200px"><input type="number" />h <input type="number" />m <input type="number" />s</div>
+			<div style="width: 100%;margin:20px">aa</div>
+			<div style="width: 200px"><input type="number" />h <input type="number" />m <input type="number" />s</div>
+		</div>
+		<div style="width: 100%;margin-top:20px">
+			<range-slider-component
+				maxvalue={track.maxValue.toString()}
+				minvalue={track.minValue.toString()}
+				on:changeRangeValues={(e) => {
+					dispatchTrackVals(e.detail);
+				}}
+			/>
+		</div>
 	</div>
 	<div class="card-footer" style="text-align: right;">
-		<button class="btn btn-sm btn-primary" on:click={dispatchTracks}>send</button>
+		<button class="btn btn-sm btn-primary" on:click={dispatchTrack}>send</button>
 	</div>
 </div>
 

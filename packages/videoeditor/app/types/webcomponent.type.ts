@@ -6,7 +6,6 @@ export interface IDispatchValsEvent {
 }
 
 export interface ITrack {
-	name: string;
 	minValue: number;
 	maxValue: number;
 }

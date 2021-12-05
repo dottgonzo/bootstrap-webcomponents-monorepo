@@ -6,27 +6,14 @@ export default {
   argTypes: {
     id: { control: { disable: true } },
     changeTrackValues: { action: "changeTrackValuesEvent" },
-    dispatchTracks: { action: "dispatchTracksEvent" },
+    dispatchTrack: { action: "dispatchTrackEvent" },
   },
 } as Meta;
 
-const tracks = [
-  {
-    maxValue: 100,
-    minValue: 0,
-    name: "track1",
-  },
-  {
-    maxValue: 100,
-    minValue: 0,
-    name: "track2",
-  },
-  {
-    maxValue: 100,
-    minValue: 0,
-    name: "track3",
-  },
-];
+const track = {
+  maxValue: 100,
+  minValue: 0,
+};
 
 const Template: Story<VideoeditorProps> = (args) => createVideoeditor(args);
 
@@ -37,5 +24,5 @@ BasicVideoeditor.args = {
 export const BasicVideoeditorWithTracks = Template.bind({});
 BasicVideoeditorWithTracks.args = {
   id: "BasicVideoeditorWithTracks",
-  tracks,
+  track,
 };
