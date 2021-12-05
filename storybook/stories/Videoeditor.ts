@@ -1,10 +1,16 @@
 export interface VideoeditorProps {
   id: string;
+  tracks?: {
+    name: string;
+    minValue: number;
+    maxValue: number;
+  }[];
   changeTrackValues?: (d) => void;
   dispatchTracks?: (d) => void;
 }
 export const createVideoeditor = ({
   id,
+  tracks,
   changeTrackValues,
   dispatchTracks,
 }: VideoeditorProps) => {
@@ -25,6 +31,11 @@ export const createVideoeditor = ({
       changeTrackValues(i.detail)
     );
     c.addEventListener("dispatchTracks", (i: any) => dispatchTracks(i.detail));
+  }
+  if (tracks) {
+    c.setAttribute("tracks", JSON.stringify(tracks));
+  } else {
+    if (c.hasAttribute("tracks")) c.removeAttribute("tracks");
   }
 
   return c;

@@ -5,6 +5,8 @@ export interface IDispatchValsEvent {
 	maxPercent: number;
 }
 
-export interface ITrack extends IDispatchValsEvent {
+export interface ITrack {
 	name: string;
+	minValue: number;
+	maxValue: number;
 }

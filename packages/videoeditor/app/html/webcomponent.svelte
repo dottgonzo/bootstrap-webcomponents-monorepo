@@ -22,31 +22,34 @@
 	const svelteDispatch = createEventDispatcher();
 
 	export let id: string;
-	export let starttime: Date;
-	export let endtime: Date;
 
-	let timeDiffInSeconds: number;
-	const tracks: ITrack[] = [];
+	export let videosrc: string;
+	export let tracks: ITrack[];
+
+	let durationInSeconds: number;
 	$: {
 		if (!id) {
 			id = "";
 		}
-		if (!starttime) {
-			starttime = new Date();
+		if (!durationInSeconds) {
+			durationInSeconds = 0;
 		}
-		if (!endtime) {
-			endtime = new Date();
+		if (!videosrc) {
+			videosrc = "";
 		}
-		if (!tracks.length) {
-			tracks.push({
-				maxPercent: 100,
-				minPercent: 0,
-				maxValue: 100,
-				minValue: 0,
-				name: "track1",
-			});
+
+		if (!tracks) {
+			tracks = [
+				{
+					maxValue: 100,
+					minValue: 0,
+					name: "track1",
+				},
+			];
+		} else if (tracks && typeof tracks === "string") {
+			tracks = JSON.parse(tracks);
 		}
-		timeDiffInSeconds = dayjs(endtime).diff(dayjs(starttime), "s");
+		console.log(tracks);
 	}
 	function dispatch(name, detail) {
 		// console.log(`svelte: ${name}`);
@@ -69,11 +72,9 @@
 		const trackStatus: ITrack = Object.assign({ name }, status);
 		const registeredTrack: ITrack = tracks.find((f) => f.name === name);
 		if (registeredTrack) {
-			registeredTrack.maxPercent = registeredTrack.maxPercent;
-			registeredTrack.minPercent = registeredTrack.minPercent;
-			registeredTrack.maxValue = registeredTrack.maxValue;
-			registeredTrack.minValue = registeredTrack.minValue;
-			dispatch("changeTrackValues", registeredTrack);
+			registeredTrack.maxValue = trackStatus.maxValue;
+			registeredTrack.minValue = trackStatus.minValue;
+			dispatch("changeTrackValues", trackStatus);
 		} else {
 			tracks.push(trackStatus);
 			dispatch("changeTrackValues", trackStatus);
@@ -83,18 +84,48 @@
 		dispatch("dispatchTracks", tracks);
 		console.log(tracks);
 	}
+	function videoLoad(e) {
+		console.log(e, e.target);
+	}
 </script>
 
-{#each tracks as track (track.name)}
-	<range-slider-component
-		on:changeRangeValues={(e) => {
-			dispatchTrackVals(track.name, e.detail);
-		}}
-	/>
-{/each}
+<div class="card h-100">
+	<!-- svelte-ignore a11y-media-has-caption -->
 
-<button type="submit" on:click={dispatchTracks}>send</button>
+	<div class="ratio ratio-16x9" style="background-color: black;">
+		<video on:load={(e) => videoLoad(e)} controls class="ratio ratio-16x9"
+			><source src={videosrc} type="video/mp4" />
+			Your browser does not support the video tag.
+		</video>
+	</div>
+
+	<div class="card-body">
+		{#each tracks as track (track.name)}
+			<div style="display:flex;align-items:center">
+				<div style="width: 200px"><input type="number" />h <input type="number" />m <input type="number" />s</div>
+				<div style="width: 100%;margin:20px">
+					<range-slider-component
+						maxvalue={track.maxValue.toString()}
+						minvalue={track.minValue.toString()}
+						on:changeRangeValues={(e) => {
+							dispatchTrackVals(track.name, e.detail);
+						}}
+					/>
+				</div>
+				<div style="width: 200px"><input type="number" />h <input type="number" />m <input type="number" />s</div>
+			</div>
+		{/each}
+	</div>
+	<div class="card-footer" style="text-align: right;">
+		<button class="btn btn-sm btn-primary" on:click={dispatchTracks}>send</button>
+	</div>
+</div>
 
 <style lang="scss">
+	@import "../styles/bootstrap.scss";
+
 	@import "../styles/webcomponent.scss";
+	input {
+		width: 20px;
+	}
 </style>

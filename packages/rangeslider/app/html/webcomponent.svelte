@@ -107,7 +107,7 @@
 	}
 </script>
 
-<div id="slider-distance-container">
+<div id="slider-distance-container" style={withbubbles ? "margin: 45px 0 10px 0;" : ""}>
 	<div id="slider-distance-content">
 		<div class="inverse" part="inverse" id="inverse-left" style="width:{fromleft + 100 - fromright}%;" />
 		<div class="inverse" part="inverse" id="inverse-right" style="width:{fromleft + 100 - fromright}%;" />
@@ -153,7 +153,6 @@
 		height: 14px;
 		border-radius: 10px;
 		text-align: left;
-		margin: 45px 0 10px 0;
 	}
 
 	#slider-distance-content {
