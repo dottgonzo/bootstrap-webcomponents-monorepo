@@ -1,8 +1,21 @@
 export interface RangesliderProps {
   id: string;
+  min?: number;
+  max?: number;
+  minval?: number;
+  maxval?: number;
   withbubbles?: boolean;
+  changeRangeValues?: (d) => void;
 }
-export const createRangeslider = ({ id, withbubbles }: RangesliderProps) => {
+export const createRangeslider = ({
+  id,
+  min,
+  max,
+  minval,
+  maxval,
+  withbubbles,
+  changeRangeValues,
+}: RangesliderProps) => {
   if (!document.getElementById("rangesliderscript")) {
     const script = document.createElement("script");
     script.id = "rangesliderscript";
@@ -15,11 +28,34 @@ export const createRangeslider = ({ id, withbubbles }: RangesliderProps) => {
   } else {
     c = document.createElement("range-slider-component");
     c.id = id;
+    c.addEventListener("changeRangeValues", (i: any) =>
+      changeRangeValues(i.detail)
+    );
   }
   if (withbubbles) {
     c.setAttribute("withbubbles", "yes");
   } else {
     if (c.hasAttribute("withbubbles")) c.removeAttribute("withbubbles");
+  }
+  if (min) {
+    c.setAttribute("min", min.toString());
+  } else {
+    if (c.hasAttribute("min")) c.removeAttribute("min");
+  }
+  if (max) {
+    c.setAttribute("max", max.toString());
+  } else {
+    if (c.hasAttribute("max")) c.removeAttribute("max");
+  }
+  if (minval) {
+    c.setAttribute("minval", minval.toString());
+  } else {
+    if (c.hasAttribute("minval")) c.removeAttribute("minval");
+  }
+  if (maxval) {
+    c.setAttribute("maxval", maxval.toString());
+  } else {
+    if (c.hasAttribute("maxval")) c.removeAttribute("maxval");
   }
   return c;
 };

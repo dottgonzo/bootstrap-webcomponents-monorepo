@@ -19,20 +19,16 @@
 	export let id: string;
 	export let min: number;
 	export let max: number;
-	export let videoval: number;
+	export let minval: number;
+	export let maxval: number;
 	export let withbubbles: boolean;
 
-	const minprop = 0;
-	const maxprop = 100;
-
+	const minSlider = 0;
+	const maxSlider = 100;
 	let minValReal: number;
 	let maxValReal: number;
-
-	let minTimeReal: string;
-	let maxTimeReal: string;
-
-	let minval: number;
-	let maxval: number;
+	let minPercent: number;
+	let maxPercent: number;
 
 	let fromleft: number;
 	let fromright: number;
@@ -47,27 +43,37 @@
 			withbubbles = true;
 		}
 		if (!min) {
-			min = minprop;
+			min = minSlider;
+		} else {
+			min = Number(min);
 		}
 		if (!max) {
-			max = maxprop;
+			max = maxSlider;
+		} else {
+			max = Number(max);
 		}
-		if (!minval) {
-			minval = minprop;
-		}
-		if (!maxval) {
-			maxval = maxprop;
-		}
-		if (!videoval) {
-			videoval = minval;
-		}
-		fromleft = (minval / maxprop) * 100;
-		fromright = (maxval / maxprop) * 100;
-		minValReal = min + ((max - min) / 100) * minval;
-		maxValReal = min + ((max - min) / 100) * maxval;
 
-		minTimeReal = "minValReal";
-		maxTimeReal = "maxValReal";
+		if (minval) {
+			minPercent = ((minval - min) * 100) / (max - min);
+			minval = null;
+		}
+		if (maxval) {
+			maxPercent = ((maxval - min) * 100) / (max - min);
+			maxval = null;
+		}
+
+		if (!minPercent) {
+			minPercent = minSlider;
+		}
+		if (!maxPercent) {
+			maxPercent = maxSlider;
+		}
+
+		minValReal = min + ((max - min) / 100) * minPercent;
+		maxValReal = min + ((max - min) / 100) * maxPercent;
+
+		fromleft = (minPercent / maxSlider) * 100;
+		fromright = (maxPercent / maxSlider) * 100;
 	}
 	function dispatch(name, detail) {
 		// console.log(`svelte: ${name}`);
@@ -75,28 +81,28 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 	function dispatchVals() {
-		const status = { minValue: minValReal, maxValue: maxValReal };
-		dispatch("newValues", status);
-		console.log("status", status, minval, maxval);
+		const status = { minValue: minValReal, maxValue: maxValReal, minPercent, maxPercent };
+		dispatch("changeRangeValues", status);
+		console.log("status", status, minPercent, maxPercent);
 	}
 	function changeValMin(e) {
 		if (!e?.target?.value || Number(e.target.value) === Infinity || isNaN(Number(e.target.value)))
 			return console.error(`invalid value ${e?.target?.value}`);
 
-		if (Number(e.target.value) < maxprop && Number(e.target.value) < maxval) {
-			minval = Number(e.target.value);
+		if (Number(e.target.value) < maxSlider && Number(e.target.value) < maxPercent) {
+			minPercent = Number(e.target.value);
 		} else {
-			minval = maxprop > maxval ? maxval : maxprop;
+			minPercent = maxSlider > maxPercent ? maxPercent : maxSlider;
 		}
 	}
 	function changeValMax(e) {
 		if (!e?.target?.value || Number(e.target.value) === Infinity || isNaN(Number(e.target.value)))
 			return console.error(`invalid value ${e?.target?.value}`);
 
-		if (Number(e.target.value) > minprop && Number(e.target.value) > minval) {
-			maxval = Number(e.target.value);
+		if (Number(e.target.value) > minSlider && Number(e.target.value) > minPercent) {
+			maxPercent = Number(e.target.value);
 		} else {
-			maxval = minprop > minval ? minprop : minval;
+			maxPercent = minSlider > minPercent ? minSlider : minPercent;
 		}
 	}
 </script>
@@ -117,8 +123,26 @@
 			</div>
 		{/if}
 	</div>
-	<input type="range" tabindex="0" bind:value={minval} max={maxprop} min={minprop} step="0.0001" on:input={(e) => changeValMin(e)} on:change={dispatchVals} />
-	<input type="range" tabindex="0" bind:value={maxval} max={maxprop} min={minprop} step="0.0001" on:input={(e) => changeValMax(e)} on:change={dispatchVals} />
+	<input
+		type="range"
+		tabindex="0"
+		bind:value={minPercent}
+		max={maxSlider}
+		min={minSlider}
+		step="0.0001"
+		on:input={(e) => changeValMin(e)}
+		on:change={dispatchVals}
+	/>
+	<input
+		type="range"
+		tabindex="0"
+		bind:value={maxPercent}
+		max={maxSlider}
+		min={minSlider}
+		step="0.0001"
+		on:input={(e) => changeValMax(e)}
+		on:change={dispatchVals}
+	/>
 </div>
 
 <style lang="scss">

@@ -5,6 +5,8 @@ export default {
   title: "Contents/VideoEditor",
   argTypes: {
     id: { control: { disable: true } },
+    changeTrackValues: { action: "changeTrackValuesEvent" },
+    dispatchTracks: { action: "dispatchTracksEvent" },
   },
 } as Meta;
 

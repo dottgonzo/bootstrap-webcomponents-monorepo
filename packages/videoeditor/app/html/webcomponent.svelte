@@ -10,10 +10,13 @@
 	 * @license: MIT License
 	 *
 	 */
+	import dayjs from "dayjs";
+
 	import { createEventDispatcher } from "svelte";
-	import { get_current_component } from "svelte/internal";
+	import { each, get_current_component } from "svelte/internal";
 
 	import pkg from "../../package.json";
+	import type { IDispatchValsEvent, ITrack } from "@app/types/webcomponent.type";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -21,8 +24,9 @@
 	export let id: string;
 	export let starttime: Date;
 	export let endtime: Date;
-	import dayjs from "dayjs";
+
 	let timeDiffInSeconds: number;
+	const tracks: ITrack[] = [];
 	$: {
 		if (!id) {
 			id = "";
@@ -32,6 +36,15 @@
 		}
 		if (!endtime) {
 			endtime = new Date();
+		}
+		if (!tracks.length) {
+			tracks.push({
+				maxPercent: 100,
+				minPercent: 0,
+				maxValue: 100,
+				minValue: 0,
+				name: "track1",
+			});
 		}
 		timeDiffInSeconds = dayjs(endtime).diff(dayjs(starttime), "s");
 	}
@@ -51,11 +64,36 @@
 		}
 	}
 	addComponent("range-slider-component", "rangeslider.js", "rangesliderscript", "rangeslider");
+
+	function dispatchTrackVals(name: string, status: IDispatchValsEvent) {
+		const trackStatus: ITrack = Object.assign({ name }, status);
+		const registeredTrack: ITrack = tracks.find((f) => f.name === name);
+		if (registeredTrack) {
+			registeredTrack.maxPercent = registeredTrack.maxPercent;
+			registeredTrack.minPercent = registeredTrack.minPercent;
+			registeredTrack.maxValue = registeredTrack.maxValue;
+			registeredTrack.minValue = registeredTrack.minValue;
+			dispatch("changeTrackValues", registeredTrack);
+		} else {
+			tracks.push(trackStatus);
+			dispatch("changeTrackValues", trackStatus);
+		}
+	}
+	function dispatchTracks() {
+		dispatch("dispatchTracks", tracks);
+		console.log(tracks);
+	}
 </script>
 
-<range-slider-component />
+{#each tracks as track (track.name)}
+	<range-slider-component
+		on:changeRangeValues={(e) => {
+			dispatchTrackVals(track.name, e.detail);
+		}}
+	/>
+{/each}
 
-<button type="submit">send</button>
+<button type="submit" on:click={dispatchTracks}>send</button>
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
