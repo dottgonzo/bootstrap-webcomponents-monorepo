@@ -55,6 +55,12 @@
 			};
 		}
 	}
+
+	function valueChanged() {
+		track.maxValue = maxHours * 3600 + maxMinutes * 60 + maxSeconds;
+		track.minValue = minHours * 3600 + minMinutes * 60 + minSeconds;
+	}
+
 	function dispatch(name, detail) {
 		// console.log(`svelte: ${name}`);
 		svelteDispatch(name, detail);
@@ -84,12 +90,12 @@
 		console.log(track);
 	}
 	function setTimings() {
-		maxHours = parseInt((track.maxValue / 3600).toString()).toString();
-		minHours = parseInt((track.maxValue / 3600).toString()).toString();
-		maxMinutes = parseInt(((track.maxValue - Number(maxHours) * 60) / 60).toString()).toString();
-		minMinutes = parseInt(((track.minValue - Number(minHours) * 60) / 60).toString()).toString();
-		maxSeconds = (track.maxValue - Number(maxHours) * 3600 - Number(maxMinutes) * 60).toString();
-		minSeconds = (track.minValue - Number(minHours) * 3600 - Number(minMinutes) * 60).toString();
+		maxHours = parseInt((track.maxValue / 3600).toString());
+		minHours = parseInt((track.maxValue / 3600).toString());
+		maxMinutes = parseInt(((track.maxValue - Number(maxHours) * 60) / 60).toString());
+		minMinutes = parseInt(((track.minValue - Number(minHours) * 60) / 60).toString());
+		maxSeconds = track.maxValue - Number(maxHours) * 3600 - Number(maxMinutes) * 60;
+		minSeconds = track.minValue - Number(minHours) * 3600 - Number(minMinutes) * 60;
 	}
 	function videoLoad(e) {
 		durationInSeconds = e.target.duration;
@@ -113,19 +119,27 @@
 
 	<div class="card-body">
 		<div style="display:flex;align-items:center">
-			<div style="width: 200px">
-				<input type="string" bind:value={minHours} />h <input bind:value={minMinutes} type="string" />m <input type="string" bind:value={minSeconds} />s
+			<div style="width: 250px">
+				<input type="number" class="form-control form-custom-control-numbers" bind:value={minHours} on:change={valueChanged} />h
+				<input bind:value={minMinutes} class="form-control form-custom-control-numbers" type="number" on:change={valueChanged} />m
+				<input type="number" class="form-control form-custom-control-numbers" bind:value={minSeconds} on:change={valueChanged} />s
 			</div>
-			<div style="width: 100%;margin:20px">aa</div>
-			<div style="width: 200px">
-				<input type="string" bind:value={maxHours} />h <input bind:value={maxMinutes} type="string" />m <input type="string" bind:value={maxSeconds} />s
+			<div style="width: 100%;margin:20px;text-align:center">
+				{#if track?.maxValue}duration {Math.round((track.maxValue - track.minValue) * 100) / 100}{/if}
+			</div>
+			<div style="width: 250px">
+				<input type="number" class="form-control form-custom-control-numbers" bind:value={maxHours} on:change={valueChanged} />h
+				<input bind:value={maxMinutes} class="form-control form-custom-control-numbers" type="number" on:change={valueChanged} />m
+				<input type="number" class="form-control form-custom-control-numbers" bind:value={maxSeconds} on:change={valueChanged} />s
 			</div>
 		</div>
-		{#if durationInSeconds}
+		{#if durationInSeconds && track}
 			<div style="width: 100%;margin-top:20px">
 				<range-slider-component
 					max={max.toString()}
 					min={min.toString()}
+					maxval={track.maxValue.toString()}
+					minval={track.minValue.toString()}
 					on:changeRangeValues={(e) => {
 						dispatchTrackVals(e.detail);
 					}}
@@ -142,7 +156,9 @@
 	@import "../styles/bootstrap.scss";
 
 	@import "../styles/webcomponent.scss";
-	input {
-		width: 20px;
+	.form-custom-control-numbers {
+		width: 40px;
+		display: inline-block;
+		padding: 0px;
 	}
 </style>
