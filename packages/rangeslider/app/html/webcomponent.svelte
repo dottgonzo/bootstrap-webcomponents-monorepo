@@ -54,10 +54,14 @@
 		}
 
 		if (minval) {
+			if (min > minval) minval = min;
+
 			minPercent = ((minval - min) * 100) / (max - min);
 			minval = null;
 		}
 		if (maxval) {
+			if (max < maxval) maxval = max;
+
 			maxPercent = ((maxval - min) * 100) / (max - min);
 			maxval = null;
 		}

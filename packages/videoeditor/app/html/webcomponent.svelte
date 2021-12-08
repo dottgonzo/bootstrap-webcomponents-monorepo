@@ -26,7 +26,14 @@
 
 	export let videosrc: string;
 	export let track: ITrack;
-
+	let max;
+	let min = 0;
+	let maxHours;
+	let minHours;
+	let maxMinutes;
+	let minMinutes;
+	let maxSeconds;
+	let minSeconds;
 	let durationInSeconds: number;
 	$: {
 		if (!id) {
@@ -41,8 +48,12 @@
 
 		if (track && typeof track === "string") {
 			track = JSON.parse(track);
+		} else if (!track) {
+			track = {
+				maxValue: null,
+				minValue: null,
+			};
 		}
-		console.log(track);
 	}
 	function dispatch(name, detail) {
 		// console.log(`svelte: ${name}`);
@@ -64,22 +75,29 @@
 	function dispatchTrackVals(trackStatus: IDispatchValsEvent) {
 		track.minValue = trackStatus.minValue;
 		track.maxValue = trackStatus.maxValue;
+		setTimings();
+
 		dispatch("changeTrackValues", trackStatus);
 	}
 	function dispatchTrack() {
 		dispatch("dispatchTrack", track);
 		console.log(track);
 	}
+	function setTimings() {
+		maxHours = parseInt((track.maxValue / 3600).toString()).toString();
+		minHours = parseInt((track.maxValue / 3600).toString()).toString();
+		maxMinutes = parseInt(((track.maxValue - Number(maxHours) * 60) / 60).toString()).toString();
+		minMinutes = parseInt(((track.minValue - Number(minHours) * 60) / 60).toString()).toString();
+		maxSeconds = (track.maxValue - Number(maxHours) * 3600 - Number(maxMinutes) * 60).toString();
+		minSeconds = (track.minValue - Number(minHours) * 3600 - Number(minMinutes) * 60).toString();
+	}
 	function videoLoad(e) {
 		durationInSeconds = e.target.duration;
-		if (!track) {
-			track = {
-				maxValue: durationInSeconds,
-				minValue: 0,
-			};
-		} else if (track.maxValue && track.maxValue > durationInSeconds) {
-			track.maxValue = durationInSeconds;
-		}
+		max = durationInSeconds;
+
+		if (!track.maxValue || track.maxValue > max) track.maxValue = max;
+		if (!track.minValue || track.minValue < min) track.minValue = min;
+		setTimings();
 	}
 </script>
 
@@ -95,15 +113,19 @@
 
 	<div class="card-body">
 		<div style="display:flex;align-items:center">
-			<div style="width: 200px"><input type="number" />h <input type="number" />m <input type="number" />s</div>
+			<div style="width: 200px">
+				<input type="string" bind:value={minHours} />h <input bind:value={minMinutes} type="string" />m <input type="string" bind:value={minSeconds} />s
+			</div>
 			<div style="width: 100%;margin:20px">aa</div>
-			<div style="width: 200px"><input type="number" />h <input type="number" />m <input type="number" />s</div>
+			<div style="width: 200px">
+				<input type="string" bind:value={maxHours} />h <input bind:value={maxMinutes} type="string" />m <input type="string" bind:value={maxSeconds} />s
+			</div>
 		</div>
 		{#if durationInSeconds}
 			<div style="width: 100%;margin-top:20px">
 				<range-slider-component
-					maxvalue={track.maxValue.toString()}
-					minvalue={track.minValue.toString()}
+					max={max.toString()}
+					min={min.toString()}
 					on:changeRangeValues={(e) => {
 						dispatchTrackVals(e.detail);
 					}}
