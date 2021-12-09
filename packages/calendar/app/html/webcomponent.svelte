@@ -37,7 +37,7 @@
 
 		targetDate = dayjs(`${year.toString()} ${month.toString()}`, "YYYY M").toDate();
 
-		rows = Math.ceil(dayjs(targetDate).daysInMonth() / 7) + (dayjs(targetDate).day() === 1 ? 0 : 1);
+		rows = Math.ceil(dayjs(targetDate).daysInMonth() / 7); //+ (dayjs(targetDate).day() === 1 ? 0 : 1);
 	}
 	function dispatch(name, detail) {
 		// console.log(`svelte: ${name}`);
@@ -60,14 +60,34 @@
 	{#each Array(rows) as _, i}
 		<tr>
 			{#if i === 0}
-				<td>Emil</td>
-				<td>Tobias</td>
-				<td>Linus</td>
-			{:else if i === rows}{:else}{/if}
+				{#each Array(7) as __, d}
+					{#if d + i * 7 - (7 - dayjs(targetDate).day() - 1) > 0}
+						<td>{d + i * 7 - (7 - dayjs(targetDate).day() - 1)}</td>
+					{:else}
+						<td />
+					{/if}
+				{/each}
+			{:else if i === rows - 1}
+				{#each Array(7) as __, d}
+					{#if d + i * 7 - (7 - dayjs(targetDate).day() - 1) <= dayjs(targetDate).daysInMonth()}
+						<td>{d + i * 7 - (7 - dayjs(targetDate).day() - 1)}</td>
+					{:else}
+						<td />
+					{/if}
+				{/each}
+			{:else}
+				{#each Array(7) as __, d}
+					<td>{d + i * 7 - (7 - dayjs(targetDate).day() - 1)}</td>
+				{/each}
+			{/if}
 		</tr>
 	{/each}
 </table>
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
+	table {
+		width: 100%;
+		height: 100%;
+	}
 </style>
