@@ -71,6 +71,7 @@
 <div style="line-height:50px;margin:10px;vertical-align:middle">
 	<span style="text-transform:capitalize">
 		{monthDateFormat.format(dayjs(targetDate))}
+		{dayjs(targetDate).format("YYYY")}
 	</span>
 	<span style="float:right">
 		<button class="btn btn-primary" on:click={() => changeMonth(-1)}>˂</button>
