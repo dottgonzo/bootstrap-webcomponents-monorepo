@@ -28,24 +28,40 @@
 		if (!id) {
 			id = "";
 		}
-		if (!month) {
+		if (!month && !targetDate) {
 			month = Number(dayjs().format("M"));
+		} else if (targetDate) {
+			month = Number(dayjs(targetDate).format("M"));
 		}
-		if (!year) {
+		if (!year && !targetDate) {
 			year = Number(dayjs().format("YYYY"));
+		} else if (targetDate) {
+			year = Number(dayjs(targetDate).format("YYYY"));
 		}
 
-		targetDate = dayjs(`${year.toString()} ${month.toString()}`, "YYYY M").toDate();
+		if (!targetDate) targetDate = dayjs(`${year.toString()} ${month.toString()} 01`, "YYYY M DD").toDate();
 
-		rows = Math.ceil(dayjs(targetDate).daysInMonth() / 7); //+ (dayjs(targetDate).day() === 1 ? 0 : 1);
+		rows = Math.ceil((dayjs(targetDate).daysInMonth() + dayjs(targetDate).day()) / 7); //+ (dayjs(targetDate).day() === 1 ? 0 : 1);
 	}
 	function dispatch(name, detail) {
 		// console.log(`svelte: ${name}`);
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
+	function changeMonth(c) {
+		targetDate = dayjs(targetDate).add(c, "month").toDate();
+	}
 </script>
 
+<div>
+	<span>
+		{dayjs(targetDate).format("MMMM YYYY")}
+	</span>
+	<span style="float:right">
+		<button class="btn btn-primary" on:click={() => changeMonth(-1)}>˂</button>
+		<button class="btn btn-primary" on:click={() => changeMonth(1)}>˃</button>
+	</span>
+</div>
 <table>
 	<tr>
 		<th>Monday</th>
@@ -61,23 +77,23 @@
 		<tr>
 			{#if i === 0}
 				{#each Array(7) as __, d}
-					{#if d + i * 7 - (7 - dayjs(targetDate).day() - 1) > 0}
-						<td>{d + i * 7 - (7 - dayjs(targetDate).day() - 1)}</td>
+					{#if d + 2 > dayjs(targetDate).day()}
+						<td>{d - dayjs(targetDate).day() + 2}</td>
 					{:else}
 						<td />
 					{/if}
 				{/each}
 			{:else if i === rows - 1}
 				{#each Array(7) as __, d}
-					{#if d + i * 7 - (7 - dayjs(targetDate).day() - 1) <= dayjs(targetDate).daysInMonth()}
-						<td>{d + i * 7 - (7 - dayjs(targetDate).day() - 1)}</td>
+					{#if d - dayjs(targetDate).day() + 2 + i * 7 <= dayjs(targetDate).daysInMonth()}
+						<td>{d - dayjs(targetDate).day() + 2 + i * 7}</td>
 					{:else}
 						<td />
 					{/if}
 				{/each}
 			{:else}
 				{#each Array(7) as __, d}
-					<td>{d + i * 7 - (7 - dayjs(targetDate).day() - 1)}</td>
+					<td>{d - dayjs(targetDate).day() + 2 + i * 7}</td>
 				{/each}
 			{/if}
 		</tr>
