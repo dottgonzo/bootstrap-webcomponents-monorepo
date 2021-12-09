@@ -1,7 +1,16 @@
+import type { IEvent } from "../../packages/calendar/app/types/webcomponent.type";
+
 export interface CalendarProps {
   id: string;
+  events: IEvent[];
+  calendarEventClick: (e) => void;
 }
-export const createCalendar = ({ id }: CalendarProps) => {
+
+export const createCalendar = ({
+  id,
+  events,
+  calendarEventClick,
+}: CalendarProps) => {
   if (!document.getElementById("calendarcomponentscript")) {
     const script = document.createElement("script");
     script.id = "calendarcomponentscript";
@@ -14,7 +23,14 @@ export const createCalendar = ({ id }: CalendarProps) => {
   } else {
     c = document.createElement("calendar-component");
     c.id = id;
+    c.addEventListener("calendarEventClick", (e: any) =>
+      calendarEventClick(e.detail)
+    );
   }
-
+  if (events) {
+    c.setAttribute("events", JSON.stringify(events));
+  } else {
+    if (c.hasAttribute("events")) c.removeAttribute("events");
+  }
   return c;
 };
