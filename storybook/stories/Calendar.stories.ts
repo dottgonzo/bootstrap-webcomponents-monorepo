@@ -1,12 +1,14 @@
 import { Story, Meta } from "@storybook/html";
 import { createCalendar, CalendarProps } from "./Calendar";
 import type { IEvent } from "../../packages/calendar/app/types/webcomponent.type";
+import dayjs from "dayjs";
 
 export default {
   title: "Contents/Calendar",
   argTypes: {
     id: { control: { disable: true } },
     calendarEventClick: { action: "calendarEventClickEvent" },
+    changeCalendarDate: { action: "changeCalendarDateEvent" },
   },
 } as Meta;
 
@@ -17,9 +19,14 @@ const events: IEvent[] = [
     label: "thetest",
   },
   {
-    date: new Date(1638313200000),
+    date: dayjs().endOf("month").add(1, "d").toDate(),
+    id: "testend",
+    label: "thetest end",
+  },
+  {
+    date: dayjs().startOf("month").subtract(1, "d").toDate(),
     id: "test2",
-    label: "thetest2",
+    label: "thetest start",
   },
 ];
 
