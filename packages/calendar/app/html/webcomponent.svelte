@@ -26,6 +26,8 @@
 
 	let rows: number;
 	let targetDate: Date;
+	let previousMonthOfTargetDate: Date;
+	let nextMonthOfTargetDate: Date;
 	let monthsEvent: IEvent[];
 
 	$: {
@@ -49,6 +51,9 @@
 			if (typeof events === "string") events = JSON.parse(events);
 			monthsEvent = events.filter((f) => Number(dayjs(f.date).format("M")) === month && Number(dayjs(f.date).format("YYYY")) === year);
 		}
+
+		previousMonthOfTargetDate = dayjs(targetDate).subtract(1, "month").toDate();
+		nextMonthOfTargetDate = dayjs(targetDate).add(1, "month").toDate();
 
 		rows = Math.ceil((dayjs(targetDate).daysInMonth() + dayjs(targetDate).day()) / 7); //+ (dayjs(targetDate).day() === 1 ? 0 : 1);
 	}
@@ -80,13 +85,13 @@
 </div>
 <table>
 	<tr>
-		<th>{dayDateFormat.format(dayjs().startOf("week").toDate())}</th>
 		<th>{dayDateFormat.format(dayjs().startOf("week").add(1, "days").toDate())}</th>
 		<th>{dayDateFormat.format(dayjs().startOf("week").add(2, "days").toDate())}</th>
 		<th>{dayDateFormat.format(dayjs().startOf("week").add(3, "days").toDate())}</th>
 		<th>{dayDateFormat.format(dayjs().startOf("week").add(4, "days").toDate())}</th>
 		<th>{dayDateFormat.format(dayjs().startOf("week").add(5, "days").toDate())}</th>
 		<th>{dayDateFormat.format(dayjs().startOf("week").add(6, "days").toDate())}</th>
+		<th>{dayDateFormat.format(dayjs().startOf("week").toDate())}</th>
 	</tr>
 
 	{#each Array(rows) as _, i}
@@ -107,7 +112,11 @@
 							{/if}
 						</td>
 					{:else}
-						<td />
+						<td style="height:{100 / rows}%">
+							<div class="cell-date" style="color:grey">
+								{dayjs(previousMonthOfTargetDate).daysInMonth() + d - dayjs(targetDate).day() + 2 + i * 7}
+							</div>
+						</td>
 					{/if}
 				{/each}
 			{:else if i === rows - 1}
@@ -126,7 +135,11 @@
 							{/if}
 						</td>
 					{:else}
-						<td />
+						<td style="height:{100 / rows}%">
+							<div class="cell-date" style="color:grey">
+								{d - dayjs(targetDate).day() + 2 + i * 7 - dayjs(targetDate).daysInMonth()}
+							</div>
+						</td>
 					{/if}
 				{/each}
 			{:else}
