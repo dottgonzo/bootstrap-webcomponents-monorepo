@@ -20,11 +20,6 @@ const events: IEvent[] = [
   },
   {
     date: dayjs().startOf("month").subtract(1, "day").toDate(),
-    id: "testend",
-    label: "thetest end",
-  },
-  {
-    date: dayjs().startOf("month").subtract(1, "day").toDate(),
     id: "test2",
     label: "thetest start",
   },
