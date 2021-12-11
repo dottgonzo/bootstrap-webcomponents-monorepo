@@ -16,6 +16,11 @@ const events: IEvent[] = [
     id: "test",
     label: "thetest",
   },
+  {
+    date: new Date(1638313200000),
+    id: "test2",
+    label: "thetest2",
+  },
 ];
 
 const Template: Story<CalendarProps> = (args) => createCalendar(args);

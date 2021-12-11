@@ -29,31 +29,34 @@
 	let previousMonthOfTargetDate: Date;
 	let nextMonthOfTargetDate: Date;
 	let monthsEvent: IEvent[];
+	let previousMonthEvents: IEvent[];
+	let nextMonthEvents: IEvent[];
 
 	$: {
 		if (!id) {
 			id = "";
 		}
 
-		if (!month && !targetDate) {
-			month = Number(dayjs().format("M"));
-		} else if (targetDate) {
-			month = Number(dayjs(targetDate).format("M"));
-		}
-		if (!year && !targetDate) {
-			year = Number(dayjs().format("YYYY"));
-		} else if (targetDate) {
-			year = Number(dayjs(targetDate).format("YYYY"));
-		}
+		if (!targetDate) targetDate = dayjs().startOf("month").toDate();
+		previousMonthOfTargetDate = dayjs(targetDate).subtract(1, "month").toDate();
+		nextMonthOfTargetDate = dayjs(targetDate).add(1, "month").toDate();
+		month = Number(dayjs(targetDate).format("M"));
+		year = Number(dayjs(targetDate).format("YYYY"));
 
-		if (!targetDate) targetDate = dayjs(`${year.toString()} ${month.toString()} 01`, "YYYY M DD").toDate();
 		if (events) {
 			if (typeof events === "string") events = JSON.parse(events);
 			monthsEvent = events.filter((f) => Number(dayjs(f.date).format("M")) === month && Number(dayjs(f.date).format("YYYY")) === year);
+			previousMonthEvents = events.filter(
+				(f) =>
+					Number(dayjs(f.date).format("M")) === Number(dayjs(previousMonthOfTargetDate).format("M")) &&
+					Number(dayjs(f.date).format("YYYY")) === Number(dayjs(previousMonthOfTargetDate).format("YYYY")),
+			);
+			nextMonthEvents = events.filter(
+				(f) =>
+					Number(dayjs(f.date).format("M")) === Number(dayjs(nextMonthOfTargetDate).format("M")) &&
+					Number(dayjs(f.date).format("YYYY")) === Number(dayjs(nextMonthOfTargetDate).format("YYYY")),
+			);
 		}
-
-		previousMonthOfTargetDate = dayjs(targetDate).subtract(1, "month").toDate();
-		nextMonthOfTargetDate = dayjs(targetDate).add(1, "month").toDate();
 
 		rows = Math.ceil((dayjs(targetDate).daysInMonth() + dayjs(targetDate).day()) / 7); //+ (dayjs(targetDate).day() === 1 ? 0 : 1);
 	}
@@ -116,6 +119,13 @@
 							<div class="cell-date" style="color:grey">
 								{dayjs(previousMonthOfTargetDate).daysInMonth() + d - dayjs(targetDate).day() + 2 + i * 7}
 							</div>
+							{#if previousMonthEvents?.length}
+								{#each previousMonthEvents.filter((f) => Number(dayjs(f.date).format("DD")) === dayjs(previousMonthOfTargetDate).daysInMonth() + d - dayjs(previousMonthOfTargetDate).day() + 2 + i * 7) as event (event.id)}
+									<button class="cell-event btn btn-sm btn-secondary" on:click={() => calendarEventClick({ eventId: event.id })}
+										>{event.label}</button
+									>
+								{/each}
+							{/if}
 						</td>
 					{/if}
 				{/each}
@@ -139,6 +149,13 @@
 							<div class="cell-date" style="color:grey">
 								{d - dayjs(targetDate).day() + 2 + i * 7 - dayjs(targetDate).daysInMonth()}
 							</div>
+							{#if nextMonthEvents?.length}
+								{#each nextMonthEvents.filter((f) => Number(dayjs(f.date).format("DD")) === d - dayjs(targetDate).day() + 2 + i * 7 - dayjs(targetDate).daysInMonth()) as event (event.id)}
+									<button class="cell-event btn btn-sm btn-secondary" on:click={() => calendarEventClick({ eventId: event.id })}
+										>{event.label}</button
+									>
+								{/each}
+							{/if}
 						</td>
 					{/if}
 				{/each}
