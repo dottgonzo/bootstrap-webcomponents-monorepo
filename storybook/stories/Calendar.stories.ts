@@ -9,6 +9,7 @@ export default {
     id: { control: { disable: true } },
     calendarEventClick: { action: "calendarEventClickEvent" },
     changeCalendarDate: { action: "changeCalendarDateEvent" },
+    changeSelectedDate: { action: "changeSelectedDateEvent" },
   },
 } as Meta;
 

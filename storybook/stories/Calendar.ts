@@ -5,6 +5,7 @@ export interface CalendarProps {
   events: IEvent[];
   calendarEventClick: (e) => void;
   changeCalendarDate: (e) => void;
+  changeSelectedDate: (e) => void;
 }
 
 export const createCalendar = ({
@@ -12,6 +13,7 @@ export const createCalendar = ({
   events,
   calendarEventClick,
   changeCalendarDate,
+  changeSelectedDate,
 }: CalendarProps) => {
   if (!document.getElementById("calendarcomponentscript")) {
     const script = document.createElement("script");
@@ -30,6 +32,9 @@ export const createCalendar = ({
     );
     c.addEventListener("changeCalendarDate", (e: any) =>
       changeCalendarDate(e.detail)
+    );
+    c.addEventListener("changeSelectedDate", (e: any) =>
+      changeSelectedDate(e.detail)
     );
   }
   if (events) {
