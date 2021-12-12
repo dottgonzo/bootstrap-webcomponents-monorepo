@@ -24,6 +24,7 @@
 	export let events: IEvent[];
 
 	export let selected: Date;
+	export let selectedcolor: string;
 
 	let rows: number;
 	let previousMonthOfTargetDate: Date;
@@ -38,7 +39,9 @@
 		if (!id) {
 			id = "";
 		}
-
+		if (!selectedcolor) {
+			selectedcolor = "yellow";
+		}
 		if (!date) date = dayjs().startOf("month").toDate();
 		else if (typeof date === "string") dayjs(date).startOf("month").toDate();
 		previousMonthOfTargetDate = dayjs(date).subtract(1, "month").toDate();
@@ -121,10 +124,10 @@
 						<td
 							part="cell"
 							id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
-							style="height:{100 / rows}%; {Number(dayjs(selected).format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
+							style="height:{100 / rows}%; --hover-color:green; {Number(dayjs(selected).format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
 							Number(dayjs(selected).format('M')) === month &&
 							Number(dayjs(selected).format('YYYY')) === year
-								? 'background-color:aqua'
+								? 'background-color:' + selectedcolor
 								: ''}"
 							on:click={() => selectDay(dayjs(year + "-" + month + "-" + (d - dayjs(date).day() + 2 + i * 7).toString()))}
 						>
@@ -143,11 +146,11 @@
 						<td
 							part="cell"
 							id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
-							style="height:{100 / rows}%; {Number(dayjs(selected).format('DD')) ===
+							style="height:{100 / rows}%; --hover-color:green; {Number(dayjs(selected).format('DD')) ===
 								dayjs(previousMonthOfTargetDate).daysInMonth() + d - dayjs(date).day() + 2 + i * 7 &&
 							Number(dayjs(selected).format('M')) === Number(dayjs(previousMonthOfTargetDate).format('M')) &&
 							Number(dayjs(selected).format('YYYY')) === Number(dayjs(previousMonthOfTargetDate).format('YYYY'))
-								? 'background-color:aqua'
+								? 'background-color:' + selectedcolor
 								: ''}"
 							on:click={() =>
 								selectDay(
@@ -179,10 +182,10 @@
 						<td
 							part="cell"
 							id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
-							style="height:{100 / rows}%; {Number(dayjs(selected).format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
+							style="height:{100 / rows}%; --hover-color:green; {Number(dayjs(selected).format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
 							Number(dayjs(selected).format('M')) === month &&
 							Number(dayjs(selected).format('YYYY')) === year
-								? 'background-color:aqua'
+								? 'background-color:' + selectedcolor
 								: ''}"
 							on:click={() => selectDay(dayjs(year + "-" + month + "-" + (d - dayjs(date).day() + 2 + i * 7).toString()))}
 						>
@@ -201,11 +204,11 @@
 						<td
 							part="cell"
 							id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
-							style="height:{100 / rows}%; {Number(dayjs(selected).format('DD')) ===
+							style="height:{100 / rows}%; --hover-color:green; {Number(dayjs(selected).format('DD')) ===
 								d - dayjs(date).day() + 2 + i * 7 - dayjs(date).daysInMonth() &&
 							Number(dayjs(selected).format('M')) === Number(dayjs(nextMonthOfTargetDate).format('M')) &&
 							Number(dayjs(selected).format('YYYY')) === Number(dayjs(nextMonthOfTargetDate).format('YYYY'))
-								? 'background-color:aqua'
+								? 'background-color:' + selectedcolor
 								: ''}"
 							on:click={() =>
 								selectDay(
@@ -236,10 +239,10 @@
 					<td
 						part="cell"
 						id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
-						style="height:{100 / rows}%; {Number(dayjs(selected).format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
+						style="height:{100 / rows}%; --hover-color:green; {Number(dayjs(selected).format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
 						Number(dayjs(selected).format('M')) === month &&
 						Number(dayjs(selected).format('YYYY')) === year
-							? 'background-color:aqua'
+							? 'background-color:' + selectedcolor
 							: ''}"
 						on:click={() => selectDay(dayjs(year + "-" + month + "-" + (d - dayjs(date).day() + 2 + i * 7).toString()))}
 					>
@@ -275,8 +278,9 @@
 		border: 1px solid #c3c0c0;
 		vertical-align: baseline;
 	}
+
 	td:hover {
-		background-color: aqua;
+		background-color: var(--hover-color);
 	}
 	th {
 		width: auto;
