@@ -22,13 +22,7 @@
 	export let id: string;
 	export let date: Date;
 	export let events: IEvent[];
-
 	export let selected: Date;
-
-	export let options: {
-		selectable?: boolean;
-		today?: boolean;
-	};
 
 	let rows: number;
 	let previousMonthOfTargetDate: Date;
@@ -44,14 +38,14 @@
 			id = "";
 		}
 
-		if (!options) {
-			options = {
-				selectable: selected ? true : false,
-				today: false,
-			};
-		} else if (typeof options === "string") {
-			options = JSON.parse(options);
-		}
+		// if (!options) {
+		// 	options = {
+		// 		selectable: selected ? true : false,
+		// 		today: false,
+		// 	};
+		// } else if (typeof options === "string") {
+		// 	options = JSON.parse(options);
+		// }
 		if (!date) date = dayjs().startOf("month").toDate();
 		else if (typeof date === "string") dayjs(date).startOf("month").toDate();
 		previousMonthOfTargetDate = dayjs(date).subtract(1, "month").toDate();
@@ -78,8 +72,6 @@
 		rows = Math.ceil((dayjs(date).daysInMonth() + dayjs(date).day()) / 7); //+ (dayjs(date).day() === 1 ? 0 : 1);
 		if (typeof selected === "string") {
 			selected = dayjs(selected).toDate();
-		} else if (!selected) {
-			selected = dayjs().toDate();
 		}
 	}
 	const detectedLang = navigator?.languages ? navigator.languages[0]?.split("-")[0]?.toLowerCase() : "en";
@@ -133,17 +125,26 @@
 					{#if d + 2 > dayjs(date).day()}
 						<td
 							part="cell"
-							id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
-							style="height:{100 / rows}%; {Number(dayjs(selected).format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
+							class="cell {selected &&
+							Number(dayjs(selected).format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
 							Number(dayjs(selected).format('M')) === month &&
 							Number(dayjs(selected).format('YYYY')) === year
-								? 'background-color: var(--hover-color)'
+								? 'cell-selected'
 								: ''}"
+							id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
+							style="height:{100 / rows}%;"
 							on:click={() => selectDay(dayjs(year + "-" + month + "-" + (d - dayjs(date).day() + 2 + i * 7).toString()))}
 						>
-							<div class="cell-date">
+							<div
+								class="cell-date {Number(dayjs().format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
+								Number(dayjs().format('M')) === month &&
+								Number(dayjs().format('YYYY')) === year
+									? 'cell-today'
+									: ''}"
+							>
 								{d - dayjs(date).day() + 2 + i * 7}
 							</div>
+
 							{#if monthsEvent?.length}
 								{#each monthsEvent.filter((f) => Number(dayjs(f.date).format("DD")) === d - dayjs(date).day() + 2 + i * 7) as event (event.id)}
 									<button class="cell-event btn btn-sm btn-secondary" on:click={() => calendarEventClick({ eventId: event.id })}
@@ -155,13 +156,14 @@
 					{:else}
 						<td
 							part="cell"
-							id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
-							style="height:{100 / rows}%; {Number(dayjs(selected).format('DD')) ===
-								dayjs(previousMonthOfTargetDate).daysInMonth() + d - dayjs(date).day() + 2 + i * 7 &&
+							class="cell {selected &&
+							Number(dayjs(selected).format('DD')) === dayjs(previousMonthOfTargetDate).daysInMonth() + d - dayjs(date).day() + 2 + i * 7 &&
 							Number(dayjs(selected).format('M')) === Number(dayjs(previousMonthOfTargetDate).format('M')) &&
 							Number(dayjs(selected).format('YYYY')) === Number(dayjs(previousMonthOfTargetDate).format('YYYY'))
-								? 'background-color: var(--hover-color)'
+								? 'cell-selected'
 								: ''}"
+							id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
+							style="height:{100 / rows}%;"
 							on:click={() =>
 								selectDay(
 									dayjs(
@@ -173,7 +175,15 @@
 									),
 								)}
 						>
-							<div class="cell-date" style="color:grey">
+							<div
+								class="cell-date {Number(dayjs().format('DD')) ===
+									dayjs(previousMonthOfTargetDate).daysInMonth() + d - dayjs(date).day() + 2 + i * 7 &&
+								Number(dayjs().format('M')) === Number(dayjs(previousMonthOfTargetDate).format('M')) &&
+								Number(dayjs().format('YYYY')) === Number(dayjs(previousMonthOfTargetDate).format('YYYY'))
+									? 'cell-today'
+									: ''}"
+								style="color:grey"
+							>
 								{dayjs(previousMonthOfTargetDate).daysInMonth() + d - dayjs(date).day() + 2 + i * 7}
 							</div>
 							{#if previousMonthEvents?.length}
@@ -191,15 +201,23 @@
 					{#if d - dayjs(date).day() + 2 + i * 7 <= dayjs(date).daysInMonth()}
 						<td
 							part="cell"
-							id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
-							style="height:{100 / rows}%; {Number(dayjs(selected).format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
+							class="cell {selected &&
+							Number(dayjs(selected).format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
 							Number(dayjs(selected).format('M')) === month &&
 							Number(dayjs(selected).format('YYYY')) === year
-								? 'background-color: var(--hover-color)'
+								? 'cell-selected'
 								: ''}"
+							id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
+							style="height:{100 / rows}%;"
 							on:click={() => selectDay(dayjs(year + "-" + month + "-" + (d - dayjs(date).day() + 2 + i * 7).toString()))}
 						>
-							<div class="cell-date">
+							<div
+								class="cell-date {Number(dayjs().format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
+								Number(dayjs().format('M')) === month &&
+								Number(dayjs().format('YYYY')) === year
+									? 'cell-today'
+									: ''}"
+							>
 								{d - dayjs(date).day() + 2 + i * 7}
 							</div>
 							{#if monthsEvent?.length}
@@ -213,13 +231,14 @@
 					{:else}
 						<td
 							part="cell"
-							id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
-							style="height:{100 / rows}%; {Number(dayjs(selected).format('DD')) ===
-								d - dayjs(date).day() + 2 + i * 7 - dayjs(date).daysInMonth() &&
+							class="cell {selected &&
+							Number(dayjs(selected).format('DD')) === d - dayjs(date).day() + 2 + i * 7 - dayjs(date).daysInMonth() &&
 							Number(dayjs(selected).format('M')) === Number(dayjs(nextMonthOfTargetDate).format('M')) &&
 							Number(dayjs(selected).format('YYYY')) === Number(dayjs(nextMonthOfTargetDate).format('YYYY'))
-								? 'background-color: var(--hover-color)'
+								? 'cell-selected'
 								: ''}"
+							id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
+							style="height:{100 / rows}%;"
 							on:click={() =>
 								selectDay(
 									dayjs(
@@ -231,7 +250,14 @@
 									),
 								)}
 						>
-							<div class="cell-date" style="color:grey">
+							<div
+								class="cell-date {Number(dayjs().format('DD')) === d - dayjs(date).day() + 2 + i * 7 - dayjs(date).daysInMonth() &&
+								Number(dayjs().format('M')) === Number(dayjs(nextMonthOfTargetDate).format('M')) &&
+								Number(dayjs().format('YYYY')) === Number(dayjs(nextMonthOfTargetDate).format('YYYY'))
+									? 'cell-today'
+									: ''}"
+								style="color:grey"
+							>
 								{d - dayjs(date).day() + 2 + i * 7 - dayjs(date).daysInMonth()}
 							</div>
 							{#if nextMonthEvents?.length}
@@ -248,15 +274,23 @@
 				{#each Array(7) as __, d}
 					<td
 						part="cell"
-						id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
-						style="height:{100 / rows}%; {Number(dayjs(selected).format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
+						class="cell {selected &&
+						Number(dayjs(selected).format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
 						Number(dayjs(selected).format('M')) === month &&
 						Number(dayjs(selected).format('YYYY')) === year
-							? 'background-color: var(--selected-color)'
+							? 'cell-selected'
 							: ''}"
+						id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
+						style="height:{100 / rows}%;"
 						on:click={() => selectDay(dayjs(year + "-" + month + "-" + (d - dayjs(date).day() + 2 + i * 7).toString()))}
 					>
-						<div class="cell-date">
+						<div
+							class="cell-date {Number(dayjs().format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
+							Number(dayjs().format('M')) === month &&
+							Number(dayjs().format('YYYY')) === year
+								? 'cell-today'
+								: ''}"
+						>
 							{d - dayjs(date).day() + 2 + i * 7}
 						</div>
 						{#if monthsEvent?.length}
@@ -280,6 +314,11 @@
 	:host {
 		--hover-color: blue;
 		--selected-color: red;
+		--today-color: green;
+	}
+
+	.cell-selected {
+		background-color: var(--selected-color);
 	}
 
 	table {
@@ -311,5 +350,8 @@
 		line-height: 50px;
 		margin: 10px;
 		vertical-align: middle;
+	}
+	.cell-today {
+		color: var(--today-color);
 	}
 </style>
