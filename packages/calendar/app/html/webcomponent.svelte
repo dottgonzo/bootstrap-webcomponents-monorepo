@@ -11,6 +11,7 @@
 	 *
 	 */
 	import dayjs from "dayjs";
+	import Holidays from "date-holidays";
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 
@@ -32,6 +33,8 @@
 	let nextMonthEvents: IEvent[];
 	let month: number;
 	let year: number;
+
+	const holidays = new Holidays("IT");
 
 	$: {
 		if (!id) {

@@ -25,6 +25,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"dependencies": {
+		"date-holidays": "^3.12.2",
 		"dayjs": "^1.10.7"
 	},
 	"devDependencies": {
