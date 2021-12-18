@@ -24,7 +24,6 @@
 	export let id: string;
 	export let src: string;
 
-	export let videosrc: string;
 	export let track: ITrack;
 	let max;
 	let min = 0;
