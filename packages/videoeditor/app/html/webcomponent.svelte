@@ -65,6 +65,13 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
+	function getVideo() {
+		const video = component.shadowRoot.getElementById("video");
+		return video;
+	}
+	function setVideoTime(seconds: number) {
+		getVideo().currentTime = seconds;
+	}
 	function addComponent(componentName: string, scriptJsName: string, componentId: string, localPackageDir?: string) {
 		if (!document.getElementById(componentId)) {
 			const script = document.createElement("script");
@@ -82,7 +89,7 @@
 		track.maxValue = trackStatus.maxValue;
 		setTimings();
 
-		dispatch("changeTrackValues", trackStatus);
+		dispatch("changeTrackValues", { minVaule: track.minValue, maxValue: track.maxValue });
 	}
 	function dispatchTrack() {
 		dispatch("dispatchTrack", track);
@@ -104,32 +111,75 @@
 		if (!track.minValue || track.minValue < min) track.minValue = min;
 		setTimings();
 	}
+
+	function cue(point: string) {
+		console.log(getVideo().currentTime);
+		switch (point) {
+			case "start":
+				track.minValue = getVideo().currentTime;
+				break;
+			case "end":
+				track.maxValue = getVideo().currentTime;
+
+				break;
+
+			default:
+				return console.error("no vaild point for cue");
+		}
+
+		setTimings();
+		dispatch("changeTrackValues", { minVaule: track.minValue, maxValue: track.maxValue });
+	}
 </script>
 
-<div class="card h-100">
+<div id="card" class="card h-100">
 	<!-- svelte-ignore a11y-media-has-caption -->
 
 	<div class="ratio ratio-16x9" style="background-color: black;">
-		<video on:loadedmetadata={(e) => videoLoad(e)} controls class="ratio ratio-16x9"
+		<video id="video" on:loadedmetadata={(e) => videoLoad(e)} controls class="ratio ratio-16x9"
 			><source {src} type="video/mp4" />
 			Your browser does not support the video tag.
 		</video>
 	</div>
 
 	<div class="card-body">
-		<div style="display:flex;align-items:center">
-			<div style="width: 250px">
+		<div id="controls">
+			<div style="flex-grow: 2">
+				<button
+					class="btn btn-sm btn-secondary"
+					on:click={() => {
+						cue("start");
+					}}>▼</button
+				>
+				<button
+					class="btn btn-sm btn-secondary"
+					on:click={() => {
+						setVideoTime(track.minValue);
+					}}>▲</button
+				>
 				<input type="number" class="form-control form-custom-control-numbers" bind:value={minHours} on:change={valueChanged} />h
 				<input bind:value={minMinutes} class="form-control form-custom-control-numbers" type="number" on:change={valueChanged} />m
 				<input type="number" class="form-control form-custom-control-numbers" bind:value={minSeconds} on:change={valueChanged} />s
 			</div>
-			<div style="width: 100%;margin:20px;text-align:center">
+			<!-- <div style="flex-grow: 2;text-align:center">
 				{#if track?.maxValue}duration {Math.round((track.maxValue - track.minValue) * 100) / 100}{/if}
-			</div>
-			<div style="width: 250px">
+			</div> -->
+			<div style="flex-grow: 2;text-align:right">
 				<input type="number" class="form-control form-custom-control-numbers" bind:value={maxHours} on:change={valueChanged} />h
 				<input bind:value={maxMinutes} class="form-control form-custom-control-numbers" type="number" on:change={valueChanged} />m
 				<input type="number" class="form-control form-custom-control-numbers" bind:value={maxSeconds} on:change={valueChanged} />s
+				<button
+					class="btn btn-sm btn-secondary"
+					on:click={() => {
+						setVideoTime(track.maxValue);
+					}}>▲</button
+				>
+				<button
+					class="btn btn-sm btn-secondary"
+					on:click={() => {
+						cue("end");
+					}}>▼</button
+				>
 			</div>
 		</div>
 		{#if durationInSeconds && track}
@@ -146,8 +196,13 @@
 			</div>
 		{/if}
 	</div>
-	<div class="card-footer" style="text-align: right;">
-		<button class="btn btn-sm btn-primary" on:click={dispatchTrack}>send</button>
+	<div class="card-footer">
+		<span style="float:left;height:30px;line-height:30px"
+			>{#if track?.maxValue}duration {Math.round((track.maxValue - track.minValue) * 100) / 100}{/if}</span
+		>
+		<span style="float:right;height:30px;line-height:30px">
+			<button class="btn btn-sm btn-primary" on:click={dispatchTrack}>send</button>
+		</span>
 	</div>
 </div>
 
@@ -159,5 +214,12 @@
 		width: 40px;
 		display: inline-block;
 		padding: 0px;
+	}
+	#controls {
+		display: flex;
+
+		justify-content: space-around;
+		flex-flow: row wrap;
+		align-items: stretch;
 	}
 </style>
