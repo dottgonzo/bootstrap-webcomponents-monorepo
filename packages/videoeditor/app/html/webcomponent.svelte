@@ -89,6 +89,12 @@
 		track.maxValue = trackStatus.maxValue;
 		setTimings();
 
+		if (getVideo().currentTime < track.minValue) {
+			setVideoTime(track.minValue);
+		}
+		if (getVideo().currentTime > track.maxValue) {
+			setVideoTime(track.maxValue);
+		}
 		dispatch("changeTrackValues", { minVaule: track.minValue, maxValue: track.maxValue });
 	}
 	function dispatchTrack() {
@@ -113,13 +119,12 @@
 	}
 
 	function cue(point: string) {
-		console.log(getVideo().currentTime);
 		switch (point) {
 			case "start":
-				track.minValue = getVideo().currentTime;
+				if (getVideo().currentTime < track.maxValue) track.minValue = getVideo().currentTime;
 				break;
 			case "end":
-				track.maxValue = getVideo().currentTime;
+				if (getVideo().currentTime > track.minValue) track.maxValue = getVideo().currentTime;
 
 				break;
 
