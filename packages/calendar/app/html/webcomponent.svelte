@@ -314,14 +314,8 @@
 	@import "../styles/webcomponent.scss";
 	@import "../styles/bootstrap.scss";
 
-	:host {
-		--hover-color: blue;
-		--selected-color: red;
-		--today-color: green;
-	}
-
 	.cell-selected {
-		background-color: var(--selected-color);
+		background-color: var(--bs-primary);
 	}
 
 	table {
@@ -337,7 +331,7 @@
 	}
 
 	td:hover {
-		background-color: var(--hover-color);
+		background-color: var(--bs-secondary);
 	}
 	th {
 		width: auto;
@@ -355,6 +349,7 @@
 		vertical-align: middle;
 	}
 	.cell-today {
-		color: var(--today-color);
+		color: var(--bs-success);
+		font-weight: bold;
 	}
 </style>
