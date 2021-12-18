@@ -17,6 +17,9 @@
 
 	import pkg from "../../package.json";
 	import type { IDispatchValsEvent, ITrack } from "@app/types/webcomponent.type";
+	import duration from "dayjs/plugin/duration";
+
+	dayjs.extend(duration);
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -203,7 +206,17 @@
 	</div>
 	<div class="card-footer">
 		<span style="float:left;height:30px;line-height:30px"
-			>{#if track?.maxValue}duration {Math.round((track.maxValue - track.minValue) * 100) / 100}{/if}</span
+			>{#if track?.maxValue}duration:
+				{dayjs.duration((track.maxValue - track.minValue) * 1000).hours()
+					? dayjs.duration((track.maxValue - track.minValue) * 1000).format("H") + " hours"
+					: ""}
+				{dayjs.duration((track.maxValue - track.minValue) * 1000).minutes()
+					? dayjs.duration((track.maxValue - track.minValue) * 1000).format("m") + " minutes"
+					: ""}
+				{dayjs.duration((track.maxValue - track.minValue) * 1000).seconds()
+					? dayjs.duration((track.maxValue - track.minValue) * 1000).format("s.sss") + " seconds"
+					: ""}
+			{/if}</span
 		>
 		<span style="float:right;height:30px;line-height:30px">
 			<button class="btn btn-sm btn-primary" on:click={dispatchTrack}>send</button>
