@@ -44,7 +44,7 @@ const schema1: FormSchema = [
           validationTip: "This field cannot be empty.",
           params: {
             options: [
-              { label: "", value: null },
+              { label: "", value: "" },
               { label: "testlabel", value: "testvalue" },
             ],
           },
@@ -70,6 +70,14 @@ const schema1: FormSchema = [
     required: true,
     label: "Last Name",
     validationTip: "This field cannot be empty.",
+  },
+  {
+    type: "textarea",
+    placeholder: "Insert your last name22 here...",
+    id: "lastName22",
+    required: true,
+    label: "Last Name2",
+    validationTip: "This field cannot be empty2.",
   },
 ];
 
