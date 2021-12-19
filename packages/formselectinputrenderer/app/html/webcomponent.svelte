@@ -49,6 +49,11 @@
 		<option value={option.value} selected={value === option.value}>{option.label ?? option.value}</option>
 	{/each}
 </select>
+{#if schemaentry?.validationTip}
+	<div part="invalid-feedback" class="invalid-feedback mb-1">
+		{schemaentry.validationTip}
+	</div>
+{/if}
 
 <style lang="scss">
 	@import "../styles/bootstrap.scss";

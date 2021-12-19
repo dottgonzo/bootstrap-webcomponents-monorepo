@@ -55,6 +55,11 @@
 	placeholder={schemaentry?.placeholder}
 	readonly={schemaentry?.readonly}
 />
+{#if schemaentry?.validationTip}
+	<div part="invalid-feedback" class="invalid-feedback mb-1">
+		{schemaentry.validationTip}
+	</div>
+{/if}
 
 <style lang="scss">
 	@import "../styles/bootstrap.scss";

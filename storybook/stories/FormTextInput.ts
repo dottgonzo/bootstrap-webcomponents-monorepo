@@ -1,4 +1,4 @@
-import type { FormSchemaEntry } from "../../packages/formrenderer/app/types/webcomponent.type";
+import type { FormSchemaEntry } from "../../packages/formtextinputrenderer/app/types/webcomponent.type";
 
 export interface FormTextInputProps {
   id: string;

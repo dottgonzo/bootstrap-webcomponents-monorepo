@@ -1,4 +1,4 @@
-import type { FormSchema } from "../../packages/formrenderer/app/types/webcomponent.type";
+import type { FormSchema } from "../../packages/formhostcomponent/app/types/webcomponent.type";
 
 export interface FormHostProps {
   id: string;

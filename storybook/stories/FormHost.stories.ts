@@ -1,6 +1,6 @@
 import { Story, Meta } from "@storybook/html";
 import { createFormHost, FormHostProps } from "./FormHost";
-import type { FormSchema } from "../../packages/formrenderer/app/types/webcomponent.type";
+import type { FormSchema } from "../../packages/formhostcomponent/app/types/webcomponent.type";
 
 export default {
   title: "Form/Host",
@@ -34,6 +34,20 @@ const schema1: FormSchema = [
           required: true,
           label: "Last Name",
           validationTip: "This field cannot be empty.",
+        },
+        {
+          type: "select",
+          placeholder: "Select something here...",
+          id: "selectsomething",
+          required: true,
+          label: "Selection of something",
+          validationTip: "This field cannot be empty.",
+          params: {
+            options: [
+              { label: "", value: null },
+              { label: "testlabel", value: "testvalue" },
+            ],
+          },
         },
       ],
     },

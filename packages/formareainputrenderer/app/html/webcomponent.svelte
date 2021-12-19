@@ -56,6 +56,11 @@
 	readonly={schemaentry?.readonly}
 	rows={schemaentry?.params?.rows}
 />
+{#if schemaentry?.validationTip}
+	<div part="invalid-feedback" class="invalid-feedback mb-1">
+		{schemaentry.validationTip}
+	</div>
+{/if}
 
 <style lang="scss">
 	@import "../styles/bootstrap.scss";

@@ -346,12 +346,6 @@
 											setvalid
 										/>
 									{/if}
-
-									{#if entry.validationTip}
-										<div class="invalid-feedback mb-1">
-											{entry.validationTip}
-										</div>
-									{/if}
 								</div>
 							{/if}
 						</div>

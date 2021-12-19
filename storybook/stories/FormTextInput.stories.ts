@@ -1,6 +1,6 @@
 import { Story, Meta } from "@storybook/html";
 import { createFormTextInput, FormTextInputProps } from "./FormTextInput";
-import type { FormSchemaEntry } from "../../packages/formrenderer/app/types/webcomponent.type";
+import type { FormSchemaEntry } from "../../packages/formtextinputrenderer/app/types/webcomponent.type";
 
 export default {
   title: "Form/FormTextInput",
