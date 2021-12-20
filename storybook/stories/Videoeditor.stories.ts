@@ -16,6 +16,7 @@ const track = {
   maxValue: 2,
   minValue: 0,
 };
+
 const form = [
   {
     id: "name-row",
