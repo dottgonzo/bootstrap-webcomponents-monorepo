@@ -63,6 +63,7 @@
 	export const values: Record<string, string | number | boolean> = {};
 
 	export let isInvalid: boolean;
+	export let submitted: "yes" | null;
 	let controls: IControl[];
 	const visibility: Record<string, boolean> = {};
 	const valids: Record<string, boolean> = {};
@@ -72,6 +73,9 @@
 	let getControls: (schema: FormSchema) => IControl[];
 
 	$: {
+		if (submitted && schema && typeof schema !== "string") {
+			onSubmit();
+		}
 		if (!schema) {
 			schema = null;
 		} else if (typeof schema === "string") {
@@ -100,7 +104,6 @@
 				}
 
 				if (component.options?.row) {
-					console.log("ROWWWWW");
 					return { entry, columns: getControls(entry.params?.columns ?? []), options: component.options };
 				} else {
 					visibility[entry.id] = !entry.dependencies?.length;
@@ -195,20 +198,20 @@
 	const component = get_current_component();
 
 	const svelteDispatch = createEventDispatcher();
-
-	const onSubmit = () => {
-		svelteDispatch("submit", values);
+	function dispatch(name, detail) {
+		// console.log(`svelte: ${name}`);
+		svelteDispatch(name, detail);
 		component.dispatchEvent?.(new CustomEvent("submit", { detail: values }));
+	}
+	const onSubmit = () => {
+		dispatch("submit", values);
 	};
 
 	function setValueByMessage(message: { id: string; value: string }) {
 		setValueFor(message.id, message.value);
-		console.log(message);
 	}
 	function setValidByMessage(message: { id: string; valid: boolean }) {
 		setValidFor(message.id, message.valid);
-
-		console.log(message);
 	}
 </script>
 
@@ -479,16 +482,12 @@
 						setvalid
 					/>
 				{/if}
-
-				{#if entry.validationTip}
-					<div class="invalid-feedback mb-1">
-						{entry.validationTip}
-					</div>
-				{/if}
 			</div>
 		{/if}
 	{/each}
-	<button type="button" class="btn btn-primary" disabled={isInvalid} on:click|preventDefault={onSubmit}><slot name="submit-label">Submit</slot></button>
+	{#if submitted}<button type="button" class="btn btn-primary" disabled={isInvalid} on:click|preventDefault={onSubmit}
+			><slot name="submit-label">Submit</slot></button
+		>{/if}
 {/if}
 
 <style lang="scss">
