@@ -26,7 +26,7 @@
 	export let headers: {};
 	export let targetfilename: string;
 	let total: number;
-	let loaded: number;
+	let loaded: number = 0;
 
 	let xhr: XMLHttpRequest;
 	let downloaded: boolean;
@@ -35,8 +35,9 @@
 		if (!downloadid) downloadid = "";
 		if (!downloaded) downloaded = false;
 		if (!uri) uri = "";
+
 		try {
-			if (headers) headers = JSON.parse(headers as unknown as string);
+			if (headers && typeof headers === "string") headers = JSON.parse(headers);
 		} catch (err) {}
 		if (!targetfilename && uri) targetfilename = uri.split("/")[uri.split("/").length - 1].split("?")[0];
 	}
@@ -52,7 +53,7 @@
 			// downloadid = "";
 			dispatch("downloadError", { downloaded, id: downloadid, error: err });
 		}
-
+		loaded = 0;
 		xhr = new XMLHttpRequest();
 		try {
 			xhr.open("GET", uri, true);
