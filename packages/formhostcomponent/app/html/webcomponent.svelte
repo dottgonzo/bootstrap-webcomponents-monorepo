@@ -73,7 +73,7 @@
 	let getControls: (schema: FormSchema) => IControl[];
 
 	$: {
-		if (submitted && schema && typeof schema !== "string") {
+		if (submitted && submitted === "yes" && schema && typeof schema !== "string") {
 			onSubmit();
 		}
 		if (!schema) {
@@ -114,8 +114,9 @@
 		};
 
 		controls = schema ? getControls(schema) : [];
-		console.log(valids);
+		console.log("valids", valids);
 		isInvalid = Object.entries(valids).some(([id, isValid]) => !isValid && visibility[id]);
+		console.log("isInvalid", isInvalid);
 	}
 
 	const canShow = (entry: FormSchemaEntry) => {
@@ -201,14 +202,19 @@
 	function dispatch(name, detail) {
 		// console.log(`svelte: ${name}`);
 		svelteDispatch(name, detail);
-		component.dispatchEvent?.(new CustomEvent("submit", { detail: values }));
+		component.dispatchEvent?.(new CustomEvent(name, { detail }));
 	}
 	const onSubmit = () => {
-		dispatch("submit", values);
+		const cc = Object.assign({ _valid: !isInvalid }, values);
+
+		dispatch("submit", cc);
 	};
 
 	function setValueByMessage(message: { id: string; value: string }) {
 		setValueFor(message.id, message.value);
+		const cc = Object.assign({ _valid: !isInvalid, _id: message.id }, values);
+		dispatch("change", cc);
+		console.log("changingggggg", cc);
 	}
 	function setValidByMessage(message: { id: string; valid: boolean }) {
 		setValidFor(message.id, message.valid);
@@ -485,7 +491,7 @@
 			</div>
 		{/if}
 	{/each}
-	{#if submitted}<button type="button" class="btn btn-primary" disabled={isInvalid} on:click|preventDefault={onSubmit}
+	{#if !submitted}<button type="button" class="btn btn-primary" disabled={isInvalid} on:click|preventDefault={() => onSubmit()}
 			><slot name="submit-label">Submit</slot></button
 		>{/if}
 {/if}

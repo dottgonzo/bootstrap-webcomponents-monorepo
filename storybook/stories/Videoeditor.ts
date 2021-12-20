@@ -5,6 +5,7 @@ export interface VideoeditorProps {
     minValue: number;
     maxValue: number;
   };
+  form;
   changeTrackValues?: (d) => void;
   dispatchTrack?: (d) => void;
 }
@@ -12,6 +13,7 @@ export const createVideoeditor = ({
   id,
   track,
   src,
+  form,
   changeTrackValues,
   dispatchTrack,
 }: VideoeditorProps) => {
@@ -42,6 +44,11 @@ export const createVideoeditor = ({
     c.setAttribute("src", src);
   } else {
     if (c.hasAttribute("src")) c.removeAttribute("src");
+  }
+  if (form) {
+    c.setAttribute("form", JSON.stringify(form));
+  } else {
+    if (c.hasAttribute("form")) c.removeAttribute("form");
   }
   return c;
 };

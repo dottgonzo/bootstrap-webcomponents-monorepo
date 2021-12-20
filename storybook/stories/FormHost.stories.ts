@@ -37,6 +37,13 @@ const schema1: FormSchema = [
           validationTip: "This field cannot be empty.",
         },
         {
+          type: "text",
+          placeholder: "Insert your last namez here...",
+          id: "lastNamez",
+          label: "Last Namez",
+          validationTip: "This field cannot be emptyz.",
+        },
+        {
           type: "select",
           placeholder: "Select something here...",
           id: "selectsomething",

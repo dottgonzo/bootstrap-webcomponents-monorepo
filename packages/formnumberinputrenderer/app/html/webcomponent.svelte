@@ -53,8 +53,7 @@
 <input
 	bind:value
 	type="number"
-	class="form-control"
-	class:is-invalid={!valid}
+	class="form-control {schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
 	id={schemaentry?.id}
 	required={schemaentry?.required}
 	placeholder={schemaentry?.placeholder}

@@ -26,6 +26,7 @@
 
 	export let id: string;
 	export let src: string;
+	export let form: string;
 
 	export let track: ITrack;
 	let max;
@@ -37,9 +38,18 @@
 	let maxSeconds;
 	let minSeconds;
 	let durationInSeconds: number;
+	let sendform: "yes" | "no" = "no";
+	let enablesubmit: boolean;
+
 	$: {
 		if (!id) {
 			id = "";
+		}
+		if (!form) {
+			form = null;
+			enablesubmit = true;
+		} else {
+			enablesubmit = false;
 		}
 		if (!durationInSeconds) {
 			durationInSeconds = 0;
@@ -102,8 +112,11 @@
 		dispatch("changeTrackValues", { minVaule: track.minValue, maxValue: track.maxValue });
 	}
 	function dispatchTrack() {
-		dispatch("dispatchTrack", track);
-		console.log(track);
+		if (!track || (!track.minValue && track.minValue !== 0) || (!track.maxValue && track.maxValue !== 0)) return;
+		if (!form) {
+			dispatch("dispatchTrack", track);
+			console.log(track);
+		} else sendform = "yes";
 	}
 	function setTimings() {
 		maxHours = parseInt((track.maxValue / 3600).toString());
@@ -138,6 +151,21 @@
 
 		setTimings();
 		dispatch("changeTrackValues", { minVaule: track.minValue, maxValue: track.maxValue });
+	}
+	function formSubmit(details) {
+		console.log("formSubmit", details._valid);
+		enablesubmit = details._valid;
+		if (sendform === "yes") {
+			if (details._valid && !(!track || (!track.minValue && track.minValue !== 0) || (!track.maxValue && track.maxValue !== 0))) {
+				dispatch("dispatchTrack", Object.assign(track, details));
+			}
+
+			console.log(track);
+		}
+		if (sendform !== "no") sendform = "no";
+	}
+	function formCheck(details) {
+		enablesubmit = details._valid;
 	}
 </script>
 
@@ -204,6 +232,13 @@
 				/>
 			</div>
 		{/if}
+		{#if form}<formrenderer-host
+				on:submit={(e) => formSubmit(e.detail)}
+				on:change={(e) => formCheck(e.detail)}
+				style="margin:40px auto 20px auto; display:block"
+				submitted={sendform}
+				schema={form}
+			/>{/if}
 	</div>
 	<div class="card-footer">
 		<span style="float:left;height:30px;line-height:30px"
@@ -220,7 +255,11 @@
 			{/if}</span
 		>
 		<span style="float:right;height:30px;line-height:30px">
-			<button class="btn btn-sm btn-primary" on:click={dispatchTrack}>send</button>
+			{#if enablesubmit}
+				<button class="btn btn-sm btn-primary" on:click={dispatchTrack}>send</button>
+			{:else}
+				<button class="btn btn-sm btn-primary" disabled on:click={dispatchTrack}>send</button>
+			{/if}
 		</span>
 	</div>
 </div>

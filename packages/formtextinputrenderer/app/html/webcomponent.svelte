@@ -36,7 +36,6 @@
 		} else {
 			setvalid = true;
 		}
-		console.log("SCHEMAENTRY", schemaentry, setvalue);
 
 		value = value != null ? value : (schemaentry?.value as string);
 		if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
@@ -44,17 +43,26 @@
 		valid = schemaentry
 			? (!schemaentry?.required || value != null) &&
 			  (regex ? regex.test(value) : true) &&
-			  (value == null || (value.length >= (schemaentry.params?.minlength ?? 0) && value.length <= (schemaentry.params?.maxlength ?? Infinity)))
+			  (value == null || (value.length >= (schemaentry.params?.minlength ?? 1) && value.length <= (schemaentry.params?.maxlength ?? Infinity)))
 			: false;
+
+		// valid = schemaentry
+		// 	? !schemaentry?.required ||
+		// 	  (value &&
+		// 			value.length >= (schemaentry.params?.minlength ?? 0) &&
+		// 			value.length <= (schemaentry.params?.maxlength ?? Infinity) &&
+		// 			(regex ? regex.test(value) : true))
+		// 	: false;
+
 		if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
+		console.log(valid, value, "validinput");
 	}
 </script>
 
 <input
 	bind:value
 	type="text"
-	class="form-control"
-	class:is-invalid={!valid}
+	class="form-control {schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
 	id={schemaentry?.id}
 	required={schemaentry?.required}
 	placeholder={schemaentry?.placeholder}
