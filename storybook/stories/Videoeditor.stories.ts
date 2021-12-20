@@ -5,7 +5,7 @@ export default {
   title: "Contents/VideoEditor",
   argTypes: {
     id: { control: { disable: true } },
-    src: { control: { type: "string" } },
+    src: { control: { type: "text" } },
     form: { control: { type: "object" } },
     changeTrackValues: { action: "changeTrackValuesEvent" },
     dispatchTrack: { action: "dispatchTrackEvent" },
