@@ -86,6 +86,7 @@
 		}
 	}
 	addComponent("range-slider-component", "rangeslider.js", "rangesliderscript", "rangeslider");
+	addComponent("formrenderer-host", "formhostcomponent.js", "formrendererhostscript", "formhostcomponent");
 
 	function dispatchTrackVals(trackStatus: IDispatchValsEvent) {
 		track.minValue = trackStatus.minValue;
