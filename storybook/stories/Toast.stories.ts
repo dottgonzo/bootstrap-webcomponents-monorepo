@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import { createBootstrapDialog, BootstrapDialogProps } from "./BootstrapDialog";
+import { createToast, ToastProps } from "./Toast";
 
 export default {
   title: "Components/Dialog",
@@ -9,8 +9,8 @@ export default {
   },
 } as Meta;
 
-const Template: Story<BootstrapDialogProps> = (args) =>
-  createBootstrapDialog(args);
+const Template: Story<ToastProps> = (args) =>
+  createToast(args);
 
 export const BasicBootstapModal = Template.bind({});
 BasicBootstapModal.args = {
