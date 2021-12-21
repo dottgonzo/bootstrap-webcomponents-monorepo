@@ -167,13 +167,23 @@
 	function formCheck(details) {
 		enablesubmit = details._valid;
 	}
+	function videoTimeUpdate(v) {
+		if (getVideo().currentTime > track.maxValue) {
+			getVideo().pause();
+
+			setVideoTime(track.maxValue);
+		} else if (getVideo().currentTime < track.minValue - 0.01) {
+			getVideo().pause();
+			setVideoTime(track.minValue);
+		}
+	}
 </script>
 
 <div id="card" class="card h-100">
 	<!-- svelte-ignore a11y-media-has-caption -->
 
 	<div class="ratio ratio-16x9" style="background-color: black;">
-		<video id="video" on:loadedmetadata={(e) => videoLoad(e)} controls class="ratio ratio-16x9"
+		<video on:timeupdate={(e) => videoTimeUpdate(e)} id="video" on:loadedmetadata={(e) => videoLoad(e)} controls class="ratio ratio-16x9"
 			><source {src} type="video/mp4" />
 			Your browser does not support the video tag.
 		</video>
@@ -249,9 +259,7 @@
 				{dayjs.duration((track.maxValue - track.minValue) * 1000).minutes()
 					? dayjs.duration((track.maxValue - track.minValue) * 1000).format("m") + " minutes"
 					: ""}
-				{dayjs.duration((track.maxValue - track.minValue) * 1000).seconds()
-					? dayjs.duration((track.maxValue - track.minValue) * 1000).format("s.sss") + " seconds"
-					: ""}
+				{dayjs.duration(parseInt((track.maxValue - track.minValue) * 1000)).format("s.SSS") + " seconds"}
 			{/if}</span
 		>
 		<span style="float:right;height:30px;line-height:30px">
