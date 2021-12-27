@@ -41,7 +41,7 @@
 		valid = !schemaentry?.required || value ? true : false;
 		if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
 
-		if (setvalid) dispatch("setValid", { valid, id: schemaentry.id });
+		if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
 	}
 </script>
 
