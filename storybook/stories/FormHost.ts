@@ -13,9 +13,9 @@ export const createFormHost = ({
   submit,
   submitted,
 }: FormHostProps) => {
-  if (!document.getElementById("formrendererhostscript")) {
+  if (!document.getElementById("formhostscript")) {
     const script = document.createElement("script");
-    script.id = "formrendererhostscript";
+    script.id = "formhostscript";
     script.src =
       "http://localhost:6006/formhostcomponent/dist/formhostcomponent.js";
     document.body.appendChild(script);
