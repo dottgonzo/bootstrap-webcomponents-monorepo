@@ -5,6 +5,12 @@ export default {
   title: "Form/Funnel",
   argTypes: {
     id: { control: { disable: true } },
+    submitstep: {
+      options: ["no", "yes"],
+      control: { type: "select" },
+    },
+    update: { action: "updateEvent" },
+    submit: { action: "submitEvent" },
   },
 } as Meta;
 const preferences = [
@@ -15,7 +21,7 @@ const preferences = [
     required: true,
 
     label: "Titolo di default",
-    value: "titolotest",
+    value: "numtest",
     params: {
       minlength: 8,
       maxlength: 120,

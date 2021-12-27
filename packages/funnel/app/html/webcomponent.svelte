@@ -42,8 +42,7 @@
 		else if (typeof step === "string") step = Number(step);
 		if (schemes && typeof schemes === "string") {
 			schemes = JSON.parse(schemes);
-			scheme = schemes[steps - 1];
-			console.log("SCHWMW=", scheme);
+			scheme = schemes[step - 1];
 		}
 		if (submitstep !== "yes") {
 			submitstep = "no";
@@ -56,17 +55,26 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent?.(new CustomEvent(name, { detail }));
 	}
-	function sendSchemeUpdateEvent() {
-		dispatch("update", { schemes, steps, step });
-	}
+
 	function schemeUpdate(s) {
-		console.log(s);
+		scheme.find((f) => f.id === s._id).value = s[s._id];
+		dispatch("update", { step, scheme });
+	}
+	function submitFunnel(dd) {
+		console.log("dddd1111", dd);
+		submitstep = "no";
+		dispatch("submit", { schemes, steps, step });
 	}
 </script>
 
 <div>funnel2</div>
 {#if scheme}
-	<formrenderer-host on:change={(e) => schemeUpdate(e.detail)} schema={JSON.stringify(scheme)} submitted={submitstep} />
+	<formrenderer-host
+		on:submit={(e) => submitFunnel(e.detail)}
+		on:change={(e) => schemeUpdate(e.detail)}
+		schema={JSON.stringify(scheme)}
+		submitted={submitstep}
+	/>
 {/if}
 
 <style lang="scss">

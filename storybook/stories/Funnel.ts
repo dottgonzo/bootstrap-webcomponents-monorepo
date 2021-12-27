@@ -3,17 +3,21 @@ import type { FormSchema } from "../../packages/formhostcomponent/app/types/webc
 export interface FunnelProps {
   id: string;
   update: (u) => void;
+  submit: (u) => void;
   schemes: FormSchema[];
   step?: number;
   steps?: number;
+  submitstep?: "yes" | "no";
 }
 
 export const createFunnel = ({
   id,
   update,
+  submit,
   schemes,
   step,
   steps,
+  submitstep,
 }: FunnelProps) => {
   if (!document.getElementById("funnelcomponentscript")) {
     const script = document.createElement("script");
@@ -28,6 +32,7 @@ export const createFunnel = ({
     c = document.createElement("funnel-component");
     c.id = id;
     c.addEventListener("update", (p: any) => update(p.detail));
+    c.addEventListener("submit", (p: any) => submit(p.detail));
   }
   if (schemes) {
     c.setAttribute("schemes", JSON.stringify(schemes));
@@ -43,6 +48,11 @@ export const createFunnel = ({
     c.setAttribute("step", step.toString());
   } else {
     if (c.hasAttribute("step")) c.removeAttribute("step");
+  }
+  if (submitstep) {
+    c.setAttribute("submitstep", submitstep);
+  } else {
+    if (c.hasAttribute("submitstep")) c.removeAttribute("submitstep");
   }
   return c;
 };
