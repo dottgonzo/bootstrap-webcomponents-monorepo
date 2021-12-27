@@ -11,7 +11,7 @@
 
 	let value: string;
 	let options: { value: string; label?: string }[] = [];
-
+	let valid: boolean;
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 	function dispatch(name, detail) {
@@ -38,13 +38,20 @@
 		console.log("SCHEMAENTRY", schemaentry, setvalue);
 		options = schemaentry?.params?.options ?? [];
 		value = value != null ? value : (schemaentry?.value as string);
+		valid = !schemaentry?.required || value ? true : false;
 		if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
 
-		if (setvalid) dispatch("setValid", { valid: true, id: schemaentry.id });
+		if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
 	}
 </script>
 
-<select bind:value class="form-select" id={schemaentry?.id} required={schemaentry?.required} readonly={schemaentry?.readonly}>
+<select
+	bind:value
+	class="form-control {schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
+	id={schemaentry?.id}
+	required={schemaentry?.required}
+	readonly={schemaentry?.readonly}
+>
 	{#each options as option (option)}
 		<option value={option.value} selected={value === option.value}>{option.label ?? option.value}</option>
 	{/each}

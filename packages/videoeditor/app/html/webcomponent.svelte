@@ -26,6 +26,7 @@
 
 	export let id: string;
 	export let src: string;
+	export let form: string;
 
 	export let track: ITrack;
 	let max;
@@ -37,9 +38,18 @@
 	let maxSeconds;
 	let minSeconds;
 	let durationInSeconds: number;
+	let sendform: "yes" | "no" = "no";
+	let enablesubmit: boolean;
+
 	$: {
 		if (!id) {
 			id = "";
+		}
+		if (!form) {
+			form = null;
+			enablesubmit = true;
+		} else {
+			enablesubmit = false;
 		}
 		if (!durationInSeconds) {
 			durationInSeconds = 0;
@@ -86,6 +96,7 @@
 		}
 	}
 	addComponent("range-slider-component", "rangeslider.js", "rangesliderscript", "rangeslider");
+	addComponent("formrenderer-host", "formhostcomponent.js", "formrendererhostscript", "formhostcomponent");
 
 	function dispatchTrackVals(trackStatus: IDispatchValsEvent) {
 		track.minValue = trackStatus.minValue;
@@ -101,8 +112,11 @@
 		dispatch("changeTrackValues", { minVaule: track.minValue, maxValue: track.maxValue });
 	}
 	function dispatchTrack() {
-		dispatch("dispatchTrack", track);
-		console.log(track);
+		if (!track || (!track.minValue && track.minValue !== 0) || (!track.maxValue && track.maxValue !== 0)) return;
+		if (!form) {
+			dispatch("dispatchTrack", track);
+			console.log(track);
+		} else sendform = "yes";
 	}
 	function setTimings() {
 		maxHours = parseInt((track.maxValue / 3600).toString());
@@ -138,13 +152,38 @@
 		setTimings();
 		dispatch("changeTrackValues", { minVaule: track.minValue, maxValue: track.maxValue });
 	}
+	function formSubmit(details) {
+		console.log("formSubmit", details._valid);
+		enablesubmit = details._valid;
+		if (sendform === "yes") {
+			if (details._valid && !(!track || (!track.minValue && track.minValue !== 0) || (!track.maxValue && track.maxValue !== 0))) {
+				dispatch("dispatchTrack", Object.assign(track, details));
+			}
+
+			console.log(track);
+		}
+		if (sendform !== "no") sendform = "no";
+	}
+	function formCheck(details) {
+		enablesubmit = details._valid;
+	}
+	function videoTimeUpdate(v) {
+		if (getVideo().currentTime > track.maxValue) {
+			getVideo().pause();
+
+			setVideoTime(track.maxValue);
+		} else if (getVideo().currentTime < track.minValue - 0.01) {
+			getVideo().pause();
+			setVideoTime(track.minValue);
+		}
+	}
 </script>
 
 <div id="card" class="card h-100">
 	<!-- svelte-ignore a11y-media-has-caption -->
 
 	<div class="ratio ratio-16x9" style="background-color: black;">
-		<video id="video" on:loadedmetadata={(e) => videoLoad(e)} controls class="ratio ratio-16x9"
+		<video on:timeupdate={(e) => videoTimeUpdate(e)} id="video" on:loadedmetadata={(e) => videoLoad(e)} controls class="ratio ratio-16x9"
 			><source {src} type="video/mp4" />
 			Your browser does not support the video tag.
 		</video>
@@ -203,6 +242,13 @@
 				/>
 			</div>
 		{/if}
+		{#if form}<formrenderer-host
+				on:submit={(e) => formSubmit(e.detail)}
+				on:change={(e) => formCheck(e.detail)}
+				style="margin:40px auto 20px auto; display:block"
+				submitted={sendform}
+				schema={form}
+			/>{/if}
 	</div>
 	<div class="card-footer">
 		<span style="float:left;height:30px;line-height:30px"
@@ -213,13 +259,15 @@
 				{dayjs.duration((track.maxValue - track.minValue) * 1000).minutes()
 					? dayjs.duration((track.maxValue - track.minValue) * 1000).format("m") + " minutes"
 					: ""}
-				{dayjs.duration((track.maxValue - track.minValue) * 1000).seconds()
-					? dayjs.duration((track.maxValue - track.minValue) * 1000).format("s.sss") + " seconds"
-					: ""}
+				{dayjs.duration(parseInt((track.maxValue - track.minValue) * 1000)).format("s.SSS") + " seconds"}
 			{/if}</span
 		>
 		<span style="float:right;height:30px;line-height:30px">
-			<button class="btn btn-sm btn-primary" on:click={dispatchTrack}>send</button>
+			{#if enablesubmit}
+				<button class="btn btn-sm btn-primary" on:click={dispatchTrack}>send</button>
+			{:else}
+				<button class="btn btn-sm btn-primary" disabled on:click={dispatchTrack}>send</button>
+			{/if}
 		</span>
 	</div>
 </div>

@@ -4,9 +4,15 @@ export interface FormHostProps {
   id: string;
   schema: FormSchema;
   submit?: (p) => void;
+  submitted: boolean;
 }
 
-export const createFormHost = ({ id, schema, submit }: FormHostProps) => {
+export const createFormHost = ({
+  id,
+  schema,
+  submit,
+  submitted,
+}: FormHostProps) => {
   if (!document.getElementById("formrendererhostscript")) {
     const script = document.createElement("script");
     script.id = "formrendererhostscript";
@@ -28,6 +34,10 @@ export const createFormHost = ({ id, schema, submit }: FormHostProps) => {
   } else {
     if (c.hasAttribute("schema")) c.removeAttribute("schema");
   }
-
+  if (submitted) {
+    c.setAttribute("submitted", "yes");
+  } else {
+    if (c.hasAttribute("submitted")) c.removeAttribute("submitted");
+  }
   return c;
 };

@@ -8,6 +8,7 @@ export default {
     id: { control: { disable: true } },
     schema: { control: { type: "object" } },
     submit: { action: "submitEvent" },
+    submitted: { control: { type: "boolean" } },
   },
 } as Meta;
 
@@ -34,6 +35,13 @@ const schema1: FormSchema = [
           required: true,
           label: "Last Name",
           validationTip: "This field cannot be empty.",
+        },
+        {
+          type: "text",
+          placeholder: "Insert your last namez here...",
+          id: "lastNamez",
+          label: "Last Namez",
+          validationTip: "This field cannot be emptyz.",
         },
         {
           type: "select",

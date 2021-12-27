@@ -94,14 +94,14 @@ when is needed to publish one/more packages version update, is needed to publish
 
 ### uncategorized
 
-- calendar with clickable notes inside cells
+- ~~calendar with clickable notes inside cells~~
 - notification menu
 - toast notification
 - cart dropdown
 - search bar with suggestions
 - comment box
 - chat
-- video editor (cut)
+- ~~video editor (cut)~~
 - funnel
 
 ### widget/card

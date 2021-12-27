@@ -63,6 +63,7 @@
 	export const values: Record<string, string | number | boolean> = {};
 
 	export let isInvalid: boolean;
+	export let submitted: "yes" | null;
 	let controls: IControl[];
 	const visibility: Record<string, boolean> = {};
 	const valids: Record<string, boolean> = {};
@@ -72,6 +73,9 @@
 	let getControls: (schema: FormSchema) => IControl[];
 
 	$: {
+		if (submitted && submitted === "yes" && schema && typeof schema !== "string") {
+			onSubmit();
+		}
 		if (!schema) {
 			schema = null;
 		} else if (typeof schema === "string") {
@@ -100,7 +104,6 @@
 				}
 
 				if (component.options?.row) {
-					console.log("ROWWWWW");
 					return { entry, columns: getControls(entry.params?.columns ?? []), options: component.options };
 				} else {
 					visibility[entry.id] = !entry.dependencies?.length;
@@ -111,8 +114,9 @@
 		};
 
 		controls = schema ? getControls(schema) : [];
-		console.log(valids);
+		console.log("valids", valids);
 		isInvalid = Object.entries(valids).some(([id, isValid]) => !isValid && visibility[id]);
+		console.log("isInvalid", isInvalid);
 	}
 
 	const canShow = (entry: FormSchemaEntry) => {
@@ -195,20 +199,25 @@
 	const component = get_current_component();
 
 	const svelteDispatch = createEventDispatcher();
-
+	function dispatch(name, detail) {
+		// console.log(`svelte: ${name}`);
+		svelteDispatch(name, detail);
+		component.dispatchEvent?.(new CustomEvent(name, { detail }));
+	}
 	const onSubmit = () => {
-		svelteDispatch("submit", values);
-		component.dispatchEvent?.(new CustomEvent("submit", { detail: values }));
+		const cc = Object.assign({ _valid: !isInvalid }, values);
+
+		dispatch("submit", cc);
 	};
 
 	function setValueByMessage(message: { id: string; value: string }) {
 		setValueFor(message.id, message.value);
-		console.log(message);
+		const cc = Object.assign({ _valid: !isInvalid, _id: message.id }, values);
+		dispatch("change", cc);
+		console.log("changingggggg", cc);
 	}
 	function setValidByMessage(message: { id: string; valid: boolean }) {
 		setValidFor(message.id, message.valid);
-
-		console.log(message);
 	}
 </script>
 
@@ -479,16 +488,12 @@
 						setvalid
 					/>
 				{/if}
-
-				{#if entry.validationTip}
-					<div class="invalid-feedback mb-1">
-						{entry.validationTip}
-					</div>
-				{/if}
 			</div>
 		{/if}
 	{/each}
-	<button type="button" class="btn btn-primary" disabled={isInvalid} on:click|preventDefault={onSubmit}><slot name="submit-label">Submit</slot></button>
+	{#if !submitted}<button type="button" class="btn btn-primary" disabled={isInvalid} on:click|preventDefault={() => onSubmit()}
+			><slot name="submit-label">Submit</slot></button
+		>{/if}
 {/if}
 
 <style lang="scss">
