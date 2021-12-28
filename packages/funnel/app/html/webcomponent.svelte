@@ -33,17 +33,21 @@
 	export let step: number;
 	export let submitstep: "yes" | "no";
 	let scheme: FormSchema;
+	let schemeIsValid: boolean = false;
 
 	$: {
 		if (!id) id = "";
-		if (!steps) steps = 1;
-		else if (typeof steps === "string") steps = Number(steps);
+
 		if (!step) step = 1;
 		else if (typeof step === "string") step = Number(step);
 		if (schemes && typeof schemes === "string") {
 			schemes = JSON.parse(schemes);
-			scheme = schemes[step - 1];
 		}
+		if (schemes && step) scheme = schemes[step - 1];
+
+		if (steps && typeof steps === "string") steps = Number(steps);
+		else if (schemes?.length) steps = schemes.length;
+		else if (!steps) steps = 1;
 		if (submitstep !== "yes") {
 			submitstep = "no";
 		}
@@ -58,26 +62,39 @@
 
 	function schemeUpdate(s) {
 		scheme.find((f) => f.id === s._id).value = s[s._id];
-		dispatch("update", { step, scheme });
+		schemeIsValid = s._valid;
+		dispatch("update", { step, scheme, valid: schemeIsValid });
 	}
-	function submitFunnel(dd) {
-		console.log("dddd1111", dd);
+	function submitFunnel() {
 		submitstep = "no";
 		dispatch("submit", { schemes, steps, step });
 	}
 </script>
 
-<div>funnel2</div>
 {#if scheme}
-	<formrenderer-host
-		on:submit={(e) => submitFunnel(e.detail)}
-		on:change={(e) => schemeUpdate(e.detail)}
-		schema={JSON.stringify(scheme)}
-		submitted={submitstep}
-	/>
+	<formrenderer-host on:submit={(e) => submitFunnel()} on:change={(e) => schemeUpdate(e.detail)} schema={JSON.stringify(scheme)} submitted={submitstep} />
 {/if}
+<div>
+	<span>
+		<span class="btn btn-secondary">{step}/{steps}</span>
+		{#if step > 1}
+			<button class="btn btn-primary" on:click={() => (step = step - 1)}>Indietro</button>
+		{:else}
+			<button class="btn btn-primary" on:click={() => (step = step - 1)} disabled>Indietro</button>
+		{/if}
+		{#if steps === step && schemeIsValid}
+			<button class="btn btn-primary" on:click={() => (submitstep = "yes")}>Salva</button>
+		{:else if steps === step}
+			<button class="btn btn-primary" on:click={() => (submitstep = "yes")} disabled>Salva</button>
+		{:else if steps > step && schemeIsValid}
+			<button class="btn btn-primary" on:click={() => (step = step + 1)}>Avanti</button>
+		{:else}
+			<button class="btn btn-primary" on:click={() => (step = step + 1)} disabled>Avanti</button>
+		{/if}
+	</span>
+</div>
 
 <style lang="scss">
-	// @import "../styles/bootstrap.scss";
+	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
 </style>
