@@ -43,7 +43,9 @@
 		if (schemes && typeof schemes === "string") {
 			schemes = JSON.parse(schemes);
 		}
-		if (schemes && step) scheme = schemes[step - 1];
+		if (schemes && step) {
+			scheme = schemes[step - 1];
+		}
 
 		if (steps && typeof steps === "string") steps = Number(steps);
 		else if (schemes?.length) steps = schemes.length;
@@ -69,10 +71,21 @@
 		submitstep = "no";
 		dispatch("submit", { schemes, steps, step });
 	}
+	function initializeStep(detail) {
+		console.log("INITIALIZE", detail);
+		schemeIsValid = detail._valid;
+	}
 </script>
 
 {#if scheme}
-	<formrenderer-host on:submit={(e) => submitFunnel()} on:change={(e) => schemeUpdate(e.detail)} schema={JSON.stringify(scheme)} submitted={submitstep} />
+	<formrenderer-host
+		id={`scheme-${step}-${steps}`}
+		on:submit={(e) => submitFunnel()}
+		on:initialize={(e) => initializeStep(e.detail)}
+		on:change={(e) => schemeUpdate(e.detail)}
+		schema={JSON.stringify(scheme)}
+		submitted={submitstep}
+	/>
 {/if}
 <div>
 	<span>

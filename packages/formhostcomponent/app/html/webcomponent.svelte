@@ -60,15 +60,15 @@
 
 	export let schema: FormSchema;
 
-	export const values: Record<string, string | number | boolean> = {};
+	export let values: Record<string, string | number | boolean> = {};
 
 	export let isInvalid: boolean;
 	export let submitted: "yes" | null;
 	let controls: IControl[];
-	const visibility: Record<string, boolean> = {};
-	const valids: Record<string, boolean> = {};
+	let visibility: Record<string, boolean> = {};
+	let valids: Record<string, boolean> = {};
 
-	const allValues: Record<string, string | number | boolean> = {};
+	let allValues: Record<string, string | number | boolean> = {};
 	let dependencyMap: Record<string, FormSchemaEntry[]>;
 	let getControls: (schema: FormSchema) => IControl[];
 
@@ -80,11 +80,18 @@
 			schema = null;
 		} else if (typeof schema === "string") {
 			schema = JSON.parse(schema as unknown as string);
+			values = {};
 			for (const s of schema) {
 				if (s.type !== "row") {
 					values[s.id] = s.value;
 				}
 			}
+			visibility = {};
+			valids = {};
+			controls = [];
+			allValues = {};
+			isInvalid = null;
+			console.log("REINITIALIZED");
 		}
 		dependencyMap = schema
 			? groupMultipleBy(
@@ -114,9 +121,11 @@
 		};
 
 		controls = schema ? getControls(schema) : [];
-		console.log("valids", valids);
-		isInvalid = Object.entries(valids).some(([id, isValid]) => !isValid && visibility[id]);
+		console.log("valids", valids, controls, Object.entries(valids));
+		isInvalid = !Object.entries(valids).length || Object.entries(valids).some(([id, isValid]) => !isValid && visibility[id]);
 		console.log("isInvalid", isInvalid);
+		const obj = Object.assign({ _valid: !isInvalid }, values);
+		dispatch("initialize", obj);
 	}
 
 	const canShow = (entry: FormSchemaEntry) => {
@@ -169,6 +178,7 @@
 				handleVisibility(dependent);
 			}
 		}
+		console.log("setvaluefor", isInvalid);
 	};
 
 	const setValidFor = (id: string, valid: boolean) => {
@@ -218,6 +228,8 @@
 	}
 	function setValidByMessage(message: { id: string; valid: boolean }) {
 		setValidFor(message.id, message.valid);
+		const cc = Object.assign({ _valid: !isInvalid, _id: message.id }, values);
+		dispatch("change", cc);
 	}
 </script>
 
