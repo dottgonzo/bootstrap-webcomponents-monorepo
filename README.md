@@ -102,7 +102,7 @@ when is needed to publish one/more packages version update, is needed to publish
 - comment box
 - chat
 - ~~video editor (cut)~~
-- funnel
+- ~~funnel~~
 
 ### widget/card
 
@@ -135,7 +135,3 @@ when is needed to publish one/more packages version update, is needed to publish
 - map with markers
 - directions
 - area selection
-
-### to be reviewed
-
-- offcanvas/sidebar

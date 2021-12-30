@@ -96,26 +96,27 @@
 		schema={JSON.stringify(schemes[step - 1].schema)}
 		submitted={submitstep}
 	/>
+
+	<div>
+		<span>
+			<span class="btn btn-secondary">{step}/{steps}</span>
+			{#if step > 1}
+				<button class="btn btn-primary" on:click={() => setStep(step - 1)}>Indietro</button>
+			{:else}
+				<button class="btn btn-primary" on:click={() => setStep(step - 1)} disabled>Indietro</button>
+			{/if}
+			{#if steps === step && schemes[step - 1].valid}
+				<button class="btn btn-primary" on:click={() => (submitstep = "yes")}>Salva</button>
+			{:else if steps === step}
+				<button class="btn btn-primary" on:click={() => (submitstep = "yes")} disabled>Salva</button>
+			{:else if steps > step && schemes[step - 1].valid}
+				<button class="btn btn-primary" on:click={() => setStep(step + 1)}>Avanti</button>
+			{:else}
+				<button class="btn btn-primary" on:click={() => setStep(step + 1)} disabled>Avanti</button>
+			{/if}
+		</span>
+	</div>
 {/if}
-<div>
-	<span>
-		<span class="btn btn-secondary">{step}/{steps}</span>
-		{#if step > 1}
-			<button class="btn btn-primary" on:click={() => setStep(step - 1)}>Indietro</button>
-		{:else}
-			<button class="btn btn-primary" on:click={() => setStep(step - 1)} disabled>Indietro</button>
-		{/if}
-		{#if steps === step && schemes[step - 1].valid}
-			<button class="btn btn-primary" on:click={() => (submitstep = "yes")}>Salva</button>
-		{:else if steps === step}
-			<button class="btn btn-primary" on:click={() => (submitstep = "yes")} disabled>Salva</button>
-		{:else if steps > step && schemes[step - 1].valid}
-			<button class="btn btn-primary" on:click={() => setStep(step + 1)}>Avanti</button>
-		{:else}
-			<button class="btn btn-primary" on:click={() => setStep(step + 1)} disabled>Avanti</button>
-		{/if}
-	</span>
-</div>
 
 <style lang="scss">
 	@import "../styles/bootstrap.scss";

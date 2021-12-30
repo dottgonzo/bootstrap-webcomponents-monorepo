@@ -43,16 +43,16 @@
 		};
 	}
 	function checkClass(className) {
-		return document.body.classList.contains(className);
+		return document?.body?.classList?.contains?.(className);
 	}
 	function modalOpen() {
 		if (!checkClass("modal-open")) {
-			document.body.classList.add("modal-open");
+			document?.body?.classList?.add?.("modal-open");
 		}
 	}
 	function modalClose() {
 		if (checkClass("modal-open")) {
-			document.body.classList.remove("modal-open");
+			document?.body?.classList?.remove?.("modal-open");
 		}
 	}
 	function handleBackdrop(event) {
@@ -64,7 +64,7 @@
 	function onModalOpened() {
 		if (keyboard) {
 			_keyboardEvent = attachEvent(document, "keydown", (e) => {
-				if ((event as any).key === "Escape") {
+				if (event && (event as any).key === "Escape") {
 					show = false;
 				}
 			});
@@ -98,6 +98,7 @@
 
 {#if show}
 	<div
+		id="modal-{id}"
 		class="modal show"
 		tabindex="-1"
 		role="dialog"
@@ -135,9 +136,7 @@
 			</div>
 		</div>
 	</div>
-	{#if show}
-		<div class="modal-backdrop show" transition:fade={{ duration: 150 }} />
-	{/if}
+	<div class="modal-backdrop show" transition:fade={{ duration: 150 }} />
 {/if}
 
 <style lang="scss">
