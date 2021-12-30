@@ -60,16 +60,16 @@
 
 	export let schema: FormSchema;
 
-	export const values: Record<string, string | number | boolean> = {};
+	export let values: Record<string, string | number | boolean> = {};
 
 	export let isInvalid: boolean;
 	export let submitted: "yes" | null;
 	export let getvals: "yes" | "no" | null;
 	let controls: IControl[];
-	const visibility: Record<string, boolean> = {};
-	const valids: Record<string, boolean> = {};
+	let visibility: Record<string, boolean> = {};
+	let valids: Record<string, boolean> = {};
 
-	const allValues: Record<string, string | number | boolean> = {};
+	let allValues: Record<string, string | number | boolean> = {};
 	let dependencyMap: Record<string, FormSchemaEntry[]>;
 	let getControls: (schema: FormSchema) => IControl[];
 
@@ -79,6 +79,15 @@
 		}
 		if (typeof schema === "string") {
 			schema = JSON.parse(schema as unknown as string);
+			if (!controls?.length || !controls.find((f) => f.entry.id === schema[0].id)) {
+				valids = {};
+				allValues = {};
+				dependencyMap = {};
+				visibility = {};
+				controls = [];
+				values = {};
+			}
+
 			for (const s of schema) {
 				if (s.type !== "row") {
 					values[s.id] = s.value;
