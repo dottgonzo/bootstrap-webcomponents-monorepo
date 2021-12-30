@@ -10,7 +10,7 @@ export default {
 } as Meta;
 
 const inputEntry1: FormSchemaEntry = {
-  type: "text",
+  type: "file",
   placeholder: "Insert your last name here...",
   id: "lastName",
   required: true,
