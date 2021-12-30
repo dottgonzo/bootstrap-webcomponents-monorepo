@@ -60,15 +60,15 @@
 
 	export let schema: FormSchema;
 
-	export let values: Record<string, string | number | boolean> = {};
+	export const values: Record<string, string | number | boolean> = {};
 
 	export let isInvalid: boolean;
 	export let submitted: "yes" | null;
 	let controls: IControl[];
-	let visibility: Record<string, boolean> = {};
-	let valids: Record<string, boolean> = {};
+	const visibility: Record<string, boolean> = {};
+	const valids: Record<string, boolean> = {};
 
-	let allValues: Record<string, string | number | boolean> = {};
+	const allValues: Record<string, string | number | boolean> = {};
 	let dependencyMap: Record<string, FormSchemaEntry[]>;
 	let getControls: (schema: FormSchema) => IControl[];
 
@@ -76,22 +76,13 @@
 		if (submitted && submitted === "yes" && schema && typeof schema !== "string") {
 			onSubmit();
 		}
-		if (!schema) {
-			schema = null;
-		} else if (typeof schema === "string") {
+		if (typeof schema === "string") {
 			schema = JSON.parse(schema as unknown as string);
-			values = {};
 			for (const s of schema) {
 				if (s.type !== "row") {
 					values[s.id] = s.value;
 				}
 			}
-			visibility = {};
-			valids = {};
-			controls = [];
-			allValues = {};
-			isInvalid = null;
-			console.log("REINITIALIZED");
 		}
 		dependencyMap = schema
 			? groupMultipleBy(
@@ -125,7 +116,7 @@
 		isInvalid = !Object.entries(valids).length || Object.entries(valids).some(([id, isValid]) => !isValid && visibility[id]);
 		console.log("isInvalid", isInvalid);
 		const obj = Object.assign({ _valid: !isInvalid }, values);
-		dispatch("initialize", obj);
+		// dispatch("initialize", obj);
 	}
 
 	const canShow = (entry: FormSchemaEntry) => {
@@ -220,13 +211,13 @@
 		dispatch("submit", cc);
 	};
 
-	function setValueByMessage(message: { id: string; value: string }) {
+	function setValueByMessage(message: { id?: string; value: string }) {
 		setValueFor(message.id, message.value);
 		const cc = Object.assign({ _valid: !isInvalid, _id: message.id }, values);
 		dispatch("change", cc);
 		console.log("changingggggg", cc);
 	}
-	function setValidByMessage(message: { id: string; valid: boolean }) {
+	function setValidByMessage(message: { id?: string; valid: boolean }) {
 		setValidFor(message.id, message.valid);
 		const cc = Object.assign({ _valid: !isInvalid, _id: message.id }, values);
 		dispatch("change", cc);
