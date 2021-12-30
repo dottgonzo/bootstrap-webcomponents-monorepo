@@ -35,9 +35,10 @@
 		}
 
 		value = value != null ? value : !!schemaentry?.value;
-		if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
-
-		if (setvalid) dispatch("setValid", true);
+		setTimeout(() => {
+			if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
+			if (setvalid) dispatch("setValid", true);
+		}, 0);
 	}
 </script>
 

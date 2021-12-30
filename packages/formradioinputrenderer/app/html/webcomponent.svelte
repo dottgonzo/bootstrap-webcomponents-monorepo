@@ -39,9 +39,10 @@
 		console.log("SCHEMAENTRY", schemaentry, setvalue);
 
 		value = value != null ? value : !!schemaentry?.value;
-		if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
-
-		if (setvalid) dispatch("setValid", { valid: true, id: schemaentry.id });
+		setTimeout(() => {
+			if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
+			if (setvalid) dispatch("setValid", { valid: true, id: schemaentry?.id });
+		}, 0);
 	}
 </script>
 

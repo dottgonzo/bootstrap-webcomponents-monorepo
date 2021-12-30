@@ -39,9 +39,10 @@
 		options = schemaentry?.params?.options ?? [];
 		value = value != null ? value : (schemaentry?.value as string);
 		valid = !schemaentry?.required || value ? true : false;
-		if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
-
-		if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
+		setTimeout(() => {
+			if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
+			if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
+		}, 0);
 	}
 </script>
 

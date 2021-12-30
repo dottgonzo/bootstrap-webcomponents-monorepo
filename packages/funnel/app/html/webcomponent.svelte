@@ -11,7 +11,7 @@
 	 *
 	 */
 
-	import { get_current_component } from "svelte/internal";
+	import { each, get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
 	import type { FormSchema } from "../../../formhostcomponent/app/types/webcomponent.type";
@@ -29,22 +29,23 @@
 	addComponent("formrenderer-host", "formhostcomponent.js", "formhostscript", "formhostcomponent");
 	export let id: string;
 	export let steps: number;
-	export let schemes: FormSchema[];
+	export let schemes: { schema: FormSchema; valid: boolean }[];
 	export let step: number;
 	export let submitstep: "yes" | "no";
-	let scheme: FormSchema;
-	let schemeIsValid: boolean = false;
 
+	// let getvals: "yes" | "no" = "no";
 	$: {
 		if (!id) id = "";
 
 		if (!step) step = 1;
 		else if (typeof step === "string") step = Number(step);
 		if (schemes && typeof schemes === "string") {
-			schemes = JSON.parse(schemes);
-		}
-		if (schemes && step) {
-			scheme = schemes[step - 1];
+			schemes = JSON.parse(schemes).map((m) => {
+				return {
+					schema: m,
+					valid: false,
+				};
+			});
 		}
 
 		if (steps && typeof steps === "string") steps = Number(steps);
@@ -63,27 +64,36 @@
 	}
 
 	function schemeUpdate(s) {
-		scheme.find((f) => f.id === s._id).value = s[s._id];
-		schemeIsValid = s._valid;
-		dispatch("update", { step, scheme, valid: schemeIsValid });
+		if (s._id) {
+			schemes[step - 1].schema.find((f) => f.id === s._id).value = s[s._id];
+		}
+		schemes[step - 1].valid = s._valid;
+		dispatch("update", { step, scheme: schemes[step - 1], valid: schemes[step - 1].valid });
 	}
 	function submitFunnel() {
 		submitstep = "no";
 		dispatch("submit", { schemes, steps, step });
 	}
-	function initializeStep(detail) {
-		console.log("INITIALIZE", detail);
-		schemeIsValid = detail._valid;
+	// function getValues(detail) {
+	// 	setTimeout(() => {
+	// 		console.log("INITIALIZE", detail);
+	// 		schemeIsValid = detail._valid;
+	// 		getvals = "no";
+	// 	}, 1000);
+	// }
+
+	function setStep(s: number) {
+		step = s;
+		// getvals = "yes";
 	}
 </script>
 
-{#if scheme}
+{#if schemes}
 	<formrenderer-host
 		id={`scheme-${step}-${steps}`}
 		on:submit={(e) => submitFunnel()}
-		on:initialize={(e) => initializeStep(e.detail)}
 		on:change={(e) => schemeUpdate(e.detail)}
-		schema={JSON.stringify(scheme)}
+		schema={JSON.stringify(schemes[step - 1].schema)}
 		submitted={submitstep}
 	/>
 {/if}
@@ -91,18 +101,18 @@
 	<span>
 		<span class="btn btn-secondary">{step}/{steps}</span>
 		{#if step > 1}
-			<button class="btn btn-primary" on:click={() => (step = step - 1)}>Indietro</button>
+			<button class="btn btn-primary" on:click={() => setStep(step - 1)}>Indietro</button>
 		{:else}
-			<button class="btn btn-primary" on:click={() => (step = step - 1)} disabled>Indietro</button>
+			<button class="btn btn-primary" on:click={() => setStep(step - 1)} disabled>Indietro</button>
 		{/if}
-		{#if steps === step && schemeIsValid}
+		{#if steps === step && schemes[step - 1].valid}
 			<button class="btn btn-primary" on:click={() => (submitstep = "yes")}>Salva</button>
 		{:else if steps === step}
 			<button class="btn btn-primary" on:click={() => (submitstep = "yes")} disabled>Salva</button>
-		{:else if steps > step && schemeIsValid}
-			<button class="btn btn-primary" on:click={() => (step = step + 1)}>Avanti</button>
+		{:else if steps > step && schemes[step - 1].valid}
+			<button class="btn btn-primary" on:click={() => setStep(step + 1)}>Avanti</button>
 		{:else}
-			<button class="btn btn-primary" on:click={() => (step = step + 1)} disabled>Avanti</button>
+			<button class="btn btn-primary" on:click={() => setStep(step + 1)} disabled>Avanti</button>
 		{/if}
 	</span>
 </div>

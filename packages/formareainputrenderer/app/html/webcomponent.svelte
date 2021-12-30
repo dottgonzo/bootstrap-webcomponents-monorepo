@@ -39,14 +39,17 @@
 		console.log("SCHEMAENTRY", schemaentry, setvalue);
 
 		value = value != null ? value : (schemaentry?.value as string);
-		if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
+
 		regex = schemaentry?.validationRegex && new RegExp(schemaentry.validationRegex);
 		valid = schemaentry
 			? (!schemaentry?.required || value != null) &&
 			  (regex ? regex.test(value) : true) &&
 			  (value == null || (value.length >= (schemaentry.params?.minlength ?? 1) && value.length <= (schemaentry.params?.maxlength ?? Infinity)))
 			: false;
-		if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
+		setTimeout(() => {
+			if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
+			if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
+		}, 0);
 	}
 </script>
 

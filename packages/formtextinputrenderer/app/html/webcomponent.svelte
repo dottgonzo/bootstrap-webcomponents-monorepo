@@ -25,6 +25,8 @@
 		if (schemaentry && typeof schemaentry === "string") {
 			console.log("SCHEMAENTRY", schemaentry);
 			schemaentry = JSON.parse(schemaentry as unknown as string);
+		} else if (!schemaentry) {
+			schemaentry = null;
 		}
 		if (!setvalue && (setvalue as unknown as string) === "no") {
 			setvalue = false;
@@ -38,7 +40,7 @@
 		}
 
 		value = value != null ? value : (schemaentry?.value as string);
-		if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
+
 		regex = schemaentry?.validationRegex && new RegExp(schemaentry.validationRegex);
 		valid = schemaentry
 			? (!schemaentry?.required || value != null) &&
@@ -54,8 +56,11 @@
 		// 			(regex ? regex.test(value) : true))
 		// 	: false;
 
-		if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
 		console.log(valid, value, "validinput");
+		setTimeout(() => {
+			if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
+			if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
+		}, 0);
 	}
 </script>
 

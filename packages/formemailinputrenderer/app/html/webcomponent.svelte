@@ -38,10 +38,13 @@
 		}
 
 		value = value != null ? value : (schemaentry?.value as string);
-		if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
+
 		regex = schemaentry?.validationRegex && new RegExp(schemaentry.validationRegex);
 		valid = valid = schemaentry ? (!schemaentry.required || value != null) && (regex ? regex.test(value) : true) : false;
-		if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
+		setTimeout(() => {
+			if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
+			if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
+		}, 0);
 	}
 </script>
 

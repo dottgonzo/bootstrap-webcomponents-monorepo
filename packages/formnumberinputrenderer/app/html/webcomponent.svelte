@@ -37,7 +37,7 @@
 		}
 
 		value = value != null ? value : (schemaentry?.value as number);
-		if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
+
 		regex = schemaentry?.validationRegex && new RegExp(schemaentry.validationRegex);
 
 		valid = schemaentry
@@ -46,7 +46,10 @@
 			  (value == null || (value >= (schemaentry.params?.min ?? -Infinity) && value <= (schemaentry.params?.max ?? Infinity)))
 			: false;
 
-		if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
+		setTimeout(() => {
+			if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
+			if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
+		}, 0);
 	}
 </script>
 

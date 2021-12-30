@@ -64,6 +64,7 @@
 
 	export let isInvalid: boolean;
 	export let submitted: "yes" | null;
+	export let getvals: "yes" | "no" | null;
 	let controls: IControl[];
 	const visibility: Record<string, boolean> = {};
 	const valids: Record<string, boolean> = {};
@@ -83,6 +84,8 @@
 					values[s.id] = s.value;
 				}
 			}
+		} else if (!schema) {
+			schema = null;
 		}
 		dependencyMap = schema
 			? groupMultipleBy(
@@ -117,6 +120,10 @@
 		console.log("isInvalid", isInvalid);
 		const obj = Object.assign({ _valid: !isInvalid }, values);
 		// dispatch("initialize", obj);
+		if (getvals && getvals === "yes") getVals();
+		else {
+			getvals = "no";
+		}
 	}
 
 	const canShow = (entry: FormSchemaEntry) => {
@@ -210,14 +217,24 @@
 
 		dispatch("submit", cc);
 	};
+	const getVals = () => {
+		if (getvals && getvals === "yes") {
+			const cc = Object.assign({ _valid: !isInvalid }, values);
 
+			dispatch("getValues", cc);
+		}
+		getvals = "no";
+	};
 	function setValueByMessage(message: { id?: string; value: string }) {
+		console.log("aaa");
+
 		setValueFor(message.id, message.value);
 		const cc = Object.assign({ _valid: !isInvalid, _id: message.id }, values);
 		dispatch("change", cc);
 		console.log("changingggggg", cc);
 	}
 	function setValidByMessage(message: { id?: string; valid: boolean }) {
+		console.log("aaa");
 		setValidFor(message.id, message.valid);
 		const cc = Object.assign({ _valid: !isInvalid, _id: message.id }, values);
 		dispatch("change", cc);
