@@ -23,6 +23,7 @@
 		| "formrenderer-selectinput"
 		| "formrenderer-dateinput"
 		| "formrenderer-textinput"
+		| "formrenderer-fileinput"
 		| "formrenderer-numberinput"
 		| "formrenderer-emailinput"
 		| "formrenderer-areainput"
@@ -53,6 +54,7 @@
 		text: { component: "formrenderer-textinput" },
 		number: { component: "formrenderer-numberinput" },
 		email: { component: "formrenderer-emailinput" },
+		file: { component: "formrenderer-fileinput" },
 		textarea: { component: "formrenderer-areainput" },
 		checkbox: { component: "formrenderer-checkboxinput", options: { labelIsHandledByComponent: true } },
 		radio: { component: "formrenderer-radioinput", options: { labelIsHandledByComponent: true } },
@@ -212,6 +214,7 @@
 	addComponent("formrenderer-areainput", "formrendererareainput.js", "formrendererareainputscript", "formareainputrenderer");
 	addComponent("formrenderer-radioinput", "formrendererradioinput.js", "formrendererradioinputscript", "formradioinputrenderer");
 	addComponent("formrenderer-selectinput", "formrendererselectinput.js", "formrendererselectinputscript", "formselectinputrenderer");
+	addComponent("formrenderer-fileinput", "formrendererfileinput.js", "formrendererfileinputscript", "formfileinputrenderer");
 
 	const component = get_current_component();
 
@@ -265,6 +268,21 @@
 
 									{#if component === "formrenderer-textinput"}
 										<formrenderer-textinput
+											on:setValid={(d) => setValidByMessage(d.detail)}
+											on:setValue={(d) => setValueByMessage(d.detail)}
+											schemaentry={JSON.stringify(
+												{
+													...entry,
+													value: allValues[entry.id] ?? entry.value,
+												},
+												null,
+												0,
+											)}
+											setvalue
+											setvalid
+										/>
+									{:else if component === "formrenderer-fileinput"}
+										<formrenderer-fileinput
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -398,6 +416,21 @@
 
 				{#if component === "formrenderer-textinput"}
 					<formrenderer-textinput
+						on:setValid={(d) => setValidByMessage(d.detail)}
+						on:setValue={(d) => setValueByMessage(d.detail)}
+						schemaentry={JSON.stringify(
+							{
+								...entry,
+								value: allValues[entry.id] ?? entry.value,
+							},
+							null,
+							0,
+						)}
+						setvalue
+						setvalid
+					/>
+				{:else if component === "formrenderer-fileinput"}
+					<formrenderer-fileinput
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
