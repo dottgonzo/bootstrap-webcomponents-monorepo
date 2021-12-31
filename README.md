@@ -133,6 +133,7 @@ when is needed to publish one/more packages version update, is needed to publish
 - radio input
 - file input
 - main form by schema
+- funnel by form schemes
 
 ### pages
 
