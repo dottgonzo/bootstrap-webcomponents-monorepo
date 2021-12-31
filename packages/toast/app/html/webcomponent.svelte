@@ -15,12 +15,29 @@
 	import { fade, fly } from "svelte/transition";
 	import { quintOut } from "svelte/easing";
 
+	interface Header {
+		img?: HTMLImageElement | SVGElement | null;
+		strong?: string | null;
+		small?: string | null;
+	}
+
 	export let id: string;
 	export let show: boolean;
+	export let header: Header;
+	export let body: string;
+	let headerImg: Header["img"];
+	let headerStrong: Header["strong"];
+	let headerSmall: Header["small"];
 	$: {
 		if (!id) id = "";
-		if (show && ((show as unknown as string) === "yes" || (show as unknown as string) === "")) show = true;
+		if (show && (show === true || (show as unknown as string) === "yes" || (show as unknown as string) === "")) show = true;
 		else show = false;
+		try {
+			header = JSON.parse(header as unknown as string);
+			headerImg = header ? (header.img ? header.img : null) : null;
+			headerStrong = header ? (header.strong ? header.strong : null) : null;
+			headerSmall = header ? (header.small ? header.small : null) : null;
+		} catch (err) {}
 	}
 
 	export let dialogClasses = "";
@@ -33,8 +50,8 @@
 	export let content = "";
 	export let closelabel = "";
 	export let confirmlabel = "";
-	export let onOpened = () => dispatch("modalShow", { id, show: true });
-	export let onClosed = () => dispatch("modalShow", { id, show: false });
+	export let onOpened = () => dispatch("toastShow", { id, show: true });
+	export let onClosed = () => dispatch("toastShow", { id, show: false });
 	let _keyboardEvent;
 	function attachEvent(target, ...args) {
 		target.addEventListener(...args);
@@ -45,14 +62,14 @@
 	function checkClass(className) {
 		return document.body.classList.contains(className);
 	}
-	function modalOpen() {
-		if (!checkClass("modal-open")) {
-			document.body.classList.add("modal-open");
+	function toastOpen() {
+		if (!checkClass("toast-open")) {
+			document.body.classList.add("toast-open");
 		}
 	}
-	function modalClose() {
-		if (checkClass("modal-open")) {
-			document.body.classList.remove("modal-open");
+	function toastClose() {
+		if (checkClass("toast-open")) {
+			document.body.classList.remove("toast-open");
 		}
 	}
 	function handleBackdrop(event) {
@@ -61,7 +78,7 @@
 			show = false;
 		}
 	}
-	function onModalOpened() {
+	function onToastOpened() {
 		if (keyboard) {
 			_keyboardEvent = attachEvent(document, "keydown", (e) => {
 				if ((event as any).key === "Escape") {
@@ -71,7 +88,7 @@
 		}
 		onOpened();
 	}
-	function onModalClosed() {
+	function onToastClosed() {
 		if (_keyboardEvent) {
 			_keyboardEvent.remove();
 		}
@@ -80,71 +97,64 @@
 	// Watching changes for Open vairable
 	$: {
 		if (show) {
-			modalOpen();
+			toastOpen();
 		} else {
-			modalClose();
+			toastClose();
 		}
 	}
 	function handleConfirm() {
-		dispatch("modalConfirm", { id, confirm: true });
+		dispatch("toastConfirm", { id, confirm: true });
 		show = false;
 	}
 	function handleCancel() {
 		show = false;
 
-		dispatch("modalConfirm", { id, confirm: false });
+		dispatch("toastConfirm", { id, confirm: false });
 	}
 </script>
 
 {#if show}
 	<div
-		class="modal show"
-		tabindex="-1"
-		role="dialog"
-		aria-labelledby={labelledby}
-		aria-describedby={describedby}
-		aria-modal="true"
+		role="alert"
+		aria-live="assertive"
+		aria-atomic="true"
+		class="toast fade show"
+		data-bs-autohide="false"
+		data-bs-delay="10000"
 		on:click|self={handleBackdrop}
-		on:introend={onModalOpened}
-		on:outroend={onModalClosed}
-		transition:fade
+		on:introend={onToastOpened}
+		on:outroend={onToastClosed}
 	>
-		<div class="modal-dialog {dialogClasses}" role="document" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300, easing: quintOut }}>
-			<div class="modal-content">
-				<slot name="header" class="modal-header">
-					<h5 class="modal-title"><slot name="title">{title || "title"}</slot></h5>
-					<button type="button" class="btn-close" on:click={() => (show = false)}>
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</slot>
-				<div class="modal-body" style="word-break: break-all;">
-					<slot name="body-content">{content || "Woohoo, you're reading this text in a modal!"}</slot>
-				</div>
-				<slot name="modal-footer" class="modal-footer">
-					<div>
-						<slot name="footer">
-							<button type="button" class="btn btn-secondary" on:click={() => handleCancel()}
-								><slot name="close-button-label">{closelabel || "Close"}</slot></button
-							>
-							<button type="button" class="btn btn-primary" on:click={() => handleConfirm()}
-								><slot name="confirm-button-label">{confirmlabel || "Save changes"}</slot></button
-							>
-						</slot>
-					</div>
-				</slot>
+		{#if headerImg || headerStrong || headerSmall}
+			<div class="toast-header">
+				<!-- <slot name="headerImg" /> -->
+				{#if headerImg}
+					{@html headerImg}
+				{/if}
+				{#if headerStrong}
+					<strong class="me-auto">{@html headerStrong}</strong>
+				{/if}
+				{#if headerSmall}
+					<small>{@html headerSmall}</small>
+				{/if}
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" on:click={() => (show = false)} />
 			</div>
-		</div>
+		{/if}
+
+		{#if body}
+			<div class="toast-body">{@html body}</div>
+		{/if}
+		{#if !headerImg && !headerStrong && !headerSmall}
+			<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" on:click={() => (show = false)} />
+		{/if}
 	</div>
-	{#if show}
-		<div class="modal-backdrop show" transition:fade={{ duration: 150 }} />
-	{/if}
 {/if}
 
 <style lang="scss">
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
 
-	.modal {
+	.toast {
 		display: block;
 	}
 </style>

@@ -19,7 +19,7 @@
 	export let show: boolean;
 	$: {
 		if (!id) id = "";
-		if (show && ((show as unknown as string) === "yes" || (show as unknown as string) === "")) show = true;
+		if (show && (show === true || (show as unknown as string) === "yes" || (show as unknown as string) === "")) show = true;
 		else show = false;
 	}
 
