@@ -90,6 +90,54 @@ after bootstrapping the app (that includes the builds for the packages) install 
 
 when is needed to publish one/more packages version update, is needed to publish ALL packages and not only the one changed, because of the dependencies between packages it self
 
+## COMPONENTS UNDER DEVELOPMENT:
+
+### uncategorized
+
+- dialog
+- contact
+- cookie law
+- downloader
+- live video player
+- login/register
+- pagination
+- banner
+- range slider
+- dropdown
+- video card
+- video modal
+
+### contents
+
+- calendar
+- table
+- video gallery
+- video editor
+
+### layout
+
+- footer
+- navbar
+- layout
+- offcanvas/sidebar
+
+### form
+
+- text input
+- number input
+- select
+- email input
+- checkbox
+- textarea input
+- date input
+- radio input
+- file input
+- main form by schema
+
+### pages
+
+- login register page
+
 ## PLANNED COMPONENTS:
 
 ### uncategorized
