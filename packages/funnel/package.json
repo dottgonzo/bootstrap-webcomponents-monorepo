@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/funnel-component",
 	"displayName": "Svelte Funnel WebComponent",
 	"description": "Svelte Funnel WebComponent",
-	"version": "0.2.3",
+	"version": "0.2.4",
 	"main": "release/contact.js",
 	"publishConfig": {
 		"access": "public"
