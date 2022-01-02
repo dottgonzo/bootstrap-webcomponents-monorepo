@@ -358,7 +358,6 @@
 	const svelteDispatch = createEventDispatcher();
 
 	function dispatch(name, detail) {
-		// console.log(`svelte: ${name}`);
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}

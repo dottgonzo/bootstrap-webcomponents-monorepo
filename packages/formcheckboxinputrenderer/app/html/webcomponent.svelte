@@ -20,7 +20,6 @@
 
 	$: {
 		if (schemaentry && typeof schemaentry === "string") {
-			console.log("SCHEMAENTRY", schemaentry);
 			schemaentry = JSON.parse(schemaentry as unknown as string);
 		}
 		if (!setvalue && (setvalue as unknown as string) === "no") {

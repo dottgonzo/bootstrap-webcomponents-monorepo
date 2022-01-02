@@ -82,7 +82,6 @@
 	const monthDateFormat = new Intl.DateTimeFormat(detectedLang, { month: "long" });
 
 	function dispatch(name, detail) {
-		// console.log(`svelte: ${name}`);
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}

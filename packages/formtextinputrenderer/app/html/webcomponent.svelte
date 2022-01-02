@@ -16,14 +16,12 @@
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 	function dispatch(name, detail) {
-		// console.log(`svelte: ${name}`);
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
 	$: {
 		if (schemaentry && typeof schemaentry === "string") {
-			console.log("SCHEMAENTRY", schemaentry);
 			schemaentry = JSON.parse(schemaentry as unknown as string);
 		} else if (!schemaentry) {
 			schemaentry = null;

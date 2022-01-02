@@ -15,14 +15,12 @@
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 	function dispatch(name, detail) {
-		// console.log(`svelte: ${name}`);
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
 	$: {
 		if (schemaentry && typeof schemaentry === "string") {
-			console.log("SCHEMAENTRY", schemaentry);
 			schemaentry = JSON.parse(schemaentry as unknown as string);
 		}
 		if (!setvalue && (setvalue as unknown as string) === "no") {
@@ -35,7 +33,7 @@
 		} else {
 			setvalid = true;
 		}
-		console.log("SCHEMAENTRY", schemaentry, setvalue);
+
 		options = schemaentry?.params?.options ?? [];
 		value = value != null ? value : (schemaentry?.value as string);
 		valid = !schemaentry?.required || value ? true : false;
