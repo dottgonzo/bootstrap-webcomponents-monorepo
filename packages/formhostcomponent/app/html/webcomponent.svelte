@@ -68,14 +68,14 @@
 	export let submitted: "yes" | null;
 	export let getvals: "yes" | "no" | null;
 	let controls: IControl[];
-	let visibility: Record<string, boolean> = {};
+	let visibility: Record<string, boolean>;
 	let valids: Record<string, boolean> = {};
 
 	let allValues: Record<string, string | number | boolean> = {};
 	let dependencyMap: Record<string, FormSchemaEntry[]>;
 	let getControls: (schema: FormSchema) => IControl[];
-
 	$: {
+		if (!visibility) visibility = {};
 		if (submitted && submitted === "yes" && schema && typeof schema !== "string") {
 			onSubmit();
 		}
@@ -118,7 +118,7 @@
 				if (component.options?.row) {
 					return { entry, columns: getControls(entry.params?.columns ?? []), options: component.options };
 				} else {
-					visibility[entry.id] = !entry.dependencies?.length;
+					visibility[entry.id] = visibility[entry.id] || !entry.dependencies?.length;
 				}
 
 				return { entry, component: component.component, options: component.options || {} };
@@ -126,9 +126,7 @@
 		};
 
 		controls = schema ? getControls(schema) : [];
-		console.log("valids", valids, controls, Object.entries(valids));
 		isInvalid = !Object.entries(valids).length || Object.entries(valids).some(([id, isValid]) => !isValid && visibility[id]);
-		console.log("isInvalid", isInvalid);
 		const obj = Object.assign({ _valid: !isInvalid }, values);
 		// dispatch("initialize", obj);
 		if (getvals && getvals === "yes") getVals();
@@ -139,7 +137,7 @@
 
 	const canShow = (entry: FormSchemaEntry) => {
 		for (const dep of entry.dependencies || []) {
-			if (!visibility[dep.id] || !dep.values.includes(values[dep.id])) {
+			if (!visibility[dep.id] || !dep.values?.includes(values[dep.id])) {
 				return false;
 			}
 		}
@@ -154,15 +152,6 @@
 			hide(entry);
 		}
 	};
-
-	const hide = (entry: FormSchemaEntry) => {
-		visibility[entry.id] = false;
-		delete values[entry.id];
-		for (const d of dependencyMap[entry.id] || []) {
-			hide(d);
-		}
-	};
-
 	const show = (entry: FormSchemaEntry, defaultValue?: string | number | boolean) => {
 		visibility[entry.id] = true;
 
@@ -172,6 +161,13 @@
 
 		for (const dependentEntry of dependencyMap[entry.id] || []) {
 			handleVisibility(dependentEntry);
+		}
+	};
+	const hide = (entry: FormSchemaEntry) => {
+		visibility[entry.id] = false;
+		delete values[entry.id];
+		for (const d of dependencyMap[entry.id] || []) {
+			hide(d);
 		}
 	};
 
@@ -187,7 +183,6 @@
 				handleVisibility(dependent);
 			}
 		}
-		console.log("setvaluefor", isInvalid);
 	};
 
 	const setValidFor = (id: string, valid: boolean) => {
@@ -220,7 +215,6 @@
 
 	const svelteDispatch = createEventDispatcher();
 	function dispatch(name, detail) {
-		// console.log(`svelte: ${name}`);
 		svelteDispatch(name, detail);
 		component.dispatchEvent?.(new CustomEvent(name, { detail }));
 	}
@@ -238,15 +232,11 @@
 		getvals = "no";
 	};
 	function setValueByMessage(message: { id?: string; value: string }) {
-		console.log("aaa");
-
 		setValueFor(message.id, message.value);
 		const cc = Object.assign({ _valid: !isInvalid, _id: message.id }, values);
 		dispatch("change", cc);
-		console.log("changingggggg", cc);
 	}
 	function setValidByMessage(message: { id?: string; valid: boolean }) {
-		console.log("aaa");
 		setValidFor(message.id, message.valid);
 		const cc = Object.assign({ _valid: !isInvalid, _id: message.id }, values);
 		dispatch("change", cc);

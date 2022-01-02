@@ -88,8 +88,7 @@ const schema1: FormSchema = [
     validationTip: "This field cannot be empty2.",
   },
 ];
-
-const preferences = [
+const preferences: FormSchema = [
   {
     type: "text",
     placeholder: "Inserisci titolo di default",
@@ -116,13 +115,80 @@ const preferences = [
     validationTip: "Min 8, Max 120",
   },
 ];
+const schemaFile: FormSchema = [
+  {
+    type: "file",
+    placeholder: "Inserisci file",
+    id: "filetest",
+    required: true,
+    label: "File di default",
+  },
+  {
+    type: "number",
+    id: "age",
+    required: true,
+    label: "Age",
+    value: 9,
+    params: {
+      min: 8,
+      max: 120,
+    },
+    validationTip: "Min 8, Max 120",
+  },
+];
+const conditionalSchema: FormSchema = [
+  {
+    type: "text",
+    placeholder: "Inserisci titolo di default",
+    id: "defaultTitleCond",
+    required: true,
+
+    label: "Titolo di default",
+    value: "titolotest",
+    params: {
+      minlength: 8,
+      maxlength: 120,
+    },
+  },
+  {
+    type: "number",
+    id: "CondAge",
+    required: true,
+    dependencies: [
+      {
+        id: "defaultTitleCond",
+        values: ["00000000"],
+      },
+    ],
+
+    label: "Age",
+    value: 9,
+    params: {
+      min: 8,
+      max: 120,
+    },
+    validationTip: "Min 8, Max 120",
+  },
+];
 export const FormHostTemplate = Template.bind({});
 FormHostTemplate.args = {
   id: "BasicFormHost",
   schema: schema1,
 };
+
+export const FormHostWithFileTemplate = Template.bind({});
+FormHostWithFileTemplate.args = {
+  id: "FormHostWithFileTemplate",
+  schema: schemaFile,
+};
+
 export const FormHostTemplateCompiled = Template.bind({});
 FormHostTemplateCompiled.args = {
   id: "FormHostTemplateCompiled",
   schema: preferences,
+};
+export const FormHostTemplateConditional = Template.bind({});
+FormHostTemplateConditional.args = {
+  id: "FormHostTemplateConditional",
+  schema: conditionalSchema,
 };
