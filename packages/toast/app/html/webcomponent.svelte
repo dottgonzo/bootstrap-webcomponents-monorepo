@@ -22,7 +22,7 @@
 	}
 
 	export let id: string;
-	export let show: boolean;
+	export let show: boolean | string | null;
 	export let header: Header;
 	export let body: string;
 	let headerImg: Header["img"];
@@ -30,8 +30,19 @@
 	let headerSmall: Header["small"];
 	$: {
 		if (!id) id = "";
-		if (show && (show === true || (show as unknown as string) === "yes" || (show as unknown as string) === "")) show = true;
-		else show = false;
+
+		if (typeof show !== "undefined") {
+			if (show === "" || show === true || show === "true" || show === "yes") {
+				show = true;
+			} else {
+				show = false;
+			}
+		} else {
+			show = false;
+		}
+
+		// if (show && (show === true || (show as unknown as string) === "yes" || (show as unknown as string) === "")) show = true;
+		// else show = false;
 		try {
 			header = JSON.parse(header as unknown as string);
 			headerImg = header ? (header.img ? header.img : null) : null;
@@ -108,7 +119,6 @@
 	}
 	function handleCancel() {
 		show = false;
-
 		dispatch("toastConfirm", { id, confirm: false });
 	}
 </script>
@@ -137,7 +147,15 @@
 				{#if headerSmall}
 					<small>{@html headerSmall}</small>
 				{/if}
-				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" on:click={() => (show = false)} />
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="toast"
+					aria-label="Close"
+					on:click={() => {
+						show = false;
+					}}
+				/>
 			</div>
 		{/if}
 
@@ -145,7 +163,15 @@
 			<div class="toast-body">{@html body}</div>
 		{/if}
 		{#if !headerImg && !headerStrong && !headerSmall}
-			<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" on:click={() => (show = false)} />
+			<button
+				type="button"
+				class="btn-close me-2 m-auto"
+				data-bs-dismiss="toast"
+				aria-label="Close"
+				on:click={() => {
+					show = false;
+				}}
+			/>
 		{/if}
 	</div>
 {/if}

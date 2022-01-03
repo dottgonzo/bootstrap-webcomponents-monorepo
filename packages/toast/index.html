@@ -1,22 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>Page Title</title>
 </head>
 
 <body>
-    <script id="toastcomponentscript" src="http://localhost:6006/toast/dist/toastcomponent.js"></script>
-    <toast-component id="BasicToast" show="yes" body="Hello, world! This is a toast message."></toast-component>
+    <script src="./dist/toastcomponent.js"></script>
+    <toast-component id="BasicToast"></toast-component>
+
+    <script src="../bootstrapdialog/dist/bootstrapdialogcomponent.js"></script>
+    <bootstrap-dialog-component id="BasicBootstapModal"></bootstrap-dialog-component>
     <script>
-        var elem = document.getElementById("BasicToast");
-        // elem.header = JSON.stringify({
-        //     img: `<img src="..." class="rounded me-2" alt="..." />`,
-        //     // img: `<svg class="bd-placeholder-img rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#007aff"></rect></svg>`,
-        //     small: "11 mins ago",
-        //     strong: "Bootstrap",
-        // });
-        elem.setAttribute(
+        // var elem0 = document.getElementById("BasicBootstapModal");
+        // elem0.setAttribute("show", "");
+        var elem1 = document.getElementById("BasicToast");
+        elem1.setAttribute("show", "");
+        // elem1.setAttribute("show", true);
+        // elem1.setAttribute("show", false);
+        // elem1.setAttribute("show", "yes");
+        // elem1.setAttribute("show", "no");
+        elem1.setAttribute("body", "Hello, world! This is a toast message.");
+        elem1.setAttribute(
             "header",
             JSON.stringify({
                 // img: `<img src="..." class="rounded me-2" alt="..." />`,
