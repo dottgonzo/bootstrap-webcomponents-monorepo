@@ -16,11 +16,18 @@
 	import { quintOut } from "svelte/easing";
 
 	export let id: string;
-	export let show: boolean;
+	export let show: boolean | string | null;
 	$: {
 		if (!id) id = "";
-		if (show && (show === true || (show as unknown as string) === "yes" || (show as unknown as string) === "")) show = true;
-		else show = false;
+		if (typeof show !== "undefined") {
+			if (show === "" || show === true || show === "true" || show === "yes") {
+				show = true;
+			} else {
+				show = false;
+			}
+		} else {
+			show = false;
+		}
 	}
 
 	export let dialogClasses = "";
