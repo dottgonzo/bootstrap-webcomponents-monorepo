@@ -180,7 +180,7 @@
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
 
-	.toast {
-		display: block;
-	}
+	// .toast {
+	// 	display: block;
+	// }
 </style>
