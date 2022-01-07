@@ -19,7 +19,7 @@ export const createFormHost = ({
     const script = document.createElement("script");
     script.id = "formhostscript";
 
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/formrenderer-host@${pkg.version}/release/formhostcomponent.js`
       : "http://localhost:6006/formhostcomponent/dist/formhostcomponent.js";
     document.body.appendChild(script);

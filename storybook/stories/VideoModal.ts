@@ -12,7 +12,7 @@ export const createVideoModal = ({ id, uri, item, title }: VideoModalProps) => {
     const script = document.createElement("script");
     script.id = "bootstrapvideomodalcomponentscript";
 
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/bootstrap-videomodal-component@${pkg.version}/release/bootstrapvideomodalcomponent.js`
       : "http://localhost:6006/bootstrapvideomodal/dist/bootstrapvideomodalcomponent.js";
     document.body.appendChild(script);

@@ -41,7 +41,7 @@ export const createOffcanvas = ({
     const script = document.createElement("script");
     script.id = "offcanvasscript";
 
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/offcanvas-component@${pkg.version}/release/offcanvas.js`
       : "http://localhost:6006/offcanvas/dist/offcanvas.js";
     document.body.appendChild(script);

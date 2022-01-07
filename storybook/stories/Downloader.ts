@@ -19,7 +19,7 @@ export const createDownloader = ({
     const script = document.createElement("script");
     script.id = "bootstrapdownloadercomponentscript";
 
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/bootstrap-downloader-component@${pkg.version}/release/bootstrapdownloadercomponent.js`
       : "http://localhost:6006/bootstrapdownloader/dist/bootstrapdownloadercomponent.js";
     document.body.appendChild(script);

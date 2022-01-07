@@ -33,7 +33,7 @@ export const createLoginRegister = ({
   if (!document.getElementById("loginregistercomponentscript")) {
     const script = document.createElement("script");
     script.id = "loginregistercomponentscript";
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/loginregister-component@${pkg.version}/release/loginregister.js`
       : "http://localhost:6006/loginregister/dist/loginregister.js";
     document.body.appendChild(script);

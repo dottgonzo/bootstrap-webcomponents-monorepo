@@ -20,7 +20,7 @@ export const createCalendar = ({
   if (!document.getElementById("calendarcomponentscript")) {
     const script = document.createElement("script");
     script.id = "calendarcomponentscript";
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/calendar-component@${pkg.version}/release/calendar.js`
       : "http://localhost:6006/calendar/dist/calendar.js";
     document.body.appendChild(script);

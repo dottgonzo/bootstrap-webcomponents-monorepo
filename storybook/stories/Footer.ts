@@ -74,7 +74,7 @@ export const createFooter = ({
   if (!document.getElementById("footerscript")) {
     const script = document.createElement("script");
     script.id = "footerscript";
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/footerbootstrap-component@${pkg.version}/release/footerbootstrap.js`
       : "http://localhost:6006/footer/dist/footerbootstrap.js";
     document.body.appendChild(script);

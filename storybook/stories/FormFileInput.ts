@@ -15,7 +15,7 @@ export const createFormFileInput = ({
     const script = document.createElement("script");
     script.id = "formrendererfileinputscript";
 
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/formrenderer-fileinput@${pkg.version}/release/formrendererfileinput.js`
       : "http://localhost:6006/formfileinputrenderer/dist/formrendererfileinput.js";
     document.body.appendChild(script);

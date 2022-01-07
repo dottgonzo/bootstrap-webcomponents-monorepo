@@ -21,7 +21,7 @@ export const createPagination = ({
     const script = document.createElement("script");
     script.id = "paginationbootstrapcomponentjs";
 
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/paginationbootstrap-component@${pkg.version}/release/paginationbootstrap.js`
       : "http://localhost:6006/pagination/dist/paginationbootstrap.js";
     document.body.appendChild(script);

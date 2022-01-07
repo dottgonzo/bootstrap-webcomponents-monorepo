@@ -22,7 +22,7 @@ export const createRangeslider = ({
     const script = document.createElement("script");
     script.id = "rangesliderscript";
 
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/range-slider-component@${pkg.version}/release/rangeslider.js`
       : "http://localhost:6006/rangeslider/dist/rangeslider.js";
     document.body.appendChild(script);

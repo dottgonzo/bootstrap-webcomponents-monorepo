@@ -22,7 +22,7 @@ export const createVideoCard = ({
     const script = document.createElement("script");
     script.id = "videocardbootstrapbootstrapcomponentjs";
 
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/videocardbootstrap-component@${pkg.version}/release/videocardbootstrap.js`
       : "http://localhost:6006/videocard/dist/videocardbootstrap.js";
     document.body.appendChild(script);

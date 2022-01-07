@@ -24,7 +24,7 @@ export const createFunnel = ({
   if (!document.getElementById("funnelcomponentscript")) {
     const script = document.createElement("script");
     script.id = "funnelcomponentscript";
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/funnel-component@${pkg.version}/release/funnel.js`
       : "http://localhost:6006/funnel/dist/funnel.js";
     document.body.appendChild(script);

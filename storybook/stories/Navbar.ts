@@ -38,7 +38,7 @@ export const createNavbar = ({
     const script = document.createElement("script");
     script.id = "navbarscript";
 
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/navbarbootstrap-component@${pkg.version}/release/navbarbootstrap.js`
       : "http://localhost:6006/navbar/dist/navbarbootstrap.js";
     document.body.appendChild(script);

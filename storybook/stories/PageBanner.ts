@@ -17,7 +17,7 @@ export const createPageBanner = ({
     const script = document.createElement("script");
     script.id = "pagebannerscript";
 
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/pagebanner-component@${pkg.version}/release/pagebanner.js`
       : "http://localhost:6006/pagebanner/dist/pagebanner.js";
     document.body.appendChild(script);

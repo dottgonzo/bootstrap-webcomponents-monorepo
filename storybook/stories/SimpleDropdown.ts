@@ -27,7 +27,7 @@ export const createSimpleDropdown = ({
     const script = document.createElement("script");
     script.id = "simpledropdownscript";
 
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/simpledropdown-component@${pkg.version}/release/simpledropdown.js`
       : "http://localhost:6006/simpledropdown/dist/simpledropdown.js";
     document.body.appendChild(script);

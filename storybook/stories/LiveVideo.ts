@@ -20,7 +20,7 @@ export const createLiveVideoPlayer = ({
   if (!document.getElementById("liveplayerscript")) {
     const script = document.createElement("script");
     script.id = "liveplayerscript";
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/liveplayer-component@${pkg.version}/release/liveplayer.js`
       : "http://localhost:6006/liveplayer/dist/liveplayer.js";
     document.body.appendChild(script);

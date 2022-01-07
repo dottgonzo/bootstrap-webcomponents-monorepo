@@ -79,7 +79,7 @@ export const createLayout = ({
   if (!document.getElementById("bootstraplayoutscript")) {
     const script = document.createElement("script");
     script.id = "bootstraplayoutscript";
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/bootstraplayout-component@${pkg.version}/release/bootstraplayout.js`
       : "http://localhost:6006/layout/dist/bootstraplayout.js";
     document.body.appendChild(script);

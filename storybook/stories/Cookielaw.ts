@@ -14,7 +14,7 @@ export const createCookielaw = ({
   if (!document.getElementById("cookielawcomponentscript")) {
     const script = document.createElement("script");
     script.id = "cookielawcomponentscript";
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/cookielaw-component@${pkg.version}/release/cookielaw.js`
       : "http://localhost:6006/cookielaw/dist/cookielaw.js";
     document.body.appendChild(script);

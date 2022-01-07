@@ -23,7 +23,7 @@ export const createVideoeditor = ({
     const script = document.createElement("script");
     script.id = "videoeditorbootstrapscript";
 
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/videoeditorbootstrap-component@${pkg.version}/release/videoeditorbootstrap.js`
       : "http://localhost:6006/videoeditor/dist/videoeditorbootstrap.js";
     document.body.appendChild(script);

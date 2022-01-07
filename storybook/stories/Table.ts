@@ -57,7 +57,7 @@ export const createTable = ({
     const script = document.createElement("script");
     script.id = "streamingtablescript";
 
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/streamingtablebootstrap-webcomponent@${pkg.version}/release/streamingtablebootstrap.js`
       : "http://localhost:6006/streamingtable/dist/streamingtablebootstrap.js";
     document.body.appendChild(script);

@@ -15,7 +15,7 @@ export const createFormTextInput = ({
     const script = document.createElement("script");
     script.id = "formrenderertextinputscript";
 
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/formrenderer-textinput@${pkg.version}/release/formrenderertextinput.js`
       : "http://localhost:6006/formtextinputrenderer/dist/formrenderertextinput.js";
     document.body.appendChild(script);

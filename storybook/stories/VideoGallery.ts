@@ -27,7 +27,7 @@ export const createVideoGallery = ({
     const script = document.createElement("script");
     script.id = "videogallerycomponentscript";
 
-    script.src = process.env.PRODUCTION
+    script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/videogallerybootstrap-component@${pkg.version}/release/videogallerycomponent.js`
       : "http://localhost:6006/videogallery/dist/videogallerycomponent.js";
     document.body.appendChild(script);
