@@ -6,4 +6,3 @@ bootstrap-override/
 .vscode/
 .gitignore
 .nvmrc
-lerna.json
