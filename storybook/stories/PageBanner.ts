@@ -1,3 +1,5 @@
+import pkg from "../../lerna.json";
+
 export interface PageBannerProps {
   logouri?: string;
   title?: string;
@@ -14,7 +16,10 @@ export const createPageBanner = ({
   if (!document.getElementById("pagebannerscript")) {
     const script = document.createElement("script");
     script.id = "pagebannerscript";
-    script.src = "http://localhost:6006/pagebanner/dist/pagebanner.js";
+
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/pagebanner-component@${pkg.version}/release/pagebanner.js`
+      : "http://localhost:6006/pagebanner/dist/pagebanner.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

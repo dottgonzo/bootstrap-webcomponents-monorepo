@@ -1,3 +1,5 @@
+import pkg from "../../lerna.json";
+
 export interface VideoeditorProps {
   id: string;
   src: string;
@@ -20,8 +22,10 @@ export const createVideoeditor = ({
   if (!document.getElementById("videoeditorbootstrapscript")) {
     const script = document.createElement("script");
     script.id = "videoeditorbootstrapscript";
-    script.src =
-      "http://localhost:6006/videoeditor/dist/videoeditorbootstrap.js";
+
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/videoeditorbootstrap-component@${pkg.version}/release/videoeditorbootstrap.js`
+      : "http://localhost:6006/videoeditor/dist/videoeditorbootstrap.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

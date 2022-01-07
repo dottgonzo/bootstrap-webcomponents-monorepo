@@ -1,10 +1,12 @@
-import type { FormSchema } from "../../packages/formhostcomponent/app/types/webcomponent.type";
+import pkg from "../../lerna.json";
+
+// import type { FormSchema } from "../../packages/formhostcomponent/app/types/webcomponent.type";
 
 export interface FunnelProps {
   id: string;
   update: (u) => void;
   submit: (u) => void;
-  schemes: FormSchema[];
+  schemes: any[];
   step?: number;
   steps?: number;
   submitstep?: "yes" | "no";
@@ -22,7 +24,9 @@ export const createFunnel = ({
   if (!document.getElementById("funnelcomponentscript")) {
     const script = document.createElement("script");
     script.id = "funnelcomponentscript";
-    script.src = "http://localhost:6006/funnel/dist/funnel.js";
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/funnel-component@${pkg.version}/release/funnel.js`
+      : "http://localhost:6006/funnel/dist/funnel.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

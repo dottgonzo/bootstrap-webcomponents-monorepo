@@ -1,3 +1,5 @@
+import pkg from "../../lerna.json";
+
 interface IPhone {
   number: string;
   callOnClick?: boolean;
@@ -47,7 +49,9 @@ export const createContact = ({
   if (!document.getElementById("contactcomponentscript")) {
     const script = document.createElement("script");
     script.id = "contactcomponentscript";
-    script.src = "http://localhost:6006/contact/dist/contact.js";
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/contact-component@${pkg.version}/release/contact.js`
+      : "http://localhost:6006/contact/dist/contact.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

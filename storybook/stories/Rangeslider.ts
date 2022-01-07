@@ -1,3 +1,5 @@
+import pkg from "../../lerna.json";
+
 export interface RangesliderProps {
   id: string;
   min?: number;
@@ -19,7 +21,10 @@ export const createRangeslider = ({
   if (!document.getElementById("rangesliderscript")) {
     const script = document.createElement("script");
     script.id = "rangesliderscript";
-    script.src = "http://localhost:6006/rangeslider/dist/rangeslider.js";
+
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/range-slider-component@${pkg.version}/release/rangeslider.js`
+      : "http://localhost:6006/rangeslider/dist/rangeslider.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

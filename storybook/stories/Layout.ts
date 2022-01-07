@@ -1,3 +1,5 @@
+import pkg from "../../lerna.json";
+
 export interface ICompany {
   logoUri: string;
   siteName: string;
@@ -77,7 +79,9 @@ export const createLayout = ({
   if (!document.getElementById("bootstraplayoutscript")) {
     const script = document.createElement("script");
     script.id = "bootstraplayoutscript";
-    script.src = "http://localhost:6006/layout/dist/bootstraplayout.js";
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/bootstraplayout-component@${pkg.version}/release/bootstraplayout.js`
+      : "http://localhost:6006/layout/dist/bootstraplayout.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

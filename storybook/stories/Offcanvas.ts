@@ -1,3 +1,5 @@
+import pkg from "../../lerna.json";
+
 interface INavLink {
   key: string;
   icon?: string;
@@ -38,7 +40,10 @@ export const createOffcanvas = ({
   if (!document.getElementById("offcanvasscript")) {
     const script = document.createElement("script");
     script.id = "offcanvasscript";
-    script.src = "http://localhost:6006/offcanvas/dist/offcanvas.js";
+
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/offcanvas-component@${pkg.version}/release/offcanvas.js`
+      : "http://localhost:6006/offcanvas/dist/offcanvas.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

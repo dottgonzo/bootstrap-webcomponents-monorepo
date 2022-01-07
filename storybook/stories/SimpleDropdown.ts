@@ -26,12 +26,10 @@ export const createSimpleDropdown = ({
   if (!document.getElementById("simpledropdownscript")) {
     const script = document.createElement("script");
     script.id = "simpledropdownscript";
-    if (window.location.href.includes("localhost")) {
-      script.src =
-        "http://localhost:6006/simpledropdown/dist/simpledropdown.js";
-    } else {
-      script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/simpledropdown-component@${pkg.version}/release/simpledropdown.js`;
-    }
+
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/simpledropdown-component@${pkg.version}/release/simpledropdown.js`
+      : "http://localhost:6006/simpledropdown/dist/simpledropdown.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

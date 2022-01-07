@@ -1,3 +1,5 @@
+import pkg from "../../lerna.json";
+
 export interface LoginRegisterProps {
   id: string;
 
@@ -31,7 +33,9 @@ export const createLoginRegister = ({
   if (!document.getElementById("loginregistercomponentscript")) {
     const script = document.createElement("script");
     script.id = "loginregistercomponentscript";
-    script.src = "http://localhost:6006/loginregister/dist/loginregister.js";
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/loginregister-component@${pkg.version}/release/loginregister.js`
+      : "http://localhost:6006/loginregister/dist/loginregister.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

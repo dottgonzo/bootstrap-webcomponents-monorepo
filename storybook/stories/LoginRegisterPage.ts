@@ -1,3 +1,5 @@
+import pkg from "../../lerna.json";
+
 export interface ICompany {
   logoUri: string;
   siteName: string;
@@ -95,8 +97,10 @@ export const createLoginRegisterPage = ({
   if (!document.getElementById("apploginregisterscript")) {
     const script = document.createElement("script");
     script.id = "apploginregisterscript";
-    script.src =
-      "http://localhost:6006/apploginregister/dist/apploginregister.js";
+
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/apploginregister-component@${pkg.version}/release/apploginregister.js`
+      : "http://localhost:6006/apploginregister/dist/apploginregister.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

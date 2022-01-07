@@ -1,6 +1,6 @@
 import { Story, Meta } from "@storybook/html";
 import { createCalendar, CalendarProps } from "./Calendar";
-import type { IEvent } from "../../packages/calendar/app/types/webcomponent.type";
+// import type { IEvent } from "../../packages/calendar/app/types/webcomponent.type";
 import dayjs from "dayjs";
 
 export default {
@@ -13,7 +13,7 @@ export default {
   },
 } as Meta;
 
-const events: IEvent[] = [
+const events = [
   {
     date: new Date(),
     id: "test",

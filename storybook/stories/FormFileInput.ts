@@ -1,8 +1,10 @@
-import type { FormSchemaEntry } from "../../packages/formfileinputrenderer/app/types/webcomponent.type";
+import pkg from "../../lerna.json";
+
+// import type { FormSchemaEntry } from "../../packages/formfileinputrenderer/app/types/webcomponent.type";
 
 export interface FormFileInputProps {
   id: string;
-  schemaentry: FormSchemaEntry;
+  schemaentry: any;
 }
 
 export const createFormFileInput = ({
@@ -12,8 +14,10 @@ export const createFormFileInput = ({
   if (!document.getElementById("formrendererfileinputscript")) {
     const script = document.createElement("script");
     script.id = "formrendererfileinputscript";
-    script.src =
-      "http://localhost:6006/formfileinputrenderer/dist/formrendererfileinput.js";
+
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/formrenderer-fileinput@${pkg.version}/release/formrendererfileinput.js`
+      : "http://localhost:6006/formfileinputrenderer/dist/formrendererfileinput.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

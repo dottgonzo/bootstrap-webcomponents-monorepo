@@ -1,3 +1,5 @@
+import pkg from "../../lerna.json";
+
 export interface DownloaderProps {
   id: string;
   uri: string;
@@ -16,8 +18,10 @@ export const createDownloader = ({
   if (!document.getElementById("bootstrapdownloadercomponentscript")) {
     const script = document.createElement("script");
     script.id = "bootstrapdownloadercomponentscript";
-    script.src =
-      "http://localhost:6006/bootstrapdownloader/dist/bootstrapdownloadercomponent.js";
+
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/bootstrap-downloader-component@${pkg.version}/release/bootstrapdownloadercomponent.js`
+      : "http://localhost:6006/bootstrapdownloader/dist/bootstrapdownloadercomponent.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

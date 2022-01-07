@@ -1,3 +1,5 @@
+import pkg from "../../lerna.json";
+
 interface IUserMenuListItem {
   key: string;
   label: string;
@@ -35,7 +37,10 @@ export const createNavbar = ({
   if (!document.getElementById("navbarscript")) {
     const script = document.createElement("script");
     script.id = "navbarscript";
-    script.src = "http://localhost:6006/navbar/dist/navbarbootstrap.js";
+
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/navbarbootstrap-component@${pkg.version}/release/navbarbootstrap.js`
+      : "http://localhost:6006/navbar/dist/navbarbootstrap.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

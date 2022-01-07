@@ -1,6 +1,6 @@
 import { Story, Meta } from "@storybook/html";
 import { createFormTextInput, FormTextInputProps } from "./FormTextInput";
-import type { FormSchemaEntry } from "../../packages/formtextinputrenderer/app/types/webcomponent.type";
+// import type { FormSchemaEntry } from "../../packages/formtextinputrenderer/app/types/webcomponent.type";
 
 export default {
   title: "Form/FormTextInput",
@@ -9,7 +9,7 @@ export default {
   },
 } as Meta;
 
-const inputEntry1: FormSchemaEntry = {
+const inputEntry1 = {
   type: "text",
   placeholder: "Insert your last name here...",
   id: "lastName",

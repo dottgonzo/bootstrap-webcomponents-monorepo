@@ -1,4 +1,4 @@
-	import dayjs from "dayjs";
+import dayjs from "dayjs";
 import pkg from "../../lerna.json";
 
 export interface VideoCardProps {
@@ -21,12 +21,10 @@ export const createVideoCard = ({
   if (!document.getElementById("videocardbootstrapbootstrapcomponentjs")) {
     const script = document.createElement("script");
     script.id = "videocardbootstrapbootstrapcomponentjs";
-    if (window.location.href.includes("localhost")) {
-      script.src = "http://localhost:6006/videocard/dist/videocardbootstrap.js";
-    } else {
-      script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/videocardbootstrap-component@${pkg.version}/release/videocardbootstrap.js`;
-    }
 
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/videocardbootstrap-component@${pkg.version}/release/videocardbootstrap.js`
+      : "http://localhost:6006/videocard/dist/videocardbootstrap.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

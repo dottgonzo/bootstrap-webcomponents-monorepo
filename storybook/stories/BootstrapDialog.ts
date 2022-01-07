@@ -1,3 +1,5 @@
+import pkg from "../../lerna.json";
+
 export interface BootstrapDialogProps {
   id: string;
   show: boolean;
@@ -7,8 +9,10 @@ export const createBootstrapDialog = ({ id, show }: BootstrapDialogProps) => {
   if (!document.getElementById("bootstrapdialogcomponentscript")) {
     const script = document.createElement("script");
     script.id = "bootstrapdialogcomponentscript";
-    script.src =
-      "http://localhost:6006/bootstrapdialog/dist/bootstrapdialogcomponent.js";
+
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/bootstrap-dialog-component@${pkg.version}/release/bootstrapdialogcomponent.js`
+      : "http://localhost:6006/bootstrapdialog/dist/bootstrapdialogcomponent.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

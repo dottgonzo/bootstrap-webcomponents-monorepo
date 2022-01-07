@@ -1,6 +1,6 @@
 import { Story, Meta } from "@storybook/html";
 import { createFormFileInput, FormFileInputProps } from "./FormFileInput";
-import type { FormSchemaEntry } from "../../packages/formfileinputrenderer/app/types/webcomponent.type";
+// import type { FormSchemaEntry } from "../../packages/formfileinputrenderer/app/types/webcomponent.type";
 
 export default {
   title: "Form/FormFileInput",
@@ -9,7 +9,7 @@ export default {
   },
 } as Meta;
 
-const inputEntry1: FormSchemaEntry = {
+const inputEntry1 = {
   type: "file",
   placeholder: "Insert your last name here...",
   id: "lastName",

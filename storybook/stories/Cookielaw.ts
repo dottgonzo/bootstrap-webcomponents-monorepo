@@ -1,3 +1,5 @@
+import pkg from "../../lerna.json";
+
 export interface CookielawProps {
   id: string;
   allowdecline: boolean;
@@ -13,7 +15,7 @@ export const createCookielaw = ({
     const script = document.createElement("script");
     script.id = "cookielawcomponentscript";
     script.src = process.env.PRODUCTION
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/cookielaw-component@0.2.3/release/cookielaw.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/cookielaw-component@${pkg.version}/release/cookielaw.js`
       : "http://localhost:6006/cookielaw/dist/cookielaw.js";
     document.body.appendChild(script);
   }

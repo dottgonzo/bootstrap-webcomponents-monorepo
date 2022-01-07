@@ -20,12 +20,10 @@ export const createPagination = ({
   if (!document.getElementById("paginationbootstrapcomponentjs")) {
     const script = document.createElement("script");
     script.id = "paginationbootstrapcomponentjs";
-    if (window.location.href.includes("localhost")) {
-      script.src =
-        "http://localhost:6006/pagination/dist/paginationbootstrap.js";
-    } else {
-      script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/paginationbootstrap-component@${pkg.version}/release/paginationbootstrap.js`;
-    }
+
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/paginationbootstrap-component@${pkg.version}/release/paginationbootstrap.js`
+      : "http://localhost:6006/pagination/dist/paginationbootstrap.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

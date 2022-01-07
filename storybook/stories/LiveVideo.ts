@@ -1,3 +1,5 @@
+import pkg from "../../lerna.json";
+
 export interface LiveVideoPlayerProps {
   mediauri?: string;
   replacewithtext?: {};
@@ -18,7 +20,9 @@ export const createLiveVideoPlayer = ({
   if (!document.getElementById("liveplayerscript")) {
     const script = document.createElement("script");
     script.id = "liveplayerscript";
-    script.src = "http://localhost:6006/liveplayer/dist/liveplayer.js";
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/liveplayer-component@${pkg.version}/release/liveplayer.js`
+      : "http://localhost:6006/liveplayer/dist/liveplayer.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

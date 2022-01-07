@@ -1,3 +1,5 @@
+import pkg from "../../lerna.json";
+
 interface IColumn {
   _id?: string;
   cells: { label: string; key: string }[];
@@ -72,7 +74,9 @@ export const createFooter = ({
   if (!document.getElementById("footerscript")) {
     const script = document.createElement("script");
     script.id = "footerscript";
-    script.src = "http://localhost:6006/footer/dist/footerbootstrap.js";
+    script.src = process.env.PRODUCTION
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/footerbootstrap-component@${pkg.version}/release/footerbootstrap.js`
+      : "http://localhost:6006/footer/dist/footerbootstrap.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

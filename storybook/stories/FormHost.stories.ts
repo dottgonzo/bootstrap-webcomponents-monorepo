@@ -1,6 +1,6 @@
 import { Story, Meta } from "@storybook/html";
 import { createFormHost, FormHostProps } from "./FormHost";
-import type { FormSchema } from "../../packages/formhostcomponent/app/types/webcomponent.type";
+// import type { FormSchema } from "../../packages/formhostcomponent/app/types/webcomponent.type";
 
 export default {
   title: "Form/Host",
@@ -14,7 +14,7 @@ export default {
 
 const Template: Story<FormHostProps> = (args) => createFormHost(args);
 
-const schema1: FormSchema = [
+const schema1 = [
   {
     id: "name-row",
     type: "row",
@@ -88,7 +88,7 @@ const schema1: FormSchema = [
     validationTip: "This field cannot be empty2.",
   },
 ];
-const preferences: FormSchema = [
+const preferences = [
   {
     type: "text",
     placeholder: "Inserisci titolo di default",
@@ -115,7 +115,7 @@ const preferences: FormSchema = [
     validationTip: "Min 8, Max 120",
   },
 ];
-const schemaFile: FormSchema = [
+const schemaFile = [
   {
     type: "file",
     placeholder: "Inserisci file",
@@ -136,7 +136,7 @@ const schemaFile: FormSchema = [
     validationTip: "Min 8, Max 120",
   },
 ];
-const conditionalSchema: FormSchema = [
+const conditionalSchema = [
   {
     type: "text",
     placeholder: "Inserisci titolo di default",
