@@ -6,3 +6,4 @@ bootstrap-override/
 .vscode/
 .gitignore
 .nvmrc
+buildAndPush.sh
