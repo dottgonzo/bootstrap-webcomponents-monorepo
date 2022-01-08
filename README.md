@@ -30,6 +30,10 @@ the only expect to develop on a new app based from that components is the app lo
 
 To build the components is choosed to use svelte instead of native web components framework like lit-element. That's because of the good svelte footprint exports, and because of the productivity of svelte/rollup development, even there is some glich that is caused by svelte.
 
+## ONLINE RESOURCES
+
+- [Storybook App](https://htmlbricks.dev.kernel.online/)
+
 ## HOW TO USE THIS REPO
 
 #### system requirements
