@@ -1,5 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createPagination, PaginationProps } from "./Pagination";
+import PaginationDocumentation from "./Pagination.mdx";
+import { DocsPage, DocsContainer } from "@storybook/addon-docs/blocks";
 
 export default {
   title: "Components/Pagination",
@@ -7,6 +9,12 @@ export default {
     page: { control: { type: "number" } },
     pagechange: { action: "pagechangeEvent" },
     id: { control: { disable: true } },
+  },
+  parameters: {
+    docs: {
+      container: DocsContainer,
+      page: PaginationDocumentation,
+    },
   },
 } as Meta;
 
