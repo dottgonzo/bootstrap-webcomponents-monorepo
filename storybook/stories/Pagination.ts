@@ -35,8 +35,11 @@ export const createPagination = ({
     c.addEventListener("pagechange", (p: any) => pagechange(p.detail));
   }
 
-  c.setAttribute("pages", pages.toString());
-
+  if (pages) {
+    c.setAttribute("pages", pages.toString());
+  } else {
+    if (c.hasAttribute("pages")) c.removeAttribute("pages");
+  }
   if (size) {
     c.setAttribute("size", size.toString());
   } else {
