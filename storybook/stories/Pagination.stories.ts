@@ -1,7 +1,6 @@
 import { Story, Meta } from "@storybook/html";
-import { createPagination, PaginationProps } from "./Pagination";
+import { createPagination } from "./Pagination";
 import PaginationDocumentation from "./Pagination.mdx";
-import { DocsPage, DocsContainer } from "@storybook/addon-docs/blocks";
 
 export default {
   title: "Components/Pagination",
@@ -12,13 +11,13 @@ export default {
   },
   parameters: {
     docs: {
-      container: DocsContainer,
       page: PaginationDocumentation,
+      previewSource: "open",
     },
   },
 } as Meta;
 
-const Template: Story<PaginationProps> = (args) => createPagination(args);
+const Template = (args) => createPagination(args);
 
 export const BasicPagination1 = Template.bind({});
 BasicPagination1.args = {
@@ -33,5 +32,6 @@ BasicPagination4.args = {
 export const BasicPagination12 = Template.bind({});
 BasicPagination12.args = {
   pages: 12,
+  page: 2,
   id: "BasicPagination12",
 };

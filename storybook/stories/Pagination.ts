@@ -9,14 +9,8 @@ export interface PaginationProps {
   pagechange?: (p) => void;
 }
 
-export const createPagination = ({
-  pages,
-  size,
-  page,
-  primarycolor,
-  id,
-  pagechange,
-}: PaginationProps) => {
+export const createPagination = (args: any) => {
+  if (!args.id) args.id = "rgrgrg";
   if (!document.getElementById("paginationbootstrapcomponentjs")) {
     const script = document.createElement("script");
     script.id = "paginationbootstrapcomponentjs";
@@ -27,31 +21,31 @@ export const createPagination = ({
     document.body.appendChild(script);
   }
   let c: HTMLElement;
-  if (document.getElementById(id)) {
-    c = document.getElementById(id);
+  if (document.getElementById(args.id)) {
+    c = document.getElementById(args.id);
   } else {
     c = document.createElement("paginationbootstrap-component");
-    c.id = id;
-    c.addEventListener("pagechange", (p: any) => pagechange(p.detail));
+    c.id = args.id;
+    c.addEventListener("pagechange", (p: any) => args.pagechange(p.detail));
   }
 
-  if (pages) {
-    c.setAttribute("pages", pages.toString());
+  if (args.pages) {
+    c.setAttribute("pages", args.pages.toString());
   } else {
     if (c.hasAttribute("pages")) c.removeAttribute("pages");
   }
-  if (size) {
-    c.setAttribute("size", size.toString());
+  if (args.size) {
+    c.setAttribute("size", args.size.toString());
   } else {
     if (c.hasAttribute("size")) c.removeAttribute("size");
   }
-  if (page) {
-    c.setAttribute("page", page.toString());
+  if (args.page) {
+    c.setAttribute("page", args.page.toString());
   } else {
     if (c.hasAttribute("page")) c.removeAttribute("page");
   }
-  if (primarycolor) {
-    c.setAttribute("primarycolor", primarycolor);
+  if (args.primarycolor) {
+    c.setAttribute("primarycolor", args.primarycolor);
   } else {
     if (c.hasAttribute("primarycolor")) c.removeAttribute("primarycolor");
   }
