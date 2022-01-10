@@ -2,7 +2,7 @@ import { Story, Meta } from "@storybook/html";
 import { createPagination } from "./Pagination";
 import PaginationDocumentation from "./Pagination.mdx";
 
-export default {
+const meta = {
   title: "Components/Pagination",
   argTypes: {
     page: { control: { type: "number" } },
@@ -15,9 +15,11 @@ export default {
       previewSource: "open",
     },
   },
-} as Meta;
+};
 
-const Template = (args) => createPagination(args);
+export default meta as Meta;
+
+const Template = (args) => createPagination(args, meta.argTypes);
 
 export const BasicPagination1 = Template.bind({});
 BasicPagination1.args = {

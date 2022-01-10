@@ -2,6 +2,8 @@
 
 import { Story, ArgsTable } from "@storybook/addon-docs";
 import pkg from "../../lerna.json";
+import meta from "./Pagination.stories";
+import { fromMetaArgsTypesToHtmlTable } from "./utils";
 
 # Pagination
 
@@ -17,11 +19,23 @@ Pagination is a basic component.
 
 </code></pre>
 
+## attributes
+
+{meta ? fromMetaArgsTypesToHtmlTable(meta.argTypes) : ""}
+
+<>{JSON.stringify(meta.argTypes)}</>
+<streamingtablebootstrap-webcomponent
+  rows=""
+  header='<>{meta ? [] : ""}</>'
+></streamingtablebootstrap-webcomponent>
+
+## css variables
+
+## slots
+
 ## examples
 
-- [Basic](#basic-pagination-1)
-
-### Basic
+- Basic
 
 ```
 <paginationbootstrap-component />
@@ -29,4 +43,18 @@ Pagination is a basic component.
 
 <paginationbootstrap-component />
 
-<Story name="Foo Bar" id="components-pagination--basic-pagination-1" />
+- With 5 pages
+
+```
+<paginationbootstrap-component pages="5" />
+```
+
+<paginationbootstrap-component pages="5" />
+
+- With 12 pages on page 3
+
+```
+<paginationbootstrap-component pages="12" page="3" />
+```
+
+<paginationbootstrap-component pages="12" page="3" />

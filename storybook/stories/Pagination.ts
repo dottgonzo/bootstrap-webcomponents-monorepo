@@ -1,19 +1,22 @@
 import pkg from "../../lerna.json";
+import { ArgTypes } from "@storybook/html";
 
-export interface PaginationProps {
-  id: string;
-  pages: number;
-  size?: number;
-  page?: number;
-  primarycolor?: string;
-  pagechange?: (p) => void;
-}
+export const createPagination = (
+  args: any,
+  argTypes: ArgTypes,
+  componentName: string,
+  componentJsName?: string
+) => {
+  if (!componentJsName) componentJsName = componentName + "js";
+  if (!args.id) args.id = componentName + "key";
+  const attributes = Object.keys(argTypes).filter(
+    (f) => argTypes[f].control && !argTypes[f].control.disable
+  );
+  const actions = Object.keys(argTypes).filter((f) => argTypes[f].action);
 
-export const createPagination = (args: any) => {
-  if (!args.id) args.id = "rgrgrg";
-  if (!document.getElementById("paginationbootstrapcomponentjs")) {
+  if (!document.getElementById(componentJsName)) {
     const script = document.createElement("script");
-    script.id = "paginationbootstrapcomponentjs";
+    script.id = componentJsName;
 
     script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/paginationbootstrap-component@${pkg.version}/release/paginationbootstrap.js`
