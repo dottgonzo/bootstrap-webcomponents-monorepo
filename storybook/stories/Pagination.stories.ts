@@ -1,25 +1,19 @@
 import { Story, Meta } from "@storybook/html";
-import { createPagination } from "./Pagination";
-import PaginationDocumentation from "./Pagination.mdx";
+import { createComponent } from "./webcomponentUtils";
 
 const meta = {
   title: "Components/Pagination",
   argTypes: {
     page: { control: { type: "number" } },
+    pages: { control: { type: "number" } },
     pagechange: { action: "pagechangeEvent" },
     id: { control: { disable: true } },
-  },
-  parameters: {
-    docs: {
-      page: PaginationDocumentation,
-      previewSource: "open",
-    },
   },
 };
 
 export default meta as Meta;
 
-const Template = (args) => createPagination(args, meta.argTypes);
+const Template = (args) => createComponent(args, meta.argTypes, "paginate");
 
 export const BasicPagination1 = Template.bind({});
 BasicPagination1.args = {
