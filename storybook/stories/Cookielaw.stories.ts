@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createCookielaw, CookielawProps } from "./Cookielaw";
 
-export default {
+const meta = {
   title: "Components/Cookielaw",
   argTypes: {
     id: { control: { disable: true } },
@@ -12,7 +12,9 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as Meta;
+};
+
+export default meta;
 
 const Template: Story<CookielawProps> = (args) => createCookielaw(args);
 

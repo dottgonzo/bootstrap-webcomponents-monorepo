@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createOffcanvas, OffcanvasProps } from "./Offcanvas";
 
-export default {
+const meta = {
   title: "Layout/Offcanvas",
   argTypes: {
     opened: { control: { type: "boolean" } },
@@ -18,7 +18,9 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as Meta;
+};
+
+export default meta;
 
 const Template: Story<OffcanvasProps> = (args) => createOffcanvas(args);
 

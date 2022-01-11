@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createNavbar, NavbarProps } from "./Navbar";
 
-export default {
+const meta = {
   title: "Layout/Navbar",
   argTypes: {
     id: { control: { disable: true } },
@@ -15,7 +15,9 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as Meta;
+};
+
+export default meta;
 
 const usermenu1 = {
   list: [

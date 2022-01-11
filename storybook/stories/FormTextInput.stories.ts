@@ -2,12 +2,14 @@ import { Story, Meta } from "@storybook/html";
 import { createFormTextInput, FormTextInputProps } from "./FormTextInput";
 // import type { FormSchemaEntry } from "../../packages/formtextinputrenderer/app/types/webcomponent.type";
 
-export default {
+const meta = {
   title: "Form/FormTextInput",
   argTypes: {
     id: { control: { disable: true } },
   },
-} as Meta;
+};
+
+export default meta;
 
 const inputEntry1 = {
   type: "text",

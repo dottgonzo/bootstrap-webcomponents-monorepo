@@ -14,7 +14,7 @@ const replacewithtext3 = {
   subtitle: "subtitle",
   text: "text",
 };
-export default {
+const meta = {
   title: "Components/LiveVideoPlayer",
 
   argTypes: {
@@ -25,7 +25,9 @@ export default {
 
     id: { control: { disable: true } },
   },
-} as Meta;
+};
+
+export default meta;
 
 const Template: Story<LiveVideoPlayerProps> = (args) =>
   createLiveVideoPlayer(args);

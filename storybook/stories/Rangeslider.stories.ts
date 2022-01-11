@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createRangeslider, RangesliderProps } from "./Rangeslider";
 
-export default {
+const meta = {
   title: "Components/Rangeslider",
   argTypes: {
     id: { control: { disable: true } },
@@ -12,7 +12,9 @@ export default {
     minval: { type: "number" },
     maxval: { type: "number" },
   },
-} as Meta;
+};
+
+export default meta;
 
 const Template: Story<RangesliderProps> = (args) => createRangeslider(args);
 

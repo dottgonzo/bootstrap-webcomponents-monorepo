@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createPageBanner, PageBannerProps } from "./PageBanner";
 
-export default {
+const meta = {
   title: "Components/PageBanner",
 
   argTypes: {
@@ -10,7 +10,9 @@ export default {
     description: { control: { type: "text" } },
     id: { control: { disable: true } },
   },
-} as Meta;
+};
+
+export default meta;
 
 const Template: Story<PageBannerProps> = (args) => createPageBanner(args);
 

@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createDownloader, DownloaderProps } from "./Downloader";
 
-export default {
+const meta = {
   title: "Components/Downloader",
   argTypes: {
     id: { control: { disable: true } },
@@ -10,7 +10,9 @@ export default {
     headers: { control: { type: "text" } },
     downloadid: { control: { type: "text" } },
   },
-} as Meta;
+};
+
+export default meta;
 
 const Template: Story<DownloaderProps> = (args) => createDownloader(args);
 

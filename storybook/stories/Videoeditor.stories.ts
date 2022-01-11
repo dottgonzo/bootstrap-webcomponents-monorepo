@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createVideoeditor, VideoeditorProps } from "./Videoeditor";
 
-export default {
+const meta = {
   title: "Contents/VideoEditor",
   argTypes: {
     id: { control: { disable: true } },
@@ -10,7 +10,9 @@ export default {
     changeTrackValues: { action: "changeTrackValuesEvent" },
     dispatchTrack: { action: "dispatchTrackEvent" },
   },
-} as Meta;
+};
+
+export default meta;
 
 const track = {
   maxValue: 2,
@@ -89,20 +91,17 @@ const Template: Story<VideoeditorProps> = (args) => createVideoeditor(args);
 export const BasicVideoeditor = Template.bind({});
 BasicVideoeditor.args = {
   id: "BasicVideoeditor",
-  src:
-    "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+  src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
 };
 export const BasicVideoeditorWithTrack = Template.bind({});
 BasicVideoeditorWithTrack.args = {
   id: "BasicVideoeditorWithTrack",
   track,
-  src:
-    "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+  src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
 };
 export const BasicVideoeditorWithForm = Template.bind({});
 BasicVideoeditorWithForm.args = {
   id: "BasicVideoeditorWithForm",
   form,
-  src:
-    "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+  src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
 };

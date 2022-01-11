@@ -4,7 +4,7 @@ import {
   LoginRegisterPageProps,
 } from "./LoginRegisterPage";
 
-export default {
+const meta = {
   title: "Pages/LoginRegisterPage",
   argTypes: {
     type: {
@@ -22,7 +22,9 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as Meta;
+};
+
+export default meta;
 
 const company1 = {
   logoUri:
@@ -94,8 +96,7 @@ LoginPageEnWithOauth.args = {
   oauth2providers: [
     {
       provider: "google",
-      uri:
-        "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=https%3A//oauth2.example.com/code&client_id=client_id",
+      uri: "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=https%3A//oauth2.example.com/code&client_id=client_id",
     },
     { provider: "facebook" },
     { provider: "twitter" },

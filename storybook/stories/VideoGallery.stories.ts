@@ -64,7 +64,7 @@ const headers = [
   },
 ];
 
-export default {
+const meta = {
   title: "Contents/VideoGallery",
   argTypes: {
     size: { control: { type: "range", min: 1, max: cards.length + 2 } },
@@ -77,7 +77,9 @@ export default {
     dateFilterVideos: { action: "dateFilterVideosEvent" },
     id: { control: { disable: true } },
   },
-} as Meta;
+};
+
+export default meta;
 
 const Template: Story<VideoGalleryProps> = (args) => createVideoGallery(args);
 

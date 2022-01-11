@@ -365,7 +365,7 @@ const selections = [
   },
 ];
 
-export default {
+const meta = {
   title: "Contents/Table",
   argTypes: {
     size: { control: { type: "range", min: 1, max: rows.length + 2 } },
@@ -387,7 +387,9 @@ export default {
     showConfirmModal: { action: "showConfirmModal" },
     id: { control: { disable: true } },
   },
-} as Meta;
+};
+
+export default meta;
 
 const Template: Story<TableProps> = (args) => createTable(args);
 

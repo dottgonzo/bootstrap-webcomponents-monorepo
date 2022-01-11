@@ -2,7 +2,7 @@ import { Story, Meta } from "@storybook/html";
 import { createFormHost, FormHostProps } from "./FormHost";
 // import type { FormSchema } from "../../packages/formhostcomponent/app/types/webcomponent.type";
 
-export default {
+const meta = {
   title: "Form/Host",
   argTypes: {
     id: { control: { disable: true } },
@@ -10,7 +10,9 @@ export default {
     submit: { action: "submitEvent" },
     submitted: { control: { type: "boolean" } },
   },
-} as Meta;
+};
+
+export default meta;
 
 const Template: Story<FormHostProps> = (args) => createFormHost(args);
 

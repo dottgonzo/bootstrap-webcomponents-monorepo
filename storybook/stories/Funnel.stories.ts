@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createFunnel, FunnelProps } from "./Funnel";
 
-export default {
+const meta = {
   title: "Form/Funnel",
   argTypes: {
     id: { control: { disable: true } },
@@ -12,7 +12,9 @@ export default {
     update: { action: "updateEvent" },
     submit: { action: "submitEvent" },
   },
-} as Meta;
+};
+
+export default meta;
 const preferences = [
   {
     type: "text",

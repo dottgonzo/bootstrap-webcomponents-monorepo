@@ -7,7 +7,7 @@ interface IColumn {
   cells: { label: string; key: string }[];
   title: string;
 }
-export default {
+const meta = {
   title: "Layout/Footer",
   argTypes: {
     id: { control: { disable: true } },
@@ -29,7 +29,9 @@ export default {
     },
     layout: "fullscreen",
   },
-} as Meta;
+};
+
+export default meta;
 
 const Template: Story<FooterProps> = (args) => createFooter(args);
 

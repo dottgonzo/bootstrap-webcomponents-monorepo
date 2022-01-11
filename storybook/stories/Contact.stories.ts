@@ -1,20 +1,23 @@
 import { Story, Meta } from "@storybook/html";
-import { createContact, ContactProps } from "./Contact";
+import { webComponentBind } from "./webComponentUtils";
 
-export default {
+const meta = {
   title: "Components/Contact",
   argTypes: {
     id: { control: { disable: true } },
-    phone: { control: { type: "text" } },
-    address: { control: { type: "text" } },
-    email: { control: { type: "text" } },
-    site: { control: { type: "text" } },
+    phone: { control: { type: "object" } },
+    address: { control: { type: "object" } },
+    email: { control: { type: "object" } },
+    site: { control: { type: "object" } },
     config: { control: { type: "object" } },
     contactclick: { action: "contactClickEvent" },
   },
-} as Meta;
+};
 
-const Template: Story<ContactProps> = (args) => createContact(args);
+export default meta;
+
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "contact-item");
 
 export const ContactPhone = Template.bind({});
 ContactPhone.args = {

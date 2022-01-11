@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createSimpleDropdown, SimpleDropdownProps } from "./SimpleDropdown";
 
-export default {
+const meta = {
   title: "Components/SimpleDropdown",
   argTypes: {
     id: { control: { disable: true } },
@@ -9,7 +9,9 @@ export default {
     dropdownSwitch: { action: "dropdownSwitchEvent" },
     dropDownClick: { action: "dropDownClickEvent" },
   },
-} as Meta;
+};
+
+export default meta;
 
 const usermenu1 = {
   list: [

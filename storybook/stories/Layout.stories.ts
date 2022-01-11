@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createLayout, LayoutProps } from "./Layout";
 
-export default {
+const meta = {
   title: "Layout/MainLayout",
   argTypes: {
     id: { control: { disable: true } },
@@ -11,7 +11,9 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as Meta;
+};
+
+export default meta;
 const company1 = {
   logoUri:
     "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg",

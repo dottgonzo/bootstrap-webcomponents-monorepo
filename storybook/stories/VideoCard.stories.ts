@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createVideoCard, VideoCardProps } from "./VideoCard";
 
-export default {
+const meta = {
   title: "Components/VideoCard",
   argTypes: {
     videosrc: { control: { type: "text" } },
@@ -11,7 +11,9 @@ export default {
     time: { control: { type: "date" } },
     id: { control: { disable: true } },
   },
-} as Meta;
+};
+
+export default meta;
 
 const videosrc =
   "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4";
