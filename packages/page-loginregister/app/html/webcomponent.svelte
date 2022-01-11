@@ -1,4 +1,4 @@
-<svelte:options tag="hb-loginregisterpage" />
+<svelte:options tag="hb-page-loginregister" />
 
 <script lang="ts">
 	/**
