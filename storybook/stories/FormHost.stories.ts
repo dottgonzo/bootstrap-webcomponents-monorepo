@@ -1,12 +1,12 @@
 import { Story, Meta } from "@storybook/html";
-import { createFormHost, FormHostProps } from "./FormHost";
+import { webComponentBind } from "./utils/webComponentUtils";
 // import type { FormSchema } from "../../packages/formhostcomponent/app/types/webcomponent.type";
 
 const meta: Meta = {
   title: "Form/Host",
   argTypes: {
     id: { control: { disable: true } },
-    schema: { control: { type: "object" } },
+    schema: { control: { type: "array" } },
     submit: { action: "submitEvent" },
     submitted: { control: { type: "boolean" } },
   },
@@ -14,7 +14,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<FormHostProps> = (args) => createFormHost(args);
+const Template: Story = (args) => webComponentBind(args, meta.argTypes, "form");
 
 const schema1 = [
   {

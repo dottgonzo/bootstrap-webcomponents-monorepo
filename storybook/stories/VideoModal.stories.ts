@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import { createVideoModal, VideoModalProps } from "./VideoModal";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
   title: "Components/VideoModal",
@@ -13,7 +13,8 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<VideoModalProps> = (args) => createVideoModal(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "modal-video");
 
 export const VideoModalTemplateFill = Template.bind({});
 VideoModalTemplateFill.args = {

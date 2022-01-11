@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import { createLayout, LayoutProps } from "./Layout";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
   title: "Layout/MainLayout",
@@ -7,6 +7,13 @@ const meta: Meta = {
     id: { control: { disable: true } },
     pagechange: { action: "pagechangeEvent" },
     offcanvasswitch: { action: "offcanvasswitchEvent" },
+    contacts: { control: { type: "object" } },
+    socials: { control: { type: "object" } },
+    usermenu: { control: { type: "object" } },
+    company: { control: { type: "object" } },
+    navlinks: { control: { type: "array" } },
+    pagename: { control: { type: "string" } },
+    cookielaw: { control: { type: "boolean" } },
   },
   parameters: {
     layout: "fullscreen",
@@ -115,7 +122,8 @@ const socials1 = {
   facebook: "fbbb",
   youtube: "yttttttt",
 };
-const Template: Story<LayoutProps> = (args) => createLayout(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "layout");
 
 export const LayoutA = Template.bind({});
 LayoutA.args = {
@@ -136,6 +144,8 @@ LayoutAWithPage.args = {
   pagename: "settings",
   usermenu: usermenu1,
   cookielaw: "yes",
+  _testInnerHtml:
+    '<div slot="page">paddddddddddddddddddddddddddddddddddddddddddge</div>',
 };
 export const LayoutAWithoutBurger = Template.bind({});
 LayoutAWithoutBurger.args = {
@@ -156,4 +166,5 @@ LayoutAWithoutNavSlotted.args = {
   pagename: "settings",
   usermenu: usermenu1,
   cookielaw: "yes",
+  _testInnerHtml: '<div slot="nav-right-slot">right-</div>',
 };

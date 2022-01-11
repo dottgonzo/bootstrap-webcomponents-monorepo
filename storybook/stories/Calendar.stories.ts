@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./webComponentUtils";
+import { webComponentBind } from "./utils/webComponentUtils";
 // import type { IEvent } from "../../packages/calendar/app/types/webcomponent.type";
 import dayjs from "dayjs";
 const meta: Meta = {

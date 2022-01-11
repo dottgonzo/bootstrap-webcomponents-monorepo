@@ -1,12 +1,13 @@
 import { Story, Meta } from "@storybook/html";
-import { createVideoeditor, VideoeditorProps } from "./Videoeditor";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
   title: "Contents/VideoEditor",
   argTypes: {
     id: { control: { disable: true } },
     src: { control: { type: "text" } },
-    form: { control: { type: "object" } },
+    form: { control: { type: "array" } },
+    track: { control: { type: "object" } },
     changeTrackValues: { action: "changeTrackValuesEvent" },
     dispatchTrack: { action: "dispatchTrackEvent" },
   },
@@ -86,7 +87,8 @@ const form = [
     validationTip: "This field cannot be empty2.",
   },
 ];
-const Template: Story<VideoeditorProps> = (args) => createVideoeditor(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "editor-video");
 
 export const BasicVideoeditor = Template.bind({});
 BasicVideoeditor.args = {

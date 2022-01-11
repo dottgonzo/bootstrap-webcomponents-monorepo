@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import { createVideoCard, VideoCardProps } from "./VideoCard";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
   title: "Components/VideoCard",
@@ -21,7 +21,8 @@ const title = "aa";
 const description = "6";
 const datetest = "2021-08-15T18:55:22.135Z";
 const youtubevideosrc = "https://www.youtube.com/embed/tgbNymZ7vqY";
-const Template: Story<VideoCardProps> = (args) => createVideoCard(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "card-video");
 
 export const BasicVideoCard = Template.bind({});
 BasicVideoCard.args = {

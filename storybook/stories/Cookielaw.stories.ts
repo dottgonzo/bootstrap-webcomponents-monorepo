@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import { createCookielaw, CookielawProps } from "./Cookielaw";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
   title: "Components/Cookielaw",
@@ -16,7 +16,8 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<CookielawProps> = (args) => createCookielaw(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "cookie-law-banner");
 
 export const CookielawSimple = Template.bind({});
 CookielawSimple.args = {

@@ -1,4 +1,4 @@
-import { version } from "../../lerna.json";
+import { version } from "../../../lerna.json";
 import { ArgTypes } from "@storybook/html";
 
 export const webComponentBind = (
@@ -32,6 +32,7 @@ export const webComponentBind = (
       c.addEventListener(action, (p: any) => args[action](p.detail));
     }
   }
+  if (args._testInnerHtml) c.innerHTML = args._testInnerHtml;
 
   for (const attribute of attributes) {
     if (args[attribute]) {

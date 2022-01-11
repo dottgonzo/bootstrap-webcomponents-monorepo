@@ -1,11 +1,12 @@
 import { Story, Meta } from "@storybook/html";
-import { createFormTextInput, FormTextInputProps } from "./FormTextInput";
+import { webComponentBind } from "./utils/webComponentUtils";
 // import type { FormSchemaEntry } from "../../packages/formtextinputrenderer/app/types/webcomponent.type";
 
 const meta: Meta = {
   title: "Form/FormTextInput",
   argTypes: {
     id: { control: { disable: true } },
+    schemaentry: { control: { type: "object" } },
   },
 };
 
@@ -20,7 +21,8 @@ const inputEntry1 = {
   validationTip: "This field cannot be empty.",
 };
 
-const Template: Story<FormTextInputProps> = (args) => createFormTextInput(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "input-text");
 
 export const FormTextInputTemplate = Template.bind({});
 FormTextInputTemplate.args = {

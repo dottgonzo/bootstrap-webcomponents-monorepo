@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import { createDownloader, DownloaderProps } from "./Downloader";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
   title: "Components/Downloader",
@@ -14,7 +14,8 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<DownloaderProps> = (args) => createDownloader(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "downloader");
 
 export const DownloaderTemplate = Template.bind({});
 DownloaderTemplate.args = {

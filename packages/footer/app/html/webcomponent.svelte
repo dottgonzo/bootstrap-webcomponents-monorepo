@@ -212,14 +212,17 @@
 		});
 	}
 
-	if (!document.getElementById("contactcomponentscript")) {
-		const script = document.createElement("script");
-		script.id = "contactcomponentscript";
-		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-contact-item@${pkg.version}/release/contact.js`;
-		if (location.href.includes("localhost")) script.src = `http://localhost:6006/contact/dist/contact.js`;
+	function addComponent(componentName: string) {
+		if (!document.getElementById("hb-" + componentName + "-script")) {
+			const script = document.createElement("script");
+			script.id = "hb-" + componentName + "-script";
+			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
+			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-		document.head.appendChild(script);
+			document.head.appendChild(script);
+		}
 	}
+	addComponent("contact-item");
 </script>
 
 <footer>

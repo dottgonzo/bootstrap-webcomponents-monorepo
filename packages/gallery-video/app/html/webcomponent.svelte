@@ -210,21 +210,18 @@
 
 	// 	return app();
 	// }
-	if (!document.getElementById("paginationbootstrapcomponentjs")) {
-		const script = document.createElement("script");
-		script.id = "paginationbootstrapcomponentjs";
-		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-paginate@${pkg.version}/release/paginationbootstrap.js`;
-		document.head.appendChild(script);
-	}
+	function addComponent(componentName: string) {
+		if (!document.getElementById("hb-" + componentName + "-script")) {
+			const script = document.createElement("script");
+			script.id = "hb-" + componentName + "-script";
+			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
+			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-	if (!document.getElementById("videocardbootstrapbootstrapcomponentjs")) {
-		const script = document.createElement("script");
-		script.id = "videocardbootstrapbootstrapcomponentjs";
-		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-card-video@${pkg.version}/release/videocardbootstrap.js`;
-		if (location.href.includes("localhost")) script.src = `http://localhost:6006/videocard/dist/videocardbootstrap.js`;
-
-		document.head.appendChild(script);
+			document.head.appendChild(script);
+		}
 	}
+	addComponent("paginate");
+	addComponent("card-video");
 
 	// onMount(async () => {
 	// 	await reloadCards();

@@ -1,8 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import {
-  createLoginRegister,
-  LoginRegisterProps,
-} from "./LoginRegisterComponent";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
   title: "Components/LoginRegisterComponent",
@@ -20,6 +17,7 @@ const meta: Meta = {
     register: { action: "registerEvent" },
     recoverOrActivate: { action: "recoverOrActivateEvent" },
     id: { control: { disable: true } },
+    oauth2providers: { control: { type: "array" } },
   },
   parameters: {
     layout: "fullscreen",
@@ -28,7 +26,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<LoginRegisterProps> = (args) => createLoginRegister(args);
+const Template: Story = (args) => webComponentBind(args, meta.argTypes, "auth");
 
 export const Login = Template.bind({});
 Login.args = {

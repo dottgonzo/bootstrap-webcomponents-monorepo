@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import { createVideoGallery, VideoGalleryProps } from "./VideoGallery";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const cards = [
   {
@@ -70,6 +70,8 @@ const meta: Meta = {
     size: { control: { type: "range", min: 1, max: cards.length + 2 } },
     page: { control: { type: "number" } },
     resturi: { control: { type: "object" } },
+    headers: { control: { type: "array" } },
+    cards: { control: { type: "array" } },
     primarycolor: { control: { type: "color" } },
     pagechange: { action: "pagechangeEvent" },
     externalfilter: { control: { type: "boolean" } },
@@ -81,7 +83,8 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<VideoGalleryProps> = (args) => createVideoGallery(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "gallery-video");
 
 export const BasicVideoGallery = Template.bind({});
 BasicVideoGallery.args = {

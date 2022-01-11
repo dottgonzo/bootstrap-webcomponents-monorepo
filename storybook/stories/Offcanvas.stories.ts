@@ -1,6 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import { createOffcanvas, OffcanvasProps } from "./Offcanvas";
-import { webComponentBind } from "./webComponentUtils";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
   title: "Layout/Offcanvas",

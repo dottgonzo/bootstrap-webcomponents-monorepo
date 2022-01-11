@@ -1,8 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import {
-  createLoginRegisterPage,
-  LoginRegisterPageProps,
-} from "./LoginRegisterPage";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
   title: "Pages/LoginRegisterPage",
@@ -17,7 +14,10 @@ const meta: Meta = {
     registeruri: { type: "string" },
     login: { action: "loginEvent" },
     register: { action: "registerEvent" },
+    contacts: { control: { type: "object" } },
+    socials: { control: { type: "object" } },
     id: { control: { disable: true } },
+    oauth2providers: { control: { type: "array" } },
   },
   parameters: {
     layout: "fullscreen",
@@ -58,8 +58,8 @@ const socials1 = {
   youtube: "yttttttt",
 };
 
-const Template: Story<LoginRegisterPageProps> = (args) =>
-  createLoginRegisterPage(args);
+const Template: Story = (args) =>
+  webComponentBind(webComponentBind, meta.argTypes, "page-loginregister");
 
 export const LoginPage = Template.bind({});
 LoginPage.args = {

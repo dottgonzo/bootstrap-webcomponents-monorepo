@@ -1,16 +1,18 @@
 import { Story, Meta } from "@storybook/html";
-import { createNavbar, NavbarProps } from "./Navbar";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
   title: "Layout/Navbar",
   argTypes: {
     id: { control: { disable: true } },
+    _testInnerHtml: { control: { disable: true } },
     pagetitle: { control: { type: "text" } },
     companybrandname: { control: { type: "text" } },
     companylogouri: { control: { type: "text" } },
     noburger: { control: { type: "boolean" } },
     navmenuswitch: { action: "navmenuswitchEvent" },
     userClick: { action: "userClickEvent" },
+    usermenu: { control: { type: "object" } },
   },
   parameters: {
     layout: "fullscreen",
@@ -45,7 +47,8 @@ const usermenu1 = {
     "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg",
 };
 
-const Template: Story<NavbarProps> = (args) => createNavbar(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "navbar");
 
 export const BasicNavbar = Template.bind({});
 BasicNavbar.args = {
@@ -73,6 +76,7 @@ NavbarSlotted.args = {
   companybrandname: "testbrand2",
   pagetitle: "pagetest",
   switchopen: true,
+  _testInnerHtml: '<div slot="right-slot">slott</div>',
 };
 export const NavbarWithUserMenu = Template.bind({});
 NavbarWithUserMenu.args = {
@@ -90,4 +94,5 @@ NavbarNoBurger.args = {
     "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg",
   usermenu: usermenu1,
   noburger: true,
+  _testInnerHtml: '<div slot="right-slot">s</div>',
 };

@@ -1,11 +1,12 @@
 import { Story, Meta } from "@storybook/html";
-import { createFormFileInput, FormFileInputProps } from "./FormFileInput";
+import { webComponentBind } from "./utils/webComponentUtils";
 // import type { FormSchemaEntry } from "../../packages/formfileinputrenderer/app/types/webcomponent.type";
 
 const meta: Meta = {
   title: "Form/FormFileInput",
   argTypes: {
     id: { control: { disable: true } },
+    schemaentry: { control: { type: "object" } },
   },
 };
 
@@ -20,7 +21,8 @@ const inputEntry1 = {
   validationTip: "This field cannot be empty.",
 };
 
-const Template: Story<FormFileInputProps> = (args) => createFormFileInput(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "input-file");
 
 export const FormFileInputTemplate = Template.bind({});
 FormFileInputTemplate.args = {

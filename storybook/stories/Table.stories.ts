@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import { createTable, TableProps } from "./Table";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const rows = [
   {
@@ -374,9 +374,12 @@ const meta: Meta = {
       control: { type: "color" },
     },
 
-    enableselect: { type: "boolean" },
-    selectrow: { type: "boolean" },
-
+    enableselect: { control: { type: "boolean" } },
+    selectrow: { control: { type: "boolean" } },
+    rows: { control: { type: "array" } },
+    headers: { control: { type: "array" } },
+    actions: { control: { type: "array" } },
+    selectactions: { control: { type: "array" } },
     pagechange: { action: "pagechangeEvent" },
     tableaction: { action: "tableactionEvent" },
     tableCustomActionClick: { action: "tableCustomActionClickEvent" },
@@ -391,7 +394,8 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<TableProps> = (args) => createTable(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "table");
 
 export const BasicTable = Template.bind({});
 BasicTable.args = {

@@ -1,11 +1,12 @@
 import { Story, Meta } from "@storybook/html";
-import { createSimpleDropdown, SimpleDropdownProps } from "./SimpleDropdown";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
   title: "Components/SimpleDropdown",
   argTypes: {
     id: { control: { disable: true } },
     open: { control: { type: "boolean" } },
+    list: { control: { type: "array" } },
     dropdownSwitch: { action: "dropdownSwitchEvent" },
     dropDownClick: { action: "dropDownClickEvent" },
   },
@@ -39,8 +40,8 @@ const usermenu1 = {
     "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg",
 };
 
-const Template: Story<SimpleDropdownProps> = (args) =>
-  createSimpleDropdown(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "dropdown-simple");
 
 export const BasicSimpleDropdown = Template.bind({});
 BasicSimpleDropdown.args = {

@@ -11,14 +11,17 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	if (!document.getElementById("bootstrapdialogcomponentscript")) {
-		const script = document.createElement("script");
-		script.id = "bootstrapdialogcomponentscript";
-		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-dialog@${pkg.version}/release/bootstrapdialogcomponent.js`;
-		if (location.href.includes("localhost")) script.src = `http://localhost:6006/bootstrapdialog/dist/bootstrapdialogcomponent.js`;
+	function addComponent(componentName: string) {
+		if (!document.getElementById("hb-" + componentName + "-script")) {
+			const script = document.createElement("script");
+			script.id = "hb-" + componentName + "-script";
+			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
+			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-		document.head.appendChild(script);
+			document.head.appendChild(script);
+		}
 	}
+	addComponent("dialog");
 
 	export let downloadid: string;
 	export let uri: string;

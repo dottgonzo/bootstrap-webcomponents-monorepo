@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import { createPageBanner, PageBannerProps } from "./PageBanner";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
   title: "Components/PageBanner",
@@ -14,7 +14,8 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<PageBannerProps> = (args) => createPageBanner(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "banner");
 
 export const PageBanner = Template.bind({});
 

@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import { createRangeslider, RangesliderProps } from "./Rangeslider";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
   title: "Components/Rangeslider",
@@ -16,7 +16,8 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<RangesliderProps> = (args) => createRangeslider(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "range-slider");
 
 export const BasicRangeslider = Template.bind({});
 BasicRangeslider.args = {

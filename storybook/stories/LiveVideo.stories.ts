@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import { createLiveVideoPlayer, LiveVideoPlayerProps } from "./LiveVideo";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const mediauri = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
 const replacewithtext1 = {
@@ -29,8 +29,8 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<LiveVideoPlayerProps> = (args) =>
-  createLiveVideoPlayer(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "player-live");
 
 export const LiveVideoPlayer = Template.bind({});
 

@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import { createFunnel, FunnelProps } from "./Funnel";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
   title: "Form/Funnel",
@@ -11,6 +11,8 @@ const meta: Meta = {
     },
     update: { action: "updateEvent" },
     submit: { action: "submitEvent" },
+
+    schemes: { control: { type: "array" } },
   },
 };
 
@@ -99,7 +101,8 @@ const preferences4 = [
     },
   },
 ];
-const Template: Story<FunnelProps> = (args) => createFunnel(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "funnel");
 
 export const BasicFunnelTemplate = Template.bind({});
 BasicFunnelTemplate.args = {

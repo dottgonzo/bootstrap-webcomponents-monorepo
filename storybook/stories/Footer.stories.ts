@@ -1,6 +1,6 @@
 import { Story, Meta } from "@storybook/html";
-import { createFooter, FooterProps } from "./Footer";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import { webComponentBind } from "./utils/webComponentUtils";
 
 interface IColumn {
   _id?: string;
@@ -17,6 +17,11 @@ const meta: Meta = {
     companyname: { control: { type: "text" } },
     companylogouri: { control: { type: "text" } },
     brandandcontacts: { control: { type: "object" } },
+    footerbottom: { control: { type: "object" } },
+    copyrighttext: { control: { type: "object" } },
+    socials: { control: { type: "object" } },
+    contacts: { control: { type: "object" } },
+    company: { control: { type: "object" } },
     footerclick: { action: "footerClickEvent" },
   },
   parameters: {
@@ -33,7 +38,8 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<FooterProps> = (args) => createFooter(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "footer");
 
 const columns1: IColumn[] = [
   {
