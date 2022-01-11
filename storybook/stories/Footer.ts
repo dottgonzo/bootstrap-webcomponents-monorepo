@@ -71,12 +71,12 @@ export const createFooter = ({
   copyrighttext,
   footerclick,
 }: FooterProps) => {
-  if (!document.getElementById("footerscript")) {
+  if (!document.getElementById("hb-footer-script")) {
     const script = document.createElement("script");
-    script.id = "footerscript";
+    script.id = "hb-footer-script";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-footer@${pkg.version}/release/footerbootstrap.js`
-      : "http://localhost:6006/footer/dist/footerbootstrap.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-footer@${pkg.version}/release/release.js`
+      : "http://localhost:6006/footer/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

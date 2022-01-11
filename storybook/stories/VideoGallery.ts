@@ -23,13 +23,13 @@ export const createVideoGallery = ({
   textFilterVideos,
   dateFilterVideos,
 }: VideoGalleryProps) => {
-  if (!document.getElementById("videogallerycomponentscript")) {
+  if (!document.getElementById("hb-gallery-video-script")) {
     const script = document.createElement("script");
-    script.id = "videogallerycomponentscript";
+    script.id = "hb-gallery-video-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-gallery-video@${pkg.version}/release/videogallerycomponent.js`
-      : "http://localhost:6006/videogallery/dist/videogallerycomponent.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-gallery-video@${pkg.version}/release/release.js`
+      : "http://localhost:6006/gallery-video/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

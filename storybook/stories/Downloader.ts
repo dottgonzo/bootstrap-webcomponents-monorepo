@@ -15,13 +15,13 @@ export const createDownloader = ({
   downloadid,
   targetfilename,
 }: DownloaderProps) => {
-  if (!document.getElementById("bootstrapdownloadercomponentscript")) {
+  if (!document.getElementById("hb-downloader-script")) {
     const script = document.createElement("script");
-    script.id = "bootstrapdownloadercomponentscript";
+    script.id = "hb-downloader-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-downloader@${pkg.version}/release/bootstrapdownloadercomponent.js`
-      : "http://localhost:6006/bootstrapdownloader/dist/bootstrapdownloadercomponent.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-downloader@${pkg.version}/release/release.js`
+      : "http://localhost:6006/downloader/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

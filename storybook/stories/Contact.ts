@@ -46,12 +46,12 @@ export const createContact = ({
   config,
   contactclick,
 }: ContactProps) => {
-  if (!document.getElementById("contactcomponentscript")) {
+  if (!document.getElementById("hb-contact-item-script")) {
     const script = document.createElement("script");
-    script.id = "contactcomponentscript";
+    script.id = "hb-contact-item-script";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-contact-item@${pkg.version}/release/contact.js`
-      : "http://localhost:6006/contact/dist/contact.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-contact-item@${pkg.version}/release/release.js`
+      : "http://localhost:6006/contact-item/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

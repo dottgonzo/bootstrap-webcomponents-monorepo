@@ -155,20 +155,20 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	function addComponent(componentName: string, scriptJsName: string, componentId: string, localPackageDir?: string) {
-		if (!document.getElementById(componentId)) {
+	function addComponent(componentName: string) {
+		if (!document.getElementById("hb-" + componentName + "-script")) {
 			const script = document.createElement("script");
-			script.id = componentId;
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/${componentName}@${pkg.version}/release/${scriptJsName}`;
-			if (localPackageDir && location.href.includes("localhost")) script.src = `http://localhost:6006/${localPackageDir}/dist/${scriptJsName}`;
+			script.id = "hb-" + componentName + "-script";
+			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
+			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
 			document.head.appendChild(script);
 		}
 	}
-	addComponent("hb-footer", "footerbootstrap.js", "footerscript", "footer");
-	addComponent("hb-offcanvas", "offcanvas.js", "offcanvasscript", "offcanvas");
-	addComponent("hb-navbar", "navbarbootstrap.js", "navbarscript", "navbar");
-	addComponent("hb-cookie-law-banner", "cookielaw.js", "cookielawcomponentscript", "cookielaw");
+	addComponent("footer");
+	addComponent("offcanvas");
+	addComponent("navbar");
+	addComponent("cookie-law-banner");
 
 	function openmenu(o) {
 		if (o.isOpen || o.isOpen === false) navopen = o.isOpen;

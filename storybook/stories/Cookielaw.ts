@@ -11,12 +11,12 @@ export const createCookielaw = ({
   allowdecline,
   acceptCookieLaw,
 }: CookielawProps) => {
-  if (!document.getElementById("cookielawcomponentscript")) {
+  if (!document.getElementById("hb-cookie-law-banner-script")) {
     const script = document.createElement("script");
-    script.id = "cookielawcomponentscript";
+    script.id = "hb-cookie-law-banner-script";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-cookie-law-banner@${pkg.version}/release/cookielaw.js`
-      : "http://localhost:6006/cookielaw/dist/cookielaw.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-cookie-law-banner@${pkg.version}/release/release.js`
+      : "http://localhost:6006/cookie-law-banner/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

@@ -94,13 +94,13 @@ export const createLoginRegisterPage = ({
   cookielaw,
   oauth2providers,
 }: LoginRegisterPageProps) => {
-  if (!document.getElementById("apploginregisterscript")) {
+  if (!document.getElementById("hb-page-loginregister-script")) {
     const script = document.createElement("script");
-    script.id = "apploginregisterscript";
+    script.id = "hb-page-loginregister-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-page-loginregister@${pkg.version}/release/apploginregister.js`
-      : "http://localhost:6006/apploginregister/dist/apploginregister.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-page-loginregister@${pkg.version}/release/release.js`
+      : "http://localhost:6006/page-loginregister/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

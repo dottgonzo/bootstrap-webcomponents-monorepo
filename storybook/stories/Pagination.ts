@@ -17,13 +17,13 @@ export const createPagination = ({
   id,
   pagechange,
 }: PaginationProps) => {
-  if (!document.getElementById("paginationbootstrapcomponentjs")) {
+  if (!document.getElementById("hb-paginate-script")) {
     const script = document.createElement("script");
-    script.id = "paginationbootstrapcomponentjs";
+    script.id = "hb-paginate-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-paginate@${pkg.version}/release/paginationbootstrap.js`
-      : "http://localhost:6006/pagination/dist/paginationbootstrap.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-paginate@${pkg.version}/release/release.js`
+      : "http://localhost:6006/paginate/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

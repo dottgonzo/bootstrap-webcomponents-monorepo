@@ -37,13 +37,13 @@ export const createOffcanvas = ({
   groups,
   type,
 }: OffcanvasProps) => {
-  if (!document.getElementById("offcanvasscript")) {
+  if (!document.getElementById("hb-offcanvas-script")) {
     const script = document.createElement("script");
-    script.id = "offcanvasscript";
+    script.id = "hb-offcanvas-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-offcanvas@${pkg.version}/release/offcanvas.js`
-      : "http://localhost:6006/offcanvas/dist/offcanvas.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-offcanvas@${pkg.version}/release/release.js`
+      : "http://localhost:6006/offcanvas/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

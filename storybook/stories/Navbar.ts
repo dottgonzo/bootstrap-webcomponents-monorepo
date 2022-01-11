@@ -34,13 +34,13 @@ export const createNavbar = ({
   navmenuswitch,
   userClick,
 }: NavbarProps) => {
-  if (!document.getElementById("navbarscript")) {
+  if (!document.getElementById("hb-navbar-script")) {
     const script = document.createElement("script");
-    script.id = "navbarscript";
+    script.id = "hb-navbar-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-navbar@${pkg.version}/release/navbarbootstrap.js`
-      : "http://localhost:6006/navbar/dist/navbarbootstrap.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-navbar@${pkg.version}/release/release.js`
+      : "http://localhost:6006/navbar/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

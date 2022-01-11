@@ -19,13 +19,13 @@ export const createVideoeditor = ({
   changeTrackValues,
   dispatchTrack,
 }: VideoeditorProps) => {
-  if (!document.getElementById("videoeditorbootstrapscript")) {
+  if (!document.getElementById("hb-editor-video-script")) {
     const script = document.createElement("script");
-    script.id = "videoeditorbootstrapscript";
+    script.id = "hb-editor-video-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-editor-video@${pkg.version}/release/videoeditorbootstrap.js`
-      : "http://localhost:6006/videoeditor/dist/videoeditorbootstrap.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-editor-video@${pkg.version}/release/release.js`
+      : "http://localhost:6006/editor-video/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

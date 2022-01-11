@@ -30,12 +30,12 @@ export const createLoginRegister = ({
   disableregister,
   oauth2providers,
 }: LoginRegisterProps) => {
-  if (!document.getElementById("loginregistercomponentscript")) {
+  if (!document.getElementById("hb-auth-script")) {
     const script = document.createElement("script");
-    script.id = "loginregistercomponentscript";
+    script.id = "hb-auth-script";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-auth@${pkg.version}/release/loginregister.js`
-      : "http://localhost:6006/loginregister/dist/loginregister.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-auth@${pkg.version}/release/release.js`
+      : "http://localhost:6006/auth/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

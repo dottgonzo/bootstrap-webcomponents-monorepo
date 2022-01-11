@@ -21,12 +21,12 @@ export const createFunnel = ({
   steps,
   submitstep,
 }: FunnelProps) => {
-  if (!document.getElementById("funnelcomponentscript")) {
+  if (!document.getElementById("hb-funnel-script")) {
     const script = document.createElement("script");
-    script.id = "funnelcomponentscript";
+    script.id = "hb-funnel-script";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-funnel@${pkg.version}/release/funnel.js`
-      : "http://localhost:6006/funnel/dist/funnel.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-funnel@${pkg.version}/release/release.js`
+      : "http://localhost:6006/funnel/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

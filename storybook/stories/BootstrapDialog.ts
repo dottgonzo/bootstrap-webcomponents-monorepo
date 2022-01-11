@@ -6,13 +6,13 @@ export interface BootstrapDialogProps {
 }
 
 export const createBootstrapDialog = ({ id, show }: BootstrapDialogProps) => {
-  if (!document.getElementById("bootstrapdialogcomponentscript")) {
+  if (!document.getElementById("hb-dialog-script")) {
     const script = document.createElement("script");
-    script.id = "bootstrapdialogcomponentscript";
+    script.id = "hb-dialog-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-dialog@${pkg.version}/release/bootstrapdialogcomponent.js`
-      : "http://localhost:6006/bootstrapdialog/dist/bootstrapdialogcomponent.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-dialog@${pkg.version}/release/release.js`
+      : "http://localhost:6006/dialog/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

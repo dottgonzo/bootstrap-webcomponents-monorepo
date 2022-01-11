@@ -11,13 +11,13 @@ export const createFormFileInput = ({
   id,
   schemaentry,
 }: FormFileInputProps) => {
-  if (!document.getElementById("formrendererfileinputscript")) {
+  if (!document.getElementById("hb-input-file-script")) {
     const script = document.createElement("script");
-    script.id = "formrendererfileinputscript";
+    script.id = "hb-input-file-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-input-file@${pkg.version}/release/formrendererfileinput.js`
-      : "http://localhost:6006/formfileinputrenderer/dist/formrendererfileinput.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-input-file@${pkg.version}/release/release.js`
+      : "http://localhost:6006/formfileinputrenderer/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;

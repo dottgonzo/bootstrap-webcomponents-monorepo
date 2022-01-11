@@ -53,13 +53,13 @@ export const createTable = ({
   confirmActionModal,
   tableCustomActionClick,
 }: TableProps) => {
-  if (!document.getElementById("streamingtablescript")) {
+  if (!document.getElementById("hb-table-script")) {
     const script = document.createElement("script");
-    script.id = "streamingtablescript";
+    script.id = "hb-table-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-table@${pkg.version}/release/streamingtablebootstrap.js`
-      : "http://localhost:6006/streamingtable/dist/streamingtablebootstrap.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-table@${pkg.version}/release/release.js`
+      : "http://localhost:6006/table/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;
