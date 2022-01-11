@@ -7,7 +7,7 @@ interface IColumn {
   cells: { label: string; key: string }[];
   title: string;
 }
-const meta = {
+const meta: Meta = {
   title: "Layout/Footer",
   argTypes: {
     id: { control: { disable: true } },

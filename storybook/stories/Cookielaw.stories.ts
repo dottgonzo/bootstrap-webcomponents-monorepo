@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createCookielaw, CookielawProps } from "./Cookielaw";
 
-const meta = {
+const meta: Meta = {
   title: "Components/Cookielaw",
   argTypes: {
     id: { control: { disable: true } },

@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createSimpleDropdown, SimpleDropdownProps } from "./SimpleDropdown";
 
-const meta = {
+const meta: Meta = {
   title: "Components/SimpleDropdown",
   argTypes: {
     id: { control: { disable: true } },

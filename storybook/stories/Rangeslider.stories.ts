@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createRangeslider, RangesliderProps } from "./Rangeslider";
 
-const meta = {
+const meta: Meta = {
   title: "Components/Rangeslider",
   argTypes: {
     id: { control: { disable: true } },

@@ -2,7 +2,7 @@ import { Story, Meta } from "@storybook/html";
 import { createFormFileInput, FormFileInputProps } from "./FormFileInput";
 // import type { FormSchemaEntry } from "../../packages/formfileinputrenderer/app/types/webcomponent.type";
 
-const meta = {
+const meta: Meta = {
   title: "Form/FormFileInput",
   argTypes: {
     id: { control: { disable: true } },

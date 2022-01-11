@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createPageBanner, PageBannerProps } from "./PageBanner";
 
-const meta = {
+const meta: Meta = {
   title: "Components/PageBanner",
 
   argTypes: {

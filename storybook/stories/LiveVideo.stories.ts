@@ -14,7 +14,7 @@ const replacewithtext3 = {
   subtitle: "subtitle",
   text: "text",
 };
-const meta = {
+const meta: Meta = {
   title: "Components/LiveVideoPlayer",
 
   argTypes: {

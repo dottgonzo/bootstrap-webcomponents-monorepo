@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { webComponentBind } from "./webComponentUtils";
 
-const meta = {
+const meta: Meta = {
   title: "Components/Contact",
   argTypes: {
     id: { control: { disable: true } },

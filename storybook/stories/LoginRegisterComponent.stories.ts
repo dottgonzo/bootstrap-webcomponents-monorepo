@@ -4,7 +4,7 @@ import {
   LoginRegisterProps,
 } from "./LoginRegisterComponent";
 
-const meta = {
+const meta: Meta = {
   title: "Components/LoginRegisterComponent",
   argTypes: {
     type: {

@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createDownloader, DownloaderProps } from "./Downloader";
 
-const meta = {
+const meta: Meta = {
   title: "Components/Downloader",
   argTypes: {
     id: { control: { disable: true } },

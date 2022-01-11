@@ -1,7 +1,8 @@
 import { Story, Meta } from "@storybook/html";
 import { createOffcanvas, OffcanvasProps } from "./Offcanvas";
+import { webComponentBind } from "./webComponentUtils";
 
-const meta = {
+const meta: Meta = {
   title: "Layout/Offcanvas",
   argTypes: {
     opened: { control: { type: "boolean" } },
@@ -22,7 +23,7 @@ const meta = {
 
 export default meta;
 
-const Template: Story<OffcanvasProps> = (args) => createOffcanvas(args);
+const Template: Story = (args: any) => createOffcanvas(args);
 
 const navlinks1b = [
   {

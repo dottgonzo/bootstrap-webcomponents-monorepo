@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createNavbar, NavbarProps } from "./Navbar";
 
-const meta = {
+const meta: Meta = {
   title: "Layout/Navbar",
   argTypes: {
     id: { control: { disable: true } },

@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createVideoCard, VideoCardProps } from "./VideoCard";
 
-const meta = {
+const meta: Meta = {
   title: "Components/VideoCard",
   argTypes: {
     videosrc: { control: { type: "text" } },

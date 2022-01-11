@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createVideoModal, VideoModalProps } from "./VideoModal";
 
-const meta = {
+const meta: Meta = {
   title: "Components/VideoModal",
   argTypes: {
     id: { control: { disable: true } },

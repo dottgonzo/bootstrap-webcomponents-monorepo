@@ -64,7 +64,7 @@ const headers = [
   },
 ];
 
-const meta = {
+const meta: Meta = {
   title: "Contents/VideoGallery",
   argTypes: {
     size: { control: { type: "range", min: 1, max: cards.length + 2 } },

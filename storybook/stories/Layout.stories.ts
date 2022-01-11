@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createLayout, LayoutProps } from "./Layout";
 
-const meta = {
+const meta: Meta = {
   title: "Layout/MainLayout",
   argTypes: {
     id: { control: { disable: true } },

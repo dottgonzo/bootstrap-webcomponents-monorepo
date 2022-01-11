@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createVideoeditor, VideoeditorProps } from "./Videoeditor";
 
-const meta = {
+const meta: Meta = {
   title: "Contents/VideoEditor",
   argTypes: {
     id: { control: { disable: true } },

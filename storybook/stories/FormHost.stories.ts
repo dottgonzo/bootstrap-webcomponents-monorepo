@@ -2,7 +2,7 @@ import { Story, Meta } from "@storybook/html";
 import { createFormHost, FormHostProps } from "./FormHost";
 // import type { FormSchema } from "../../packages/formhostcomponent/app/types/webcomponent.type";
 
-const meta = {
+const meta: Meta = {
   title: "Form/Host",
   argTypes: {
     id: { control: { disable: true } },

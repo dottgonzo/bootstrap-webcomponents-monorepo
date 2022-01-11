@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/html";
 import { createFunnel, FunnelProps } from "./Funnel";
 
-const meta = {
+const meta: Meta = {
   title: "Form/Funnel",
   argTypes: {
     id: { control: { disable: true } },

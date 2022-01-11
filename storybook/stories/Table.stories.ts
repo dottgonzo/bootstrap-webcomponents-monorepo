@@ -365,7 +365,7 @@ const selections = [
   },
 ];
 
-const meta = {
+const meta: Meta = {
   title: "Contents/Table",
   argTypes: {
     size: { control: { type: "range", min: 1, max: rows.length + 2 } },

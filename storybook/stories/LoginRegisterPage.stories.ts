@@ -4,7 +4,7 @@ import {
   LoginRegisterPageProps,
 } from "./LoginRegisterPage";
 
-const meta = {
+const meta: Meta = {
   title: "Pages/LoginRegisterPage",
   argTypes: {
     type: {
