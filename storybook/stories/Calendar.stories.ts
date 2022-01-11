@@ -1,17 +1,18 @@
 import { Story, Meta } from "@storybook/html";
-import { createCalendar, CalendarProps } from "./Calendar";
+import { webComponentBind } from "./webComponentUtils";
 // import type { IEvent } from "../../packages/calendar/app/types/webcomponent.type";
 import dayjs from "dayjs";
-
-export default {
+const meta: Meta = {
   title: "Contents/Calendar",
   argTypes: {
     id: { control: { disable: true } },
+    events: { control: { type: "object" } },
     calendarEventClick: { action: "calendarEventClickEvent" },
     changeCalendarDate: { action: "changeCalendarDateEvent" },
     changeSelectedDate: { action: "changeSelectedDateEvent" },
   },
-} as Meta;
+};
+export default meta;
 
 const events = [
   {
@@ -26,7 +27,8 @@ const events = [
   },
 ];
 
-const Template: Story<CalendarProps> = (args) => createCalendar(args);
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "calendar-events");
 
 export const BasicCalendar = Template.bind({});
 BasicCalendar.args = {

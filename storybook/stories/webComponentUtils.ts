@@ -23,7 +23,7 @@ export const webComponentBind = (
   if (document.getElementById(args.id)) {
     c = document.getElementById(args.id);
   } else {
-    c = document.createElement("hb-paginate");
+    c = document.createElement("hb-" + componentName);
     c.id = args.id;
     for (const action of actions) {
       c.addEventListener(action, (p: any) => args[action](p.detail));
@@ -32,14 +32,19 @@ export const webComponentBind = (
 
   for (const attribute of attributes) {
     if (args[attribute]) {
-      c.setAttribute(
-        attribute,
-        typeof args[attribute] === "string"
-          ? args[attribute]
-          : typeof args[attribute] === "object"
-          ? JSON.stringify(args[attribute])
-          : args[attribute].toString()
-      );
+      let val: string = "";
+      if (args[attribute] === true) {
+        val = "yes";
+      } else if (args[attribute] === false) {
+        val = "no";
+      } else if (typeof args[attribute] === "string") {
+        val = args[attribute];
+      } else if (typeof args[attribute] === "object") {
+        val = JSON.stringify(args[attribute]);
+      } else if (typeof args[attribute] === "number") {
+        val = args[attribute].toString();
+      }
+      c.setAttribute(attribute, val);
     } else {
       if (c.hasAttribute(attribute)) c.removeAttribute(attribute);
     }

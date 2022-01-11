@@ -13,7 +13,8 @@ const meta = {
 
 export default meta as Meta;
 
-const Template = (args) => webComponentBind(args, meta.argTypes, "paginate");
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "paginate");
 
 export const BasicPagination1 = Template.bind({});
 BasicPagination1.args = {
