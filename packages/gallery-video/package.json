@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-gallery-video",
 	"displayName": "Svelte Boostrap Video Gallery WebComponent",
 	"description": "Svelte Boostrap Video Gallery WebComponent",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
