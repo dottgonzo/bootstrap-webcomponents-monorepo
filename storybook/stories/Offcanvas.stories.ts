@@ -15,6 +15,7 @@ const meta: Meta = {
     id: { control: { disable: true } },
     type: { control: { options: ["autohide", "small", "open"] } },
     navpage: { control: { type: "text" } },
+    navlinks: { control: { type: "array" } },
   },
   parameters: {
     layout: "fullscreen",
@@ -23,7 +24,10 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = (args: any) => createOffcanvas(args);
+const innerHTML = `<button slot="test" onclick="document.getElementsByTagName('hb-offcanvas')[0].setAttribute('opened', 'yes')">test</button>`;
+
+const Template: Story = (args: any) =>
+  webComponentBind(args, meta.argTypes, "offcanvas", innerHTML);
 
 const navlinks1b = [
   {
