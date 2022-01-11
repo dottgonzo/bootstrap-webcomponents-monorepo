@@ -258,7 +258,7 @@
 				{dayjs.duration((track.maxValue - track.minValue) * 1000).minutes()
 					? dayjs.duration((track.maxValue - track.minValue) * 1000).format("m") + " minutes"
 					: ""}
-				{dayjs.duration(parseInt((track.maxValue - track.minValue) * 1000)).format("s.SSS") + " seconds"}
+				{dayjs.duration(parseInt(((track.maxValue - track.minValue) * 1000).toString())).format("s.SSS") + " seconds"}
 			{/if}</span
 		>
 		<span style="float:right;height:30px;line-height:30px">
