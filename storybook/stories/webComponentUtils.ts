@@ -1,7 +1,7 @@
 import { version } from "../../lerna.json";
 import { ArgTypes } from "@storybook/html";
 
-export const createComponent = (
+export const webComponentBind = (
   args: any,
   argTypes: ArgTypes,
   componentName: string

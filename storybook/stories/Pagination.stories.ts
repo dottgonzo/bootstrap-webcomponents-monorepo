@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/html";
-import { createComponent } from "./webcomponentUtils";
+import { webComponentBind } from "./webComponentUtils";
 
 const meta = {
   title: "Components/Pagination",
@@ -13,7 +13,7 @@ const meta = {
 
 export default meta as Meta;
 
-const Template = (args) => createComponent(args, meta.argTypes, "paginate");
+const Template = (args) => webComponentBind(args, meta.argTypes, "paginate");
 
 export const BasicPagination1 = Template.bind({});
 BasicPagination1.args = {
