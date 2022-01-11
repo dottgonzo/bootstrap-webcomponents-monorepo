@@ -36,8 +36,8 @@ export default {
 	output: {
 		sourcemap: true,
 		format: "iife",
-		file: "dist/calendar.js",
-		name: "calendar",
+		file: "dist/release.js",
+		name: "release",
 	},
 	plugins: [
 		json(),

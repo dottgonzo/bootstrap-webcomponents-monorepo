@@ -37,8 +37,8 @@ export default {
 	output: {
 		sourcemap: true,
 		format: "iife",
-		file: "dist/formrenderertextinput.js",
-		name: "formrenderertextinput",
+		file: "dist/release.js",
+		name: "release",
 	},
 	plugins: [
 		json(),

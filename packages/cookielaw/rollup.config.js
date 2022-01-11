@@ -37,8 +37,8 @@ export default {
 	output: {
 		sourcemap: true,
 		format: "iife",
-		file: "dist/cookielaw.js",
-		name: "cookielaw",
+		file: "dist/release.js",
+		name: "release",
 	},
 	plugins: [
 		json(),

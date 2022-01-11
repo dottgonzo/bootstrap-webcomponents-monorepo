@@ -37,8 +37,8 @@ export default {
 	output: {
 		sourcemap: true,
 		format: "iife",
-		file: "dist/formrenderercheckboxinput.js",
-		name: "formrenderercheckboxinput",
+		file: "dist/release.js",
+		name: "release",
 	},
 	plugins: [
 		json(),

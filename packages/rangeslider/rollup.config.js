@@ -36,8 +36,8 @@ export default {
 	output: {
 		sourcemap: true,
 		format: "iife",
-		file: "dist/rangeslider.js",
-		name: "rangeslider",
+		file: "dist/release.js",
+		name: "release",
 	},
 	plugins: [
 		json(),

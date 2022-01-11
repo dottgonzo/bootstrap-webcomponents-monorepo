@@ -36,8 +36,8 @@ export default {
 	output: {
 		sourcemap: true,
 		format: "iife",
-		file: "dist/videoeditorbootstrap.js",
-		name: "videoeditorbootstrap",
+		file: "dist/release.js",
+		name: "release",
 	},
 	plugins: [
 		json(),

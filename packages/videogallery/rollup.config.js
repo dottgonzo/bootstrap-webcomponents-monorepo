@@ -36,8 +36,8 @@ export default {
 	output: {
 		sourcemap: true,
 		format: "iife",
-		file: "dist/videogallerycomponent.js",
-		name: "videogallerybootstrap",
+		file: "dist/release.js",
+		name: "release",
 	},
 
 	plugins: [
@@ -94,11 +94,11 @@ export default {
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
 		production &&
-			terser({
-				output: {
-					comments: false,
-				},
-			}),
+		terser({
+			output: {
+				comments: false,
+			},
+		}),
 	],
 
 	watch: {

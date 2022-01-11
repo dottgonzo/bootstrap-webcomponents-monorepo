@@ -37,8 +37,8 @@ export default {
 	output: {
 		sourcemap: true,
 		format: "iife",
-		file: "dist/offcanvas.js",
-		name: "offcanvas",
+		file: "dist/release.js",
+		name: "release",
 	},
 	plugins: [
 		json(),
@@ -94,11 +94,11 @@ export default {
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
 		production &&
-			terser({
-				output: {
-					comments: false,
-				},
-			}),
+		terser({
+			output: {
+				comments: false,
+			},
+		}),
 	],
 
 	watch: {
