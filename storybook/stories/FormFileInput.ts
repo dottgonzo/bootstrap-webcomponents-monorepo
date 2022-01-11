@@ -11,20 +11,20 @@ export const createFormFileInput = ({
   id,
   schemaentry,
 }: FormFileInputProps) => {
-  if (!document.getElementById("formrendererfileinputscript")) {
+  if (!document.getElementById("hb-input-file-script")) {
     const script = document.createElement("script");
-    script.id = "formrendererfileinputscript";
+    script.id = "hb-input-file-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/formrenderer-fileinput@${pkg.version}/release/formrendererfileinput.js`
-      : "http://localhost:6006/formfileinputrenderer/dist/formrendererfileinput.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-input-file@${pkg.version}/release/release.js`
+      : "http://localhost:6006/input-file/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("formrenderer-fileinput");
+    c = document.createElement("hb-input-file");
     c.id = id;
   }
   if (schemaentry) {

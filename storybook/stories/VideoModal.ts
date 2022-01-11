@@ -8,20 +8,20 @@ export interface VideoModalProps {
 }
 
 export const createVideoModal = ({ id, uri, item, title }: VideoModalProps) => {
-  if (!document.getElementById("bootstrapvideomodalcomponentscript")) {
+  if (!document.getElementById("hb-modal-video-script")) {
     const script = document.createElement("script");
-    script.id = "bootstrapvideomodalcomponentscript";
+    script.id = "hb-modal-video-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/bootstrap-videomodal-component@${pkg.version}/release/bootstrapvideomodalcomponent.js`
-      : "http://localhost:6006/bootstrapvideomodal/dist/bootstrapvideomodalcomponent.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-modal-video@${pkg.version}/release/release.js`
+      : "http://localhost:6006/modal-video/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("bootstrap-videomodal-component");
+    c = document.createElement("hb-modal-video");
     c.id = id;
   }
   if (uri) {

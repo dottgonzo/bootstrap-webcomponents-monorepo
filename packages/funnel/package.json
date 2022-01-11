@@ -1,9 +1,9 @@
 {
-	"name": "@htmlbricks/funnel-component",
+	"name": "@htmlbricks/hb-funnel",
 	"displayName": "Svelte Funnel WebComponent",
 	"description": "Svelte Funnel WebComponent",
-	"version": "0.2.4",
-	"main": "release/contact.js",
+	"version": "0.3.0",
+	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -20,7 +20,7 @@
 		"start": "sirv dist",
 		"dev": "rm -rf ./dist && rollup -c -w",
 		"build": "rm -rf ./dist && rollup -c",
-		"copydest": "rm -rf release && mkdir -p release && cp dist/funnel.js ./release/ && cp dist/funnel.js.map ./release/",
+		"copydest": "rm -rf release && mkdir -p release && cp dist/release.js ./release/ && cp dist/release.js.map ./release/",
 		"build:release": "PRODUCTION=true npm run build && npm run copydest",
 		"prepublish": "npm run build:release"
 	},

@@ -11,20 +11,20 @@ export const createFormTextInput = ({
   id,
   schemaentry,
 }: FormTextInputProps) => {
-  if (!document.getElementById("formrenderertextinputscript")) {
+  if (!document.getElementById("hb-input-text-script")) {
     const script = document.createElement("script");
-    script.id = "formrenderertextinputscript";
+    script.id = "hb-input-text-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/formrenderer-textinput@${pkg.version}/release/formrenderertextinput.js`
-      : "http://localhost:6006/formtextinputrenderer/dist/formrenderertextinput.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-input-text@${pkg.version}/release/release.js`
+      : "http://localhost:6006/input-text/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("formrenderer-textinput");
+    c = document.createElement("hb-input-text");
     c.id = id;
   }
   if (schemaentry) {

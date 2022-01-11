@@ -21,19 +21,19 @@ export const createFunnel = ({
   steps,
   submitstep,
 }: FunnelProps) => {
-  if (!document.getElementById("funnelcomponentscript")) {
+  if (!document.getElementById("hb-funnel-script")) {
     const script = document.createElement("script");
-    script.id = "funnelcomponentscript";
+    script.id = "hb-funnel-script";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/funnel-component@${pkg.version}/release/funnel.js`
-      : "http://localhost:6006/funnel/dist/funnel.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-funnel@${pkg.version}/release/release.js`
+      : "http://localhost:6006/funnel/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("funnel-component");
+    c = document.createElement("hb-funnel");
     c.id = id;
     c.addEventListener("update", (p: any) => update(p.detail));
     c.addEventListener("submit", (p: any) => submit(p.detail));

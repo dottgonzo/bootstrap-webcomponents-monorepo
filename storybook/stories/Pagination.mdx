@@ -14,7 +14,7 @@ Pagination is a basic component.
 <pre><code>
   {`<script
     id="paginationbootstrapcomponentjs"
-    src="https://cdn.jsdelivr.net/npm/@htmlbricks/paginationbootstrap-component@${pkg.version}/release/paginationbootstrap.js"
+    src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-paginate@${pkg.version}/release/paginationbootstrap.js"
   ></script>`}
 
 </code></pre>
@@ -24,10 +24,6 @@ Pagination is a basic component.
 {meta ? fromMetaArgsTypesToHtmlTable(meta.argTypes) : ""}
 
 <>{JSON.stringify(meta.argTypes)}</>
-<streamingtablebootstrap-webcomponent
-  rows=""
-  header='<>{meta ? [] : ""}</>'
-></streamingtablebootstrap-webcomponent>
 
 ## css variables
 
@@ -38,23 +34,23 @@ Pagination is a basic component.
 - Basic
 
 ```
-<paginationbootstrap-component />
+<hb-paginate />
 ```
 
-<paginationbootstrap-component />
+<hb-paginate />
 
 - With 5 pages
 
 ```
-<paginationbootstrap-component pages="5" />
+<hb-paginate pages="5" />
 ```
 
-<paginationbootstrap-component pages="5" />
+<hb-paginate pages="5" />
 
 - With 12 pages on page 3
 
 ```
-<paginationbootstrap-component pages="12" page="3" />
+<hb-paginate pages="12" page="3" />
 ```
 
-<paginationbootstrap-component pages="12" page="3" />
+<hb-paginate pages="12" page="3" />

@@ -25,5 +25,5 @@ export function fromMetaArgsTypesToAttributesTable(argsTypes: ArgTypes) {
 export function fromMetaArgsTypesToHtmlTable(argsTypes: ArgTypes) {
   const table = fromMetaArgsTypesToAttributesTable(argsTypes);
 
-  return "<streamingtablebootstrap-webcomponent></streamingtablebootstrap-webcomponent>";
+  return "<hb-table></hb-table>";
 }

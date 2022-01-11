@@ -1,4 +1,4 @@
-<svelte:options tag="bootstraplayout-component" />
+<svelte:options tag="hb-layout" />
 
 <script lang="ts">
 	/**
@@ -155,20 +155,20 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	function addComponent(componentName: string, scriptJsName: string, componentId: string, localPackageDir?: string) {
-		if (!document.getElementById(componentId)) {
+	function addComponent(componentName: string) {
+		if (!document.getElementById("hb-" + componentName + "-script")) {
 			const script = document.createElement("script");
-			script.id = componentId;
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/${componentName}@${pkg.version}/release/${scriptJsName}`;
-			if (localPackageDir && location.href.includes("localhost")) script.src = `http://localhost:6006/${localPackageDir}/dist/${scriptJsName}`;
+			script.id = "hb-" + componentName + "-script";
+			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
+			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
 			document.head.appendChild(script);
 		}
 	}
-	addComponent("footerbootstrap-component", "footerbootstrap.js", "footerscript", "footer");
-	addComponent("offcanvas-component", "offcanvas.js", "offcanvasscript", "offcanvas");
-	addComponent("navbarbootstrap-component", "navbarbootstrap.js", "navbarscript", "navbar");
-	addComponent("cookielaw-component", "cookielaw.js", "cookielawcomponentscript", "cookielaw");
+	addComponent("footer");
+	addComponent("offcanvas");
+	addComponent("navbar");
+	addComponent("cookie-law-banner");
 
 	function openmenu(o) {
 		if (o.isOpen || o.isOpen === false) navopen = o.isOpen;
@@ -179,7 +179,7 @@
 
 <div style={onescreen ? "display: flex;flex-direction: column;	height: 100vh;" : "display:block"} part="container">
 	{#if navlinks}
-		<offcanvas-component
+		<hb-offcanvas
 			navpage={pagename || ""}
 			navlinks={navlinks || "[]"}
 			companytitle={company?.siteName || ""}
@@ -189,9 +189,9 @@
 			on:pagechange={(p) => dispatch("pagechange", p.detail)}
 		>
 			<span slot="header"><slot name="nav-header-slot" /></span>
-		</offcanvas-component>
+		</hb-offcanvas>
 	{/if}
-	<navbarbootstrap-component
+	<hb-navbar
 		part="navbar"
 		noburger={navlinks ? "" : "yes"}
 		companylogouri={company?.logoUri || ""}
@@ -204,15 +204,15 @@
 		<span slot="left-slot"><slot name="nav-left-slot" /></span>
 		<span slot="center-slot"><slot name="nav-center-slot" /></span>
 		<span slot="right-slot"><slot name="nav-right-slot" /></span>
-	</navbarbootstrap-component>
+	</hb-navbar>
 
 	<div style={onescreen ? "flex: 2" : ""} part="page" id="page">
 		<slot name="page">page</slot>
 	</div>
 	{#if cookielaw || cookielawallowdecline || cookielawlanguage || cookielawuri4more}
-		<cookielaw-component language={cookielawlanguage} allowdecline={cookielawallowdecline} {cookielawuri4more} />
+		<hb-cookie-law-banner language={cookielawlanguage} allowdecline={cookielawallowdecline} {cookielawuri4more} />
 	{/if}
-	<footerbootstrap-component
+	<hb-footer
 		part="footer"
 		socials={socials ? JSON.stringify(socials) : ""}
 		contacts={contacts ? JSON.stringify(contacts) : ""}

@@ -76,19 +76,19 @@ export const createLayout = ({
   pagechange,
   offcanvasswitch,
 }: LayoutProps) => {
-  if (!document.getElementById("bootstraplayoutscript")) {
+  if (!document.getElementById("hb-layout-script")) {
     const script = document.createElement("script");
-    script.id = "bootstraplayoutscript";
+    script.id = "hb-layout-script";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/bootstraplayout-component@${pkg.version}/release/bootstraplayout.js`
-      : "http://localhost:6006/layout/dist/bootstraplayout.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-layout@${pkg.version}/release/release.js`
+      : "http://localhost:6006/layout/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("bootstraplayout-component");
+    c = document.createElement("hb-layout");
     c.id = id;
 
     c.addEventListener("offcanvasswitch", (e: any) =>

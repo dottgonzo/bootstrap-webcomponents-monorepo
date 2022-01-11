@@ -23,13 +23,13 @@ export const createSimpleDropdown = ({
   dropDownClick,
   dropdownSwitch,
 }: SimpleDropdownProps) => {
-  if (!document.getElementById("simpledropdownscript")) {
+  if (!document.getElementById("hb-dropdown-simple-script")) {
     const script = document.createElement("script");
-    script.id = "simpledropdownscript";
+    script.id = "hb-dropdown-simple-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/simpledropdown-component@${pkg.version}/release/simpledropdown.js`
-      : "http://localhost:6006/simpledropdown/dist/simpledropdown.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-dropdown-simple@${pkg.version}/release/release.js`
+      : "http://localhost:6006/dropdown-simple/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;
@@ -37,7 +37,7 @@ export const createSimpleDropdown = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("simpledropdown-component");
+    c = document.createElement("hb-dropdown-simple");
     c.id = id;
 
     if (c.id === "BasicSimpleDropdownRight") {

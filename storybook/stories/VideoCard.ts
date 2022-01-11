@@ -18,20 +18,20 @@ export const createVideoCard = ({
   time,
   provider,
 }: VideoCardProps) => {
-  if (!document.getElementById("videocardbootstrapbootstrapcomponentjs")) {
+  if (!document.getElementById("hb-card-video-script")) {
     const script = document.createElement("script");
-    script.id = "videocardbootstrapbootstrapcomponentjs";
+    script.id = "hb-card-video-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/videocardbootstrap-component@${pkg.version}/release/videocardbootstrap.js`
-      : "http://localhost:6006/videocard/dist/videocardbootstrap.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-card-video@${pkg.version}/release/release.js`
+      : "http://localhost:6006/card-video/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("videocardbootstrap-component");
+    c = document.createElement("hb-card-video");
     c.id = id;
   }
 

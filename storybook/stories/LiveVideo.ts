@@ -17,19 +17,19 @@ export const createLiveVideoPlayer = ({
   replacewithtext,
   liveStatus,
 }: LiveVideoPlayerProps) => {
-  if (!document.getElementById("liveplayerscript")) {
+  if (!document.getElementById("hb-player-live-script")) {
     const script = document.createElement("script");
-    script.id = "liveplayerscript";
+    script.id = "hb-player-live-script";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/liveplayer-component@${pkg.version}/release/liveplayer.js`
-      : "http://localhost:6006/liveplayer/dist/liveplayer.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-player-live@${pkg.version}/release/release.js`
+      : "http://localhost:6006/player-live/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("liveplayer-component");
+    c = document.createElement("hb-player-live");
     c.id = id;
     c.addEventListener("liveStatus", (e: any) => liveStatus(e.detail));
   }

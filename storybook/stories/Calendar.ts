@@ -17,19 +17,19 @@ export const createCalendar = ({
   changeCalendarDate,
   changeSelectedDate,
 }: CalendarProps) => {
-  if (!document.getElementById("calendarcomponentscript")) {
+  if (!document.getElementById("hb-calendar-events-script")) {
     const script = document.createElement("script");
-    script.id = "calendarcomponentscript";
+    script.id = "hb-calendar-events-script";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/calendar-component@${pkg.version}/release/calendar.js`
-      : "http://localhost:6006/calendar/dist/calendar.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-calendar-events@${pkg.version}/release/release.js`
+      : "http://localhost:6006/calendar-events/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("calendar-component");
+    c = document.createElement("hb-calendar-events");
     c.id = id;
     c.addEventListener("calendarEventClick", (e: any) =>
       calendarEventClick(e.detail)

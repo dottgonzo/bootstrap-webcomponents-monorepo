@@ -18,20 +18,20 @@ export const createRangeslider = ({
   withbubbles,
   changeRangeValues,
 }: RangesliderProps) => {
-  if (!document.getElementById("rangesliderscript")) {
+  if (!document.getElementById("hb-range-slider-script")) {
     const script = document.createElement("script");
-    script.id = "rangesliderscript";
+    script.id = "hb-range-slider-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/range-slider-component@${pkg.version}/release/rangeslider.js`
-      : "http://localhost:6006/rangeslider/dist/rangeslider.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-range-slider@${pkg.version}/release/release.js`
+      : "http://localhost:6006/range-slider/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("range-slider-component");
+    c = document.createElement("hb-range-slider");
     c.id = id;
     c.addEventListener("changeRangeValues", (i: any) =>
       changeRangeValues(i.detail)

@@ -13,20 +13,20 @@ export const createPageBanner = ({
   description,
   id,
 }: PageBannerProps) => {
-  if (!document.getElementById("pagebannerscript")) {
+  if (!document.getElementById("hb-banner-script")) {
     const script = document.createElement("script");
-    script.id = "pagebannerscript";
+    script.id = "hb-banner-script";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/pagebanner-component@${pkg.version}/release/pagebanner.js`
-      : "http://localhost:6006/pagebanner/dist/pagebanner.js";
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-banner@${pkg.version}/release/release.js`
+      : "http://localhost:6006/banner/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("pagebanner-component");
+    c = document.createElement("hb-banner");
     c.id = id;
   }
 
