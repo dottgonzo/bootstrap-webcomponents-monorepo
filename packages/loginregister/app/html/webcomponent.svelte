@@ -1,4 +1,4 @@
-<svelte:options tag="loginregister-component" />
+<svelte:options tag="hb-auth" />
 
 <script lang="ts">
 	/**

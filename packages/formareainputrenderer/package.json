@@ -1,5 +1,5 @@
 {
-	"name": "@htmlbricks/formrenderer-areainput",
+	"name": "@htmlbricks/hb-input-area",
 	"displayName": "Svelte-Bootstrap Text Area Input WebComponent",
 	"description": "Svelte-Bootstrap Text Area Input WebComponent",
 	"version": "0.2.4",

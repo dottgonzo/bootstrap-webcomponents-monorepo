@@ -1,4 +1,4 @@
-<svelte:options tag="contact-component" />
+<svelte:options tag="hb-contact-item" />
 
 <script lang="ts">
 	/**

@@ -1,4 +1,4 @@
-<svelte:options tag="simpledropdown-component" />
+<svelte:options tag="hb-dropdown-simple" />
 
 <script lang="ts">
 	/**

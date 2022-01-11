@@ -1,4 +1,4 @@
-<svelte:options tag="range-slider-component" />
+<svelte:options tag="hb-range-slider" />
 
 <script lang="ts">
 	/**

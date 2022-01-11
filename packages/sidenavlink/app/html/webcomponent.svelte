@@ -1,4 +1,4 @@
-<svelte:options tag="sidenavlink-component" />
+<svelte:options tag="hb-sidenav-link" />
 
 <script lang="ts">
 	/**

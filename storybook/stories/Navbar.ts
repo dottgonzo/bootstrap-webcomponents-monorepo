@@ -39,7 +39,7 @@ export const createNavbar = ({
     script.id = "navbarscript";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/navbarbootstrap-component@${pkg.version}/release/navbarbootstrap.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-navbar@${pkg.version}/release/navbarbootstrap.js`
       : "http://localhost:6006/navbar/dist/navbarbootstrap.js";
     document.body.appendChild(script);
   }
@@ -47,7 +47,7 @@ export const createNavbar = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("navbarbootstrap-component");
+    c = document.createElement("hb-navbar");
     c.id = id;
     c.addEventListener("navmenuswitch", (e: any) => navmenuswitch(e.detail));
     c.addEventListener("userClick", (e: any) => userClick(e.detail));

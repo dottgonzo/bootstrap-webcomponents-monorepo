@@ -1,4 +1,4 @@
-<svelte:options tag="liveplayer-component" />
+<svelte:options tag="hb-player-live" />
 
 <script lang="ts">
 	/**

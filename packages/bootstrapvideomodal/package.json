@@ -1,5 +1,5 @@
 {
-	"name": "@htmlbricks/bootstrap-videomodal-component",
+	"name": "@htmlbricks/hb-modal-video",
 	"displayName": "Svelte-Bootstrap Video Modal WebComponent",
 	"description": "Svelte-Bootstrap Video Modal WebComponent",
 	"version": "0.2.4",

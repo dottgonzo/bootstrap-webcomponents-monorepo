@@ -1,5 +1,5 @@
 {
-	"name": "@htmlbricks/funnel-component",
+	"name": "@htmlbricks/hb-funnel",
 	"displayName": "Svelte Funnel WebComponent",
 	"description": "Svelte Funnel WebComponent",
 	"version": "0.2.4",

@@ -1,5 +1,5 @@
 {
-	"name": "@htmlbricks/footerbootstrap-component",
+	"name": "@htmlbricks/hb-footer",
 	"displayName": "Svelte Bootstrap Footer WebComponent",
 	"description": "Svelte Bootstrap Footer WebComponent",
 	"version": "0.2.4",

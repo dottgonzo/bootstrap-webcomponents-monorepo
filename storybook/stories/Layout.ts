@@ -80,7 +80,7 @@ export const createLayout = ({
     const script = document.createElement("script");
     script.id = "bootstraplayoutscript";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/bootstraplayout-component@${pkg.version}/release/bootstraplayout.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-layout@${pkg.version}/release/bootstraplayout.js`
       : "http://localhost:6006/layout/dist/bootstraplayout.js";
     document.body.appendChild(script);
   }
@@ -88,7 +88,7 @@ export const createLayout = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("bootstraplayout-component");
+    c = document.createElement("hb-layout");
     c.id = id;
 
     c.addEventListener("offcanvasswitch", (e: any) =>

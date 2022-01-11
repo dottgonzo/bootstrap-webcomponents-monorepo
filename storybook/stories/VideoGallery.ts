@@ -36,7 +36,7 @@ export const createVideoGallery = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("videogallery-bootstrap-component");
+    c = document.createElement("hb-gallery-video");
     c.id = id;
     c.addEventListener("pagechange", (p: any) => pagechange(p.detail));
     c.addEventListener("textFilterVideos", (p: any) =>

@@ -1,5 +1,5 @@
 {
-	"name": "@htmlbricks/navbarbootstrap-component",
+	"name": "@htmlbricks/hb-navbar",
 	"displayName": "Svelte Navbar WebComponent",
 	"description": "Svelte Navbar WebComponent",
 	"version": "0.2.4",

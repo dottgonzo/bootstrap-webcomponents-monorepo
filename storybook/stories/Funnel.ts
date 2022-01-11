@@ -25,7 +25,7 @@ export const createFunnel = ({
     const script = document.createElement("script");
     script.id = "funnelcomponentscript";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/funnel-component@${pkg.version}/release/funnel.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-funnel@${pkg.version}/release/funnel.js`
       : "http://localhost:6006/funnel/dist/funnel.js";
     document.body.appendChild(script);
   }
@@ -33,7 +33,7 @@ export const createFunnel = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("funnel-component");
+    c = document.createElement("hb-funnel");
     c.id = id;
     c.addEventListener("update", (p: any) => update(p.detail));
     c.addEventListener("submit", (p: any) => submit(p.detail));

@@ -21,7 +21,7 @@ export const createCalendar = ({
     const script = document.createElement("script");
     script.id = "calendarcomponentscript";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/calendar-component@${pkg.version}/release/calendar.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-calendar-events@${pkg.version}/release/calendar.js`
       : "http://localhost:6006/calendar/dist/calendar.js";
     document.body.appendChild(script);
   }
@@ -29,7 +29,7 @@ export const createCalendar = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("calendar-component");
+    c = document.createElement("hb-calendar-events");
     c.id = id;
     c.addEventListener("calendarEventClick", (e: any) =>
       calendarEventClick(e.detail)

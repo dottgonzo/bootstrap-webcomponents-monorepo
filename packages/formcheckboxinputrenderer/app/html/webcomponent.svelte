@@ -1,4 +1,4 @@
-<svelte:options tag="formrenderer-checkboxinput" />
+<svelte:options tag="hb-input-checkbox" />
 
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";

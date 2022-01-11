@@ -18,7 +18,7 @@ export const createPageBanner = ({
     script.id = "pagebannerscript";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/pagebanner-component@${pkg.version}/release/pagebanner.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-banner@${pkg.version}/release/pagebanner.js`
       : "http://localhost:6006/pagebanner/dist/pagebanner.js";
     document.body.appendChild(script);
   }
@@ -26,7 +26,7 @@ export const createPageBanner = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("pagebanner-component");
+    c = document.createElement("hb-banner");
     c.id = id;
   }
 

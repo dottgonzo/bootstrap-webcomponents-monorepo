@@ -99,7 +99,7 @@ export const createLoginRegisterPage = ({
     script.id = "apploginregisterscript";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/apploginregister-component@${pkg.version}/release/apploginregister.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-loginregisterpage@${pkg.version}/release/apploginregister.js`
       : "http://localhost:6006/apploginregister/dist/apploginregister.js";
     document.body.appendChild(script);
   }
@@ -107,7 +107,7 @@ export const createLoginRegisterPage = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("apploginregister-component");
+    c = document.createElement("hb-loginregisterpage");
     c.id = id;
     c.addEventListener("login", (c: any) => login(c.detail));
     c.addEventListener("register", (c: any) => register(c.detail));

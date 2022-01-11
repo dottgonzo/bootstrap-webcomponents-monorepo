@@ -23,7 +23,7 @@ export const createVideoCard = ({
     script.id = "videocardbootstrapbootstrapcomponentjs";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/videocardbootstrap-component@${pkg.version}/release/videocardbootstrap.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-card-video@${pkg.version}/release/videocardbootstrap.js`
       : "http://localhost:6006/videocard/dist/videocardbootstrap.js";
     document.body.appendChild(script);
   }
@@ -31,7 +31,7 @@ export const createVideoCard = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("videocardbootstrap-component");
+    c = document.createElement("hb-card-video");
     c.id = id;
   }
 

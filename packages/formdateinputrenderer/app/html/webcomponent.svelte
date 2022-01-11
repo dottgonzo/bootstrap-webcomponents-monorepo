@@ -1,4 +1,4 @@
-<svelte:options tag="formrenderer-dateinput" />
+<svelte:options tag="hb-input-date" />
 
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";

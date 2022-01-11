@@ -20,7 +20,7 @@ export const createDownloader = ({
     script.id = "bootstrapdownloadercomponentscript";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/bootstrap-downloader-component@${pkg.version}/release/bootstrapdownloadercomponent.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-downloader@${pkg.version}/release/bootstrapdownloadercomponent.js`
       : "http://localhost:6006/bootstrapdownloader/dist/bootstrapdownloadercomponent.js";
     document.body.appendChild(script);
   }
@@ -28,7 +28,7 @@ export const createDownloader = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("bootstrap-downloader-component");
+    c = document.createElement("hb-downloader");
     c.id = id;
   }
   if (uri) {

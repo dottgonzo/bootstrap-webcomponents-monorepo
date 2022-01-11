@@ -1,4 +1,4 @@
-<svelte:options tag="formrenderer-fileinput" />
+<svelte:options tag="hb-input-file" />
 
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";

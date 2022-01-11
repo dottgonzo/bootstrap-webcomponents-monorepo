@@ -1,4 +1,4 @@
-<svelte:options tag="navbarbootstrap-component" />
+<svelte:options tag="hb-navbar" />
 
 <script lang="ts">
 	/**
@@ -67,7 +67,7 @@
 		}
 	}
 
-	addComponent("simpledropdown-component", "simpledropdown.js", "simpledropdownscript", "simpledropdown");
+	addComponent("hb-dropdown-simple", "simpledropdown.js", "simpledropdownscript", "simpledropdown");
 
 	// if (!document.getElementById("spectrumelements")) {
 	// 	const script = document.createElement("script");
@@ -114,8 +114,8 @@
 			</slot>
 		</div>
 		{#if usermenu}
-			<simpledropdown-component on:dropDownClick={(e) => dispatch("userClick", e.detail.key)} list={JSON.stringify(usermenu.list)} position="right"
-				><span slot="dropdownbutton"><img style="height: 30px;vertical-align: middle;" alt="" src={usermenu.imgUri} /></span></simpledropdown-component
+			<hb-dropdown-simple on:dropDownClick={(e) => dispatch("userClick", e.detail.key)} list={JSON.stringify(usermenu.list)} position="right"
+				><span slot="dropdownbutton"><img style="height: 30px;vertical-align: middle;" alt="" src={usermenu.imgUri} /></span></hb-dropdown-simple
 			>
 			<!-- 
 					<sp-avatar size="100" label="Dog the User" src={usermenu.imgUri} />

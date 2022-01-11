@@ -22,7 +22,7 @@ export const createPagination = ({
     script.id = "paginationbootstrapcomponentjs";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/paginationbootstrap-component@${pkg.version}/release/paginationbootstrap.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-paginate@${pkg.version}/release/paginationbootstrap.js`
       : "http://localhost:6006/pagination/dist/paginationbootstrap.js";
     document.body.appendChild(script);
   }
@@ -30,7 +30,7 @@ export const createPagination = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("paginationbootstrap-component");
+    c = document.createElement("hb-paginate");
     c.id = id;
     c.addEventListener("pagechange", (p: any) => pagechange(p.detail));
   }

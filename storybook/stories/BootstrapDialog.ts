@@ -11,7 +11,7 @@ export const createBootstrapDialog = ({ id, show }: BootstrapDialogProps) => {
     script.id = "bootstrapdialogcomponentscript";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/bootstrap-dialog-component@${pkg.version}/release/bootstrapdialogcomponent.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-dialog@${pkg.version}/release/bootstrapdialogcomponent.js`
       : "http://localhost:6006/bootstrapdialog/dist/bootstrapdialogcomponent.js";
     document.body.appendChild(script);
   }
@@ -19,10 +19,10 @@ export const createBootstrapDialog = ({ id, show }: BootstrapDialogProps) => {
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("bootstrap-dialog-component");
+    c = document.createElement("hb-dialog");
     c.id = id;
 
-    // b.innerHTML = `<button slot="test" onclick="document.getElementsByTagName('bootstrap-dialog-component')[0].setAttribute('open', 'yes')">test</button>`;
+    // b.innerHTML = `<button slot="test" onclick="document.getElementsByTagName('hb-dialog')[0].setAttribute('open', 'yes')">test</button>`;
     // document.body.appendChild(b);
   }
 

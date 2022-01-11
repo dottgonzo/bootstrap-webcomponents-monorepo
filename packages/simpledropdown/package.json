@@ -1,5 +1,5 @@
 {
-	"name": "@htmlbricks/simpledropdown-component",
+	"name": "@htmlbricks/hb-dropdown-simple",
 	"displayName": "Svelte Navbar WebComponent",
 	"description": "Svelte Navbar WebComponent",
 	"version": "0.2.4",

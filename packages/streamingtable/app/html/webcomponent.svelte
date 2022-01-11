@@ -1,4 +1,4 @@
-<svelte:options tag="streamingtablebootstrap-webcomponent" />
+<svelte:options tag="hb-table" />
 
 <script lang="ts">
 	/**
@@ -410,8 +410,8 @@
 			document.head.appendChild(script);
 		}
 	}
-	addComponent("paginationbootstrap-component", "paginationbootstrap.js", "paginationbootstrapcomponentjs", "pagination");
-	addComponent("bootstrap-dialog-component", "bootstrapdialogcomponent.js", "bootstrapdialogcomponentscript", "bootstrapdialog");
+	addComponent("hb-paginate", "paginationbootstrap.js", "paginationbootstrapcomponentjs", "pagination");
+	addComponent("hb-dialog", "bootstrapdialogcomponent.js", "bootstrapdialogcomponentscript", "bootstrapdialog");
 
 	function changeSort(key: string) {
 		console.log(sortedBy, sortedDirection);
@@ -453,7 +453,7 @@
 <svelte:head>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
 </svelte:head>
-<bootstrap-dialog-component
+<hb-dialog
 	id={modalConfirm.itemId || "confirmationModal"}
 	show={modalConfirm.show}
 	title={modalConfirm.title}
@@ -733,13 +733,7 @@
 						</span>
 					{/each}
 				{/if}
-				<paginationbootstrap-component
-					style="float:right"
-					on:pagechange={changePage}
-					page={page.toString()}
-					pages={pages.toString()}
-					primarycolor={primarycolor || ""}
-				/>
+				<hb-paginate style="float:right" on:pagechange={changePage} page={page.toString()} pages={pages.toString()} primarycolor={primarycolor || ""} />
 			</nav>
 		{/if}
 	</div>

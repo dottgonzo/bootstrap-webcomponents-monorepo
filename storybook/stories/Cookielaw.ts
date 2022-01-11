@@ -15,7 +15,7 @@ export const createCookielaw = ({
     const script = document.createElement("script");
     script.id = "cookielawcomponentscript";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/cookielaw-component@${pkg.version}/release/cookielaw.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-cookie-law-banner@${pkg.version}/release/cookielaw.js`
       : "http://localhost:6006/cookielaw/dist/cookielaw.js";
     document.body.appendChild(script);
   }
@@ -23,7 +23,7 @@ export const createCookielaw = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("cookielaw-component");
+    c = document.createElement("hb-cookie-law-banner");
     c.id = id;
 
     c.addEventListener("acceptCookieLaw", (e: any) =>

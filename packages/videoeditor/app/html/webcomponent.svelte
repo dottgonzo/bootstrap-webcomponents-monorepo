@@ -1,4 +1,4 @@
-<svelte:options tag="videoeditorbootstrap-component" />
+<svelte:options tag="hb-editor-video" />
 
 <script lang="ts">
 	/**
@@ -94,8 +94,8 @@
 			document.head.appendChild(script);
 		}
 	}
-	addComponent("range-slider-component", "rangeslider.js", "rangesliderscript", "rangeslider");
-	addComponent("formrenderer-host", "formhostcomponent.js", "formrendererhostscript", "formhostcomponent");
+	addComponent("hb-range-slider", "rangeslider.js", "rangesliderscript", "rangeslider");
+	addComponent("hb-form", "formhostcomponent.js", "formrendererhostscript", "formhostcomponent");
 
 	function dispatchTrackVals(trackStatus: IDispatchValsEvent) {
 		track.minValue = trackStatus.minValue;
@@ -230,7 +230,7 @@
 		</div>
 		{#if durationInSeconds && track}
 			<div style="width: 100%;margin-top:20px">
-				<range-slider-component
+				<hb-range-slider
 					max={max.toString()}
 					min={min.toString()}
 					maxval={track.maxValue.toString()}
@@ -241,7 +241,7 @@
 				/>
 			</div>
 		{/if}
-		{#if form}<formrenderer-host
+		{#if form}<hb-form
 				on:submit={(e) => formSubmit(e.detail)}
 				on:change={(e) => formCheck(e.detail)}
 				style="margin:40px auto 20px auto; display:block"

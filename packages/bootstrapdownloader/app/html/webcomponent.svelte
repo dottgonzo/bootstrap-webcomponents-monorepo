@@ -1,4 +1,4 @@
-<svelte:options tag="bootstrap-downloader-component" />
+<svelte:options tag="hb-downloader" />
 
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";
@@ -14,7 +14,7 @@
 	if (!document.getElementById("bootstrapdialogcomponentscript")) {
 		const script = document.createElement("script");
 		script.id = "bootstrapdialogcomponentscript";
-		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/bootstrap-dialog-component@${pkg.version}/release/bootstrapdialogcomponent.js`;
+		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-dialog@${pkg.version}/release/bootstrapdialogcomponent.js`;
 		if (location.href.includes("localhost")) script.src = `http://localhost:6006/bootstrapdialog/dist/bootstrapdialogcomponent.js`;
 
 		document.head.appendChild(script);
@@ -120,7 +120,7 @@
 	}
 </script>
 
-<bootstrap-dialog-component id={downloadid} show={uri ? "yes" : "no"} on:modalShow={(d) => dialogShowEvent(d.detail)}>
+<hb-dialog id={downloadid} show={uri ? "yes" : "no"} on:modalShow={(d) => dialogShowEvent(d.detail)}>
 	<span slot="title">
 		<slot name="title">Downloading</slot>
 	</span>
@@ -154,7 +154,7 @@
 		{/if}
 	</div>
 	<span slot="modal-footer" />
-</bootstrap-dialog-component>
+</hb-dialog>
 
 <style lang="scss">
 	@import "../styles/bootstrap.scss";

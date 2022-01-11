@@ -58,7 +58,7 @@ export const createTable = ({
     script.id = "streamingtablescript";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/streamingtablebootstrap-webcomponent@${pkg.version}/release/streamingtablebootstrap.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-table@${pkg.version}/release/streamingtablebootstrap.js`
       : "http://localhost:6006/streamingtable/dist/streamingtablebootstrap.js";
     document.body.appendChild(script);
   }
@@ -66,7 +66,7 @@ export const createTable = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("streamingtablebootstrap-webcomponent");
+    c = document.createElement("hb-table");
     c.id = id;
     c.addEventListener("clickonrow", (i: any) => clickonrow(i.detail));
 

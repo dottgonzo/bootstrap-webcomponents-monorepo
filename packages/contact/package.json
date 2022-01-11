@@ -1,5 +1,5 @@
 {
-	"name": "@htmlbricks/contact-component",
+	"name": "@htmlbricks/hb-contact-item",
 	"displayName": "Svelte Contact WebComponent",
 	"description": "Svelte Contact WebComponent",
 	"version": "0.2.4",

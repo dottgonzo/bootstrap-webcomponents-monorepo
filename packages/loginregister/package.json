@@ -1,5 +1,5 @@
 {
-	"name": "@htmlbricks/loginregister-component",
+	"name": "@htmlbricks/hb-auth",
 	"displayName": "Svelte Boostrap Login and Register WebComponent",
 	"description": "Svelte Boostrap Login and Register WebComponent",
 	"version": "0.2.4",

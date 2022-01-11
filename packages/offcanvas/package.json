@@ -1,5 +1,5 @@
 {
-	"name": "@htmlbricks/offcanvas-component",
+	"name": "@htmlbricks/hb-offcanvas",
 	"displayName": "Svelte Boostrap Offcanvas",
 	"description": "Svelte Boostrap Offcanvas",
 	"version": "0.2.4",

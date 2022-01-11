@@ -1,5 +1,5 @@
 {
-	"name": "@htmlbricks/videoeditorbootstrap-component",
+	"name": "@htmlbricks/hb-editor-video",
 	"displayName": "Svelte Boostrap Video Card WebComponent",
 	"description": "Svelte Boostrap Video Card WebComponent",
 	"version": "0.2.4",

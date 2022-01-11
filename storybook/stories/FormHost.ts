@@ -20,7 +20,7 @@ export const createFormHost = ({
     script.id = "formhostscript";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/formrenderer-host@${pkg.version}/release/formhostcomponent.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-form@${pkg.version}/release/formhostcomponent.js`
       : "http://localhost:6006/formhostcomponent/dist/formhostcomponent.js";
     document.body.appendChild(script);
   }
@@ -28,7 +28,7 @@ export const createFormHost = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("formrenderer-host");
+    c = document.createElement("hb-form");
     c.id = id;
     c.addEventListener("submit", (p: any) => submit(p.detail));
   }

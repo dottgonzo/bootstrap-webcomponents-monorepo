@@ -1,4 +1,4 @@
-<svelte:options tag="videogallery-bootstrap-component" />
+<svelte:options tag="hb-gallery-video" />
 
 <script lang="ts">
 	/**
@@ -213,14 +213,14 @@
 	if (!document.getElementById("paginationbootstrapcomponentjs")) {
 		const script = document.createElement("script");
 		script.id = "paginationbootstrapcomponentjs";
-		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/paginationbootstrap-component@${pkg.version}/release/paginationbootstrap.js`;
+		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-paginate@${pkg.version}/release/paginationbootstrap.js`;
 		document.head.appendChild(script);
 	}
 
 	if (!document.getElementById("videocardbootstrapbootstrapcomponentjs")) {
 		const script = document.createElement("script");
 		script.id = "videocardbootstrapbootstrapcomponentjs";
-		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/videocardbootstrap-component@${pkg.version}/release/videocardbootstrap.js`;
+		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-card-video@${pkg.version}/release/videocardbootstrap.js`;
 		if (location.href.includes("localhost")) script.src = `http://localhost:6006/videocard/dist/videocardbootstrap.js`;
 
 		document.head.appendChild(script);
@@ -318,7 +318,7 @@
 			<div class="row">
 				{#each !externalfilter ? cardItems.slice(page * size, (page + 1) * size) : cardItems as item (item._id)}
 					<div class="col-12 col-xxl-3 col-xl-4 col-md-6" style="padding:12px">
-						<videocardbootstrap-component
+						<hb-card-video
 							title={item.title || ""}
 							description={item.description || ""}
 							time={item.time ? dayjs(item.time).format() : undefined}
@@ -331,7 +331,7 @@
 				{/each}
 			</div>
 			<nav style="margin-top:20px" aria-label="Page navigation example">
-				<paginationbootstrap-component on:pagechange={changePage} page={page.toString()} pages={pages.toString()} primarycolor={primarycolor || ""} />
+				<hb-paginate on:pagechange={changePage} page={page.toString()} pages={pages.toString()} primarycolor={primarycolor || ""} />
 			</nav>
 		{/if}
 	{/if}

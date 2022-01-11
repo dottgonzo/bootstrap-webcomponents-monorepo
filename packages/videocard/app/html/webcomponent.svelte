@@ -1,4 +1,4 @@
-<svelte:options tag="videocardbootstrap-component" />
+<svelte:options tag="hb-card-video" />
 
 <script lang="ts">
 	/**

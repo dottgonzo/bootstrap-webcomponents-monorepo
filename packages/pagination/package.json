@@ -1,5 +1,5 @@
 {
-	"name": "@htmlbricks/paginationbootstrap-component",
+	"name": "@htmlbricks/hb-paginate",
 	"displayName": "Svelte Boostrap Pagination WebComponent",
 	"description": "Svelte Boostrap Pagination WebComponent",
 	"version": "0.2.4",

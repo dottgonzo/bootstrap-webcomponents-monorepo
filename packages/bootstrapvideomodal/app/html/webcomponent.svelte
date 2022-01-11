@@ -1,4 +1,4 @@
-<svelte:options tag="bootstrap-videomodal-component" />
+<svelte:options tag="hb-modal-video" />
 
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";
@@ -20,7 +20,7 @@
 			document.head.appendChild(script);
 		}
 	}
-	addComponent("bootstrap-dialog-component", "bootstrapdialogcomponent.js", "bootstrapdialogcomponentscript", "bootstrapdialog");
+	addComponent("hb-dialog", "bootstrapdialogcomponent.js", "bootstrapdialogcomponentscript", "bootstrapdialog");
 
 	export let item: string;
 	export let uri: string;
@@ -46,7 +46,7 @@
 	}
 </script>
 
-<bootstrap-dialog-component id={item} show={uri ? "yes" : "no"} on:modalShow={(d) => dialogShowEvent(d.detail)}>
+<hb-dialog id={item} show={uri ? "yes" : "no"} on:modalShow={(d) => dialogShowEvent(d.detail)}>
 	{#if title}
 		<span slot="title">
 			<slot name="title">Video: {title}</slot>
@@ -71,7 +71,7 @@
 	</div>
 
 	<span slot="modal-footer" />
-</bootstrap-dialog-component>
+</hb-dialog>
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";

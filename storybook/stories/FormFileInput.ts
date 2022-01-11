@@ -16,7 +16,7 @@ export const createFormFileInput = ({
     script.id = "formrendererfileinputscript";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/formrenderer-fileinput@${pkg.version}/release/formrendererfileinput.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-input-file@${pkg.version}/release/formrendererfileinput.js`
       : "http://localhost:6006/formfileinputrenderer/dist/formrendererfileinput.js";
     document.body.appendChild(script);
   }
@@ -24,7 +24,7 @@ export const createFormFileInput = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("formrenderer-fileinput");
+    c = document.createElement("hb-input-file");
     c.id = id;
   }
   if (schemaentry) {

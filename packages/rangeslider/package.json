@@ -1,5 +1,5 @@
 {
-	"name": "@htmlbricks/range-slider-component",
+	"name": "@htmlbricks/hb-range-slider",
 	"displayName": "Svelte Boostrap Video Card WebComponent",
 	"description": "Svelte Boostrap Video Card WebComponent",
 	"version": "0.2.4",

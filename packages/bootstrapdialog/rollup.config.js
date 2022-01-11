@@ -37,8 +37,8 @@ export default {
 	output: {
 		sourcemap: true,
 		format: "iife",
-		file: "dist/bootstrapdialogcomponent.js",
-		name: "bootstrapdialogcomponent",
+		file: "dist/release.js",
+		name: "release",
 	},
 	plugins: [
 		json(),

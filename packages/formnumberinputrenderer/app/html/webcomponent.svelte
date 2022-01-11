@@ -1,4 +1,4 @@
-<svelte:options tag="formrenderer-numberinput" />
+<svelte:options tag="hb-input-number" />
 
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";

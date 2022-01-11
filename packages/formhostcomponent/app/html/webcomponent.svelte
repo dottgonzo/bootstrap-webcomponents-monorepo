@@ -1,4 +1,4 @@
-<svelte:options tag="formrenderer-host" />
+<svelte:options tag="hb-form" />
 
 <script lang="ts">
 	/**
@@ -20,15 +20,15 @@
 	import { groupMultipleBy } from "@app/functions/utils";
 
 	type IComponentName =
-		| "formrenderer-selectinput"
-		| "formrenderer-dateinput"
-		| "formrenderer-textinput"
-		| "formrenderer-fileinput"
-		| "formrenderer-numberinput"
-		| "formrenderer-emailinput"
-		| "formrenderer-areainput"
-		| "formrenderer-checkboxinput"
-		| "formrenderer-radioinput";
+		| "hb-input-select"
+		| "hb-input-date"
+		| "hb-input-text"
+		| "hb-input-file"
+		| "hb-input-number"
+		| "hb-input-email"
+		| "hb-input-area"
+		| "hb-input-checkbox"
+		| "hb-input-radio";
 
 	interface ISchemaOption {
 		labelIsHandledByComponent?: boolean;
@@ -49,15 +49,15 @@
 	}
 	const registeredComponents: IRegisterComponent = {
 		row: { component: null, options: { row: true } },
-		select: { component: "formrenderer-selectinput" },
-		date: { component: "formrenderer-dateinput" },
-		text: { component: "formrenderer-textinput" },
-		number: { component: "formrenderer-numberinput" },
-		email: { component: "formrenderer-emailinput" },
-		file: { component: "formrenderer-fileinput" },
-		textarea: { component: "formrenderer-areainput" },
-		checkbox: { component: "formrenderer-checkboxinput", options: { labelIsHandledByComponent: true } },
-		radio: { component: "formrenderer-radioinput", options: { labelIsHandledByComponent: true } },
+		select: { component: "hb-input-select" },
+		date: { component: "hb-input-date" },
+		text: { component: "hb-input-text" },
+		number: { component: "hb-input-number" },
+		email: { component: "hb-input-email" },
+		file: { component: "hb-input-file" },
+		textarea: { component: "hb-input-area" },
+		checkbox: { component: "hb-input-checkbox", options: { labelIsHandledByComponent: true } },
+		radio: { component: "hb-input-radio", options: { labelIsHandledByComponent: true } },
 	};
 
 	export let schema: FormSchema;
@@ -200,16 +200,16 @@
 		}
 	}
 
-	addComponent("formrenderer-dateinput", "formrendererdateinput.js", "formrendererdateinputscript", "formdateinputrenderer");
+	addComponent("hb-input-date", "formrendererdateinput.js", "formrendererdateinputscript", "formdateinputrenderer");
 
-	addComponent("formrenderer-textinput", "formrenderertextinput.js", "formrenderertextinputscript", "formtextinputrenderer");
-	addComponent("formrenderer-emailinput", "formrendereremailinput.js", "formrendereremailinputscript", "formemailinputrenderer");
-	addComponent("formrenderer-checkboxinput", "formrenderercheckboxinput.js", "formrenderercheckboxinputscript", "formcheckboxinputrenderer");
-	addComponent("formrenderer-numberinput", "formrenderernumberinput.js", "formrenderernumberinputscript", "formnumberinputrenderer");
-	addComponent("formrenderer-areainput", "formrendererareainput.js", "formrendererareainputscript", "formareainputrenderer");
-	addComponent("formrenderer-radioinput", "formrendererradioinput.js", "formrendererradioinputscript", "formradioinputrenderer");
-	addComponent("formrenderer-selectinput", "formrendererselectinput.js", "formrendererselectinputscript", "formselectinputrenderer");
-	addComponent("formrenderer-fileinput", "formrendererfileinput.js", "formrendererfileinputscript", "formfileinputrenderer");
+	addComponent("hb-input-text", "formrenderertextinput.js", "formrenderertextinputscript", "formtextinputrenderer");
+	addComponent("hb-input-email", "formrendereremailinput.js", "formrendereremailinputscript", "formemailinputrenderer");
+	addComponent("hb-input-checkbox", "formrenderercheckboxinput.js", "formrenderercheckboxinputscript", "formcheckboxinputrenderer");
+	addComponent("hb-input-number", "formrenderernumberinput.js", "formrenderernumberinputscript", "formnumberinputrenderer");
+	addComponent("hb-input-area", "formrendererareainput.js", "formrendererareainputscript", "formareainputrenderer");
+	addComponent("hb-input-radio", "formrendererradioinput.js", "formrendererradioinputscript", "formradioinputrenderer");
+	addComponent("hb-input-select", "formrendererselectinput.js", "formrendererselectinputscript", "formselectinputrenderer");
+	addComponent("hb-input-file", "formrendererfileinput.js", "formrendererfileinputscript", "formfileinputrenderer");
 
 	const component = get_current_component();
 
@@ -256,8 +256,8 @@
 										<label for={entry.id}>{entry.label}</label>
 									{/if}
 
-									{#if component === "formrenderer-textinput"}
-										<formrenderer-textinput
+									{#if component === "hb-input-text"}
+										<hb-input-text
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -271,8 +271,8 @@
 											setvalue
 											setvalid
 										/>
-									{:else if component === "formrenderer-fileinput"}
-										<formrenderer-fileinput
+									{:else if component === "hb-input-file"}
+										<hb-input-file
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -286,8 +286,8 @@
 											setvalue
 											setvalid
 										/>
-									{:else if component === "formrenderer-emailinput"}
-										<formrenderer-emailinput
+									{:else if component === "hb-input-email"}
+										<hb-input-email
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -301,8 +301,8 @@
 											setvalue
 											setvalid
 										/>
-									{:else if component === "formrenderer-dateinput"}
-										<formrenderer-dateinput
+									{:else if component === "hb-input-date"}
+										<hb-input-date
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -316,8 +316,8 @@
 											setvalue
 											setvalid
 										/>
-									{:else if component === "formrenderer-checkboxinput"}
-										<formrenderer-checkboxinput
+									{:else if component === "hb-input-checkbox"}
+										<hb-input-checkbox
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -331,8 +331,8 @@
 											setvalue
 											setvalid
 										/>
-									{:else if component === "formrenderer-numberinput"}
-										<formrenderer-numberinput
+									{:else if component === "hb-input-number"}
+										<hb-input-number
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -346,8 +346,8 @@
 											setvalue
 											setvalid
 										/>
-									{:else if component === "formrenderer-areainput"}
-										<formrenderer-areainput
+									{:else if component === "hb-input-area"}
+										<hb-input-area
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -361,8 +361,8 @@
 											setvalue
 											setvalid
 										/>
-									{:else if component === "formrenderer-radioinput"}
-										<formrenderer-radioinput
+									{:else if component === "hb-input-radio"}
+										<hb-input-radio
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -376,8 +376,8 @@
 											setvalue
 											setvalid
 										/>
-									{:else if component === "formrenderer-selectinput"}
-										<formrenderer-selectinput
+									{:else if component === "hb-input-select"}
+										<hb-input-select
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -404,8 +404,8 @@
 					<label for={entry.id}>{entry.label}</label>
 				{/if}
 
-				{#if component === "formrenderer-textinput"}
-					<formrenderer-textinput
+				{#if component === "hb-input-text"}
+					<hb-input-text
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -419,8 +419,8 @@
 						setvalue
 						setvalid
 					/>
-				{:else if component === "formrenderer-fileinput"}
-					<formrenderer-fileinput
+				{:else if component === "hb-input-file"}
+					<hb-input-file
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -434,8 +434,8 @@
 						setvalue
 						setvalid
 					/>
-				{:else if component === "formrenderer-emailinput"}
-					<formrenderer-emailinput
+				{:else if component === "hb-input-email"}
+					<hb-input-email
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -449,8 +449,8 @@
 						setvalue
 						setvalid
 					/>
-				{:else if component === "formrenderer-dateinput"}
-					<formrenderer-dateinput
+				{:else if component === "hb-input-date"}
+					<hb-input-date
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -464,8 +464,8 @@
 						setvalue
 						setvalid
 					/>
-				{:else if component === "formrenderer-checkboxinput"}
-					<formrenderer-checkboxinput
+				{:else if component === "hb-input-checkbox"}
+					<hb-input-checkbox
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -479,8 +479,8 @@
 						setvalue
 						setvalid
 					/>
-				{:else if component === "formrenderer-numberinput"}
-					<formrenderer-numberinput
+				{:else if component === "hb-input-number"}
+					<hb-input-number
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -494,8 +494,8 @@
 						setvalue
 						setvalid
 					/>
-				{:else if component === "formrenderer-areainput"}
-					<formrenderer-areainput
+				{:else if component === "hb-input-area"}
+					<hb-input-area
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -509,8 +509,8 @@
 						setvalue
 						setvalid
 					/>
-				{:else if component === "formrenderer-radioinput"}
-					<formrenderer-radioinput
+				{:else if component === "hb-input-radio"}
+					<hb-input-radio
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -524,8 +524,8 @@
 						setvalue
 						setvalid
 					/>
-				{:else if component === "formrenderer-selectinput"}
-					<formrenderer-selectinput
+				{:else if component === "hb-input-select"}
+					<hb-input-select
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(

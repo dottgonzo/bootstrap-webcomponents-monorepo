@@ -1,4 +1,4 @@
-<svelte:options tag="calendar-component" />
+<svelte:options tag="hb-calendar-events" />
 
 <script lang="ts">
 	/**

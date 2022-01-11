@@ -1,5 +1,5 @@
 {
-	"name": "@htmlbricks/cookielaw-component",
+	"name": "@htmlbricks/hb-cookie-law-banner",
 	"displayName": "Svelte cookielaw WebComponent",
 	"description": "Svelte cookielaw WebComponent",
 	"version": "0.2.4",

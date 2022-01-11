@@ -50,7 +50,7 @@ export const createContact = ({
     const script = document.createElement("script");
     script.id = "contactcomponentscript";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/contact-component@${pkg.version}/release/contact.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-contact-item@${pkg.version}/release/contact.js`
       : "http://localhost:6006/contact/dist/contact.js";
     document.body.appendChild(script);
   }
@@ -58,7 +58,7 @@ export const createContact = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("contact-component");
+    c = document.createElement("hb-contact-item");
     c.id = id;
 
     c.addEventListener("contactClick", (e: any) => contactclick(e.detail));

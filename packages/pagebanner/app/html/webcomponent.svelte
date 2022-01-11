@@ -1,4 +1,4 @@
-<svelte:options tag="pagebanner-component" />
+<svelte:options tag="hb-banner" />
 
 <script lang="ts">
 	/**

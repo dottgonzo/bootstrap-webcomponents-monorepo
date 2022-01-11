@@ -1,4 +1,4 @@
-<svelte:options tag="cookielaw-component" />
+<svelte:options tag="hb-cookie-law-banner" />
 
 <script lang="ts">
 	/**

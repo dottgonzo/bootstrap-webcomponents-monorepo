@@ -1,4 +1,4 @@
-<svelte:options tag="formrenderer-textinput" />
+<svelte:options tag="hb-input-text" />
 
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";

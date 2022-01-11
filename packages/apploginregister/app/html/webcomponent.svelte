@@ -1,4 +1,4 @@
-<svelte:options tag="apploginregister-component" />
+<svelte:options tag="hb-loginregisterpage" />
 
 <script lang="ts">
 	/**
@@ -231,23 +231,16 @@
 			document.head.appendChild(script);
 		}
 	}
-	addComponent("bootstraplayout-component", "bootstraplayout.js", "bootstraplayoutscript", "layout");
-	addComponent("loginregister-component", "loginregister.js", "loginregistercomponentscript", "loginregister");
+	addComponent("hb-layout", "bootstraplayout.js", "bootstraplayoutscript", "layout");
+	addComponent("hb-auth", "loginregister.js", "loginregistercomponentscript", "loginregister");
 </script>
 
-<bootstraplayout-component
-	onescreen="yes"
-	socials={socials || ""}
-	columns={columns || ""}
-	contacts={contacts || ""}
-	company={company || ""}
-	style="display:block"
->
+<hb-layout onescreen="yes" socials={socials || ""} columns={columns || ""} contacts={contacts || ""} company={company || ""} style="display:block">
 	<span slot="nav-right-slot"><slot name="nav-right-slot" /></span>
 	<span slot="nav-left-slot"><slot name="nav-left-slot" /></span>
 	<span slot="nav-center-slot"><slot name="nav-center-slot" /></span>
 
-	<loginregister-component
+	<hb-auth
 		sessionkey={sessionkey || ""}
 		loginuri={loginuri || ""}
 		part="loginbox"
@@ -263,10 +256,10 @@
 		}}
 		slot="page"
 	/>
-</bootstraplayout-component>
+</hb-layout>
 
 <style lang="scss">
-	bootstraplayout-component::part(footer) {
+	hb-layout::part(footer) {
 		background-color: rgba(0, 0, 0, 0.03);
 		margin-top: 70px;
 	}

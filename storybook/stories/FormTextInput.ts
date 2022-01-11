@@ -16,7 +16,7 @@ export const createFormTextInput = ({
     script.id = "formrenderertextinputscript";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/formrenderer-textinput@${pkg.version}/release/formrenderertextinput.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-input-text@${pkg.version}/release/formrenderertextinput.js`
       : "http://localhost:6006/formtextinputrenderer/dist/formrenderertextinput.js";
     document.body.appendChild(script);
   }
@@ -24,7 +24,7 @@ export const createFormTextInput = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("formrenderer-textinput");
+    c = document.createElement("hb-input-text");
     c.id = id;
   }
   if (schemaentry) {

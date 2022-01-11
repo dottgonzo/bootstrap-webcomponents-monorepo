@@ -34,7 +34,7 @@ export const createLoginRegister = ({
     const script = document.createElement("script");
     script.id = "loginregistercomponentscript";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/loginregister-component@${pkg.version}/release/loginregister.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-auth@${pkg.version}/release/loginregister.js`
       : "http://localhost:6006/loginregister/dist/loginregister.js";
     document.body.appendChild(script);
   }
@@ -42,7 +42,7 @@ export const createLoginRegister = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("loginregister-component");
+    c = document.createElement("hb-auth");
     c.id = id;
     c.addEventListener("login", (c: any) => login(c.detail));
     c.addEventListener("register", (c: any) => register(c.detail));

@@ -1,4 +1,4 @@
-<svelte:options tag="offcanvas-component" />
+<svelte:options tag="hb-offcanvas" />
 
 <script lang="ts">
 	/**
@@ -112,7 +112,7 @@
 			document.head.appendChild(script);
 		}
 	}
-	addComponent("sidenavlink-component", "sidenavlink.js", "sidenavlinkscript", "sidenavlink");
+	addComponent("hb-sidenav-link", "sidenavlink.js", "sidenavlinkscript", "sidenavlink");
 </script>
 
 <svelte:head>
@@ -144,7 +144,7 @@
 			<ul class="nav nav-pills flex-column mb-auto" style="margin-top:25px">
 				{#if navLinks?.length && navLinks.filter((f) => !f.group)?.length}
 					{#each navLinks.filter((f) => !f.group) as navLink (navLink.key)}
-						<sidenavlink-component navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
+						<hb-sidenav-link navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
 					{/each}
 				{/if}
 				{#if groupsArr?.length}
@@ -153,7 +153,7 @@
 						<hr style="margin-top:0px;margin-bottom: 10px;" />
 
 						{#each navLinks.filter((f) => f.group && f.group === navLinkGroup.key) as navLink (navLink.key)}
-							<sidenavlink-component navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
+							<hb-sidenav-link navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
 						{/each}
 					{/each}
 				{/if}
@@ -166,7 +166,7 @@
 					<hr style="margin-top:0px;margin-bottom: 10px;" />
 
 					{#each navLinks.filter((f) => f.group && f.group === navLinkGroup) as navLink (navLink.key)}
-						<sidenavlink-component navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
+						<hb-sidenav-link navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
 					{/each}
 				{/each}
 

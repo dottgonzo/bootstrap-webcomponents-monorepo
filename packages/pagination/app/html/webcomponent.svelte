@@ -1,4 +1,4 @@
-<svelte:options tag="paginationbootstrap-component" />
+<svelte:options tag="hb-paginate" />
 
 <script lang="ts">
 	/**

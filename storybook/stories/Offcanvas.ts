@@ -42,7 +42,7 @@ export const createOffcanvas = ({
     script.id = "offcanvasscript";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/offcanvas-component@${pkg.version}/release/offcanvas.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-offcanvas@${pkg.version}/release/offcanvas.js`
       : "http://localhost:6006/offcanvas/dist/offcanvas.js";
     document.body.appendChild(script);
   }
@@ -50,13 +50,13 @@ export const createOffcanvas = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("offcanvas-component");
+    c = document.createElement("hb-offcanvas");
     c.id = id;
     c.addEventListener("pagechange", (p: any) => pagechange(p.detail));
     c.addEventListener("offcanvasswitch", (p: any) =>
       offcanvasswitch(p.detail)
     );
-    c.innerHTML = `<button slot="test" onclick="document.getElementsByTagName('offcanvas-component')[0].setAttribute('opened', 'yes')">test</button>`;
+    c.innerHTML = `<button slot="test" onclick="document.getElementsByTagName('hb-offcanvas')[0].setAttribute('opened', 'yes')">test</button>`;
   }
 
   if (opened) {
@@ -98,7 +98,7 @@ export const createOffcanvas = ({
   //   const b = document.createElement(`button`);
   //   b.onclick = function () {
   //     document
-  //       .getElementsByTagName("offcanvas-component")[0]
+  //       .getElementsByTagName("hb-offcanvas")[0]
   //       .setAttribute("opened", "yes");
   //   };
   //   b.id = "openbutton";

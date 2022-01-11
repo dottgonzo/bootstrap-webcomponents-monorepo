@@ -1,4 +1,4 @@
-<svelte:options tag="formrenderer-emailinput" />
+<svelte:options tag="hb-input-email" />
 
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";

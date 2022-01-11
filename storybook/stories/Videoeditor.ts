@@ -24,7 +24,7 @@ export const createVideoeditor = ({
     script.id = "videoeditorbootstrapscript";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/videoeditorbootstrap-component@${pkg.version}/release/videoeditorbootstrap.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-editor-video@${pkg.version}/release/videoeditorbootstrap.js`
       : "http://localhost:6006/videoeditor/dist/videoeditorbootstrap.js";
     document.body.appendChild(script);
   }
@@ -32,7 +32,7 @@ export const createVideoeditor = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("videoeditorbootstrap-component");
+    c = document.createElement("hb-editor-video");
     c.id = id;
     c.addEventListener("changeTrackValues", (i: any) =>
       changeTrackValues(i.detail)

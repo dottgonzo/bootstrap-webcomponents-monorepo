@@ -1,4 +1,4 @@
-<svelte:options tag="funnel-component" />
+<svelte:options tag="hb-funnel" />
 
 <script lang="ts">
 	/**
@@ -26,7 +26,7 @@
 			document.head.appendChild(script);
 		}
 	}
-	addComponent("formrenderer-host", "formhostcomponent.js", "formhostscript", "formhostcomponent");
+	addComponent("hb-form", "formhostcomponent.js", "formhostscript", "formhostcomponent");
 	export let id: string;
 	export let steps: number;
 	export let schemes: { schema: FormSchema; valid: boolean }[];
@@ -88,7 +88,7 @@
 </script>
 
 {#if schemes}
-	<formrenderer-host
+	<hb-form
 		id={`scheme-${step}-${steps}`}
 		on:submit={(e) => submitFunnel()}
 		on:change={(e) => schemeUpdate(e.detail)}

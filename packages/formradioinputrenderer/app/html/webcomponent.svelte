@@ -1,4 +1,4 @@
-<svelte:options tag="formrenderer-radioinput" />
+<svelte:options tag="hb-input-radio" />
 
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";

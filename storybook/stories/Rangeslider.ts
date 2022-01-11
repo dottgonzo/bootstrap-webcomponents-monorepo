@@ -23,7 +23,7 @@ export const createRangeslider = ({
     script.id = "rangesliderscript";
 
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/range-slider-component@${pkg.version}/release/rangeslider.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-range-slider@${pkg.version}/release/rangeslider.js`
       : "http://localhost:6006/rangeslider/dist/rangeslider.js";
     document.body.appendChild(script);
   }
@@ -31,7 +31,7 @@ export const createRangeslider = ({
   if (document.getElementById(id)) {
     c = document.getElementById(id);
   } else {
-    c = document.createElement("range-slider-component");
+    c = document.createElement("hb-range-slider");
     c.id = id;
     c.addEventListener("changeRangeValues", (i: any) =>
       changeRangeValues(i.detail)
