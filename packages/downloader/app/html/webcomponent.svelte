@@ -46,7 +46,7 @@
 
 	function onModalOpened() {
 		function onRequestError(err: any) {
-			console.log(err);
+			console.error(err);
 			if (err) errorMessage = err;
 			// uri = "";
 			// show = false;
@@ -59,6 +59,10 @@
 		xhr = new XMLHttpRequest();
 		try {
 			xhr.open("GET", uri, true);
+			// xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+			// xhr.setRequestHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, POST, DELETE, OPTIONS");
+			// xhr.setRequestHeader("Access-Control-Allow-Headers", "*");
+
 			if (headers) {
 				for (const header of Object.keys(headers)) {
 					xhr.setRequestHeader(header, headers[header]);
