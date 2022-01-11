@@ -17,7 +17,7 @@ export const createFormFileInput = ({
 
     script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-input-file@${pkg.version}/release/release.js`
-      : "http://localhost:6006/formfileinputrenderer/dist/release.js";
+      : "http://localhost:6006/input-file/dist/release.js";
     document.body.appendChild(script);
   }
   let c: HTMLElement;
