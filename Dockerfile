@@ -9,4 +9,5 @@ COPY ./storybook/stories ./stories
 RUN npm run build-storybook
 
 FROM nginx:alpine
+# COPY ./docker_nginx.conf /etc/nginx/default.conf
 COPY --from=builder /storybook/storybook-static /usr/share/nginx/html
