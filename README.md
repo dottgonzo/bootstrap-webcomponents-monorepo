@@ -178,9 +178,7 @@ when is needed to publish one/more packages version update, is needed to publish
 
 ### graphs
 
-- linear graph
-- bar graph
-- circular graph
+- ~~charts~~
 - gauges
 
 ### maps
