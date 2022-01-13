@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-input-select",
 	"displayName": "Svelte-Bootstrap Select Input WebComponent",
 	"description": "Svelte-Bootstrap Select Input WebComponent",
-	"version": "0.3.3",
+	"version": "0.3.4",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
