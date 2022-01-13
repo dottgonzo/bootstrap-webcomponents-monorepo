@@ -104,7 +104,5 @@
 	.chart-container {
 		position: relative;
 		margin: auto;
-		height: 100%;
-		width: 100%;
 	}
 </style>
