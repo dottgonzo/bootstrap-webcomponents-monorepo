@@ -94,7 +94,7 @@
 	});
 </script>
 
-<div class="chart-container">
+<div part="container" class="chart-container">
 	<canvas id="canvas" />
 </div>
 
