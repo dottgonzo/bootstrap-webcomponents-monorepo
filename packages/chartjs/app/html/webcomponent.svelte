@@ -99,7 +99,7 @@
 </div>
 
 <style lang="scss">
-	@import "../styles/webcomponent.scss";
+	// @import "../styles/webcomponent.scss";
 
 	.chart-container {
 		position: relative;
