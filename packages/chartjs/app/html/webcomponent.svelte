@@ -94,8 +94,17 @@
 	});
 </script>
 
-<canvas id="canvas" />
+<div class="chart-container">
+	<canvas id="canvas" />
+</div>
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
+
+	.chart-container {
+		position: relative;
+		margin: auto;
+		height: 100%;
+		width: 100%;
+	}
 </style>

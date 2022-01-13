@@ -30,6 +30,6 @@ ChartTemplate.args = {
         },
       ],
     },
-    options: {},
+    options: { responsive: true },
   },
 };
