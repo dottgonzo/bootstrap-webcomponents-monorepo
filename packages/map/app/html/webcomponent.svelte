@@ -2,7 +2,10 @@
 
 <script lang="ts">
 	import { get_current_component, onDestroy, onMount } from "svelte/internal";
-	import L from "leaflet";
+	import { Map, View } from "ol";
+	import OSM from "ol/source/OSM";
+	import TileLayer from "ol/layer/Tile";
+	import { fromLonLat } from "ol/proj";
 
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
@@ -12,7 +15,7 @@
 	// 	svelteDispatch(name, detail);
 	// 	component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	// }
-	let map: L;
+	let map;
 	let mountEl: HTMLElement;
 	export let id: string;
 
@@ -22,11 +25,18 @@
 
 	function updateMap() {
 		if (mountEl) {
-			map = L.map(mountEl).setView([51.505, -0.09], 13);
-
-			const tiles = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-			}).addTo(map);
+			map = new Map({
+				target: mountEl,
+				layers: [
+					new TileLayer({
+						source: new OSM(),
+					}),
+				],
+				view: new View({
+					center: fromLonLat([37.41, 8.82]),
+					zoom: 4,
+				}),
+			});
 		}
 	}
 
@@ -37,7 +47,7 @@
 </script>
 
 <div>
-	<div id="map" style="width: 600px; height: 400px;" />
+	<div id="map" class="map" style="width: 600px; height: 400px;" />
 </div>
 
 <style lang="scss">
