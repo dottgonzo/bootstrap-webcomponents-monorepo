@@ -4,7 +4,7 @@ const pkg = require('./package.json')
 
 async function run() {
     const packagesPath = path.resolve(__dirname, '..', 'packages')
-    const packages = (await fs.readdir('../packages', { withFileTypes: true })).filter(f => f.isDirectory).map(m => m.name)
+    const packages = (await fs.readdir(packagesPath, { withFileTypes: true })).filter(f => f.isDirectory && f.name !== 'bundle').map(m => m.name)
 
     let packagesCode = ''
     for (const package of packages) {
@@ -20,8 +20,7 @@ async function run() {
         }
     }\n`
 
-    console.log(packages)
-    let iifecode = `(function(){${baseCode}${packagesCode}})`
+    const iifecode = `(function(){${baseCode}${packagesCode}})`
     try {
         await fs.mkdir(path.resolve(__dirname, 'release'))
 
