@@ -15,7 +15,7 @@
 	// 	svelteDispatch(name, detail);
 	// 	component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	// }
-	let map;
+	let map: Map;
 	let mountEl: HTMLElement;
 	export let id: string;
 
@@ -46,9 +46,7 @@
 	});
 </script>
 
-<div>
-	<div id="map" class="map" style="width: 600px; height: 400px;" />
-</div>
+<div id="map" style="width: 600px; height: 400px;" />
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
