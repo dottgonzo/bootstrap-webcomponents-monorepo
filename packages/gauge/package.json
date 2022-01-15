@@ -1,7 +1,7 @@
 {
-	"name": "@htmlbricks/hb-gauges",
-	"displayName": "Svelte-Bootstrap gauges",
-	"description": "Svelte-Bootstrap gauges",
+	"name": "@htmlbricks/hb-gauge",
+	"displayName": "Svelte-Bootstrap gauge",
+	"description": "Svelte-Bootstrap gauge",
 	"version": "0.3.4",
 	"main": "release/release.js",
 	"publishConfig": {
@@ -68,6 +68,6 @@
 	"contributors": [],
 	"gitHead": "fcd4bcbd121db922ebc774083c82f37e69dcb2c3",
 	"dependencies": {
-		"chart.js": "^3.7.0"
+		"raphael": "^2.3.0"
 	}
 }

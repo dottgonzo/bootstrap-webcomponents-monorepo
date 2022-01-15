@@ -110,6 +110,7 @@ when is needed to publish one/more packages version update, is needed to publish
 - dropdown
 - video card
 - video modal
+- calendar with clickable notes inside cells
 
 ### contents
 
@@ -143,19 +144,21 @@ when is needed to publish one/more packages version update, is needed to publish
 
 - login register page
 
+### graphs
+
+- charts
+- gauges
+
 ## PLANNED COMPONENTS:
 
 ### uncategorized
 
-- ~~calendar with clickable notes inside cells~~
 - notification menu
 - toast notification
 - cart dropdown
 - search bar with suggestions
 - comment box
 - chat
-- ~~video editor (cut)~~
-- ~~funnel~~
 
 ### widget/card
 
@@ -175,11 +178,6 @@ when is needed to publish one/more packages version update, is needed to publish
 - cart
 - item of a shop with images
 - contact detail
-
-### graphs
-
-- ~~charts~~
-- gauges
 
 ### maps
 
