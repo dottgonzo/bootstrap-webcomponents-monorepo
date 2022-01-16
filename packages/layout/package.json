@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-layout",
 	"displayName": "Svelte Bootstrap Layout WebComponent",
 	"description": "Svelte Bootstrap 5 WebComponent",
-	"version": "0.3.5",
+	"version": "0.3.6",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
