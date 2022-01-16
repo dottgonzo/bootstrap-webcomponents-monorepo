@@ -6,19 +6,33 @@ const meta: Meta = {
   argTypes: {
     id: { control: { disable: true } },
     options: { control: { type: "object" } },
+    center: { control: { type: "array" } },
+    markers: { control: { type: "array" } },
+    zoom: { control: { type: "number" } },
+    source: { control: { type: "object" } },
   },
 };
 
 export default meta;
 
-const Template: Story = (args) => webComponentBind(args, meta.argTypes, "map");
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "map", { style: { height: "400px" } });
 
 export const MapTemplate = Template.bind({});
 MapTemplate.args = {
   id: "MapTemplate",
-  options: {
-    value: 50,
-    min: 0,
-    max: 100,
-  },
+  center: [10, 10],
+  zoom: 9,
+  source: { type: "osm" },
+  markers: [
+    {
+      latLng: [10.1, 10],
+    },
+    {
+      latLng: [10.2, 10],
+    },
+    {
+      latLng: [10.3, 10],
+    },
+  ],
 };

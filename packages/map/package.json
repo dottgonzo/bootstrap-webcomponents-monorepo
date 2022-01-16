@@ -69,7 +69,6 @@
 	"contributors": [],
 	"gitHead": "fcd4bcbd121db922ebc774083c82f37e69dcb2c3",
 	"dependencies": {
-		"leaflet": "^1.7.1",
 		"ol": "^6.12.0"
 	}
 }

@@ -5,7 +5,7 @@ export const webComponentBind = (
   args: any,
   argTypes: ArgTypes,
   componentName: string,
-  innerHTML?: string
+  options?: { innerHTML?: string; style: any }
 ) => {
   if (!args.id) args.id = componentName + "key";
   const attributes = Object.keys(argTypes).filter(
@@ -26,10 +26,15 @@ export const webComponentBind = (
   } else {
     c = document.createElement("hb-" + componentName);
     c.id = args.id;
-    if (innerHTML) c.innerHTML = innerHTML;
+    if (options?.innerHTML) c.innerHTML = options.innerHTML;
 
     for (const action of actions) {
       c.addEventListener(action, (p: any) => args[action](p.detail));
+    }
+  }
+  if (options?.style) {
+    for (const s of Object.keys(options.style)) {
+      c.style[s] = options.style[s];
     }
   }
   if (args._testInnerHtml) c.innerHTML = args._testInnerHtml;
