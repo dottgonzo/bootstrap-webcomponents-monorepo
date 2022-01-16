@@ -28,7 +28,11 @@
 	export let id: string;
 	export let zoom: number;
 	export let center: number[];
-	export let markers: { latLng: number[] }[];
+	export let data: {
+		marker?: { latLng?: number[]; nmea?: string };
+		point?: { latLng?: number[]; nmea?: string };
+		line?: { latLng?: number[]; nmea?: string }[];
+	}[];
 	export let source: { type: string; url?: string };
 
 	$: {
@@ -39,8 +43,8 @@
 		else if (typeof zoom === "string") zoom = Number(zoom);
 		if (!center) center = [37.41, 8.82];
 		else if (typeof center === "string") center = JSON.parse(center);
-		if (!markers) markers = [];
-		else if (typeof markers === "string") markers = JSON.parse(markers);
+		if (!data) data = [];
+		else if (typeof data === "string") data = JSON.parse(data);
 		updateMap();
 	}
 
@@ -71,12 +75,26 @@
 					}),
 				);
 			}
-			if (markers.length) {
+			if (data?.filter((f) => f.marker).length) {
 				const markersToAdd = [];
-				for (const marker of markers) {
+				for (const marker of data.filter((f) => f.marker).map((m) => m.marker)) {
+					// let markerCoords: number[];
+					// if (marker.latLng) {
+					// 	markerCoords = marker.latLng;
+					// } else if (marker.nmea) {
+					// 	try {
+					// 		const nmeaParsed: GPSState = Parse(marker.nmea) as GPSState;
+					// 		if (!nmeaParsed || !nmeaParsed.lat || !nmeaParsed.lon) throw new Error("invalid parse");
+					// 		markerCoords = [nmeaParsed.lat, nmeaParsed.lon];
+					// 	} catch (err) {
+					// 		throw new Error("invalid nmea marker " + marker.nmea);
+					// 	}
+					// } else {
+					// 	throw new Error("unsupported marker");
+					// }
 					const iconFeature = new Feature({
 						geometry: new Point(fromLonLat(marker.latLng)),
-						name: "Somewhere near Nottingham",
+						// name: "Somewhere near Nottingham",
 					});
 					markersToAdd.push(iconFeature);
 				}

@@ -7,7 +7,7 @@ const meta: Meta = {
     id: { control: { disable: true } },
     options: { control: { type: "object" } },
     center: { control: { type: "array" } },
-    markers: { control: { type: "array" } },
+    data: { control: { type: "array" } },
     zoom: { control: { type: "number" } },
     source: { control: { type: "object" } },
   },
@@ -24,15 +24,21 @@ MapTemplate.args = {
   center: [10, 10],
   zoom: 9,
   source: { type: "osm" },
-  markers: [
+  data: [
     {
-      latLng: [10.1, 10],
+      marker: {
+        latLng: [10.1, 10],
+      },
     },
     {
-      latLng: [10.2, 10],
+      marker: {
+        latLng: [10.2, 10],
+      },
     },
     {
-      latLng: [10.3, 10],
+      marker: {
+        latLng: [10.3, 10],
+      },
     },
   ],
 };
