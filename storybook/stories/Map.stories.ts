@@ -28,11 +28,16 @@ MapTemplate.args = {
     {
       marker: {
         latLng: [10.1, 10],
+        icon: {
+          uri: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Visual_Studio_Code_Insiders_1.36_icon.svg",
+          scale: 0.15,
+          anchor: [0.5, 0.1],
+        },
       },
     },
     {
       marker: {
-        latLng: [10.2, 10],
+        latLng: [10, 10],
       },
     },
     {

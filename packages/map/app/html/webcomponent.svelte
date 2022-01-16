@@ -29,9 +29,9 @@
 	export let zoom: number;
 	export let center: number[];
 	export let data: {
-		marker?: { latLng: number[]; icon?: string };
-		point?: { latLng: number[]; icon?: string };
-		line?: { latLng: number[]; icon?: string }[];
+		marker?: { latLng: number[]; icon?: { uri: string; scale?: number; anchor?: number[] } };
+		point?: { latLng: number[]; icon?: { uri: string; scale?: number; anchor?: number[] } };
+		line?: { latLng: number[]; icon?: { uri: string; scale?: number; anchor?: number[] } }[];
 	}[];
 	export let source: { type: string; url?: string };
 
@@ -99,7 +99,7 @@
 					});
 					markersToAdd.push(iconFeature);
 				}
-				const defaultStyle = new Style({
+				const defaultIcon = new Style({
 					image: new Icon({
 						scale: 3,
 						anchor: [0.5, 18],
@@ -112,21 +112,21 @@
 					source: new VectorSource({
 						features: markersToAdd,
 					}),
-					style: function (feature, resolution) {
+					style: function (feature) {
 						const icon = feature.get("icon");
 						let newStyle: Style;
-						if (icon) {
+						if (icon?.uri) {
 							newStyle = new Style({
 								image: new Icon({
-									scale: 3,
-									anchor: [0.5, 18],
-									anchorXUnits: "fraction",
-									anchorYUnits: "pixels",
-									src: icon,
+									scale: icon.scale || 0.15,
+									anchor: icon.anchor || [0.5, 0.1],
+									src: icon.uri,
 								}),
 							});
+							return newStyle; // assuming these are created elsewhere
+						} else {
+							return defaultIcon; // assuming these are created elsewhere
 						}
-						return icon ? newStyle : defaultStyle; // assuming these are created elsewhere
 					},
 				});
 				layers.push(v);
