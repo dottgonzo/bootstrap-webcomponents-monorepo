@@ -29,9 +29,9 @@
 	export let zoom: number;
 	export let center: number[];
 	export let data: {
-		marker?: { latLng?: number[]; nmea?: string };
-		point?: { latLng?: number[]; nmea?: string };
-		line?: { latLng?: number[]; nmea?: string }[];
+		marker?: { latLng: number[]; icon?: string };
+		point?: { latLng: number[]; icon?: string };
+		line?: { latLng: number[]; icon?: string }[];
 	}[];
 	export let source: { type: string; url?: string };
 
@@ -94,25 +94,40 @@
 					// }
 					const iconFeature = new Feature({
 						geometry: new Point(fromLonLat(marker.latLng)),
+						icon: marker.icon,
 						// name: "Somewhere near Nottingham",
 					});
 					markersToAdd.push(iconFeature);
 				}
-
+				const defaultStyle = new Style({
+					image: new Icon({
+						scale: 3,
+						anchor: [0.5, 18],
+						anchorXUnits: "fraction",
+						anchorYUnits: "pixels",
+						src: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Maki2-marker-18.svg",
+					}),
+				});
 				const v = new VectorLayer({
 					source: new VectorSource({
 						features: markersToAdd,
 					}),
-					style: new Style({
-						image: new Icon({
-							scale: 3,
-							anchor: [0.5, 18],
-
-							anchorXUnits: "fraction",
-							anchorYUnits: "pixels",
-							src: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Maki2-marker-18.svg",
-						}),
-					}),
+					style: function (feature, resolution) {
+						const icon = feature.get("icon");
+						let newStyle: Style;
+						if (icon) {
+							newStyle = new Style({
+								image: new Icon({
+									scale: 3,
+									anchor: [0.5, 18],
+									anchorXUnits: "fraction",
+									anchorYUnits: "pixels",
+									src: icon,
+								}),
+							});
+						}
+						return icon ? newStyle : defaultStyle; // assuming these are created elsewhere
+					},
 				});
 				layers.push(v);
 			}
