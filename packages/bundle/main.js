@@ -3,12 +3,12 @@ const path = require('path')
 const pkg = require('./package.json')
 
 async function run() {
-    const packagesPath = path.resolve(__dirname, '..', 'packages')
+    const packagesPath = path.resolve(__dirname, '..')
     const packages = (await fs.readdir(packagesPath, { withFileTypes: true })).filter(f => f.isDirectory && f.name !== 'bundle').map(m => m.name)
 
     let packagesCode = ''
     for (const package of packages) {
-        packagesCode += `addComponent(${package});\n`
+        packagesCode += `addComponent("${package}");\n`
     }
 
     const baseCode = `function addComponent(componentName) {
@@ -20,14 +20,14 @@ async function run() {
         }
     }\n`
 
-    const iifecode = `(function(){${baseCode}${packagesCode}})`
+    const iifecode = `(function(){${baseCode}${packagesCode}})()`
     try {
-        await fs.mkdir(path.resolve(__dirname, 'release'))
+        await fs.mkdir(path.resolve(__dirname, 'dist'))
 
     } catch (err) {
 
     }
-    await fs.writeFile(path.resolve(__dirname, 'release', 'release.js'), iifecode)
+    await fs.writeFile(path.resolve(__dirname, 'dist', 'release.js'), iifecode)
     console.log(iifecode)
 
 }
