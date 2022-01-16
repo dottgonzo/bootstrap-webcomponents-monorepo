@@ -149,6 +149,10 @@ when is needed to publish one/more packages version update, is needed to publish
 - charts
 - gauges
 
+### maps
+
+- map with markers
+
 ## PLANNED COMPONENTS:
 
 ### uncategorized
@@ -181,6 +185,5 @@ when is needed to publish one/more packages version update, is needed to publish
 
 ### maps
 
-- map with markers
 - directions
 - area selection
