@@ -34,6 +34,12 @@ To build the components is choosed to use svelte instead of native web component
 
 - [Storybook App](https://htmlbricks.dev.kernel.online/)
 
+- All In One bundle
+
+```
+<script src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-bundle@0.4.0/release/release.js"></script>
+```
+
 ## HOW TO USE THIS REPO
 
 #### system requirements
