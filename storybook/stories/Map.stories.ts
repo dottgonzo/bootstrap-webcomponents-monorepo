@@ -11,6 +11,7 @@ const meta: Meta = {
     zoom: { control: { type: "number" } },
     source: { control: { type: "object" } },
     pointClickCoordinates: { action: "pointClickCoordinates" },
+    markerClick: { action: "markerClick" },
   },
 };
 

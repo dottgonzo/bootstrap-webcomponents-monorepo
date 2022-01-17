@@ -28,9 +28,9 @@
 	export let zoom: number;
 	export let center: number[];
 	export let data: {
-		marker?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] } };
-		point?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] } };
-		line?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] } }[];
+		marker?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] }; id?: string };
+		point?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] }; id?: string };
+		line?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] }; id?: string }[];
 	}[];
 	export let source: { type: string; url?: string };
 	export let options: { centerFromGeometries?: string };
@@ -52,8 +52,15 @@
 
 	function pointClick(e) {
 		const coordinates = transform(e.coordinate, "EPSG:3857", "EPSG:4326");
+		const feature = map.forEachFeatureAtPixel(e.pixel, function (feat, layer) {
+			return feat;
+		});
 
-		dispatch("pointClickCoordinates", coordinates);
+		if (feature && feature.get("marker")) {
+			dispatch("markerClick", { coordinates, id: feature.get("id") });
+		} else {
+			dispatch("pointClickCoordinates", { coordinates });
+		}
 	}
 
 	function updateMap() {
@@ -103,8 +110,11 @@
 					const iconFeature = new Feature({
 						geometry: new Point(fromLonLat(marker.lngLat)),
 						icon: marker.icon,
+						marker: true,
+						id: marker.id || undefined,
 						// name: "Somewhere near Nottingham",
 					});
+
 					markersToAdd.push(iconFeature);
 					markersCenter.push(marker.lngLat);
 					if (options.centerFromGeometries) {
