@@ -10,6 +10,7 @@ const meta: Meta = {
     data: { control: { type: "array" } },
     zoom: { control: { type: "number" } },
     source: { control: { type: "object" } },
+    pointClickCoordinates: { action: "pointClickCoordinates" },
   },
 };
 
@@ -24,10 +25,11 @@ MapTemplate.args = {
   center: [10, 10],
   zoom: 9,
   source: { type: "osm" },
+  options: { centerFromGeometries: true },
   data: [
     {
       marker: {
-        latLng: [10.1, 10],
+        lngLat: [10.1, 10],
         icon: {
           uri: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Visual_Studio_Code_Insiders_1.36_icon.svg",
           scale: 0.15,
@@ -37,12 +39,27 @@ MapTemplate.args = {
     },
     {
       marker: {
-        latLng: [10, 10],
+        lngLat: [10, 10],
       },
     },
     {
       marker: {
-        latLng: [10.3, 10],
+        lngLat: [10.3, 10],
+      },
+    },
+  ],
+};
+
+export const MapTemplate2 = Template.bind({});
+MapTemplate2.args = {
+  id: "MapTemplate2",
+  center: [15.0819224, 37.5176038],
+  zoom: 16,
+  source: { type: "osm" },
+  data: [
+    {
+      marker: {
+        lngLat: [15.0819224, 37.5176038],
       },
     },
   ],

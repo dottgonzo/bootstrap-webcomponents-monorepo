@@ -3,6 +3,7 @@
 <script lang="ts">
 	import { get_current_component, onDestroy, onMount } from "svelte/internal";
 	import { Map, View } from "ol";
+	import { createEmpty, extend } from "ol/extent";
 	import OSM from "ol/source/OSM";
 	import XYZ from "ol/source/XYZ";
 	import Feature from "ol/Feature";
@@ -10,42 +11,48 @@
 	import { Circle as CircleStyle, Fill, Icon, Stroke, Style } from "ol/style";
 	import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
 	import VectorSource from "ol/source/Vector";
-	import { fromLonLat } from "ol/proj";
-	import Attribution from "ol/control/Attribution";
-	import { defaults } from "ol/control";
+	import { fromLonLat, transform } from "ol/proj";
 	import { createEventDispatcher } from "svelte";
-	import pkg from "../../package.json";
 	import css from "@app/functions/ol-css";
 
 	const component = get_current_component();
-	// const svelteDispatch = createEventDispatcher();
-	// function dispatch(name, detail) {
-	// 	svelteDispatch(name, detail);
-	// 	component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
-	// }
+	const svelteDispatch = createEventDispatcher();
+	function dispatch(name, detail) {
+		svelteDispatch(name, detail);
+		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
+	}
 	let map: Map;
 	let mountEl: HTMLElement;
 	export let id: string;
 	export let zoom: number;
 	export let center: number[];
 	export let data: {
-		marker?: { latLng: number[]; icon?: { uri: string; scale?: number; anchor?: number[] } };
-		point?: { latLng: number[]; icon?: { uri: string; scale?: number; anchor?: number[] } };
-		line?: { latLng: number[]; icon?: { uri: string; scale?: number; anchor?: number[] } }[];
+		marker?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] } };
+		point?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] } };
+		line?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] } }[];
 	}[];
 	export let source: { type: string; url?: string };
+	export let options: { centerFromGeometries?: string };
 
 	$: {
 		if (!id) id = "";
 		if (!source) source = { type: "osm" };
 		else if (typeof source === "string") source = JSON.parse(source);
+		if (!options) options = {};
+		else if (options && typeof options === "string") options = JSON.parse(options);
 		if (!zoom) zoom = 6;
 		else if (typeof zoom === "string") zoom = Number(zoom);
-		if (!center) center = [37.41, 8.82];
+		if (!center) center = [37.5176038, 15.0819224];
 		else if (typeof center === "string") center = JSON.parse(center);
 		if (!data) data = [];
 		else if (typeof data === "string") data = JSON.parse(data);
 		updateMap();
+	}
+
+	function pointClick(e) {
+		const coordinates = transform(e.coordinate, "EPSG:3857", "EPSG:4326");
+
+		dispatch("pointClickCoordinates", coordinates);
 	}
 
 	function updateMap() {
@@ -57,11 +64,8 @@
 				mountEl.innerHTML = "";
 				mountEl.appendChild(style);
 			}
-			const attribution = new Attribution({
-				collapsible: false,
-			});
 
-			let layers = [];
+			const layers = [];
 			if (source.type.toLowerCase() === "osm") {
 				layers.push(
 					new TileLayer({
@@ -75,12 +79,15 @@
 					}),
 				);
 			}
+			let markersCenter: number[][] = [];
+			let extent = createEmpty();
+
 			if (data?.filter((f) => f.marker).length) {
 				const markersToAdd = [];
 				for (const marker of data.filter((f) => f.marker).map((m) => m.marker)) {
 					// let markerCoords: number[];
-					// if (marker.latLng) {
-					// 	markerCoords = marker.latLng;
+					// if (marker.lngLat) {
+					// 	markerCoords = marker.lngLat;
 					// } else if (marker.nmea) {
 					// 	try {
 					// 		const nmeaParsed: GPSState = Parse(marker.nmea) as GPSState;
@@ -93,18 +100,22 @@
 					// 	throw new Error("unsupported marker");
 					// }
 					const iconFeature = new Feature({
-						geometry: new Point(fromLonLat(marker.latLng)),
+						geometry: new Point(fromLonLat(marker.lngLat)),
 						icon: marker.icon,
 						// name: "Somewhere near Nottingham",
 					});
 					markersToAdd.push(iconFeature);
+					markersCenter.push(marker.lngLat);
+					if (options.centerFromGeometries) {
+						//add extent of every feature to the extent
+						extent = extend(extent, iconFeature.getGeometry().getExtent());
+					}
 				}
 				const defaultIcon = new Style({
 					image: new Icon({
 						scale: 3,
-						anchor: [0.5, 18],
-						anchorXUnits: "fraction",
-						anchorYUnits: "pixels",
+						anchor: [0.5, 0.8],
+
 						src: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Maki2-marker-18.svg",
 					}),
 				});
@@ -119,7 +130,7 @@
 							newStyle = new Style({
 								image: new Icon({
 									scale: icon.scale || 0.15,
-									anchor: icon.anchor || [0.5, 0.1],
+									anchor: icon.anchor || [0.5, 0.8],
 									src: icon.uri,
 								}),
 							});
@@ -130,15 +141,24 @@
 					},
 				});
 				layers.push(v);
+				// markersCenter=v.getBounds().getCenterLonLat()
 			}
+
 			map = new Map({
-				controls: defaults({ attribution: false }).extend([attribution]),
 				target: mountEl,
 				layers,
 				view: new View({
 					center: fromLonLat(center),
 					zoom,
 				}),
+			});
+			if (options.centerFromGeometries && markersCenter.length > 1) {
+				map.getView().fit(extent, { padding: [25, 25, 25, 25] });
+			} else if (options.centerFromGeometries) {
+				map.getView().setCenter(fromLonLat(markersCenter[0]));
+			}
+			map.on("singleclick", function (e) {
+				pointClick(e);
 			});
 		}
 	}
