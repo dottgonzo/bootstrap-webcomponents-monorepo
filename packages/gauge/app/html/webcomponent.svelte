@@ -2,6 +2,7 @@
 
 <script lang="ts">
 	import { get_current_component, onDestroy, onMount } from "svelte/internal";
+	import debounce from "debounce";
 
 	import { createEventDispatcher } from "svelte";
 	import JustGage from "@app/functions/justgage";
@@ -55,13 +56,7 @@
 </script>
 
 <div style="width:100%" id="gauge" />
-<svelte:window
-	on:resize={() => {
-		recreateGauge();
-
-		//updateGauge(options.value);
-	}}
-/>
+<svelte:window on:resize={debounce(recreateGauge, 200)} />
 
 <style lang="scss">
 	// @import "../styles/webcomponent.scss";
