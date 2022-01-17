@@ -15,6 +15,7 @@
 	import { createEventDispatcher } from "svelte";
 	import css from "@app/functions/ol-css";
 	import debounce from "debounce";
+	import Overlay from "ol/Overlay";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -24,13 +25,16 @@
 	}
 	let map: Map;
 	let mountEl: HTMLElement;
+	let popupEl: HTMLElement;
+	let popupContentEl: HTMLElement;
+	let overlay;
 	export let id: string;
 	export let zoom: number;
 	export let center: number[];
 	export let data: {
-		marker?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] }; id?: string };
-		point?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] }; id?: string };
-		line?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] }; id?: string }[];
+		marker?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] }; id?: string; popupHtml?: string };
+		point?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] }; id?: string; popupHtml?: string };
+		line?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] }; id?: string; popupHtml?: string }[];
 	}[];
 	export let source: { type: string; url?: string };
 	export let options: { centerFromGeometries?: string };
@@ -57,9 +61,15 @@
 		});
 
 		if (feature && feature.get("marker")) {
-			dispatch("markerClick", { coordinates, id: feature.get("id") });
+			dispatch("markerClick", { coordinates: { latitude: coordinates[1], longitude: coordinates[0] }, id: feature.get("id") });
+			if (feature.get("popupHtml")) {
+				popupContentEl.innerHTML = feature.get("popupHtml");
+				overlay.setPosition(e.coordinate);
+			}
 		} else {
-			dispatch("pointClickCoordinates", { coordinates });
+			overlay.setPosition(undefined);
+
+			dispatch("pointClickCoordinates", { coordinates: { latitude: coordinates[1], longitude: coordinates[0] } });
 		}
 	}
 
@@ -112,6 +122,7 @@
 						icon: marker.icon,
 						marker: true,
 						id: marker.id || undefined,
+						popupHtml: marker.popupHtml,
 						// name: "Somewhere near Nottingham",
 					});
 
@@ -154,10 +165,18 @@
 				layers.push(v);
 				// markersCenter=v.getBounds().getCenterLonLat()
 			}
-
+			overlay = new Overlay({
+				element: popupEl,
+				autoPan: {
+					animation: {
+						duration: 250,
+					},
+				},
+			});
 			map = new Map({
 				target: mountEl,
 				layers,
+				overlays: [overlay],
 				view: new View({
 					center: fromLonLat(center),
 					zoom,
@@ -174,8 +193,16 @@
 		}
 	}
 
+	function popupClose(e?: { target: HTMLElement }) {
+		overlay.setPosition(undefined);
+		e?.target?.blur?.();
+	}
+
 	onMount(() => {
 		mountEl = component.shadowRoot.getElementById("map");
+		popupEl = component.shadowRoot.getElementById("popup");
+		popupContentEl = component.shadowRoot.getElementById("popup-content");
+
 		const style = document.createElement("style");
 		style.innerHTML = css;
 		mountEl.appendChild(style);
@@ -185,6 +212,10 @@
 
 <svelte:window on:resize={debounce(updateMap, 200)} />
 <div id="map" style="width: 100%; height: 100%;" />
+<div id="popup" class="ol-popup">
+	<button on:click={(e) => popupClose(e)} id="popup-closer" class="ol-popup-closer" />
+	<div id="popup-content" />
+</div>
 
 <style lang="scss">
 	:host {

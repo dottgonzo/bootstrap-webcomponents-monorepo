@@ -36,11 +36,13 @@ MapTemplate.args = {
           scale: 0.15,
           anchor: [0.5, 0.1],
         },
+        popupHtml: "<p>You clicked here:</p><code>ciao</code>",
       },
     },
     {
       marker: {
         lngLat: [10, 10],
+        popupHtml: "<p>You clicked here:</p><code>ciao</code>",
       },
     },
     {
