@@ -14,6 +14,7 @@
 	import { fromLonLat, transform } from "ol/proj";
 	import { createEventDispatcher } from "svelte";
 	import css from "@app/functions/ol-css";
+	import debounce from "debounce";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -172,13 +173,7 @@
 	});
 </script>
 
-<svelte:window
-	on:resize={() => {
-		updateMap();
-
-		//updateGauge(options.value);
-	}}
-/>
+<svelte:window on:resize={debounce(updateMap, 200)} />
 <div id="map" style="width: 100%; height: 100%;" />
 
 <style lang="scss">

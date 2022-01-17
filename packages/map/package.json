@@ -68,6 +68,7 @@
 	"contributors": [],
 	"gitHead": "fcd4bcbd121db922ebc774083c82f37e69dcb2c3",
 	"dependencies": {
+		"debounce": "^1.2.1",
 		"ol": "^6.12.0"
 	}
 }
