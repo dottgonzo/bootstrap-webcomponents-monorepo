@@ -28,8 +28,6 @@ async function run() {
 
     }
     await fs.writeFile(path.resolve(__dirname, 'dist', 'release.js'), iifecode)
-    console.log(iifecode)
-
 }
 
 
