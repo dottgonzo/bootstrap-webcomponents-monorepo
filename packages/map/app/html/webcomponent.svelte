@@ -172,6 +172,13 @@
 	});
 </script>
 
+<svelte:window
+	on:resize={() => {
+		updateMap();
+
+		//updateGauge(options.value);
+	}}
+/>
 <div id="map" style="width: 100%; height: 100%;" />
 
 <style lang="scss">
