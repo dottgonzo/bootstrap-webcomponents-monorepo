@@ -6,7 +6,9 @@ const meta: Meta = {
   argTypes: {
     id: { control: { disable: true } },
     products: { control: { type: "array" } },
+    options: { control: { type: "object" } },
     headers: { control: { type: "array" } },
+    purchaseClick: { action: "pagechangeEvent" },
   },
 };
 
@@ -18,7 +20,7 @@ const Template: Story = (args) =>
 const products = [
   {
     id: "prrr",
-    price: 10,
+    price: 19,
     model: "starter",
     description: "weekly",
     note: "rotto",
@@ -29,8 +31,8 @@ const products = [
   },
   {
     id: "prrr2",
-    price: 20,
-    model: "starter",
+    price: 49,
+    model: "professional",
     description: "weekly",
     note: "rotto",
     char1: "valid",
@@ -40,8 +42,19 @@ const products = [
   },
   {
     id: "prrr3",
-    price: 30,
-    model: "starter",
+    price: 99,
+    model: "advanced",
+    description: "weekly",
+    note: "rotto",
+    char1: "valid",
+    char2: "disabled",
+    char3: "blocked",
+    char4: "valid",
+  },
+  {
+    id: "prrr4",
+    price: 199,
+    model: "custom",
     description: "weekly",
     note: "rotto",
     char1: "valid",
@@ -56,6 +69,14 @@ const productHeader = [
     id: "char1",
     label: "labello",
   },
+  {
+    id: "char2",
+    label: "labello2",
+  },
+  {
+    id: "char3",
+    label: "labello3",
+  },
 ];
 
 export const ProductComparison = Template.bind({});
@@ -63,4 +84,5 @@ ProductComparison.args = {
   id: "ProductComparison",
   headers: productHeader,
   products,
+  options: { currency: "€" },
 };
