@@ -13,6 +13,8 @@
 
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
+	import pkg from "../../package.json";
+
 	let id: string;
 	$: {
 		if (!id) id = null;
