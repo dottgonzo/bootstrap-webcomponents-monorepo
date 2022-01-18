@@ -30,80 +30,112 @@
 
 	const formCreditCardSchema: FormSchema = [
 		{
-			id: "name-row",
+			type: "text",
+			placeholder: "Insert your full Name name here...",
+			id: "fullName",
+			required: true,
+			label: "Full Name",
+			validationTip: "This field cannot be empty.",
+		},
+		{
+			type: "text",
+			placeholder: "Insert your Credit Card Number here...",
+			id: "cardn",
+			required: true,
+			label: "Card Number",
+			validationTip: "This field cannot be empty.",
+		},
+		{
+			id: "name-row2",
 			type: "row",
 			params: {
 				columns: [
 					{
 						type: "text",
-						placeholder: "Insert your first name here...",
-						id: "firstName",
+						placeholder: "Insert card CVV here...",
+						id: "cvv",
 						required: true,
-						label: "First Name",
+						label: "CVV",
 						validationTip: "This field cannot be empty.",
 					},
 					{
 						type: "text",
-						placeholder: "Insert your last name here...",
-						id: "lastName",
+						placeholder: "Insert card expiration here...",
+						id: "expiration",
 						required: true,
-						label: "Last Name",
+						label: "Scadenza",
 						validationTip: "This field cannot be empty.",
-					},
-					{
-						type: "text",
-						placeholder: "Insert your last namez here...",
-						id: "lastNamez",
-						label: "Last Namez",
-						validationTip: "This field cannot be emptyz.",
-					},
-					{
-						type: "select",
-						placeholder: "Select something here...",
-						id: "selectsomething",
-						required: true,
-						label: "Selection of something",
-						validationTip: "This field cannot be empty.",
-						params: {
-							options: [
-								{ label: "", value: "" },
-								{ label: "testlabel", value: "testvalue" },
-							],
-						},
 					},
 				],
 			},
 		},
-		{
-			type: "number",
-			id: "age",
-			required: true,
-			label: "Age",
-			params: {
-				min: 8,
-				max: 120,
-			},
-			validationTip: "Min 8, Max 120",
-		},
+	];
+	const formUserSchema: FormSchema = [
 		{
 			type: "text",
-			placeholder: "Insert your last name here...",
-			id: "lastName2",
+			placeholder: "Insert your Full Name here...",
+			id: "fullname",
 			required: true,
-			label: "Last Name",
+			label: "Full Name",
 			validationTip: "This field cannot be empty.",
 		},
 		{
-			type: "textarea",
-			placeholder: "Insert your last name22 here...",
-			id: "lastName22",
+			type: "text",
+			placeholder: "Insert your Street/Square address with number...",
+			id: "street_square",
 			required: true,
-			label: "Last Name2",
-			validationTip: "This field cannot be empty2.",
+			label: "Street/Square/...",
+			validationTip: "This field cannot be empty.",
+		},
+		{
+			id: "name-row2",
+			type: "row",
+			params: {
+				columns: [
+					{
+						type: "text",
+						placeholder: "Insert your city name here...",
+						id: "city",
+						required: true,
+						label: "City",
+						validationTip: "This field cannot be empty.",
+					},
+					{
+						type: "text",
+						placeholder: "Insert your zip code here...",
+						id: "zip",
+						required: true,
+						label: "Zip",
+						validationTip: "This field cannot be empty.",
+					},
+					{
+						type: "text",
+						placeholder: "Insert your nationality here...",
+						id: "nationality",
+						required: true,
+						label: "Nationality",
+						validationTip: "This field cannot be empty.",
+					},
+				],
+			},
 		},
 	];
-	const formUserSchema: FormSchema = [];
-	const formShipmentSchema: FormSchema = [];
+	const formShipmentSchema: FormSchema = [
+		{
+			type: "checkbox",
+			placeholder: "Insert your Full Name here...",
+			id: "fullname",
+			required: true,
+			label: "Full Name",
+			validationTip: "This field cannot be empty.",
+			params: {
+				options: [
+					{ label: "", value: "" },
+					{ label: "testlabel", value: "testvalue" },
+				],
+			},
+		},
+	];
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();

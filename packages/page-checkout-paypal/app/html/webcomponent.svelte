@@ -23,6 +23,7 @@
 	export let user: IUser;
 	export let headers: ICartHeaders;
 	export let items: IShopItem[];
+	let completed: boolean = false;
 	$: {
 		if (!id) id = null;
 		if (!shipments) shipments = null;
@@ -54,8 +55,15 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-7 section"><hb-checkout-paypal style="margin-right:30px" {user} {shipments} /></div>
-		<div class="col-5 section"><hb-checkout-shopping-cart style="margin-left:30px" {items} {headers} /></div>
+		<div class="col-7" style="padding-right:30px"><hb-checkout-paypal {user} {shipments} /></div>
+		<div class="col-5" style="padding-left:30px">
+			<hb-checkout-shopping-cart {items} {headers} />
+			{#if completed}
+				<div>Checkout status:</div>
+			{:else}
+				<div>Checkout status:</div>
+			{/if}
+		</div>
 	</div>
 </div>
 
