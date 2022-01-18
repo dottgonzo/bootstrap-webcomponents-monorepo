@@ -153,6 +153,7 @@ when is needed to publish one/more packages version update, is needed to publish
 ### pages
 
 - login register page
+- invoice
 
 ### graphs
 
@@ -191,7 +192,6 @@ when is needed to publish one/more packages version update, is needed to publish
 - cart
 - item of a shop with images
 - contact detail
-- invoice
 
 ### maps
 
