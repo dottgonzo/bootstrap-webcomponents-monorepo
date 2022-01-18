@@ -1,7 +1,7 @@
 {
-	"name": "@htmlbricks/hb-page-payment",
-	"displayName": "Svelte Payment WebComponent",
-	"description": "Svelte Payment WebComponent",
+	"name": "@htmlbricks/hb-checkout-shopping-cart",
+	"displayName": "Svelte Shopping Cart WebComponent",
+	"description": "Svelte Shopping Cart WebComponent",
 	"version": "0.4.6",
 	"main": "release/release.js",
 	"publishConfig": {
