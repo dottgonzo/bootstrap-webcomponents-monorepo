@@ -2,7 +2,7 @@ import { Story, Meta } from "@storybook/html";
 import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
-  title: "Contents/ProductComparison",
+  title: "Sections/ProductComparison",
   argTypes: {
     id: { control: { disable: true } },
     products: { control: { type: "array" } },
@@ -24,10 +24,12 @@ const products = [
     model: "starter",
     description: "weekly",
     note: "rotto",
-    char1: "valid",
-    char2: "disabled",
-    char3: "blocked",
-    char4: "valid",
+    characteristics: {
+      char1: "valid",
+      char2: "disabled",
+      char3: "blocked",
+      char4: "valid",
+    },
   },
   {
     id: "prrr2",
@@ -35,10 +37,12 @@ const products = [
     model: "professional",
     description: "weekly",
     note: "rotto",
-    char1: "valid",
-    char2: "disabled",
-    char3: "blocked",
-    char4: "valid",
+    characteristics: {
+      char1: "valid",
+      char2: "disabled",
+      char3: "blocked",
+      char4: "valid",
+    },
   },
   {
     id: "prrr3",
@@ -46,10 +50,12 @@ const products = [
     model: "advanced",
     description: "weekly",
     note: "rotto",
-    char1: "valid",
-    char2: "disabled",
-    char3: "blocked",
-    char4: "valid",
+    characteristics: {
+      char1: "valid",
+      char2: "disabled",
+      char3: "blocked",
+      char4: "valid",
+    },
   },
   {
     id: "prrr4",
@@ -57,13 +63,122 @@ const products = [
     model: "custom",
     description: "weekly",
     note: "rotto",
-    char1: "valid",
-    char2: "disabled",
-    char3: "blocked",
-    char4: "valid",
+
+    characteristics: {
+      char1: "valid",
+      char2: "disabled",
+      char3: "blocked",
+      char4: "valid",
+    },
   },
 ];
 
+const products2 = [
+  {
+    id: "prrr",
+    price: 19,
+    model: "starter",
+    description: "weekly",
+    note: "rotto",
+    characteristics: {
+      char1: "valid",
+      char2: "disabled",
+      char3: "blocked",
+      char4: "valid",
+    },
+  },
+  {
+    id: "prrr2",
+    price: 49,
+    model: "professional",
+    description: "weekly",
+    note: "rotto",
+    characteristics: {
+      char1: "valid",
+      char2: "disabled",
+      char3: "blocked",
+      char4: "valid",
+    },
+  },
+  {
+    id: "prrr3",
+    price: 99,
+    model: "advanced",
+    description: "weekly",
+    note: "rotto",
+    characteristics: {
+      char1: "valid",
+      char2: "disabled",
+      char3: "blocked",
+      char4: "valid",
+    },
+  },
+  {
+    id: "prrr4",
+    price: 199,
+    model: "custom",
+    description: "weekly",
+    note: "rotto",
+    promotion: {
+      note: "sale",
+      type: "sale",
+      originalPrice: 240,
+    },
+    columnColor: {
+      background: "#fff",
+      purchaseButton: "red",
+    },
+
+    characteristics: {
+      char1: "valid",
+      char2: "disabled",
+      char3: "blocked",
+      char4: "valid",
+    },
+  },
+];
+
+const products3 = [
+  {
+    id: "prrr",
+    price: 19,
+    model: "starter",
+    description: "weekly",
+    note: "rotto",
+    characteristics: {
+      char1: "valid",
+      char2: "disabled",
+      char3: "blocked",
+      char4: "valid",
+    },
+  },
+  {
+    id: "prrr2",
+    price: 49,
+    model: "professional",
+    description: "weekly",
+    note: "rotto",
+    characteristics: {
+      char1: "valid",
+      char2: "disabled",
+      char3: "blocked",
+      char4: "valid",
+    },
+  },
+  {
+    id: "prrr3",
+    price: 99,
+    model: "advanced",
+    description: "weekly",
+    note: "rotto",
+    characteristics: {
+      char1: "valid",
+      char2: "disabled",
+      char3: "blocked",
+      char4: "valid",
+    },
+  },
+];
 const productHeader = [
   {
     id: "char1",
@@ -85,4 +200,18 @@ ProductComparison.args = {
   headers: productHeader,
   products,
   options: { currency: "€" },
+};
+export const ProductComparisonWithSale = Template.bind({});
+ProductComparisonWithSale.args = {
+  id: "ProductComparisonWithSale",
+  headers: productHeader,
+  products: products2,
+  options: { currency: "€", preferredProductId: "prrr3" },
+};
+export const Product3Comparison = Template.bind({});
+Product3Comparison.args = {
+  id: "Product3Comparison",
+  headers: productHeader,
+  products: products3,
+  options: { currency: "€", preferredProductId: "prrr3" },
 };

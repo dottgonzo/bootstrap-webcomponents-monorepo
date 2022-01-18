@@ -132,6 +132,10 @@ when is needed to publish one/more packages version update, is needed to publish
 - layout
 - offcanvas/sidebar
 
+### sections
+
+- products comparison with price
+
 ### form
 
 - text input
@@ -175,7 +179,6 @@ when is needed to publish one/more packages version update, is needed to publish
 - shop item (square card with image)
 - shop item (list with small thumbnail)
 - contact form for SPA sites
-- products comparison with price
 
 ### legal
 
@@ -188,6 +191,7 @@ when is needed to publish one/more packages version update, is needed to publish
 - cart
 - item of a shop with images
 - contact detail
+- invoice
 
 ### maps
 
