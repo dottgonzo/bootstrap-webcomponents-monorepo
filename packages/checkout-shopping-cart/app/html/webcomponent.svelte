@@ -18,7 +18,7 @@
 	import dayjs from "dayjs";
 	import debounce from "debounce";
 	import "dayjs/locale/it";
-	import type { IShopItem, ICartHeaders } from "@app/functions/interfaces";
+	import type { IShopItem, ICartHeaders } from "@app/types/webcomponent.type";
 
 	export let id: string;
 	export let items: IShopItem[];
@@ -49,7 +49,6 @@
 	let subTotal: number;
 	let taxTotal: number;
 	let total: number;
-	let shipmentFee: number = 10;
 	$: {
 		if (!id) id = null;
 		if (!items) items = [];
@@ -110,7 +109,7 @@
 					}, 0) * 100,
 			) / 100;
 
-		total = subTotal + taxTotal + shipmentFee;
+		total = subTotal + taxTotal + (headers.shipmentFee || 0);
 	}
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -145,7 +144,7 @@
 			</div>
 			<div style="line-height:25px;">
 				<span style="display:inline-block">Spedizione</span>
-				<span style="float:right">{shipmentFee}{currencySymbol}</span>
+				<span style="float:right">{headers.shipmentFee ? headers.shipmentFee + currencySymbol : "-"}</span>
 			</div>
 			<div style="line-height:25px;font-weight:bold">
 				<span style="display:inline-block">Totale</span>

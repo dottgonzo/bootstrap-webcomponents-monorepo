@@ -128,12 +128,6 @@
 			required: true,
 			label: "Full Name",
 			validationTip: "This field cannot be empty.",
-			params: {
-				options: [
-					{ label: "", value: "" },
-					{ label: "testlabel", value: "testvalue" },
-				],
-			},
 		},
 	];
 
@@ -159,14 +153,16 @@
 <h2 part="title">Checkout</h2>
 <div style="border-top:1px solid black;border-bottom:1px solid black;">
 	<div style="margin-top:10px">
-		<h3 part="subtitle">user <span style="float:right;color:red;font-size:12px">edit</span></h3>
+		{#if user?.fullName && user?.fullAddress}
+			<h3 part="subtitle">User <span style="float:right;color:red;font-size:12px">edit</span></h3>
 
-		{#if user?.fullName}
 			<div>
 				<div class="shipment">Name: {user.fullName}</div>
 				<div class="shipment">Address: {user.fullAddress}</div>
 			</div>
 		{:else}
+			<h3 part="subtitle">User</h3>
+
 			<div>
 				<hb-form schema={JSON.stringify(formUserSchema)} />
 			</div>
@@ -174,29 +170,34 @@
 	</div>
 
 	<div style="margin-top:10px;border-top:1px solid black;">
-		<h3 part="subtitle">shipping <span style="float:right;color:red;font-size:12px">edit</span></h3>
+		{#if user?.fullName && user?.fullAddress}
+			<h3 part="subtitle">Shipping <span style="float:right;color:red;font-size:12px">edit</span></h3>
 
-		{#if shipments.find((f) => f.selected) || shipments.find((f) => f.standard)}
-			<div class="shipment">Shipping Fee: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price}</div>
-			<div class="shipment">Shipping Time: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).durationInSeconds}</div>
+			{#if shipments.find((f) => f.selected) || shipments.find((f) => f.standard)}
+				<div class="shipment">Shipping Fee: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price}</div>
+				<div class="shipment">Shipping Time: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).durationInSeconds}</div>
+			{:else}
+				<div>
+					<hb-form schema={JSON.stringify(formShipmentSchema)} />
+				</div>
+			{/if}
 		{:else}
-			<div>
-				<hb-form schema={JSON.stringify(formShipmentSchema)} />
-			</div>
+			<h3 part="subtitle">Shipping</h3>
 		{/if}
 	</div>
 </div>
 <div>
-	<h3 part="subtitle">payment method</h3>
-
-	<div><button style="width:100%;background-color:yellow;color:white" class="btn">paypal</button></div>
-	<div>OR</div>
-	<div>
+	<h3 part="subtitle">Payment Method</h3>
+	{#if shipments.find((f) => f.selected) || shipments.find((f) => f.standard)}
+		<div><button style="width:100%;background-color:yellow;color:white" class="btn">paypal</button></div>
+		<div>OR</div>
 		<div>
-			<hb-form schema={JSON.stringify(formCreditCardSchema)} />
+			<div>
+				<hb-form schema={JSON.stringify(formCreditCardSchema)} />
+			</div>
+			<div><button style="width:100%" class="btn btn-primary">place order</button></div>
 		</div>
-		<div><button style="width:100%" class="btn btn-primary">place order</button></div>
-	</div>
+	{/if}
 </div>
 <div class="footer_note">By Clicking..<button class="btn btn-default">Terms and conditions</button></div>
 

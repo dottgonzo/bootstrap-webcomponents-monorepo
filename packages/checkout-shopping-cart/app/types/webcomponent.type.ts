@@ -7,4 +7,5 @@ export interface IShopItem {
 }
 export interface ICartHeaders {
 	country?: "it" | "eu" | "us";
+	shipmentFee?: number;
 }
