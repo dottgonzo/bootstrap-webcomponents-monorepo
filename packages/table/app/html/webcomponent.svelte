@@ -16,7 +16,7 @@
 
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
-	import type { IActionButton, IFilter, IRow, ITableHeader } from "@app/functions/interfaces";
+	import type { IActionButton, IFilter, IRow, ITableHeader } from "@app/types/webcomponent.type";
 	import pkg from "@app/../package.json";
 
 	// import dispatch from "@app/functions/webcomponent";
