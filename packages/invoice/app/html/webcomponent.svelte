@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	/**
-	 * Svelte Video Login/Register/Forget Password WebComponent
+	 * Svelte Invoice WebComponent
 	 * =====================
 	 *
 	 * @contributors: Dario Caruso <dev@dariocaruso.info> (https://dariocaruso.info)
@@ -17,15 +17,6 @@
 
 	$: {
 		if (!id) id = null;
-
-		// 		for(const product of products){
-		// if(!product._icon) {
-		// 	switch(){
-
-		// 	}
-		// 	product._icon=''
-		// }
-		// 		}
 	}
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -35,7 +26,7 @@
 	}
 </script>
 
-<div>f</div>
+<div>invoice</div>
 
 <style lang="scss">
 	// @import "../styles/bootstrap.scss";
