@@ -14,7 +14,9 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "checkout-shopping-cart");
+  webComponentBind(args, meta.argTypes, "checkout-shopping-cart", {
+    style: { width: "400px", margin: "20px auto 20px auto" },
+  });
 
 export const CheckoutShoppingCart = Template.bind({});
 
