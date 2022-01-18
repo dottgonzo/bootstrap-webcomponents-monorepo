@@ -1,4 +1,4 @@
-<svelte:options tag="hb-invoice" />
+<svelte:options tag="hb-page-invoice" />
 
 <script lang="ts">
 	/**
@@ -183,7 +183,7 @@
 
 		const script = document.createElement("script");
 		script.id = "hb-invoice-script";
-		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-invoice@${pkg.version}/release/release.js`;
+		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-page-invoice@${pkg.version}/release/release.js`;
 		if (location.href.includes("localhost")) script.src = `http://localhost:6006/invoice/dist/release.js`;
 
 		w.document.head.appendChild(script);
@@ -205,7 +205,7 @@
 
 		const script = document.createElement("script");
 		script.id = "hb-invoice-script";
-		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-invoice@${pkg.version}/release/release.js`;
+		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-page-invoice@${pkg.version}/release/release.js`;
 		if (location.href.includes("localhost")) script.src = `http://localhost:6006/invoice/dist/release.js`;
 
 		w.document.head.appendChild(script);

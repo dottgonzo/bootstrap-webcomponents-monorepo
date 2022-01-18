@@ -1,5 +1,5 @@
 {
-	"name": "@htmlbricks/hb-invoice",
+	"name": "@htmlbricks/hb-page-invoice",
 	"displayName": "Svelte Invoice WebComponent",
 	"description": "Svelte Invoice WebComponent",
 	"version": "0.4.6",
