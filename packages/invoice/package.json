@@ -1,7 +1,7 @@
 {
-	"name": "@htmlbricks/hb-product-comparison",
-	"displayName": "Svelte Boostrap Product Comparison WebComponent",
-	"description": "Svelte Boostrap Product Comparison WebComponent",
+	"name": "@htmlbricks/hb-invoice",
+	"displayName": "Svelte Invoice WebComponent",
+	"description": "Svelte Invoice WebComponent",
 	"version": "0.4.5",
 	"main": "release/release.js",
 	"publishConfig": {
