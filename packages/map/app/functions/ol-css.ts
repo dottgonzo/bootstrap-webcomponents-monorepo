@@ -310,8 +310,8 @@ const css = `
 .ol-popup-closer {
 	text-decoration: none;
 	position: absolute;
-	top: 2px;
-	right: 8px;
+	top: 3px;
+	right: 3px;
 	border: none;
     background: none;
 	cursor: pointer;

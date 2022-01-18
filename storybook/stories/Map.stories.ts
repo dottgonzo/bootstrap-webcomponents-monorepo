@@ -56,13 +56,13 @@ MapTemplate.args = {
 export const MapTemplate2 = Template.bind({});
 MapTemplate2.args = {
   id: "MapTemplate2",
-  center: [15.0819224, 37.5176038],
+  center: [15.084139339274458, 37.517380419266615],
   zoom: 16,
   source: { type: "osm" },
   data: [
     {
       marker: {
-        lngLat: [15.0819224, 37.5176038],
+        lngLat: [15.084139339274458, 37.517380419266615],
       },
     },
   ],
