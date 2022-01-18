@@ -4,6 +4,7 @@ export interface IShipment {
 	standard?: boolean;
 	durationInSeconds: number;
 	available: boolean;
+	id: string;
 }
 
 export interface IUser {

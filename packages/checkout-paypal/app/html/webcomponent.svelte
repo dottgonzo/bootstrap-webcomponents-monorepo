@@ -16,10 +16,13 @@
 	import pkg from "../../package.json";
 	import type { IShipment, IUser } from "@app/types/webcomponent.type";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
+	import { formUserSchema, formCreditCardSchema, formShipmentSchema } from "@app/functions/formSchemes";
 
 	export let id: string;
 	export let shipments: IShipment[];
 	export let user: IUser;
+	let editUser: boolean;
+	let editShipping: boolean;
 	$: {
 		if (!id) id = null;
 		if (!shipments) shipments = [];
@@ -28,109 +31,48 @@
 		else if (typeof user === "string") user = JSON.parse(user);
 	}
 
-	const formCreditCardSchema: FormSchema = [
-		{
-			type: "text",
-			placeholder: "Insert your full Name name here...",
-			id: "fullName",
-			required: true,
-			label: "Full Name",
-			validationTip: "This field cannot be empty.",
-		},
-		{
-			type: "text",
-			placeholder: "Insert your Credit Card Number here...",
-			id: "cardn",
-			required: true,
-			label: "Card Number",
-			validationTip: "This field cannot be empty.",
-		},
-		{
-			id: "name-row2",
-			type: "row",
-			params: {
-				columns: [
-					{
-						type: "text",
-						placeholder: "Insert card CVV here...",
-						id: "cvv",
-						required: true,
-						label: "CVV",
-						validationTip: "This field cannot be empty.",
-					},
-					{
-						type: "text",
-						placeholder: "Insert card expiration here...",
-						id: "expiration",
-						required: true,
-						label: "Scadenza",
-						validationTip: "This field cannot be empty.",
-					},
-				],
-			},
-		},
-	];
-	const formUserSchema: FormSchema = [
-		{
-			type: "text",
-			placeholder: "Insert your Full Name here...",
-			id: "fullname",
-			required: true,
-			label: "Full Name",
-			validationTip: "This field cannot be empty.",
-		},
-		{
-			type: "text",
-			placeholder: "Insert your Street/Square address with number...",
-			id: "street_square",
-			required: true,
-			label: "Street/Square/...",
-			validationTip: "This field cannot be empty.",
-		},
-		{
-			id: "name-row2",
-			type: "row",
-			params: {
-				columns: [
-					{
-						type: "text",
-						placeholder: "Insert your city name here...",
-						id: "city",
-						required: true,
-						label: "City",
-						validationTip: "This field cannot be empty.",
-					},
-					{
-						type: "text",
-						placeholder: "Insert your zip code here...",
-						id: "zip",
-						required: true,
-						label: "Zip",
-						validationTip: "This field cannot be empty.",
-					},
-					{
-						type: "text",
-						placeholder: "Insert your nationality here...",
-						id: "nationality",
-						required: true,
-						label: "Nationality",
-						validationTip: "This field cannot be empty.",
-					},
-				],
-			},
-		},
-	];
-	const formShipmentSchema: FormSchema = [
-		{
-			type: "checkbox",
-			placeholder: "Insert your Full Name here...",
-			id: "fullname",
-			required: true,
-			label: "Full Name",
-			validationTip: "This field cannot be empty.",
-		},
-	];
+	function saveUser(userInputs: { fullName: string; address: string; city: string; zip: string; nationality: string }) {
+		console.log("saveuser", userInputs);
+		const newUser: IUser = {
+			fullName: userInputs.fullName,
+			fullAddress: `${userInputs.address}, ${userInputs.city}, ${userInputs.zip},${userInputs.nationality}`,
+		};
+		for (const k of Object.keys(userInputs)) {
+			if (formUserSchema.find((f) => f.id === k)) {
+				formUserSchema[formUserSchema.findIndex((f) => f.id === k)].value = userInputs[k];
+			} else if (formUserSchema.find((f) => f.params?.columns?.length && f.params.columns.find((ff) => ff.id === k))) {
+				const rowIndex = formUserSchema.findIndex((f) => f.params?.columns?.length && f.params.columns.find((ff) => ff.id === k));
+				const elIndex = formUserSchema[rowIndex].params.columns.findIndex((ff) => ff.id === k);
+				formUserSchema[rowIndex].params.columns[elIndex].value = userInputs[k];
+			}
+		}
+		user = newUser;
+		editUser = false;
+	}
 
+	function saveShipment(results: { fullName: string; address: string; city: string; zip: string; nationality: string }) {
+		console.log("saveShipment", results);
+		// TODO: set selected shipment
+		const shipmentId = "";
+		if (shipments.find((f) => f.id === shipmentId)) {
+			shipments.forEach((f) => (f.selected = false));
+			shipments[0].selected = true;
+		}
+		shipments.forEach((f) => {
+			f.selected = false;
+		});
+		shipments[0].selected = true;
+		editShipping = false;
+	}
+
+	function payByCard(p: {}) {
+		console.log("payByCard", p);
+		dispatch("payByCard", p);
+	}
+	function payByAccount() {
+		console.log("payByAccount");
+		dispatch("payByAccount", {});
+	}
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 	function dispatch(name, detail) {
@@ -148,13 +90,20 @@
 		}
 	}
 	addComponent("form");
+
+	function editUserForm() {
+		editUser = true;
+	}
+	function editShippingForm() {
+		editShipping = true;
+	}
 </script>
 
 <h2 part="title">Checkout</h2>
 <div style="border-top:1px solid black;border-bottom:1px solid black;">
 	<div style="margin-top:10px">
-		{#if user?.fullName && user?.fullAddress}
-			<h3 part="subtitle">User <span style="float:right;color:red;font-size:12px">edit</span></h3>
+		{#if user?.fullName && user?.fullAddress && !editUser}
+			<h3 part="subtitle">User <button class="btn btn-sm btn-warning" on:click={editUserForm} style="float:right">edit</button></h3>
 
 			<div>
 				<div class="shipment">Name: {user.fullName}</div>
@@ -164,36 +113,47 @@
 			<h3 part="subtitle">User</h3>
 
 			<div>
-				<hb-form schema={JSON.stringify(formUserSchema)} />
+				<hb-form
+					schema={JSON.stringify(formUserSchema)}
+					on:submit={(e) => {
+						saveUser(e.detail);
+					}}
+				/>
 			</div>
 		{/if}
 	</div>
+	{#if shipments?.length}
+		<div style="margin-top:10px;border-top:1px solid black;">
+			{#if user?.fullName && user?.fullAddress && !editUser}
+				<h3 part="subtitle">Shipping <button class="btn btn-sm btn-warning" on:click={editShippingForm} style="float:right">edit</button></h3>
 
-	<div style="margin-top:10px;border-top:1px solid black;">
-		{#if user?.fullName && user?.fullAddress}
-			<h3 part="subtitle">Shipping <span style="float:right;color:red;font-size:12px">edit</span></h3>
-
-			{#if shipments.find((f) => f.selected) || shipments.find((f) => f.standard)}
-				<div class="shipment">Shipping Fee: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price}</div>
-				<div class="shipment">Shipping Time: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).durationInSeconds}</div>
+				{#if !editShipping && (shipments.find((f) => f.selected) || shipments.find((f) => f.standard))}
+					<div class="shipment">Shipping Fee: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price}</div>
+					<div class="shipment">Shipping Time: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).durationInSeconds}</div>
+				{:else}
+					<div>
+						<hb-form
+							schema={JSON.stringify(formShipmentSchema)}
+							on:submit={(e) => {
+								saveShipment(e.detail);
+							}}
+						/>
+					</div>
+				{/if}
 			{:else}
-				<div>
-					<hb-form schema={JSON.stringify(formShipmentSchema)} />
-				</div>
+				<h3 part="subtitle">Shipping</h3>
 			{/if}
-		{:else}
-			<h3 part="subtitle">Shipping</h3>
-		{/if}
-	</div>
+		</div>
+	{/if}
 </div>
 <div>
 	<h3 part="subtitle">Payment Method</h3>
-	{#if shipments.find((f) => f.selected) || shipments.find((f) => f.standard)}
-		<div><button style="width:100%;background-color:yellow;color:white" class="btn">paypal</button></div>
+	{#if !editUser && !editShipping && ((shipments?.length && shipments.find((f) => f.selected)) || shipments.find((f) => f.standard) || !shipments?.length)}
+		<div><button on:click={() => payByAccount()} style="width:100%;background-color:yellow;color:white" class="btn">paypal</button></div>
 		<div>OR</div>
 		<div>
 			<div>
-				<hb-form schema={JSON.stringify(formCreditCardSchema)} />
+				<hb-form schema={JSON.stringify(formCreditCardSchema)} on:submit={(e) => payByCard(e.detail)} />
 			</div>
 			<div><button style="width:100%" class="btn btn-primary">place order</button></div>
 		</div>

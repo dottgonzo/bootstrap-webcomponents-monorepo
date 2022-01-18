@@ -7,7 +7,7 @@ const meta: Meta = {
   argTypes: {
     id: { control: { disable: true } },
     schema: { control: { type: "array" } },
-    submit: { action: "submitEvent" },
+    submit: { action: "submit" },
     submitted: { control: { type: "boolean" } },
   },
 };

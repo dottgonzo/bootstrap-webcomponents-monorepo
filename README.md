@@ -124,6 +124,7 @@ when is needed to publish one/more packages version update, is needed to publish
 - table
 - video gallery
 - video editor
+- review/feedback user box
 
 ### layout
 
