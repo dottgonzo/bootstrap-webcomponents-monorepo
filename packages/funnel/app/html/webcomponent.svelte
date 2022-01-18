@@ -14,7 +14,7 @@
 	import { each, get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
-	import type { FormSchema } from "../../../formhostcomponent/app/types/webcomponent.type";
+	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 
 	function addComponent(componentName: string) {
 		if (!document.getElementById("hb-" + componentName + "-script")) {
