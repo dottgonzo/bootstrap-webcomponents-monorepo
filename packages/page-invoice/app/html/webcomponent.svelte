@@ -97,25 +97,25 @@
 		else if (typeof items === "string") items = JSON.parse(items);
 
 		if (!headers) headers = null;
-		else if (typeof headers === "string") headers = JSON.parse(headers);
-
-		if (!headers.date) headers.date = new Date();
-		if (!headers.category) headers.category = "items";
-		if (!headers.country) headers.country = "it";
-
-		switch (headers.country) {
-			case "it":
-				currency = "euro";
-				currencySymbol = "€";
-				break;
-			case "eu":
-				currency = "euro";
-				currencySymbol = "€";
-				break;
-			case "us":
-				currency = "dollar";
-				currencySymbol = "$";
-				break;
+		else if (typeof headers === "string") {
+			headers = JSON.parse(headers);
+			if (!headers.date) headers.date = new Date();
+			if (!headers.category) headers.category = "items";
+			if (!headers.country) headers.country = "it";
+			switch (headers.country) {
+				case "it":
+					currency = "euro";
+					currencySymbol = "€";
+					break;
+				case "eu":
+					currency = "euro";
+					currencySymbol = "€";
+					break;
+				case "us":
+					currency = "dollar";
+					currencySymbol = "$";
+					break;
+			}
 		}
 
 		if (items?.length) {
