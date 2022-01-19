@@ -66,6 +66,14 @@ export const formUserSchema: FormSchema = [
 			columns: [
 				{
 					type: "text",
+					placeholder: "Insert your nationality here...",
+					id: "nationality",
+					required: true,
+					label: "Nationality",
+					validationTip: "This field cannot be empty.",
+				},
+				{
+					type: "text",
 					placeholder: "Insert your city name here...",
 					id: "city",
 					required: true,
@@ -78,14 +86,6 @@ export const formUserSchema: FormSchema = [
 					id: "zip",
 					required: true,
 					label: "Zip",
-					validationTip: "This field cannot be empty.",
-				},
-				{
-					type: "text",
-					placeholder: "Insert your nationality here...",
-					id: "nationality",
-					required: true,
-					label: "Nationality",
 					validationTip: "This field cannot be empty.",
 				},
 			],
