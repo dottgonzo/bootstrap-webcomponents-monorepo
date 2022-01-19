@@ -182,7 +182,7 @@
 		w.document.write("</body></html>");
 
 		const script = document.createElement("script");
-		script.id = "hb-invoice-script";
+		script.id = "hb-page-invoice-script";
 		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-page-invoice@${pkg.version}/release/release.js`;
 		if (location.href.includes("localhost")) script.src = `http://localhost:6006/page-invoice/dist/release.js`;
 
@@ -206,7 +206,7 @@
 		w.document.write("</body></html>");
 
 		const script = document.createElement("script");
-		script.id = "hb-invoice-script";
+		script.id = "hb-page-invoice-script";
 		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-page-invoice@${pkg.version}/release/release.js`;
 		if (location.href.includes("localhost")) script.src = `http://localhost:6006/page-invoice/dist/release.js`;
 
