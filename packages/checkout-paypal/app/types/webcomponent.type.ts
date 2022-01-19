@@ -5,6 +5,7 @@ export interface IShipment {
 	durationInSeconds: number;
 	available: boolean;
 	id: string;
+	label: string;
 }
 
 export interface IUser {

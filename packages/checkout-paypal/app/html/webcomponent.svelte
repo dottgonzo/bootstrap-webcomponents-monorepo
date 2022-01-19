@@ -16,11 +16,24 @@
 	import pkg from "../../package.json";
 	import type { IShipment, IUser } from "@app/types/webcomponent.type";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
-	import { formUserSchema, formCreditCardSchema, formShipmentSchema } from "@app/functions/formSchemes";
+	import { formUserSchema, formCreditCardSchema } from "@app/functions/formSchemes";
 
 	export let id: string;
 	export let shipments: IShipment[];
 	export let user: IUser;
+	const formShipmentSchema: FormSchema = [
+		{
+			type: "radio",
+			placeholder: "Insert your Full Name here...",
+			id: "shipmentsolution",
+			required: true,
+			label: "Shipment",
+			validationTip: "This field cannot be empty.",
+			params: {
+				options: [],
+			},
+		},
+	];
 	let editUser: boolean;
 	let editShipping: boolean;
 
@@ -33,6 +46,10 @@
 		else if (typeof shipments === "string") shipments = JSON.parse(shipments);
 		if (!user) user = null;
 		else if (typeof user === "string") user = JSON.parse(user);
+
+		formShipmentSchema[0].params.options = shipments.map((m) => {
+			return { value: m.id, label: m.label };
+		});
 	}
 
 	function cardChange(u: { _valid: boolean; fullName?: string; cardNumber?: string; CVV?: string; expiration?: string }) {
@@ -66,19 +83,18 @@
 		formUserSchemaSubmitted = "no";
 	}
 
-	function saveShipment(results: { fullName: string; address: string; city: string; zip: string; nationality: string }) {
+	function saveShipment(results: { shipmentsolution: string }) {
 		console.log("saveShipment", results);
-		// TODO: set selected shipment
-		const shipmentId = "";
-		if (shipments.find((f) => f.id === shipmentId)) {
+
+		const shipmentId = results?.shipmentsolution;
+		if (shipmentId && shipments.find((f) => f.id === shipmentId)) {
 			shipments.forEach((f) => (f.selected = false));
-			shipments[0].selected = true;
+			const i = shipments.findIndex((f) => f.id === shipmentId);
+			shipments[i].selected = true;
+			editShipping = false;
+			formShipmentSchema[0].value = shipmentId;
 		}
-		shipments.forEach((f) => {
-			f.selected = false;
-		});
-		shipments[0].selected = true;
-		editShipping = false;
+
 		formShipmentSchemaSubmitted = "no";
 	}
 

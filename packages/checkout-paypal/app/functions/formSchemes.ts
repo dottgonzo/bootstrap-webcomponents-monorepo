@@ -92,13 +92,3 @@ export const formUserSchema: FormSchema = [
 		},
 	},
 ];
-export const formShipmentSchema: FormSchema = [
-	{
-		type: "checkbox",
-		placeholder: "Insert your Full Name here...",
-		id: "fullname",
-		required: true,
-		label: "Full Name",
-		validationTip: "This field cannot be empty.",
-	},
-];

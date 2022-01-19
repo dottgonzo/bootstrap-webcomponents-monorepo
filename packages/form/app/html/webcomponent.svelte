@@ -57,7 +57,7 @@
 		file: { component: "hb-input-file" },
 		textarea: { component: "hb-input-area" },
 		checkbox: { component: "hb-input-checkbox", options: { labelIsHandledByComponent: true } },
-		radio: { component: "hb-input-radio", options: { labelIsHandledByComponent: true } },
+		radio: { component: "hb-input-radio" },
 	};
 
 	export let schema: FormSchema;
@@ -261,7 +261,7 @@
 							{#if visibility[entry.id]}
 								<div class="col mb-3">
 									{#if !options.labelIsHandledByComponent}
-										<label for={entry.id}>{entry.label}</label>
+										<label for={entry.id}>{entry.label}{entry.required ? "*" : ""}</label>
 									{/if}
 
 									{#if component === "hb-input-text"}
@@ -418,7 +418,7 @@
 		{:else if visibility[entry.id]}
 			<div class="col mb-3">
 				{#if !options.labelIsHandledByComponent}
-					<label for={entry.id}>{entry.label}</label>
+					<label for={entry.id}>{entry.label}{entry.required ? "*" : ""}</label>
 				{/if}
 
 				{#if component === "hb-input-text"}

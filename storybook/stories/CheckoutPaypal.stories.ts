@@ -30,6 +30,8 @@ CheckoutPaypal.args = {
 
       durationInSeconds: 0,
       available: true,
+      label: "zio barca",
+      id: "ziobarca",
     },
   ],
 };
