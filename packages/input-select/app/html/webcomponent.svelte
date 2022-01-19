@@ -8,6 +8,7 @@
 	export let setvalid: boolean;
 
 	export let schemaentry: FormSchemaEntry;
+	export let showvalidation: "yes" | "no";
 
 	let value: string;
 	let options: { value: string; label?: string }[] = [];
@@ -20,6 +21,8 @@
 	}
 
 	$: {
+		if (!showvalidation) showvalidation = "no";
+
 		if (schemaentry && typeof schemaentry === "string") {
 			schemaentry = JSON.parse(schemaentry as unknown as string);
 		}
@@ -46,7 +49,7 @@
 
 <select
 	bind:value
-	class="form-control {schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
+	class="form-control {showvalidation === 'yes' && schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
 	id={schemaentry?.id}
 	required={schemaentry?.required}
 	readonly={schemaentry?.readonly}
@@ -55,7 +58,7 @@
 		<option value={option.value} selected={value === option.value}>{option.label ?? option.value}</option>
 	{/each}
 </select>
-{#if schemaentry?.validationTip}
+{#if schemaentry?.validationTip && showvalidation === "yes"}
 	<div part="invalid-feedback" class="invalid-feedback mb-1">
 		{schemaentry.validationTip}
 	</div>

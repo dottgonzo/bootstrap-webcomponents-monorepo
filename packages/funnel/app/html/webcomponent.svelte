@@ -37,7 +37,7 @@
 	$: {
 		if (!id) id = "";
 
-		if (!step) step = 1;
+		if (!step && step !== 0) step = 1;
 		else if (typeof step === "string") step = Number(step);
 		if (schemes && typeof schemes === "string") {
 			schemes = JSON.parse(schemes).map((m) => {
@@ -67,11 +67,19 @@
 			schemes[step - 1].schema.find((f) => f.id === s._id).value = s[s._id];
 		}
 		schemes[step - 1].valid = s._valid;
+		if (submitstep === "yes") {
+			submitstep = "no";
+		}
 		dispatch("update", { step, scheme: schemes[step - 1], valid: schemes[step - 1].valid });
 	}
 	function submitFunnel() {
+		if (steps === step) {
+			dispatch("submit", { schemes, steps, step });
+		} else {
+			setStep(step + 1);
+		}
+
 		submitstep = "no";
-		dispatch("submit", { schemes, steps, step });
 	}
 	// function getValues(detail) {
 	// 	setTimeout(() => {
@@ -104,14 +112,20 @@
 			{:else}
 				<button class="btn btn-primary" on:click={() => setStep(step - 1)} disabled>Indietro</button>
 			{/if}
-			{#if steps === step && schemes[step - 1].valid}
-				<button class="btn btn-primary" on:click={() => (submitstep = "yes")}>Salva</button>
-			{:else if steps === step}
-				<button class="btn btn-primary" on:click={() => (submitstep = "yes")} disabled>Salva</button>
-			{:else if steps > step && schemes[step - 1].valid}
-				<button class="btn btn-primary" on:click={() => setStep(step + 1)}>Avanti</button>
+			{#if steps === step}
+				<button
+					class="btn btn-primary"
+					on:click={() => {
+						submitstep = "yes";
+					}}>Salva</button
+				>
 			{:else}
-				<button class="btn btn-primary" on:click={() => setStep(step + 1)} disabled>Avanti</button>
+				<button
+					class="btn btn-primary"
+					on:click={() => {
+						submitstep = "yes";
+					}}>Avanti</button
+				>
 			{/if}
 		</span>
 	</div>

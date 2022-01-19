@@ -7,6 +7,7 @@ const meta: Meta = {
   argTypes: {
     id: { control: { disable: true } },
     schemaentry: { control: { type: "object" } },
+    showvalidation: { control: { type: "boolean" } },
   },
 };
 
@@ -56,4 +57,5 @@ export const FormRadioInputTemplate2 = Template.bind({});
 FormRadioInputTemplate2.args = {
   id: "FormRadioInputTemplate2",
   schemaentry: inputEntry2,
+  showvalidation: true,
 };
