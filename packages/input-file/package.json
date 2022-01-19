@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-input-file",
 	"displayName": "Svelte-Bootstrap File Input WebComponent",
 	"description": "Svelte-Bootstrap File Input WebComponent",
-	"version": "0.4.9",
+	"version": "0.4.10",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
