@@ -46,3 +46,38 @@ PageCheckoutPaypal.args = {
     },
   ],
 };
+
+export const PageCheckoutPaypalWithUser = Template.bind({});
+
+PageCheckoutPaypalWithUser.args = {
+  id: "PageCheckoutPaypalWithUser",
+  shipments: [
+    {
+      price: 10,
+
+      durationInSeconds: 0,
+      available: true,
+      label: "zio barca",
+      id: "ziobarca",
+    },
+  ],
+  items: [
+    {
+      unitaryPrice: 2,
+      taxPercentage: 3,
+      name: "testitem",
+    },
+    {
+      unitaryPrice: 5,
+      taxPercentage: 7,
+      name: "testitem2",
+    },
+  ],
+  user: {
+    fullName: "fdfff fffff",
+    addressWithNumber: "addreess 43",
+    city: "ff",
+    nationality: "effe",
+    zip: "3434",
+  },
+};

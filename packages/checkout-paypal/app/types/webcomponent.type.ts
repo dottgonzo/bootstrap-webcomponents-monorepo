@@ -10,5 +10,8 @@ export interface IShipment {
 
 export interface IUser {
 	fullName: string;
-	fullAddress: string;
+	addressWithNumber: string;
+	city: string;
+	zip: string;
+	nationality: string;
 }

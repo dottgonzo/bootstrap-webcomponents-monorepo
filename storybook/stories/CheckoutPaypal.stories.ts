@@ -35,3 +35,50 @@ CheckoutPaypal.args = {
     },
   ],
 };
+
+export const CheckoutPaypalWithUser = Template.bind({});
+
+CheckoutPaypalWithUser.args = {
+  id: "CheckoutPaypalWithUser",
+  shipments: [
+    {
+      price: 10,
+
+      durationInSeconds: 0,
+      available: true,
+      label: "zio barca",
+      id: "ziobarca",
+    },
+  ],
+  user: {
+    fullName: "fdfff fffff",
+    addressWithNumber: "addreess 43",
+    city: "ff",
+    nationality: "effe",
+    zip: "3434",
+  },
+};
+
+export const CheckoutPaypalWithUserAndShipping = Template.bind({});
+
+CheckoutPaypalWithUserAndShipping.args = {
+  id: "CheckoutPaypalWithUserAndShipping",
+  shipments: [
+    {
+      price: 10,
+
+      durationInSeconds: 0,
+      available: true,
+      label: "zio barca",
+      id: "ziobarca",
+      selected: true,
+    },
+  ],
+  user: {
+    fullName: "fdfff fffff",
+    addressWithNumber: "addreess 43",
+    city: "ff",
+    nationality: "effe",
+    zip: "3434",
+  },
+};

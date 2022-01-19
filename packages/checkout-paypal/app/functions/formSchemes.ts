@@ -54,7 +54,7 @@ export const formUserSchema: FormSchema = [
 	{
 		type: "text",
 		placeholder: "Insert your Street/Square address with number...",
-		id: "address",
+		id: "addressWithNumber",
 		required: true,
 		label: "Street/Square/...",
 		validationTip: "This field cannot be empty.",
@@ -73,7 +73,7 @@ export const formUserSchema: FormSchema = [
 					validationTip: "This field cannot be empty.",
 				},
 				{
-					type: "text",
+					type: "number",
 					placeholder: "Insert your zip code here...",
 					id: "zip",
 					required: true,

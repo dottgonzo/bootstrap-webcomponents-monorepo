@@ -45,11 +45,25 @@
 		if (!shipments) shipments = [];
 		else if (typeof shipments === "string") shipments = JSON.parse(shipments);
 		if (!user) user = null;
-		else if (typeof user === "string") user = JSON.parse(user);
+		else if (typeof user === "string") {
+			user = JSON.parse(user);
+			for (const k of Object.keys(user)) {
+				if (formUserSchema.find((f) => f.id === k)) {
+					formUserSchema[formUserSchema.findIndex((f) => f.id === k)].value = user[k];
+				} else if (formUserSchema.find((f) => f.params?.columns?.length && f.params.columns.find((ff) => ff.id === k))) {
+					const rowIndex = formUserSchema.findIndex((f) => f.params?.columns?.length && f.params.columns.find((ff) => ff.id === k));
+					const elIndex = formUserSchema[rowIndex].params.columns.findIndex((ff) => ff.id === k);
+					formUserSchema[rowIndex].params.columns[elIndex].value = user[k];
+				}
+			}
+		}
 
 		formShipmentSchema[0].params.options = shipments.map((m) => {
 			return { value: m.id, label: m.label };
 		});
+		if (shipments.find((f) => f.selected) || shipments.find((f) => f.standard)) {
+			formShipmentSchema[0].value = (shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).id;
+		}
 	}
 
 	function cardChange(u: { _valid: boolean; fullName?: string; cardNumber?: string; CVV?: string; expiration?: string }) {
@@ -63,11 +77,15 @@
 			}
 		}
 	}
-	function saveUser(userInputs: { fullName: string; address: string; city: string; zip: string; nationality: string }) {
+	function saveUser(userInputs: { fullName: string; addressWithNumber: string; city: string; zip: string; nationality: string }) {
 		console.log("saveuser", userInputs);
 		const newUser: IUser = {
 			fullName: userInputs.fullName,
-			fullAddress: `${userInputs.address}, ${userInputs.city}, ${userInputs.zip},${userInputs.nationality}`,
+			addressWithNumber: userInputs.addressWithNumber,
+
+			city: userInputs.city,
+			zip: userInputs.zip,
+			nationality: userInputs.nationality,
 		};
 		for (const k of Object.keys(userInputs)) {
 			if (formUserSchema.find((f) => f.id === k)) {
@@ -81,6 +99,7 @@
 		user = newUser;
 		editUser = false;
 		formUserSchemaSubmitted = "no";
+		console.log("edited");
 	}
 
 	function saveShipment(results: { shipmentsolution: string }) {
@@ -134,18 +153,18 @@
 	}
 </script>
 
-<h2 part="title">Checkout</h2>
+<h2 class="title" part="title">Checkout</h2>
 <div style="border-top:1px solid black;border-bottom:1px solid black;margin-top:40px">
-	<div style="margin-top:10px">
-		{#if user?.fullName && user?.fullAddress && !editUser}
-			<h3 part="subtitle">User <button class="btn btn-sm btn-warning" on:click={editUserForm} style="float:right">edit</button></h3>
+	<div>
+		{#if user?.fullName && user?.addressWithNumber && !editUser}
+			<h3 class="subtitle" part="subtitle">User <button class="btn btn-sm btn-warning" on:click={editUserForm} style="float:right">edit</button></h3>
 
 			<div>
 				<div class="shipment">Name: {user.fullName}</div>
-				<div class="shipment">Address: {user.fullAddress}</div>
+				<div class="shipment">Address: {`${user.addressWithNumber}, ${user.city}, ${user.zip},${user.nationality}`}</div>
 			</div>
 		{:else}
-			<h3 part="subtitle">User</h3>
+			<h3 class="subtitle" part="subtitle">User</h3>
 
 			<div>
 				<hb-form
@@ -172,13 +191,15 @@
 	</div>
 	{#if shipments?.length}
 		<div style="margin-top:10px;border-top:1px solid black;">
-			{#if user?.fullName && user?.fullAddress && !editUser}
-				<h3 part="subtitle">Shipping <button class="btn btn-sm btn-warning" on:click={editShippingForm} style="float:right">edit</button></h3>
-
+			{#if user?.fullName && user?.addressWithNumber && !editUser}
 				{#if !editShipping && (shipments.find((f) => f.selected) || shipments.find((f) => f.standard))}
+					<h3 class="subtitle" part="subtitle">
+						Shipping <button class="btn btn-sm btn-warning" on:click={editShippingForm} style="float:right">edit</button>
+					</h3>
 					<div class="shipment">Shipping Fee: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price}</div>
 					<div class="shipment">Shipping Time: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).durationInSeconds}</div>
 				{:else}
+					<h3 class="subtitle" part="subtitle">Shipping</h3>
 					<div>
 						<hb-form
 							schema={JSON.stringify(formShipmentSchema)}
@@ -202,7 +223,7 @@
 					</div>
 				{/if}
 			{:else}
-				<h3 part="subtitle">Shipping</h3>
+				<h3 class="subtitle" part="subtitle">Shipping</h3>
 				{#if !editShipping && (shipments.find((f) => f.selected) || shipments.find((f) => f.standard))}
 					<div class="shipment">Shipping Fee: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price}</div>
 					<div class="shipment">Shipping Time: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).durationInSeconds}</div>
@@ -212,10 +233,10 @@
 	{/if}
 </div>
 <div>
-	<h3 part="subtitle">Payment Method</h3>
+	<h3 class="subtitle" part="subtitle">Payment Method</h3>
 	{#if !editUser && !editShipping && ((shipments?.length && shipments.find((f) => f.selected)) || shipments.find((f) => f.standard) || !shipments?.length)}
 		<div><button on:click={() => payByAccount()} style="width:100%;background-color:yellow;color:white" class="btn">paypal</button></div>
-		<div>OR</div>
+		<div style="text-align:center;width:100%;padding:20px">OR</div>
 		<div>
 			<div>
 				<hb-form
@@ -255,5 +276,11 @@
 		font-size: 12px;
 		padding: 5px;
 		line-height: 30px;
+	}
+	.subtitle {
+		margin-bottom: 30px;
+	}
+	.title {
+		text-align: center;
 	}
 </style>
