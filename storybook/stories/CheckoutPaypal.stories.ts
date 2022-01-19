@@ -8,6 +8,8 @@ const meta: Meta = {
     id: { control: { disable: true } },
     shipments: { control: { type: "array" } },
     user: { control: { type: "object" } },
+    payByCard: { action: "payByCard" },
+    payByAccount: { action: "payByAccount" },
   },
 };
 
