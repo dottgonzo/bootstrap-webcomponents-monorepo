@@ -24,10 +24,6 @@
 	let editUser: boolean;
 	let editShipping: boolean;
 
-	let editUserIsValid: boolean;
-	let editShippingIsValid: boolean;
-	let editCardIsValid: boolean;
-
 	let formUserSchemaSubmitted: "yes" | "no" = "no";
 	let formShipmentSchemaSubmitted: "yes" | "no" = "no";
 	let formCreditCardSchemaSubmitted: "yes" | "no" = "no";
@@ -39,14 +35,7 @@
 		else if (typeof user === "string") user = JSON.parse(user);
 	}
 
-	function userChange(u: { _valid: boolean }) {
-		editUserIsValid = u?._valid;
-	}
-	function shippingChange(u: { _valid: boolean }) {
-		editShippingIsValid = u?._valid;
-	}
 	function cardChange(u: { _valid: boolean; fullName?: string; cardNumber?: string; CVV?: string; expiration?: string }) {
-		editCardIsValid = u?._valid;
 		for (const k of ["fullName", "cardNumber", "CVV", "expiration"]) {
 			if (formCreditCardSchema.find((f) => f.id === k)) {
 				formCreditCardSchema[formCreditCardSchema.findIndex((f) => f.id === k)].value = u[k];
@@ -149,22 +138,18 @@
 					on:submit={(e) => {
 						saveUser(e.detail);
 					}}
-					on:change={(e) => {
-						userChange(e.detail);
-					}}
 				/>
 				<div>
-					{#if editUserIsValid}
-						<button
-							on:click={() => {
-								formUserSchemaSubmitted = "yes";
-							}}
-							style="width:100%"
-							class="btn btn-primary">continue</button
-						>
-					{:else}
-						<button disabled style="width:100%" class="btn btn-primary">continue</button>
-					{/if}
+					<button
+						on:click={() => {
+							formUserSchemaSubmitted = "yes";
+							setTimeout(() => {
+								formUserSchemaSubmitted = "no";
+							}, 200);
+						}}
+						style="width:100%"
+						class="btn btn-primary">continue</button
+					>
 				</div>
 			</div>
 		{/if}
@@ -185,22 +170,18 @@
 							on:submit={(e) => {
 								saveShipment(e.detail);
 							}}
-							on:change={(e) => {
-								shippingChange(e.detail);
-							}}
 						/>
 						<div>
-							{#if editShippingIsValid}
-								<button
-									on:click={() => {
-										formShipmentSchemaSubmitted = "yes";
-									}}
-									style="width:100%"
-									class="btn btn-primary">continue</button
-								>
-							{:else}
-								<button disabled style="width:100%" class="btn btn-primary">continue</button>
-							{/if}
+							<button
+								on:click={() => {
+									formShipmentSchemaSubmitted = "yes";
+									setTimeout(() => {
+										formShipmentSchemaSubmitted = "no";
+									}, 200);
+								}}
+								style="width:100%"
+								class="btn btn-primary">continue</button
+							>
 						</div>
 					</div>
 				{/if}
@@ -231,17 +212,16 @@
 				/>
 			</div>
 			<div>
-				{#if editCardIsValid}
-					<button
-						on:click={() => {
-							formCreditCardSchemaSubmitted = "yes";
-						}}
-						style="width:100%"
-						class="btn btn-primary">place order</button
-					>
-				{:else}
-					<button disabled style="width:100%" class="btn btn-primary">place order</button>
-				{/if}
+				<button
+					on:click={() => {
+						formCreditCardSchemaSubmitted = "yes";
+						setTimeout(() => {
+							formCreditCardSchemaSubmitted = "no";
+						}, 200);
+					}}
+					style="width:100%"
+					class="btn btn-primary">place order</button
+				>
 			</div>
 		</div>
 	{/if}
