@@ -56,9 +56,3 @@ export type FormSchemaEntry = {
 	 */
 	params?: Record<string, any>;
 };
-
-export type FormSchema = FormSchemaEntry[];
-
-export type FormRendererProps = {
-	schema: FormSchema;
-};

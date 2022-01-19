@@ -9,10 +9,9 @@
 
 	export let schemaentry: FormSchemaEntry;
 
-	let value: boolean;
-	let regex: RegExp | undefined;
-	let valid = false;
-
+	let value: string;
+	let options: { value: string; label?: string }[] = [];
+	let valid: boolean;
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 	function dispatch(name, detail) {
@@ -35,26 +34,58 @@
 			setvalid = true;
 		}
 
-		value = value != null ? value : !!schemaentry?.value;
+		options = schemaentry?.params?.options ?? [];
+		value = value != null ? value : (schemaentry?.value as string);
+		valid = !schemaentry?.required || value ? true : false;
 		setTimeout(() => {
 			if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
-			if (setvalid) dispatch("setValid", { valid: true, id: schemaentry?.id });
+			if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
 		}, 0);
+	}
+	function changeRadio(r) {
+		value = r.target.value;
 	}
 </script>
 
-<div class="form-check">
-	<input
-		bind:group={value}
-		type="radio"
-		class="form-check-input"
-		name={schemaentry?.params?.group}
-		id={schemaentry?.id}
-		required={schemaentry?.required}
-		readonly={schemaentry?.readonly}
-	/>
-	<label for={schemaentry?.id} class="form-check-label">{schemaentry?.label}</label>
+<div class="form-control {schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}">
+	{#each options as option (option)}
+		<div>
+			{#if value && option.value === value}
+				<input
+					on:change={(e) => {
+						changeRadio(e);
+					}}
+					checked
+					type="radio"
+					name={schemaentry?.id}
+					value={option.value}
+				/>
+				{option.label ?? option.value}
+			{:else}
+				<input
+					on:change={(e) => {
+						changeRadio(e);
+					}}
+					type="radio"
+					name={schemaentry?.id}
+					value={option.value}
+				/>
+				{option.label ?? option.value}
+			{/if}
+		</div>
+	{/each}
 </div>
+<!-- <select
+	bind:value
+	class="form-control {schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
+	id={schemaentry?.id}
+	required={schemaentry?.required}
+	readonly={schemaentry?.readonly}
+>
+	{#each options as option (option)}
+		<option value={option.value} selected={value === option.value}>{option.label ?? option.value}</option>
+	{/each}
+</select> -->
 {#if schemaentry?.validationTip}
 	<div part="invalid-feedback" class="invalid-feedback mb-1">
 		{schemaentry.validationTip}
