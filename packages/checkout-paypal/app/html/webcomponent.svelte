@@ -23,6 +23,14 @@
 	export let user: IUser;
 	let editUser: boolean;
 	let editShipping: boolean;
+
+	let editUserIsValid: boolean;
+	let editShippingIsValid: boolean;
+	let editCardIsValid: boolean;
+
+	let formUserSchemaSubmitted: "yes" | "no" = "no";
+	let formShipmentSchemaSubmitted: "yes" | "no" = "no";
+	let formCreditCardSchemaSubmitted: "yes" | "no" = "no";
 	$: {
 		if (!id) id = null;
 		if (!shipments) shipments = [];
@@ -31,6 +39,24 @@
 		else if (typeof user === "string") user = JSON.parse(user);
 	}
 
+	function userChange(u: { _valid: boolean }) {
+		editUserIsValid = u?._valid;
+	}
+	function shippingChange(u: { _valid: boolean }) {
+		editShippingIsValid = u?._valid;
+	}
+	function cardChange(u: { _valid: boolean; fullName?: string; cardNumber?: string; CVV?: string; expiration?: string }) {
+		editCardIsValid = u?._valid;
+		for (const k of ["fullName", "cardNumber", "CVV", "expiration"]) {
+			if (formCreditCardSchema.find((f) => f.id === k)) {
+				formCreditCardSchema[formCreditCardSchema.findIndex((f) => f.id === k)].value = u[k];
+			} else if (formCreditCardSchema.find((f) => f.params?.columns?.length && f.params.columns.find((ff) => ff.id === k))) {
+				const rowIndex = formCreditCardSchema.findIndex((f) => f.params?.columns?.length && f.params.columns.find((ff) => ff.id === k));
+				const elIndex = formCreditCardSchema[rowIndex].params.columns.findIndex((ff) => ff.id === k);
+				formCreditCardSchema[rowIndex].params.columns[elIndex].value = u[k];
+			}
+		}
+	}
 	function saveUser(userInputs: { fullName: string; address: string; city: string; zip: string; nationality: string }) {
 		console.log("saveuser", userInputs);
 		const newUser: IUser = {
@@ -48,6 +74,7 @@
 		}
 		user = newUser;
 		editUser = false;
+		formUserSchemaSubmitted = "no";
 	}
 
 	function saveShipment(results: { fullName: string; address: string; city: string; zip: string; nationality: string }) {
@@ -63,9 +90,12 @@
 		});
 		shipments[0].selected = true;
 		editShipping = false;
+		formShipmentSchemaSubmitted = "no";
 	}
 
 	function payByCard(p: {}) {
+		formCreditCardSchemaSubmitted = "no";
+
 		console.log("payByCard", p);
 		dispatch("payByCard", p);
 	}
@@ -115,10 +145,34 @@
 			<div>
 				<hb-form
 					schema={JSON.stringify(formUserSchema)}
+					submitted={formUserSchemaSubmitted}
 					on:submit={(e) => {
 						saveUser(e.detail);
 					}}
+					on:change={(e) => {
+						userChange(e.detail);
+					}}
 				/>
+				<div>
+					{#if editUserIsValid}
+						<button
+							on:click={() => {
+								formUserSchemaSubmitted = "yes";
+							}}
+							style="width:100%"
+							class="btn btn-primary">continue</button
+						>
+					{:else}
+						<button
+							on:click={() => {
+								formUserSchemaSubmitted = "yes";
+							}}
+							disabled
+							style="width:100%"
+							class="btn btn-primary">continue</button
+						>
+					{/if}
+				</div>
 			</div>
 		{/if}
 	</div>
@@ -134,10 +188,34 @@
 					<div>
 						<hb-form
 							schema={JSON.stringify(formShipmentSchema)}
+							submitted={formShipmentSchemaSubmitted}
 							on:submit={(e) => {
 								saveShipment(e.detail);
 							}}
+							on:change={(e) => {
+								shippingChange(e.detail);
+							}}
 						/>
+						<div>
+							{#if editShippingIsValid}
+								<button
+									on:click={() => {
+										formShipmentSchemaSubmitted = "yes";
+									}}
+									style="width:100%"
+									class="btn btn-primary">continue</button
+								>
+							{:else}
+								<button
+									on:click={() => {
+										formShipmentSchemaSubmitted = "yes";
+									}}
+									disabled
+									style="width:100%"
+									class="btn btn-primary">continue</button
+								>
+							{/if}
+						</div>
 					</div>
 				{/if}
 			{:else}
@@ -153,9 +231,35 @@
 		<div>OR</div>
 		<div>
 			<div>
-				<hb-form schema={JSON.stringify(formCreditCardSchema)} on:submit={(e) => payByCard(e.detail)} />
+				<hb-form
+					schema={JSON.stringify(formCreditCardSchema)}
+					submitted={formCreditCardSchemaSubmitted}
+					on:submit={(e) => payByCard(e.detail)}
+					on:change={(e) => {
+						cardChange(e.detail);
+					}}
+				/>
 			</div>
-			<div><button style="width:100%" class="btn btn-primary">place order</button></div>
+			<div>
+				{#if editCardIsValid}
+					<button
+						on:click={() => {
+							formCreditCardSchemaSubmitted = "yes";
+						}}
+						style="width:100%"
+						class="btn btn-primary">place order</button
+					>
+				{:else}
+					<button
+						on:click={() => {
+							formCreditCardSchemaSubmitted = "yes";
+						}}
+						disabled
+						style="width:100%"
+						class="btn btn-primary">place order</button
+					>
+				{/if}
+			</div>
 		</div>
 	{/if}
 </div>

@@ -12,7 +12,7 @@ export const formCreditCardSchema: FormSchema = [
 	{
 		type: "text",
 		placeholder: "Insert your Credit Card Number here...",
-		id: "cardn",
+		id: "cardNumber",
 		required: true,
 		label: "Card Number",
 		validationTip: "This field cannot be empty.",
@@ -25,7 +25,7 @@ export const formCreditCardSchema: FormSchema = [
 				{
 					type: "text",
 					placeholder: "Insert card CVV here...",
-					id: "cvv",
+					id: "CVV",
 					required: true,
 					label: "CVV",
 					validationTip: "This field cannot be empty.",
