@@ -69,5 +69,6 @@
 		"svelte-webcomponents",
 		"webcomponents"
 	],
-	"contributors": []
+	"contributors": [],
+	"gitHead": "32249a9209c053b9636aea7bcffa57577502b7f6"
 }
