@@ -9,8 +9,8 @@ const meta: Meta = {
     shipments: { control: { type: "array" } },
     items: { control: { type: "array" } },
     user: { control: { type: "object" } },
-    payByCard: { control: { type: "boolean" } },
-    payByAccount: { control: { type: "boolean" } },
+    payByCard: { action: "payByCard" },
+    payByAccount: { action: "payByAccount" },
   },
 };
 

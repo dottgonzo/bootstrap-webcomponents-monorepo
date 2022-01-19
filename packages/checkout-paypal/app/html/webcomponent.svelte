@@ -130,7 +130,7 @@
 </script>
 
 <h2 part="title">Checkout</h2>
-<div style="border-top:1px solid black;border-bottom:1px solid black;">
+<div style="border-top:1px solid black;border-bottom:1px solid black;margin-top:40px">
 	<div style="margin-top:10px">
 		{#if user?.fullName && user?.fullAddress && !editUser}
 			<h3 part="subtitle">User <button class="btn btn-sm btn-warning" on:click={editUserForm} style="float:right">edit</button></h3>
@@ -163,14 +163,7 @@
 							class="btn btn-primary">continue</button
 						>
 					{:else}
-						<button
-							on:click={() => {
-								formUserSchemaSubmitted = "yes";
-							}}
-							disabled
-							style="width:100%"
-							class="btn btn-primary">continue</button
-						>
+						<button disabled style="width:100%" class="btn btn-primary">continue</button>
 					{/if}
 				</div>
 			</div>
@@ -206,20 +199,17 @@
 									class="btn btn-primary">continue</button
 								>
 							{:else}
-								<button
-									on:click={() => {
-										formShipmentSchemaSubmitted = "yes";
-									}}
-									disabled
-									style="width:100%"
-									class="btn btn-primary">continue</button
-								>
+								<button disabled style="width:100%" class="btn btn-primary">continue</button>
 							{/if}
 						</div>
 					</div>
 				{/if}
 			{:else}
 				<h3 part="subtitle">Shipping</h3>
+				{#if !editShipping && (shipments.find((f) => f.selected) || shipments.find((f) => f.standard))}
+					<div class="shipment">Shipping Fee: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price}</div>
+					<div class="shipment">Shipping Time: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).durationInSeconds}</div>
+				{/if}
 			{/if}
 		</div>
 	{/if}
@@ -250,20 +240,13 @@
 						class="btn btn-primary">place order</button
 					>
 				{:else}
-					<button
-						on:click={() => {
-							formCreditCardSchemaSubmitted = "yes";
-						}}
-						disabled
-						style="width:100%"
-						class="btn btn-primary">place order</button
-					>
+					<button disabled style="width:100%" class="btn btn-primary">place order</button>
 				{/if}
 			</div>
 		</div>
 	{/if}
 </div>
-<div class="footer_note">By Clicking..<button class="btn btn-default">Terms and conditions</button></div>
+<div class="footer_note"><slot name="footer">By Clicking..<button class="btn btn-default">Terms and conditions</button></slot></div>
 
 <style lang="scss">
 	@import "../styles/bootstrap.scss";

@@ -55,7 +55,14 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-7" style="padding-right:30px"><hb-checkout-paypal {user} {shipments} /></div>
+		<div class="col-7" style="padding-right:30px">
+			<hb-checkout-paypal
+				on:payByCard={(e) => dispatch("payByCard", e.detail)}
+				on:payByAccount={(e) => dispatch("payByAccount", e.detail)}
+				{user}
+				{shipments}
+			/>
+		</div>
 		<div class="col-5" style="padding-left:30px">
 			<hb-checkout-shopping-cart {items} {headers} />
 			{#if completed}
