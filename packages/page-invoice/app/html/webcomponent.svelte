@@ -10,7 +10,7 @@
 	 * @license: MIT License
 	 *
 	 */
-	import type { IActionButton, IFilter, IRow, ITableHeader } from "../../../table/app/functions/interfaces";
+	import type { IActionButton, IFilter, IRow, ITableHeader } from "../../../table/app/types/webcomponent.type";
 
 	import pkg from "../../package.json";
 	import { createEventDispatcher } from "svelte";
@@ -175,16 +175,16 @@
 		w.document.write("<html><head><title>" + document.title + "</title>");
 		w.document.write("</head><body >");
 		w.document.write(
-			`<style>@page { size: auto;  margin: 0mm; }</style><hb-invoice printer="yes" items='${JSON.stringify(items)}' headers='${JSON.stringify(
+			`<style>@page { size: auto;  margin: 0mm; }</style><hb-page-invoice printer="yes" items='${JSON.stringify(items)}' headers='${JSON.stringify(
 				headers,
-			)}'></hb-invoice>`,
+			)}'></hb-page-invoice>`,
 		);
 		w.document.write("</body></html>");
 
 		const script = document.createElement("script");
 		script.id = "hb-invoice-script";
 		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-page-invoice@${pkg.version}/release/release.js`;
-		if (location.href.includes("localhost")) script.src = `http://localhost:6006/invoice/dist/release.js`;
+		if (location.href.includes("localhost")) script.src = `http://localhost:6006/page-invoice/dist/release.js`;
 
 		w.document.head.appendChild(script);
 
@@ -199,14 +199,16 @@
 		w.document.write("<html><head><title>" + document.title + "</title>");
 		w.document.write("</head><body >");
 		w.document.write(
-			`<style>@page { size: auto;  margin: 0mm; }</style><hb-invoice items='${JSON.stringify(items)}' headers='${JSON.stringify(headers)}'></hb-invoice>`,
+			`<style>@page { size: auto;  margin: 0mm; }</style><hb-page-invoice items='${JSON.stringify(items)}' headers='${JSON.stringify(
+				headers,
+			)}'></hb-page-invoice>`,
 		);
 		w.document.write("</body></html>");
 
 		const script = document.createElement("script");
 		script.id = "hb-invoice-script";
 		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-page-invoice@${pkg.version}/release/release.js`;
-		if (location.href.includes("localhost")) script.src = `http://localhost:6006/invoice/dist/release.js`;
+		if (location.href.includes("localhost")) script.src = `http://localhost:6006/page-invoice/dist/release.js`;
 
 		w.document.head.appendChild(script);
 	}
