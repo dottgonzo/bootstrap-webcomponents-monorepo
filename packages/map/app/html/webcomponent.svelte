@@ -193,7 +193,7 @@
 		}
 	}
 
-	function popupClose(e?: { target: HTMLElement }) {
+	function popupClose(e?: { target: any }) {
 		overlay.setPosition(undefined);
 		e?.target?.blur?.();
 	}
