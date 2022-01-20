@@ -10,7 +10,7 @@
 	 * @license: MIT License
 	 *
 	 */
-	import type { IActionButton, IFilter, IRow, ITableHeader } from "../../../table/app/functions/interfaces";
+	import type { IActionButton, IFilter, IRow, ITableHeader } from "../../../table/app/types/webcomponent.type";
 
 	import pkg from "../../package.json";
 	import { createEventDispatcher } from "svelte";
@@ -59,7 +59,7 @@
 			currency = "euro";
 			currencySymbol = "€";
 		} else if (typeof headers === "string") {
-			headers = JSON.parse(headers);
+			headers = JSON.parse(headers) || {};
 
 			if (!headers.country) headers.country = "it";
 			switch (headers.country) {

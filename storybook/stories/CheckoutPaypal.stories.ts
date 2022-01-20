@@ -10,6 +10,8 @@ const meta: Meta = {
     user: { control: { type: "object" } },
     payByCard: { action: "payByCard" },
     payByAccount: { action: "payByAccount" },
+    saveUser: { action: "saveUser" },
+    saveShipment: { action: "saveShipment" },
   },
 };
 
@@ -27,11 +29,21 @@ CheckoutPaypal.args = {
   shipments: [
     {
       price: 10,
+      currency: "€",
 
-      durationInSeconds: 0,
+      arriveDate: "2022-01-20T08:03:57.562Z",
       available: true,
       label: "zio barca",
       id: "ziobarca",
+    },
+    {
+      price: 20,
+      currency: "€",
+
+      arriveDate: "2022-01-21T02:22:57.562Z",
+      available: true,
+      label: "zio barca2",
+      id: "ziobarca2",
     },
   ],
 };
@@ -43,11 +55,21 @@ CheckoutPaypalWithUser.args = {
   shipments: [
     {
       price: 10,
+      currency: "€",
 
-      durationInSeconds: 0,
+      arriveDate: "2022-01-20T08:03:57.562Z",
       available: true,
       label: "zio barca",
       id: "ziobarca",
+    },
+    {
+      price: 20,
+      currency: "€",
+
+      arriveDate: "2022-01-21T02:22:57.562Z",
+      available: true,
+      label: "zio barca2",
+      id: "ziobarca2",
     },
   ],
   user: {
@@ -66,12 +88,22 @@ CheckoutPaypalWithUserAndShipping.args = {
   shipments: [
     {
       price: 10,
+      currency: "€",
 
-      durationInSeconds: 0,
+      arriveDate: "2022-01-20T08:03:57.562Z",
       available: true,
       label: "zio barca",
       id: "ziobarca",
       selected: true,
+    },
+    {
+      price: 20,
+      currency: "€",
+
+      arriveDate: "2022-01-21T02:22:57.562Z",
+      available: true,
+      label: "zio barca2",
+      id: "ziobarca2",
     },
   ],
   user: {

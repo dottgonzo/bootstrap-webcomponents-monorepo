@@ -23,11 +23,19 @@
 	export let user: IUser;
 	export let headers: ICartHeaders;
 	export let items: IShopItem[];
-	let completed: boolean = false;
+	export let completed: "yes" | "no";
 	$: {
 		if (!id) id = null;
-		if (!shipments) shipments = null;
-		if (!headers) headers = null;
+		if (!completed) completed = "no";
+		if (!shipments) shipments = [];
+		else if (typeof shipments === "string") shipments = JSON.parse(shipments) || [];
+		if (!headers) headers = {};
+		else if (typeof headers === "string") {
+			headers = JSON.parse(headers);
+		}
+		if (shipments.find((f) => f.selected) || shipments.find((f) => f.standard)) {
+			headers.shipmentFee = (shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price;
+		}
 		if (!items) items = null;
 
 		if (!user) user = null;
@@ -51,25 +59,36 @@
 	}
 	addComponent("checkout-shopping-cart");
 	addComponent("checkout-paypal");
+	function saveShipment(detail: IShipment) {
+		const shipmentIndex = shipments.findIndex((f) => f.id === detail.id);
+		const shipment = shipments[shipmentIndex];
+		shipments.forEach((f) => (f.selected = false));
+
+		shipment.selected = true;
+		headers.shipmentFee = shipment.price;
+		console.log("sss", shipment, detail);
+	}
 </script>
 
+<!-- {#if completed ==="yes"}
+				<div>Checkout status:</div>
+			{:else}
+				<div>Checkout status:</div>
+			{/if} -->
 <div class="container">
 	<div class="row">
 		<div class="col-7" style="padding-right:30px">
 			<hb-checkout-paypal
 				on:payByCard={(e) => dispatch("payByCard", e.detail)}
 				on:payByAccount={(e) => dispatch("payByAccount", e.detail)}
+				on:saveUser={(e) => dispatch("saveUser", e.detail)}
+				on:saveShipment={(e) => saveShipment(e.detail)}
 				{user}
-				{shipments}
+				shipments={JSON.stringify(shipments)}
 			/>
 		</div>
 		<div class="col-5" style="padding-left:30px">
-			<hb-checkout-shopping-cart {items} {headers} />
-			{#if completed}
-				<div>Checkout status:</div>
-			{:else}
-				<div>Checkout status:</div>
-			{/if}
+			<hb-checkout-shopping-cart {items} headers={JSON.stringify(headers)} />
 		</div>
 	</div>
 </div>

@@ -17,6 +17,7 @@
 	import type { IShipment, IUser } from "@app/types/webcomponent.type";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { formUserSchema, formCreditCardSchema } from "@app/functions/formSchemes";
+	import dayjs from "dayjs";
 
 	export let id: string;
 	export let shipments: IShipment[];
@@ -43,7 +44,7 @@
 	$: {
 		if (!id) id = null;
 		if (!shipments) shipments = [];
-		else if (typeof shipments === "string") shipments = JSON.parse(shipments);
+		else if (typeof shipments === "string") shipments = JSON.parse(shipments) || [];
 		if (!user) user = null;
 		else if (typeof user === "string") {
 			user = JSON.parse(user);
@@ -59,7 +60,7 @@
 		}
 
 		formShipmentSchema[0].params.options = shipments.map((m) => {
-			return { value: m.id, label: m.label };
+			return { value: m.id, label: m.label + " " + m.price + m.currency };
 		});
 		if (shipments.find((f) => f.selected) || shipments.find((f) => f.standard)) {
 			formShipmentSchema[0].value = (shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).id;
@@ -100,6 +101,7 @@
 		editUser = false;
 		formUserSchemaSubmitted = "no";
 		console.log("edited");
+		dispatch("saveUser", user);
 	}
 
 	function saveShipment(results: { shipmentsolution: string }) {
@@ -112,6 +114,7 @@
 			shipments[i].selected = true;
 			editShipping = false;
 			formShipmentSchema[0].value = shipmentId;
+			dispatch("saveShipment", shipments[i]);
 		}
 
 		formShipmentSchemaSubmitted = "no";
@@ -159,9 +162,9 @@
 		{#if user?.fullName && user?.addressWithNumber && !editUser}
 			<h3 class="subtitle" part="subtitle">User <button class="btn btn-sm btn-warning" on:click={editUserForm} style="float:right">edit</button></h3>
 
-			<div>
-				<div class="shipment">Name: {user.fullName}</div>
-				<div class="shipment">Address: {`${user.addressWithNumber}, ${user.city}, ${user.zip},${user.nationality}`}</div>
+			<div class="dataentrycontainer">
+				<div class="dataentry" style="font-weight:bold">Name: {user.fullName}</div>
+				<div class="dataentry">Address: {`${user.addressWithNumber}, ${user.city}, ${user.zip},${user.nationality}`}</div>
 			</div>
 		{:else}
 			<h3 class="subtitle" part="subtitle">User</h3>
@@ -182,7 +185,7 @@
 								formUserSchemaSubmitted = "no";
 							}, 200);
 						}}
-						style="width:100%"
+						style="width:100%;margin-bottom:10px"
 						class="btn btn-primary">continue</button
 					>
 				</div>
@@ -190,14 +193,18 @@
 		{/if}
 	</div>
 	{#if shipments?.length}
-		<div style="margin-top:10px;border-top:1px solid black;">
+		<div style="border-top:1px solid black;">
 			{#if user?.fullName && user?.addressWithNumber && !editUser}
 				{#if !editShipping && (shipments.find((f) => f.selected) || shipments.find((f) => f.standard))}
 					<h3 class="subtitle" part="subtitle">
 						Shipping <button class="btn btn-sm btn-warning" on:click={editShippingForm} style="float:right">edit</button>
 					</h3>
-					<div class="shipment">Shipping Fee: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price}</div>
-					<div class="shipment">Shipping Time: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).durationInSeconds}</div>
+					<div class="dataentrycontainer">
+						<div class="dataentry">Shipping Fee: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price}</div>
+						<div class="dataentry" style="font-weight:bold">
+							Arrive {dayjs((shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).arriveDate).format()}
+						</div>
+					</div>
 				{:else}
 					<h3 class="subtitle" part="subtitle">Shipping</h3>
 					<div>
@@ -225,8 +232,10 @@
 			{:else}
 				<h3 class="subtitle" part="subtitle">Shipping</h3>
 				{#if !editShipping && (shipments.find((f) => f.selected) || shipments.find((f) => f.standard))}
-					<div class="shipment">Shipping Fee: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price}</div>
-					<div class="shipment">Shipping Time: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).durationInSeconds}</div>
+					<div class="dataentrycontainer">
+						<div class="dataentry">Shipping Fee: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price}</div>
+						<div class="dataentry">Shipping Time: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).durationInSeconds}</div>
+					</div>
 				{/if}
 			{/if}
 		</div>
@@ -268,8 +277,12 @@
 <style lang="scss">
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
-	.shipment {
-		line-height: 20px;
+	:root {
+		--edit-color: green;
+		--paypal-button-color: yellow;
+	}
+	.dataentry {
+		line-height: 30px;
 	}
 	.footer_note {
 		text-align: center;
@@ -282,5 +295,8 @@
 	}
 	.title {
 		text-align: center;
+	}
+	.dataentrycontainer {
+		margin-bottom: 30px;
 	}
 </style>
