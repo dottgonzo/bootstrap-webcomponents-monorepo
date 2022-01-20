@@ -11,6 +11,9 @@
 	 *
 	 */
 	import type { IActionButton, IFilter, IRow, ITableHeader } from "../../../table/app/types/webcomponent.type";
+	import type { IItem, ICompany, IHeaders } from "@app/types/webcomponent.type";
+
+	import { printInvoice, OpenInvoiceWindow } from "@app/../extra/utils";
 
 	import pkg from "../../package.json";
 	import { createEventDispatcher } from "svelte";
@@ -20,36 +23,9 @@
 	import "dayjs/locale/it";
 	export let id: string;
 	export let printer: "yes" | "no";
-	export let items: {
-		unit?: string;
-		desc: string;
-		unitaryPrice: number;
-		taxPercentage: number;
-		quantity?: number;
-		discount?: {
-			type: "gross" | "item";
-			includeVat?: boolean;
-		};
-	}[];
+	export let items: IItem[];
 
-	interface ICompany {
-		piva: string;
-		name: string;
-		address: string;
-		email: string;
-		phone: string;
-		iban?: string;
-	}
-
-	export let headers: {
-		country?: "it" | "eu" | "us";
-		serial: string;
-		date?: Date;
-		expirationDate?: Date;
-		category?: "items" | "services";
-		from: ICompany & { logo: string; shortName: string };
-		to: ICompany;
-	};
+	export let headers: IHeaders;
 
 	let currency: string;
 	let currencySymbol: string;
@@ -168,50 +144,6 @@
 		}
 	}
 	addComponent("table");
-
-	function printInvoice() {
-		const w = window.open("", "PRINT", "height=400,width=600");
-
-		w.document.write("<html><head><title>" + document.title + "</title>");
-		w.document.write("</head><body >");
-		w.document.write(
-			`<style>@page { size: auto;  margin: 0mm; }</style><hb-page-invoice printer="yes" items='${JSON.stringify(items)}' headers='${JSON.stringify(
-				headers,
-			)}'></hb-page-invoice>`,
-		);
-		w.document.write("</body></html>");
-
-		const script = document.createElement("script");
-		script.id = "hb-page-invoice-script";
-		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-page-invoice@${pkg.version}/release/release.js`;
-		if (location.href.includes("localhost")) script.src = `http://localhost:6006/page-invoice/dist/release.js`;
-
-		w.document.head.appendChild(script);
-
-		setTimeout(() => {
-			w.print();
-			w.close();
-		}, 2000);
-	}
-	function OpenInvoiceWindow() {
-		const w = window.open("", "PRINT", "height=400,width=600");
-
-		w.document.write("<html><head><title>" + document.title + "</title>");
-		w.document.write("</head><body >");
-		w.document.write(
-			`<style>@page { size: auto;  margin: 0mm; }</style><hb-page-invoice items='${JSON.stringify(items)}' headers='${JSON.stringify(
-				headers,
-			)}'></hb-page-invoice>`,
-		);
-		w.document.write("</body></html>");
-
-		const script = document.createElement("script");
-		script.id = "hb-page-invoice-script";
-		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-page-invoice@${pkg.version}/release/release.js`;
-		if (location.href.includes("localhost")) script.src = `http://localhost:6006/page-invoice/dist/release.js`;
-
-		w.document.head.appendChild(script);
-	}
 </script>
 
 {#if headers?.from && headers.to}
@@ -224,8 +156,10 @@
 			<div class="col">
 				{#if printer !== "yes"}
 					<div style="text-align:right;padding-right:60px">
-						<button on:click={debounce(printInvoice, 200)} class="btn btn-default"><i class="bi-printer-fill" /></button>
-						<button on:click={debounce(OpenInvoiceWindow, 200)} class="btn btn-default"><i class="bi-arrows-fullscreen" /></button>
+						<button on:click={debounce(() => printInvoice({ headers, items }), 200)} class="btn btn-default"><i class="bi-printer-fill" /></button>
+						<button on:click={debounce(() => OpenInvoiceWindow({ headers, items }), 200)} class="btn btn-default"
+							><i class="bi-arrows-fullscreen" /></button
+						>
 					</div>
 				{/if}
 			</div>
