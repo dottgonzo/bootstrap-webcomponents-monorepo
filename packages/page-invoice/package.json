@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-page-invoice",
 	"displayName": "Svelte Invoice WebComponent",
 	"description": "Svelte Invoice WebComponent",
-	"version": "0.4.12",
+	"version": "0.4.13",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
