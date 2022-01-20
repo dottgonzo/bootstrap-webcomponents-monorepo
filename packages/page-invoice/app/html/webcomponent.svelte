@@ -156,8 +156,10 @@
 			<div class="col">
 				{#if printer !== "yes"}
 					<div style="text-align:right;padding-right:60px">
-						<button on:click={debounce(() => printInvoice({ headers, items }), 200)} class="btn btn-default"><i class="bi-printer-fill" /></button>
-						<button on:click={debounce(() => OpenInvoiceWindow({ headers, items }), 200)} class="btn btn-default"
+						<button on:click={debounce(() => printInvoice({ headers, items, version: pkg.version }), 200)} class="btn btn-default"
+							><i class="bi-printer-fill" /></button
+						>
+						<button on:click={debounce(() => OpenInvoiceWindow({ headers, items, version: pkg.version }), 200)} class="btn btn-default"
 							><i class="bi-arrows-fullscreen" /></button
 						>
 					</div>
