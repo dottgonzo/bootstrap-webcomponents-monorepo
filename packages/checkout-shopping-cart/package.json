@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-checkout-shopping-cart",
 	"displayName": "Svelte Shopping Cart WebComponent",
 	"description": "Svelte Shopping Cart WebComponent",
-	"version": "0.4.14",
+	"version": "0.4.15",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
