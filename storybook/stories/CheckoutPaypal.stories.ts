@@ -19,7 +19,7 @@ export default meta;
 
 const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes, "checkout-paypal", {
-    style: { width: "600px", margin: "20px auto 20px auto" },
+    style: { margin: "20px auto 20px auto" },
   });
 
 export const CheckoutPaypal = Template.bind({});
