@@ -68,6 +68,7 @@
 	"contributors": [],
 	"gitHead": "30f5a34d946a32650ef99ddc21ea8942e41fad66",
 	"dependencies": {
-		"chart.js": "^3.7.0"
+		"chart.js": "^3.7.0",
+		"debounce": "^1.2.1"
 	}
 }

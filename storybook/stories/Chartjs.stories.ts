@@ -6,6 +6,7 @@ const meta: Meta = {
   argTypes: {
     id: { control: { disable: true } },
     data: { control: { type: "object" } },
+    chartClick: { action: "chartClick" },
   },
 };
 
