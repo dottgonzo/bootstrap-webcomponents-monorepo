@@ -6,7 +6,7 @@ const meta: Meta = {
   argTypes: {
     page: { control: { type: "number" } },
     pages: { control: { type: "number" } },
-    pagechange: { action: "pagechangeEvent" },
+    pagechange: { action: "pagechange" },
     id: { control: { disable: true } },
   },
 };

@@ -6,6 +6,7 @@
 	import type { FormSchemaEntry } from "@app/types/webcomponent.type";
 	export let setvalue: boolean;
 	export let setvalid: boolean;
+	export let showvalidation: "yes" | "no";
 
 	export let schemaentry: FormSchemaEntry;
 
@@ -19,6 +20,8 @@
 	}
 
 	$: {
+		if (!showvalidation) showvalidation = "no";
+
 		if (schemaentry && typeof schemaentry === "string") {
 			schemaentry = JSON.parse(schemaentry as unknown as string);
 		}
@@ -52,7 +55,7 @@
 	/>
 	<label for={schemaentry?.id} class="form-check-label">{schemaentry?.label}</label>
 </div>
-{#if schemaentry?.validationTip}
+{#if schemaentry?.validationTip && showvalidation === "yes"}
 	<div part="invalid-feedback" class="invalid-feedback mb-1">
 		{schemaentry.validationTip}
 	</div>

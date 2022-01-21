@@ -4,10 +4,6 @@
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 
-	console.log(111, JSON.stringify($$props));
-	console.log(222, JSON.stringify($$slots));
-	let slots = $$props.$$slots;
-
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 	function dispatch(name, detail) {
@@ -27,8 +23,8 @@
 
 	export let id: string;
 	export let show: boolean | string | null;
-	export let header: Header;
-	export let body: string;
+	export let header: Header | null;
+	export let body: string | null;
 	let headerImg: Header["img"];
 	let headerStrong: Header["strong"];
 	let headerSmall: Header["small"];
@@ -139,6 +135,33 @@
 		on:introend={onToastOpened}
 		on:outroend={onToastClosed}
 	>
+		<style lang="scss">
+			svg {
+				vertical-align: middle;
+			}
+			.me-2 {
+				margin-right: 0.5rem !important;
+			}
+			.rounded {
+				border-radius: 0.25rem !important;
+			}
+			.me-auto {
+				margin-right: auto !important;
+			}
+			::slotted(svg) {
+				vertical-align: middle;
+			}
+			::slotted(.me-2) {
+				margin-right: 0.5rem !important;
+			}
+			::slotted(.rounded) {
+				border-radius: 0.25rem !important;
+			}
+			::slotted(.me-auto) {
+				margin-right: auto !important;
+			}
+		</style>
+
 		{#if headerImg || headerStrong || headerSmall}
 			<div class="toast-header">
 				{#if headerImg}
@@ -161,16 +184,27 @@
 				/>
 			</div>
 		{/if}
-		{#if slots && (slots.headerImg || slots.headerStrong || slots.headerSmall)}
+		{#if $$slots.headerImg || $$slots.headerStrong || $$slots.headerSmall}
 			<div class="toast-header">
-				{#if slots.headerImg}
-					<slot name="headerImg" />
+				{#if $$slots.headerImg}
+					<slot name="headerImg">
+						<style lang="scss">
+							@import "../styles/bootstrap.scss";
+							@import "../styles/webcomponent.scss";
+
+							svg {
+								color: green;
+								text-decoration: none;
+								border: 1px solid yellow;
+							}
+						</style>
+					</slot>
 				{/if}
 
-				{#if slots.headerStrong}
+				{#if $$slots.headerStrong}
 					<strong class="me-auto"><slot name="headerStrong" /></strong>
 				{/if}
-				{#if headerSmall}
+				{#if $$slots.headerSmall}
 					<small><slot name="headerSmall" /></small>
 				{/if}
 				<button
@@ -188,22 +222,11 @@
 		{#if body}
 			<div class="toast-body">{@html body}</div>
 		{/if}
-		{#if slots && slots.body}
+		{#if $$slots.body}
 			<div class="toast-body"><slot name="body" /></div>
 		{/if}
 
-		{#if !headerImg && !headerStrong && !headerSmall}
-			<button
-				type="button"
-				class="btn-close me-2 m-auto"
-				data-bs-dismiss="toast"
-				aria-label="Close"
-				on:click={() => {
-					show = false;
-				}}
-			/>
-		{/if}
-		{#if slots && !slots.headerImg && !slots.headerStrong && !slots.headerSmall}
+		{#if !headerImg && !headerStrong && !headerSmall && !$$slots.headerImg && !$$slots.headerStrong && !$$slots.headerSmall}
 			<button
 				type="button"
 				class="btn-close me-2 m-auto"
@@ -220,8 +243,4 @@
 <style lang="scss">
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
-
-	// .toast {
-	// 	display: block;
-	// }
 </style>

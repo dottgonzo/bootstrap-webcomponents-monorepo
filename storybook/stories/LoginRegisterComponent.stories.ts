@@ -8,11 +8,11 @@ const meta: Meta = {
       options: ["login", "register", "activate", "recover"],
       control: { type: "select" }, // Automatically inferred when 'options' is defined
     },
-    language: { type: "string" },
-    disableregister: { type: "boolean" },
-    logouri: { type: "string" },
-    loginuri: { type: "string" },
-    registeruri: { type: "string" },
+    language: { control: { type: "string" } },
+    disableregister: { control: { type: "boolean" } },
+    logouri: { control: { type: "string" } },
+    loginuri: { control: { type: "string" } },
+    registeruri: { control: { type: "string" } },
     login: { action: "loginEvent" },
     register: { action: "registerEvent" },
     recoverOrActivate: { action: "recoverOrActivateEvent" },
@@ -90,7 +90,8 @@ LoginEnWithOauth.args = {
   oauth2providers: [
     {
       provider: "google",
-      uri: "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=https%3A//oauth2.example.com/code&client_id=client_id",
+      uri:
+        "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=https%3A//oauth2.example.com/code&client_id=client_id",
     },
     { provider: "facebook" },
     { provider: "twitter" },

@@ -6,6 +6,7 @@
 	import type { FormSchemaEntry } from "@app/types/webcomponent.type";
 	export let setvalue: boolean;
 	export let setvalid: boolean;
+	export let showvalidation: "yes" | "no";
 
 	export let schemaentry: FormSchemaEntry;
 
@@ -21,6 +22,8 @@
 	}
 
 	$: {
+		if (!showvalidation) showvalidation = "no";
+
 		if (schemaentry && typeof schemaentry === "string") {
 			schemaentry = JSON.parse(schemaentry as unknown as string);
 		}
@@ -52,14 +55,14 @@
 
 <textarea
 	bind:value
-	class="form-control {schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
+	class="form-control {showvalidation === 'yes' && schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
 	id={schemaentry?.id}
 	required={schemaentry?.required}
 	placeholder={schemaentry?.placeholder}
 	readonly={schemaentry?.readonly}
 	rows={schemaentry?.params?.rows}
 />
-{#if schemaentry?.validationTip}
+{#if schemaentry?.validationTip && showvalidation === "yes"}
 	<div part="invalid-feedback" class="invalid-feedback mb-1">
 		{schemaentry.validationTip}
 	</div>

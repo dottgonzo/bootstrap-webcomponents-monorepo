@@ -57,7 +57,7 @@
 		file: { component: "hb-input-file" },
 		textarea: { component: "hb-input-area" },
 		checkbox: { component: "hb-input-checkbox", options: { labelIsHandledByComponent: true } },
-		radio: { component: "hb-input-radio", options: { labelIsHandledByComponent: true } },
+		radio: { component: "hb-input-radio" },
 	};
 
 	export let schema: FormSchema;
@@ -65,8 +65,9 @@
 	export let values: Record<string, string | number | boolean> = {};
 
 	export let isInvalid: boolean;
-	export let submitted: "yes" | null;
+	export let submitted: "yes" | "no" | null;
 	export let getvals: "yes" | "no" | null;
+	export let showvalidation: "yes" | "no";
 	let controls: IControl[];
 	let visibility: Record<string, boolean>;
 	let valids: Record<string, boolean> = {};
@@ -75,9 +76,12 @@
 	let dependencyMap: Record<string, FormSchemaEntry[]>;
 	let getControls: (schema: FormSchema) => IControl[];
 	$: {
+		if (!showvalidation) showvalidation = "no";
 		if (!visibility) visibility = {};
 		if (submitted && submitted === "yes" && schema && typeof schema !== "string") {
 			onSubmit();
+		} else if (submitted === "yes") {
+			submitted = "no";
 		}
 		if (typeof schema === "string") {
 			schema = JSON.parse(schema as unknown as string);
@@ -219,6 +223,10 @@
 		component.dispatchEvent?.(new CustomEvent(name, { detail }));
 	}
 	const onSubmit = () => {
+		console.log("subb");
+		showvalidation = "yes";
+		submitted = "no";
+		if (isInvalid) return;
 		const cc = Object.assign({ _valid: !isInvalid }, values);
 
 		dispatch("submit", cc);
@@ -253,7 +261,7 @@
 							{#if visibility[entry.id]}
 								<div class="col mb-3">
 									{#if !options.labelIsHandledByComponent}
-										<label for={entry.id}>{entry.label}</label>
+										<label for={entry.id}>{entry.label}{entry.required ? "*" : ""}</label>
 									{/if}
 
 									{#if component === "hb-input-text"}
@@ -270,6 +278,7 @@
 											)}
 											setvalue
 											setvalid
+											{showvalidation}
 										/>
 									{:else if component === "hb-input-file"}
 										<hb-input-file
@@ -285,6 +294,7 @@
 											)}
 											setvalue
 											setvalid
+											{showvalidation}
 										/>
 									{:else if component === "hb-input-email"}
 										<hb-input-email
@@ -300,6 +310,7 @@
 											)}
 											setvalue
 											setvalid
+											{showvalidation}
 										/>
 									{:else if component === "hb-input-date"}
 										<hb-input-date
@@ -315,6 +326,7 @@
 											)}
 											setvalue
 											setvalid
+											{showvalidation}
 										/>
 									{:else if component === "hb-input-checkbox"}
 										<hb-input-checkbox
@@ -330,6 +342,7 @@
 											)}
 											setvalue
 											setvalid
+											{showvalidation}
 										/>
 									{:else if component === "hb-input-number"}
 										<hb-input-number
@@ -345,6 +358,7 @@
 											)}
 											setvalue
 											setvalid
+											{showvalidation}
 										/>
 									{:else if component === "hb-input-area"}
 										<hb-input-area
@@ -360,6 +374,7 @@
 											)}
 											setvalue
 											setvalid
+											{showvalidation}
 										/>
 									{:else if component === "hb-input-radio"}
 										<hb-input-radio
@@ -375,6 +390,7 @@
 											)}
 											setvalue
 											setvalid
+											{showvalidation}
 										/>
 									{:else if component === "hb-input-select"}
 										<hb-input-select
@@ -390,6 +406,7 @@
 											)}
 											setvalue
 											setvalid
+											{showvalidation}
 										/>
 									{/if}
 								</div>
@@ -401,7 +418,7 @@
 		{:else if visibility[entry.id]}
 			<div class="col mb-3">
 				{#if !options.labelIsHandledByComponent}
-					<label for={entry.id}>{entry.label}</label>
+					<label for={entry.id}>{entry.label}{entry.required ? "*" : ""}</label>
 				{/if}
 
 				{#if component === "hb-input-text"}
@@ -418,6 +435,7 @@
 						)}
 						setvalue
 						setvalid
+						{showvalidation}
 					/>
 				{:else if component === "hb-input-file"}
 					<hb-input-file
@@ -433,6 +451,7 @@
 						)}
 						setvalue
 						setvalid
+						{showvalidation}
 					/>
 				{:else if component === "hb-input-email"}
 					<hb-input-email
@@ -448,6 +467,7 @@
 						)}
 						setvalue
 						setvalid
+						{showvalidation}
 					/>
 				{:else if component === "hb-input-date"}
 					<hb-input-date
@@ -463,6 +483,7 @@
 						)}
 						setvalue
 						setvalid
+						{showvalidation}
 					/>
 				{:else if component === "hb-input-checkbox"}
 					<hb-input-checkbox
@@ -478,6 +499,7 @@
 						)}
 						setvalue
 						setvalid
+						{showvalidation}
 					/>
 				{:else if component === "hb-input-number"}
 					<hb-input-number
@@ -493,6 +515,7 @@
 						)}
 						setvalue
 						setvalid
+						{showvalidation}
 					/>
 				{:else if component === "hb-input-area"}
 					<hb-input-area
@@ -508,6 +531,7 @@
 						)}
 						setvalue
 						setvalid
+						{showvalidation}
 					/>
 				{:else if component === "hb-input-radio"}
 					<hb-input-radio
@@ -523,6 +547,7 @@
 						)}
 						setvalue
 						setvalid
+						{showvalidation}
 					/>
 				{:else if component === "hb-input-select"}
 					<hb-input-select
@@ -538,14 +563,17 @@
 						)}
 						setvalue
 						setvalid
+						{showvalidation}
 					/>
 				{/if}
 			</div>
 		{/if}
 	{/each}
-	{#if !submitted}<button type="button" class="btn btn-primary" disabled={isInvalid} on:click|preventDefault={() => onSubmit()}
-			><slot name="submit-label">Submit</slot></button
-		>{/if}
+	{#if !submitted}
+		<button type="button" class="btn btn-primary" on:click|preventDefault={() => onSubmit()}>
+			<slot name="submit-label">Submit</slot>
+		</button>
+	{/if}
 {/if}
 
 <style lang="scss">
