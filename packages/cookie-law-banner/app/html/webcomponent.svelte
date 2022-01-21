@@ -15,7 +15,7 @@
 	import { createEventDispatcher } from "svelte";
 	import { dictionary } from "@app/functions/i18n";
 
-	import type { ICapabilities } from "@app/functions/interfaces";
+	import type { ICapabilities } from "@app/types/webcomponent.type";
 
 	export let id: string;
 	export let allowdecline: "yes" | "no";

@@ -16,7 +16,7 @@
 
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
-	import type { IActionButton, IFilter, IRow, ITableHeader } from "@app/functions/interfaces";
+	import type { IActionButton, IFilter, IRow, ITableHeader } from "@app/types/webcomponent.type";
 	import pkg from "@app/../package.json";
 
 	// import dispatch from "@app/functions/webcomponent";
@@ -34,11 +34,15 @@
 	export let selectactions: string;
 	export let selectrow: string;
 	export let enableselect: string;
+	export let disablepagination: string;
 	if (!primarycolor) {
 		primarycolor = null;
 	}
 	if (!id) {
 		id = null;
+	}
+	if (!disablepagination) {
+		disablepagination = null;
 	}
 	let selectActionsbuttons: any[];
 	let rowItems: IRow[];
@@ -313,7 +317,6 @@
 	}
 	function changeEndDate(target, th) {
 		const newDate = target.value;
-		console.log(newDate);
 		const filterExists = filters.find((f) => f.key === th.key);
 		setFilter({
 			key: th.key,
@@ -465,7 +468,7 @@
 	on:modalShow={(d) => dialogShowConfirm(d.detail, modalConfirm.action)}
 />
 <div id="webcomponent">
-	<div class="container-fluid">
+	<div class="container-fluid" style="padding:0px;	margin-left: 0px;margin-right: 0px;">
 		{#if tableHeaders && tableHeaders.length}
 			<table class="table table-responsive table-striped table-hover align-middle" style="width:100%;text-align:left">
 				<thead>
@@ -508,24 +511,26 @@
 									{selectedItems.length}/{rowItems.length}
 								</th>
 							{/if}
-							{#each tableHeaders as th (th.key)}
-								<th scope="col">
-									{#if th.search}
-										<input
-											on:input={(element) => searchInput(element.target, th)}
-											type="text"
-											style="width:auto"
-											class="form-control"
-											placeholder="..."
-											aria-label="Search"
-											aria-describedby="search"
-										/>
-									{/if}
-									{#if !th.search}
-										&nbsp;
-									{/if}
-								</th>
-							{/each}
+							{#if tableHeaders.find((f) => f.search)}
+								{#each tableHeaders as th (th.key)}
+									<th scope="col">
+										{#if th.search}
+											<input
+												on:input={(element) => searchInput(element.target, th)}
+												type="text"
+												style="width:auto"
+												class="form-control"
+												placeholder="..."
+												aria-label="Search"
+												aria-describedby="search"
+											/>
+										{/if}
+										{#if !th.search}
+											&nbsp;
+										{/if}
+									</th>
+								{/each}
+							{/if}
 						</tr>
 					{:else}
 						<tr>
@@ -733,7 +738,15 @@
 						</span>
 					{/each}
 				{/if}
-				<hb-paginate style="float:right" on:pagechange={changePage} page={page.toString()} pages={pages.toString()} primarycolor={primarycolor || ""} />
+				{#if disablepagination !== "" && disablepagination !== "yes"}
+					<hb-paginate
+						style="float:right"
+						on:pagechange={changePage}
+						page={page.toString()}
+						pages={pages.toString()}
+						primarycolor={primarycolor || ""}
+					/>
+				{/if}
 			</nav>
 		{/if}
 	</div>

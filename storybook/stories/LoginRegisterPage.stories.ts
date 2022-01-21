@@ -8,13 +8,14 @@ const meta: Meta = {
       options: ["login", "register"],
       control: { type: "select" }, // Automatically inferred when 'options' is defined
     },
-    language: { type: "string" },
-    logouri: { type: "string" },
-    loginuri: { type: "string" },
-    registeruri: { type: "string" },
+    language: { control: { type: "string" } },
+    logouri: { control: { type: "string" } },
+    loginuri: { control: { type: "string" } },
+    registeruri: { control: { type: "string" } },
     login: { action: "loginEvent" },
     register: { action: "registerEvent" },
     contacts: { control: { type: "object" } },
+    company: { control: { type: "object" } },
     socials: { control: { type: "object" } },
     id: { control: { disable: true } },
     oauth2providers: { control: { type: "array" } },
@@ -71,6 +72,7 @@ export const RegisterPage = Template.bind({});
 RegisterPage.args = {
   company: company1,
   id: "RegisterPage",
+  type: "register",
 };
 export const LoginEnPage = Template.bind({});
 LoginEnPage.args = {
@@ -96,7 +98,8 @@ LoginPageEnWithOauth.args = {
   oauth2providers: [
     {
       provider: "google",
-      uri: "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=https%3A//oauth2.example.com/code&client_id=client_id",
+      uri:
+        "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=https%3A//oauth2.example.com/code&client_id=client_id",
     },
     { provider: "facebook" },
     { provider: "twitter" },

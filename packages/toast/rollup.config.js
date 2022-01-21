@@ -58,6 +58,7 @@ export default {
                 dev: !production,
                 customElement: true,
             },
+            emitCss: false,
         }),
 
         // we'll extract any component CSS out into

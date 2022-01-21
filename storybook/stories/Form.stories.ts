@@ -3,12 +3,13 @@ import { webComponentBind } from "./utils/webComponentUtils";
 // import type { FormSchema } from "../../packages/formhostcomponent/app/types/webcomponent.type";
 
 const meta: Meta = {
-  title: "Form/Host",
+  title: "Form/Form",
   argTypes: {
     id: { control: { disable: true } },
     schema: { control: { type: "array" } },
-    submit: { action: "submitEvent" },
+    submit: { action: "submit" },
     submitted: { control: { type: "boolean" } },
+    showvalidation: { control: { type: "boolean" } },
   },
 };
 
@@ -55,6 +56,22 @@ const schema1 = [
           params: {
             options: [
               { label: "", value: "" },
+              { label: "testlabel", value: "testvalue" },
+            ],
+          },
+        },
+        {
+          type: "radio",
+          placeholder: "radio something here...",
+          id: "radiosomething",
+          required: true,
+          label: "Selection of something",
+          validationTip: "This field cannot be empty.",
+          params: {
+            options: [
+              { label: "radio", value: "radio" },
+              { label: "radio2", value: "radi2o" },
+              { label: "radio3", value: "radio2" },
               { label: "testlabel", value: "testvalue" },
             ],
           },

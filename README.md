@@ -34,6 +34,12 @@ To build the components is choosed to use svelte instead of native web component
 
 - [Storybook App](https://htmlbricks.dev.kernel.online/)
 
+- All In One bundle
+
+```
+<script src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-bundle@0.4.0/release/release.js"></script>
+```
+
 ## HOW TO USE THIS REPO
 
 #### system requirements
@@ -110,6 +116,7 @@ when is needed to publish one/more packages version update, is needed to publish
 - dropdown
 - video card
 - video modal
+- calendar with clickable notes inside cells
 
 ### contents
 
@@ -117,6 +124,7 @@ when is needed to publish one/more packages version update, is needed to publish
 - table
 - video gallery
 - video editor
+- review/feedback user box
 
 ### layout
 
@@ -124,6 +132,10 @@ when is needed to publish one/more packages version update, is needed to publish
 - navbar
 - layout
 - offcanvas/sidebar
+
+### sections
+
+- products comparison with price
 
 ### form
 
@@ -142,27 +154,33 @@ when is needed to publish one/more packages version update, is needed to publish
 ### pages
 
 - login register page
+- invoice
+
+### graphs
+
+- charts
+- gauges
+
+### maps
+
+- map with markers
 
 ## PLANNED COMPONENTS:
 
 ### uncategorized
 
-- ~~calendar with clickable notes inside cells~~
 - notification menu
 - toast notification
 - cart dropdown
 - search bar with suggestions
 - comment box
 - chat
-- ~~video editor (cut)~~
-- ~~funnel~~
 
 ### widget/card
 
 - shop item (square card with image)
 - shop item (list with small thumbnail)
 - contact form for SPA sites
-- products comparison with price
 
 ### legal
 
@@ -176,15 +194,7 @@ when is needed to publish one/more packages version update, is needed to publish
 - item of a shop with images
 - contact detail
 
-### graphs
-
-- linear graph
-- bar graph
-- circular graph
-- gauges
-
 ### maps
 
-- map with markers
 - directions
 - area selection
