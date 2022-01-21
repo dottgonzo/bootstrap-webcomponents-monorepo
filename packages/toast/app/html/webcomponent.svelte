@@ -136,6 +136,7 @@
 		on:outroend={onToastClosed}
 	>
 		<style lang="scss">
+			img,
 			svg {
 				vertical-align: middle;
 			}
@@ -148,6 +149,7 @@
 			.me-auto {
 				margin-right: auto !important;
 			}
+			::slotted(img),
 			::slotted(svg) {
 				vertical-align: middle;
 			}
