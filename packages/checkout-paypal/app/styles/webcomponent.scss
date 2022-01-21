@@ -2,6 +2,9 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css");
 
 :host {
+	--edit-color: green;
+	--paypal-button-color: yellow;
+	--hb-checkout-border: 0.5px solid rgba(197, 197, 197, 0.808);
 	font-family: "Roboto", sans-serif;
 	display: block;
 	margin: 40px 0px 40px 0px;

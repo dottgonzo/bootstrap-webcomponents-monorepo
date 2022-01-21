@@ -157,7 +157,7 @@
 </script>
 
 <h2 class="title" part="title">Checkout</h2>
-<div style="border-top:1px solid black;border-bottom:1px solid black;margin-top:40px">
+<div id="border_top">
 	<div>
 		{#if user?.fullName && user?.addressWithNumber && !editUser}
 			<h3 class="subtitle" part="subtitle">User <button class="btn btn-sm btn-warning" on:click={editUserForm} style="float:right">edit</button></h3>
@@ -193,7 +193,7 @@
 		{/if}
 	</div>
 	{#if shipments?.length}
-		<div style="border-top:1px solid black;">
+		<div id="shipment_separator">
 			{#if user?.fullName && user?.addressWithNumber && !editUser}
 				{#if !editShipping && (shipments.find((f) => f.selected) || shipments.find((f) => f.standard))}
 					<h3 class="subtitle" part="subtitle">
@@ -234,7 +234,7 @@
 				{#if !editShipping && (shipments.find((f) => f.selected) || shipments.find((f) => f.standard))}
 					<div class="dataentrycontainer">
 						<div class="dataentry">Shipping Fee: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price}</div>
-						<div class="dataentry">Shipping Time: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).durationInSeconds}</div>
+						<div class="dataentry">Shipping Time: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).arriveDate}</div>
 					</div>
 				{/if}
 			{/if}
@@ -277,9 +277,14 @@
 <style lang="scss">
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
-	:root {
-		--edit-color: green;
-		--paypal-button-color: yellow;
+
+	#shipment_separator {
+		border-top: var(--hb-checkout-border);
+	}
+	#border_top {
+		border-top: var(--hb-checkout-border);
+		border-bottom: var(--hb-checkout-border);
+		margin-top: 40px;
 	}
 	.dataentry {
 		line-height: 30px;
