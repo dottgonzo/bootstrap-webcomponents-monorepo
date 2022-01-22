@@ -34,13 +34,53 @@ To build the components is choosed to use svelte instead of native web component
 
 - [Storybook App](https://htmlbricks.dev.kernel.online/)
 
-- All In One bundle
+## HTML QUICK START
 
 ```
-<script src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-bundle@0.4.0/release/release.js"></script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-paginate@latest/release/release.js"></script>
+  </head>
+  <body>
+    <hb-paginate page="2" pages="12"></hb-paginate>
+  </body>
+</html>
+
 ```
 
-## HOW TO USE THIS REPO
+now you can listen for events from the component by adding:
+
+```
+<script>
+  // the webcomponent node on the page
+	const element=document.getElementsByTagName('hb-paginate')[0]
+
+	// add a listner for the event pagechange
+	element.addEventListener('pagechange',(event)=>{
+	  // the webcomponent event data is comonly shared from event.detail
+		const message=event.detail
+
+		// graphical log
+		const div = document.createElement("div");
+		const text = document.createTextNode(`${JSON.stringify(message)}`);
+		div.appendChild(text);
+		document.body.appendChild(div)
+		element.setAttribute('page',message.page.toString())
+	})
+</script>
+```
+
+## ALL IN ONE BUNDLE
+
+```
+<script src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-bundle@latest/release/release.js"></script>
+
+```
+
+it contains all the components, useful in developments environment only
+
+## HOW TO DEVELOP COMPONENTS BY TOOLS PROVIDED
 
 #### system requirements
 
