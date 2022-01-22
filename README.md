@@ -61,7 +61,7 @@ now you can listen for events from the component by adding:
 </script>
 ```
 
-to be able to test the components, there is also an all in one bundle, that include all the components, instead of importing only the ones you need
+to be able to test the components, there is an all in one bundle that include all the components, instead of importing only the ones you need
 
 ```
 <script src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-bundle@latest/release/release.js"></script>
