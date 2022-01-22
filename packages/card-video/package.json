@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-card-video",
 	"displayName": "Svelte Boostrap Video Card WebComponent",
 	"description": "Svelte Boostrap Video Card WebComponent",
-	"version": "0.4.21",
+	"version": "0.4.22",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
