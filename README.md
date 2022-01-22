@@ -78,7 +78,7 @@ to be able to test the components, there is also an all in one bundle, that incl
 
 ```
 
-useful in developments environment only
+useful only for development environments
 
 ## DEVELOPMENT
 
