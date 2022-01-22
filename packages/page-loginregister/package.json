@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-page-loginregister",
 	"displayName": "Svelte Bootstrap Login/Register Layout WebComponent",
 	"description": "Svelte Bootstrap 5 WebComponent",
-	"version": "0.4.19",
+	"version": "0.4.20",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
