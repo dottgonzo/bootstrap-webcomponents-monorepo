@@ -43,11 +43,13 @@ now you can listen for events from the component by adding:
 
 ```
 <script>
+
   // the webcomponent node on the page
 	const element=document.getElementsByTagName('hb-paginate')[0]
 
-	// add a listner for the event pagechange
+	// add a listener for the event pagechange
 	element.addEventListener('pagechange',(event)=>{
+
 	  // the webcomponent event data is comonly shared from event.detail
 		const message=event.detail
 
@@ -58,6 +60,7 @@ now you can listen for events from the component by adding:
 		document.body.appendChild(div)
 		element.setAttribute('page',message.page.toString())
 	})
+
 </script>
 ```
 
