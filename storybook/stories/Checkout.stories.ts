@@ -2,67 +2,36 @@ import { Story, Meta } from "@storybook/html";
 import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
-  title: "Pages/PageCheckoutPaypal",
+  title: "Components/CheckoutPaypal",
 
   argTypes: {
     id: { control: { disable: true } },
     shipments: { control: { type: "array" } },
-    items: { control: { type: "array" } },
     user: { control: { type: "object" } },
     payByCard: { action: "payByCard" },
     payByAccount: { action: "payByAccount" },
     saveUser: { action: "saveUser" },
     saveShipment: { action: "saveShipment" },
+    gateways: { control: { type: "array" } },
   },
 };
 
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "page-checkout-paypal");
+  webComponentBind(args, meta.argTypes, "checkout", {
+    style: { margin: "20px auto 20px auto" },
+  });
 
-export const PageCheckoutPaypal = Template.bind({});
-
-PageCheckoutPaypal.args = {
-  id: "PageCheckoutPaypal",
-  shipments: [
-    {
-      price: 10,
-      currency: "€",
-
-      arriveDate: "2022-01-20T08:03:57.562Z",
-      available: true,
-      label: "zio barca",
-      id: "ziobarca",
-    },
-    {
-      price: 20,
-
-      arriveDate: "2022-01-21T02:22:57.562Z",
-      available: true,
-      label: "zio barca2",
-      id: "ziobarca2",
-      currency: "€",
-    },
-  ],
-  items: [
-    {
-      unitaryPrice: 2,
-      taxPercentage: 3,
-      name: "testitem",
-    },
-    {
-      unitaryPrice: 5,
-      taxPercentage: 7,
-      name: "testitem2",
-    },
-  ],
+const defaultgw = {
+  id: "paypal",
+  label: "bbbb",
 };
 
-export const PageCheckoutPaypalWithUser = Template.bind({});
+export const CheckoutPaypal = Template.bind({});
 
-PageCheckoutPaypalWithUser.args = {
-  id: "PageCheckoutPaypalWithUser",
+CheckoutPaypal.args = {
+  id: "CheckoutPaypal",
   shipments: [
     {
       price: 10,
@@ -83,31 +52,13 @@ PageCheckoutPaypalWithUser.args = {
       id: "ziobarca2",
     },
   ],
-  items: [
-    {
-      unitaryPrice: 2,
-      taxPercentage: 3,
-      name: "testitem",
-    },
-    {
-      unitaryPrice: 5,
-      taxPercentage: 7,
-      name: "testitem2",
-    },
-  ],
-  user: {
-    fullName: "fdfff fffff",
-    addressWithNumber: "addreess 43",
-    city: "ff",
-    nationality: "effe",
-    zip: "3434",
-  },
+  gateways: [defaultgw],
 };
 
-export const PageCheckoutPaypalWithUserAndShipment = Template.bind({});
+export const CheckoutPaypalWithUser = Template.bind({});
 
-PageCheckoutPaypalWithUserAndShipment.args = {
-  id: "PageCheckoutPaypalWithUserAndShipment",
+CheckoutPaypalWithUser.args = {
+  id: "CheckoutPaypalWithUser",
   shipments: [
     {
       price: 10,
@@ -117,29 +68,17 @@ PageCheckoutPaypalWithUserAndShipment.args = {
       available: true,
       label: "zio barca",
       id: "ziobarca",
-      standard: true,
     },
     {
       price: 20,
       currency: "€",
+
       arriveDate: "2022-01-21T02:22:57.562Z",
       available: true,
       label: "zio barca2",
       id: "ziobarca2",
     },
   ],
-  items: [
-    {
-      unitaryPrice: 2,
-      taxPercentage: 3,
-      name: "testitem",
-    },
-    {
-      unitaryPrice: 5,
-      taxPercentage: 7,
-      name: "testitem2",
-    },
-  ],
   user: {
     fullName: "fdfff fffff",
     addressWithNumber: "addreess 43",
@@ -147,23 +86,32 @@ PageCheckoutPaypalWithUserAndShipment.args = {
     nationality: "effe",
     zip: "3434",
   },
+  gateways: [defaultgw],
 };
 
-export const PageCheckoutPaypalService = Template.bind({});
+export const CheckoutPaypalWithUserAndShipping = Template.bind({});
 
-PageCheckoutPaypalService.args = {
-  id: "PageCheckoutPaypalService",
-  shipments: [],
-  items: [
+CheckoutPaypalWithUserAndShipping.args = {
+  id: "CheckoutPaypalWithUserAndShipping",
+  shipments: [
     {
-      unitaryPrice: 2,
-      taxPercentage: 3,
-      name: "testitem",
+      price: 10,
+      currency: "€",
+
+      arriveDate: "2022-01-20T08:03:57.562Z",
+      available: true,
+      label: "zio barca",
+      id: "ziobarca",
+      selected: true,
     },
     {
-      unitaryPrice: 5,
-      taxPercentage: 7,
-      name: "testitem2",
+      price: 20,
+      currency: "€",
+
+      arriveDate: "2022-01-21T02:22:57.562Z",
+      available: true,
+      label: "zio barca2",
+      id: "ziobarca2",
     },
   ],
   user: {
@@ -172,6 +120,6 @@ PageCheckoutPaypalService.args = {
     city: "ff",
     nationality: "effe",
     zip: "3434",
-    fixed: true,
   },
+  gateways: [defaultgw],
 };

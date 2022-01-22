@@ -1,4 +1,4 @@
-<svelte:options tag="hb-page-checkout-paypal" />
+<svelte:options tag="hb-page-checkout" />
 
 <script lang="ts">
 	/**
@@ -58,7 +58,7 @@
 		}
 	}
 	addComponent("checkout-shopping-cart");
-	addComponent("checkout-paypal");
+	addComponent("checkout");
 	function saveShipment(detail: IShipment) {
 		const shipmentIndex = shipments.findIndex((f) => f.id === detail.id);
 		const shipment = shipments[shipmentIndex];
@@ -78,7 +78,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-7" style="padding-right:30px">
-			<hb-checkout-paypal
+			<hb-checkout
 				on:payByCard={(e) => dispatch("payByCard", e.detail)}
 				on:payByAccount={(e) => dispatch("payByAccount", e.detail)}
 				on:saveUser={(e) => dispatch("saveUser", e.detail)}

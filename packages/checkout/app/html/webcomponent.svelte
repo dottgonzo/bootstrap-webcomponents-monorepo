@@ -1,4 +1,4 @@
-<svelte:options tag="hb-checkout-paypal" />
+<svelte:options tag="hb-checkout" />
 
 <script lang="ts">
 	/**
@@ -14,7 +14,7 @@
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	import pkg from "../../package.json";
-	import type { IShipment, IUser } from "@app/types/webcomponent.type";
+	import type { IShipment, IUser, IGateway } from "@app/types/webcomponent.type";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { formUserSchema, formCreditCardSchema } from "@app/functions/formSchemes";
 	import dayjs from "dayjs";
@@ -22,6 +22,8 @@
 	export let id: string;
 	export let shipments: IShipment[];
 	export let user: IUser;
+	export let gateways: IGateway[];
+	let gateway: IGateway;
 	const formShipmentSchema: FormSchema = [
 		{
 			type: "radio",
@@ -45,6 +47,15 @@
 		if (!id) id = null;
 		if (!shipments) shipments = [];
 		else if (typeof shipments === "string") shipments = JSON.parse(shipments) || [];
+		if (!gateways) gateways = [];
+		else if (typeof gateways === "string") {
+			gateways = JSON.parse(gateways) || [];
+			if (gateways.find((f) => f.selected || f.default)) {
+				gateway = gateways.find((f) => f.selected || f.default);
+			} else if (gateways?.length) {
+				gateway = gateways[0];
+			}
+		}
 		if (!user) user = null;
 		else if (typeof user === "string") {
 			user = JSON.parse(user);
@@ -285,12 +296,13 @@
 <div>
 	<h3 class="subtitle payment_title" part="subtitle"><i class="bi bi-wallet2" /> Payment Method</h3>
 	{#if !editUser && !editShipping && ((shipments?.length && shipments.find((f) => f.selected)) || shipments.find((f) => f.standard) || !shipments?.length)}
-		<hb-payment-paypal
-			on:payByCard={(e) => payByPaypalAndCard(e.detail)}
-			on:payByAccount={(e) => payByPaypalAccount()}
-			on:cardChange={(e) => cardChange(e.detail)}
-		/>
-
+		{#if gateway?.id === "paypal"}
+			<hb-payment-paypal
+				on:payByCard={(e) => payByPaypalAndCard(e.detail)}
+				on:payByAccount={(e) => payByPaypalAccount()}
+				on:cardChange={(e) => cardChange(e.detail)}
+			/>
+		{/if}
 		<!-- <div>
 			<button on:click={() => payByAccount()} style="width:100%;background-color:yellow;color:white" class="btn">paypal</button>
 		</div>
