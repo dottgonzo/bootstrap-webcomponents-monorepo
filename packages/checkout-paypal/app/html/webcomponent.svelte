@@ -150,24 +150,46 @@
 
 	function editUserForm() {
 		editUser = true;
+		editShipping = false;
 	}
 	function editShippingForm() {
+		editUser = false;
+
 		editShipping = true;
 	}
 </script>
 
-<h2 class="title" part="title">Checkout</h2>
+<svelte:head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
+</svelte:head>
+<slot name="title"><h1 class="title" part="title">Checkout</h1></slot>
 <div id="border_top">
 	<div>
-		{#if user?.fullName && user?.addressWithNumber && !editUser}
-			<h3 class="subtitle" part="subtitle">User <button class="btn btn-sm btn-warning" on:click={editUserForm} style="float:right">edit</button></h3>
+		<h3 class="subtitle" part="subtitle"><i class="bi bi-send-fill" /> Delivery</h3>
+
+		{#if user?.fixed && !editUser}
+			<div class="dataentrycontainer">
+				<slot name="userinfo">
+					{#if user.fullName}
+						<div class="dataentry"><span class="dataentry_value">{user.fullName}</span></div>
+					{/if}
+				</slot>
+			</div>
+		{:else if user?.fullName && user?.addressWithNumber && !editUser}
+			<h4 class="subtitle" part="subtitle">
+				<button class="btn btn-sm detail_btn" on:click={editUserForm}>edit</button>
+			</h4>
 
 			<div class="dataentrycontainer">
-				<div class="dataentry" style="font-weight:bold">Name: {user.fullName}</div>
-				<div class="dataentry">Address: {`${user.addressWithNumber}, ${user.city}, ${user.zip},${user.nationality}`}</div>
+				<div class="dataentry"><span class="dataentry_key">Name</span><span class="dataentry_value">{user.fullName}</span></div>
+				<div class="dataentry">
+					<span class="dataentry_key">Address</span><span class="dataentry_value"
+						>{`${user.addressWithNumber}, ${user.city}, ${user.zip},${user.nationality}`}</span
+					>
+				</div>
 			</div>
 		{:else}
-			<h3 class="subtitle" part="subtitle">User</h3>
+			<h4 class="subtitle" part="subtitle">Address</h4>
 
 			<div>
 				<hb-form
@@ -194,19 +216,28 @@
 	</div>
 	{#if shipments?.length}
 		<div id="shipment_separator">
-			{#if user?.fullName && user?.addressWithNumber && !editUser}
+			{#if ((user?.fullName && user?.addressWithNumber) || user?.fixed) && !editUser}
 				{#if !editShipping && (shipments.find((f) => f.selected) || shipments.find((f) => f.standard))}
-					<h3 class="subtitle" part="subtitle">
-						Shipping <button class="btn btn-sm btn-warning" on:click={editShippingForm} style="float:right">edit</button>
-					</h3>
+					<h4 style="margin-top:20px" class="subtitle" part="subtitle">
+						<span class="detail_label"><i class="bi bi-truck" /> Shipment Service</span><button
+							class="btn btn-sm detail_btn"
+							on:click={editShippingForm}>edit</button
+						>
+					</h4>
 					<div class="dataentrycontainer">
-						<div class="dataentry">Shipping Fee: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price}</div>
-						<div class="dataentry" style="font-weight:bold">
-							Arrive {dayjs((shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).arriveDate).format()}
+						<div class="dataentry">
+							<span class="dataentry_key">Shipping Fee</span><span class="dataentry_value"
+								>{(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price}</span
+							>
+						</div>
+						<div class="dataentry">
+							<span class="dataentry_key">Arrive</span><span class="dataentry_value"
+								>{dayjs((shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).arriveDate).format()}
+							</span>
 						</div>
 					</div>
 				{:else}
-					<h3 class="subtitle" part="subtitle">Shipping</h3>
+					<h4 class="subtitle" part="subtitle" style="margin-top:20px"><i class="bi bi-truck" /> Shipment Service</h4>
 					<div>
 						<hb-form
 							schema={JSON.stringify(formShipmentSchema)}
@@ -229,23 +260,34 @@
 						</div>
 					</div>
 				{/if}
-			{:else}
-				<h3 class="subtitle" part="subtitle">Shipping</h3>
-				{#if !editShipping && (shipments.find((f) => f.selected) || shipments.find((f) => f.standard))}
-					<div class="dataentrycontainer">
-						<div class="dataentry">Shipping Fee: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price}</div>
-						<div class="dataentry">Shipping Time: {(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).arriveDate}</div>
+			{:else if !editShipping && (shipments.find((f) => f.selected) || shipments.find((f) => f.standard))}
+				<h4 style="margin-top:20px" class="subtitle" part="subtitle">
+					<span class="detail_label"><i class="bi bi-truck" /> Shipment Service</span><button
+						class="btn btn-sm detail_btn"
+						on:click={editShippingForm}>edit</button
+					>
+				</h4>
+				<div class="dataentrycontainer">
+					<div class="dataentry">
+						<span class="dataentry_key">Shipping Fee</span><span class="dataentry_value"
+							>{(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price}</span
+						>
 					</div>
-				{/if}
+					<div class="dataentry">
+						<span class="dataentry_key">Shipping Time</span><span class="dataentry_value"
+							>{(shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).arriveDate}</span
+						>
+					</div>
+				</div>
 			{/if}
 		</div>
 	{/if}
 </div>
 <div>
-	<h3 class="subtitle" part="subtitle">Payment Method</h3>
+	<h3 class="subtitle payment_title" part="subtitle"><i class="bi bi-wallet2" /> Payment Method</h3>
 	{#if !editUser && !editShipping && ((shipments?.length && shipments.find((f) => f.selected)) || shipments.find((f) => f.standard) || !shipments?.length)}
 		<div><button on:click={() => payByAccount()} style="width:100%;background-color:yellow;color:white" class="btn">paypal</button></div>
-		<div style="text-align:center;width:100%;padding:20px">OR</div>
+		<div class="utils_or"><span>or</span></div>
 		<div>
 			<div>
 				<hb-form
@@ -277,15 +319,45 @@
 <style lang="scss">
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
-
-	#shipment_separator {
-		border-top: var(--hb-checkout-border);
-	}
-	#border_top {
-		border-top: var(--hb-checkout-border);
+	.utils_or {
+		width: 50%;
+		text-align: center;
 		border-bottom: var(--hb-checkout-border);
-		margin-top: 40px;
+		line-height: 0.1em;
+		margin: 40px auto 30px auto;
 	}
+	.utils_or span {
+		background: #fff;
+		padding: 0 10px;
+	}
+	.cart_separator {
+		//
+	}
+	.detail_label {
+		font-size: 0.8em;
+		font-weight: bold;
+	}
+	.dataentry_key {
+		margin-right: 3px;
+	}
+	.dataentry_key::after {
+		content: ":";
+	}
+	.dataentry_relevant_value {
+		font-weight: bold;
+	}
+	.detail_btn {
+		float: right;
+		margin-right: 10px;
+		color: green;
+		font-weight: bold;
+		text-transform: capitalize;
+	}
+	// #border_top {
+	// 	border-top: var(--hb-checkout-border);
+	// 	border-bottom: var(--hb-checkout-border);
+	// 	margin-top: 40px;
+	// }
 	.dataentry {
 		line-height: 30px;
 	}
@@ -300,8 +372,21 @@
 	}
 	.title {
 		text-align: center;
+		border-bottom: var(--hb-checkout-border);
+		padding-bottom: 20px;
 	}
 	.dataentrycontainer {
-		margin-bottom: 30px;
+		// margin-bottom: 30px;
+	}
+	.payment_title {
+		margin-top: 20px;
+		border-top: var(--hb-checkout-border);
+		padding-top: 10px;
+	}
+	#shipment_separator {
+		// background-color: red;
+	}
+	h4 {
+		// text-align: center;
 	}
 </style>

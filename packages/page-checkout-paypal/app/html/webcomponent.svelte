@@ -94,6 +94,20 @@
 </div>
 
 <style lang="scss">
+	:host {
+		font-family: "Roboto", sans-serif;
+		display: block;
+		margin: 40px 0px 40px 0px;
+		--hb-checkout-border: 0.5px solid rgba(197, 197, 197, 0.808);
+	}
+
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
+	hb-checkout-shopping-cart {
+		border: var(--hb-checkout-border);
+		--hb-checkout-border: 0.5px solid rgba(197, 197, 197, 0.808);
+	}
+	hb-checkout-paypal {
+		--hb-checkout-border: 0.5px solid rgba(197, 197, 197, 0.808);
+	}
 </style>
