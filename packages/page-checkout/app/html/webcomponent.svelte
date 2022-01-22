@@ -14,7 +14,7 @@
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	import pkg from "../../package.json";
-	import type { IShipment, IUser } from "../../../checkout-paypal/app/types/webcomponent.type";
+	import type { IShipment, IUser, IGateway } from "../../../checkout/app/types/webcomponent.type";
 	import type { ICartHeaders, IShopItem } from "../../../checkout-shopping-cart/app/types/webcomponent.type";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 
@@ -23,12 +23,15 @@
 	export let user: IUser;
 	export let headers: ICartHeaders;
 	export let items: IShopItem[];
+	export let gateways: IGateway[];
 	export let completed: "yes" | "no";
 	$: {
 		if (!id) id = null;
 		if (!completed) completed = "no";
 		if (!shipments) shipments = [];
 		else if (typeof shipments === "string") shipments = JSON.parse(shipments) || [];
+		if (!gateways) gateways = [];
+		else if (typeof gateways === "string") gateways = JSON.parse(gateways) || [];
 		if (!headers) headers = {};
 		else if (typeof headers === "string") {
 			headers = JSON.parse(headers);
@@ -85,6 +88,7 @@
 				on:saveShipment={(e) => saveShipment(e.detail)}
 				{user}
 				shipments={JSON.stringify(shipments)}
+				gateways={JSON.stringify(gateways)}
 			/>
 		</div>
 		<div class="col-5" style="padding-left:30px">
