@@ -80,7 +80,7 @@ now you can listen for events from the component by adding:
 
 it contains all the components, useful in developments environment only
 
-## HOW TO DEVELOP COMPONENTS BY TOOLS PROVIDED
+## DEVELOPMENT
 
 #### system requirements
 
