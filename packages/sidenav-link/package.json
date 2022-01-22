@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-sidenav-link",
 	"displayName": "Svelte Boostrap sidenavlink",
 	"description": "Svelte Boostrap sidenavlink",
-	"version": "0.4.20",
+	"version": "0.4.21",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -67,5 +67,5 @@
 		"html5-webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "30f5a34d946a32650ef99ddc21ea8942e41fad66"
+	"gitHead": "7c43c2ab1f9d64618a711b2cbe898a3e35e373c4"
 }
