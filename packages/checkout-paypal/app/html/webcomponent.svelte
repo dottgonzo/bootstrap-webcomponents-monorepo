@@ -120,14 +120,12 @@
 		formShipmentSchemaSubmitted = "no";
 	}
 
-	function payByCard(p: {}) {
+	function payByPaypalAndCard(p: {}) {
 		formCreditCardSchemaSubmitted = "no";
 
-		console.log("payByCard", p);
 		dispatch("payByCard", p);
 	}
-	function payByAccount() {
-		console.log("payByAccount");
+	function payByPaypalAccount() {
 		dispatch("payByAccount", {});
 	}
 	const component = get_current_component();
@@ -147,6 +145,7 @@
 		}
 	}
 	addComponent("form");
+	addComponent("payment-paypal");
 
 	function editUserForm() {
 		editUser = true;
@@ -286,7 +285,15 @@
 <div>
 	<h3 class="subtitle payment_title" part="subtitle"><i class="bi bi-wallet2" /> Payment Method</h3>
 	{#if !editUser && !editShipping && ((shipments?.length && shipments.find((f) => f.selected)) || shipments.find((f) => f.standard) || !shipments?.length)}
-		<div><button on:click={() => payByAccount()} style="width:100%;background-color:yellow;color:white" class="btn">paypal</button></div>
+		<hb-payment-paypal
+			on:payByCard={(e) => payByPaypalAndCard(e.detail)}
+			on:payByAccount={(e) => payByPaypalAccount()}
+			on:cardChange={(e) => cardChange(e.detail)}
+		/>
+
+		<!-- <div>
+			<button on:click={() => payByAccount()} style="width:100%;background-color:yellow;color:white" class="btn">paypal</button>
+		</div>
 		<div class="utils_or"><span>or</span></div>
 		<div>
 			<div>
@@ -311,7 +318,7 @@
 					class="btn btn-primary">place order</button
 				>
 			</div>
-		</div>
+		</div> -->
 	{/if}
 </div>
 <div class="footer_note"><slot name="footer">By Clicking..<button class="btn btn-default">Terms and conditions</button></slot></div>
