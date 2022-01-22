@@ -16,16 +16,6 @@ These components wants to cover not only "small" components like buttons or badg
 
 all packages is published as npm @htmlbricks packages
 
-<!--
-## MAIN GOAL
-
-The main goal is to obtain a large set of components to manage all the main aspect of a web site, to be able to build websites on any technology (basic html included) embedding only these components with no other addictions
-
-the only expect to develop on a new app based from that components is the app logic that will be responsable to:
-- render the components when needed
-- sync slots and attributes on components
-- handling events from components -->
-
 ### technologies involved
 
 To build the components is choosed to use svelte instead of native web components framework like lit-element. That's because of the good svelte footprint exports, and because of the productivity of svelte/rollup development, even there is some glich that is caused by svelte.
