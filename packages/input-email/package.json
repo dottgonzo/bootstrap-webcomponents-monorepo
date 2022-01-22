@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-input-email",
 	"displayName": "Svelte-Bootstrap Text Input WebComponent",
 	"description": "Svelte-Bootstrap Text Input WebComponent",
-	"version": "0.4.23",
+	"version": "0.4.24",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -66,5 +66,5 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "7c43c2ab1f9d64618a711b2cbe898a3e35e373c4"
+	"gitHead": "46db65028cd9857718a0f142f53be15d4aa6966e"
 }
