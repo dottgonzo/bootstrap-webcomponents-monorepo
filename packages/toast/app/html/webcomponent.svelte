@@ -136,6 +136,7 @@
 		on:outroend={onToastClosed}
 	>
 		<style lang="scss">
+			img,
 			svg {
 				vertical-align: middle;
 			}
@@ -148,6 +149,7 @@
 			.me-auto {
 				margin-right: auto !important;
 			}
+			::slotted(img),
 			::slotted(svg) {
 				vertical-align: middle;
 			}
@@ -187,18 +189,7 @@
 		{#if $$slots.headerImg || $$slots.headerStrong || $$slots.headerSmall}
 			<div class="toast-header">
 				{#if $$slots.headerImg}
-					<slot name="headerImg">
-						<style lang="scss">
-							@import "../styles/bootstrap.scss";
-							@import "../styles/webcomponent.scss";
-
-							svg {
-								color: green;
-								text-decoration: none;
-								border: 1px solid yellow;
-							}
-						</style>
-					</slot>
+					<slot name="headerImg" />
 				{/if}
 
 				{#if $$slots.headerStrong}
