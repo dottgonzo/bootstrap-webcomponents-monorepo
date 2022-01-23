@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-product-comparison",
 	"displayName": "Svelte Boostrap Product Comparison WebComponent",
 	"description": "Svelte Boostrap Product Comparison WebComponent",
-	"version": "0.4.16",
+	"version": "0.4.24",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -67,5 +67,5 @@
 		"html5-webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "30f5a34d946a32650ef99ddc21ea8942e41fad66"
+	"gitHead": "46db65028cd9857718a0f142f53be15d4aa6966e"
 }

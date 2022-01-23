@@ -149,7 +149,7 @@
 <svelte:head>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
 </svelte:head>
-<span on:click={() => handleClick()}>
+<span style={openWindow && windowUri ? "cursor:pointer;" : ""} on:click={() => handleClick()}>
 	{#if address}
 		<span class="iconcell" part="iconcell"
 			>{#if config.icon}

@@ -130,8 +130,11 @@
 	addComponent("table");
 </script>
 
+<svelte:head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
+</svelte:head>
 <div id="page" class="container">
-	<h3>Shopping Cart</h3>
+	<h3><i style="font-size:0.9em;margin-right:0.2em" class="bi bi-cart-fill" />Shopping Cart</h3>
 	<div class="row" style="margin:40px auto 20px auto">
 		<div class="col">
 			<div style="line-height:25px">
@@ -152,7 +155,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" style="padding-top:40px;border-top:solid 1px black">
+	<div class="row cart_divider">
 		<div class="col">
 			<hb-table disablepagination="yes" rows={JSON.stringify(tableRows)} headers={JSON.stringify(tableHeaders)} />
 		</div>
@@ -163,7 +166,10 @@
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
 	#page {
-		border: 1px solid black;
 		padding-top: 20px;
+	}
+	.cart_divider {
+		padding-top: 40px;
+		border-top: var(--hb-checkout-border);
 	}
 </style>

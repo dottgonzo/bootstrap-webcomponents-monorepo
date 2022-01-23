@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-chartjs",
 	"displayName": "Svelte-Bootstrap chartjs",
 	"description": "Svelte-Bootstrap chartjs",
-	"version": "0.4.16",
+	"version": "0.4.24",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -66,8 +66,9 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "30f5a34d946a32650ef99ddc21ea8942e41fad66",
+	"gitHead": "46db65028cd9857718a0f142f53be15d4aa6966e",
 	"dependencies": {
-		"chart.js": "^3.7.0"
+		"chart.js": "^3.7.0",
+		"debounce": "^1.2.1"
 	}
 }

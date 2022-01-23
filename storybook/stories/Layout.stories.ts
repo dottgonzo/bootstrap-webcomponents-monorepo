@@ -5,7 +5,7 @@ const meta: Meta = {
   title: "Layout/MainLayout",
   argTypes: {
     id: { control: { disable: true } },
-    pagechange: { action: "pagechangeEvent" },
+    pagechange: { action: "pagechange" },
     offcanvasswitch: { action: "offcanvasswitchEvent" },
     contacts: { control: { type: "object" } },
     socials: { control: { type: "object" } },

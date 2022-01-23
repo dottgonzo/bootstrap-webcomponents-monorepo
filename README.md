@@ -16,16 +16,6 @@ These components wants to cover not only "small" components like buttons or badg
 
 all packages is published as npm @htmlbricks packages
 
-<!--
-## MAIN GOAL
-
-The main goal is to obtain a large set of components to manage all the main aspect of a web site, to be able to build websites on any technology (basic html included) embedding only these components with no other addictions
-
-the only expect to develop on a new app based from that components is the app logic that will be responsable to:
-- render the components when needed
-- sync slots and attributes on components
-- handling events from components -->
-
 ### technologies involved
 
 To build the components is choosed to use svelte instead of native web components framework like lit-element. That's because of the good svelte footprint exports, and because of the productivity of svelte/rollup development, even there is some glich that is caused by svelte.
@@ -34,13 +24,56 @@ To build the components is choosed to use svelte instead of native web component
 
 - [Storybook App](https://htmlbricks.dev.kernel.online/)
 
-- All In One bundle
+## HTML QUICK START
 
 ```
-<script src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-bundle@0.4.0/release/release.js"></script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-paginate@latest/release/release.js"></script>
+  </head>
+  <body>
+    <hb-paginate page="2" pages="12"></hb-paginate>
+  </body>
+</html>
+
 ```
 
-## HOW TO USE THIS REPO
+now you can listen for events from the component by adding:
+
+```
+<script>
+
+  // the webcomponent node on the page
+	const element=document.getElementsByTagName('hb-paginate')[0]
+
+	// add a listener for the event pagechange
+	element.addEventListener('pagechange',(event)=>{
+
+	  // the webcomponent event data is comonly shared from event.detail
+		const message=event.detail
+
+		// graphical log
+		const div = document.createElement("div");
+		const text = document.createTextNode(`${JSON.stringify(message)}`);
+		div.appendChild(text);
+		document.body.appendChild(div)
+		element.setAttribute('page',message.page.toString())
+	})
+
+</script>
+```
+
+to be able to test the components, there is an all in one bundle that include all the components, instead of importing only the ones you need
+
+```
+<script src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-bundle@latest/release/release.js"></script>
+
+```
+
+useful only for development environments
+
+## DEVELOPMENT
 
 #### system requirements
 
