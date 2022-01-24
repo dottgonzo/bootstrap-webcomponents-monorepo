@@ -16,7 +16,7 @@
 	// import { quintOut } from "svelte/easing";
 
 	export let id: string;
-	export let show: boolean | string | null;
+	export let show: "yes" | "no";
 	export let title: string;
 	export let img: string;
 	export let small: string;
@@ -24,23 +24,14 @@
 
 	$: {
 		if (!id) id = "";
-
-		if (typeof show !== "undefined") {
-			if (show === "" || show === true || show === "true" || show === "yes") {
-				show = true;
-			} else {
-				show = false;
-			}
-		} else {
-			show = false;
-		}
+		if (show !== "yes") show = "no";
 
 		// if (show && (show === true || (show as unknown as string) === "yes" || (show as unknown as string) === "")) show = true;
 		// else show = false;
 	}
 	// const onOpened = () => dispatch("toastShow", { id, show: true });
 	function close() {
-		show = false;
+		show = "no";
 		dispatch("toastShow", { id, show: false });
 	}
 	// let backdrop = true;
@@ -99,7 +90,7 @@
 	}
 </script>
 
-{#if show}
+{#if show === "yes"}
 	<div role="alert" aria-live="assertive" aria-atomic="true" class="toast fade show" data-bs-autohide="false" data-bs-delay="10000">
 		<div class="toast-header">
 			<slot name="header_img"

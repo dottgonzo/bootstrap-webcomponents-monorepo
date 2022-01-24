@@ -42,15 +42,14 @@ LiveExample.decorators = [
   (story) => `<div style="">
   <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
   <script>
-  var toastTrigger = document.getElementById('liveToastBtn')
-  if (toastTrigger) {
-    toastTrigger.addEventListener('click', function () {
-      var elem = document.getElementById("LiveExample");
-			if (elem) {
-				elem.toggleAttribute('show');
+    document.getElementById('liveToastBtn')?.addEventListener('click', function () {
+      const elem = document.getElementById("LiveExample");
+      if (elem.getAttribute('show')&&elem.getAttribute('show')==='yes') {
+        elem.setAttribute('show','no');
+      } else {
+        elem.setAttribute('show','yes');
       }
     })
-  }
   </script>
   ${story().outerHTML}
   </div>`,
