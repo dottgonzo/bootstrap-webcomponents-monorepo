@@ -38,88 +38,69 @@
 		// if (show && (show === true || (show as unknown as string) === "yes" || (show as unknown as string) === "")) show = true;
 		// else show = false;
 	}
+	// const onOpened = () => dispatch("toastShow", { id, show: true });
+	function close() {
+		show = false;
+		dispatch("toastShow", { id, show: false });
+	}
+	// let backdrop = true;
+	// let ignoreBackdrop = false;
+	// let keyboard = true;
 
-	let backdrop = true;
-	let ignoreBackdrop = false;
-	let keyboard = true;
-	export let onOpened = () => dispatch("toastShow", { id, show: true });
-	export let onClosed = () => dispatch("toastShow", { id, show: false });
-	let _keyboardEvent;
-	function attachEvent(target, ...args) {
-		target.addEventListener(...args);
-		return {
-			remove: () => target.removeEventListener(...args),
-		};
-	}
-	function checkClass(className) {
-		return document.body.classList.contains(className);
-	}
-	function toastOpen() {
-		if (!checkClass("toast-open")) {
-			document.body.classList.add("toast-open");
-		}
-	}
-	function toastClose() {
-		if (checkClass("toast-open")) {
-			document.body.classList.remove("toast-open");
-		}
-	}
-	function handleBackdrop(event) {
-		if (backdrop && !ignoreBackdrop) {
-			event.stopPropagation();
-			show = false;
-		}
-	}
-	function onToastOpened() {
-		if (keyboard) {
-			_keyboardEvent = attachEvent(document, "keydown", (e) => {
-				if ((event as any).key === "Escape") {
-					show = false;
-				}
-			});
-		}
-		onOpened();
-	}
-	function onToastClosed() {
-		if (_keyboardEvent) {
-			_keyboardEvent.remove();
-		}
-		onClosed();
-	}
+	// let _keyboardEvent;
+	// function attachEvent(target, ...args) {
+	// 	target.addEventListener(...args);
+	// 	return {
+	// 		remove: () => target.removeEventListener(...args),
+	// 	};
+	// }
+	// function checkClass(className) {
+	// 	return document.body.classList.contains(className);
+	// }
+	// function toastOpen() {
+	// 	if (!checkClass("toast-open")) {
+	// 		document.body.classList.add("toast-open");
+	// 	}
+	// }
+	// function toastClose() {
+	// 	if (checkClass("toast-open")) {
+	// 		document.body.classList.remove("toast-open");
+	// 	}
+	// }
+	// function handleBackdrop(event) {
+	// 	if (backdrop && !ignoreBackdrop) {
+	// 		event.stopPropagation();
+	// 		show = false;
+	// 	}
+	// }
+	// function onToastOpened() {
+	// 	if (keyboard) {
+	// 		_keyboardEvent = attachEvent(document, "keydown", (e) => {
+	// 			if ((event as any).key === "Escape") {
+	// 				show = false;
+	// 				onClosed();
+	// 			}
+	// 		});
+	// 	}
+	// 	onOpened();
+	// }
+	// function onToastClosed() {
+	// 	if (_keyboardEvent) {
+	// 		_keyboardEvent.remove();
+	// 	}
+	// 	onClosed();
+	// }
 	// Watching changes for Open vairable
 	$: {
 		if (!content) content = "";
 		if (!small) small = "";
 		if (!title) title = "";
 		if (!img) img = "";
-		if (show) {
-			toastOpen();
-		} else {
-			toastClose();
-		}
-	}
-	function handleConfirm() {
-		dispatch("toastConfirm", { id, confirm: true });
-		show = false;
-	}
-	function handleCancel() {
-		show = false;
-		dispatch("toastConfirm", { id, confirm: false });
 	}
 </script>
 
 {#if show}
-	<div
-		role="alert"
-		aria-live="assertive"
-		aria-atomic="true"
-		class="toast fade show"
-		data-bs-autohide="false"
-		data-bs-delay="10000"
-		on:click|self={handleBackdrop}
-		on:introend={onToastOpened}
-		on:outroend={onToastClosed}
-	>
+	<div role="alert" aria-live="assertive" aria-atomic="true" class="toast fade show" data-bs-autohide="false" data-bs-delay="10000">
 		<div class="toast-header">
 			<slot name="header_img"
 				><img
@@ -136,15 +117,7 @@
 
 			<small><slot name="header_small">{small}</slot></small>
 
-			<button
-				type="button"
-				class="btn-close"
-				data-bs-dismiss="toast"
-				aria-label="Close"
-				on:click={() => {
-					show = false;
-				}}
-			/>
+			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" on:click={close} />
 		</div>
 
 		<div class="toast-body"><slot name="body" />{content}</div>
