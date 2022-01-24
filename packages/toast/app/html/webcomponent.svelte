@@ -15,19 +15,13 @@
 	import { fade, fly } from "svelte/transition";
 	import { quintOut } from "svelte/easing";
 
-	interface Header {
-		img?: HTMLImageElement | SVGElement | null;
-		strong?: string | null;
-		small?: string | null;
-	}
-
 	export let id: string;
 	export let show: boolean | string | null;
-	export let header: Header | null;
-	export let body: string | null;
-	let headerImg: Header["img"];
-	let headerStrong: Header["strong"];
-	let headerSmall: Header["small"];
+	export let title: string;
+	export let img: string;
+	export let small: string;
+	export let content: string;
+
 	$: {
 		if (!id) id = "";
 
@@ -43,24 +37,11 @@
 
 		// if (show && (show === true || (show as unknown as string) === "yes" || (show as unknown as string) === "")) show = true;
 		// else show = false;
-		try {
-			header = JSON.parse(header as unknown as string);
-			headerImg = header ? (header.img ? header.img : null) : null;
-			headerStrong = header ? (header.strong ? header.strong : null) : null;
-			headerSmall = header ? (header.small ? header.small : null) : null;
-		} catch (err) {}
 	}
 
-	export let dialogClasses = "";
-	export let title = "";
-	export let backdrop = true;
-	export let ignoreBackdrop = false;
-	export let keyboard = true;
-	export let describedby = "";
-	export let labelledby = "";
-	export let content = "";
-	export let closelabel = "";
-	export let confirmlabel = "";
+	let backdrop = true;
+	let ignoreBackdrop = false;
+	let keyboard = true;
 	export let onOpened = () => dispatch("toastShow", { id, show: true });
 	export let onClosed = () => dispatch("toastShow", { id, show: false });
 	let _keyboardEvent;
@@ -107,6 +88,10 @@
 	}
 	// Watching changes for Open vairable
 	$: {
+		if (!content) content = "";
+		if (!small) small = "";
+		if (!title) title = "";
+		if (!img) img = "";
 		if (show) {
 			toastOpen();
 		} else {
@@ -135,99 +120,34 @@
 		on:introend={onToastOpened}
 		on:outroend={onToastClosed}
 	>
-		<style lang="scss">
-			img,
-			svg {
-				vertical-align: middle;
-			}
-			.me-2 {
-				margin-right: 0.5rem !important;
-			}
-			.rounded {
-				border-radius: 0.25rem !important;
-			}
-			.me-auto {
-				margin-right: auto !important;
-			}
-			::slotted(img),
-			::slotted(svg) {
-				vertical-align: middle;
-			}
-			::slotted(.me-2) {
-				margin-right: 0.5rem !important;
-			}
-			::slotted(.rounded) {
-				border-radius: 0.25rem !important;
-			}
-			::slotted(.me-auto) {
-				margin-right: auto !important;
-			}
-		</style>
+		<div class="toast-header">
+			<slot name="header_img"
+				><img
+					data-src="holder.js/200x200"
+					class="bd-placeholder-img rounded me-2"
+					alt="200x200"
+					src={img}
+					data-holder-rendered="true"
+					style="width: 20px; height: 20px"
+				/></slot
+			>
 
-		{#if headerImg || headerStrong || headerSmall}
-			<div class="toast-header">
-				{#if headerImg}
-					{@html headerImg}
-				{/if}
-				{#if headerStrong}
-					<strong class="me-auto">{@html headerStrong}</strong>
-				{/if}
-				{#if headerSmall}
-					<small>{@html headerSmall}</small>
-				{/if}
-				<button
-					type="button"
-					class="btn-close"
-					data-bs-dismiss="toast"
-					aria-label="Close"
-					on:click={() => {
-						show = false;
-					}}
-				/>
-			</div>
-		{/if}
-		{#if $$slots.headerImg || $$slots.headerStrong || $$slots.headerSmall}
-			<div class="toast-header">
-				{#if $$slots.headerImg}
-					<slot name="headerImg" />
-				{/if}
+			<strong class="me-auto"><slot name="header_strong" />{title}</strong>
 
-				{#if $$slots.headerStrong}
-					<strong class="me-auto"><slot name="headerStrong" /></strong>
-				{/if}
-				{#if $$slots.headerSmall}
-					<small><slot name="headerSmall" /></small>
-				{/if}
-				<button
-					type="button"
-					class="btn-close"
-					data-bs-dismiss="toast"
-					aria-label="Close"
-					on:click={() => {
-						show = false;
-					}}
-				/>
-			</div>
-		{/if}
+			<small><slot name="header_small">{small}</slot></small>
 
-		{#if body}
-			<div class="toast-body">{@html body}</div>
-		{/if}
-		{#if $$slots.body}
-			<div class="toast-body"><slot name="body" /></div>
-		{/if}
-
-		{#if !headerImg && !headerStrong && !headerSmall && !$$slots.headerImg && !$$slots.headerStrong && !$$slots.headerSmall}
 			<button
 				type="button"
-				class="btn-close me-2 m-auto"
+				class="btn-close"
 				data-bs-dismiss="toast"
 				aria-label="Close"
 				on:click={() => {
 					show = false;
 				}}
 			/>
-		{/if}
+		</div>
+
+		<div class="toast-body"><slot name="body" />{content}</div>
 	</div>
 {/if}
 
