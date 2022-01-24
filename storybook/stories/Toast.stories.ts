@@ -18,9 +18,20 @@ const Template: Story = (args) =>
   const header = {
     small: "11 mins ago",
     strong: "Bootstrap",
+    img: `<svg
+      class="bd-placeholder-img rounded me-2"
+      width="20"
+      height="20"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      preserveAspectRatio="xMidYMid slice"
+      focusable="false"
+    >
+      <rect width="100%" height="100%" fill="#007aff"></rect>
+    </svg>`,
   };
 
-  const Basic = Template.bind({});
+  export const Basic = Template.bind({});
   Basic.args = {
     id: "Basic",
     show: true,
@@ -28,9 +39,9 @@ const Template: Story = (args) =>
     header: header,
   };
 
-  export const BasicIMG = Template.bind({});
-  BasicIMG.args = { ...Basic.args,
-    header: {...header,
+  export const BasicIMGHeader = Template.bind({});
+  BasicIMGHeader.args = { ...Basic.args,
+    header: {...Basic.args.header,
       img: `<img
         data-src="holder.js/200x200"
         class="bd-placeholder-img rounded me-2"
@@ -42,20 +53,23 @@ const Template: Story = (args) =>
     },
   };
 
-  export const BasicSVG = Template.bind({});
-  BasicSVG.args = {...Basic.args,
-    header: {...header,
-      			img: `<svg
-      	class="bd-placeholder-img rounded me-2"
-      	width="20"
-      	height="20"
-      	xmlns="http://www.w3.org/2000/svg"
-      	aria-hidden="true"
-      	preserveAspectRatio="xMidYMid slice"
-      	focusable="false"
-      >
-      	<rect width="100%" height="100%" fill="#007aff"></rect>
-      </svg>`,
-    },
-  };
-    
+  export const LiveExample  = Template.bind({});
+  LiveExample.args = {...Basic.args};
+  LiveExample.decorators= [(story) => `<div style="">
+  <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+
+  <script>
+  var toastTrigger = document.getElementById('liveToastBtn')
+  var toastLiveExample = document.getElementById('liveToast')
+  if (toastTrigger) {
+    toastTrigger.addEventListener('click', function () {
+      var elem = document.getElementById("Basic");
+			if (elem) {
+				elem.toggleAttribute('show');
+      }
+    })
+  }
+  </script>
+
+  ${story().outerHTML}
+  </div>`];
