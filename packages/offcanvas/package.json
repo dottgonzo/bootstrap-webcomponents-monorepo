@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-offcanvas",
 	"displayName": "Svelte Boostrap Offcanvas",
 	"description": "Svelte Boostrap Offcanvas",
-	"version": "0.4.24",
+	"version": "0.4.25",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
