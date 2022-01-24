@@ -12,8 +12,8 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	import { fade, fly } from "svelte/transition";
-	import { quintOut } from "svelte/easing";
+	// import { fade, fly } from "svelte/transition";
+	// import { quintOut } from "svelte/easing";
 
 	export let id: string;
 	export let show: boolean | string | null;
