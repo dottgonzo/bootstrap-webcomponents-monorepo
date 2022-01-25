@@ -14,25 +14,10 @@
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	import pkg from "../../package.json";
-	import type { IShipment, IUser } from "@app/types/webcomponent.type";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
-	import { formUserSchema, formCreditCardSchema } from "@app/functions/formSchemes";
-	import dayjs from "dayjs";
+	import { formCreditCardSchema } from "@app/functions/formSchemes";
 
 	export let id: string;
-	const formShipmentSchema: FormSchema = [
-		{
-			type: "radio",
-			placeholder: "Insert your Full Name here...",
-			id: "shipmentsolution",
-			required: true,
-			label: "Shipment",
-			validationTip: "This field cannot be empty.",
-			params: {
-				options: [],
-			},
-		},
-	];
 
 	let formCreditCardSchemaSubmitted: "yes" | "no" = "no";
 	$: {
@@ -120,64 +105,5 @@
 	.utils_or span {
 		background: #fff;
 		padding: 0 10px;
-	}
-	.cart_separator {
-		//
-	}
-	.detail_label {
-		font-size: 0.8em;
-		font-weight: bold;
-	}
-	.dataentry_key {
-		margin-right: 3px;
-	}
-	.dataentry_key::after {
-		content: ":";
-	}
-	.dataentry_relevant_value {
-		font-weight: bold;
-	}
-	.detail_btn {
-		float: right;
-		margin-right: 10px;
-		color: green;
-		font-weight: bold;
-		text-transform: capitalize;
-	}
-	// #border_top {
-	// 	border-top: var(--hb-checkout-border);
-	// 	border-bottom: var(--hb-checkout-border);
-	// 	margin-top: 40px;
-	// }
-	.dataentry {
-		line-height: 30px;
-	}
-	.footer_note {
-		text-align: center;
-		font-size: 12px;
-		padding: 5px;
-		line-height: 30px;
-	}
-	.subtitle {
-		margin-bottom: 30px;
-	}
-	.title {
-		text-align: center;
-		border-bottom: var(--hb-checkout-border);
-		padding-bottom: 20px;
-	}
-	.dataentrycontainer {
-		// margin-bottom: 30px;
-	}
-	.payment_title {
-		margin-top: 20px;
-		border-top: var(--hb-checkout-border);
-		padding-top: 10px;
-	}
-	#shipment_separator {
-		// background-color: red;
-	}
-	h4 {
-		// text-align: center;
 	}
 </style>

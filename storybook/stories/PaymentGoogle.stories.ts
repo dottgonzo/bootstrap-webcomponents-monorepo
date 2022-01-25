@@ -2,10 +2,9 @@ import { Story, Meta } from "@storybook/html";
 import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
-  title: "Payments/Paypal",
+  title: "Payments/Google",
   argTypes: {
     id: { control: { disable: true } },
-    payByCard: { action: "payByCard" },
     payByAccount: { action: "payByAccount" },
   },
 };
@@ -13,9 +12,9 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "payment-paypal");
+  webComponentBind(args, meta.argTypes, "payment-google");
 
-export const SimplePaypal = Template.bind({});
-SimplePaypal.args = {
-  id: "SimplePaypal",
+export const SimpleGooglePay = Template.bind({});
+SimpleGooglePay.args = {
+  id: "SimpleGooglePay",
 };
