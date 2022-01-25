@@ -50,6 +50,18 @@
 		if (!gateways) gateways = [];
 		else if (typeof gateways === "string") {
 			gateways = JSON.parse(gateways) || [];
+			for (const g of gateways) {
+				switch (g.id) {
+					case "google":
+						if (!g.cardImage) g.cardImage = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-checkout@${pkg.version}/extra/assets/gpay_btn.png`;
+
+						break;
+					case "paypal":
+						if (!g.cardImage) g.cardImage = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-checkout@${pkg.version}/extra/assets/paypal_rect.jpg`;
+
+						break;
+				}
+			}
 			if (gateways.find((f) => f.selected || f.default)) {
 				gateway = gateways.find((f) => f.selected || f.default);
 			} else if (gateways?.length) {
@@ -296,6 +308,12 @@
 <div>
 	<h3 class="subtitle payment_title" part="subtitle"><i class="bi bi-wallet2" /> Payment Method</h3>
 	{#if !editUser && !editShipping && ((shipments?.length && shipments.find((f) => f.selected)) || shipments.find((f) => f.standard) || !shipments?.length)}
+		<!-- {#if gateways.length > 1}
+			{#each gateways as g (g.id)}
+				<img alt={g.label} src={g.cardImage} />
+			{/each}
+		{/if} -->
+
 		{#if gateway?.id === "paypal"}
 			<hb-payment-paypal
 				on:payByCard={(e) => payByPaypalAndCard(e.detail)}

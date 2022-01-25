@@ -18,11 +18,12 @@ export type IUser = {
 	fixed?: boolean;
 };
 export type IGateway = {
-	id: string;
+	id: "google" | "paypal";
 	label: string;
 	default?: boolean;
 	selected?: boolean;
 	fixedPrice?: number;
 	currency?: "€" | "$";
 	percentagePrice?: number;
+	cardImage?: string;
 };

@@ -2,7 +2,7 @@ import { Story, Meta } from "@storybook/html";
 import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
-  title: "Components/CheckoutPaypal",
+  title: "Components/Checkout",
 
   argTypes: {
     id: { control: { disable: true } },
@@ -26,6 +26,11 @@ const Template: Story = (args) =>
 const defaultgw = {
   id: "paypal",
   label: "bbbb",
+};
+
+const googlepay = {
+  id: "google",
+  label: "GooglePay",
 };
 
 export const CheckoutPaypal = Template.bind({});
@@ -121,5 +126,5 @@ CheckoutPaypalWithUserAndShipping.args = {
     nationality: "effe",
     zip: "3434",
   },
-  gateways: [defaultgw],
+  gateways: [defaultgw, googlepay],
 };

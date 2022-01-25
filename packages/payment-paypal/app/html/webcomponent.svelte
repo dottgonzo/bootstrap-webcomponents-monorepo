@@ -63,32 +63,30 @@
 	addComponent("form");
 </script>
 
+<div><button on:click={() => payByAccount()} style="width:100%;background-color:yellow;color:white" class="btn">paypal</button></div>
+<div class="utils_or"><span>or</span></div>
 <div>
-	<div><button on:click={() => payByAccount()} style="width:100%;background-color:yellow;color:white" class="btn">paypal</button></div>
-	<div class="utils_or"><span>or</span></div>
 	<div>
-		<div>
-			<hb-form
-				schema={JSON.stringify(formCreditCardSchema)}
-				submitted={formCreditCardSchemaSubmitted}
-				on:submit={(e) => payByCard(e.detail)}
-				on:change={(e) => {
-					cardChange(e.detail);
-				}}
-			/>
-		</div>
-		<div>
-			<button
-				on:click={() => {
-					formCreditCardSchemaSubmitted = "yes";
-					setTimeout(() => {
-						formCreditCardSchemaSubmitted = "no";
-					}, 200);
-				}}
-				style="width:100%"
-				class="btn btn-primary">place order</button
-			>
-		</div>
+		<hb-form
+			schema={JSON.stringify(formCreditCardSchema)}
+			submitted={formCreditCardSchemaSubmitted}
+			on:submit={(e) => payByCard(e.detail)}
+			on:change={(e) => {
+				cardChange(e.detail);
+			}}
+		/>
+	</div>
+	<div>
+		<button
+			on:click={() => {
+				formCreditCardSchemaSubmitted = "yes";
+				setTimeout(() => {
+					formCreditCardSchemaSubmitted = "no";
+				}, 200);
+			}}
+			style="width:100%"
+			class="btn btn-primary">place order</button
+		>
 	</div>
 </div>
 

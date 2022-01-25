@@ -31,11 +31,15 @@
 	}
 </script>
 
-<div>
-	<div><button on:click={() => payByAccount()} style="width:100%;background-color:black;color:white" class="btn">google pay</button></div>
-</div>
+<button id="paybtn" on:click={() => payByAccount()} class="btn">google pay</button>
 
 <style lang="scss">
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
+
+	#paybtn {
+		width: 100%;
+		background-color: black;
+		color: white;
+	}
 </style>
