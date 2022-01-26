@@ -157,9 +157,7 @@
 
 		dispatch("payByCard", p);
 	}
-	function payByPaypalAccount() {
-		dispatch("payByAccount", {});
-	}
+
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 	function dispatch(name, detail) {
@@ -334,80 +332,81 @@
 				{/each}
 			</div>
 		{/if} -->
-
-		{#if gateways?.find((f) => f.id === "paypal")}
-			<hb-payment-paypal
-				class="payment_button"
-				paypalid={gateways.find((f) => f.id === "paypal").paypalid}
-				total={payment?.total?.toString()}
-				on:payByCard={(e) => payByPaypalAndCard(e.detail)}
-				on:payByAccount={(e) => payByPaypalAccount()}
-				on:cardChange={(e) => cardChange(e.detail)}
-				on:loadpaymentdata={(event) => {
-					successfulPayment();
-				}}
-			/>
-		{/if}
-		{#if gateways?.find((f) => f.id === "google") && payment.countryCode}
-			<google-pay-button
-				class="payment_button"
-				environment="TEST"
-				button-type="buy"
-				button-color="black"
-				button-size-mode="fill"
-				paymentRequest={{
-					apiVersion: 2,
-					apiVersionMinor: 0,
-					merchantInfo: {
-						merchantName: payment.merchantName,
-						merchantId: gateways.find((f) => f.id === "paypal").gatewayMerchantId,
-					},
-					allowedPaymentMethods: [
-						{
-							type: "CARD",
-							parameters: {
-								allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
-								allowedCardNetworks: gateways.find((f) => f.id === "paypal").cardNetworks,
-							},
-							tokenizationSpecification: {
-								type: "PAYMENT_GATEWAY",
-								parameters: {
-									gateway: gateways.find((f) => f.id === "paypal").gatewayId,
-									gatewayMerchantId: gateways.find((f) => f.id === "paypal").gatewayMerchantId,
+		<div id="payment_btn_container">
+			{#each gateways as g (g.id)}
+				<div class="payment_button_container">
+					{#if g.id === "paypal"}
+						<hb-payment-paypal
+							class="payment_button"
+							paypalid={g.paypalid}
+							total={payment?.total?.toString()}
+							on:payByCard={(e) => payByPaypalAndCard(e.detail)}
+							on:payByAccount={(e) => dispatch("payByAccount", e.detail)}
+							on:cardChange={(e) => cardChange(e.detail)}
+						/>
+					{:else if g.id === "google" && payment.countryCode}
+						<google-pay-button
+							class="payment_button"
+							environment="TEST"
+							button-type="buy"
+							button-color="black"
+							button-size-mode="fill"
+							paymentRequest={{
+								apiVersion: 2,
+								apiVersionMinor: 0,
+								merchantInfo: {
+									merchantName: payment.merchantName,
+									merchantId: g.gatewayMerchantId,
 								},
-							},
-						},
-						// {
-						// 	type: "PAYPAL",
-						// 	parameters: {
-						// 		purchase_context: {
-						// 			purchase_units: [
-						// 				{
-						// 					payee: {
-						// 						merchant_id: "PAYPAL_ACCOUNT_ID",
-						// 					},
-						// 				},
-						// 			],
-						// 		},
-						// 	},
-						// 	tokenizationSpecification: {
-						// 		type: "DIRECT",
-						// 	},
-						// },
-					],
-					transactionInfo: {
-						totalPriceStatus: "FINAL",
-						totalPriceLabel: "Total",
-						totalPrice: payment?.total?.toString(),
-						currencyCode: payment?.currencyCode,
-						countryCode: payment?.countryCode,
-					},
-				}}
-				on:successfulPayment={(event) => {
-					successfulPayment();
-				}}
-			/>
-		{/if}
+								allowedPaymentMethods: [
+									{
+										type: "CARD",
+										parameters: {
+											allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
+											allowedCardNetworks: g.cardNetworks,
+										},
+										tokenizationSpecification: {
+											type: "PAYMENT_GATEWAY",
+											parameters: {
+												gateway: g.gatewayId,
+												gatewayMerchantId: g.gatewayMerchantId,
+											},
+										},
+									},
+									// {
+									// 	type: "PAYPAL",
+									// 	parameters: {
+									// 		purchase_context: {
+									// 			purchase_units: [
+									// 				{
+									// 					payee: {
+									// 						merchant_id: "PAYPAL_ACCOUNT_ID",
+									// 					},
+									// 				},
+									// 			],
+									// 		},
+									// 	},
+									// 	tokenizationSpecification: {
+									// 		type: "DIRECT",
+									// 	},
+									// },
+								],
+								transactionInfo: {
+									totalPriceStatus: "FINAL",
+									totalPriceLabel: "Total",
+									totalPrice: payment?.total?.toString(),
+									currencyCode: payment?.currencyCode?.toUpperCase(),
+									countryCode: payment?.countryCode?.toUpperCase(),
+								},
+							}}
+							on:loadpaymentdata={(event) => {
+								dispatch("payByAccount", { total: payment?.total, method: "google" });
+							}}
+						/>
+					{/if}
+				</div>
+			{/each}
+		</div>
 
 		<!-- <div>
 			<button on:click={() => payByAccount()} style="width:100%;background-color:yellow;color:white" class="btn">paypal</button>
@@ -444,14 +443,19 @@
 <style lang="scss">
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
-	.payment_button {
-		margin-bottom: 10px;
-		display: block;
-		width: 100%;
+	#payment_btn_container {
+		display: flex;
 	}
-	hb-payment-paypal::part(btn) {
-		height: 45px;
+	.payment_button_container {
+		flex: 1;
+		margin: 15px;
+		display: inline-block;
+		text-align: center;
+	}
+	.payment_button {
+		height: 40px;
 		width: 100%;
+		max-width: 50vw;
 	}
 
 	.utils_or {

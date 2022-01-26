@@ -7,6 +7,8 @@ const meta: Meta = {
     id: { control: { disable: true } },
     payByCard: { action: "payByCard" },
     payByAccount: { action: "payByAccount" },
+    paypalid: { control: { type: "string" } },
+    currency: { control: { type: "string" } },
   },
 };
 
@@ -18,4 +20,6 @@ const Template: Story = (args) =>
 export const SimplePaypal = Template.bind({});
 SimplePaypal.args = {
   id: "SimplePaypal",
+  label: "bbbb",
+  paypalid: "test",
 };

@@ -31,12 +31,16 @@
 		if (!total) total = null;
 		else total = Number(total);
 		if (!currency) currency = "EUR";
+		else currency = currency.toUpperCase() as "EUR" | "USD";
 		if (paypalid) {
 			mountPaypalJs();
+		} else {
+			paypalid = null;
 		}
 	}
 	function mountPaypalJs() {
 		if (paypalid && paypalEl) {
+			if (paypal) paypal.close();
 			loadScript({ "client-id": paypalid, currency })
 				.then((p) => {
 					console.info("configured paypal payment");
@@ -46,6 +50,8 @@
 							style: {
 								layout: "horizontal",
 								tagline: false,
+								height: 40,
+								width: "100%",
 							},
 							createOrder: function (data, actions) {
 								return actions.order.create({
@@ -60,7 +66,7 @@
 							},
 							onApprove: function (data, actions) {
 								return actions.order.capture().then(function (details) {
-									dispatch("payByAccount", { total });
+									dispatch("payByAccount", { method: "paypal", total });
 								});
 							},
 						})
