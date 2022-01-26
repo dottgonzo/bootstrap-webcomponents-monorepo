@@ -43,6 +43,7 @@ const defaultPayment = {
   countryCode: "it",
   currencyCode: "EUR",
   total: 45,
+  type: "buy",
 };
 
 export const CheckoutPaypal = Template.bind({});

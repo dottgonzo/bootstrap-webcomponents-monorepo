@@ -33,9 +33,12 @@ export type IGateway = {
 	merchantId?: string;
 };
 
+export type IPaymentType = "book" | "buy" | "checkout" | "donate" | "order" | "pay" | "plain" | "subscribe";
+
 export type IPayment = {
 	merchantName: string;
 	total: number;
 	currencyCode: string;
 	countryCode: string;
+	type?: IPaymentType;
 };

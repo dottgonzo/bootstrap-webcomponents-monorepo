@@ -47,10 +47,11 @@
 	let formUserSchemaSubmitted: "yes" | "no" = "no";
 	let formShipmentSchemaSubmitted: "yes" | "no" = "no";
 	let formCreditCardSchemaSubmitted: "yes" | "no" = "no";
+	const nullishdefaultpayment: IPayment = { type: "plain", total: 0, currencyCode: "EUR", countryCode: "IT", merchantName: "merchant" };
 	$: {
 		if (!id) id = null;
-		if (!payment) payment = { total: 0, currencyCode: "EUR", countryCode: "IT", merchantName: "merchant" };
-		else if (typeof payment === "string") payment = JSON.parse(payment) || { total: 0, currencyCode: "EUR", countryCode: "IT", merchantName: "merchant" };
+		if (!payment) payment = nullishdefaultpayment;
+		else if (typeof payment === "string") payment = JSON.parse(payment) || nullishdefaultpayment;
 
 		if (!shipments) shipments = [];
 		else if (typeof shipments === "string") shipments = JSON.parse(shipments) || [];
@@ -66,6 +67,7 @@
 			// 	gateway = gateways[0];
 			// }
 		}
+		if (!payment.type) payment.type = "buy";
 		if (!user) user = null;
 		else if (typeof user === "string") {
 			user = JSON.parse(user);
@@ -337,7 +339,7 @@
 						<google-pay-button
 							class="payment_button"
 							environment="TEST"
-							button-type="buy"
+							button-type={payment.type.toLowerCase()}
 							button-color="black"
 							button-size-mode="fill"
 							paymentRequest={{
