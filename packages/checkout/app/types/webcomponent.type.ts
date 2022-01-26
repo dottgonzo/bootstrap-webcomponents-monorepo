@@ -20,12 +20,10 @@ export type IUser = {
 export type IGateway = {
 	id: "google" | "paypal";
 	label: string;
-	default?: boolean;
-	selected?: boolean;
 	fixedPrice?: number;
 	currency?: "€" | "$";
 	percentagePrice?: number;
-	cardImage?: string;
+	// cardImage?: string;
 	// paypal
 	paypalid?: string;
 	// google

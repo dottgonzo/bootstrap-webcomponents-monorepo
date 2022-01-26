@@ -59,17 +59,6 @@
 			gateways = JSON.parse(gateways) || [];
 			for (const g of gateways) {
 				if (!g.cardNetworks?.length) g.cardNetworks = ["VISA", "MASTERCARD"];
-
-				switch (g.id) {
-					case "google":
-						if (!g.cardImage) g.cardImage = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-checkout@${pkg.version}/extra/assets/gpay_btn.png`;
-
-						break;
-					case "paypal":
-						if (!g.cardImage) g.cardImage = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-checkout@${pkg.version}/extra/assets/paypal_rect.jpg`;
-
-						break;
-				}
 			}
 			// if (gateways.find((f) => f.selected || f.default)) {
 			// 	gateway = gateways.find((f) => f.selected || f.default);
@@ -528,11 +517,11 @@
 	h4 {
 		// text-align: center;
 	}
-	.cardimg {
-		max-width: 60px;
-		margin: auto 2px auto 2px;
-	}
-	#card_select {
-		margin: 20px auto 40px auto;
-	}
+	// .cardimg {
+	// 	max-width: 60px;
+	// 	margin: auto 2px auto 2px;
+	// }
+	// #card_select {
+	// 	margin: 20px auto 40px auto;
+	// }
 </style>
