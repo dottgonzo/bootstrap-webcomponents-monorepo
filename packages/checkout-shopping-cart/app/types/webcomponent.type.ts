@@ -6,6 +6,6 @@ export interface IShopItem {
 	quantity?: number;
 }
 export interface ICartHeaders {
-	country?: "it" | "eu" | "us";
+	country: "it" | "eu" | "us";
 	shipmentFee?: number;
 }

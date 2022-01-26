@@ -13,6 +13,7 @@ const meta: Meta = {
     saveUser: { action: "saveUser" },
     saveShipment: { action: "saveShipment" },
     gateways: { control: { type: "array" } },
+    setGateway: { action: "setGateway" },
   },
 };
 
@@ -26,11 +27,14 @@ const Template: Story = (args) =>
 const defaultgw = {
   id: "paypal",
   label: "bbbb",
+  paypalid: "test",
 };
 
 const googlepay = {
   id: "google",
   label: "GooglePay",
+  gatewayId: "example",
+  gatewayMerchantId: "exampleGatewayMerchantId",
 };
 
 export const CheckoutPaypal = Template.bind({});

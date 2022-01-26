@@ -12,17 +12,73 @@
 	 */
 
 	import { createEventDispatcher } from "svelte";
-	import { get_current_component } from "svelte/internal";
+	import { get_current_component, onMount } from "svelte/internal";
 	import pkg from "../../package.json";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { formCreditCardSchema } from "@app/functions/formSchemes";
+	import { loadScript } from "@paypal/paypal-js";
 
 	export let id: string;
+	export let paypalid: string;
+	export let currency: "EUR" | "USD";
+	export let total: number;
 
+	let paypal;
+	let paypalEl: HTMLElement;
 	let formCreditCardSchemaSubmitted: "yes" | "no" = "no";
 	$: {
 		if (!id) id = null;
+		if (!total) total = null;
+		else total = Number(total);
+		if (!currency) currency = "EUR";
+		if (paypalid) {
+			mountPaypalJs();
+		}
 	}
+	function mountPaypalJs() {
+		if (paypalid && paypalEl) {
+			loadScript({ "client-id": paypalid, currency })
+				.then((p) => {
+					console.info("configured paypal payment");
+					paypal = p;
+					paypal
+						.Buttons({
+							style: {
+								layout: "horizontal",
+								tagline: false,
+							},
+							createOrder: function (data, actions) {
+								return actions.order.create({
+									purchase_units: [
+										{
+											amount: {
+												value: total.toString(),
+											},
+										},
+									],
+								});
+							},
+							onApprove: function (data, actions) {
+								return actions.order.capture().then(function (details) {
+									dispatch("payByAccount", { total });
+								});
+							},
+						})
+						.render(paypalEl)
+						.catch((error) => {
+							console.error("failed to render the PayPal Buttons", error);
+						});
+				})
+				.catch((err) => {
+					console.error("failed to load the PayPal JS SDK script", err);
+				});
+		}
+	}
+
+	onMount(() => {
+		paypalEl = component.shadowRoot.getElementById("paypalbtn");
+		mountPaypalJs();
+	});
 
 	function cardChange(u: { _valid: boolean; fullName?: string; cardNumber?: string; CVV?: string; expiration?: string }) {
 		for (const k of ["fullName", "cardNumber", "CVV", "expiration"]) {
@@ -41,15 +97,22 @@
 
 		dispatch("payByCard", p);
 	}
-	function payByAccount() {
-		dispatch("payByAccount", {});
-	}
+
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 	function dispatch(name, detail) {
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
+
+	// if (!document.getElementById("paypaljs-script")) {
+	// 	const script = document.createElement("script");
+	// 	script.id = "paypaljs-script";
+	// 	script.src = "https://www.paypal.com/sdk/js?components=buttons,hosted-fields&client-id=<YOUR-CLIENT-ID>";
+	// 	script["data-client-token"] = "<YOUR-CLIENT-TOKEN>";
+	// 	document.head.appendChild(script);
+	// }
+
 	function addComponent(componentName: string) {
 		if (!document.getElementById("hb-" + componentName + "-script")) {
 			const script = document.createElement("script");
@@ -63,8 +126,9 @@
 	addComponent("form");
 </script>
 
-<div><button on:click={() => payByAccount()} style="width:100%;background-color:yellow;color:white" class="btn">paypal</button></div>
-<div class="utils_or"><span>or</span></div>
+<div part="btn" id="paypalbtn" />
+
+<!-- <div class="utils_or"><span>or</span></div>
 <div>
 	<div>
 		<hb-form
@@ -88,8 +152,7 @@
 			class="btn btn-primary">place order</button
 		>
 	</div>
-</div>
-
+</div> -->
 <style lang="scss">
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";

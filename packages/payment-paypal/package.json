@@ -61,6 +61,7 @@
 		"typescript-transform-paths": "^2.2.3"
 	},
 	"dependencies": {
+		"@paypal/paypal-js": "^5.0.1",
 		"dayjs": "^1.10.7",
 		"debounce": "^1.2.1"
 	},

@@ -26,4 +26,18 @@ export type IGateway = {
 	currency?: "€" | "$";
 	percentagePrice?: number;
 	cardImage?: string;
+	// paypal
+	paypalid?: string;
+	// google
+	cardNetworks?: string[];
+	gatewayId?: string;
+	gatewayMerchantId?: string;
+	merchantId?: string;
+};
+
+export type IPayment = {
+	merchantName: string;
+	total: number;
+	currencyCode: string;
+	countryCode: string;
 };

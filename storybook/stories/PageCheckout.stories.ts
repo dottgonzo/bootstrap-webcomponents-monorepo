@@ -2,13 +2,14 @@ import { Story, Meta } from "@storybook/html";
 import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
-  title: "Pages/PageCheckoutPaypal",
+  title: "Pages/PageCheckout",
 
   argTypes: {
     id: { control: { disable: true } },
     shipments: { control: { type: "array" } },
     items: { control: { type: "array" } },
     user: { control: { type: "object" } },
+    headers: { control: { type: "object" } },
     payByCard: { action: "payByCard" },
     payByAccount: { action: "payByAccount" },
     saveUser: { action: "saveUser" },
@@ -24,6 +25,13 @@ const Template: Story = (args) =>
 const defaultgw = {
   id: "paypal",
   label: "bbbb",
+  paypalid: "test",
+};
+const googlepay = {
+  id: "google",
+  label: "GooglePay",
+  gatewayId: "example",
+  gatewayMerchantId: "exampleGatewayMerchantId",
 };
 export const PageCheckoutPaypal = Template.bind({});
 
@@ -61,7 +69,8 @@ PageCheckoutPaypal.args = {
       name: "testitem2",
     },
   ],
-  gateways: [defaultgw],
+  gateways: [defaultgw, googlepay],
+  headers: { country: "it" },
 };
 
 export const PageCheckoutPaypalWithUser = Template.bind({});
@@ -107,7 +116,8 @@ PageCheckoutPaypalWithUser.args = {
     nationality: "effe",
     zip: "3434",
   },
-  gateways: [defaultgw],
+  gateways: [defaultgw, googlepay],
+  headers: { country: "it" },
 };
 
 export const PageCheckoutPaypalWithUserAndShipment = Template.bind({});
@@ -153,7 +163,8 @@ PageCheckoutPaypalWithUserAndShipment.args = {
     nationality: "effe",
     zip: "3434",
   },
-  gateways: [defaultgw],
+  gateways: [defaultgw, googlepay],
+  headers: { country: "it" },
 };
 
 export const PageCheckoutPaypalService = Template.bind({});
@@ -181,5 +192,6 @@ PageCheckoutPaypalService.args = {
     zip: "3434",
     fixed: true,
   },
-  gateways: [defaultgw],
+  gateways: [defaultgw, googlepay],
+  headers: { country: "it" },
 };

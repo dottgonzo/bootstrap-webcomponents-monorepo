@@ -11,10 +11,12 @@
 	 *
 	 */
 
+	import "@google-pay/button-element";
+
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	import pkg from "../../package.json";
-	import type { IShipment, IUser, IGateway } from "@app/types/webcomponent.type";
+	import type { IShipment, IUser, IGateway, IPayment } from "@app/types/webcomponent.type";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { formUserSchema, formCreditCardSchema } from "@app/functions/formSchemes";
 	import dayjs from "dayjs";
@@ -23,7 +25,9 @@
 	export let shipments: IShipment[];
 	export let user: IUser;
 	export let gateways: IGateway[];
-	let gateway: IGateway;
+	export let payment: IPayment;
+
+	// let gateway: IGateway;
 	const formShipmentSchema: FormSchema = [
 		{
 			type: "radio",
@@ -45,12 +49,17 @@
 	let formCreditCardSchemaSubmitted: "yes" | "no" = "no";
 	$: {
 		if (!id) id = null;
+		if (!payment) payment = { total: 0, currencyCode: "EUR", countryCode: "IT", merchantName: "merchant" };
+		else if (typeof payment === "string") payment = JSON.parse(payment) || { total: 0, currencyCode: "EUR", countryCode: "IT", merchantName: "merchant" };
+
 		if (!shipments) shipments = [];
 		else if (typeof shipments === "string") shipments = JSON.parse(shipments) || [];
 		if (!gateways) gateways = [];
 		else if (typeof gateways === "string") {
 			gateways = JSON.parse(gateways) || [];
 			for (const g of gateways) {
+				if (!g.cardNetworks?.length) g.cardNetworks = ["VISA", "MASTERCARD"];
+
 				switch (g.id) {
 					case "google":
 						if (!g.cardImage) g.cardImage = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-checkout@${pkg.version}/extra/assets/gpay_btn.png`;
@@ -62,11 +71,11 @@
 						break;
 				}
 			}
-			if (gateways.find((f) => f.selected || f.default)) {
-				gateway = gateways.find((f) => f.selected || f.default);
-			} else if (gateways?.length) {
-				gateway = gateways[0];
-			}
+			// if (gateways.find((f) => f.selected || f.default)) {
+			// 	gateway = gateways.find((f) => f.selected || f.default);
+			// } else if (gateways?.length) {
+			// 	gateway = gateways[0];
+			// }
 		}
 		if (!user) user = null;
 		else if (typeof user === "string") {
@@ -178,6 +187,16 @@
 		editUser = false;
 
 		editShipping = true;
+	}
+
+	// function selectGateway(id: string) {
+	// 	if (gateways.find((f) => f.id === id)) {
+	// 		gateway = gateways.find((f) => f.id === id);
+	// 		dispatch("setGateway", gateway);
+	// 	}
+	// }
+	function successfulPayment() {
+		dispatch("successfulPayment", payment);
 	}
 </script>
 
@@ -309,18 +328,87 @@
 	<h3 class="subtitle payment_title" part="subtitle"><i class="bi bi-wallet2" /> Payment Method</h3>
 	{#if !editUser && !editShipping && ((shipments?.length && shipments.find((f) => f.selected)) || shipments.find((f) => f.standard) || !shipments?.length)}
 		<!-- {#if gateways.length > 1}
-			{#each gateways as g (g.id)}
-				<img alt={g.label} src={g.cardImage} />
-			{/each}
+			<div id="card_select">
+				{#each gateways as g (g.id)}
+					<img on:click={() => selectGateway(g.id)} class="cardimg" alt={g.label} src={g.cardImage} />
+				{/each}
+			</div>
 		{/if} -->
 
-		{#if gateway?.id === "paypal"}
+		{#if gateways?.find((f) => f.id === "paypal")}
 			<hb-payment-paypal
+				class="payment_button"
+				paypalid={gateways.find((f) => f.id === "paypal").paypalid}
+				total={payment?.total?.toString()}
 				on:payByCard={(e) => payByPaypalAndCard(e.detail)}
 				on:payByAccount={(e) => payByPaypalAccount()}
 				on:cardChange={(e) => cardChange(e.detail)}
+				on:loadpaymentdata={(event) => {
+					successfulPayment();
+				}}
 			/>
 		{/if}
+		{#if gateways?.find((f) => f.id === "google") && payment.countryCode}
+			<google-pay-button
+				class="payment_button"
+				environment="TEST"
+				button-type="buy"
+				button-color="black"
+				button-size-mode="fill"
+				paymentRequest={{
+					apiVersion: 2,
+					apiVersionMinor: 0,
+					merchantInfo: {
+						merchantName: payment.merchantName,
+						merchantId: gateways.find((f) => f.id === "paypal").gatewayMerchantId,
+					},
+					allowedPaymentMethods: [
+						{
+							type: "CARD",
+							parameters: {
+								allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
+								allowedCardNetworks: gateways.find((f) => f.id === "paypal").cardNetworks,
+							},
+							tokenizationSpecification: {
+								type: "PAYMENT_GATEWAY",
+								parameters: {
+									gateway: gateways.find((f) => f.id === "paypal").gatewayId,
+									gatewayMerchantId: gateways.find((f) => f.id === "paypal").gatewayMerchantId,
+								},
+							},
+						},
+						// {
+						// 	type: "PAYPAL",
+						// 	parameters: {
+						// 		purchase_context: {
+						// 			purchase_units: [
+						// 				{
+						// 					payee: {
+						// 						merchant_id: "PAYPAL_ACCOUNT_ID",
+						// 					},
+						// 				},
+						// 			],
+						// 		},
+						// 	},
+						// 	tokenizationSpecification: {
+						// 		type: "DIRECT",
+						// 	},
+						// },
+					],
+					transactionInfo: {
+						totalPriceStatus: "FINAL",
+						totalPriceLabel: "Total",
+						totalPrice: payment?.total?.toString(),
+						currencyCode: payment?.currencyCode,
+						countryCode: payment?.countryCode,
+					},
+				}}
+				on:successfulPayment={(event) => {
+					successfulPayment();
+				}}
+			/>
+		{/if}
+
 		<!-- <div>
 			<button on:click={() => payByAccount()} style="width:100%;background-color:yellow;color:white" class="btn">paypal</button>
 		</div>
@@ -356,6 +444,16 @@
 <style lang="scss">
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
+	.payment_button {
+		margin-bottom: 10px;
+		display: block;
+		width: 100%;
+	}
+	hb-payment-paypal::part(btn) {
+		height: 45px;
+		width: 100%;
+	}
+
 	.utils_or {
 		width: 50%;
 		text-align: center;
@@ -425,5 +523,12 @@
 	}
 	h4 {
 		// text-align: center;
+	}
+	.cardimg {
+		max-width: 60px;
+		margin: auto 2px auto 2px;
+	}
+	#card_select {
+		margin: 20px auto 40px auto;
 	}
 </style>
