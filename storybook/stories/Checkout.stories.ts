@@ -9,12 +9,12 @@ const meta: Meta = {
     shipments: { control: { type: "array" } },
     user: { control: { type: "object" } },
     payment: { control: { type: "object" } },
-    payByCard: { action: "payByCard" },
-    payByAccount: { action: "payByAccount" },
+    paymentCompleted: { action: "paymentCompleted" },
     saveUser: { action: "saveUser" },
     saveShipment: { action: "saveShipment" },
     gateways: { control: { type: "array" } },
     setGateway: { action: "setGateway" },
+    completed: { control: { type: "radio" }, options: ["yes", "no"] },
   },
 };
 
@@ -230,5 +230,22 @@ CheckoutWithGoogleSubscribe.args = {
     zip: "3434",
   },
   gateways: [googlepay],
-  payment: Object.assign(defaultPayment, { type: "subscribe" }),
+  payment: Object.assign({}, defaultPayment, { type: "subscribe" }),
+};
+
+export const CheckoutCompleted = Template.bind({});
+
+CheckoutCompleted.args = {
+  id: "CheckoutCompleted",
+  shipments: [],
+  user: {
+    fullName: "fdfff fffff",
+    addressWithNumber: "addreess 43",
+    city: "ff",
+    nationality: "effe",
+    zip: "3434",
+  },
+  gateways: [googlepay],
+  payment: defaultPayment,
+  completed: "yes",
 };

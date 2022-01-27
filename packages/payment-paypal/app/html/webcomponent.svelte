@@ -66,7 +66,7 @@
 							},
 							onApprove: function (data, actions) {
 								return actions.order.capture().then(function (details) {
-									dispatch("payByAccount", { method: "paypal", total });
+									dispatch("paymentCompleted", { method: "paypal", total });
 								});
 							},
 						})
@@ -98,11 +98,11 @@
 		}
 	}
 
-	function payByCard(p: {}) {
-		formCreditCardSchemaSubmitted = "no";
+	// function payByCard(p: {}) {
+	// 	formCreditCardSchemaSubmitted = "no";
 
-		dispatch("payByCard", p);
-	}
+	// 	dispatch("payByCard", p);
+	// }
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();

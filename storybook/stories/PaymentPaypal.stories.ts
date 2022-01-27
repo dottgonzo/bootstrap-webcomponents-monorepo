@@ -6,7 +6,7 @@ const meta: Meta = {
   argTypes: {
     id: { control: { disable: true } },
     payByCard: { action: "payByCard" },
-    payByAccount: { action: "payByAccount" },
+    paymentCompleted: { action: "paymentCompleted" },
     paypalid: { control: { type: "string" } },
     currency: { control: { type: "string" } },
   },

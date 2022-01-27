@@ -25,8 +25,8 @@
 	export let headers: ICartHeaders;
 	export let items: IShopItem[];
 	export let gateways: IGateway[];
-	export let completed: "yes" | "no";
 	export let merchant: IMerchant;
+	export let completed: "yes" | "no";
 
 	let payment: IPayment;
 	const defaultMerchant: IMerchant = {
@@ -107,10 +107,10 @@
 	<div class="row">
 		<div class="col-7" style="padding-right:30px">
 			<hb-checkout
-				on:payByCard={(e) => dispatch("payByCard", e.detail)}
-				on:payByAccount={(e) => dispatch("payByAccount", e.detail)}
+				on:paymentCompleted={(e) => dispatch("paymentCompleted", e.detail)}
 				on:saveUser={(e) => dispatch("saveUser", e.detail)}
 				on:saveShipment={(e) => saveShipment(e.detail)}
+				{completed}
 				{user}
 				shipments={JSON.stringify(shipments)}
 				gateways={JSON.stringify(gateways)}

@@ -10,11 +10,11 @@ const meta: Meta = {
     items: { control: { type: "array" } },
     user: { control: { type: "object" } },
     headers: { control: { type: "object" } },
-    payByCard: { action: "payByCard" },
-    payByAccount: { action: "payByAccount" },
+    paymentCompleted: { action: "paymentCompleted" },
     saveUser: { action: "saveUser" },
     saveShipment: { action: "saveShipment" },
     gateways: { control: { type: "array" } },
+    completed: { control: { type: "radio" }, options: ["yes", "no"] },
   },
 };
 
@@ -194,4 +194,33 @@ PageCheckoutPaypalService.args = {
   },
   gateways: [defaultgw, googlepay],
   headers: { country: "it" },
+};
+export const PageCheckoutCompleted = Template.bind({});
+
+PageCheckoutCompleted.args = {
+  id: "PageCheckoutCompleted",
+  shipments: [],
+  items: [
+    {
+      unitaryPrice: 2,
+      taxPercentage: 3,
+      name: "testitem",
+    },
+    {
+      unitaryPrice: 5,
+      taxPercentage: 7,
+      name: "testitem2",
+    },
+  ],
+  user: {
+    fullName: "fdfff fffff",
+    addressWithNumber: "addreess 43",
+    city: "ff",
+    nationality: "effe",
+    zip: "3434",
+    fixed: true,
+  },
+  gateways: [defaultgw, googlepay],
+  headers: { country: "it" },
+  completed: "yes",
 };
