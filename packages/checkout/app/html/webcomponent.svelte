@@ -388,6 +388,7 @@
 									totalPrice: payment?.total?.toString(),
 									currencyCode: payment?.currencyCode?.toUpperCase(),
 									countryCode: payment?.countryCode?.toUpperCase(),
+									checkoutOption: "COMPLETE_IMMEDIATE_PURCHASE",
 								},
 							}}
 							on:loadpaymentdata={(event) => {

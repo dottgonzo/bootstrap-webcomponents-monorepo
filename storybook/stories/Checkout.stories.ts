@@ -216,3 +216,19 @@ CheckoutWithGoogleOnlyPayment.args = {
   gateways: [googlepay],
   payment: defaultPayment,
 };
+
+export const CheckoutWithGoogleSubscribe = Template.bind({});
+
+CheckoutWithGoogleSubscribe.args = {
+  id: "CheckoutWithGoogleSubscribe",
+  shipments: [],
+  user: {
+    fullName: "fdfff fffff",
+    addressWithNumber: "addreess 43",
+    city: "ff",
+    nationality: "effe",
+    zip: "3434",
+  },
+  gateways: [googlepay],
+  payment: Object.assign(defaultPayment, { type: "subscribe" }),
+};
