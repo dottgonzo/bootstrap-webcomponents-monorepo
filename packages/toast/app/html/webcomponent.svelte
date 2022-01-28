@@ -17,10 +17,10 @@
 
 	export let id: string;
 	export let show: "yes" | "no";
-	export let title: string;
-	export let img: string;
-	export let small: string;
-	export let content: string;
+	export let header_strong: string;
+	export let header_img: HTMLImageElement | SVGElement;
+	export let header_small: string;
+	export let body: string;
 
 	$: {
 		if (!id) id = "";
@@ -83,35 +83,55 @@
 	// }
 	// Watching changes for Open vairable
 	$: {
-		if (!content) content = "";
-		if (!small) small = "";
-		if (!title) title = "";
-		if (!img) img = "";
+		if (!body) body = "";
+		if (!header_small) header_small = "";
+		if (!header_strong) header_strong = "";
+		// if (!header_img) header_img = "";
 	}
 </script>
 
 {#if show === "yes"}
 	<div role="alert" aria-live="assertive" aria-atomic="true" class="toast fade show" data-bs-autohide="false" data-bs-delay="10000">
+		<style lang="scss">
+			img,
+			svg {
+				vertical-align: middle;
+			}
+			.me-2 {
+				margin-right: 0.5rem !important;
+			}
+			.rounded {
+				border-radius: 0.25rem !important; //
+			}
+			.me-auto {
+				margin-right: auto !important;
+			}
+
+			::slotted(img),
+			::slotted(svg) {
+				vertical-align: middle;
+			}
+			::slotted(.me-2) {
+				margin-right: 0.5rem !important;
+			}
+			::slotted(.rounded) {
+				border-radius: 0.25rem !important; //
+			}
+			::slotted(.me-auto) {
+				margin-right: auto !important;
+			}
+		</style>
 		<div class="toast-header">
-			<slot name="header_img"
-				><img
-					data-src="holder.js/200x200"
-					class="bd-placeholder-img rounded me-2"
-					alt="200x200"
-					src={img}
-					data-holder-rendered="true"
-					style="width: 20px; height: 20px"
-				/></slot
-			>
+			<slot name="header_img">{@html header_img}</slot>
 
-			<strong class="me-auto"><slot name="header_strong" />{title}</strong>
+			<strong class="me-auto"><slot name="header_strong">{@html header_strong}</slot></strong>
 
-			<small><slot name="header_small">{small}</slot></small>
+			<small><slot name="header_small">{@html header_small}</slot></small>
 
 			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" on:click={close} />
 		</div>
 
-		<div class="toast-body"><slot name="body" />{content}</div>
+		<div class="toast-body"><slot name="body">{@html body}</slot></div>
 	</div>
 {/if}
 
