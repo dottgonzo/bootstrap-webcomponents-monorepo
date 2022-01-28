@@ -20,6 +20,8 @@
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { formUserSchema, formCreditCardSchema } from "@app/functions/formSchemes";
 	import dayjs from "dayjs";
+	// import debounce from "debounce";
+	// import { printInvoice, OpenInvoiceWindow } from "../../../page-invoice/extra/utils";
 
 	export let id: string;
 	export let shipments: IShipment[];
@@ -435,13 +437,28 @@
 		{/if}
 		<div class="footer_note"><slot name="payment_terms">By Clicking..<button class="btn btn-default">Terms and conditions</button></slot></div>
 	{:else}
-		<slot name="payment_completed">payment completed</slot>
+		<slot name="payment_completed">
+			<div id="payment_completed_content">
+				<div id="payment_completed_title">payment completed</div>
+				<div id="payment_completed_content">Total: {payment.total}</div>
+				<div id="payment_completed_footer"><button class="btn btn-link">invoice</button></div>
+			</div>
+		</slot>
 	{/if}
 </div>
 
 <style lang="scss">
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
+	#payment_completed_content {
+		text-align: center;
+	}
+	#payment_completed_title {
+		margin: 30px;
+		text-transform: capitalize;
+		font-size: 2em;
+		font-weight: bold;
+	}
 	#payment_btn_container {
 		display: flex;
 	}

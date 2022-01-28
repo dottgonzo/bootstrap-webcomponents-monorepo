@@ -96,6 +96,14 @@
 		headers.shipmentFee = shipment.price;
 		console.log("sss", shipment, detail);
 	}
+	function paymentCompleted(data) {
+		if (data.completed) {
+			completed = "yes";
+			dispatch("paymentCompleted", data);
+		} else {
+			console.warn(data);
+		}
+	}
 </script>
 
 <!-- {#if completed ==="yes"}
@@ -107,7 +115,7 @@
 	<div class="row">
 		<div class="col-7" style="padding-right:30px">
 			<hb-checkout
-				on:paymentCompleted={(e) => dispatch("paymentCompleted", e.detail)}
+				on:paymentCompleted={(e) => paymentCompleted(e.detail)}
 				on:saveUser={(e) => dispatch("saveUser", e.detail)}
 				on:saveShipment={(e) => saveShipment(e.detail)}
 				{completed}
@@ -115,10 +123,11 @@
 				shipments={JSON.stringify(shipments)}
 				gateways={JSON.stringify(gateways)}
 				payment={JSON.stringify(payment)}
+				items={JSON.stringify(items)}
 			/>
 		</div>
 		<div class="col-5" style="padding-left:30px">
-			<hb-checkout-shopping-cart items={JSON.stringify(items)} headers={JSON.stringify(headers)} />
+			<hb-checkout-shopping-cart {completed} items={JSON.stringify(items)} headers={JSON.stringify(headers)} />
 		</div>
 	</div>
 </div>

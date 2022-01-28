@@ -24,6 +24,7 @@
 	export let items: IShopItem[];
 
 	export let headers: ICartHeaders;
+	export let completed: "yes" | "no";
 
 	let currency: string;
 	let currencySymbol: string;
@@ -51,6 +52,8 @@
 	let total: number;
 	$: {
 		if (!id) id = null;
+		if (!completed) completed = "no";
+
 		if (!items) items = [];
 		else if (typeof items === "string") items = JSON.parse(items);
 
