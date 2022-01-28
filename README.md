@@ -158,6 +158,8 @@ when is needed to publish one/more packages version update, is needed to publish
 - video gallery
 - video editor
 - review/feedback user box
+- checkout (under development)
+- shopping cart (under development)
 
 ### layout
 
@@ -188,6 +190,7 @@ when is needed to publish one/more packages version update, is needed to publish
 
 - login register page
 - invoice
+- checkout (under development)
 
 ### graphs
 
@@ -223,7 +226,6 @@ when is needed to publish one/more packages version update, is needed to publish
 
 - blog web page
 - article web page
-- cart
 - item of a shop with images
 - contact detail
 
