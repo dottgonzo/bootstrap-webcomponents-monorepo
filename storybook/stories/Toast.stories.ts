@@ -42,7 +42,7 @@ export const Basic = Template.bind({});
 Basic.args = {...basicArgs};
 
 export const LiveExample = Template.bind({});
-LiveExample.args = {...basicArgs};
+LiveExample.args = {...basicArgs, id: "LiveExample"};
 LiveExample.decorators = [
   (story) => `<div style="">
   <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>

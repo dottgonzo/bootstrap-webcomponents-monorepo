@@ -15,12 +15,12 @@
 	// import { fade, fly } from "svelte/transition";
 	// import { quintOut } from "svelte/easing";
 
-	export let id: string;
-	export let show: "yes" | "no";
-	export let header_strong: string;
-	export let header_img: HTMLImageElement | SVGElement;
-	export let header_small: string;
-	export let body: string;
+	export let id: string = "";
+	export let show: "yes" | "no" = "yes";
+	export let header_strong: string = undefined;
+	export let header_img: HTMLImageElement | SVGElement = undefined;
+	export let header_small: string = undefined;
+	export let body: string = undefined;
 
 	$: {
 		if (!id) id = "";
@@ -83,10 +83,10 @@
 	// }
 	// Watching changes for Open vairable
 	$: {
-		if (!body) body = "";
-		if (!header_small) header_small = "";
-		if (!header_strong) header_strong = "";
-		// if (!header_img) header_img = "";
+		if (!body) body = null;
+		if (!header_small) header_small = null;
+		if (!header_strong) header_strong = null;
+		if (!header_img) header_img = null;
 	}
 </script>
 
