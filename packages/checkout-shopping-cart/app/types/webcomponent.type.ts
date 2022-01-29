@@ -1,4 +1,5 @@
 export interface IShopItem {
+	id: string;
 	unit?: string;
 	name: string;
 	unitaryPrice: number;
