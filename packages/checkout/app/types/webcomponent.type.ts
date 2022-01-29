@@ -41,4 +41,5 @@ export type IPayment = {
 	currencyCode: string;
 	countryCode: string;
 	type?: IPaymentType;
+	shipmentFee?: number;
 };

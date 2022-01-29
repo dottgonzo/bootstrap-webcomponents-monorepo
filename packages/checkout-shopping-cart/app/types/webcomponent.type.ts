@@ -5,7 +5,8 @@ export interface IShopItem {
 	taxPercentage: number;
 	quantity?: number;
 }
-export interface ICartHeaders {
-	country: "it" | "eu" | "us";
+export interface IPayment {
+	countryCode: "IT" | "US" | "EU";
+	currencySymbol?: "€" | "$";
 	shipmentFee?: number;
 }

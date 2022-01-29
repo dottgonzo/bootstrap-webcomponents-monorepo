@@ -14,59 +14,53 @@
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	import pkg from "../../package.json";
-	import type { IShipment, IUser, IGateway, IPayment } from "../../../checkout/app/types/webcomponent.type";
-	import type { ICartHeaders, IShopItem } from "../../../checkout-shopping-cart/app/types/webcomponent.type";
+	import type { IShipment, IUser, IGateway, IPayment as CheckoutPayment } from "../../../checkout/app/types/webcomponent.type";
+	import type { IPayment as CartPayment, IShopItem } from "../../../checkout-shopping-cart/app/types/webcomponent.type";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
-	import type { IMerchant } from "@app/types/webcomponent.type";
 
 	export let id: string;
 	export let shipments: IShipment[];
 	export let user: IUser;
-	export let headers: ICartHeaders;
+	export let payment: CartPayment & CheckoutPayment;
 	export let items: IShopItem[];
 	export let gateways: IGateway[];
-	export let merchant: IMerchant;
 	export let completed: "yes" | "no";
-
-	let payment: IPayment;
-	const defaultMerchant: IMerchant = {
-		name: "merchant",
+	const defaultPayment: CartPayment & CheckoutPayment = {
+		merchantName: "merchant",
+		countryCode: "IT",
+		total: 0,
+		currencyCode: "EUR",
 	};
+
 	$: {
 		if (!id) id = null;
 		if (!completed) completed = "no";
-		if (!merchant) merchant = defaultMerchant;
-		else if (typeof merchant === "string") merchant = JSON.parse(merchant) || defaultMerchant;
 		if (!shipments) shipments = [];
 		else if (typeof shipments === "string") shipments = JSON.parse(shipments) || [];
 		if (!items) items = [];
 		else if (typeof items === "string") items = JSON.parse(items) || [];
 		if (!gateways) gateways = [];
 		else if (typeof gateways === "string") gateways = JSON.parse(gateways) || [];
-		if (!headers) headers = { country: "us" };
-		else if (typeof headers === "string") {
-			headers = JSON.parse(headers);
+		if (!payment) payment = defaultPayment;
+		else if (typeof payment === "string") {
+			payment = JSON.parse(payment);
 		}
 		if (shipments.find((f) => f.selected) || shipments.find((f) => f.standard)) {
-			headers.shipmentFee = (shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price;
+			payment.shipmentFee = (shipments.find((f) => f.selected) || shipments.find((f) => f.standard)).price;
 		}
 
 		if (!user) user = null;
-		let cost = headers?.shipmentFee || 0;
+		let cost = payment?.shipmentFee || 0;
 		for (const m of items) {
 			cost += m.unitaryPrice * (m.quantity || 1) + Math.round(m.taxPercentage * 0.01 * m.unitaryPrice * (m.quantity || 1) * 100) / 100;
 		}
 		let currencyCode: string;
-		switch (headers?.country?.toUpperCase()) {
+		switch (payment?.countryCode?.toUpperCase()) {
 			default:
 				currencyCode = "EUR";
 		}
-		payment = {
-			merchantName: merchant.name,
-			countryCode: headers?.country?.toUpperCase(),
-			currencyCode,
-			total: Math.round(cost * 100) / 100,
-		};
+		payment.total = Math.round(cost * 100) / 100;
+		payment.currencyCode = currencyCode;
 	}
 
 	const component = get_current_component();
@@ -93,7 +87,7 @@
 		shipments.forEach((f) => (f.selected = false));
 
 		shipment.selected = true;
-		headers.shipmentFee = shipment.price;
+		payment.shipmentFee = shipment.price;
 		console.log("sss", shipment, detail);
 	}
 	function paymentCompleted(data) {
@@ -127,7 +121,7 @@
 			/>
 		</div>
 		<div class="col-5" style="padding-left:30px">
-			<hb-checkout-shopping-cart {completed} items={JSON.stringify(items)} headers={JSON.stringify(headers)} />
+			<hb-checkout-shopping-cart {completed} items={JSON.stringify(items)} payment={JSON.stringify(payment)} />
 		</div>
 	</div>
 </div>

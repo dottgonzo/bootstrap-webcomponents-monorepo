@@ -18,16 +18,14 @@
 	import dayjs from "dayjs";
 	import debounce from "debounce";
 	import "dayjs/locale/it";
-	import type { IShopItem, ICartHeaders } from "@app/types/webcomponent.type";
+	import type { IShopItem, IPayment } from "@app/types/webcomponent.type";
 
 	export let id: string;
 	export let items: IShopItem[];
 
-	export let headers: ICartHeaders;
+	export let payment: IPayment;
 	export let completed: "yes" | "no";
 
-	let currency: string;
-	let currencySymbol: string;
 	const tableHeaders: ITableHeader[] = [
 		{
 			key: "name",
@@ -57,27 +55,24 @@
 		if (!items) items = [];
 		else if (typeof items === "string") items = JSON.parse(items);
 
-		if (!headers) {
-			headers = { country: "it" };
-			currency = "euro";
-			currencySymbol = "€";
-		} else if (typeof headers === "string") {
-			headers = JSON.parse(headers) || {};
+		if (!payment) {
+			payment = { countryCode: "IT", currencySymbol: "€" };
+		} else if (typeof payment === "string") {
+			payment = JSON.parse(payment) || {};
 
-			if (!headers.country) headers.country = "it";
-			switch (headers.country) {
-				case "it":
-					currency = "euro";
-					currencySymbol = "€";
-					break;
-				case "eu":
-					currency = "euro";
-					currencySymbol = "€";
-					break;
-				case "us":
-					currency = "dollar";
-					currencySymbol = "$";
-					break;
+			if (!payment.countryCode) payment.countryCode = "IT";
+			if (!payment.currencySymbol) {
+				switch (payment.countryCode) {
+					case "IT":
+						payment.currencySymbol = "€";
+						break;
+					case "EU":
+						payment.currencySymbol = "€";
+						break;
+					case "US":
+						payment.currencySymbol = "$";
+						break;
+				}
 			}
 		}
 
@@ -85,14 +80,14 @@
 			tableRows = items.map((m, i) => {
 				const r: IRow = {
 					_id: i.toString(),
-					price: m.unitaryPrice.toString() + currencySymbol + " / " + (m.unit ? m.unit : "unità"),
+					price: m.unitaryPrice.toString() + payment.currencySymbol + " / " + (m.unit ? m.unit : "unità"),
 					name: m.name,
 					quantity: m.quantity?.toString?.() || "1",
-					subtotal: (m.unitaryPrice * (m.quantity || 1)).toString() + currencySymbol,
+					subtotal: (m.unitaryPrice * (m.quantity || 1)).toString() + payment.currencySymbol,
 					vat: `${(Math.round(m.taxPercentage * 0.01 * m.unitaryPrice * (m.quantity || 1) * 100) / 100).toString()} (${m.taxPercentage}%)`,
 					total:
 						(m.unitaryPrice * (m.quantity || 1) + Math.round(m.taxPercentage * 0.01 * m.unitaryPrice * (m.quantity || 1) * 100) / 100).toString() +
-						currencySymbol,
+						payment.currencySymbol,
 				};
 
 				return r;
@@ -112,7 +107,7 @@
 					}, 0) * 100,
 			) / 100;
 
-		total = subTotal + taxTotal + (headers.shipmentFee || 0);
+		total = subTotal + taxTotal + (payment.shipmentFee || 0);
 	}
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -142,19 +137,19 @@
 		<div class="col">
 			<div style="line-height:25px">
 				<span style="display:inline-block">SubTotale</span>
-				<span style="float:right">{subTotal}{currencySymbol}</span>
+				<span style="float:right">{subTotal}{payment.currencySymbol}</span>
 			</div>
 			<div style="line-height:25px">
 				<span style="display:inline-block">Tasse</span>
-				<span style="float:right">{taxTotal}{currencySymbol}</span>
+				<span style="float:right">{taxTotal}{payment.currencySymbol}</span>
 			</div>
 			<div style="line-height:25px;">
 				<span style="display:inline-block">Spedizione</span>
-				<span style="float:right">{headers.shipmentFee ? headers.shipmentFee + currencySymbol : "-"}</span>
+				<span style="float:right">{payment.shipmentFee ? payment.shipmentFee + payment.currencySymbol : "-"}</span>
 			</div>
 			<div style="line-height:25px;font-weight:bold">
 				<span style="display:inline-block">Totale</span>
-				<span style="float:right">{total}{currencySymbol}</span>
+				<span style="float:right">{total}{payment.currencySymbol}</span>
 			</div>
 		</div>
 	</div>

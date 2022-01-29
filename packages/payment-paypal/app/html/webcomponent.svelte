@@ -12,7 +12,7 @@
 	 */
 
 	import { createEventDispatcher } from "svelte";
-	import { get_current_component, onMount } from "svelte/internal";
+	import { get_current_component, onMount, onDestroy } from "svelte/internal";
 	import pkg from "../../package.json";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { formCreditCardSchema } from "@app/functions/formSchemes";
@@ -22,7 +22,7 @@
 	export let paypalid: string;
 	export let currency: "EUR" | "USD";
 	export let total: number;
-
+	let start = false;
 	let paypal;
 	let paypalEl: HTMLElement;
 	let formCreditCardSchemaSubmitted: "yes" | "no" = "no";
@@ -39,12 +39,14 @@
 		}
 	}
 	function mountPaypalJs() {
-		if (paypalid && paypalEl) {
-			if (paypal) paypal.close();
+		if (paypal) paypal.close();
+		if (paypalid && paypalEl && !start) {
+			start = true;
 			loadScript({ "client-id": paypalid, currency })
 				.then((p) => {
 					console.info("configured paypal payment");
 					paypal = p;
+					start = false;
 					paypal
 						.Buttons({
 							style: {
@@ -84,6 +86,11 @@
 	onMount(() => {
 		paypalEl = component.shadowRoot.getElementById("paypalbtn");
 		mountPaypalJs();
+		return () => {
+			try {
+				paypal.close();
+			} catch (err) {}
+		};
 	});
 
 	function cardChange(u: { _valid: boolean; fullName?: string; cardNumber?: string; CVV?: string; expiration?: string }) {

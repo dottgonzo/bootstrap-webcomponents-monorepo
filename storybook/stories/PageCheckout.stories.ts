@@ -9,7 +9,7 @@ const meta: Meta = {
     shipments: { control: { type: "array" } },
     items: { control: { type: "array" } },
     user: { control: { type: "object" } },
-    headers: { control: { type: "object" } },
+    payment: { control: { type: "object" } },
     paymentCompleted: { action: "paymentCompleted" },
     saveUser: { action: "saveUser" },
     saveShipment: { action: "saveShipment" },
@@ -70,7 +70,7 @@ PageCheckoutPaypal.args = {
     },
   ],
   gateways: [defaultgw, googlepay],
-  headers: { country: "it" },
+  payment: { countryCode: "IT" },
 };
 
 export const PageCheckoutPaypalWithUser = Template.bind({});
@@ -117,7 +117,7 @@ PageCheckoutPaypalWithUser.args = {
     zip: "3434",
   },
   gateways: [defaultgw, googlepay],
-  headers: { country: "it" },
+  payment: { countryCode: "IT" },
 };
 
 export const PageCheckoutPaypalWithUserAndShipment = Template.bind({});
@@ -164,7 +164,7 @@ PageCheckoutPaypalWithUserAndShipment.args = {
     zip: "3434",
   },
   gateways: [defaultgw, googlepay],
-  headers: { country: "it" },
+  payment: { countryCode: "IT" },
 };
 
 export const PageCheckoutPaypalService = Template.bind({});
@@ -193,7 +193,7 @@ PageCheckoutPaypalService.args = {
     fixed: true,
   },
   gateways: [defaultgw, googlepay],
-  headers: { country: "it" },
+  payment: { countryCode: "IT" },
 };
 export const PageCheckoutCompleted = Template.bind({});
 
@@ -221,6 +221,6 @@ PageCheckoutCompleted.args = {
     fixed: true,
   },
   gateways: [defaultgw, googlepay],
-  headers: { country: "it" },
+  payment: { countryCode: "IT" },
   completed: "yes",
 };
