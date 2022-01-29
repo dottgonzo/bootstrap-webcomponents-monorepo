@@ -22,7 +22,6 @@
 	export let shipments: IShipment[];
 	export let user: IUser;
 	export let payment: CartPayment & CheckoutPayment;
-	export let items: IShopItem[];
 	export let gateways: IGateway[];
 	export let completed: "yes" | "no";
 	const defaultPayment: CartPayment & CheckoutPayment = {
@@ -30,6 +29,7 @@
 		countryCode: "IT",
 		total: 0,
 		currencyCode: "EUR",
+		items: [],
 	};
 
 	$: {
@@ -37,8 +37,6 @@
 		if (!completed) completed = "no";
 		if (!shipments) shipments = [];
 		else if (typeof shipments === "string") shipments = JSON.parse(shipments) || [];
-		if (!items) items = [];
-		else if (typeof items === "string") items = JSON.parse(items) || [];
 		if (!gateways) gateways = [];
 		else if (typeof gateways === "string") gateways = JSON.parse(gateways) || [];
 		if (!payment) payment = defaultPayment;
@@ -51,7 +49,7 @@
 
 		if (!user) user = null;
 		let cost = payment?.shipmentFee || 0;
-		for (const m of items) {
+		for (const m of payment.items) {
 			cost += m.unitaryPrice * (m.quantity || 1) + Math.round(m.taxPercentage * 0.01 * m.unitaryPrice * (m.quantity || 1) * 100) / 100;
 		}
 		let currencyCode: string;
@@ -117,11 +115,10 @@
 				shipments={JSON.stringify(shipments)}
 				gateways={JSON.stringify(gateways)}
 				payment={JSON.stringify(payment)}
-				items={JSON.stringify(items)}
 			/>
 		</div>
 		<div class="col-5" style="padding-left:30px">
-			<hb-checkout-shopping-cart {completed} items={JSON.stringify(items)} payment={JSON.stringify(payment)} />
+			<hb-checkout-shopping-cart {completed} payment={JSON.stringify(payment)} />
 		</div>
 	</div>
 </div>

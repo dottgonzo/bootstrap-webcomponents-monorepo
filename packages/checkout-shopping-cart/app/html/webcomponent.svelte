@@ -18,10 +18,9 @@
 	import dayjs from "dayjs";
 	import debounce from "debounce";
 	import "dayjs/locale/it";
-	import type { IShopItem, IPayment } from "@app/types/webcomponent.type";
+	import type { IPayment } from "@app/types/webcomponent.type";
 
 	export let id: string;
-	export let items: IShopItem[];
 
 	export let payment: IPayment;
 	export let completed: "yes" | "no";
@@ -52,11 +51,8 @@
 		if (!id) id = null;
 		if (!completed) completed = "no";
 
-		if (!items) items = [];
-		else if (typeof items === "string") items = JSON.parse(items);
-
 		if (!payment) {
-			payment = { countryCode: "IT", currencySymbol: "€" };
+			payment = { countryCode: "IT", currencySymbol: "€", items: [] };
 		} else if (typeof payment === "string") {
 			payment = JSON.parse(payment) || {};
 
@@ -76,8 +72,8 @@
 			}
 		}
 
-		if (items?.length) {
-			tableRows = items.map((m, i) => {
+		if (payment?.items?.length) {
+			tableRows = payment.items.map((m, i) => {
 				const r: IRow = {
 					_id: i.toString(),
 					price: m.unitaryPrice.toString() + payment.currencySymbol + " / " + (m.unit ? m.unit : "unità"),
@@ -93,19 +89,20 @@
 				return r;
 			});
 		}
-		subTotal = items
+		subTotal = payment?.items
 			?.map((m) => m.unitaryPrice * (m.quantity || 1))
 			.reduce((accumulator, a) => {
 				return accumulator + a;
 			}, 0);
-		taxTotal =
-			Math.round(
-				items
-					.map((m) => m.unitaryPrice * (m.quantity || 1) * m.taxPercentage * 0.01)
-					.reduce((accumulator, a) => {
-						return accumulator + a;
-					}, 0) * 100,
-			) / 100;
+		taxTotal = payment?.items
+			? Math.round(
+					payment?.items
+						.map((m) => m.unitaryPrice * (m.quantity || 1) * m.taxPercentage * 0.01)
+						.reduce((accumulator, a) => {
+							return accumulator + a;
+						}, 0) * 100,
+			  ) / 100
+			: 0;
 
 		total = subTotal + taxTotal + (payment.shipmentFee || 0);
 	}

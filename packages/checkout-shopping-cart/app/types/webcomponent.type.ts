@@ -9,4 +9,5 @@ export interface IPayment {
 	countryCode: "IT" | "US" | "EU";
 	currencySymbol?: "€" | "$";
 	shipmentFee?: number;
+	items: IShopItem[];
 }
