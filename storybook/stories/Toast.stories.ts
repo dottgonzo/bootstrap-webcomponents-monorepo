@@ -10,6 +10,8 @@ const meta: Meta = {
     header_img: { control: { type: "text" } },
     body: { control: { type: "text" } },
     toast_class: { control: { type: "text" } },
+    btn_close_class: { control: { type: "text" } },
+    custom_content: { control: { type: "text" } },
     toastShow: { action: "toastShow" },
     toastConfirm: { action: "toastConfirm" },
   },
@@ -38,6 +40,8 @@ const basicArgs = {
   show: true,
   body: "Hello, world! This is a toast message.",
   toast_class: "",
+  btn_close_class:"",
+  custom_content: "",
 };
   
 export const Basic = Template.bind({});
@@ -109,12 +113,28 @@ export const CustomContent = Template.bind({});
 CustomContent.args = {...basicArgs};
 CustomContent.args.id = "CustomContent";
 CustomContent.args.toast_class = "align-items-center";
+CustomContent.args.btn_close_class = "btn-close me-2 m-auto";
 delete CustomContent.args.header_small;
 delete CustomContent.args.header_strong;
 delete CustomContent.args.header_img;
 CustomContent.decorators = [
   (story) => {
+    return `<div class="bd-example bg-light">
+    ${story().outerHTML}
+</div>`;
+  },
+];
 
+export const AdditionalCustomContent = Template.bind({});
+AdditionalCustomContent.args = {...basicArgs};
+AdditionalCustomContent.args.id = "AdditionalCustomContent";
+AdditionalCustomContent.args.btn_close_class = "btn btn-secondary btn-sm";
+AdditionalCustomContent.args.custom_content = `<button type="button" class="btn btn-primary btn-sm">Take action</button>`;
+delete AdditionalCustomContent.args.header_small;
+delete AdditionalCustomContent.args.header_strong;
+delete AdditionalCustomContent.args.header_img;
+AdditionalCustomContent.decorators = [
+  (story) => {
     return `<div class="bd-example bg-light">
     ${story().outerHTML}
 </div>`;

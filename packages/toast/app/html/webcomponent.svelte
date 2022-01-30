@@ -22,6 +22,8 @@
 	export let header_small: string = undefined;
 	export let body: string = undefined;
 	export let toast_class: string = "";
+	export let btn_close_class: string = "";
+	export let custom_content: string = "";
 	let isHeaderExists: boolean = false;
 
 	$: {
@@ -85,11 +87,13 @@
 	// }
 	// Watching changes for Open vairable
 	$: {
-		if (!body) body = null;
-		if (!header_small) header_small = null;
-		if (!header_strong) header_strong = null;
-		if (!header_img) header_img = null;
-		if (!toast_class) toast_class = null;
+		if (!body) body = "";
+		if (!header_small) header_small = "";
+		if (!header_strong) header_strong = "";
+		if (!header_img) header_img = "";
+		if (!toast_class) toast_class = "";
+		if (!btn_close_class) btn_close_class = "";
+		if (!custom_content) custom_content = "";
 		isHeaderExists = !(!header_img && !header_strong && !header_small && !$$slots.header_img && !$$slots.header_strong && !$$slots.header_small);
 	}
 </script>
@@ -104,13 +108,33 @@
 
 				<small><slot name="header_small">{@html header_small}</slot></small>
 
-				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" on:click={close} />
+				{#if !custom_content}
+					<button type="button" class={`btn-close ${btn_close_class}`} data-bs-dismiss="toast" aria-label="Close" on:click={close} />
+				{/if}
 			</div>
-			<div class="toast-body"><slot name="body">{@html body}</slot></div>
+			<div class="toast-body">
+				<slot name="body">{@html body}</slot>
+				{#if custom_content}
+					<div class="mt-2 pt-2 border-top">
+						<slot name="custom_content">{@html custom_content}</slot>
+						<button type="button" class={`btn ${btn_close_class}`} data-bs-dismiss="toast" on:click={close}>Close</button>
+					</div>
+				{/if}
+			</div>
+		{:else if custom_content}
+			<div class="toast-body">
+				<slot name="body">{@html body}</slot>
+				<div class="mt-2 pt-2 border-top">
+					<slot name="custom_content">{@html custom_content}</slot>
+					<button type="button" class={`btn ${btn_close_class}`} data-bs-dismiss="toast" on:click={close}>Close</button>
+				</div>
+			</div>
 		{:else}
 			<div class="d-flex">
-				<div class="toast-body"><slot name="body">{@html body}</slot></div>
-				<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" on:click={close} />
+				<div class="toast-body">
+					<slot name="body">{@html body}</slot>
+				</div>
+				<button type="button" class={`btn-close ${btn_close_class}`} data-bs-dismiss="toast" aria-label="Close" on:click={close} />
 			</div>
 		{/if}
 		<style lang="scss">
