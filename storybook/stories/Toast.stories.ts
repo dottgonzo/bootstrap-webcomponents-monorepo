@@ -58,6 +58,9 @@ LiveExample.decorators = [
     <div class="bd-example">
         <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
     </div>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        ${story().outerHTML}
+    </div>
     <script>
         document.getElementById('liveToastBtn')?.addEventListener('click', function () {
             const elem = document.getElementById("LiveExample");
@@ -68,9 +71,6 @@ LiveExample.decorators = [
             }
         })
     </script>
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-        ${story().outerHTML}
-    </div>
   </div>`,
 ];
 
@@ -88,8 +88,10 @@ Stacking.decorators = [
   (story) => {
     const story1 = story().cloneNode(true);
     const story2 = story().cloneNode(true);
+    story1.setAttribute("id", "Stacking1");
     story1.setAttribute("header_small", "just now");
     story1.setAttribute("body", "See? Just like this.");
+    story2.setAttribute("id", "Stacking2");
     story2.setAttribute("header_small", "2 seconds ago");
     story2.setAttribute("body", "Heads up, toasts will stack automatically");
 
@@ -140,12 +142,12 @@ AdditionalCustomContent.decorators = [
 </div>`;
   },
 ];
+
 export const ColorSchemes = Template.bind({});
 ColorSchemes.args = {...basicArgs};
 ColorSchemes.args.id = "ColorSchemes";
 ColorSchemes.args.toast_class = "align-items-center text-white bg-primary border-0";
 ColorSchemes.args.btn_close_class = "btn-close btn-close-white me-2 m-auto";
-// ColorSchemes.args.custom_content = `<button type="button" class="btn btn-primary btn-sm">Take action</button>`;
 delete ColorSchemes.args.header_small;
 delete ColorSchemes.args.header_strong;
 delete ColorSchemes.args.header_img;
@@ -153,6 +155,50 @@ ColorSchemes.decorators = [
   (story) => {
     return `<div class="bd-example bg-light">
     ${story().outerHTML}
+</div>`;
+  },
+];
+
+export const Placement = Template.bind({});
+Placement.args = {...basicArgs};
+Placement.args.id = "Placement";
+Placement.args.toast_class = "align-items-center text-white bg-primary border-0";
+Placement.args.btn_close_class = "btn-close btn-close-white me-2 m-auto";
+delete Placement.args.header_small;
+delete Placement.args.header_strong;
+delete Placement.args.header_img;
+Placement.decorators = [
+  (story) => {
+    return `<div class="bd-example">
+    <form>
+        <div class="mb-3">
+            <label for="selectToastPlacement">Toast placement</label>
+            <select class="form-select mt-2" id="selectToastPlacement">
+                <option value="" selected="">Select a position...</option>
+                <option value="top-0 start-0">Top left</option>
+                <option value="top-0 start-50 translate-middle-x">Top center</option>
+                <option value="top-0 end-0">Top right</option>
+                <option value="top-50 start-0 translate-middle-y">Middle left</option>
+                <option value="top-50 start-50 translate-middle">Middle center</option>
+                <option value="top-50 end-0 translate-middle-y">Middle right</option>
+                <option value="bottom-0 start-0">Bottom left</option>
+                <option value="bottom-0 start-50 translate-middle-x">Bottom center</option>
+                <option value="bottom-0 end-0">Bottom right</option>
+            </select>
+        </div>
+    </form>
+    <div aria-live="polite" aria-atomic="true" class="bg-dark position-relative bd-example-toasts">
+        <div class="toast-container position-absolute p-3" id="toastPlacement"
+            data-original-class="toast-container position-absolute p-3">
+            ${story().outerHTML}
+        </div>
+    </div>
+    <script>
+        document.getElementById('selectToastPlacement')?.addEventListener('change', function (event) {
+            const elem = document.getElementById("toastPlacement");
+            elem.className = elem.dataset.originalClass + " " + event.target.value;
+        })
+    </script>
 </div>`;
   },
 ];

@@ -146,7 +146,7 @@
 				margin-right: 0.5rem !important;
 			}
 			.rounded {
-				border-radius: 0.25rem !important; //
+				border-radius: 0.25rem !important;
 			}
 			.me-auto {
 				margin-right: auto !important;
@@ -160,7 +160,7 @@
 				margin-right: 0.5rem !important;
 			}
 			::slotted(.rounded) {
-				border-radius: 0.25rem !important; //
+				border-radius: 0.25rem !important;
 			}
 			::slotted(.me-auto) {
 				margin-right: auto !important;
