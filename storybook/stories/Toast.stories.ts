@@ -40,12 +40,18 @@ const basicArgs = {
   
 export const Basic = Template.bind({});
 Basic.args = {...basicArgs};
+Basic.decorators = [
+  (story) => `<div class="bd-example bg-light">${story().outerHTML}</div>`,
+];
 
 export const LiveExample = Template.bind({});
-LiveExample.args = {...basicArgs, id: "LiveExample"};
+LiveExample.args = {...basicArgs};
+LiveExample.args.id = "LiveExample";
 LiveExample.decorators = [
-  (story) => `<div style="">
-  <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+  (story) => `<div>
+  <div class="bd-example">
+    <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+  </div>
   <script>
     document.getElementById('liveToastBtn')?.addEventListener('click', function () {
       const elem = document.getElementById("LiveExample");
@@ -56,6 +62,15 @@ LiveExample.decorators = [
       }
     })
   </script>
-  ${story().outerHTML}
-  </div>`,
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    ${story().outerHTML}
+  </div>
+</div>`,
+];
+
+export const Translucent = Template.bind({});
+Translucent.args = {...basicArgs};
+Translucent.args.id = "Translucent";
+Translucent.decorators = [
+  (story) => `<div class="bd-example bg-dark">${story().outerHTML}</div>`,
 ];
