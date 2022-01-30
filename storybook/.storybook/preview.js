@@ -1,6 +1,4 @@
-import "../../bootstrap/_functions.scss";
-// import "../../bootstrap/_variables.scss";
-// import "../../bootstrap/_mixins.scss";
+import "./bootstrap.scss";
 import "./docs.css"
 
 export const parameters = {
