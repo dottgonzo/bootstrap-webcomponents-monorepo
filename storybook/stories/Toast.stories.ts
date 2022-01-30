@@ -9,6 +9,7 @@ const meta: Meta = {
     header_strong: { control: { type: "text" } },
     header_img: { control: { type: "text" } },
     body: { control: { type: "text" } },
+    toast_class: { control: { type: "text" } },
     toastShow: { action: "toastShow" },
     toastConfirm: { action: "toastConfirm" },
   },
@@ -36,6 +37,7 @@ const basicArgs = {
   header_small: "11 mins ago",
   show: true,
   body: "Hello, world! This is a toast message.",
+  toast_class: "",
 };
   
 export const Basic = Template.bind({});
@@ -99,6 +101,22 @@ Stacking.decorators = [
             ${story2.outerHTML}
         </div>
     </div>
+</div>`;
+  },
+];
+
+export const CustomContent = Template.bind({});
+CustomContent.args = {...basicArgs};
+CustomContent.args.id = "CustomContent";
+CustomContent.args.toast_class = "align-items-center";
+delete CustomContent.args.header_small;
+delete CustomContent.args.header_strong;
+delete CustomContent.args.header_img;
+CustomContent.decorators = [
+  (story) => {
+
+    return `<div class="bd-example bg-light">
+    ${story().outerHTML}
 </div>`;
   },
 ];

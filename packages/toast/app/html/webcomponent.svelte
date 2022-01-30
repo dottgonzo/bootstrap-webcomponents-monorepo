@@ -18,9 +18,11 @@
 	export let id: string = "";
 	export let show: "yes" | "no" = "yes";
 	export let header_strong: string = undefined;
-	export let header_img: HTMLImageElement | SVGElement = undefined;
+	export let header_img: string = undefined;
 	export let header_small: string = undefined;
 	export let body: string = undefined;
+	export let toast_class: string = "";
+	let isHeaderExists: boolean = false;
 
 	$: {
 		if (!id) id = "";
@@ -87,11 +89,30 @@
 		if (!header_small) header_small = null;
 		if (!header_strong) header_strong = null;
 		if (!header_img) header_img = null;
+		if (!toast_class) toast_class = null;
+		isHeaderExists = !(!header_img && !header_strong && !header_small && !$$slots.header_img && !$$slots.header_strong && !$$slots.header_small);
 	}
 </script>
 
 {#if show === "yes"}
-	<div role="alert" aria-live="assertive" aria-atomic="true" class="toast fade show" data-bs-autohide="false" data-bs-delay="10000">
+	<div role="alert" aria-live="assertive" aria-atomic="true" class={`toast fade show ${toast_class}`} data-bs-autohide="false" data-bs-delay="10000">
+		{#if isHeaderExists}
+			<div class="toast-header">
+				<slot name="header_img">{@html header_img}</slot>
+
+				<strong class="me-auto"><slot name="header_strong">{@html header_strong}</slot></strong>
+
+				<small><slot name="header_small">{@html header_small}</slot></small>
+
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" on:click={close} />
+			</div>
+			<div class="toast-body"><slot name="body">{@html body}</slot></div>
+		{:else}
+			<div class="d-flex">
+				<div class="toast-body"><slot name="body">{@html body}</slot></div>
+				<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" on:click={close} />
+			</div>
+		{/if}
 		<style lang="scss">
 			img,
 			svg {
@@ -121,17 +142,6 @@
 				margin-right: auto !important;
 			}
 		</style>
-		<div class="toast-header">
-			<slot name="header_img">{@html header_img}</slot>
-
-			<strong class="me-auto"><slot name="header_strong">{@html header_strong}</slot></strong>
-
-			<small><slot name="header_small">{@html header_small}</slot></small>
-
-			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" on:click={close} />
-		</div>
-
-		<div class="toast-body"><slot name="body">{@html body}</slot></div>
 	</div>
 {/if}
 
