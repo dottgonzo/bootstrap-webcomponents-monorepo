@@ -140,3 +140,19 @@ AdditionalCustomContent.decorators = [
 </div>`;
   },
 ];
+export const ColorSchemes = Template.bind({});
+ColorSchemes.args = {...basicArgs};
+ColorSchemes.args.id = "ColorSchemes";
+ColorSchemes.args.toast_class = "align-items-center text-white bg-primary border-0";
+ColorSchemes.args.btn_close_class = "btn-close btn-close-white me-2 m-auto";
+// ColorSchemes.args.custom_content = `<button type="button" class="btn btn-primary btn-sm">Take action</button>`;
+delete ColorSchemes.args.header_small;
+delete ColorSchemes.args.header_strong;
+delete ColorSchemes.args.header_img;
+ColorSchemes.decorators = [
+  (story) => {
+    return `<div class="bd-example bg-light">
+    ${story().outerHTML}
+</div>`;
+  },
+];
