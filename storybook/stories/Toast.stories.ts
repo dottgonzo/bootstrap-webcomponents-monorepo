@@ -48,24 +48,24 @@ export const LiveExample = Template.bind({});
 LiveExample.args = {...basicArgs};
 LiveExample.args.id = "LiveExample";
 LiveExample.decorators = [
-  (story) => `<div>
-  <div class="bd-example">
-    <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
-  </div>
-  <script>
-    document.getElementById('liveToastBtn')?.addEventListener('click', function () {
-      const elem = document.getElementById("LiveExample");
-      if (elem.getAttribute('show')&&elem.getAttribute('show')==='yes') {
-        elem.setAttribute('show','no');
-      } else {
-        elem.setAttribute('show','yes');
-      }
-    })
-  </script>
-  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-    ${story().outerHTML}
-  </div>
-</div>`,
+    (story) => `<div>
+    <div class="bd-example">
+        <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+    </div>
+    <script>
+        document.getElementById('liveToastBtn')?.addEventListener('click', function () {
+            const elem = document.getElementById("LiveExample");
+            if (elem.getAttribute('show') && elem.getAttribute('show') === 'yes') {
+                elem.setAttribute('show', 'no');
+            } else {
+                elem.setAttribute('show', 'yes');
+            }
+        })
+    </script>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        ${story().outerHTML}
+    </div>
+  </div>`,
 ];
 
 export const Translucent = Template.bind({});
@@ -73,4 +73,32 @@ Translucent.args = {...basicArgs};
 Translucent.args.id = "Translucent";
 Translucent.decorators = [
   (story) => `<div class="bd-example bg-dark">${story().outerHTML}</div>`,
+];
+
+export const Stacking = Template.bind({});
+Stacking.args = {...basicArgs};
+Stacking.args.id = "Stacking";
+Stacking.decorators = [
+  (story) => {
+    const story1 = story().cloneNode(true);
+    const story2 = story().cloneNode(true);
+    story1.setAttribute("header_small", "just now");
+    story1.setAttribute("body", "See? Just like this.");
+    story2.setAttribute("header_small", "2 seconds ago");
+    story2.setAttribute("body", "Heads up, toasts will stack automatically");
+
+    return `<div>
+    <style>
+        .toast-container>:not(:last-child) {
+            margin-bottom: 0.75rem;
+        }
+    </style>
+    <div class="bd-example bg-light">
+        <div class="toast-container">
+            ${story1.outerHTML}
+            ${story2.outerHTML}
+        </div>
+    </div>
+</div>`;
+  },
 ];
