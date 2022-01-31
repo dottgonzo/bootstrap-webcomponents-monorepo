@@ -27,6 +27,7 @@
 	export let key: string;
 	export let plugins: string;
 	export let toolbar: string;
+	export let images_upload_url: string;
 
 	$: {
 		if (!id) {
@@ -43,9 +44,13 @@
 			toolbar =
 				"undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help";
 		}
+		if (!images_upload_url) {
+			images_upload_url = "";
+		}
 	}
 
 	// function example_image_upload_handler(blobInfo, success, failure, progress) {
+	// 	console.log("fire");
 	// 	var xhr, formData;
 
 	// 	xhr = new XMLHttpRequest();
@@ -100,7 +105,7 @@
 	<input id="x" type="hidden" name="content" />
 	<trix-editor input="x" />
 </form> -->
-<tinymce-editor api-key={key} {plugins} {toolbar} images_upload_handler="example_image_upload_handler" />
+<tinymce-editor api-key={key} {plugins} {toolbar} {images_upload_url} />
 
 <style lang="scss">
 	// @import "../styles/bootstrap.scss";
