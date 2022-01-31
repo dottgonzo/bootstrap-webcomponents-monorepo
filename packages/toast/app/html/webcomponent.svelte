@@ -114,7 +114,7 @@
 	<div {role} aria-live={$$props["live"]} aria-atomic={$$props["atomic"]} class={`toast fade show ${toast_class}`}>
 		{#if isHeaderExists}
 			<div class="toast-header">
-				<slot name="header_img">{header_img}</slot>
+				<slot name="header_img">{@html header_img}</slot>
 				<strong class="me-auto"><slot name="header_strong">{header_strong}</slot></strong>
 				<small><slot name="header_small">{header_small}</slot></small>
 				{#if !custom_content && autohide !== "true"}
@@ -125,7 +125,7 @@
 				<slot name="body">{body}</slot>
 				{#if custom_content}
 					<div class="mt-2 pt-2 border-top">
-						<slot name="custom_content">{custom_content}</slot>
+						<slot name="custom_content">{@html custom_content}</slot>
 						{#if autohide !== "true"}
 							<button type="button" class={`btn ${btn_close_class}`} data-bs-dismiss="toast" on:click={close}>Close</button>
 						{/if}
@@ -136,7 +136,7 @@
 			<div class="toast-body">
 				<slot name="body">{body}</slot>
 				<div class="mt-2 pt-2 border-top">
-					<slot name="custom_content">{custom_content}</slot>
+					<slot name="custom_content">{@html custom_content}</slot>
 					{#if autohide !== "true"}
 						<button type="button" class={`btn ${btn_close_class}`} data-bs-dismiss="toast" on:click={close}>Close</button>
 					{/if}
