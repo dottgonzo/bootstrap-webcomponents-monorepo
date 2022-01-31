@@ -12,6 +12,23 @@ const meta: Meta = {
     toast_class: { control: { type: "text" } },
     btn_close_class: { control: { type: "text" } },
     custom_content: { control: { type: "text" } },
+    role: {
+      options: ['', 'alert', 'status'],
+      control: { type: 'select' },
+    },
+    live: {
+      options: ['', 'off', 'polite', 'assertive'],
+      control: { type: 'select' },
+    },
+    atomic: {
+      options: ['', 'true', 'false'],
+      control: { type: 'select' },
+    },
+    autohide: {
+      options: ['', 'true', 'false'],
+      control: { type: 'select' },
+    },
+    delay: { control: { type: "number", min: 0 } },
     toastShow: { action: "toastShow" },
     toastConfirm: { action: "toastConfirm" },
   },
@@ -24,6 +41,10 @@ const Template: Story = (args) =>
 
 const basicArgs = {
   id: "Basic",
+  show: true,
+  role: "alert",
+  live: "assertive",
+  atomic: "true",
   header_img: `<svg
   class="bd-placeholder-img rounded me-2"
   width="20"
@@ -37,24 +58,23 @@ const basicArgs = {
 </svg>`,
   header_strong: "Bootstrap",
   header_small: "11 mins ago",
-  show: true,
   body: "Hello, world! This is a toast message.",
   toast_class: "",
-  btn_close_class:"",
+  btn_close_class: "",
   custom_content: "",
 };
-  
+
 export const Basic = Template.bind({});
-Basic.args = {...basicArgs};
+Basic.args = { ...basicArgs };
 Basic.decorators = [
   (story) => `<div class="bd-example bg-light">${story().outerHTML}</div>`,
 ];
 
 export const LiveExample = Template.bind({});
-LiveExample.args = {...basicArgs};
+LiveExample.args = { ...basicArgs };
 LiveExample.args.id = "LiveExample";
 LiveExample.decorators = [
-    (story) => `<div>
+  (story) => `<div>
     <div class="bd-example">
         <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
     </div>
@@ -75,14 +95,14 @@ LiveExample.decorators = [
 ];
 
 export const Translucent = Template.bind({});
-Translucent.args = {...basicArgs};
+Translucent.args = { ...basicArgs };
 Translucent.args.id = "Translucent";
 Translucent.decorators = [
   (story) => `<div class="bd-example bg-dark">${story().outerHTML}</div>`,
 ];
 
 export const Stacking = Template.bind({});
-Stacking.args = {...basicArgs};
+Stacking.args = { ...basicArgs };
 Stacking.args.id = "Stacking";
 Stacking.decorators = [
   (story) => {
@@ -112,7 +132,7 @@ Stacking.decorators = [
 ];
 
 export const CustomContent = Template.bind({});
-CustomContent.args = {...basicArgs};
+CustomContent.args = { ...basicArgs };
 CustomContent.args.id = "CustomContent";
 CustomContent.args.toast_class = "align-items-center";
 CustomContent.args.btn_close_class = "btn-close me-2 m-auto";
@@ -128,7 +148,7 @@ CustomContent.decorators = [
 ];
 
 export const AdditionalCustomContent = Template.bind({});
-AdditionalCustomContent.args = {...basicArgs};
+AdditionalCustomContent.args = { ...basicArgs };
 AdditionalCustomContent.args.id = "AdditionalCustomContent";
 AdditionalCustomContent.args.btn_close_class = "btn btn-secondary btn-sm";
 AdditionalCustomContent.args.custom_content = `<button type="button" class="btn btn-primary btn-sm">Take action</button>`;
@@ -144,7 +164,7 @@ AdditionalCustomContent.decorators = [
 ];
 
 export const ColorSchemes = Template.bind({});
-ColorSchemes.args = {...basicArgs};
+ColorSchemes.args = { ...basicArgs };
 ColorSchemes.args.id = "ColorSchemes";
 ColorSchemes.args.toast_class = "align-items-center text-white bg-primary border-0";
 ColorSchemes.args.btn_close_class = "btn-close btn-close-white me-2 m-auto";
@@ -160,7 +180,7 @@ ColorSchemes.decorators = [
 ];
 
 export const Placement = Template.bind({});
-Placement.args = {...basicArgs};
+Placement.args = { ...basicArgs };
 Placement.args.id = "Placement";
 Placement.decorators = [
   (story) => {
@@ -199,7 +219,7 @@ Placement.decorators = [
 ];
 
 export const StackedPlacement = Template.bind({});
-StackedPlacement.args = {...basicArgs};
+StackedPlacement.args = { ...basicArgs };
 StackedPlacement.args.id = "StackedPlacement";
 StackedPlacement.decorators = [
   (story) => {
@@ -247,9 +267,8 @@ StackedPlacement.decorators = [
   },
 ];
 
-
 export const FlexboxPlacement = Template.bind({});
-FlexboxPlacement.args = {...basicArgs};
+FlexboxPlacement.args = { ...basicArgs };
 FlexboxPlacement.args.id = "FlexboxPlacement";
 FlexboxPlacement.decorators = [
   (story) => `<div class="bd-example bg-dark bd-example-toasts d-flex">
@@ -258,5 +277,18 @@ FlexboxPlacement.decorators = [
       <!-- Then put toasts within -->
       ${story().outerHTML}
   </div>
+</div>`,
+];
+
+export const Accessibility = Template.bind({});
+Accessibility.args = { ...basicArgs };
+Accessibility.args.id = "Accessibility";
+Accessibility.args.role = "alert";
+Accessibility.args.live = "assertive";
+Accessibility.args.atomic = "true";
+Accessibility.args.delay = 10000;
+Accessibility.decorators = [
+  (story) => `<div class="bd-example bg-light">
+  ${story().outerHTML}
 </div>`,
 ];

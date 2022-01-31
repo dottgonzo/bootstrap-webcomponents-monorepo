@@ -17,6 +17,15 @@
 
 	export let id: string = "";
 	export let show: "yes" | "no" = "yes";
+	export let role: "" | "alert" | "status" = undefined;
+	// svelte-ignore unused-export-let
+	export let live: "" | "off" | "polite" | "assertive" = undefined;
+	// svelte-ignore unused-export-let
+	export let atomic: "" | "true" | "false" = undefined;
+	// svelte-ignore unused-export-let
+	export let autohide: "" | "true" | "false" = undefined;
+	// svelte-ignore unused-export-let
+	export let delay: number = 5000;
 	export let header_strong: string = undefined;
 	export let header_img: string = undefined;
 	export let header_small: string = undefined;
@@ -25,6 +34,7 @@
 	export let btn_close_class: string = "";
 	export let custom_content: string = "";
 	let isHeaderExists: boolean = false;
+	let timer;
 
 	$: {
 		if (!id) id = "";
@@ -87,28 +97,27 @@
 	// }
 	// Watching changes for Open vairable
 	$: {
-		if (!body) body = "";
-		if (!header_small) header_small = "";
-		if (!header_strong) header_strong = "";
-		if (!header_img) header_img = "";
-		if (!toast_class) toast_class = "";
-		if (!btn_close_class) btn_close_class = "";
-		if (!custom_content) custom_content = "";
 		isHeaderExists = !(!header_img && !header_strong && !header_small && !$$slots.header_img && !$$slots.header_strong && !$$slots.header_small);
+		if (show === "yes") {
+			timer = setTimeout(function () {
+				close();
+			}, delay);
+		}
+
+		if (autohide === "false") {
+			clearTimeout(timer);
+		}
 	}
 </script>
 
 {#if show === "yes"}
-	<div role="alert" aria-live="assertive" aria-atomic="true" class={`toast fade show ${toast_class}`} data-bs-autohide="false" data-bs-delay="10000">
+	<div {role} aria-live={$$props["live"]} aria-atomic={$$props["atomic"]} class={`toast fade show ${toast_class}`}>
 		{#if isHeaderExists}
 			<div class="toast-header">
 				<slot name="header_img">{@html header_img}</slot>
-
 				<strong class="me-auto"><slot name="header_strong">{@html header_strong}</slot></strong>
-
 				<small><slot name="header_small">{@html header_small}</slot></small>
-
-				{#if !custom_content}
+				{#if !custom_content && autohide !== "true"}
 					<button type="button" class={`btn-close ${btn_close_class}`} data-bs-dismiss="toast" aria-label="Close" on:click={close} />
 				{/if}
 			</div>
@@ -117,7 +126,9 @@
 				{#if custom_content}
 					<div class="mt-2 pt-2 border-top">
 						<slot name="custom_content">{@html custom_content}</slot>
-						<button type="button" class={`btn ${btn_close_class}`} data-bs-dismiss="toast" on:click={close}>Close</button>
+						{#if autohide !== "true"}
+							<button type="button" class={`btn ${btn_close_class}`} data-bs-dismiss="toast" on:click={close}>Close</button>
+						{/if}
 					</div>
 				{/if}
 			</div>
@@ -126,7 +137,9 @@
 				<slot name="body">{@html body}</slot>
 				<div class="mt-2 pt-2 border-top">
 					<slot name="custom_content">{@html custom_content}</slot>
-					<button type="button" class={`btn ${btn_close_class}`} data-bs-dismiss="toast" on:click={close}>Close</button>
+					{#if autohide !== "true"}
+						<button type="button" class={`btn ${btn_close_class}`} data-bs-dismiss="toast" on:click={close}>Close</button>
+					{/if}
 				</div>
 			</div>
 		{:else}
@@ -134,7 +147,9 @@
 				<div class="toast-body">
 					<slot name="body">{@html body}</slot>
 				</div>
-				<button type="button" class={`btn-close ${btn_close_class}`} data-bs-dismiss="toast" aria-label="Close" on:click={close} />
+				{#if autohide !== "true"}
+					<button type="button" class={`btn-close ${btn_close_class}`} data-bs-dismiss="toast" aria-label="Close" on:click={close} />
+				{/if}
 			</div>
 		{/if}
 		<style lang="scss">
