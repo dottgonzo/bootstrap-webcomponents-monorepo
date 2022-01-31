@@ -25,9 +25,8 @@
 
 	export let id: string;
 	export let key: string;
-	// let editor: MediumEditor;
-	// let editorElement: HTMLElement;
-	// let toolbarElement: HTMLElement;
+	export let plugins: string;
+	export let toolbar: string;
 
 	$: {
 		if (!id) {
@@ -36,61 +35,59 @@
 		if (!key) {
 			key = "no-api-key";
 		}
+		if (!plugins) {
+			plugins =
+				"advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount";
+		}
+		if (!toolbar) {
+			toolbar =
+				"undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help";
+		}
 	}
-	// function mountEditor() {
-	// 	console.info("mount editor");
-	// 	if (!editorElement) return console.error("cannot create ckEditor");
 
-	// 	editor = new MediumEditor(editorElement);
+	// function example_image_upload_handler(blobInfo, success, failure, progress) {
+	// 	var xhr, formData;
+
+	// 	xhr = new XMLHttpRequest();
+	// 	xhr.withCredentials = false;
+	// 	xhr.open("POST", "postAcceptor.php");
+
+	// 	xhr.upload.onprogress = function (e) {
+	// 		progress((e.loaded / e.total) * 100);
+	// 	};
+
+	// 	xhr.onload = function () {
+	// 		var json;
+
+	// 		if (xhr.status === 403) {
+	// 			failure("HTTP Error: " + xhr.status, { remove: true });
+	// 			return;
+	// 		}
+
+	// 		if (xhr.status < 200 || xhr.status >= 300) {
+	// 			failure("HTTP Error: " + xhr.status);
+	// 			return;
+	// 		}
+
+	// 		json = JSON.parse(xhr.responseText);
+
+	// 		if (!json || typeof json.location != "string") {
+	// 			failure("Invalid JSON: " + xhr.responseText);
+	// 			return;
+	// 		}
+
+	// 		success(json.location);
+	// 	};
+
+	// 	xhr.onerror = function () {
+	// 		failure("Image upload failed due to a XHR Transport error. Code: " + xhr.status);
+	// 	};
+
+	// 	formData = new FormData();
+	// 	formData.append("file", blobInfo.blob(), blobInfo.filename());
+
+	// 	xhr.send(formData);
 	// }
-	// onMount(() => {
-	// 	editorElement = component.shadowRoot.getElementById("editor");
-	// 	// toolbarElement = component.shadowRoot.getElementById("toolbar");
-	// 	mountEditor();
-	// });
-	function example_image_upload_handler(blobInfo, success, failure, progress) {
-		var xhr, formData;
-
-		xhr = new XMLHttpRequest();
-		xhr.withCredentials = false;
-		xhr.open("POST", "postAcceptor.php");
-
-		xhr.upload.onprogress = function (e) {
-			progress((e.loaded / e.total) * 100);
-		};
-
-		xhr.onload = function () {
-			var json;
-
-			if (xhr.status === 403) {
-				failure("HTTP Error: " + xhr.status, { remove: true });
-				return;
-			}
-
-			if (xhr.status < 200 || xhr.status >= 300) {
-				failure("HTTP Error: " + xhr.status);
-				return;
-			}
-
-			json = JSON.parse(xhr.responseText);
-
-			if (!json || typeof json.location != "string") {
-				failure("Invalid JSON: " + xhr.responseText);
-				return;
-			}
-
-			success(json.location);
-		};
-
-		xhr.onerror = function () {
-			failure("Image upload failed due to a XHR Transport error. Code: " + xhr.status);
-		};
-
-		formData = new FormData();
-		formData.append("file", blobInfo.blob(), blobInfo.filename());
-
-		xhr.send(formData);
-	}
 </script>
 
 <!-- <svelte:head>
@@ -103,12 +100,7 @@
 	<input id="x" type="hidden" name="content" />
 	<trix-editor input="x" />
 </form> -->
-<tinymce-editor
-	api-key={key}
-	plugins="advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount"
-	toolbar="undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help"
-	images_upload_handler="example_image_upload_handler"
-/>
+<tinymce-editor api-key={key} {plugins} {toolbar} images_upload_handler="example_image_upload_handler" />
 
 <style lang="scss">
 	// @import "../styles/bootstrap.scss";
