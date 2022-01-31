@@ -18,11 +18,28 @@ export type IUser = {
 	fixed?: boolean;
 };
 export type IGateway = {
-	id: string;
+	id: "google" | "paypal";
 	label: string;
-	default?: boolean;
-	selected?: boolean;
 	fixedPrice?: number;
 	currency?: "€" | "$";
 	percentagePrice?: number;
+	// cardImage?: string;
+	// paypal
+	paypalid?: string;
+	// google
+	cardNetworks?: string[];
+	gatewayId?: string;
+	gatewayMerchantId?: string;
+	merchantId?: string;
+};
+
+export type IPaymentType = "book" | "buy" | "checkout" | "donate" | "order" | "pay" | "plain" | "subscribe";
+
+export type IPayment = {
+	merchantName: string;
+	total: number;
+	currencyCode: string;
+	countryCode: string;
+	type?: IPaymentType;
+	shipmentFee?: number;
 };

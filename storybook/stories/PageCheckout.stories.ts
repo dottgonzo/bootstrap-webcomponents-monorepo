@@ -2,18 +2,18 @@ import { Story, Meta } from "@storybook/html";
 import { webComponentBind } from "./utils/webComponentUtils";
 
 const meta: Meta = {
-  title: "Pages/PageCheckoutPaypal",
+  title: "Pages/PageCheckout",
 
   argTypes: {
     id: { control: { disable: true } },
     shipments: { control: { type: "array" } },
-    items: { control: { type: "array" } },
     user: { control: { type: "object" } },
-    payByCard: { action: "payByCard" },
-    payByAccount: { action: "payByAccount" },
+    payment: { control: { type: "object" } },
+    paymentCompleted: { action: "paymentCompleted" },
     saveUser: { action: "saveUser" },
     saveShipment: { action: "saveShipment" },
     gateways: { control: { type: "array" } },
+    completed: { control: { type: "radio" }, options: ["yes", "no"] },
   },
 };
 
@@ -24,6 +24,13 @@ const Template: Story = (args) =>
 const defaultgw = {
   id: "paypal",
   label: "bbbb",
+  paypalid: "test",
+};
+const googlepay = {
+  id: "google",
+  label: "GooglePay",
+  gatewayId: "example",
+  gatewayMerchantId: "exampleGatewayMerchantId",
 };
 export const PageCheckoutPaypal = Template.bind({});
 
@@ -49,19 +56,22 @@ PageCheckoutPaypal.args = {
       currency: "€",
     },
   ],
-  items: [
-    {
-      unitaryPrice: 2,
-      taxPercentage: 3,
-      name: "testitem",
-    },
-    {
-      unitaryPrice: 5,
-      taxPercentage: 7,
-      name: "testitem2",
-    },
-  ],
-  gateways: [defaultgw],
+  gateways: [defaultgw, googlepay],
+  payment: {
+    countryCode: "IT",
+    items: [
+      {
+        unitaryPrice: 2,
+        taxPercentage: 3,
+        name: "testitem",
+      },
+      {
+        unitaryPrice: 5,
+        taxPercentage: 7,
+        name: "testitem2",
+      },
+    ],
+  },
 };
 
 export const PageCheckoutPaypalWithUser = Template.bind({});
@@ -88,18 +98,7 @@ PageCheckoutPaypalWithUser.args = {
       id: "ziobarca2",
     },
   ],
-  items: [
-    {
-      unitaryPrice: 2,
-      taxPercentage: 3,
-      name: "testitem",
-    },
-    {
-      unitaryPrice: 5,
-      taxPercentage: 7,
-      name: "testitem2",
-    },
-  ],
+
   user: {
     fullName: "fdfff fffff",
     addressWithNumber: "addreess 43",
@@ -107,7 +106,22 @@ PageCheckoutPaypalWithUser.args = {
     nationality: "effe",
     zip: "3434",
   },
-  gateways: [defaultgw],
+  gateways: [defaultgw, googlepay],
+  payment: {
+    countryCode: "IT",
+    items: [
+      {
+        unitaryPrice: 2,
+        taxPercentage: 3,
+        name: "testitem",
+      },
+      {
+        unitaryPrice: 5,
+        taxPercentage: 7,
+        name: "testitem2",
+      },
+    ],
+  },
 };
 
 export const PageCheckoutPaypalWithUserAndShipment = Template.bind({});
@@ -134,18 +148,6 @@ PageCheckoutPaypalWithUserAndShipment.args = {
       id: "ziobarca2",
     },
   ],
-  items: [
-    {
-      unitaryPrice: 2,
-      taxPercentage: 3,
-      name: "testitem",
-    },
-    {
-      unitaryPrice: 5,
-      taxPercentage: 7,
-      name: "testitem2",
-    },
-  ],
   user: {
     fullName: "fdfff fffff",
     addressWithNumber: "addreess 43",
@@ -153,7 +155,22 @@ PageCheckoutPaypalWithUserAndShipment.args = {
     nationality: "effe",
     zip: "3434",
   },
-  gateways: [defaultgw],
+  gateways: [defaultgw, googlepay],
+  payment: {
+    countryCode: "IT",
+    items: [
+      {
+        unitaryPrice: 2,
+        taxPercentage: 3,
+        name: "testitem",
+      },
+      {
+        unitaryPrice: 5,
+        taxPercentage: 7,
+        name: "testitem2",
+      },
+    ],
+  },
 };
 
 export const PageCheckoutPaypalService = Template.bind({});
@@ -161,18 +178,6 @@ export const PageCheckoutPaypalService = Template.bind({});
 PageCheckoutPaypalService.args = {
   id: "PageCheckoutPaypalService",
   shipments: [],
-  items: [
-    {
-      unitaryPrice: 2,
-      taxPercentage: 3,
-      name: "testitem",
-    },
-    {
-      unitaryPrice: 5,
-      taxPercentage: 7,
-      name: "testitem2",
-    },
-  ],
   user: {
     fullName: "fdfff fffff",
     addressWithNumber: "addreess 43",
@@ -181,5 +186,51 @@ PageCheckoutPaypalService.args = {
     zip: "3434",
     fixed: true,
   },
-  gateways: [defaultgw],
+  gateways: [defaultgw, googlepay],
+  payment: {
+    countryCode: "IT",
+    items: [
+      {
+        unitaryPrice: 2,
+        taxPercentage: 3,
+        name: "testitem",
+      },
+      {
+        unitaryPrice: 5,
+        taxPercentage: 7,
+        name: "testitem2",
+      },
+    ],
+  },
+};
+export const PageCheckoutCompleted = Template.bind({});
+
+PageCheckoutCompleted.args = {
+  id: "PageCheckoutCompleted",
+  shipments: [],
+  user: {
+    fullName: "fdfff fffff",
+    addressWithNumber: "addreess 43",
+    city: "ff",
+    nationality: "effe",
+    zip: "3434",
+    fixed: true,
+  },
+  gateways: [defaultgw, googlepay],
+  payment: {
+    countryCode: "IT",
+    items: [
+      {
+        unitaryPrice: 2,
+        taxPercentage: 3,
+        name: "testitem",
+      },
+      {
+        unitaryPrice: 5,
+        taxPercentage: 7,
+        name: "testitem2",
+      },
+    ],
+  },
+  completed: "yes",
 };

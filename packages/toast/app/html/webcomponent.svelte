@@ -12,129 +12,131 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	import { fade, fly } from "svelte/transition";
-	import { quintOut } from "svelte/easing";
+	// import { fade, fly } from "svelte/transition";
+	// import { quintOut } from "svelte/easing";
 
-	interface Header {
-		img?: HTMLImageElement | SVGElement | null;
-		strong?: string | null;
-		small?: string | null;
-	}
+	export let id: string = "";
+	export let show: "yes" | "no" = "yes";
+	export let header_strong: string = undefined;
+	export let header_img: string = undefined;
+	export let header_small: string = undefined;
+	export let body: string = undefined;
+	export let toast_class: string = "";
+	export let btn_close_class: string = "";
+	export let custom_content: string = "";
+	let isHeaderExists: boolean = false;
 
-	export let id: string;
-	export let show: boolean | string | null;
-	export let header: Header | null;
-	export let body: string | null;
-	let headerImg: Header["img"];
-	let headerStrong: Header["strong"];
-	let headerSmall: Header["small"];
 	$: {
 		if (!id) id = "";
-
-		if (typeof show !== "undefined") {
-			if (show === "" || show === true || show === "true" || show === "yes") {
-				show = true;
-			} else {
-				show = false;
-			}
-		} else {
-			show = false;
-		}
+		if (show !== "yes") show = "no";
 
 		// if (show && (show === true || (show as unknown as string) === "yes" || (show as unknown as string) === "")) show = true;
 		// else show = false;
-		try {
-			header = JSON.parse(header as unknown as string);
-			headerImg = header ? (header.img ? header.img : null) : null;
-			headerStrong = header ? (header.strong ? header.strong : null) : null;
-			headerSmall = header ? (header.small ? header.small : null) : null;
-		} catch (err) {}
 	}
+	// const onOpened = () => dispatch("toastShow", { id, show: true });
+	function close() {
+		show = "no";
+		dispatch("toastShow", { id, show: false });
+	}
+	// let backdrop = true;
+	// let ignoreBackdrop = false;
+	// let keyboard = true;
 
-	export let dialogClasses = "";
-	export let title = "";
-	export let backdrop = true;
-	export let ignoreBackdrop = false;
-	export let keyboard = true;
-	export let describedby = "";
-	export let labelledby = "";
-	export let content = "";
-	export let closelabel = "";
-	export let confirmlabel = "";
-	export let onOpened = () => dispatch("toastShow", { id, show: true });
-	export let onClosed = () => dispatch("toastShow", { id, show: false });
-	let _keyboardEvent;
-	function attachEvent(target, ...args) {
-		target.addEventListener(...args);
-		return {
-			remove: () => target.removeEventListener(...args),
-		};
-	}
-	function checkClass(className) {
-		return document.body.classList.contains(className);
-	}
-	function toastOpen() {
-		if (!checkClass("toast-open")) {
-			document.body.classList.add("toast-open");
-		}
-	}
-	function toastClose() {
-		if (checkClass("toast-open")) {
-			document.body.classList.remove("toast-open");
-		}
-	}
-	function handleBackdrop(event) {
-		if (backdrop && !ignoreBackdrop) {
-			event.stopPropagation();
-			show = false;
-		}
-	}
-	function onToastOpened() {
-		if (keyboard) {
-			_keyboardEvent = attachEvent(document, "keydown", (e) => {
-				if ((event as any).key === "Escape") {
-					show = false;
-				}
-			});
-		}
-		onOpened();
-	}
-	function onToastClosed() {
-		if (_keyboardEvent) {
-			_keyboardEvent.remove();
-		}
-		onClosed();
-	}
+	// let _keyboardEvent;
+	// function attachEvent(target, ...args) {
+	// 	target.addEventListener(...args);
+	// 	return {
+	// 		remove: () => target.removeEventListener(...args),
+	// 	};
+	// }
+	// function checkClass(className) {
+	// 	return document.body.classList.contains(className);
+	// }
+	// function toastOpen() {
+	// 	if (!checkClass("toast-open")) {
+	// 		document.body.classList.add("toast-open");
+	// 	}
+	// }
+	// function toastClose() {
+	// 	if (checkClass("toast-open")) {
+	// 		document.body.classList.remove("toast-open");
+	// 	}
+	// }
+	// function handleBackdrop(event) {
+	// 	if (backdrop && !ignoreBackdrop) {
+	// 		event.stopPropagation();
+	// 		show = false;
+	// 	}
+	// }
+	// function onToastOpened() {
+	// 	if (keyboard) {
+	// 		_keyboardEvent = attachEvent(document, "keydown", (e) => {
+	// 			if ((event as any).key === "Escape") {
+	// 				show = false;
+	// 				onClosed();
+	// 			}
+	// 		});
+	// 	}
+	// 	onOpened();
+	// }
+	// function onToastClosed() {
+	// 	if (_keyboardEvent) {
+	// 		_keyboardEvent.remove();
+	// 	}
+	// 	onClosed();
+	// }
 	// Watching changes for Open vairable
 	$: {
-		if (show) {
-			toastOpen();
-		} else {
-			toastClose();
-		}
-	}
-	function handleConfirm() {
-		dispatch("toastConfirm", { id, confirm: true });
-		show = false;
-	}
-	function handleCancel() {
-		show = false;
-		dispatch("toastConfirm", { id, confirm: false });
+		if (!body) body = "";
+		if (!header_small) header_small = "";
+		if (!header_strong) header_strong = "";
+		if (!header_img) header_img = "";
+		if (!toast_class) toast_class = "";
+		if (!btn_close_class) btn_close_class = "";
+		if (!custom_content) custom_content = "";
+		isHeaderExists = !(!header_img && !header_strong && !header_small && !$$slots.header_img && !$$slots.header_strong && !$$slots.header_small);
 	}
 </script>
 
-{#if show}
-	<div
-		role="alert"
-		aria-live="assertive"
-		aria-atomic="true"
-		class="toast fade show"
-		data-bs-autohide="false"
-		data-bs-delay="10000"
-		on:click|self={handleBackdrop}
-		on:introend={onToastOpened}
-		on:outroend={onToastClosed}
-	>
+{#if show === "yes"}
+	<div role="alert" aria-live="assertive" aria-atomic="true" class={`toast fade show ${toast_class}`} data-bs-autohide="false" data-bs-delay="10000">
+		{#if isHeaderExists}
+			<div class="toast-header">
+				<slot name="header_img">{@html header_img}</slot>
+
+				<strong class="me-auto"><slot name="header_strong">{@html header_strong}</slot></strong>
+
+				<small><slot name="header_small">{@html header_small}</slot></small>
+
+				{#if !custom_content}
+					<button type="button" class={`btn-close ${btn_close_class}`} data-bs-dismiss="toast" aria-label="Close" on:click={close} />
+				{/if}
+			</div>
+			<div class="toast-body">
+				<slot name="body">{@html body}</slot>
+				{#if custom_content}
+					<div class="mt-2 pt-2 border-top">
+						<slot name="custom_content">{@html custom_content}</slot>
+						<button type="button" class={`btn ${btn_close_class}`} data-bs-dismiss="toast" on:click={close}>Close</button>
+					</div>
+				{/if}
+			</div>
+		{:else if custom_content}
+			<div class="toast-body">
+				<slot name="body">{@html body}</slot>
+				<div class="mt-2 pt-2 border-top">
+					<slot name="custom_content">{@html custom_content}</slot>
+					<button type="button" class={`btn ${btn_close_class}`} data-bs-dismiss="toast" on:click={close}>Close</button>
+				</div>
+			</div>
+		{:else}
+			<div class="d-flex">
+				<div class="toast-body">
+					<slot name="body">{@html body}</slot>
+				</div>
+				<button type="button" class={`btn-close ${btn_close_class}`} data-bs-dismiss="toast" aria-label="Close" on:click={close} />
+			</div>
+		{/if}
 		<style lang="scss">
 			img,
 			svg {
@@ -149,6 +151,7 @@
 			.me-auto {
 				margin-right: auto !important;
 			}
+
 			::slotted(img),
 			::slotted(svg) {
 				vertical-align: middle;
@@ -163,71 +166,6 @@
 				margin-right: auto !important;
 			}
 		</style>
-
-		{#if headerImg || headerStrong || headerSmall}
-			<div class="toast-header">
-				{#if headerImg}
-					{@html headerImg}
-				{/if}
-				{#if headerStrong}
-					<strong class="me-auto">{@html headerStrong}</strong>
-				{/if}
-				{#if headerSmall}
-					<small>{@html headerSmall}</small>
-				{/if}
-				<button
-					type="button"
-					class="btn-close"
-					data-bs-dismiss="toast"
-					aria-label="Close"
-					on:click={() => {
-						show = false;
-					}}
-				/>
-			</div>
-		{/if}
-		{#if $$slots.headerImg || $$slots.headerStrong || $$slots.headerSmall}
-			<div class="toast-header">
-				{#if $$slots.headerImg}
-					<slot name="headerImg" />
-				{/if}
-
-				{#if $$slots.headerStrong}
-					<strong class="me-auto"><slot name="headerStrong" /></strong>
-				{/if}
-				{#if $$slots.headerSmall}
-					<small><slot name="headerSmall" /></small>
-				{/if}
-				<button
-					type="button"
-					class="btn-close"
-					data-bs-dismiss="toast"
-					aria-label="Close"
-					on:click={() => {
-						show = false;
-					}}
-				/>
-			</div>
-		{/if}
-
-		{#if body}
-			<div class="toast-body">{@html body}</div>
-		{/if}
-		{#if $$slots.body}
-			<div class="toast-body"><slot name="body" /></div>
-		{/if}
-
-		{#if !headerImg && !headerStrong && !headerSmall && !$$slots.headerImg && !$$slots.headerStrong && !$$slots.headerSmall}
-			<button
-				type="button"
-				class="btn-close me-2 m-auto"
-				data-bs-dismiss="toast"
-				aria-label="Close"
-				on:click={() => {
-					show = false;
-				}}
-			/>
-		{/if}
 	</div>
 {/if}
 

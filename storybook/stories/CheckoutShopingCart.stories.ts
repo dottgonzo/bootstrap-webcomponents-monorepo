@@ -6,8 +6,8 @@ const meta: Meta = {
 
   argTypes: {
     id: { control: { disable: true } },
-    headers: { control: { type: "object" } },
-    items: { control: { type: "array" } },
+    payment: { control: { type: "object" } },
+    completed: { control: { type: "radio" }, options: ["yes", "no"] },
   },
 };
 
@@ -22,16 +22,39 @@ export const CheckoutShoppingCart = Template.bind({});
 
 CheckoutShoppingCart.args = {
   id: "CheckoutShoppingCart",
-  items: [
-    {
-      unitaryPrice: 2,
-      taxPercentage: 3,
-      name: "testitem",
-    },
-    {
-      unitaryPrice: 5,
-      taxPercentage: 7,
-      name: "testitem2",
-    },
-  ],
+  payment: {
+    items: [
+      {
+        unitaryPrice: 2,
+        taxPercentage: 3,
+        name: "testitem",
+      },
+      {
+        unitaryPrice: 5,
+        taxPercentage: 7,
+        name: "testitem2",
+      },
+    ],
+  },
+};
+
+export const CheckoutShoppingCartCompleted = Template.bind({});
+
+CheckoutShoppingCartCompleted.args = {
+  id: "CheckoutShoppingCartCompleted",
+  payment: {
+    items: [
+      {
+        unitaryPrice: 2,
+        taxPercentage: 3,
+        name: "testitem",
+      },
+      {
+        unitaryPrice: 5,
+        taxPercentage: 7,
+        name: "testitem2",
+      },
+    ],
+    completed: "yes",
+  },
 };
