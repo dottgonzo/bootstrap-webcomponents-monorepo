@@ -52,6 +52,8 @@ export const webComponentBind = (
         val = JSON.stringify(args[attribute]);
       } else if (typeof args[attribute] === "number") {
         val = args[attribute].toString();
+      } else {
+        console.error("unkown attr", attribute);
       }
       c.setAttribute(attribute, val);
     } else {

@@ -20,12 +20,15 @@
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { formUserSchema, formCreditCardSchema } from "@app/functions/formSchemes";
 	import dayjs from "dayjs";
+	// import debounce from "debounce";
+	// import { printInvoice, OpenInvoiceWindow } from "../../../page-invoice/extra/utils";
 
 	export let id: string;
 	export let shipments: IShipment[];
 	export let user: IUser;
 	export let gateways: IGateway[];
 	export let payment: IPayment;
+	export let completed: "yes" | "no";
 
 	// let gateway: IGateway;
 	const formShipmentSchema: FormSchema = [
@@ -50,6 +53,7 @@
 	const nullishdefaultpayment: IPayment = { type: "plain", total: 0, currencyCode: "EUR", countryCode: "IT", merchantName: "merchant" };
 	$: {
 		if (!id) id = null;
+		if (!completed) completed = "no";
 		if (!payment) payment = nullishdefaultpayment;
 		else if (typeof payment === "string") payment = JSON.parse(payment) || nullishdefaultpayment;
 
@@ -143,11 +147,11 @@
 		formShipmentSchemaSubmitted = "no";
 	}
 
-	function payByPaypalAndCard(p: {}) {
-		formCreditCardSchemaSubmitted = "no";
+	// function payByPaypalAndCard(p: {}) {
+	// 	formCreditCardSchemaSubmitted = "no";
 
-		dispatch("payByCard", p);
-	}
+	// 	dispatch("payByCard", p);
+	// }
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -184,8 +188,10 @@
 	// 		dispatch("setGateway", gateway);
 	// 	}
 	// }
-	function successfulPayment() {
-		dispatch("successfulPayment", payment);
+
+	function paymentCompleted(method: string) {
+		completed = "yes";
+		dispatch("paymentCompleted", { total: payment?.total, method, completed: true });
 	}
 </script>
 
@@ -313,95 +319,95 @@
 		</div>
 	{/if}
 </div>
-<div>
-	<h3 class="subtitle payment_title" part="subtitle"><i class="bi bi-wallet2" /> Payment Method</h3>
-	{#if !editUser && !editShipping && ((shipments?.length && shipments.find((f) => f.selected)) || shipments.find((f) => f.standard) || !shipments?.length)}
-		<!-- {#if gateways.length > 1}
+<div class="payment_title">
+	{#if completed !== "yes"}
+		<h3 class="subtitle" part="subtitle"><i class="bi bi-wallet2" /> Payment Method</h3>
+		{#if !editUser && !editShipping && ((shipments?.length && shipments.find((f) => f.selected)) || shipments.find((f) => f.standard) || !shipments?.length)}
+			<!-- {#if gateways.length > 1}
 			<div id="card_select">
 				{#each gateways as g (g.id)}
 					<img on:click={() => selectGateway(g.id)} class="cardimg" alt={g.label} src={g.cardImage} />
 				{/each}
 			</div>
 		{/if} -->
-		<div id="payment_btn_container">
-			{#each gateways as g (g.id)}
-				<div class="payment_button_container">
-					{#if g.id === "paypal"}
-						<hb-payment-paypal
-							class="payment_button"
-							paypalid={g.paypalid}
-							total={payment?.total?.toString()}
-							on:payByCard={(e) => payByPaypalAndCard(e.detail)}
-							on:payByAccount={(e) => dispatch("payByAccount", e.detail)}
-							on:cardChange={(e) => cardChange(e.detail)}
-						/>
-					{:else if g.id === "google" && payment.countryCode}
-						<google-pay-button
-							class="payment_button"
-							environment="TEST"
-							button-type={payment.type.toLowerCase()}
-							button-color="black"
-							button-size-mode="fill"
-							paymentRequest={{
-								apiVersion: 2,
-								apiVersionMinor: 0,
-								merchantInfo: {
-									merchantName: payment.merchantName,
-									merchantId: g.gatewayMerchantId,
-								},
-								allowedPaymentMethods: [
-									{
-										type: "CARD",
-										parameters: {
-											allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
-											allowedCardNetworks: g.cardNetworks,
-										},
-										tokenizationSpecification: {
-											type: "PAYMENT_GATEWAY",
+			<div id="payment_btn_container">
+				{#each gateways as g (g.id)}
+					<div class="payment_button_container">
+						{#if g.id === "paypal"}
+							<hb-payment-paypal
+								class="payment_button"
+								paypalid={g.paypalid}
+								total={payment?.total?.toString()}
+								on:paymentCompleted={(e) => paymentCompleted("paypal")}
+								on:cardChange={(e) => cardChange(e.detail)}
+							/>
+						{:else if g.id === "google" && payment.countryCode}
+							<google-pay-button
+								class="payment_button"
+								environment="TEST"
+								button-type={payment.type.toLowerCase()}
+								button-color="black"
+								button-size-mode="fill"
+								paymentRequest={{
+									apiVersion: 2,
+									apiVersionMinor: 0,
+									merchantInfo: {
+										merchantName: payment.merchantName,
+										merchantId: g.gatewayMerchantId,
+									},
+									allowedPaymentMethods: [
+										{
+											type: "CARD",
 											parameters: {
-												gateway: g.gatewayId,
-												gatewayMerchantId: g.gatewayMerchantId,
+												allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
+												allowedCardNetworks: g.cardNetworks,
+											},
+											tokenizationSpecification: {
+												type: "PAYMENT_GATEWAY",
+												parameters: {
+													gateway: g.gatewayId,
+													gatewayMerchantId: g.gatewayMerchantId,
+												},
 											},
 										},
+										// {
+										// 	type: "PAYPAL",
+										// 	parameters: {
+										// 		purchase_context: {
+										// 			purchase_units: [
+										// 				{
+										// 					payee: {
+										// 						merchant_id: "PAYPAL_ACCOUNT_ID",
+										// 					},
+										// 				},
+										// 			],
+										// 		},
+										// 	},
+										// 	tokenizationSpecification: {
+										// 		type: "DIRECT",
+										// 	},
+										// },
+									],
+									transactionInfo: {
+										totalPriceStatus: "FINAL",
+										totalPriceLabel: "Total",
+										totalPrice: payment?.total?.toString(),
+										currencyCode: payment?.currencyCode?.toUpperCase(),
+										countryCode: payment?.countryCode?.toUpperCase(),
+										checkoutOption: "COMPLETE_IMMEDIATE_PURCHASE",
 									},
-									// {
-									// 	type: "PAYPAL",
-									// 	parameters: {
-									// 		purchase_context: {
-									// 			purchase_units: [
-									// 				{
-									// 					payee: {
-									// 						merchant_id: "PAYPAL_ACCOUNT_ID",
-									// 					},
-									// 				},
-									// 			],
-									// 		},
-									// 	},
-									// 	tokenizationSpecification: {
-									// 		type: "DIRECT",
-									// 	},
-									// },
-								],
-								transactionInfo: {
-									totalPriceStatus: "FINAL",
-									totalPriceLabel: "Total",
-									totalPrice: payment?.total?.toString(),
-									currencyCode: payment?.currencyCode?.toUpperCase(),
-									countryCode: payment?.countryCode?.toUpperCase(),
-									checkoutOption: "COMPLETE_IMMEDIATE_PURCHASE",
-								},
-							}}
-							on:loadpaymentdata={(event) => {
-								dispatch("payByAccount", { total: payment?.total, method: "google" });
-							}}
-						/>
-					{/if}
-				</div>
-			{/each}
-		</div>
+								}}
+								on:loadpaymentdata={(event) => {
+									paymentCompleted("google");
+								}}
+							/>
+						{/if}
+					</div>
+				{/each}
+			</div>
 
-		<!-- <div>
-			<button on:click={() => payByAccount()} style="width:100%;background-color:yellow;color:white" class="btn">paypal</button>
+			<!-- <div>
+			<button on:click={() => paymentCompleted()} style="width:100%;background-color:yellow;color:white" class="btn">paypal</button>
 		</div>
 		<div class="utils_or"><span>or</span></div>
 		<div>
@@ -428,13 +434,31 @@
 				>
 			</div>
 		</div> -->
+		{/if}
+		<div class="footer_note"><slot name="payment_terms">By Clicking..<button class="btn btn-default">Terms and conditions</button></slot></div>
+	{:else}
+		<slot name="payment_completed">
+			<div id="payment_completed_content">
+				<div id="payment_completed_title">payment completed</div>
+				<div id="payment_completed_content">Total: {payment.total}</div>
+				<div id="payment_completed_footer"><button class="btn btn-link">invoice</button></div>
+			</div>
+		</slot>
 	{/if}
 </div>
-<div class="footer_note"><slot name="footer">By Clicking..<button class="btn btn-default">Terms and conditions</button></slot></div>
 
 <style lang="scss">
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
+	#payment_completed_content {
+		text-align: center;
+	}
+	#payment_completed_title {
+		margin: 30px;
+		text-transform: capitalize;
+		font-size: 2em;
+		font-weight: bold;
+	}
 	#payment_btn_container {
 		display: flex;
 	}

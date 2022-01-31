@@ -7,14 +7,13 @@ const meta: Meta = {
   argTypes: {
     id: { control: { disable: true } },
     shipments: { control: { type: "array" } },
-    items: { control: { type: "array" } },
     user: { control: { type: "object" } },
-    headers: { control: { type: "object" } },
-    payByCard: { action: "payByCard" },
-    payByAccount: { action: "payByAccount" },
+    payment: { control: { type: "object" } },
+    paymentCompleted: { action: "paymentCompleted" },
     saveUser: { action: "saveUser" },
     saveShipment: { action: "saveShipment" },
     gateways: { control: { type: "array" } },
+    completed: { control: { type: "radio" }, options: ["yes", "no"] },
   },
 };
 
@@ -57,20 +56,22 @@ PageCheckoutPaypal.args = {
       currency: "€",
     },
   ],
-  items: [
-    {
-      unitaryPrice: 2,
-      taxPercentage: 3,
-      name: "testitem",
-    },
-    {
-      unitaryPrice: 5,
-      taxPercentage: 7,
-      name: "testitem2",
-    },
-  ],
   gateways: [defaultgw, googlepay],
-  headers: { country: "it" },
+  payment: {
+    countryCode: "IT",
+    items: [
+      {
+        unitaryPrice: 2,
+        taxPercentage: 3,
+        name: "testitem",
+      },
+      {
+        unitaryPrice: 5,
+        taxPercentage: 7,
+        name: "testitem2",
+      },
+    ],
+  },
 };
 
 export const PageCheckoutPaypalWithUser = Template.bind({});
@@ -97,18 +98,7 @@ PageCheckoutPaypalWithUser.args = {
       id: "ziobarca2",
     },
   ],
-  items: [
-    {
-      unitaryPrice: 2,
-      taxPercentage: 3,
-      name: "testitem",
-    },
-    {
-      unitaryPrice: 5,
-      taxPercentage: 7,
-      name: "testitem2",
-    },
-  ],
+
   user: {
     fullName: "fdfff fffff",
     addressWithNumber: "addreess 43",
@@ -117,7 +107,21 @@ PageCheckoutPaypalWithUser.args = {
     zip: "3434",
   },
   gateways: [defaultgw, googlepay],
-  headers: { country: "it" },
+  payment: {
+    countryCode: "IT",
+    items: [
+      {
+        unitaryPrice: 2,
+        taxPercentage: 3,
+        name: "testitem",
+      },
+      {
+        unitaryPrice: 5,
+        taxPercentage: 7,
+        name: "testitem2",
+      },
+    ],
+  },
 };
 
 export const PageCheckoutPaypalWithUserAndShipment = Template.bind({});
@@ -144,18 +148,6 @@ PageCheckoutPaypalWithUserAndShipment.args = {
       id: "ziobarca2",
     },
   ],
-  items: [
-    {
-      unitaryPrice: 2,
-      taxPercentage: 3,
-      name: "testitem",
-    },
-    {
-      unitaryPrice: 5,
-      taxPercentage: 7,
-      name: "testitem2",
-    },
-  ],
   user: {
     fullName: "fdfff fffff",
     addressWithNumber: "addreess 43",
@@ -164,7 +156,21 @@ PageCheckoutPaypalWithUserAndShipment.args = {
     zip: "3434",
   },
   gateways: [defaultgw, googlepay],
-  headers: { country: "it" },
+  payment: {
+    countryCode: "IT",
+    items: [
+      {
+        unitaryPrice: 2,
+        taxPercentage: 3,
+        name: "testitem",
+      },
+      {
+        unitaryPrice: 5,
+        taxPercentage: 7,
+        name: "testitem2",
+      },
+    ],
+  },
 };
 
 export const PageCheckoutPaypalService = Template.bind({});
@@ -172,18 +178,6 @@ export const PageCheckoutPaypalService = Template.bind({});
 PageCheckoutPaypalService.args = {
   id: "PageCheckoutPaypalService",
   shipments: [],
-  items: [
-    {
-      unitaryPrice: 2,
-      taxPercentage: 3,
-      name: "testitem",
-    },
-    {
-      unitaryPrice: 5,
-      taxPercentage: 7,
-      name: "testitem2",
-    },
-  ],
   user: {
     fullName: "fdfff fffff",
     addressWithNumber: "addreess 43",
@@ -193,5 +187,50 @@ PageCheckoutPaypalService.args = {
     fixed: true,
   },
   gateways: [defaultgw, googlepay],
-  headers: { country: "it" },
+  payment: {
+    countryCode: "IT",
+    items: [
+      {
+        unitaryPrice: 2,
+        taxPercentage: 3,
+        name: "testitem",
+      },
+      {
+        unitaryPrice: 5,
+        taxPercentage: 7,
+        name: "testitem2",
+      },
+    ],
+  },
+};
+export const PageCheckoutCompleted = Template.bind({});
+
+PageCheckoutCompleted.args = {
+  id: "PageCheckoutCompleted",
+  shipments: [],
+  user: {
+    fullName: "fdfff fffff",
+    addressWithNumber: "addreess 43",
+    city: "ff",
+    nationality: "effe",
+    zip: "3434",
+    fixed: true,
+  },
+  gateways: [defaultgw, googlepay],
+  payment: {
+    countryCode: "IT",
+    items: [
+      {
+        unitaryPrice: 2,
+        taxPercentage: 3,
+        name: "testitem",
+      },
+      {
+        unitaryPrice: 5,
+        taxPercentage: 7,
+        name: "testitem2",
+      },
+    ],
+  },
+  completed: "yes",
 };
