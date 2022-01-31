@@ -246,3 +246,17 @@ StackedPlacement.decorators = [
 </div>`;
   },
 ];
+
+
+export const FlexboxPlacement = Template.bind({});
+FlexboxPlacement.args = {...basicArgs};
+FlexboxPlacement.args.id = "FlexboxPlacement";
+FlexboxPlacement.decorators = [
+  (story) => `<div class="bd-example bg-dark bd-example-toasts d-flex">
+  <!-- Flexbox container for aligning the toasts -->
+  <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
+      <!-- Then put toasts within -->
+      ${story().outerHTML}
+  </div>
+</div>`,
+];
