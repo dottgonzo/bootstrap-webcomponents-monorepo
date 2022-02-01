@@ -115,14 +115,14 @@
 		{#if isHeaderExists}
 			<div class="toast-header">
 				<slot name="header_img">{@html header_img}</slot>
-				<strong class="me-auto"><slot name="header_strong">{@html header_strong}</slot></strong>
-				<small><slot name="header_small">{@html header_small}</slot></small>
+				<strong class="me-auto"><slot name="header_strong">{header_strong}</slot></strong>
+				<small><slot name="header_small">{header_small}</slot></small>
 				{#if !custom_content && autohide !== "true"}
 					<button type="button" class={`btn-close ${btn_close_class}`} data-bs-dismiss="toast" aria-label="Close" on:click={close} />
 				{/if}
 			</div>
 			<div class="toast-body">
-				<slot name="body">{@html body}</slot>
+				<slot name="body">{body}</slot>
 				{#if custom_content}
 					<div class="mt-2 pt-2 border-top">
 						<slot name="custom_content">{@html custom_content}</slot>
@@ -134,7 +134,7 @@
 			</div>
 		{:else if custom_content}
 			<div class="toast-body">
-				<slot name="body">{@html body}</slot>
+				<slot name="body">{body}</slot>
 				<div class="mt-2 pt-2 border-top">
 					<slot name="custom_content">{@html custom_content}</slot>
 					{#if autohide !== "true"}
@@ -145,7 +145,7 @@
 		{:else}
 			<div class="d-flex">
 				<div class="toast-body">
-					<slot name="body">{@html body}</slot>
+					<slot name="body">{body}</slot>
 				</div>
 				{#if autohide !== "true"}
 					<button type="button" class={`btn-close ${btn_close_class}`} data-bs-dismiss="toast" aria-label="Close" on:click={close} />
