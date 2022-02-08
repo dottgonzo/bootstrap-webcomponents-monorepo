@@ -49,56 +49,56 @@
 		}
 	}
 
-	function imagesUpload(e) {
-		console.log("images_upload_url", e, e.base64());
-		return e.base64();
-	}
+	// function imagesUpload(e) {
+	// 	console.log("images_upload_url", e, e.base64());
+	// 	return e.base64();
+	// }
 
-	function editorSetup(e) {
-		console.log(e, "ttt");
-	}
+	// function editorSetup(e) {
+	// 	console.log(e, "ttt");
+	// }
 
-	function setup(editor) {
-		console.log(editor);
-		editor.ui.registry.addButton("customInsertButton", {
-			text: "My Button",
-			onAction: function () {
-				editor.insertContent("&nbsp;<strong>It's my button!</strong>&nbsp;");
-			},
-		});
+	// function setup(editor) {
+	// 	console.log(editor);
+	// 	editor.ui.registry.addButton("customInsertButton", {
+	// 		text: "My Button",
+	// 		onAction: function () {
+	// 			editor.insertContent("&nbsp;<strong>It's my button!</strong>&nbsp;");
+	// 		},
+	// 	});
 
-		const toTimeHtml = function (date) {
-			return '<time datetime="' + date.toString() + '">' + date.toDateString() + "</time>";
-		};
-		editor.on("change", (e) => e.dispatchEvent("change"));
-		// editor.dom.dispatchEvent("change");
-		editor.ui.registry.addButton("customDateButton", {
-			icon: "insert-time",
-			tooltip: "Insert Current Date",
-			disabled: true,
-			onAction: function () {
-				editor.insertContent(toTimeHtml(new Date()));
-			},
-			onSetup: function (buttonApi) {
-				var editorEventCallback = function (eventApi) {
-					buttonApi.setDisabled(eventApi.element.nodeName.toLowerCase() === "time");
-				};
-				editor.on("NodeChange", editorEventCallback);
+	// 	const toTimeHtml = function (date) {
+	// 		return '<time datetime="' + date.toString() + '">' + date.toDateString() + "</time>";
+	// 	};
+	// 	editor.on("change", (e) => e.dispatchEvent("change"));
+	// 	// editor.dom.dispatchEvent("change");
+	// 	editor.ui.registry.addButton("customDateButton", {
+	// 		icon: "insert-time",
+	// 		tooltip: "Insert Current Date",
+	// 		disabled: true,
+	// 		onAction: function () {
+	// 			editor.insertContent(toTimeHtml(new Date()));
+	// 		},
+	// 		onSetup: function (buttonApi) {
+	// 			var editorEventCallback = function (eventApi) {
+	// 				buttonApi.setDisabled(eventApi.element.nodeName.toLowerCase() === "time");
+	// 			};
+	// 			editor.on("NodeChange", editorEventCallback);
 
-				/* onSetup should always return the unbind handlers */
-				return function (buttonApi) {
-					editor.off("NodeChange", editorEventCallback);
-				};
-			},
-		});
-	}
+	// 			/* onSetup should always return the unbind handlers */
+	// 			return function (buttonApi) {
+	// 				editor.off("NodeChange", editorEventCallback);
+	// 			};
+	// 		},
+	// 	});
+	// }
 
-	function initTiny(e: HTMLElement) {
-		const c = document.createElement("script");
-		c.innerText = imagesUpload.toString() + setup.toString();
+	// function initTiny(e: HTMLElement) {
+	// 	const c = document.createElement("script");
+	// 	c.innerText = imagesUpload.toString() + setup.toString();
 
-		e.parentNode.appendChild(c);
-	}
+	// 	e.parentNode.appendChild(c);
+	// }
 </script>
 
 <!-- <svelte:head>
@@ -111,14 +111,10 @@
 	<input id="x" type="hidden" name="content" />
 	<trix-editor input="x" />
 </form> -->
-{#if images_upload_url}
-	<tinymce-editor api-key={key} {plugins} {toolbar} {images_upload_url} />
-{:else}
-	<tinymce-editor use:initTiny api-key={key} {plugins} {toolbar} images_upload_handler="imagesUpload" setup="setup" on:change={editorSetup} />
-{/if}
+<tinymce-editor api-key={key} {plugins} {toolbar} {images_upload_url} />
 
-<style lang="scss">
+<!-- <style lang="scss">
 	// @import "../styles/bootstrap.scss";
 	// @import "../styles/trix.css";
 	// @import "../styles/webcomponent.scss";
-</style>
+</style> -->
