@@ -17,3 +17,8 @@ export const TinyEditorTemplate = Template.bind({});
 TinyEditorTemplate.args = {
   id: "TinyEditorTemplate",
 };
+
+export const TinyEditorTemplateWithUploadUrl = Template.bind({});
+TinyEditorTemplateWithUploadUrl.args = {
+  id: "TinyEditorTemplateWithUploadUrl",
+};

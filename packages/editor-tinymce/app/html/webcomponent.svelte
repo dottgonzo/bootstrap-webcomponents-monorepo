@@ -42,57 +42,63 @@
 		}
 		if (!toolbar) {
 			toolbar =
-				"undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help";
+				"undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | customDateButton";
 		}
 		if (!images_upload_url) {
 			images_upload_url = "";
 		}
 	}
 
-	// function example_image_upload_handler(blobInfo, success, failure, progress) {
-	// 	console.log("fire");
-	// 	var xhr, formData;
+	function imagesUpload(e) {
+		console.log("images_upload_url", e, e.base64());
+		return e.base64();
+	}
 
-	// 	xhr = new XMLHttpRequest();
-	// 	xhr.withCredentials = false;
-	// 	xhr.open("POST", "postAcceptor.php");
+	function editorSetup(e) {
+		console.log(e, "ttt");
+	}
 
-	// 	xhr.upload.onprogress = function (e) {
-	// 		progress((e.loaded / e.total) * 100);
-	// 	};
+	function setup(editor) {
+		console.log(editor);
+		editor.ui.registry.addButton("customInsertButton", {
+			text: "My Button",
+			onAction: function () {
+				editor.insertContent("&nbsp;<strong>It's my button!</strong>&nbsp;");
+			},
+		});
 
-	// 	xhr.onload = function () {
-	// 		var json;
+		const toTimeHtml = function (date) {
+			return '<time datetime="' + date.toString() + '">' + date.toDateString() + "</time>";
+		};
+		editor.on("change", (e) => e.dispatchEvent("change"));
+		// editor.dom.dispatchEvent("change");
+		editor.ui.registry.addButton("customDateButton", {
+			icon: "insert-time",
+			tooltip: "Insert Current Date",
+			disabled: true,
+			onAction: function () {
+				editor.insertContent(toTimeHtml(new Date()));
+			},
+			onSetup: function (buttonApi) {
+				var editorEventCallback = function (eventApi) {
+					buttonApi.setDisabled(eventApi.element.nodeName.toLowerCase() === "time");
+				};
+				editor.on("NodeChange", editorEventCallback);
 
-	// 		if (xhr.status === 403) {
-	// 			failure("HTTP Error: " + xhr.status, { remove: true });
-	// 			return;
-	// 		}
+				/* onSetup should always return the unbind handlers */
+				return function (buttonApi) {
+					editor.off("NodeChange", editorEventCallback);
+				};
+			},
+		});
+	}
 
-	// 		if (xhr.status < 200 || xhr.status >= 300) {
-	// 			failure("HTTP Error: " + xhr.status);
-	// 			return;
-	// 		}
+	function initTiny(e: HTMLElement) {
+		const c = document.createElement("script");
+		c.innerText = imagesUpload.toString() + setup.toString();
 
-	// 		json = JSON.parse(xhr.responseText);
-
-	// 		if (!json || typeof json.location != "string") {
-	// 			failure("Invalid JSON: " + xhr.responseText);
-	// 			return;
-	// 		}
-
-	// 		success(json.location);
-	// 	};
-
-	// 	xhr.onerror = function () {
-	// 		failure("Image upload failed due to a XHR Transport error. Code: " + xhr.status);
-	// 	};
-
-	// 	formData = new FormData();
-	// 	formData.append("file", blobInfo.blob(), blobInfo.filename());
-
-	// 	xhr.send(formData);
-	// }
+		e.parentNode.appendChild(c);
+	}
 </script>
 
 <!-- <svelte:head>
@@ -105,10 +111,14 @@
 	<input id="x" type="hidden" name="content" />
 	<trix-editor input="x" />
 </form> -->
-<tinymce-editor api-key={key} {plugins} {toolbar} {images_upload_url} />
+{#if images_upload_url}
+	<tinymce-editor api-key={key} {plugins} {toolbar} {images_upload_url} />
+{:else}
+	<tinymce-editor use:initTiny api-key={key} {plugins} {toolbar} images_upload_handler="imagesUpload" setup="setup" on:change={editorSetup} />
+{/if}
 
 <style lang="scss">
 	// @import "../styles/bootstrap.scss";
 	// @import "../styles/trix.css";
-	@import "../styles/webcomponent.scss";
+	// @import "../styles/webcomponent.scss";
 </style>
