@@ -5,7 +5,7 @@ export const webComponentBind = (
   args: any,
   argTypes: ArgTypes,
   componentName: string,
-  options?: { innerHTML?: string; style: any }
+  options?: { innerHTML?: string; style?: any }
 ) => {
   if (!args.id) args.id = componentName + "key";
   const attributes = Object.keys(argTypes).filter(
