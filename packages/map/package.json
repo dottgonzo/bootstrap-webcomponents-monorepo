@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-map",
 	"displayName": "Svelte-Bootstrap map",
 	"description": "Svelte-Bootstrap map",
-	"version": "0.4.29",
+	"version": "0.4.30",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
