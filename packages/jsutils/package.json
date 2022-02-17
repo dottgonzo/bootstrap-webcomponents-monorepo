@@ -17,7 +17,7 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "build:release": "echo oki"
+    "build:release": "tsc"
   },
   "keywords": [
     "svelte",
@@ -25,5 +25,8 @@
     "webcomponents"
   ],
   "contributors": [],
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  },
   "gitHead": "f8fbe25f48d898ad736eff589e3f6124e02483f5"
 }
