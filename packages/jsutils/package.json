@@ -1,0 +1,29 @@
+{
+  "name": "@htmlbricks/hb-jsutils",
+  "displayName": "HTMLBricks jsutils",
+  "description": "HTMLBricks jsutils",
+  "version": "0.4.27",
+  "main": "main.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Dario Caruso <dev@dariocaruso.info> (https://dariocaruso.info)",
+  "authorUrl": "https://dariocaruso.info",
+  "license": "MIT",
+  "license-docs": "CC BY 4.0",
+  "license-translations": "CC BY 4.0",
+  "license-images": "CC BY-NC 4.0",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "build:release": "echo oki"
+  },
+  "keywords": [
+    "svelte",
+    "svelte-webcomponents",
+    "webcomponents"
+  ],
+  "contributors": [],
+  "gitHead": "46db65028cd9857718a0f142f53be15d4aa6966e"
+}
