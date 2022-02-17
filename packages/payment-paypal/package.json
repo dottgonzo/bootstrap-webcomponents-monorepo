@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-payment-paypal",
 	"displayName": "Svelte Paypal Payment WebComponent",
 	"description": "Svelte Paypal Payment WebComponent",
-	"version": "0.4.28",
+	"version": "0.4.29",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
