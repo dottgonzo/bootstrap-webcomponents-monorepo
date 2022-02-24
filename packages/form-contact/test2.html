@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title>Hello, world!</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
+		<script defer src="./dist/release.js"></script>
+		<style>
+			.avatar {
+				align-items: center;
+				border-radius: 0.375rem;
+				display: inline-flex;
+				font-size: 1rem;
+				font-weight: 600;
+				height: 2.875rem;
+				justify-content: center;
+				position: relative;
+				vertical-align: middle;
+				width: 2.875rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<form method="post" action="https://htmlstream.com/api/contact-us" id="contact_us" novalidate="novalidate">
+			<input type="hidden" name="_token" value="wWyscGA5vabvB2LR4UJEcm0dN4OhLslX6aSDI4LX" />
+
+			<div class="form-group g-mb-30">
+				<select
+					name="subject"
+					required=""
+					class="js-custom-select u-select-v1 g-brd-gray-light-v4 g-color-gray-dark-v1 w-100 g-py-15 rounded"
+					data-placeholder="Month"
+					data-open-icon="fa fa-angle-down"
+					data-close-icon="fa fa-angle-up"
+					aria-required="true"
+					style="display: none"
+				>
+					<option value="">Please select your message subject</option>
+					<option value="General Inquiry">General Inquiry</option>
+					<option value="Front – Multipurpose Responsive Template">Front – Multipurpose Responsive Template</option>
+					<option value="Unify - Responsive Website Template">Unify - Responsive Website Template</option>
+					<option value="Space – Multipurpose Responsive Template">Space – Multipurpose Responsive Template</option>
+					<option value="Front – Admin &amp; Dashboard Template">Front – Admin &amp; Dashboard Template</option>
+				</select>
+				<div
+					class="chosen-container chosen-container-single js-custom-select u-select-v1 g-brd-gray-light-v4 g-color-gray-dark-v1 w-100 g-py-15 rounded chosen-container-single-nosearch"
+					style="width: 555px"
+					title=""
+				>
+					<a class="chosen-single"
+						><span>Please select your message subject</span>
+						<div>
+							<b><i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></b></div
+					></a>
+					<div class="chosen-drop">
+						<div class="chosen-search"><input type="text" autocomplete="off" readonly="" /></div>
+						<ul class="chosen-results">
+							<li class="active-result result-selected" data-option-array-index="0" style="">Please select your message subject</li>
+							<li class="active-result" data-option-array-index="1" style="">General Inquiry</li>
+							<li class="active-result" data-option-array-index="2" style="">Front – Multipurpose Responsive Template</li>
+							<li class="active-result" data-option-array-index="3" style="">Unify - Responsive Website Template</li>
+							<li class="active-result" data-option-array-index="4" style="">Space – Multipurpose Responsive Template</li>
+							<li class="active-result" data-option-array-index="5" style="">Front – Admin &amp; Dashboard Template</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group g-mb-30">
+				<label class="g-font-weight-600 g-font-size-13">Your name <span class="g-color-red">*</span></label>
+				<input
+					id="yourName"
+					class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-font-size-16 g-px-14 g-py-14"
+					name="name"
+					type="text"
+					required=""
+					data-msg="Please enter your name e.g. John Smith"
+					data-error-class="u-has-error"
+					data-success-class="u-has-success"
+					aria-required="true"
+				/>
+			</div>
+
+			<div class="form-group g-mb-30">
+				<label class="g-font-weight-600 g-font-size-13">Your email address <span class="g-color-red">*</span></label>
+				<input
+					id="yourEmail"
+					class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-font-size-16 g-px-14 g-py-14"
+					name="email"
+					type="email"
+					required=""
+					data-msg="Please enter valid email address e.g. example@gmail.com"
+					data-error-class="u-has-error"
+					data-success-class="u-has-success"
+					aria-required="true"
+				/>
+			</div>
+
+			<div class="form-group g-mb-30">
+				<label class="g-font-weight-600 g-font-size-13">Tell us about your thoughts <span class="g-color-red">*</span></label>
+				<textarea
+					id="yourThoughts"
+					name="your_message"
+					class="form-control g-brd-gray-light-v4 g-brd-primary--focus g-font-size-16 g-px-14 g-py-14"
+					rows="8"
+					type="text"
+					required=""
+					data-msg="This field is mandatory"
+					data-error-class="u-has-error"
+					data-success-class="u-has-success"
+					aria-required="true"
+					spellcheck="false"
+				></textarea>
+			</div>
+
+			<!-- Google (re-Captcha) [default] -->
+			<div class="row justify-content-center g-mb-40">
+				<div class="col-md-7">
+					<div data-sitekey="6LfXF1EUAAAAANZfWnPSboJ7HIInboVMqHaVsFH-" class="g-recaptcha">
+						<div style="width: 304px; height: 78px">
+							<div>
+								<iframe
+									title="reCAPTCHA"
+									src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LfXF1EUAAAAANZfWnPSboJ7HIInboVMqHaVsFH-&amp;co=aHR0cHM6Ly9odG1sc3RyZWFtLmNvbTo0NDM.&amp;hl=en&amp;v=1B_yv3CBEV10KtI2HJ6eEXhJ&amp;size=normal&amp;cb=5cr2t8z3pxv0"
+									width="304"
+									height="78"
+									role="presentation"
+									name="a-ovika085dvam"
+									frameborder="0"
+									scrolling="no"
+									sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"
+								></iframe>
+							</div>
+							<textarea
+								id="g-recaptcha-response"
+								name="g-recaptcha-response"
+								class="g-recaptcha-response"
+								style="
+									width: 250px;
+									height: 40px;
+									border: 1px solid rgb(193, 193, 193);
+									margin: 10px 25px;
+									padding: 0px;
+									resize: none;
+									display: none;
+								"
+							></textarea>
+						</div>
+						<iframe style="display: none"></iframe>
+					</div>
+				</div>
+			</div>
+			<div class="text-center">
+				<button class="btn btn-md u-btn-primary u-shadow-v24 g-py-14 g-px-20 g-mb-15" type="submit">Let's Start Discussion</button>
+			</div>
+		</form>
+	</body>
+</html>
