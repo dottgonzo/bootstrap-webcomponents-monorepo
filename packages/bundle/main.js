@@ -4,7 +4,7 @@ const pkg = require('./package.json')
 
 async function run() {
     const packagesPath = path.resolve(__dirname, '..')
-    const packages = (await fs.readdir(packagesPath, { withFileTypes: true })).filter(f => f.isDirectory && f.name !== 'bundle').map(m => m.name)
+    const packages = (await fs.readdir(packagesPath, { withFileTypes: true })).filter(f => f.isDirectory && f.name !== 'bundle' && f.name !== 'jsutils').map(m => m.name)
 
     let packagesCode = ''
     for (const package of packages) {

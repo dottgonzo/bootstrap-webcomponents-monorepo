@@ -1,9 +1,9 @@
 {
-  "name": "@htmlbricks/hb-bundle",
-  "displayName": "HTMLBricks bundle",
-  "description": "HTMLBricks bundle",
+  "name": "@htmlbricks/hb-jsutils",
+  "displayName": "HTMLBricks jsutils",
+  "description": "HTMLBricks jsutils",
   "version": "0.4.31",
-  "main": "release/release.js",
+  "main": "main.js",
   "publishConfig": {
     "access": "public"
   },
@@ -17,11 +17,7 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "start": "sirv dist",
-    "build": "rm -rf ./dist && node main",
-    "copydest": "rm -rf release && mkdir -p release && cp dist/release.js ./release/",
-    "build:release": "PRODUCTION=true npm run build && npm run copydest",
-    "prepublish": "npm run build:release"
+    "build:release": "tsc"
   },
   "keywords": [
     "svelte",
@@ -29,5 +25,8 @@
     "webcomponents"
   ],
   "contributors": [],
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  },
   "gitHead": "f8fbe25f48d898ad736eff589e3f6124e02483f5"
 }
