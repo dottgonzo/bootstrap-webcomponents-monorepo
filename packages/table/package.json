@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-table",
 	"displayName": "Svelte Boostrap Streaming Table WebComponent",
 	"description": "Svelte Boostrap Streaming Table WebComponent",
-	"version": "0.4.34",
+	"version": "0.4.35",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
