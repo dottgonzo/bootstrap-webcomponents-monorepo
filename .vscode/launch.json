@@ -7,7 +7,7 @@
     {
       "type": "node",
       "request": "launch",
-      "runtimeVersion": "16.13.2",
+      "runtimeVersion": "16.14.0",
       "name": "dev streamingtable",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
@@ -18,57 +18,13 @@
     {
       "type": "node",
       "request": "launch",
-      "runtimeVersion": "16.13.2",
-      "name": "dev pagination",
+      "runtimeVersion": "16.14.0",
+      "name": "dev site",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 9229,
       "skipFiles": ["<node_internals>/**"],
-      "cwd": "${workspaceFolder}/packages/pagination"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "runtimeVersion": "16.13.2",
-      "name": "dev liveplayer",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 9229,
-      "skipFiles": ["<node_internals>/**"],
-      "cwd": "${workspaceFolder}/packages/liveplayer"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "runtimeVersion": "16.13.2",
-      "name": "dev videocard",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 9229,
-      "skipFiles": ["<node_internals>/**"],
-      "cwd": "${workspaceFolder}/packages/videocard"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "runtimeVersion": "16.13.2",
-      "name": "dev videogallery",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 9229,
-      "skipFiles": ["<node_internals>/**"],
-      "cwd": "${workspaceFolder}/packages/videogallery"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "runtimeVersion": "16.13.2",
-      "name": "dev loginregister",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 9229,
-      "skipFiles": ["<node_internals>/**"],
-      "cwd": "${workspaceFolder}/packages/loginregister"
+      "cwd": "${workspaceFolder}/site"
     },
     {
       "name": "Launch Chrome",
@@ -80,7 +36,7 @@
     {
       "name": "Launch Storybook",
       "request": "launch",
-      "runtimeVersion": "16.13.2",
+      "runtimeVersion": "16.14.0",
       "runtimeArgs": ["run", "storybook"],
       "runtimeExecutable": "npm",
       "skipFiles": ["<node_internals>/**"],
