@@ -1,17 +1,36 @@
-<script>
+<script lang="ts">
 	import { goto } from '$app/navigation';
-
+	import type { INavLink } from '@htmlbricks/hb-offcanvas/release/webcomponent.type';
 	import { addComponent } from '@htmlbricks/hb-jsutils';
 	import { onMount } from 'svelte';
 	import components from '../../components.json';
+	import { pageName } from '../../stores/app';
 
-	const navlinks = () => {
-		const arr = components.map((m) => {
-			const navLink = {
-				key: m.name,
-				label: m.label || m.name
+	const navlinks = (): INavLink[] => {
+		const home: INavLink = {
+			key: 'main',
+			label: 'home',
+			group: 'Site'
+		};
+
+		const arr: INavLink[] = [home];
+
+		components.categories.forEach((g) => {
+			const subLinks: INavLink[] = [];
+			g.components.forEach((c) => {
+				const navLink: INavLink = {
+					key: c.name,
+					label: c.label || c.name
+				};
+				subLinks.push(navLink);
+			});
+			const navLink: INavLink = {
+				key: g.name,
+				label: g.label || g.name,
+				group: 'components',
+				subLinks
 			};
-			return navLink;
+			arr.push(navLink);
 		});
 		return arr;
 	};
@@ -26,12 +45,12 @@
 </script>
 
 <hb-layout
-	navpage=""
+	pagename={$pageName}
 	companytitle=""
 	companylogouri=""
 	cookielaw=""
 	navlinks={JSON.stringify(navlinks())}
 	on:pagechange={(e) => pageChange(e.detail)}
 >
-	<slot />
+	<div slot="page"><slot /></div>
 </hb-layout>

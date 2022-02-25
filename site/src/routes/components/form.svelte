@@ -4,11 +4,11 @@
 	import { addComponent } from '@htmlbricks/hb-jsutils';
 
 	import { pageName } from '../../stores/app';
-	pageName.set('banner');
+	pageName.set('form');
 
 	onMount(() => {
-		addComponent('banner', 'latest');
+		addComponent('form', 'latest');
 	});
 </script>
 
-<hb-banner title="tit" />
+<hb-form />

@@ -32,7 +32,7 @@
 			title = null;
 		}
 		if (!description) {
-			description = "email";
+			description = null;
 		}
 	}
 </script>
