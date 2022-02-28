@@ -4,13 +4,14 @@
 	import { addComponent } from '@htmlbricks/hb-jsutils';
 
 	import { pageName } from '../../stores/app';
-	import bannerDefinition from '@htmlbricks/hb-banner/release/webcomponent.type';
+	import bannerDefinition from '@htmlbricks/hb-banner/release/webcomponent.type.d.json';
 	pageName.set('banner');
 
 	onMount(() => {
 		addComponent('banner', 'latest');
 		addComponent('table', 'latest');
 	});
+	console.log(bannerDefinition.definitions.Component.properties);
 </script>
 
 <hb-banner title="tit" />
