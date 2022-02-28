@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-gauge",
 	"displayName": "Svelte-Bootstrap gauge",
 	"description": "Svelte-Bootstrap gauge",
-	"version": "0.4.35",
+	"version": "0.4.36",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
