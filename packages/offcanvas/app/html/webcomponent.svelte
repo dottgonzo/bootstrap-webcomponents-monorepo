@@ -11,21 +11,8 @@
 	 *
 	 */
 
-	interface INavLink {
-		key: string;
-		icon?: string;
-		group?: string;
-		label: string;
-		badge?: {
-			text: string;
-			class?: string;
-			classcolor?: string;
-		};
-		subLinks?: INavLink[];
-	}
-
 	import pkg from "../../package.json";
-
+	import type { INavLink } from "@app/types/webcomponent.type";
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	export let id: string;

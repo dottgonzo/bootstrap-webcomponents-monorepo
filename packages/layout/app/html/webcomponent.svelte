@@ -134,7 +134,7 @@
 		navopen = false;
 		if (!company) {
 			company = null;
-		} else {
+		} else if (typeof company === "string") {
 			try {
 				company = JSON.parse(company as unknown as string);
 			} catch (err) {}

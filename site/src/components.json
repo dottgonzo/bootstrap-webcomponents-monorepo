@@ -1,0 +1,24 @@
+{
+	"categories": [
+		{
+			"name": "basic",
+			"label": "basic",
+			"components": [
+				{
+					"name": "banner",
+					"label": "banner"
+				}
+			]
+		},
+		{
+			"name": "forms",
+			"label": "forms",
+			"components": [
+				{
+					"name": "form",
+					"label": "form"
+				}
+			]
+		}
+	]
+}

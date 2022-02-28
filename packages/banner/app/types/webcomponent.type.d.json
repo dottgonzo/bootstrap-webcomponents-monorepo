@@ -1,0 +1,21 @@
+{
+  "$ref": "#/definitions/Component",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Component": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "logouri": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}
