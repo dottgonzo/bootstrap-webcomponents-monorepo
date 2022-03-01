@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-form",
 	"displayName": "Svelte-Bootstrap Text Input WebComponent",
 	"description": "Svelte-Bootstrap Text Input WebComponent",
-	"version": "0.4.35",
+	"version": "0.4.37",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -66,5 +66,5 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "f8fbe25f48d898ad736eff589e3f6124e02483f5"
+	"gitHead": "7a9cf266eddeeedf3bd59cc09cf4a62451a5e017"
 }
