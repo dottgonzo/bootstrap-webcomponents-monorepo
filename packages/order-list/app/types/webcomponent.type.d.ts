@@ -8,3 +8,7 @@ export interface IPayment extends CartPayment {
 	orderNumber: string;
 	items: IOrderItem[];
 }
+
+export type Component = {
+	payment: IPayment;
+};

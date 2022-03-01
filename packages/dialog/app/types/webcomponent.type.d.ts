@@ -1,14 +1,13 @@
 export type Component = {
-	show: boolean;
-
-	dialogClasses: string;
+	show?: "yes" | "no";
+	dialogclasses?: string;
 	title: string;
-	backdrop: boolean;
-	ignoreBackdrop: boolean;
-	keyboard: boolean;
-	describedby: string;
-	labelledby: string;
+	backdrop?: boolean;
+	ignoreBackdrop?: boolean;
+	keyboard?: boolean;
+	describedby?: string;
+	labelledby?: string;
 	content: string;
-	closelabel: string;
-	confirmlabel: string;
+	closelabel?: string;
+	confirmlabel?: string;
 };

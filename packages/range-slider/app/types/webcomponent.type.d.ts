@@ -4,3 +4,11 @@ export type dispatchValsEvent = {
 	minPercent: number;
 	maxPercent: number;
 };
+
+export type Component = {
+	min: number;
+	max: number;
+	minval: number;
+	maxval: number;
+	withbubbles: boolean;
+};

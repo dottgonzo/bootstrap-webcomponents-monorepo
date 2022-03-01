@@ -27,3 +27,10 @@ export interface IHeaders {
 	from: ICompany & { logo: string; shortName: string };
 	to: ICompany;
 }
+
+export type Component = {
+	printer: "yes" | "no";
+	items: IItem[];
+
+	headers: IHeaders;
+};

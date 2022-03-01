@@ -57,8 +57,48 @@ export type FormSchemaEntry = {
 	params?: Record<string, any>;
 };
 
+export type IComponentName =
+	| "hb-input-select"
+	| "hb-input-date"
+	| "hb-input-text"
+	| "hb-input-file"
+	| "hb-input-number"
+	| "hb-input-email"
+	| "hb-input-area"
+	| "hb-input-checkbox"
+	| "hb-input-radio";
+
+export interface ISchemaOption {
+	labelIsHandledByComponent?: boolean;
+	row?: boolean;
+}
+export interface IComponent {
+	options?: ISchemaOption;
+	component?: IComponentName;
+}
+export interface IRegisterComponent {
+	[k: string]: IComponent;
+}
+export interface IControl {
+	entry: FormSchemaEntry;
+	component?: IComponentName;
+	options?: ISchemaOption;
+	columns?: any;
+}
+
 export type FormSchema = FormSchemaEntry[];
 
 export type FormRendererProps = {
 	schema: FormSchema;
+};
+
+export type Component = {
+	schema: FormSchema;
+
+	values: Record<string, string | number | boolean>;
+
+	isInvalid: boolean;
+	submitted: "yes" | "no" | null;
+	getvals: "yes" | "no" | null;
+	showvalidation: "yes" | "no";
 };

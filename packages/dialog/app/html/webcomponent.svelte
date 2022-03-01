@@ -15,14 +15,14 @@
 	import { quintOut } from "svelte/easing";
 
 	export let id: string;
-	export let show: boolean;
+	export let show: "yes" | "no";
 	$: {
 		if (!id) id = "";
-		if (show && ((show as unknown as string) === "yes" || (show as unknown as string) === "")) show = true;
-		else show = false;
+		if (show === "yes" || (show as unknown) === "") show = "yes";
+		else show = "no";
 	}
 
-	export let dialogClasses = "";
+	export let dialogclasses = "";
 	export let title = "";
 	export let backdrop = true;
 	export let ignoreBackdrop = false;
@@ -58,14 +58,14 @@
 	function handleBackdrop(event) {
 		if (backdrop && !ignoreBackdrop) {
 			event.stopPropagation();
-			show = false;
+			show = "no";
 		}
 	}
 	function onModalOpened() {
 		if (keyboard) {
 			_keyboardEvent = attachEvent(document, "keydown", (e) => {
 				if (event && (event as any).key === "Escape") {
-					show = false;
+					show = "no";
 				}
 			});
 		}
@@ -87,10 +87,10 @@
 	}
 	function handleConfirm() {
 		dispatch("modalConfirm", { id, confirm: true });
-		show = false;
+		show = "no";
 	}
 	function handleCancel() {
-		show = false;
+		show = "no";
 
 		dispatch("modalConfirm", { id, confirm: false });
 	}
@@ -110,11 +110,11 @@
 		on:outroend={onModalClosed}
 		transition:fade
 	>
-		<div class="modal-dialog {dialogClasses}" role="document" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300, easing: quintOut }}>
+		<div class="modal-dialog {dialogclasses}" role="document" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300, easing: quintOut }}>
 			<div class="modal-content">
 				<slot name="header" class="modal-header">
 					<h5 class="modal-title"><slot name="title">{title || "title"}</slot></h5>
-					<button type="button" class="btn-close" on:click={() => (show = false)}>
+					<button type="button" class="btn-close" on:click={() => (show = "no")}>
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</slot>

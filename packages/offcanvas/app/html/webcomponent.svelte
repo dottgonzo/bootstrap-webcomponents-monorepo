@@ -12,19 +12,19 @@
 	 */
 
 	import pkg from "../../package.json";
-	import type { INavLink } from "@app/types/webcomponent.type";
+	import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
+
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	export let id: string;
 	export let opened: boolean;
-	export let navlinks: string;
+	export let navlinks: INavLink[];
 	export let navpage: string;
 	export let groups: string;
 	export let companylogouri: string;
 	export let companytitle: string;
 	export let enablefooter: boolean;
 	export let type: "open" | "autohide" | "small";
-	let navLinks: INavLink[];
 	let groupsArr: { key: string; label: string }[] = [];
 	let sendOff;
 	let switched;
@@ -56,12 +56,10 @@
 				groups = null;
 				groupsArr = [];
 			}
-			if (navlinks) {
-				try {
-					navLinks = JSON.parse(navlinks);
-				} catch (err) {}
+			if (navlinks && typeof navlinks === "string") {
+				navlinks = JSON.parse(navlinks);
 			} else {
-				navLinks = [];
+				navlinks = [];
 				navlinks = null;
 			}
 		} catch (err) {}
@@ -129,8 +127,8 @@
 			<!-- <hr style="margin-top:9px;margin-bottom: 20px;" /> -->
 
 			<ul class="nav nav-pills flex-column mb-auto" style="margin-top:25px">
-				{#if navLinks?.length && navLinks.filter((f) => !f.group)?.length}
-					{#each navLinks.filter((f) => !f.group) as navLink (navLink.key)}
+				{#if navlinks?.length && navlinks.filter((f) => !f.group)?.length}
+					{#each navlinks.filter((f) => !f.group) as navLink (navLink.key)}
 						<hb-sidenav-link navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
 					{/each}
 				{/if}
@@ -139,25 +137,25 @@
 						<h5 style="margin-top: 40px;">{navLinkGroup.label}</h5>
 						<hr style="margin-top:0px;margin-bottom: 10px;" />
 
-						{#each navLinks.filter((f) => f.group && f.group === navLinkGroup.key) as navLink (navLink.key)}
+						{#each navlinks.filter((f) => f.group && f.group === navLinkGroup.key) as navLink (navLink.key)}
 							<hb-sidenav-link navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
 						{/each}
 					{/each}
 				{/if}
 
-				{#each navLinks
+				{#each navlinks
 					.filter((f) => f.group && (!groupsArr || !groupsArr.length || !groupsArr.map((m) => m.key).includes(f.group)))
 					.map((m) => m.group)
 					.filter((v, i, a) => a.indexOf(v) === i) as navLinkGroup (navLinkGroup)}
 					<h5 style="margin-top: 40px;">{navLinkGroup}</h5>
 					<hr style="margin-top:0px;margin-bottom: 10px;" />
 
-					{#each navLinks.filter((f) => f.group && f.group === navLinkGroup) as navLink (navLink.key)}
+					{#each navlinks.filter((f) => f.group && f.group === navLinkGroup) as navLink (navLink.key)}
 						<hb-sidenav-link navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
 					{/each}
 				{/each}
 
-				<!-- {#if navLinks.filter((f) => f.group)?.length}
+				<!-- {#if navlinks.filter((f) => f.group)?.length}
 					<hr />
 				{/if} -->
 			</ul>

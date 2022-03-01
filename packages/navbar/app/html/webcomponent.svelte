@@ -10,24 +10,15 @@
 	 * @license: MIT License
 	 *
 	 */
-	interface IUserMenuListItem {
-		key: string;
-		label: string;
-		badge?: number;
-		group?: string;
-	}
-	interface IUserMenu {
-		imgUri: string;
-		list?: IUserMenuListItem[];
-	}
 
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
+	import type { IUserMenu } from "@app/types/webcomponent.type";
 
+	export let id: string;
 	export let companybrandname: string;
 	export let companylogouri: string;
-	export let id: string;
 	export let pagetitle: string;
 	export let switchopen: string;
 	export let usermenu: IUserMenu;
