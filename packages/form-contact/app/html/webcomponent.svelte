@@ -16,7 +16,6 @@
 </script>
 
 <svelte:head>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
 </svelte:head>
 <form class="needs-validation pt-2 px-md-3" novalidate="">
 	<div class="row">
