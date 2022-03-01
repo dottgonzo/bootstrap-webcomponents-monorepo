@@ -21,7 +21,7 @@
 		"dev": "rm -rf ./dist && rollup -c -w",
 		"build": "rm -rf ./dist && rollup -c",
 		"generate-schema": "ts-json-schema-generator --path 'app/types/webcomponent.type.d.ts' --type 'Component' > app/types/webcomponent.type.d.json",
-		"copydest": "rm -rf release && mkdir -p release && cp dist/release.js ./release/ && cp dist/release.js.map ./release/",
+		"copydest": "rm -rf release && mkdir -p release && mkdir -p release && cp dist/* ./release/",
 		"build:release": "PRODUCTION=true npm run build && npm run generate-schema && npm run copydest",
 		"prepublish": "npm run build:release"
 	},
@@ -67,7 +67,7 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "6a84252d245ccfed04de1ec5be0084de07eb1793",
+	"gitHead": "190d984721efc18631488bd38bd59f9687f472c1",
 	"dependencies": {
 		"debounce": "^1.2.1",
 		"ol": "^6.12.0"
