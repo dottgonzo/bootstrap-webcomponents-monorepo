@@ -1,5 +1,5 @@
 export interface IHeader {
-	[x]: string;
+	[x: string]: string;
 }
 
 export type Component = {

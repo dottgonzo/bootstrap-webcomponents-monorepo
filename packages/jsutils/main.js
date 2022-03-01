@@ -6,8 +6,9 @@ function addComponent(componentName, version, allowLocal) {
         var script = document.createElement("script");
         script.id = "hb-" + componentName + "-script";
         script.src = "https://cdn.jsdelivr.net/npm/@htmlbricks/hb-".concat(componentName, "@").concat(version, "/release/release.js");
-        if (allowLocal && location.href.includes("localhost"))
+        if (allowLocal && location.href.includes("localhost")) {
             script.src = "http://localhost:6006/".concat(componentName, "/dist/release.js");
+        }
         document.head.appendChild(script);
     }
 }
