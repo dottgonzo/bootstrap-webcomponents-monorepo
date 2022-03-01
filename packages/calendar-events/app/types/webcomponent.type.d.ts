@@ -14,3 +14,8 @@ export interface IEvent {
 		imageUrl?: string;
 	};
 }
+export type Component = {
+	date: Date;
+	events: IEvent[];
+	selected: Date;
+};

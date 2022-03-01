@@ -32,8 +32,9 @@
 	export let content = "";
 	export let closelabel = "";
 	export let confirmlabel = "";
-	export let onOpened = () => dispatch("modalShow", { id, show: true });
-	export let onClosed = () => dispatch("modalShow", { id, show: false });
+
+	const onOpened = () => dispatch("modalShow", { id, show: true });
+	const onClosed = () => dispatch("modalShow", { id, show: false });
 	let _keyboardEvent;
 	function attachEvent(target, ...args) {
 		target.addEventListener(...args);

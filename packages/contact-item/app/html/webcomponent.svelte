@@ -13,41 +13,9 @@
 
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
+	import type { IAddress, IConfig, IEmail, IPhone, ISite, ISocial } from "@app/types/webcomponent.type";
 
 	export let id: string;
-
-	interface IPhone {
-		number: string;
-		callOnClick?: boolean;
-	}
-	interface IAddress {
-		mapUri?: string;
-		latLang?: number[];
-		address: string;
-		shortAddress?: string;
-	}
-	interface IEmail {
-		mailLink?: boolean;
-		address: string;
-	}
-
-	interface IConfig {
-		icon?: { fill?: boolean };
-		text?: boolean;
-		dispatcher?: boolean;
-	}
-
-	interface ISite {
-		label?: string;
-		uri?: string;
-		open?: boolean;
-	}
-
-	interface ISocial {
-		label?: string;
-		pageUri?: string;
-		name: string;
-	}
 
 	let openWindow = false;
 

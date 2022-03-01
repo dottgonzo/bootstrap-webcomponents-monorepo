@@ -12,3 +12,8 @@ export interface IPayment {
 	shipmentFee?: number;
 	items: IShopItem[];
 }
+
+export type Component = {
+	payment: IPayment;
+	completed: "yes" | "no";
+};
