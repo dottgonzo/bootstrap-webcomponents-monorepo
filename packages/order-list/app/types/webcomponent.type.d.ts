@@ -1,10 +1,10 @@
-import type { IPayment as CartPayment, IShopItem } from "../../../checkout-shopping-cart/app/types/webcomponent.type";
+import type { IPayment, IShopItem } from "../../../checkout-shopping-cart/app/types/webcomponent.type";
 
 interface IOrderItem extends IShopItem {
 	image: string;
 }
 
-export interface IPayment extends CartPayment {
+export interface OrderPayment extends IPayment {
 	orderNumber: string;
 	items: IOrderItem[];
 }
