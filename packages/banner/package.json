@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-banner",
 	"displayName": "Svelte Banner WebComponent",
 	"description": "Svelte Banner WebComponent",
-	"version": "0.5.6",
+	"version": "0.5.7",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
