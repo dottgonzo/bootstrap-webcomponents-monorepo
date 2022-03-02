@@ -79,7 +79,7 @@
 	}
 	// Watching changes for Open vairable
 	$: {
-		if (show) {
+		if (show === "yes") {
 			modalOpen();
 		} else {
 			modalClose();
@@ -96,7 +96,7 @@
 	}
 </script>
 
-{#if show}
+{#if show === "yes"}
 	<div
 		id="modal-{id}"
 		class="modal show"

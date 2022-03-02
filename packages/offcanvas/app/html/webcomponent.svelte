@@ -56,9 +56,9 @@
 				groups = null;
 				groupsArr = [];
 			}
-			if (navlinks && typeof navlinks === "string") {
+			if (typeof navlinks === "string") {
 				navlinks = JSON.parse(navlinks);
-			} else {
+			} else if (!navlinks) {
 				navlinks = [];
 				navlinks = null;
 			}
@@ -142,18 +142,19 @@
 						{/each}
 					{/each}
 				{/if}
+				{#if navlinks?.length}
+					{#each navlinks
+						.filter((f) => f.group && (!groupsArr || !groupsArr.length || !groupsArr.map((m) => m.key).includes(f.group)))
+						.map((m) => m.group)
+						.filter((v, i, a) => a.indexOf(v) === i) as navLinkGroup (navLinkGroup)}
+						<h5 style="margin-top: 40px;">{navLinkGroup}</h5>
+						<hr style="margin-top:0px;margin-bottom: 10px;" />
 
-				{#each navlinks
-					.filter((f) => f.group && (!groupsArr || !groupsArr.length || !groupsArr.map((m) => m.key).includes(f.group)))
-					.map((m) => m.group)
-					.filter((v, i, a) => a.indexOf(v) === i) as navLinkGroup (navLinkGroup)}
-					<h5 style="margin-top: 40px;">{navLinkGroup}</h5>
-					<hr style="margin-top:0px;margin-bottom: 10px;" />
-
-					{#each navlinks.filter((f) => f.group && f.group === navLinkGroup) as navLink (navLink.key)}
-						<hb-sidenav-link navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
+						{#each navlinks.filter((f) => f.group && f.group === navLinkGroup) as navLink (navLink.key)}
+							<hb-sidenav-link navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
+						{/each}
 					{/each}
-				{/each}
+				{/if}
 
 				<!-- {#if navlinks.filter((f) => f.group)?.length}
 					<hr />
