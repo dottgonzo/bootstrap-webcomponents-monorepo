@@ -35,5 +35,5 @@ export type Component = {
 	passwordpattern: string;
 	userpattern: string;
 	usertype: "email" | "username";
-	disableregister: boolean = null;
+	disableregister: boolean;
 };
