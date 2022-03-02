@@ -37,6 +37,7 @@
 
 	onMount(() => {
 		addComponent('layout', 'latest');
+		addComponent('area-code', 'latest');
 	});
 	function pageChange(d) {
 		goto('/components/' + d.page);
@@ -52,5 +53,7 @@
 	navlinks={JSON.stringify(navlinks())}
 	on:pagechange={(e) => pageChange(e.detail)}
 >
-	<div slot="page"><slot /></div>
+	<div style="margin:auto;max-width:1000px" slot="page">
+		<slot />
+	</div>
 </hb-layout>
