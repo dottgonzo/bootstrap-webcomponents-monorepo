@@ -44,15 +44,14 @@
 <style lang="scss">
 	#content {
 		background-color: rgb(232 232 232 / 57%);
-		padding: 26px 12px 12px 12px;
+		padding: 26px 12px 26px 12px;
 		position: relative;
-		padding-bottom: 30px;
 	}
 	#copycode {
 		position: absolute;
-		right: 4px;
-		top: 4px;
-		font-size: 0.7em;
+		right: 6px;
+		top: 6px;
+		font-size: 0.6em;
 	}
 	#copybutton {
 		cursor: pointer;
