@@ -63,3 +63,6 @@ export const webComponentBind = (
 
   return c;
 };
+export const argTypesExtraUtils = {
+  id: { control: { disable: true } },
+};

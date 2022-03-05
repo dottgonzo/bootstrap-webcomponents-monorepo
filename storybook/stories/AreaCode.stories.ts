@@ -1,14 +1,12 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
 import { storybookArgs } from "../../packages/area-code/extra/docs";
 const meta: Meta = {
   title: "Components/AreaCode",
-  argTypes: Object.assign(
-    {
-      id: { control: { disable: true } },
-    },
-    storybookArgs
-  ),
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 export default meta;
 
