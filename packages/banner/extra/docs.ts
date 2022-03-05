@@ -1,3 +1,5 @@
 export const storybookArgs = {
-	content: { control: { type: "text" } },
+	logouri: { control: { type: "text" } },
+	title: { control: { type: "text" } },
+	description: { control: { type: "text" } },
 };
