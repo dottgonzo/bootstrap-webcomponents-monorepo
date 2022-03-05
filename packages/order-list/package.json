@@ -14,7 +14,7 @@
 	"license-translations": "CC BY 4.0",
 	"license-images": "CC BY-NC 4.0",
 	"engines": {
-		"node": ">=14.0.0"
+		"node": ">=16.0.0"
 	},
 	"scripts": {
 		"start": "sirv dist",
