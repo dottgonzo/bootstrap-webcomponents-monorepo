@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-page-loginregister",
 	"displayName": "Svelte Bootstrap Login/Register Layout WebComponent",
 	"description": "Svelte Bootstrap 5 WebComponent",
-	"version": "0.5.10",
+	"version": "0.5.11",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -22,7 +22,7 @@
 		"build": "rm -rf ./dist && rollup -c",
 		"generate-schema": "ts-json-schema-generator --path 'app/types/webcomponent.type.d.ts' --type 'Component' > app/types/webcomponent.type.d.json",
 		"copydest": "rm -rf release && mkdir -p release && mkdir -p release && cp dist/* ./release/",
-		"build-extra": "tsc --lib es2018,dom --outDir dist --sourceMap true extra/*",
+		"build-extra": "tsc --module es2020 --esModuleInterop true --outDir dist --sourceMap true --skipLibCheck true extra/*",
 		"build:release": "PRODUCTION=true npm run build && npm run build-extra && npm run generate-schema && npm run copydest",
 		"prepublish": "npm run build:release"
 	},
