@@ -1,11 +1,13 @@
 <script lang="ts">
 	import ControlTable from './controlTable.svelte';
 	import PropsTable from './propsTable.svelte';
+	import { allComponents } from '../stores/components';
 
 	export let name: string;
 	export let args: any;
-	export let storybookargs: any;
-	export let definition: any;
+
+	const storybookargs = $allComponents.find((f) => f.name === name).storybookArgs;
+	const definition = $allComponents.find((f) => f.name === name).definition;
 
 	let com: string;
 

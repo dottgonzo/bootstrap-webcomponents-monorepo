@@ -3,12 +3,9 @@
 
 	import ComponentManager from '../../components/ComponentManager.svelte';
 
-	const pageComponent = 'banner';
-	import definition from '@htmlbricks/hb-banner/release/webcomponent.type.d.json';
-	import { storybookArgs as storybookargs } from '@htmlbricks/hb-banner/release/docs';
-	pageName.set(pageComponent);
+	const name = 'banner';
 
-	console.log(definition.definitions.Component.properties, storybookargs);
+	pageName.set(name);
 
 	let args = {
 		title: 'ciao',
@@ -16,4 +13,4 @@
 	};
 </script>
 
-<ComponentManager name={pageComponent} {args} {definition} {storybookargs} />
+<ComponentManager {name} {args} />

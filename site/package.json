@@ -32,6 +32,7 @@
 	"type": "module",
 	"dependencies": {
 		"@htmlbricks/hb-banner": "^0.5.13",
+		"@htmlbricks/hb-area-code": "^0.5.13",
 		"@htmlbricks/hb-jsutils": "^0.5.13",
 		"@htmlbricks/hb-sidenav-link": "^0.5.13"
 	}
