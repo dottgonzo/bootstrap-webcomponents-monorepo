@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-input-radio",
 	"displayName": "Svelte-Bootstrap Radio Input WebComponent",
 	"description": "Svelte-Bootstrap Radio Input WebComponent",
-	"version": "0.5.12",
+	"version": "0.5.13",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
