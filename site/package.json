@@ -33,6 +33,6 @@
 	"dependencies": {
 		"@htmlbricks/hb-banner": "^0.5.13",
 		"@htmlbricks/hb-jsutils": "^0.5.13",
-		"@htmlbricks/hb-offcanvas": "^0.5.13"
+		"@htmlbricks/hb-sidenav-link": "^0.5.13"
 	}
 }

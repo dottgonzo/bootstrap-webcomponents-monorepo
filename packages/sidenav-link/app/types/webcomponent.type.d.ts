@@ -9,7 +9,7 @@ export interface INavLink {
 		classcolor?: string;
 	};
 	subLinks?: INavLink[];
-	active: boolean;
+	active?: boolean;
 	open?: boolean;
 }
 

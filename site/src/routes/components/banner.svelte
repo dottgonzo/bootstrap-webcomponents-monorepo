@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { addComponent } from '@htmlbricks/hb-jsutils';
-
 	import { pageName } from '../../stores/app';
 
 	import ComponentManager from '../../components/ComponentManager.svelte';
@@ -11,9 +8,6 @@
 	import { storybookArgs as storybookargs } from '@htmlbricks/hb-banner/release/docs';
 	pageName.set(pageComponent);
 
-	onMount(() => {
-		addComponent(pageComponent, 'latest');
-	});
 	console.log(definition.definitions.Component.properties, storybookargs);
 
 	let args = {

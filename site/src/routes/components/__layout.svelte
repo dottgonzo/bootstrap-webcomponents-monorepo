@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import type { INavLink } from '@htmlbricks/hb-offcanvas/release/webcomponent.type';
+	import type { INavLink } from '@htmlbricks/hb-sidenav-link/release/webcomponent.type';
 	import { addComponent } from '@htmlbricks/hb-jsutils';
 	import { onMount } from 'svelte';
 	import components from '../../components.json';
@@ -10,7 +10,8 @@
 		const home: INavLink = {
 			key: 'main',
 			label: 'home',
-			group: 'Site'
+			group: 'Site',
+			active: false
 		};
 
 		const arr: INavLink[] = [home];
@@ -20,7 +21,8 @@
 			g.components.forEach((c) => {
 				const navLink: INavLink = {
 					key: c.name,
-					label: c.label || c.name
+					label: c.label || c.name,
+					active: false
 				};
 				subLinks.push(navLink);
 			});
@@ -28,7 +30,8 @@
 				key: g.name,
 				label: g.label || g.name,
 				group: 'components',
-				subLinks
+				subLinks,
+				active: false
 			};
 			arr.push(navLink);
 		});
@@ -36,8 +39,7 @@
 	};
 
 	onMount(() => {
-		addComponent('layout', 'latest');
-		addComponent('area-code', 'latest');
+		addComponent('bundle', 'latest');
 	});
 	function pageChange(d) {
 		goto('/components/' + d.page);
