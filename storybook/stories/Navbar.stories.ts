@@ -3,6 +3,7 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/navbar/extra/docs";
 
 const meta: Meta = {
   title: "Layout/Navbar",

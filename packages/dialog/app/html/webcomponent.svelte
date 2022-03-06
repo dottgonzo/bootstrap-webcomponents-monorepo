@@ -25,13 +25,14 @@
 	export let dialogclasses = "";
 	export let title = "";
 	export let backdrop = true;
-	export let ignoreBackdrop = false;
 	export let keyboard = true;
 	export let describedby = "";
 	export let labelledby = "";
 	export let content = "";
 	export let closelabel = "";
 	export let confirmlabel = "";
+
+	let ignoreBackdrop = false;
 
 	const onOpened = () => dispatch("modalShow", { id, show: true });
 	const onClosed = () => dispatch("modalShow", { id, show: false });

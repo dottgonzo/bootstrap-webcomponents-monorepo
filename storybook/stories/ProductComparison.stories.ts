@@ -3,6 +3,7 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/product-comparison/extra/docs";
 
 const meta: Meta = {
   title: "Sections/ProductComparison",

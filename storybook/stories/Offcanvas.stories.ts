@@ -3,6 +3,7 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/offcanvas/extra/docs";
 
 const meta: Meta = {
   title: "Layout/Offcanvas",

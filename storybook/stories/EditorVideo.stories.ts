@@ -3,17 +3,11 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/editor-video/extra/docs";
 
 const meta: Meta = {
   title: "Contents/VideoEditor",
-  argTypes: {
-    id: { control: { disable: true } },
-    src: { control: { type: "text" } },
-    form: { control: { type: "array" } },
-    track: { control: { type: "object" } },
-    changeTrackValues: { action: "changeTrackValuesEvent" },
-    dispatchTrack: { action: "dispatchTrackEvent" },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

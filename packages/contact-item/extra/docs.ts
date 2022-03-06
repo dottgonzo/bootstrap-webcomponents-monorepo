@@ -1,3 +1,9 @@
 export const storybookArgs = {
-	content: { control: { type: "text" } },
+	id: { control: { disable: true } },
+	phone: { control: { type: "object" } },
+	address: { control: { type: "object" } },
+	email: { control: { type: "object" } },
+	site: { control: { type: "object" } },
+	config: { control: { type: "object" } },
+	contactclick: { action: "contactClickEvent" },
 };

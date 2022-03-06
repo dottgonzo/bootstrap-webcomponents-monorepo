@@ -3,22 +3,11 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/checkout/extra/docs";
 
 const meta: Meta = {
   title: "Components/Checkout",
-
-  argTypes: {
-    id: { control: { disable: true } },
-    shipments: { control: { type: "array" } },
-    user: { control: { type: "object" } },
-    payment: { control: { type: "object" } },
-    paymentCompleted: { action: "paymentCompleted" },
-    saveUser: { action: "saveUser" },
-    saveShipment: { action: "saveShipment" },
-    gateways: { control: { type: "array" } },
-    setGateway: { action: "setGateway" },
-    completed: { control: { type: "radio" }, options: ["yes", "no"] },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

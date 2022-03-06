@@ -3,6 +3,7 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/map/extra/docs";
 
 const meta: Meta = {
   title: "Map/Map",

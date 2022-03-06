@@ -3,12 +3,11 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/editor-tinymce/extra/docs";
 
 const meta: Meta = {
   title: "Contents/TinyEditor",
-  argTypes: {
-    id: { control: { disable: true } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

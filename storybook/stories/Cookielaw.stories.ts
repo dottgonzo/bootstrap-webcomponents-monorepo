@@ -3,15 +3,12 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/cookie-law-banner/extra/docs";
 
 const meta: Meta = {
   title: "Components/Cookielaw",
-  argTypes: {
-    id: { control: { disable: true } },
-    allowdecline: { control: { type: "boolean" } },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 
-    acceptCookieLaw: { action: "acceptCookieLawEvent" },
-  },
   parameters: {
     layout: "fullscreen",
   },

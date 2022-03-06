@@ -1,3 +1,6 @@
 export const storybookArgs = {
-	content: { control: { type: "text" } },
+	schema: { control: { type: "array" } },
+	submit: { action: "submit" },
+	submitted: { control: { type: "boolean" } },
+	showvalidation: { control: { type: "boolean" } },
 };

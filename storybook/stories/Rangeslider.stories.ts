@@ -3,6 +3,7 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/range-slider/extra/docs";
 
 const meta: Meta = {
   title: "Components/Rangeslider",

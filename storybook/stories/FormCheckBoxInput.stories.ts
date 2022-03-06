@@ -3,7 +3,7 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
-// import type { FormSchemaEntry } from "../../packages/formtextinputrenderer/app/types/webcomponent.type";
+import { storybookArgs } from "../../packages/input-checkbox/extra/docs";
 
 const meta: Meta = {
   title: "Form/FormCheckBoxInput",

@@ -3,6 +3,7 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/order-list/extra/docs";
 
 const meta: Meta = {
   title: "Order/List",

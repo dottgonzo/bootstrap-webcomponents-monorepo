@@ -3,6 +3,8 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/toast/extra/docs";
+
 const meta: Meta = {
   title: "Components/Toast",
   argTypes: {

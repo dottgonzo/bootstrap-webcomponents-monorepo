@@ -3,12 +3,11 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/dialog/extra/docs";
+
 const meta: Meta = {
   title: "Components/Dialog",
-  argTypes: {
-    id: { control: { disable: true } },
-    show: { control: { type: "boolean" } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 export default meta;
 

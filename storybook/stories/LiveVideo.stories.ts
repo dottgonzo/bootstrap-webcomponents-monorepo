@@ -3,6 +3,7 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/player-live/extra/docs";
 
 const mediauri = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
 const replacewithtext1 = {

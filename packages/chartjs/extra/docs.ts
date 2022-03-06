@@ -1,3 +1,4 @@
 export const storybookArgs = {
-	content: { control: { type: "text" } },
+	data: { control: { type: "object" } },
+	chartClick: { action: "chartClick" },
 };

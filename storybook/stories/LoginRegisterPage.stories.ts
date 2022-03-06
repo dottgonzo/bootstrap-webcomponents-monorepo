@@ -3,6 +3,7 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/page-loginregister/extra/docs";
 
 const meta: Meta = {
   title: "Pages/LoginRegisterPage",
