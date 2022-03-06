@@ -1,6 +1,9 @@
 import { Story, Meta } from "@storybook/html";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { webComponentBind } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
 
 interface IColumn {
   _id?: string;

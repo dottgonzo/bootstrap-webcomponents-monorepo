@@ -1,16 +1,13 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
-// import type { IEvent } from "../../packages/calendar/app/types/webcomponent.type";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/calendar-events/extra/docs";
 import dayjs from "dayjs";
 const meta: Meta = {
   title: "Contents/Calendar",
-  argTypes: {
-    id: { control: { disable: true } },
-    events: { control: { type: "object" } },
-    calendarEventClick: { action: "calendarEventClickEvent" },
-    changeCalendarDate: { action: "changeCalendarDateEvent" },
-    changeSelectedDate: { action: "changeSelectedDateEvent" },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 export default meta;
 

@@ -1,5 +1,8 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
 // import type { FormSchemaEntry } from "../../packages/formtextinputrenderer/app/types/webcomponent.type";
 
 const meta: Meta = {

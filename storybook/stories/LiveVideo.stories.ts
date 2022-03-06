@@ -1,5 +1,8 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
 
 const mediauri = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
 const replacewithtext1 = {
