@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-calendar-events",
 	"displayName": "Svelte Calendar WebComponent",
 	"description": "Svelte Calendar WebComponent",
-	"version": "0.5.9",
+	"version": "0.5.10",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
