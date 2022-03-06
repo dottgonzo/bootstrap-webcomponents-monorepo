@@ -1,23 +1,25 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 	import { addComponent } from '@htmlbricks/hb-jsutils';
 
 	import { pageName } from '../../stores/app';
-	import bannerDefinition from '@htmlbricks/hb-banner/release/webcomponent.type.d.json';
-	import { storybookArgs } from '@htmlbricks/hb-banner/release/docs';
 
-	import PropsTable from '../../components/propsTable.svelte';
+	import ComponentManager from '../../components/ComponentManager.svelte';
 
-	pageName.set('banner');
+	const pageComponent = 'banner';
+	import definition from '@htmlbricks/hb-banner/release/webcomponent.type.d.json';
+	import { storybookArgs as storybookargs } from '@htmlbricks/hb-banner/release/docs';
+	pageName.set(pageComponent);
 
 	onMount(() => {
-		addComponent('banner', 'latest');
+		addComponent(pageComponent, 'latest');
 	});
-	console.log(bannerDefinition.definitions.Component.properties, storybookArgs);
+	console.log(definition.definitions.Component.properties, storybookargs);
+
+	let args = {
+		title: 'ciao',
+		description: 'desc'
+	};
 </script>
 
-<hb-banner title="tit" />
-<hb-area-code content={`<hb-banner title="tit" />`} />
-
-<PropsTable name="banner" definition={bannerDefinition} />
+<ComponentManager name={pageComponent} {args} {definition} {storybookargs} />
