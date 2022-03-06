@@ -7,11 +7,7 @@ import { storybookArgs } from "../../packages/page-invoice/extra/docs";
 
 const meta: Meta = {
   title: "Pages/Invoice",
-  argTypes: {
-    id: { control: { disable: true } },
-    headers: { control: { type: "object" } },
-    items: { control: { type: "array" } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

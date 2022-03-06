@@ -20,15 +20,7 @@ const replacewithtext3 = {
 };
 const meta: Meta = {
   title: "Components/LiveVideoPlayer",
-
-  argTypes: {
-    width: { control: { type: "range", min: 100, max: 2000, step: 25 } },
-    height: { control: { type: "range", min: 100, max: 2000, step: 25 } },
-    mediatype: { control: { type: "text" } },
-    liveStatus: { action: "liveStatusEvent" },
-
-    id: { control: { disable: true } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

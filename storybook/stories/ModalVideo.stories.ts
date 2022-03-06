@@ -7,12 +7,7 @@ import { storybookArgs } from "../../packages/modal-video/extra/docs";
 
 const meta: Meta = {
   title: "Components/VideoModal",
-  argTypes: {
-    id: { control: { disable: true } },
-    uri: { control: { type: "text" } },
-    title: { control: { type: "text" } },
-    item: { control: { type: "text" } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

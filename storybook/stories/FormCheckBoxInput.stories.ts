@@ -7,10 +7,7 @@ import { storybookArgs } from "../../packages/input-checkbox/extra/docs";
 
 const meta: Meta = {
   title: "Form/FormCheckBoxInput",
-  argTypes: {
-    id: { control: { disable: true } },
-    schemaentry: { control: { type: "object" } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

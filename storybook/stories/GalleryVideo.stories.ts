@@ -70,19 +70,7 @@ const headers = [
 
 const meta: Meta = {
   title: "Contents/VideoGallery",
-  argTypes: {
-    size: { control: { type: "range", min: 1, max: cards.length + 2 } },
-    page: { control: { type: "number" } },
-    resturi: { control: { type: "object" } },
-    headers: { control: { type: "array" } },
-    cards: { control: { type: "array" } },
-    primarycolor: { control: { type: "color" } },
-    pagechange: { action: "pagechangeEvent" },
-    externalfilter: { control: { type: "boolean" } },
-    textFilterVideos: { action: "textFilterVideosEvent" },
-    dateFilterVideos: { action: "dateFilterVideosEvent" },
-    id: { control: { disable: true } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

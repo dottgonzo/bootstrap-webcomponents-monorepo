@@ -7,13 +7,7 @@ import { storybookArgs } from "../../packages/dropdown-simple/extra/docs";
 
 const meta: Meta = {
   title: "Components/SimpleDropdown",
-  argTypes: {
-    id: { control: { disable: true } },
-    open: { control: { type: "boolean" } },
-    list: { control: { type: "array" } },
-    dropdownSwitch: { action: "dropdownSwitchEvent" },
-    dropDownClick: { action: "dropDownClickEvent" },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

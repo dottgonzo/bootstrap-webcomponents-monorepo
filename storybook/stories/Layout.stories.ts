@@ -7,18 +7,7 @@ import { storybookArgs } from "../../packages/layout/extra/docs";
 
 const meta: Meta = {
   title: "Layout/MainLayout",
-  argTypes: {
-    id: { control: { disable: true } },
-    pagechange: { action: "pagechange" },
-    offcanvasswitch: { action: "offcanvasswitchEvent" },
-    contacts: { control: { type: "object" } },
-    socials: { control: { type: "object" } },
-    usermenu: { control: { type: "object" } },
-    company: { control: { type: "object" } },
-    navlinks: { control: { type: "array" } },
-    pagename: { control: { type: "string" } },
-    cookielaw: { control: { type: "boolean" } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
   parameters: {
     layout: "fullscreen",
   },

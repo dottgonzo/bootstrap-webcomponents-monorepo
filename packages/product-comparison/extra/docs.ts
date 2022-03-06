@@ -1,3 +1,6 @@
 export const storybookArgs = {
-	content: { control: { type: "text" } },
+	products: { control: { type: "array" } },
+	options: { control: { type: "object" } },
+	headers: { control: { type: "array" } },
+	purchaseClick: { action: "pagechangeEvent" },
 };

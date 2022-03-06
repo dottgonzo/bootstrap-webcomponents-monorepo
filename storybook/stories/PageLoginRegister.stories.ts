@@ -7,23 +7,7 @@ import { storybookArgs } from "../../packages/page-loginregister/extra/docs";
 
 const meta: Meta = {
   title: "Pages/LoginRegisterPage",
-  argTypes: {
-    type: {
-      options: ["login", "register"],
-      control: { type: "select" }, // Automatically inferred when 'options' is defined
-    },
-    language: { control: { type: "string" } },
-    logouri: { control: { type: "string" } },
-    loginuri: { control: { type: "string" } },
-    registeruri: { control: { type: "string" } },
-    login: { action: "loginEvent" },
-    register: { action: "registerEvent" },
-    contacts: { control: { type: "object" } },
-    company: { control: { type: "object" } },
-    socials: { control: { type: "object" } },
-    id: { control: { disable: true } },
-    oauth2providers: { control: { type: "array" } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
   parameters: {
     layout: "fullscreen",
   },

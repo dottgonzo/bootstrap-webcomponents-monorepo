@@ -1,3 +1,10 @@
 export const storybookArgs = {
-	content: { control: { type: "text" } },
+	submitstep: {
+		options: ["no", "yes"],
+		control: { type: "select" },
+	},
+	update: { action: "updateEvent" },
+	submit: { action: "submitEvent" },
+
+	schemes: { control: { type: "array" } },
 };

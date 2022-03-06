@@ -7,12 +7,7 @@ import { storybookArgs } from "../../packages/paginate/extra/docs";
 
 const meta: Meta = {
   title: "Components/Pagination",
-  argTypes: {
-    page: { control: { type: "number" } },
-    pages: { control: { type: "number" } },
-    pagechange: { action: "pagechange" },
-    id: { control: { disable: true } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta as Meta;

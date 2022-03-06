@@ -1,3 +1,6 @@
 export const storybookArgs = {
-	content: { control: { type: "text" } },
+	payByCard: { action: "payByCard" },
+	paymentCompleted: { action: "paymentCompleted" },
+	paypalid: { control: { type: "string" } },
+	currency: { control: { type: "string" } },
 };

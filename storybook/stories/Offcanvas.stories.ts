@@ -7,19 +7,7 @@ import { storybookArgs } from "../../packages/offcanvas/extra/docs";
 
 const meta: Meta = {
   title: "Layout/Offcanvas",
-  argTypes: {
-    opened: { control: { type: "boolean" } },
-    companylogouri: { control: { type: "text" } },
-    companytitle: { control: { type: "text" } },
-    enablefooter: { control: { type: "boolean" } },
-    pageclick: { action: "pageclickEvent" },
-    offcanvasswitch: { action: "offcanvasswitchEvent" },
-    pagechange: { action: "pagechangeEvent" },
-    id: { control: { disable: true } },
-    type: { control: { options: ["autohide", "small", "open"] } },
-    navpage: { control: { type: "text" } },
-    navlinks: { control: { type: "array" } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
   parameters: {
     layout: "fullscreen",
   },

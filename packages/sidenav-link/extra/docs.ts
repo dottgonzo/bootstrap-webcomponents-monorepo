@@ -1,3 +1,4 @@
 export const storybookArgs = {
-	content: { control: { type: "text" } },
+	navpage: { control: { type: "text" } },
+	navlink: { control: { type: "object" } },
 };

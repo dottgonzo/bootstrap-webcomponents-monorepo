@@ -1,3 +1,5 @@
 export const storybookArgs = {
-	content: { control: { type: "text" } },
+	uri: { control: { type: "text" } },
+	title: { control: { type: "text" } },
+	item: { control: { type: "text" } },
 };

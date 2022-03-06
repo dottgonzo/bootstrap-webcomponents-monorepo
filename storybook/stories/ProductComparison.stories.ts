@@ -7,13 +7,7 @@ import { storybookArgs } from "../../packages/product-comparison/extra/docs";
 
 const meta: Meta = {
   title: "Sections/ProductComparison",
-  argTypes: {
-    id: { control: { disable: true } },
-    products: { control: { type: "array" } },
-    options: { control: { type: "object" } },
-    headers: { control: { type: "array" } },
-    purchaseClick: { action: "pagechangeEvent" },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

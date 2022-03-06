@@ -7,15 +7,7 @@ import { storybookArgs } from "../../packages/range-slider/extra/docs";
 
 const meta: Meta = {
   title: "Components/Rangeslider",
-  argTypes: {
-    id: { control: { disable: true } },
-    changeRangeValues: { action: "changeRangeValuesEvent" },
-    withbubbles: { type: "boolean" },
-    min: { type: "number" },
-    max: { type: "number" },
-    minval: { type: "number" },
-    maxval: { type: "number" },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

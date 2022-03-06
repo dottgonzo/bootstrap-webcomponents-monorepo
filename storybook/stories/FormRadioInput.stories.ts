@@ -7,11 +7,7 @@ import { storybookArgs } from "../../packages/input-radio/extra/docs";
 
 const meta: Meta = {
   title: "Form/FormRadioInput",
-  argTypes: {
-    id: { control: { disable: true } },
-    schemaentry: { control: { type: "object" } },
-    showvalidation: { control: { type: "boolean" } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

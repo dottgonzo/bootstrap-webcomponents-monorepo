@@ -1,3 +1,5 @@
 export const storybookArgs = {
-	content: { control: { type: "text" } },
+	page: { control: { type: "number" } },
+	pages: { control: { type: "number" } },
+	pagechange: { action: "pagechange" },
 };

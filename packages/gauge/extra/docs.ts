@@ -1,3 +1,3 @@
 export const storybookArgs = {
-	content: { control: { type: "text" } },
+	options: { control: { type: "object" } },
 };
