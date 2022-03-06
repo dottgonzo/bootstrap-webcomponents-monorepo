@@ -68,7 +68,7 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "5f60ca4020bbdbf66902a79f2c4081dc6d4b8653",
+	"gitHead": "b2cab991888f2b2fc1f9d2981a87323d17587533",
 	"dependencies": {
 		"raphael": "^2.3.0"
 	}
