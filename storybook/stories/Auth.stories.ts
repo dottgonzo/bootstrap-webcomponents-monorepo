@@ -3,25 +3,11 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/auth/extra/docs";
 
 const meta: Meta = {
   title: "Components/LoginRegisterComponent",
-  argTypes: {
-    type: {
-      options: ["login", "register", "activate", "recover"],
-      control: { type: "select" }, // Automatically inferred when 'options' is defined
-    },
-    language: { control: { type: "string" } },
-    disableregister: { control: { type: "boolean" } },
-    logouri: { control: { type: "string" } },
-    loginuri: { control: { type: "string" } },
-    registeruri: { control: { type: "string" } },
-    login: { action: "loginEvent" },
-    register: { action: "registerEvent" },
-    recoverOrActivate: { action: "recoverOrActivateEvent" },
-    id: { control: { disable: true } },
-    oauth2providers: { control: { type: "array" } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
   parameters: {
     layout: "fullscreen",
   },

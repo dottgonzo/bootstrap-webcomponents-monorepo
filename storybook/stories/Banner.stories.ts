@@ -3,16 +3,11 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/banner/extra/docs";
 
 const meta: Meta = {
   title: "Components/PageBanner",
-
-  argTypes: {
-    logouri: { control: { type: "text" } },
-    title: { control: { type: "text" } },
-    description: { control: { type: "text" } },
-    id: { control: { disable: true } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;
