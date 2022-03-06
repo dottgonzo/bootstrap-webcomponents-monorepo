@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-downloader",
 	"displayName": "Svelte-Bootstrap Downloader WebComponent",
 	"description": "Svelte-Bootstrap Downloader WebComponent",
-	"version": "0.5.13",
+	"version": "0.5.14",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
