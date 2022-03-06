@@ -31,8 +31,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@htmlbricks/hb-banner": "^0.5.12",
-		"@htmlbricks/hb-jsutils": "^0.5.12",
-		"@htmlbricks/hb-offcanvas": "^0.5.12"
+		"@htmlbricks/hb-banner": "^0.5.13",
+		"@htmlbricks/hb-jsutils": "^0.5.13",
+		"@htmlbricks/hb-offcanvas": "^0.5.13"
 	}
 }
