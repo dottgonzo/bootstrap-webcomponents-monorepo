@@ -18,16 +18,16 @@
 	import dayjs from "dayjs";
 	import debounce from "debounce";
 	import "dayjs/locale/it";
-	import type { IPayment } from "@app/types/webcomponent.type";
+	import type { OrderPayment } from "@app/types/webcomponent.type";
 
 	export let id: string;
 
-	export let payment: IPayment;
+	export let payment: OrderPayment;
 
 	let subTotal: number;
 	let taxTotal: number;
 	let total: number;
-	const defaultOrder: IPayment = { countryCode: "IT", currencySymbol: "€", items: [], orderNumber: "0000" };
+	const defaultOrder: OrderPayment = { countryCode: "IT", currencySymbol: "€", items: [], orderNumber: "0000" };
 	$: {
 		if (!id) id = null;
 

@@ -11,84 +11,10 @@
 	 *
 	 */
 
-	interface IPhoneContact {
-		label?: string;
-		number: string;
-		_id?: string;
-	}
-	interface IAddressContact {
-		googleMapUri?: string;
-		address: string;
-		shortAddress?: string;
-		_id?: string;
-	}
-	interface ISiteContact {
-		label?: string;
-		uri: string;
-		open?: boolean;
-		_id?: string;
-	}
-	interface IEmailContact {
-		label?: string;
-		address: string;
-		_id?: string;
-	}
-
-	interface IColumn {
-		_id?: string;
-		cells: {
-			label?: string;
-			_id: string;
-			phone?: IPhoneContact;
-			address?: IAddressContact;
-			email?: IEmailContact;
-			site?: ISiteContact;
-		}[];
-		title?: string;
-	}
-	interface IBrandAndContacts {
-		companyName: string;
-		companyLogoUri: string;
-	}
-	interface ISmallRow {}
-	interface IFooterBottom {}
-
-	interface IPolicies {
-		label: string;
-		key: string;
-	}
-
-	interface ISocials {
-		facebook: string;
-		gmail: string;
-		twitter: string;
-		github: string;
-		youtube: string;
-		twitch: string;
-		discord: string;
-	}
-
-	interface IContacts {
-		phones?: IPhoneContact[];
-		addresses?: IAddressContact[];
-		emails?: IEmailContact[];
-		sites?: ISiteContact[];
-	}
-
-	interface ICompany {
-		logoUri: string;
-		siteName: string;
-		companyName: string;
-		registration?: { since?: number; text?: string };
-		description: string;
-		vatNumber?: string;
-		fiscalCode?: string;
-		since?: number;
-	}
-
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
+	import type { IBrandAndContacts, IColumn, ICompany, IContacts, IFooterBottom, IPolicies, ISmallRow, ISocials } from "@app/types/webcomponent.type";
 
 	export let id: string;
 	export let company: ICompany;

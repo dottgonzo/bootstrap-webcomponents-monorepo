@@ -1,6 +1,8 @@
 <svelte:options tag="hb-sidenav-link" />
 
 <script lang="ts">
+	import type { INavLink } from "@app/types/webcomponent.type";
+
 	/**
 	 * Svelte Video Login/Register/Forget Password WebComponent
 	 * =====================
@@ -23,20 +25,6 @@
 		dispatch("pagechange", {
 			page,
 		});
-	}
-	interface INavLink {
-		key: string;
-		icon?: string;
-		group?: string;
-		label: string;
-		badge?: {
-			text: string;
-			class?: string;
-			classcolor?: string;
-		};
-		subLinks?: INavLink[];
-		active: boolean;
-		open?: boolean;
 	}
 
 	export let id: string;

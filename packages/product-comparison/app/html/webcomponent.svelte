@@ -1,6 +1,8 @@
 <svelte:options tag="hb-product-comparison" />
 
 <script lang="ts">
+	import type { Header, Options, Product } from "@app/types/webcomponent.type";
+
 	/**
 	 * Svelte Video Login/Register/Forget Password WebComponent
 	 * =====================
@@ -14,35 +16,11 @@
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	export let id: string;
-	export let headers: {
-		id: string;
-		label: string;
-	}[];
-	export let products: {
-		characteristics: { [x: string]: string };
-		id: string;
-		model: string;
-		description?: string;
-		price: number;
-		note?: string;
 
-		promotion?: {
-			originalPrice: number;
-			type?: string;
-			note?: string;
-		};
-		columnColor?: {
-			headerBackground?: string;
-			columnBackground?: string;
+	export let headers: Header[];
+	export let products: Product[];
 
-			purchaseButton?: string;
-		};
-	}[];
-
-	export let options: {
-		currency?: string;
-		preferredProductId?: string;
-	};
+	export let options: Options;
 
 	$: {
 		if (!id) id = null;

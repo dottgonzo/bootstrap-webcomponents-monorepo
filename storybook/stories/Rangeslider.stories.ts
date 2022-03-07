@@ -1,17 +1,13 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/range-slider/extra/docs";
 
 const meta: Meta = {
   title: "Components/Rangeslider",
-  argTypes: {
-    id: { control: { disable: true } },
-    changeRangeValues: { action: "changeRangeValuesEvent" },
-    withbubbles: { type: "boolean" },
-    min: { type: "number" },
-    max: { type: "number" },
-    minval: { type: "number" },
-    maxval: { type: "number" },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

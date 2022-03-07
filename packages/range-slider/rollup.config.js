@@ -43,8 +43,10 @@ export default {
 		json(),
 		copy({
 			targets: [
-				// { src: "public/**/*", dest: "dist" },
-				// { src: "assets/**/*", dest: "dist" }
+				{ src: "public/**/*", dest: "dist" },
+				{ src: "extra/**/*", dest: "dist" },
+				{ src: "app/types/**/*", dest: "dist" },
+				{ src: "assets/**/*", dest: "dist" },
 			],
 		}),
 		svelte({

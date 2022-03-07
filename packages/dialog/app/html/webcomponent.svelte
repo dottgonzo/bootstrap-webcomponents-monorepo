@@ -15,25 +15,27 @@
 	import { quintOut } from "svelte/easing";
 
 	export let id: string;
-	export let show: boolean;
+	export let show: "yes" | "no";
 	$: {
 		if (!id) id = "";
-		if (show && ((show as unknown as string) === "yes" || (show as unknown as string) === "")) show = true;
-		else show = false;
+		if (show === "yes" || (show as unknown) === "") show = "yes";
+		else show = "no";
 	}
 
-	export let dialogClasses = "";
+	export let dialogclasses = "";
 	export let title = "";
 	export let backdrop = true;
-	export let ignoreBackdrop = false;
 	export let keyboard = true;
 	export let describedby = "";
 	export let labelledby = "";
 	export let content = "";
 	export let closelabel = "";
 	export let confirmlabel = "";
-	export let onOpened = () => dispatch("modalShow", { id, show: true });
-	export let onClosed = () => dispatch("modalShow", { id, show: false });
+
+	let ignoreBackdrop = false;
+
+	const onOpened = () => dispatch("modalShow", { id, show: true });
+	const onClosed = () => dispatch("modalShow", { id, show: false });
 	let _keyboardEvent;
 	function attachEvent(target, ...args) {
 		target.addEventListener(...args);
@@ -57,14 +59,14 @@
 	function handleBackdrop(event) {
 		if (backdrop && !ignoreBackdrop) {
 			event.stopPropagation();
-			show = false;
+			show = "no";
 		}
 	}
 	function onModalOpened() {
 		if (keyboard) {
 			_keyboardEvent = attachEvent(document, "keydown", (e) => {
 				if (event && (event as any).key === "Escape") {
-					show = false;
+					show = "no";
 				}
 			});
 		}
@@ -78,7 +80,7 @@
 	}
 	// Watching changes for Open vairable
 	$: {
-		if (show) {
+		if (show === "yes") {
 			modalOpen();
 		} else {
 			modalClose();
@@ -86,16 +88,16 @@
 	}
 	function handleConfirm() {
 		dispatch("modalConfirm", { id, confirm: true });
-		show = false;
+		show = "no";
 	}
 	function handleCancel() {
-		show = false;
+		show = "no";
 
 		dispatch("modalConfirm", { id, confirm: false });
 	}
 </script>
 
-{#if show}
+{#if show === "yes"}
 	<div
 		id="modal-{id}"
 		class="modal show"
@@ -109,11 +111,11 @@
 		on:outroend={onModalClosed}
 		transition:fade
 	>
-		<div class="modal-dialog {dialogClasses}" role="document" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300, easing: quintOut }}>
+		<div class="modal-dialog {dialogclasses}" role="document" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300, easing: quintOut }}>
 			<div class="modal-content">
 				<slot name="header" class="modal-header">
 					<h5 class="modal-title"><slot name="title">{title || "title"}</slot></h5>
-					<button type="button" class="btn-close" on:click={() => (show = false)}>
+					<button type="button" class="btn-close" on:click={() => (show = "no")}>
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</slot>

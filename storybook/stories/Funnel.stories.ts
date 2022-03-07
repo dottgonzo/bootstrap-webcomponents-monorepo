@@ -1,19 +1,13 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/funnel/extra/docs";
 
 const meta: Meta = {
   title: "Form/Funnel",
-  argTypes: {
-    id: { control: { disable: true } },
-    submitstep: {
-      options: ["no", "yes"],
-      control: { type: "select" },
-    },
-    update: { action: "updateEvent" },
-    submit: { action: "submitEvent" },
-
-    schemes: { control: { type: "array" } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

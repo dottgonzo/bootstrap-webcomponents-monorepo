@@ -1,5 +1,9 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/table/extra/docs";
 
 const rows = [
   {
@@ -367,29 +371,7 @@ const selections = [
 
 const meta: Meta = {
   title: "Contents/Table",
-  argTypes: {
-    size: { control: { type: "range", min: 1, max: rows.length + 2 } },
-    page: { control: { type: "number" } },
-    primarycolor: {
-      control: { type: "color" },
-    },
-
-    enableselect: { control: { type: "boolean" } },
-    selectrow: { control: { type: "boolean" } },
-    rows: { control: { type: "array" } },
-    headers: { control: { type: "array" } },
-    actions: { control: { type: "array" } },
-    selectactions: { control: { type: "array" } },
-    pagechange: { action: "pagechangeEvent" },
-    tableaction: { action: "tableactionEvent" },
-    tableCustomActionClick: { action: "tableCustomActionClickEvent" },
-    cellclick: { action: "cellclickEvent" },
-    actiononselected: { action: "actiononselectedEvent" },
-    clickonrow: { action: "clickonrowEvent" },
-    confirmActionModal: { action: "confirmActionModalEvent" },
-    showConfirmModal: { action: "showConfirmModal" },
-    id: { control: { disable: true } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

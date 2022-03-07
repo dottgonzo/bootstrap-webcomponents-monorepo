@@ -37,3 +37,18 @@ export interface IActionButton {
 		content: string;
 	};
 }
+
+export type Component = {
+	externalfilter: string;
+	rows: IRow[];
+	size: number;
+	page: number;
+	pages: number;
+	primarycolor: string;
+	headers: ITableHeader[];
+	actions: IActionButton[];
+	selectactions: any[];
+	selectrow: string;
+	enableselect: string;
+	disablepagination: string;
+};

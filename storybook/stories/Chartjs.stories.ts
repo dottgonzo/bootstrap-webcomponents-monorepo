@@ -1,13 +1,13 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/chartjs/extra/docs";
 
 const meta: Meta = {
   title: "Charts/Chartjs",
-  argTypes: {
-    id: { control: { disable: true } },
-    data: { control: { type: "object" } },
-    chartClick: { action: "chartClick" },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

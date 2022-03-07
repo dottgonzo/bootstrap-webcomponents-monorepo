@@ -1,45 +1,81 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import type { INavLink } from '@htmlbricks/hb-offcanvas/release/webcomponent.type';
+	import type { INavLink } from '@htmlbricks/hb-sidenav-link/release/webcomponent.type';
 	import { addComponent } from '@htmlbricks/hb-jsutils';
 	import { onMount } from 'svelte';
-	import components from '../../components.json';
+
 	import { pageName } from '../../stores/app';
+	import { allComponentsMetas } from '../../stores/components';
 
 	const navlinks = (): INavLink[] => {
 		const home: INavLink = {
 			key: 'main',
 			label: 'home',
-			group: 'Site'
+			group: 'Site',
+			active: false
 		};
+		const components: INavLink = {
+			key: 'components',
+			label: 'components',
+			group: 'Site',
+			active: false
+		};
+		const arr: INavLink[] = [home, components];
+		let cats: string[] = [];
 
-		const arr: INavLink[] = [home];
+		$allComponentsMetas.forEach((f) => {
+			if (!cats.includes(f.category)) cats.push(f.category);
+		});
 
-		components.categories.forEach((g) => {
-			const subLinks: INavLink[] = [];
-			g.components.forEach((c) => {
-				const navLink: INavLink = {
-					key: c.name,
-					label: c.label || c.name
-				};
-				subLinks.push(navLink);
-			});
+		cats.forEach((f) => {
+			const subLinks: INavLink[] = $allComponentsMetas
+				.filter((fi) => fi.category === f)
+				.map((m) => {
+					const navLink: INavLink = {
+						key: m.name,
+						label: m.name,
+						active: false
+					};
+					return navLink;
+				});
+
 			const navLink: INavLink = {
-				key: g.name,
-				label: g.label || g.name,
+				key: f,
+				label: f,
 				group: 'components',
-				subLinks
+				subLinks,
+				active: false
 			};
 			arr.push(navLink);
 		});
+
+		// components.categories.forEach((g) => {
+		// 	const subLinks: INavLink[] = [];
+		// 	g.components.forEach((c) => {
+		// 		const navLink: INavLink = {
+		// 			key: c.name,
+		// 			label: c.label || c.name,
+		// 			active: false
+		// 		};
+		// 		subLinks.push(navLink);
+		// 	});
+		// 	const navLink: INavLink = {
+		// 		key: g.name,
+		// 		label: g.label || g.name,
+		// 		group: 'components',
+		// 		subLinks,
+		// 		active: false
+		// 	};
+		// 	arr.push(navLink);
+		// });
 		return arr;
 	};
 
 	onMount(() => {
-		addComponent('layout', 'latest');
+		addComponent('bundle', 'latest');
 	});
 	function pageChange(d) {
-		goto('/components/' + d.page);
+		goto('/components/doc?c=' + d.page);
 		console.log(d);
 	}
 </script>
@@ -52,5 +88,7 @@
 	navlinks={JSON.stringify(navlinks())}
 	on:pagechange={(e) => pageChange(e.detail)}
 >
-	<div slot="page"><slot /></div>
+	<div style="margin:auto;max-width:1000px" slot="page">
+		<slot />
+	</div>
 </hb-layout>

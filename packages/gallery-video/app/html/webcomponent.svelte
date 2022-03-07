@@ -17,16 +17,6 @@
 
 	// import dispatch from "@app/functions/webcomponent";
 
-	interface ICard {
-		videoSrc: string;
-		title?: string;
-		description?: string;
-		time?: Date;
-		pageUri?: string;
-		_id: string;
-		provider?: "youtube";
-		dateformat?: string;
-	}
 	// interface IRestApi {
 	// 	uri: string;
 	// 	pagination?: boolean;
@@ -46,12 +36,12 @@
 	export let externalfilter: string;
 	export let disabletextfilter: string;
 
-	let cardItems: ICard[];
 	export let initialdate: Date;
 	export let lastdate: Date;
 	let firstCardData: Date;
 	let lastCardData: Date;
 	let enableDate = true;
+	let cardItems: ICard[];
 
 	$: {
 		console.log(disabletextfilter, "disabletextfilter");
@@ -160,6 +150,7 @@
 		// will only get called when the `color` changed.
 	}
 	import { get_current_component, onMount } from "svelte/internal";
+	import type { ICard } from "@app/types/webcomponent.type";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();

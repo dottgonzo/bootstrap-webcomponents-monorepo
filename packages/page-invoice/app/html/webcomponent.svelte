@@ -21,10 +21,11 @@
 	import dayjs from "dayjs";
 	import debounce from "debounce";
 	import "dayjs/locale/it";
+
 	export let id: string;
+
 	export let printer: "yes" | "no";
 	export let items: IItem[];
-
 	export let headers: IHeaders;
 
 	let currency: string;

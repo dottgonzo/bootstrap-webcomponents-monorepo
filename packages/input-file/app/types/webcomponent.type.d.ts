@@ -62,3 +62,10 @@ export type FormSchema = FormSchemaEntry[];
 export type FormRendererProps = {
 	schema: FormSchema;
 };
+
+export type Component = {
+	setvalue: boolean;
+	setvalid: boolean;
+	showvalidation: "yes" | "no";
+	schemaentry: FormSchemaEntry;
+};

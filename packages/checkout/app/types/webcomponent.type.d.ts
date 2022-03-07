@@ -43,3 +43,11 @@ export type IPayment = {
 	type?: IPaymentType;
 	shipmentFee?: number;
 };
+
+export type Component = {
+	shipments: IShipment[];
+	user: IUser;
+	gateways: IGateway[];
+	payment: IPayment;
+	completed: "yes" | "no";
+};

@@ -1,18 +1,13 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/map/extra/docs";
 
 const meta: Meta = {
   title: "Map/Map",
-  argTypes: {
-    id: { control: { disable: true } },
-    options: { control: { type: "object" } },
-    center: { control: { type: "array" } },
-    data: { control: { type: "array" } },
-    zoom: { control: { type: "number" } },
-    source: { control: { type: "object" } },
-    pointClickCoordinates: { action: "pointClickCoordinates" },
-    markerClick: { action: "markerClick" },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

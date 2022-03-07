@@ -11,96 +11,17 @@
 	 *
 	 */
 
-	interface ICompany {
-		logoUri: string;
-		siteName: string;
-		companyName: string;
-		registration?: { since?: number; text?: string };
-		description: string;
-		vatNumber?: string;
-		fiscalCode?: string;
-		since?: number;
-	}
-	interface INavLink {
-		key: string;
-		icon?: string;
-		group?: string;
-		label: string;
-		badge?: {
-			text: string;
-			class?: string;
-			classcolor?: string;
-		};
-	}
-	interface ISocials {
-		facebook: string;
-		gmail: string;
-		twitter: string;
-		github: string;
-		youtube: string;
-		twitch: string;
-		discord: string;
-	}
-	interface IContacts {
-		phones?: { label?: string; number: string; _id?: string }[];
-		addresses?: { googleMapUri?: string; address: string; shortAddress?: string; _id?: string }[];
-		emails?: { label?: string; address: string; _id?: string }[];
-		sites?: { label?: string; uri: string; open?: boolean; _id?: string }[];
-	}
-
-	interface IUserMenuListItem {
-		key: string;
-		label: string;
-		badge?: number;
-		group?: string;
-	}
-	interface IUserMenu {
-		imgUri: string;
-		list?: IUserMenuListItem[];
-	}
-
-	interface IPhoneContact {
-		label?: string;
-		number: string;
-		_id?: string;
-	}
-	interface IAddressContact {
-		googleMapUri?: string;
-		address: string;
-		shortAddress?: string;
-		_id?: string;
-	}
-	interface ISiteContact {
-		label?: string;
-		uri: string;
-		open?: boolean;
-		_id?: string;
-	}
-	interface IEmailContact {
-		label?: string;
-		address: string;
-		_id?: string;
-	}
-
-	interface IColumn {
-		_id?: string;
-		cells: {
-			label?: string;
-			_id: string;
-			phone?: IPhoneContact;
-			address?: IAddressContact;
-			email?: IEmailContact;
-			site?: ISiteContact;
-		}[];
-		title?: string;
-	}
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
-	export let socials: ISocials;
-	export let contacts: IContacts;
+
+	import type { IContacts, ISocials, ICompany, IColumn } from "../../../footer/app/types/webcomponent.type";
+	import type { IUserMenu } from "../../../navbar/app/types/webcomponent.type";
+	import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
 
 	export let id: string;
+	export let socials: ISocials;
+	export let contacts: IContacts;
 	export let company: ICompany;
 	export let navlinks: INavLink[];
 	export let pagename: string;

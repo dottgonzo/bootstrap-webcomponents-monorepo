@@ -123,7 +123,8 @@ npm-debug.log
 #######
 /app/configs/config.js
 /app/configs/config.ts
-/extra
 /dist
 /build
 /release
+
+webcomponent.type.d.json

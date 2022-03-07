@@ -56,3 +56,10 @@ export type FormSchemaEntry = {
 	 */
 	params?: Record<string, any>;
 };
+
+export type Component = {
+	setvalue: boolean;
+	setvalid: boolean;
+	showvalidation: "yes" | "no";
+	schemaentry: FormSchemaEntry;
+};
