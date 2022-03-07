@@ -13,8 +13,8 @@
 	let com: string;
 
 	$: {
-		storybookargs = $allComponentsMetas.find((f) => f.name === name).storybookArgs;
-		definition = $allComponentsMetas.find((f) => f.name === name).definition;
+		storybookargs = $allComponentsMetas.find((f) => f.name === name)?.storybookArgs;
+		definition = $allComponentsMetas.find((f) => f.name === name)?.definition;
 		args = $allComponentsExampleValues[name];
 		com = '<hb-' + name;
 		if (args) {

@@ -4,12 +4,13 @@
 
 	import { pageName } from '../../stores/app';
 	let name: string;
-	console.log('page', name);
 
 	$: {
-		name = $page.url?.search?.split('c=')?.[1]?.split('&')[0];
-		pageName.set(name);
+		name = $page.url?.href?.split('c=')?.[1]?.split('&')[0];
+		pageName.set(name || 'docs');
 	}
 </script>
 
-<ComponentManager {name} />
+{#if name}
+	<ComponentManager {name} />
+{/if}
