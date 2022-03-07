@@ -1,14 +1,13 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
-// import type { FormSchemaEntry } from "../../packages/formtextinputrenderer/app/types/webcomponent.type";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/input-radio/extra/docs";
 
 const meta: Meta = {
   title: "Form/FormRadioInput",
-  argTypes: {
-    id: { control: { disable: true } },
-    schemaentry: { control: { type: "object" } },
-    showvalidation: { control: { type: "boolean" } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

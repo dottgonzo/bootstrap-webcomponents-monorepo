@@ -1,17 +1,13 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/toast/extra/docs";
+
 const meta: Meta = {
   title: "Components/Toast",
-  argTypes: {
-    id: { control: { type: "text" } },
-    show: { control: { type: "boolean" } },
-    small: { control: { type: "text" } },
-    title: { control: { type: "text" } },
-    img: { control: { type: "text" } },
-    content: { control: { type: "text" } },
-    toastShow: { action: "toastShow" },
-    toastConfirm: { action: "toastConfirm" },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

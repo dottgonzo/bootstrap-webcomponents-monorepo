@@ -1,12 +1,13 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/gauge/extra/docs";
 
 const meta: Meta = {
   title: "Charts/Gauges",
-  argTypes: {
-    id: { control: { disable: true } },
-    options: { control: { type: "object" } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

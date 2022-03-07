@@ -16,7 +16,7 @@
 </script>
 
 <svelte:head>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
+	<link rel="stylesheet" href="../../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
 </svelte:head>
 <div class="card">
 	<div class="row g-0 border rounded overflow-hidden flex-md-row shadow-sm h-md-250 position-relative">

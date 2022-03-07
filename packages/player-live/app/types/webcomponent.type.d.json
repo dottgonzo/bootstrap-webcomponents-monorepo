@@ -1,0 +1,51 @@
+{
+  "$ref": "#/definitions/Component",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Component": {
+      "additionalProperties": false,
+      "properties": {
+        "forcecover": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "mediatype": {
+          "type": "string"
+        },
+        "mediauri": {
+          "type": "string"
+        },
+        "replacewithtext": {
+          "additionalProperties": false,
+          "properties": {
+            "subtitle": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "title",
+            "subtitle",
+            "text"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "mediauri",
+        "mediatype",
+        "id",
+        "forcecover",
+        "replacewithtext"
+      ],
+      "type": "object"
+    }
+  }
+}

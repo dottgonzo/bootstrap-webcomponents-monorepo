@@ -18,11 +18,11 @@
 	import dayjs from "dayjs";
 	import debounce from "debounce";
 	import "dayjs/locale/it";
-	import type { IPayment } from "@app/types/webcomponent.type";
+	import type { IShoppingPayment } from "@app/types/webcomponent.type";
 
 	export let id: string;
 
-	export let payment: IPayment;
+	export let payment: IShoppingPayment;
 	export let completed: "yes" | "no";
 
 	const tableHeaders: ITableHeader[] = [

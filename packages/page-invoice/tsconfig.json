@@ -21,6 +21,6 @@
 		"plugins": [{ "transform": "typescript-transform-paths" }, { "transform": "typescript-transform-paths", "afterDeclarations": true }]
 	},
 	"extends": "@tsconfig/svelte/tsconfig.json",
-	"include": ["app/**/*"],
+	"include": ["app/**/*", "extra/**/*"],
 	"exclude": ["node_modules/*", "dist/*", "scripts/*"]
 }

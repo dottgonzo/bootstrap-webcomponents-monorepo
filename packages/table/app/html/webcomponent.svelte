@@ -17,6 +17,8 @@
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	import type { IActionButton, IFilter, IRow, ITableHeader } from "@app/types/webcomponent.type";
+	import type { Component as ModalComponent } from "../../../dialog/app/types/webcomponent.type";
+
 	import pkg from "@app/../package.json";
 
 	// import dispatch from "@app/functions/webcomponent";
@@ -24,14 +26,14 @@
 	export let id: string;
 	export let externalfilter: string;
 
-	export let rows: string;
+	export let rows: IRow[];
 	export let size: number;
 	export let page: number;
 	export let pages: number;
 	export let primarycolor: string;
-	export let headers: string;
-	export let actions: string;
-	export let selectactions: string;
+	export let headers: ITableHeader[];
+	export let actions: IActionButton[];
+	export let selectactions: any[];
 	export let selectrow: string;
 	export let enableselect: string;
 	export let disablepagination: string;
@@ -44,39 +46,25 @@
 	if (!disablepagination) {
 		disablepagination = null;
 	}
-	let selectActionsbuttons: any[];
-	let rowItems: IRow[];
 
-	let tableHeaders: ITableHeader[] = [];
 	let searchOnRangeIsPresent = false;
 
 	let filters: IFilter[] = [];
-	let actionButtons: IActionButton[];
 
 	let selectedItems: string[] = [];
 	let sortedBy: string;
 	let sortedDirection: string;
-	let modalConfirm: {
-		show: "yes" | "no";
-		itemId: string;
-		action: string;
-		confirmLabel?: string;
-		title: string;
-		denyLabel?: string;
-		content: string;
-		closeLabel?: string;
-	};
+	let modalConfirm: ModalComponent & { itemId: string; action: string };
 	$: {
 		if (!modalConfirm) {
 			modalConfirm = {
 				show: "no",
 				itemId: null,
 				action: null,
-				confirmLabel: null,
-				denyLabel: null,
+				confirmlabel: null,
 				title: null,
 				content: null,
-				closeLabel: null,
+				closelabel: null,
 			};
 		}
 		if (!externalfilter) {
@@ -88,10 +76,9 @@
 			pages = Number(pages);
 		}
 		if (!selectactions) {
-			selectActionsbuttons = null;
-			selectactions = null;
-		} else {
-			selectActionsbuttons = JSON.parse(selectactions);
+			selectactions = [];
+		} else if (typeof selectactions === "string") {
+			selectactions = JSON.parse(selectactions);
 		}
 
 		if (!selectrow) {
@@ -113,30 +100,32 @@
 			if (!rows) throw new Error("no rows");
 
 			if (headers) {
-				tableHeaders = JSON.parse(headers);
-				if (tableHeaders.find((f) => f.type === "datetime")) searchOnRangeIsPresent = true;
-				tableHeaders.forEach((m) => {
+				if (typeof headers === "string") headers = JSON.parse(headers);
+				if (headers.find((f) => f.type === "datetime")) searchOnRangeIsPresent = true;
+				headers.forEach((m) => {
 					if (!m.sortBy) m.sortBy = "none";
 					if (!m.type) m.type = "string";
 				});
 			}
+
 			if (actions) {
-				actionButtons = JSON.parse(actions);
+				if (typeof actions === "string") actions = JSON.parse(actions);
 			} else {
 				actions = null;
 			}
-			rowItems = JSON.parse(rows);
+			if (typeof rows === "string") rows = JSON.parse(rows);
+
 			if (filters?.length && !externalfilter) {
 				for (const filter of filters) {
 					if (filter.type === "datetime") {
 						if (filter.start) {
-							rowItems = rowItems.filter((f) => dayjs(getObjVal(f, filter)).valueOf() >= dayjs(filter.start).valueOf());
+							rows = rows.filter((f) => dayjs(getObjVal(f, filter)).valueOf() >= dayjs(filter.start).valueOf());
 						}
 						if (filter.end) {
-							rowItems = rowItems.filter((f) => dayjs(getObjVal(f, filter)).valueOf() <= dayjs(filter.end).valueOf());
+							rows = rows.filter((f) => dayjs(getObjVal(f, filter)).valueOf() <= dayjs(filter.end).valueOf());
 						}
 					} else {
-						rowItems = rowItems.filter((f) => getObjVal(f, filter).includes(filter.value));
+						rows = rows.filter((f) => getObjVal(f, filter).includes(filter.value));
 					}
 				}
 			}
@@ -144,7 +133,7 @@
 			if (sortedBy && !externalfilter) {
 				console.log("resort");
 				if (sortedDirection === "asc")
-					rowItems = rowItems.sort((a, b) => {
+					rows = rows.sort((a, b) => {
 						if (a === b) return 0;
 						if (!a[sortedBy]) return 1;
 						if (!b[sortedBy]) return -1;
@@ -155,7 +144,7 @@
 						return 0;
 					});
 				if (sortedDirection === "desc")
-					rowItems = rowItems.sort((a, b) => {
+					rows = rows.sort((a, b) => {
 						if (a === b) return 0;
 						if (!a[sortedBy]) return -1;
 						if (!b[sortedBy]) return 1;
@@ -167,8 +156,8 @@
 					});
 			}
 
-			if (rowItems.length && (!externalfilter || !pages)) {
-				pages = Math.floor(rowItems.length / size) + (rowItems.length % size ? 1 : 0);
+			if (rows.length && (!externalfilter || !pages)) {
+				pages = Math.floor(rows.length / size) + (rows.length % size ? 1 : 0);
 			}
 
 			// const videos = component.getElementsByTagName("video");
@@ -178,7 +167,7 @@
 		} catch (err) {}
 		// sortByKeyToggle = (key: string) => {
 		// 	console.log(key);
-		// 	const h = tableHeaders.find((f) => f.key === key);
+		// 	const h = headers.find((f) => f.key === key);
 		// 	console.log(h);
 
 		// 	if (!h.sortBy || h.sortBy === "none") {
@@ -188,12 +177,12 @@
 		// 	} else if (h.sortBy === "desc") {
 		// 		h.sortBy = null;
 		// 	}
-		// 	// rowItems = rowItems.sort((a, b) => {
+		// 	// rows = rows.sort((a, b) => {
 		// 	// 	return b[key] - a[key];
 		// 	// });
 		// };
 		// console.log("end computed");
-		// console.log(size, page, pages, rowItems.length, initialDate, lastDate);
+		// console.log(size, page, pages, rows.length, initialDate, lastDate);
 
 		// will only get called when the `color` changed.
 		console.log(sortedBy, sortedDirection);
@@ -339,9 +328,8 @@
 				show: "yes",
 				itemId: item._id,
 				action: action.name,
-				confirmLabel: action.confirm.confirmLabel,
+				confirmlabel: action.confirm.confirmLabel,
 				title: action.confirm.title,
-				denyLabel: action.confirm.denyLabel,
 				content: action.confirm.content,
 			};
 			// show modal
@@ -392,7 +380,7 @@
 		});
 	}
 	function selectAllElements() {
-		selectedItems = rowItems.map((m) => m._id);
+		selectedItems = rows.map((m) => m._id);
 	}
 	function deSelectAllElements() {
 		selectedItems.length = 0;
@@ -441,11 +429,10 @@
 				show: "no",
 				itemId: null,
 				action: null,
-				confirmLabel: null,
-				denyLabel: null,
+				confirmlabel: null,
 				title: null,
 				content: null,
-				closeLabel: null,
+				closelabel: null,
 			};
 	}
 	function modalConfirmation(detail, action: string) {
@@ -460,22 +447,21 @@
 	id={modalConfirm.itemId || "confirmationModal"}
 	show={modalConfirm.show}
 	title={modalConfirm.title}
-	confirmlabel={modalConfirm.confirmLabel || "Conferma"}
-	denylabel={modalConfirm.denyLabel || "Annulla"}
+	confirmlabel={modalConfirm.confirmlabel || "Conferma"}
 	content={modalConfirm.content}
-	closelabel={modalConfirm.closeLabel || "Close"}
+	closelabel={modalConfirm.closelabel || "Close"}
 	on:modalConfirm={(e) => modalConfirmation(e.detail, modalConfirm.action)}
 	on:modalShow={(d) => dialogShowConfirm(d.detail, modalConfirm.action)}
 />
 <div id="webcomponent">
 	<div class="container-fluid" style="padding:0px;	margin-left: 0px;margin-right: 0px;">
-		{#if tableHeaders && tableHeaders.length}
+		{#if headers && headers.length}
 			<table class="table table-responsive table-striped table-hover align-middle" style="width:100%;text-align:left">
 				<thead>
 					<tr>
-						{#if enableselect && selectActionsbuttons}
+						{#if enableselect && selectactions?.length}
 							{#if !searchOnRangeIsPresent}
-								{#if selectedItems.length !== rowItems.length}
+								{#if selectedItems.length !== rows.length}
 									<button on:click={selectAllElements} class="btn btn-link">seleziona tutti</button>
 								{:else}
 									<button on:click={deSelectAllElements} class="btn btn-link">rimuovi tutti</button>
@@ -484,7 +470,7 @@
 								<th scope="col" />
 							{/if}
 						{/if}
-						{#each tableHeaders as th (th.key)}
+						{#each headers as th (th.key)}
 							<th scope="col">
 								{th.label}
 								{#if !th.nosort && th.type !== "actions"}
@@ -500,19 +486,19 @@
 								{/if}
 							</th>
 						{/each}
-						{#if actionButtons}
+						{#if actions}
 							<th scope="col"> azioni </th>
 						{/if}
 					</tr>
 					{#if !searchOnRangeIsPresent}
 						<tr>
-							{#if enableselect && selectActionsbuttons}
+							{#if enableselect && selectactions?.length}
 								<th scope="col">
-									{selectedItems.length}/{rowItems.length}
+									{selectedItems.length}/{rows.length}
 								</th>
 							{/if}
-							{#if tableHeaders.find((f) => f.search)}
-								{#each tableHeaders as th (th.key)}
+							{#if headers.find((f) => f.search)}
+								{#each headers as th (th.key)}
 									<th scope="col">
 										{#if th.search}
 											<input
@@ -534,16 +520,16 @@
 						</tr>
 					{:else}
 						<tr>
-							{#if enableselect && selectActionsbuttons}
+							{#if enableselect && selectactions?.length}
 								<th scope="col">
-									{#if selectedItems.length !== rowItems.length}
+									{#if selectedItems.length !== rows.length}
 										<button on:click={selectAllElements} class="btn btn-link">seleziona tutti</button>
 									{:else}
 										<button on:click={deSelectAllElements} class="btn btn-link">rimuovi tutti</button>
 									{/if}
 								</th>
 							{/if}
-							{#each tableHeaders as th (th.key)}
+							{#each headers as th (th.key)}
 								<th scope="col">
 									{#if th.search}
 										{#if th.type && th.type === "datetime"}
@@ -580,12 +566,12 @@
 							{/each}
 						</tr>
 						<tr>
-							{#if enableselect && selectActionsbuttons}
+							{#if enableselect && selectactions?.length}
 								<th scope="col">
-									{selectedItems.length}/{rowItems.length}
+									{selectedItems.length}/{rows.length}
 								</th>
 							{/if}
-							{#each tableHeaders as th (th.key)}
+							{#each headers as th (th.key)}
 								<th scope="col">
 									{#if th.search && th.type && th.type === "datetime"}
 										<span style="width:50px;display:inline-block">Fine</span>
@@ -602,10 +588,10 @@
 					{/if}
 				</thead>
 				<tbody>
-					{#if rowItems?.length}
-						{#each !externalfilter ? rowItems.slice(page * size, (page + 1) * size) : rowItems as item (item._id)}
+					{#if rows?.length}
+						{#each !externalfilter ? rows.slice(page * size, (page + 1) * size) : rows as item (item._id)}
 							<tr>
-								{#if enableselect && selectActionsbuttons}
+								{#if enableselect && selectactions?.length}
 									<td part="td-selection" style="box-shadow: none;">
 										<div class="form-check">
 											{#if selectedItems.find((f) => f === item._id)}
@@ -631,8 +617,8 @@
 										</div>
 									</td>
 								{/if}
-								{#if tableHeaders.length}
-									{#each tableHeaders as td (td.key)}
+								{#if headers.length}
+									{#each headers as td (td.key)}
 										{#if td.type === "actions"}
 											{#if item._actions?.length}
 												<td part="td-{td.key}">
@@ -695,9 +681,9 @@
 										{/if}
 									{/each}
 								{/if}
-								{#if actionButtons}
+								{#if actions}
 									<td part="td-action">
-										{#each actionButtons as abutton (abutton.name)}
+										{#each actions as abutton (abutton.name)}
 											{#if abutton.type === "text"}
 												<button
 													on:click={() => handleClickOnAction(item._id, abutton.name)}
@@ -723,9 +709,9 @@
 				</tbody>
 			</table>
 			<nav style="margin-top:20px" aria-label="actions on selected">
-				{#if selectActionsbuttons}
+				{#if selectactions?.length}
 					<button on:click={handleEnableSelector} class="btn btn-primary btn-sm"> <i class="bi-gear" /> </button>
-					{#each selectActionsbuttons as sbutton (sbutton.name)}
+					{#each selectactions as sbutton (sbutton.name)}
 						<span style="margin-left:20px">
 							<button
 								on:click={() => {

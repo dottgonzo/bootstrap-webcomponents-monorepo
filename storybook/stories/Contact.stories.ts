@@ -1,17 +1,13 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/contact-item/extra/docs";
 
 const meta: Meta = {
   title: "Components/Contact",
-  argTypes: {
-    id: { control: { disable: true } },
-    phone: { control: { type: "object" } },
-    address: { control: { type: "object" } },
-    email: { control: { type: "object" } },
-    site: { control: { type: "object" } },
-    config: { control: { type: "object" } },
-    contactclick: { action: "contactClickEvent" },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

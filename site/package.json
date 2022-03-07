@@ -14,7 +14,7 @@
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.19.1",
-		"@sveltejs/adapter-static": "^1.0.0-next.28",
+		"@sveltejs/adapter-static": "^1.0.0-next.29",
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "^5.10.1",
 		"@typescript-eslint/parser": "^5.10.1",
@@ -31,8 +31,9 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@htmlbricks/hb-banner": "^0.4.37",
-		"@htmlbricks/hb-jsutils": "^0.4.37",
-		"@htmlbricks/hb-offcanvas": "^0.4.37"
+		"@htmlbricks/hb-area-code": "^0.5.14",
+		"@htmlbricks/hb-banner": "^0.5.14",
+		"@htmlbricks/hb-jsutils": "^0.5.14",
+		"@htmlbricks/hb-sidenav-link": "^0.5.14"
 	}
 }

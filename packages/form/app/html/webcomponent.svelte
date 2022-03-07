@@ -13,40 +13,13 @@
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 
-	import type { FormSchema, FormSchemaEntry } from "@app/types/webcomponent.type";
+	import type { FormSchema, FormSchemaEntry, IControl, IRegisterComponent } from "@app/types/webcomponent.type";
 
 	import pkg from "../../package.json";
 
 	import { groupMultipleBy } from "@app/functions/utils";
 
-	type IComponentName =
-		| "hb-input-select"
-		| "hb-input-date"
-		| "hb-input-text"
-		| "hb-input-file"
-		| "hb-input-number"
-		| "hb-input-email"
-		| "hb-input-area"
-		| "hb-input-checkbox"
-		| "hb-input-radio";
 
-	interface ISchemaOption {
-		labelIsHandledByComponent?: boolean;
-		row?: boolean;
-	}
-	interface IComponent {
-		options?: ISchemaOption;
-		component?: IComponentName;
-	}
-	interface IRegisterComponent {
-		[k: string]: IComponent;
-	}
-	interface IControl {
-		entry: FormSchemaEntry;
-		component?: IComponentName;
-		options?: ISchemaOption;
-		columns?: any;
-	}
 	const registeredComponents: IRegisterComponent = {
 		row: { component: null, options: { row: true } },
 		select: { component: "hb-input-select" },

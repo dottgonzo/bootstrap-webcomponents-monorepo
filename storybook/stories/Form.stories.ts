@@ -1,16 +1,13 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
-// import type { FormSchema } from "../../packages/formhostcomponent/app/types/webcomponent.type";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/form/extra/docs";
 
 const meta: Meta = {
   title: "Form/Form",
-  argTypes: {
-    id: { control: { disable: true } },
-    schema: { control: { type: "array" } },
-    submit: { action: "submit" },
-    submitted: { control: { type: "boolean" } },
-    showvalidation: { control: { type: "boolean" } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

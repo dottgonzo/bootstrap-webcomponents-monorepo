@@ -2,7 +2,7 @@
   "name": "@htmlbricks/hb-bundle",
   "displayName": "HTMLBricks bundle",
   "description": "HTMLBricks bundle",
-  "version": "0.4.37",
+  "version": "0.5.14",
   "main": "release/release.js",
   "publishConfig": {
     "access": "public"
@@ -29,5 +29,5 @@
     "webcomponents"
   ],
   "contributors": [],
-  "gitHead": "7a9cf266eddeeedf3bd59cc09cf4a62451a5e017"
+  "gitHead": "b2cab991888f2b2fc1f9d2981a87323d17587533"
 }

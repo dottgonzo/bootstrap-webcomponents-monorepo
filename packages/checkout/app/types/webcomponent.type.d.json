@@ -1,0 +1,204 @@
+{
+  "$ref": "#/definitions/Component",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Component": {
+      "additionalProperties": false,
+      "properties": {
+        "completed": {
+          "enum": [
+            "yes",
+            "no"
+          ],
+          "type": "string"
+        },
+        "gateways": {
+          "items": {
+            "$ref": "#/definitions/IGateway"
+          },
+          "type": "array"
+        },
+        "payment": {
+          "$ref": "#/definitions/IPayment"
+        },
+        "shipments": {
+          "items": {
+            "$ref": "#/definitions/IShipment"
+          },
+          "type": "array"
+        },
+        "user": {
+          "$ref": "#/definitions/IUser"
+        }
+      },
+      "required": [
+        "shipments",
+        "user",
+        "gateways",
+        "payment",
+        "completed"
+      ],
+      "type": "object"
+    },
+    "IGateway": {
+      "additionalProperties": false,
+      "properties": {
+        "cardNetworks": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "currency": {
+          "enum": [
+            "€",
+            "$"
+          ],
+          "type": "string"
+        },
+        "fixedPrice": {
+          "type": "number"
+        },
+        "gatewayId": {
+          "type": "string"
+        },
+        "gatewayMerchantId": {
+          "type": "string"
+        },
+        "id": {
+          "enum": [
+            "google",
+            "paypal"
+          ],
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "merchantId": {
+          "type": "string"
+        },
+        "paypalid": {
+          "type": "string"
+        },
+        "percentagePrice": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "type": "object"
+    },
+    "IPayment": {
+      "additionalProperties": false,
+      "properties": {
+        "countryCode": {
+          "type": "string"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "merchantName": {
+          "type": "string"
+        },
+        "shipmentFee": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "type": {
+          "$ref": "#/definitions/IPaymentType"
+        }
+      },
+      "required": [
+        "merchantName",
+        "total",
+        "currencyCode",
+        "countryCode"
+      ],
+      "type": "object"
+    },
+    "IPaymentType": {
+      "enum": [
+        "book",
+        "buy",
+        "checkout",
+        "donate",
+        "order",
+        "pay",
+        "plain",
+        "subscribe"
+      ],
+      "type": "string"
+    },
+    "IShipment": {
+      "additionalProperties": false,
+      "properties": {
+        "arriveDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "selected": {
+          "type": "boolean"
+        },
+        "standard": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "price",
+        "arriveDate",
+        "available",
+        "id",
+        "label",
+        "currency"
+      ],
+      "type": "object"
+    },
+    "IUser": {
+      "additionalProperties": false,
+      "properties": {
+        "addressWithNumber": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "fixed": {
+          "type": "boolean"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "nationality": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "fullName"
+      ],
+      "type": "object"
+    }
+  }
+}

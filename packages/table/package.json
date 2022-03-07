@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-table",
 	"displayName": "Svelte Boostrap Streaming Table WebComponent",
 	"description": "Svelte Boostrap Streaming Table WebComponent",
-	"version": "0.4.37",
+	"version": "0.5.14",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -14,14 +14,16 @@
 	"license-translations": "CC BY 4.0",
 	"license-images": "CC BY-NC 4.0",
 	"engines": {
-		"node": ">=14.0.0"
+		"node": ">=16.0.0"
 	},
 	"scripts": {
 		"start": "sirv dist",
 		"dev": "rm -rf ./dist && rollup -c -w",
 		"build": "rm -rf ./dist && rollup -c",
-		"copydest": "rm -rf release && mkdir -p release && cp dist/release.js ./release/ && cp dist/release.js.map ./release/",
-		"build:release": "PRODUCTION=true npm run build && npm run copydest",
+		"generate-schema": "ts-json-schema-generator --path 'app/types/webcomponent.type.d.ts' --type 'Component' > app/types/webcomponent.type.d.json && cp app/types/webcomponent.type.d.json ./dist/",
+		"copydest": "rm -rf release && mkdir -p release && mkdir -p release && cp dist/* ./release/",
+		"build-extra": "tsc --module es2020 --esModuleInterop true --outDir dist --sourceMap true --skipLibCheck true extra/*",
+		"build:release": "PRODUCTION=true npm run build && npm run build-extra && npm run generate-schema && npm run copydest",
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
@@ -70,5 +72,5 @@
 		"bootstrap-icons": "^1.5.0",
 		"dayjs": "^1.10.7"
 	},
-	"gitHead": "7a9cf266eddeeedf3bd59cc09cf4a62451a5e017"
+	"gitHead": "b2cab991888f2b2fc1f9d2981a87323d17587533"
 }

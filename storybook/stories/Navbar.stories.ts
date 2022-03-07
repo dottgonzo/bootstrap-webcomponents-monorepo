@@ -1,19 +1,13 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/navbar/extra/docs";
 
 const meta: Meta = {
   title: "Layout/Navbar",
-  argTypes: {
-    id: { control: { disable: true } },
-    _testInnerHtml: { control: { disable: true } },
-    pagetitle: { control: { type: "text" } },
-    companybrandname: { control: { type: "text" } },
-    companylogouri: { control: { type: "text" } },
-    noburger: { control: { type: "boolean" } },
-    navmenuswitch: { action: "navmenuswitchEvent" },
-    userClick: { action: "userClickEvent" },
-    usermenu: { control: { type: "object" } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
   parameters: {
     layout: "fullscreen",
   },

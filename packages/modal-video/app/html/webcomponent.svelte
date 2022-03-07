@@ -22,12 +22,15 @@
 	}
 	addComponent("dialog");
 
+	export let id: string;
+
 	export let item: string;
 	export let uri: string;
 	export let title: string;
 	export let provider: string;
 
 	$: {
+		if (!id) id = null;
 		if (!item) item = "";
 		if (!uri) uri = "";
 		if (!title) title = "";

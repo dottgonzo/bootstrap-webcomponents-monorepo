@@ -10,16 +10,10 @@
 	 * @license: MIT License
 	 *
 	 */
-	interface IDropDownMenuListItem {
-		key: string;
-		label: string;
-		badge?: number;
-		group?: string;
-		linkHref?: string;
-	}
 
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
+	import type { IDropDownMenuListItem } from "@app/types/webcomponent.type";
 	export let id: string;
 	export let position: "left" | "right";
 	export let list: IDropDownMenuListItem[];

@@ -4,6 +4,7 @@
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
+	import type { IHeader } from "@app/types/webcomponent.type";
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 	function dispatch(name, detail) {
@@ -25,7 +26,7 @@
 
 	export let downloadid: string;
 	export let uri: string;
-	export let headers: {};
+	export let headers: IHeader;
 	export let targetfilename: string;
 	let total: number;
 	let loaded: number = 0;

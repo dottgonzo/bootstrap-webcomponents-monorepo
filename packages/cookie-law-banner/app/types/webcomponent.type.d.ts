@@ -21,3 +21,10 @@ export interface ICapabilities {
 		cookieExpirationInSeconds?: number;
 	}[];
 }
+
+export type Component = {
+	allowdecline: "yes" | "no";
+	language: string;
+	capabilities: ICapabilities;
+	cookielawuri4more: string;
+};

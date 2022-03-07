@@ -9,3 +9,9 @@ export interface ITrack {
 	minValue: number;
 	maxValue: number;
 }
+
+export type Component = {
+	src: string;
+	form: string;
+	track: ITrack;
+};

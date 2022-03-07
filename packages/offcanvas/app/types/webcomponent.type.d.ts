@@ -1,12 +1,10 @@
-export type INavLink = {
-	key: string;
-	icon?: string;
-	group?: string;
-	label: string;
-	badge?: {
-		text: string;
-		class?: string;
-		classcolor?: string;
-	};
-	subLinks?: INavLink[];
+export type Component = {
+	opened: boolean;
+	navlinks: string;
+	navpage: string;
+	groups: string;
+	companylogouri: string;
+	companytitle: string;
+	enablefooter: boolean;
+	type: "open" | "autohide" | "small";
 };

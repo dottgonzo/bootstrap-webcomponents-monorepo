@@ -14,12 +14,13 @@
 	import { createEventDispatcher } from "svelte";
 
 	// import dispatch from "@app/functions/webcomponent";
+	export let id: string;
 
-	export let page: number;
 	export let primarycolor: number;
 
 	export let pages: number;
-	export let id: string;
+	export let page: number;
+
 	if (!id) id = null;
 
 	if (!primarycolor) {

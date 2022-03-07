@@ -1,15 +1,13 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/downloader/extra/docs";
 
 const meta: Meta = {
   title: "Components/Downloader",
-  argTypes: {
-    id: { control: { disable: true } },
-    uri: { control: { type: "text" } },
-    targetfilename: { control: { type: "text" } },
-    headers: { control: { type: "text" } },
-    downloadid: { control: { type: "text" } },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;

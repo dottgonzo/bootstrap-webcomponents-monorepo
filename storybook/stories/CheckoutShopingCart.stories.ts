@@ -1,14 +1,13 @@
 import { Story, Meta } from "@storybook/html";
-import { webComponentBind } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/checkout-shopping-cart/extra/docs";
 
 const meta: Meta = {
   title: "Components/CheckoutShoppingCart",
-
-  argTypes: {
-    id: { control: { disable: true } },
-    payment: { control: { type: "object" } },
-    completed: { control: { type: "radio" }, options: ["yes", "no"] },
-  },
+  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
 };
 
 export default meta;
