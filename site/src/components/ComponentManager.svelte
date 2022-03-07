@@ -1,23 +1,29 @@
 <script lang="ts">
 	import ControlTable from './controlTable.svelte';
 	import PropsTable from './propsTable.svelte';
-	import { allComponents } from '../stores/components';
+	import { allComponentsMetas } from '../stores/components';
+	import { allComponentsExampleValues } from '../stores/components';
 
 	export let name: string;
-	export let args: any;
+	let args: string;
 
-	const storybookargs = $allComponents.find((f) => f.name === name).storybookArgs;
-	const definition = $allComponents.find((f) => f.name === name).definition;
+	let storybookargs: any;
+	let definition: any;
 
 	let com: string;
 
 	$: {
+		storybookargs = $allComponentsMetas.find((f) => f.name === name).storybookArgs;
+		definition = $allComponentsMetas.find((f) => f.name === name).definition;
+		args = $allComponentsExampleValues[name];
 		com = '<hb-' + name;
-		for (const k of Object.keys(args)) {
-			switch (typeof args[k]) {
-				case 'string':
-					if (args[k]) com += ` ${k}="${args[k]}"`;
-					break;
+		if (args) {
+			for (const k of Object.keys(args)) {
+				switch (typeof args[k]) {
+					case 'string':
+						if (args[k]) com += ` ${k}="${args[k]}"`;
+						break;
+				}
 			}
 		}
 
