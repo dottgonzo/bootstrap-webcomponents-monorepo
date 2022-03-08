@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-page-checkout",
 	"displayName": "Svelte Page Payment WebComponent",
 	"description": "Svelte Page Payment WebComponent",
-	"version": "0.5.15",
+	"version": "0.5.16",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
