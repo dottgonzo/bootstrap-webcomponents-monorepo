@@ -14,18 +14,20 @@
 	import pkg from "../../package.json";
 	import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
 
+	import type { Component } from "../types/webcomponent.type";
+
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	export let id: string;
 	export let opened: boolean;
 	export let navlinks: INavLink[];
 	export let navpage: string;
-	export let groups: string;
+	export let groups: Component["groups"];
 	export let companylogouri: string;
 	export let companytitle: string;
 	export let enablefooter: boolean;
-	export let type: "open" | "autohide" | "small";
-	let groupsArr: { key: string; label: string }[] = [];
+	export let type: Component["type"]
+
 	let sendOff;
 	let switched;
 	$: {
@@ -50,11 +52,10 @@
 			navpage = "home";
 		}
 		try {
-			if (groups) {
-				groupsArr = JSON.parse(groups);
-			} else {
-				groups = null;
-				groupsArr = [];
+			if (typeof groups === "string") {
+				groups = JSON.parse(groups);
+			} else if (!groups) {
+				groups = [];
 			}
 			if (typeof navlinks === "string") {
 				navlinks = JSON.parse(navlinks);
@@ -132,8 +133,8 @@
 						<hb-sidenav-link navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
 					{/each}
 				{/if}
-				{#if groupsArr?.length}
-					{#each groupsArr as navLinkGroup (navLinkGroup.key)}
+				{#if groups?.length}
+					{#each groups as navLinkGroup (navLinkGroup.key)}
 						<h5 style="margin-top: 40px;">{navLinkGroup.label}</h5>
 						<hr style="margin-top:0px;margin-bottom: 10px;" />
 
@@ -144,7 +145,7 @@
 				{/if}
 				{#if navlinks?.length}
 					{#each navlinks
-						.filter((f) => f.group && (!groupsArr || !groupsArr.length || !groupsArr.map((m) => m.key).includes(f.group)))
+						.filter((f) => f.group && (!groups?.length || !groups.map((m) => m.key).includes(f.group)))
 						.map((m) => m.group)
 						.filter((v, i, a) => a.indexOf(v) === i) as navLinkGroup (navLinkGroup)}
 						<h5 style="margin-top: 40px;">{navLinkGroup}</h5>

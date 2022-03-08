@@ -2,6 +2,7 @@ export const storybookArgs = {
 	opened: { control: { type: "boolean" } },
 	companylogouri: { control: { type: "text" } },
 	companytitle: { control: { type: "text" } },
+	groups: { control: { type: "text" } },
 	enablefooter: { control: { type: "boolean" } },
 	pageclick: { action: "pageclickEvent" },
 	offcanvasswitch: { action: "offcanvasswitchEvent" },

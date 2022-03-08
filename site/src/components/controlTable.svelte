@@ -16,7 +16,13 @@
 			<tr>
 				<td>{prop}</td>
 				<td>
-					{#if storybookargs[prop]?.control?.type === 'text'}
+					{#if storybookargs[prop]?.control?.options}
+						<select bind:value={args[prop]}>
+							{#each storybookargs[prop].control.options as opt (opt)}
+								<option value={opt}>{opt}</option>
+							{/each}
+						</select>
+					{:else if storybookargs[prop]?.control?.type === 'text'}
 						<input type="text" bind:value={args[prop]} />
 					{:else if storybookargs[prop]?.control?.type === 'boolean'}
 						<select

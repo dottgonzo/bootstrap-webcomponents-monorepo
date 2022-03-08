@@ -4,7 +4,7 @@ export type Component = {
 	opened: boolean;
 	navlinks: INavLink[];
 	navpage: string;
-	groups: string;
+	groups: { key: string; label: string }[];
 	companylogouri: string;
 	companytitle: string;
 	enablefooter: boolean;
