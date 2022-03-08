@@ -32,11 +32,11 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@htmlbricks/hb-area-code": "^0.5.15",
-		"@htmlbricks/hb-banner": "^0.5.15",
-		"@htmlbricks/hb-jsutils": "^0.5.15",
-		"@htmlbricks/hb-offcanvas": "^0.5.15",
-		"@htmlbricks/hb-sidenav-link": "^0.5.15",
+		"@htmlbricks/hb-area-code": "^0.5.16",
+		"@htmlbricks/hb-banner": "^0.5.16",
+		"@htmlbricks/hb-jsutils": "^0.5.16",
+		"@htmlbricks/hb-offcanvas": "^0.5.16",
+		"@htmlbricks/hb-sidenav-link": "^0.5.16",
 		"base-64": "^1.0.0"
 	}
 }
