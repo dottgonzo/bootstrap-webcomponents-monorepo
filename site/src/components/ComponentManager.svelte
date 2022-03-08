@@ -3,7 +3,7 @@
 	import PropsTable from './propsTable.svelte';
 	import { allComponentsMetas } from '../stores/components';
 	import { allComponentsExampleValues } from '../stores/components';
-
+	import { encode } from 'base-64';
 	export let name: string;
 	let args: string;
 
@@ -23,6 +23,12 @@
 					case 'string':
 						if (args[k]) com += ` ${k}="${args[k]}"`;
 						break;
+					case 'boolean':
+						com += ` ${k}="${args[k] ? 'yes' : 'no'}"`;
+						break;
+					case 'object':
+						com += ` ${k}='${JSON.stringify(args[k])}'`;
+						break;
 				}
 			}
 		}
@@ -31,7 +37,13 @@
 	}
 </script>
 
-{@html com}
+<iframe
+	style="width:100%;height:600px"
+	title="component"
+	src="/playgrounds/sandbox?c={name}&p={encode(JSON.stringify(args))}"
+/>
+
+<!-- {@html com} -->
 
 <ControlTable {definition} {storybookargs} bind:args />
 

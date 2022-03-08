@@ -1,6 +1,8 @@
+import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
+
 export type Component = {
 	opened: boolean;
-	navlinks: string;
+	navlinks: INavLink[];
 	navpage: string;
 	groups: string;
 	companylogouri: string;

@@ -16,6 +16,7 @@
 		"@playwright/test": "^1.19.1",
 		"@sveltejs/adapter-static": "^1.0.0-next.29",
 		"@sveltejs/kit": "next",
+		"@types/base-64": "^1.0.0",
 		"@typescript-eslint/eslint-plugin": "^5.10.1",
 		"@typescript-eslint/parser": "^5.10.1",
 		"eslint": "^7.32.0",
@@ -34,6 +35,8 @@
 		"@htmlbricks/hb-area-code": "^0.5.14",
 		"@htmlbricks/hb-banner": "^0.5.14",
 		"@htmlbricks/hb-jsutils": "^0.5.14",
-		"@htmlbricks/hb-sidenav-link": "^0.5.14"
+		"@htmlbricks/hb-offcanvas": "^0.5.14",
+		"@htmlbricks/hb-sidenav-link": "^0.5.14",
+		"base-64": "^1.0.0"
 	}
 }
