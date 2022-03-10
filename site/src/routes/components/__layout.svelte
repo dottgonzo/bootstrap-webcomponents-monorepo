@@ -133,6 +133,10 @@
 		vatNumber: 'aa - ffffff',
 		fiscalCode: 'f4f5f6fff'
 	})}
+	sidebar={JSON.stringify({
+		logoUri: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg',
+		siteName: 'tttttt'
+	})}
 	contacts={JSON.stringify({
 		sites: [{ label: 'dariocaruso.info', uri: 'https://dariocaruso.info' }],
 		phones: [{ number: '6666666666666' }],

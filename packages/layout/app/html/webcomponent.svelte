@@ -55,6 +55,9 @@
 			onescreen = null;
 		}
 		if (!sidebar) sidebar = {};
+		else if (typeof sidebar === "string") {
+			sidebar = JSON.parse(sidebar);
+		}
 		navopen = false;
 		if (!company) {
 			company = null;
@@ -105,7 +108,7 @@
 			navpage={pagename || ""}
 			navlinks={navlinks || "[]"}
 			companytitle={sidebar?.title}
-			companylogouri={sidebar?.logoUri}
+			companylogouri={sidebar?.logo}
 			on:offcanvasswitch={(el) => openmenu(el.detail)}
 			opened={navopen ? "yes" : "no"}
 			on:pagechange={(p) => dispatch("pagechange", p.detail)}

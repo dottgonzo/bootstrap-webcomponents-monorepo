@@ -15,5 +15,5 @@ export type Component = {
 	cookielawuri4more?: string;
 	cookielawallowdecline?: string;
 	cookielawlanguage?: string;
-	sidebar?: { title?: string; logoUri?: string };
+	sidebar?: { title?: string; logo?: string };
 };
