@@ -25,14 +25,17 @@
 							text += prop.type + ',';
 					}
 			}
-			text += '}';
-			return text.replace(',}', '}');
+			text += ' }';
+			return text.replace(', }', ' }');
 		}
 	}
 
 	function propToType(prop: string) {
 		const propDefinition = definition.definitions.Component.properties[prop];
-		if (propDefinition.$ref) return propDefinition.$ref.replace('#/definitions/', '');
+		if (propDefinition.$ref)
+			return defToInterfaceString(
+				definition.definitions[propDefinition.$ref.replace('#/definitions/', '')]
+			);
 
 		switch (propDefinition.type) {
 			case 'array':
