@@ -17,15 +17,63 @@
 				<td>{prop}</td>
 				<td>
 					{#if storybookargs[prop]?.control?.options}
-						<select bind:value={args[prop]}>
+						<!-- <select bind:value={args[prop]}>
 							{#each storybookargs[prop].control.options as opt (opt)}
 								<option value={opt}>{opt}</option>
 							{/each}
-						</select>
+						</select> -->
+
+						<hb-input-select
+							schemaentry={JSON.stringify({
+								type: 'select',
+								id: prop,
+								value: args[prop],
+								params: {
+									options: storybookargs[prop].control.options.map((m) => {
+										const v = {
+											label: m,
+											value: m
+										};
+										return v;
+									})
+								}
+							})}
+							on:setValue={(e) => {
+								args[prop] = e.detail.value;
+							}}
+						/>
 					{:else if storybookargs[prop]?.control?.type === 'text'}
-						<input type="text" bind:value={args[prop]} />
+						<hb-input-text
+							schemaentry={JSON.stringify({
+								type: 'text',
+								id: prop,
+								value: args[prop]
+							})}
+							on:setValue={(e) => {
+								console.log(e);
+								args[prop] = e.detail.value;
+							}}
+						/>
+						<!-- <input type="text" bind:value={args[prop]} /> -->
 					{:else if storybookargs[prop]?.control?.type === 'boolean'}
-						<select
+						<hb-input-select
+							schemaentry={JSON.stringify({
+								type: 'select',
+								id: prop,
+								value: args[prop] && args[prop] !== 'no' ? 'yes' : 'no',
+								params: {
+									options: [
+										{ label: 'yes', value: 'yes' },
+										{ label: 'no', value: 'no' }
+									]
+								}
+							})}
+							on:setValue={(e) => {
+								args[prop] = e.detail.value;
+							}}
+						/>
+
+						<!-- <select
 							on:change={(c) => {
 								const val = c.target['value'];
 								args[prop] = val === 'yes' ? true : false;
@@ -35,9 +83,21 @@
 						>
 							<option value="yes">yes</option>
 							<option value="no">no</option>
-						</select>
+						</select> -->
 					{:else if ['object', 'array'].includes(storybookargs[prop]?.control?.type)}
-						<input
+						<hb-input-area
+							schemaentry={JSON.stringify({
+								type: 'textarea',
+								id: prop,
+								value: JSON.stringify(args[prop])
+							})}
+							on:setValue={(e) => {
+								const val = JSON.parse(e.detail.value);
+								console.log(val);
+								args[prop] = val;
+							}}
+						/>
+						<!-- <input
 							type="text"
 							on:input={(c) => {
 								const val = c.target['value'];
@@ -46,7 +106,7 @@
 								console.log('changemew', c);
 							}}
 							value={JSON.stringify(args[prop])}
-						/>
+						/> -->
 					{/if}
 				</td>
 			</tr>

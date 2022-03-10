@@ -5,12 +5,25 @@ import areaCodeDefinition from '@htmlbricks/hb-area-code/release/webcomponent.ty
 import offcanvasDefinition from '@htmlbricks/hb-offcanvas/release/webcomponent.type.d.json';
 import layoutDefinition from '@htmlbricks/hb-layout/release/webcomponent.type.d.json';
 import footerDefinition from '@htmlbricks/hb-footer/release/webcomponent.type.d.json';
+import inputTextDefinition from '@htmlbricks/hb-input-text/release/webcomponent.type.d.json';
 
 import { storybookArgs as bannerStorybookArgs } from '@htmlbricks/hb-banner/release/docs';
 import { storybookArgs as areaCodeStorybookArgs } from '@htmlbricks/hb-area-code/release/docs';
 import { storybookArgs as offcanvasStorybookArgs } from '@htmlbricks/hb-offcanvas/release/docs';
 import { storybookArgs as layoutStorybookArgs } from '@htmlbricks/hb-layout/release/docs';
 import { storybookArgs as footerStorybookArgs } from '@htmlbricks/hb-footer/release/docs';
+import { storybookArgs as inputTextStorybookArgs } from '@htmlbricks/hb-input-text/release/docs';
+
+const inputTextExampleValues = {
+	schemaentry: {
+		type: 'text',
+		placeholder: 'Insert your last name here...',
+		id: 'lastName',
+		required: true,
+		label: 'Last Name',
+		validationTip: 'This field cannot be empty.'
+	}
+};
 
 const bannerExampleValues = {
 	title: 'ciao',
@@ -233,6 +246,12 @@ export const allComponentsMetas = readable([
 		storybookArgs: footerStorybookArgs,
 		name: 'footer',
 		category: 'layout'
+	},
+	{
+		definition: inputTextDefinition,
+		storybookArgs: inputTextStorybookArgs,
+		name: 'input-text',
+		category: 'form'
 	}
 ]);
 
@@ -240,6 +259,7 @@ export const allComponentsExampleValues = writable({
 	banner: bannerExampleValues,
 	layout: layoutExampleValues,
 	'area-code': areaCodeExampleValues,
+	'input-text': inputTextExampleValues,
 	offcanvas: offcanvasExampleValues,
 	footer: footerExampleValues
 });

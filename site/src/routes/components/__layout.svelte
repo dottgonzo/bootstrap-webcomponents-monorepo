@@ -12,13 +12,15 @@
 			key: 'main',
 			label: 'home',
 			group: 'Site',
-			active: false
+			active: false,
+			icon: 'house-door'
 		};
 		const components: INavLink = {
 			key: 'components',
 			label: 'components',
 			group: 'Site',
-			active: false
+			active: false,
+			icon: 'grid-3x3-gap'
 		};
 		const arr: INavLink[] = [home, components];
 		let cats: string[] = [];
@@ -28,6 +30,24 @@
 		});
 
 		cats.forEach((f) => {
+			let catIcon;
+			switch (f) {
+				case 'basic':
+					catIcon = 'puzzle';
+					break;
+
+				case 'dev':
+					catIcon = 'code';
+					break;
+				case 'layout':
+					catIcon = 'grid-1x2';
+					break;
+				case 'form':
+					catIcon = 'input-cursor-text';
+
+					break;
+			}
+
 			const subLinks: INavLink[] = $allComponentsMetas
 				.filter((fi) => fi.category === f)
 				.map((m) => {
@@ -44,7 +64,8 @@
 				label: f,
 				group: 'components',
 				subLinks,
-				active: false
+				active: false,
+				icon: catIcon
 			};
 			arr.push(navLink);
 		});
