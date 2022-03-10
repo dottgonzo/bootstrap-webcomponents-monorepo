@@ -3,15 +3,14 @@
 	import type { INavLink } from '@htmlbricks/hb-sidenav-link/release/webcomponent.type';
 	import { addComponent } from '@htmlbricks/hb-jsutils';
 	import { onMount } from 'svelte';
-
-	import { pageName } from '../../stores/app';
+	import { pageName, componentsVersion } from '../../stores/app';
 	import { allComponentsMetas } from '../../stores/components';
 
 	const navlinks = (): INavLink[] => {
 		const home: INavLink = {
 			key: 'main',
 			label: 'home',
-			group: 'Site',
+			group: '',
 			active: false,
 			icon: 'house-door'
 		};
@@ -19,7 +18,7 @@
 		const components: INavLink = {
 			key: 'storybook',
 			label: 'storybook',
-			group: 'Site',
+			group: '',
 			active: false,
 			icon: 'grid-3x3-gap'
 		};
@@ -110,7 +109,7 @@
 	};
 
 	onMount(() => {
-		addComponent('bundle', 'latest');
+		addComponent('bundle', $componentsVersion);
 	});
 	function pageChange(d) {
 		goto('/components/doc?c=' + d.page);
@@ -134,8 +133,8 @@
 		fiscalCode: 'f4f5f6fff'
 	})}
 	sidebar={JSON.stringify({
-		logoUri: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg',
-		siteName: 'tttttt'
+		logo: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg',
+		title: 'HtmlB'
 	})}
 	contacts={JSON.stringify({
 		sites: [{ label: 'dariocaruso.info', uri: 'https://dariocaruso.info' }],

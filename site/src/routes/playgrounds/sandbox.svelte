@@ -3,7 +3,7 @@
 	import base64 from 'base-64';
 
 	import { page } from '$app/stores';
-	import { pageName } from '../../stores/app';
+	import { componentsVersion, pageName } from '../../stores/app';
 	import { onMount } from 'svelte';
 	let name: string;
 
@@ -37,7 +37,7 @@
 		com += ` />`;
 	}
 	onMount(() => {
-		if (name) addComponent(name, 'latest');
+		if (name) addComponent(name, $componentsVersion);
 	});
 </script>
 
