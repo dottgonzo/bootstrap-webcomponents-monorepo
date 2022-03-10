@@ -3,7 +3,7 @@
 	import PropsTable from './propsTable.svelte';
 	import { allComponentsMetas } from '../stores/components';
 	import { allComponentsExampleValues } from '../stores/components';
-	import { encode } from 'base-64';
+	import base64 from 'base-64';
 	export let name: string;
 	let args: string;
 
@@ -40,7 +40,7 @@
 <iframe
 	style="width:100%;height:600px"
 	title="component"
-	src="/playgrounds/sandbox?c={name}&p={encode(JSON.stringify(args))}"
+	src="/playgrounds/sandbox?c={name}&p={base64.encode(JSON.stringify(args))}"
 />
 
 <!-- {@html com} -->

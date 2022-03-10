@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { addComponent } from '@htmlbricks/hb-jsutils';
-	import { decode } from 'base-64';
+	import base64 from 'base-64';
 
 	import { page } from '$app/stores';
 	import { pageName } from '../../stores/app';
@@ -15,7 +15,7 @@
 		const paramsBase64 = $page.url?.href?.split('p=')?.[1]?.split('&')[0];
 		pageName.set(name || 'docs');
 
-		args = paramsBase64 ? JSON.parse(decode(paramsBase64)) : {};
+		args = paramsBase64 ? JSON.parse(base64.decode(paramsBase64)) : {};
 
 		com = '<hb-' + name;
 		if (args) {
