@@ -25,7 +25,7 @@ const company1 = {
 	siteName: 'testsite',
 	companyName: 'testcompany S.R.L.',
 	registration: 'copyright',
-	description: `testo e descrizione di esempio dell'applicazione`,
+	description: `testo e descrizione di esempio dell applicazione`,
 	vatNumber: 'aa - ffffff',
 	fiscalCode: 'f4f5f6fff'
 };

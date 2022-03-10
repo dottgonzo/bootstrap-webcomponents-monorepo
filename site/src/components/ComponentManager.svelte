@@ -15,7 +15,7 @@
 	$: {
 		storybookargs = $allComponentsMetas.find((f) => f.name === name)?.storybookArgs;
 		definition = $allComponentsMetas.find((f) => f.name === name)?.definition;
-		args = JSON.parse(JSON.stringify($allComponentsExampleValues[name]).replace("'", ' '));
+		args = $allComponentsExampleValues[name];
 		com = '<hb-' + name;
 		if (args) {
 			for (const k of Object.keys(args)) {
