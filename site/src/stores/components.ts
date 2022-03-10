@@ -32,7 +32,7 @@ const bannerExampleValues = {
 const areaCodeExampleValues = {
 	content: 'desc'
 };
-
+const sidebar = { title: 'ciao' };
 const company1 = {
 	logoUri: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg',
 	siteName: 'testsite',
@@ -172,7 +172,8 @@ const layoutExampleValues = {
 	contacts: contacts1,
 	socials: socials1,
 	navlinks: navlinks2,
-	usermenu: usermenu1
+	usermenu: usermenu1,
+	sidebar
 };
 const footerExampleValues = {
 	company: company1,

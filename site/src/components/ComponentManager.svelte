@@ -1,9 +1,11 @@
 <script lang="ts">
-	import ControlTable from './controlTable.svelte';
-	import PropsTable from './propsTable.svelte';
+	import ControlTable from './ControlTable.svelte';
+	import PropsTable from './PropsTable.svelte';
+	import EventsTable from './EventsTable.svelte';
 	import { allComponentsMetas } from '../stores/components';
 	import { allComponentsExampleValues } from '../stores/components';
 	import base64 from 'base-64';
+	import { componentsVersion } from '../stores/app';
 	export let name: string;
 	let args: string;
 
@@ -11,6 +13,7 @@
 	let definition: any;
 
 	let com: string;
+	let cdnUri: string;
 
 	$: {
 		storybookargs = $allComponentsMetas.find((f) => f.name === name)?.storybookArgs;
@@ -34,19 +37,22 @@
 		}
 
 		com += ` />`;
+		cdnUri = `<${'script'} src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${name}@${$componentsVersion}/release/release.js"></${'script'}>`;
 	}
 </script>
 
+<div style="margin-top:20px"><hb-area-code content={cdnUri} /></div>
+
 <iframe
-	style="width:100%;height:600px"
+	style="width:100%;height:600px;margin-top:20px"
 	title="component"
 	src="/playgrounds/sandbox?c={name}&p={base64.encode(JSON.stringify(args))}"
 />
+<div style="margin-top:20px"><ControlTable {definition} {storybookargs} bind:args /></div>
+<div style="margin-top:20px"><hb-area-code content={com} /></div>
 
 <!-- {@html com} -->
 
-<ControlTable {definition} {storybookargs} bind:args />
+<div style="margin-top:20px"><PropsTable {definition} {storybookargs} /></div>
 
-<hb-area-code content={com} />
-
-<PropsTable {definition} {storybookargs} />
+<div style="margin-top:20px"><EventsTable {definition} {storybookargs} /></div>
