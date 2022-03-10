@@ -24,6 +24,7 @@
 	}
 	let flash = false;
 	function copyToClipBoard() {
+		if (flash) return;
 		navigator.clipboard.writeText(content);
 		flash = true;
 
