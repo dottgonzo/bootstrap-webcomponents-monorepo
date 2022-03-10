@@ -4,11 +4,13 @@ import bannerDefinition from '@htmlbricks/hb-banner/release/webcomponent.type.d.
 import areaCodeDefinition from '@htmlbricks/hb-area-code/release/webcomponent.type.d.json';
 import offcanvasDefinition from '@htmlbricks/hb-offcanvas/release/webcomponent.type.d.json';
 import layoutDefinition from '@htmlbricks/hb-layout/release/webcomponent.type.d.json';
+import footerDefinition from '@htmlbricks/hb-footer/release/webcomponent.type.d.json';
 
 import { storybookArgs as bannerStorybookArgs } from '@htmlbricks/hb-banner/release/docs';
 import { storybookArgs as areaCodeStorybookArgs } from '@htmlbricks/hb-area-code/release/docs';
 import { storybookArgs as offcanvasStorybookArgs } from '@htmlbricks/hb-offcanvas/release/docs';
 import { storybookArgs as layoutStorybookArgs } from '@htmlbricks/hb-layout/release/docs';
+import { storybookArgs as footerStorybookArgs } from '@htmlbricks/hb-footer/release/docs';
 
 const bannerExampleValues = {
 	title: 'ciao',
@@ -117,13 +119,56 @@ const socials1 = {
 	facebook: 'fbbb',
 	youtube: 'yttttttt'
 };
-
+const columns1 = [
+	{
+		cells: [
+			{
+				label: 'test',
+				key: 'test'
+			},
+			{
+				label: 'test2',
+				key: 'test2'
+			},
+			{
+				label: 'test3',
+				key: 'test3'
+			}
+		],
+		title: 'stringtitle'
+	}
+];
+const brandandcontacts1 = {};
+const footerbottom1 = {};
+const policies1 = [
+	{
+		label: 'Privacy Policy',
+		key: 'privacypolicy'
+	},
+	{
+		label: 'Condizioni Generali',
+		key: 'generalcondition'
+	},
+	{
+		label: 'Cookie Policy',
+		key: 'cookiepolicy'
+	}
+];
 const layoutExampleValues = {
 	company: company1,
 	contacts: contacts1,
 	socials: socials1,
 	navlinks: navlinks2,
 	usermenu: usermenu1
+};
+const footerExampleValues = {
+	company: company1,
+	brandandcontacts: brandandcontacts1,
+	columns: columns1,
+	footerbottom: footerbottom1,
+	policies: policies1,
+	contacts: contacts1,
+	socials: socials1
 };
 const offcanvasExampleValues = {
 	opened: true,
@@ -182,6 +227,12 @@ export const allComponentsMetas = readable([
 		storybookArgs: layoutStorybookArgs,
 		name: 'layout',
 		category: 'layout'
+	},
+	{
+		definition: footerDefinition,
+		storybookArgs: footerStorybookArgs,
+		name: 'footer',
+		category: 'layout'
 	}
 ]);
 
@@ -189,5 +240,6 @@ export const allComponentsExampleValues = writable({
 	banner: bannerExampleValues,
 	layout: layoutExampleValues,
 	'area-code': areaCodeExampleValues,
-	offcanvas: offcanvasExampleValues
+	offcanvas: offcanvasExampleValues,
+	footer: footerExampleValues
 });

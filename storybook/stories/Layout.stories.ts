@@ -17,7 +17,6 @@ const meta: Meta = {
     layout: "fullscreen",
   },
 };
-console.log(Object.assign({}, assigned));
 
 export default meta;
 const company1 = {

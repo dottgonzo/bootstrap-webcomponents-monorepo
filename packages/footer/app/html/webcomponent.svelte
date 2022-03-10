@@ -36,24 +36,21 @@
 
 		if (!company) {
 			company = null;
-		} else {
-			try {
-				company = JSON.parse(company as unknown as string);
-			} catch (err) {}
+			console.warn("no company provided!");
+		} else if (typeof company === "string") {
+			company = JSON.parse(company);
 		}
 
 		if (!columns) {
-			columns = null;
-		} else {
-			try {
-				columns = JSON.parse(columns as unknown as string);
+			columns = [];
+		} else if (typeof columns === "string") {
+			columns = JSON.parse(columns);
+		}
 
-				let n = 0;
-				for (const c of columns) {
-					if (!c._id) c._id = "ccc_" + n.toString();
-					n++;
-				}
-			} catch (err) {}
+		let n = 0;
+		for (const c of columns) {
+			if (!c._id) c._id = "ccc_" + n.toString();
+			n++;
 		}
 
 		if (!brandandcontacts) {
@@ -255,7 +252,7 @@
 						</ul>
 					</div>
 				{/if}
-				{#if columns && columns.length}
+				{#if columns?.length}
 					{#each columns as column (column._id)}
 						<div
 							style="padding:20px 20px"

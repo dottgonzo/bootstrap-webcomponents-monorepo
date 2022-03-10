@@ -8,7 +8,7 @@
 		$ref?: string;
 	}) {
 		if (definition.$ref) return definition.$ref.replace('#/definitions/', '');
-		if (definition.type === 'object') {
+		if (definition.type === 'object' && definition.properties) {
 			let text = '{';
 			for (const propKey of Object.keys(definition.properties)) {
 				const prop = definition.properties[propKey];
