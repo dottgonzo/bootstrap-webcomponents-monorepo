@@ -11,9 +11,13 @@ interface IColumn {
   cells: { label: string; key: string }[];
   title: string;
 }
+const copy1 = Object.assign({}, argTypesExtraUtils);
+const copy2 = Object.assign({}, storybookArgs);
+
+const assigned = Object.assign({}, copy1, copy2);
 const meta: Meta = {
   title: "Layout/Footer",
-  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
+  argTypes: assigned,
   parameters: {
     //👇 The viewports object from the Essentials addon
     viewport: {
