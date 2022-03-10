@@ -18,6 +18,7 @@
 	import type { IContacts, ISocials, ICompany, IColumn } from "../../../footer/app/types/webcomponent.type";
 	import type { IUserMenu } from "../../../navbar/app/types/webcomponent.type";
 	import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
+	import type { Component } from "../types/webcomponent.type";
 
 	export let id: string;
 	export let socials: ISocials;
@@ -32,6 +33,7 @@
 	export let cookielawuri4more: string;
 	export let cookielawallowdecline: string;
 	export let cookielawlanguage: string;
+	export let sidebar: Component["sidebar"];
 
 	let navopen: boolean;
 	$: {
@@ -52,13 +54,12 @@
 		if (!onescreen) {
 			onescreen = null;
 		}
+		if (!sidebar) sidebar = {};
 		navopen = false;
 		if (!company) {
 			company = null;
 		} else if (typeof company === "string") {
-			try {
-				company = JSON.parse(company as unknown as string);
-			} catch (err) {}
+			company = JSON.parse(company as unknown as string);
 		}
 		if (!navlinks) {
 			navlinks = null;
@@ -99,12 +100,12 @@
 </script>
 
 <div style={onescreen ? "display: flex;flex-direction: column;	height: 100vh;" : "display:block"} part="container">
-	{#if navlinks}
+	{#if navlinks?.length}
 		<hb-offcanvas
 			navpage={pagename || ""}
 			navlinks={navlinks || "[]"}
-			companytitle={company?.siteName || ""}
-			companylogouri={company?.logoUri || ""}
+			companytitle={sidebar?.title}
+			companylogouri={sidebar?.logoUri}
 			on:offcanvasswitch={(el) => openmenu(el.detail)}
 			opened={navopen ? "yes" : "no"}
 			on:pagechange={(p) => dispatch("pagechange", p.detail)}

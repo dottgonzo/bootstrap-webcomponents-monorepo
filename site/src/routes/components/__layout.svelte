@@ -15,14 +15,31 @@
 			active: false,
 			icon: 'house-door'
 		};
+
 		const components: INavLink = {
-			key: 'components',
-			label: 'components',
+			key: 'storybook',
+			label: 'storybook',
 			group: 'Site',
 			active: false,
 			icon: 'grid-3x3-gap'
 		};
-		const arr: INavLink[] = [home, components];
+		const documentation: INavLink = {
+			key: 'documentation',
+			label: 'documentation',
+			group: 'Docs',
+			active: false,
+			icon: 'book',
+			subLinks: [
+				{
+					key: 'quick',
+					label: 'Quick Start',
+					group: 'Docs',
+					active: false,
+					icon: 'lightning'
+				}
+			]
+		};
+		const arr: INavLink[] = [home, documentation, components];
 		let cats: string[] = [];
 
 		$allComponentsMetas.forEach((f) => {
@@ -62,7 +79,7 @@
 			const navLink: INavLink = {
 				key: f,
 				label: f,
-				group: 'components',
+				group: 'Components',
 				subLinks,
 				active: false,
 				icon: catIcon
@@ -103,10 +120,26 @@
 
 <hb-layout
 	pagename={$pageName}
-	companytitle=""
+	companytitle="fff"
 	companylogouri=""
 	cookielaw=""
 	navlinks={JSON.stringify(navlinks())}
+	company={JSON.stringify({
+		logoUri: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg',
+		siteName: 'tttttt',
+		companyName: 'testcompany S.R.L.',
+		registration: 'copyright',
+		description: `testo e descrizione di esempio dell applicazione`,
+		vatNumber: 'aa - ffffff',
+		fiscalCode: 'f4f5f6fff'
+	})}
+	contacts={JSON.stringify({
+		sites: [{ label: 'dariocaruso.info', uri: 'https://dariocaruso.info' }],
+		phones: [{ number: '6666666666666' }],
+		addresses: [],
+		emails: []
+	})}
+	socials={JSON.stringify({ facebook: 'fbbb', youtube: 'yttttttt' })}
 	on:pagechange={(e) => pageChange(e.detail)}
 >
 	<div style="margin:auto;max-width:1000px" slot="page">

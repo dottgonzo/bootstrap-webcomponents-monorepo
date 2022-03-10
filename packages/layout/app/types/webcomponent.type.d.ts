@@ -3,16 +3,17 @@ import type { IUserMenu } from "../../../navbar/app/types/webcomponent.type";
 import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
 
 export type Component = {
-	socials: ISocials;
-	contacts: IContacts;
-	company: ICompany;
-	navlinks: INavLink[];
-	pagename: string;
-	usermenu: IUserMenu;
-	cookielaw: string;
+	socials?: ISocials;
+	contacts?: IContacts;
+	company?: ICompany;
+	navlinks?: INavLink[];
+	pagename?: string;
+	usermenu?: IUserMenu;
+	cookielaw?: string;
 	columns: IColumn[];
 	onescreen?: "yes";
-	cookielawuri4more: string;
-	cookielawallowdecline: string;
-	cookielawlanguage: string;
+	cookielawuri4more?: string;
+	cookielawallowdecline?: string;
+	cookielawlanguage?: string;
+	sidebar?: { title?: string; logoUri?: string };
 };

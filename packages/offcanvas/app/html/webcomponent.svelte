@@ -34,7 +34,7 @@
 		if (!id) id = null;
 		if (!type) type = "autohide";
 		if (!companylogouri) companylogouri = "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg";
-		if (!companytitle) companytitle = "company";
+		if (!companytitle) companytitle = "";
 		if (!enablefooter || (enablefooter as unknown as string) === "no") enablefooter = false;
 		if (opened && (opened as unknown as string) !== "no") {
 			opened = true;
@@ -114,14 +114,15 @@
 	>
 		<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="min-height:100vh;padding-top:0px!important">
 			<h4 class="offcanvas-title">
-				<slot name="header" part="header">
+				<slot name="header" part="header" />
+				{#if companytitle}
 					<div style="margin-top:10px">
 						{#if companylogouri}
 							<img style="height:40px;margin-right:10px" src={companylogouri} alt="" />
 						{/if}
 						{companytitle}
 					</div>
-				</slot>
+				{/if}
 
 				<!-- <button on:click={() => OpenSwitch(false)} type="button" class="btn-close btn-sm text-reset" style="float:right;" /> -->
 			</h4>

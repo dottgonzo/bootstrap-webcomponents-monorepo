@@ -41,10 +41,8 @@
 		}
 		if (!usermenu) {
 			usermenu = null;
-		} else {
-			try {
-				usermenu = JSON.parse(usermenu as unknown as string);
-			} catch (err) {}
+		} else if (typeof usermenu === "string") {
+			usermenu = JSON.parse(usermenu);
 		}
 	}
 	function addComponent(componentName: string) {
