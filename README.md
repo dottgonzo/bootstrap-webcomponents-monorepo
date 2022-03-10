@@ -22,7 +22,8 @@ To build the components is choosed to use svelte instead of native web component
 
 ## ONLINE RESOURCES
 
-- [Storybook App](https://htmlbricks.dev.kernel.online/)
+- [Storybook App](https://storybook.freewebcomponents.com)
+- [Demo App](https://demo.freewebcomponents.com)
 
 ## HTML QUICK START
 
@@ -138,6 +139,7 @@ when is needed to publish one/more packages version update, is needed to publish
 ### uncategorized
 
 - dialog
+- area code
 - contact
 - cookie law
 - downloader
