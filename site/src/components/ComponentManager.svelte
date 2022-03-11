@@ -24,6 +24,7 @@
 			for (const k of Object.keys(args)) {
 				switch (typeof args[k]) {
 					case 'string':
+					case 'number':
 						if (args[k]) com += ` ${k}="${args[k]}"`;
 						break;
 					case 'boolean':
@@ -55,4 +56,4 @@
 
 <div style="margin-top:20px"><PropsTable {definition} {storybookargs} /></div>
 
-<div style="margin-top:20px"><EventsTable {definition} {storybookargs} /></div>
+<div style="margin-top:20px"><EventsTable /></div>

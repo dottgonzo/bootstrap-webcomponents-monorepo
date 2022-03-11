@@ -21,6 +21,7 @@
 		if (args) {
 			for (const k of Object.keys(args)) {
 				switch (typeof args[k]) {
+					case 'number':
 					case 'string':
 						if (args[k]) com += ` ${k}="${args[k]}"`;
 						break;

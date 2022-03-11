@@ -50,8 +50,19 @@
 								value: args[prop]
 							})}
 							on:setValue={(e) => {
-								console.log(e);
 								args[prop] = e.detail.value;
+							}}
+						/>
+						<!-- <input type="text" bind:value={args[prop]} /> -->
+					{:else if storybookargs[prop]?.control?.type === 'number'}
+						<hb-input-number
+							schemaentry={JSON.stringify({
+								id: prop,
+								value: Number(args[prop])
+							})}
+							on:setValue={(e) => {
+								console.log('setvalue for c', e.detail);
+								args[prop] = Number(e.detail.value);
 							}}
 						/>
 						<!-- <input type="text" bind:value={args[prop]} /> -->

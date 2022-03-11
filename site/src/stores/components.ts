@@ -6,6 +6,7 @@ import offcanvasDefinition from '@htmlbricks/hb-offcanvas/release/webcomponent.t
 import layoutDefinition from '@htmlbricks/hb-layout/release/webcomponent.type.d.json';
 import footerDefinition from '@htmlbricks/hb-footer/release/webcomponent.type.d.json';
 import inputTextDefinition from '@htmlbricks/hb-input-text/release/webcomponent.type.d.json';
+import paginateDefinition from '@htmlbricks/hb-paginate/release/webcomponent.type.d.json';
 
 import { storybookArgs as bannerStorybookArgs } from '@htmlbricks/hb-banner/release/docs';
 import { storybookArgs as areaCodeStorybookArgs } from '@htmlbricks/hb-area-code/release/docs';
@@ -13,6 +14,12 @@ import { storybookArgs as offcanvasStorybookArgs } from '@htmlbricks/hb-offcanva
 import { storybookArgs as layoutStorybookArgs } from '@htmlbricks/hb-layout/release/docs';
 import { storybookArgs as footerStorybookArgs } from '@htmlbricks/hb-footer/release/docs';
 import { storybookArgs as inputTextStorybookArgs } from '@htmlbricks/hb-input-text/release/docs';
+import { storybookArgs as paginateStorybookArgs } from '@htmlbricks/hb-paginate/release/docs';
+
+const paginateExampleValues = {
+	page: 2,
+	pages: 4
+};
 
 const inputTextExampleValues = {
 	schemaentry: {
@@ -253,6 +260,12 @@ export const allComponentsMetas = readable([
 		storybookArgs: inputTextStorybookArgs,
 		name: 'input-text',
 		category: 'form'
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic'
 	}
 ]);
 
@@ -262,5 +275,6 @@ export const allComponentsExampleValues = writable({
 	'area-code': areaCodeExampleValues,
 	'input-text': inputTextExampleValues,
 	offcanvas: offcanvasExampleValues,
+	paginate: paginateExampleValues,
 	footer: footerExampleValues
 });
