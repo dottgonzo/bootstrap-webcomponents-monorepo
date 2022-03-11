@@ -34,13 +34,14 @@
 	"dependencies": {
 		"@htmlbricks/hb-area-code": "^0.5.19",
 		"@htmlbricks/hb-banner": "^0.5.19",
-		"@htmlbricks/hb-jsutils": "^0.5.19",
-		"@htmlbricks/hb-offcanvas": "^0.5.19",
-		"@htmlbricks/hb-layout": "^0.5.19",
 		"@htmlbricks/hb-footer": "^0.5.19",
-		"@htmlbricks/hb-paginate": "^0.5.19",
 		"@htmlbricks/hb-input-text": "^0.5.19",
+		"@htmlbricks/hb-jsutils": "^0.5.19",
+		"@htmlbricks/hb-layout": "^0.5.19",
+		"@htmlbricks/hb-offcanvas": "^0.5.19",
+		"@htmlbricks/hb-paginate": "^0.5.19",
 		"@htmlbricks/hb-sidenav-link": "^0.5.19",
-		"base-64": "^1.0.0"
+		"base-64": "^1.0.0",
+		"bootstrap": "^5.1.3"
 	}
 }
