@@ -39,5 +39,3 @@ export type Component = {
 };
 
 export type Events = { setValue: { detail: { value: string } } };
-
-export type CssVars = [];
