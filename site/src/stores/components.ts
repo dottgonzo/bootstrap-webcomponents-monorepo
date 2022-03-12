@@ -8,13 +8,48 @@ import footerDefinition from '@htmlbricks/hb-footer/release/webcomponent.type.d.
 import inputTextDefinition from '@htmlbricks/hb-input-text/release/webcomponent.type.d.json';
 import paginateDefinition from '@htmlbricks/hb-paginate/release/webcomponent.type.d.json';
 
-import { storybookArgs as bannerStorybookArgs } from '@htmlbricks/hb-banner/release/docs';
-import { storybookArgs as areaCodeStorybookArgs } from '@htmlbricks/hb-area-code/release/docs';
-import { storybookArgs as offcanvasStorybookArgs } from '@htmlbricks/hb-offcanvas/release/docs';
-import { storybookArgs as layoutStorybookArgs } from '@htmlbricks/hb-layout/release/docs';
-import { storybookArgs as footerStorybookArgs } from '@htmlbricks/hb-footer/release/docs';
-import { storybookArgs as inputTextStorybookArgs } from '@htmlbricks/hb-input-text/release/docs';
-import { storybookArgs as paginateStorybookArgs } from '@htmlbricks/hb-paginate/release/docs';
+import {
+	storybookArgs as bannerStorybookArgs,
+	cssVars as bannerCssVars,
+	cssParts as bannerCssParts,
+	htmlSlots as bannerHtmlSlots
+} from '@htmlbricks/hb-banner/release/docs';
+import {
+	storybookArgs as areaCodeStorybookArgs,
+	cssVars as areaCodeCssVars,
+	cssParts as areaCodeCssParts,
+	htmlSlots as areaCodeHtmlSlots
+} from '@htmlbricks/hb-area-code/release/docs';
+import {
+	storybookArgs as offcanvasStorybookArgs,
+	cssVars as offcanvasCssVars,
+	cssParts as offcanvasCssParts,
+	htmlSlots as offcanvasHtmlSlots
+} from '@htmlbricks/hb-offcanvas/release/docs';
+import {
+	storybookArgs as layoutStorybookArgs,
+	cssVars as layoutCssVars,
+	cssParts as layoutCssParts,
+	htmlSlots as layoutHtmlSlots
+} from '@htmlbricks/hb-layout/release/docs';
+import {
+	storybookArgs as footerStorybookArgs,
+	cssVars as footerCssVars,
+	cssParts as footerCssParts,
+	htmlSlots as footerHtmlSlots
+} from '@htmlbricks/hb-footer/release/docs';
+import {
+	storybookArgs as inputTextStorybookArgs,
+	cssVars as inputTextCssVars,
+	cssParts as inputTextCssParts,
+	htmlSlots as inputTextHtmlSlots
+} from '@htmlbricks/hb-input-text/release/docs';
+import {
+	storybookArgs as paginateStorybookArgs,
+	cssVars as paginateCssVars,
+	cssParts as paginateCssParts,
+	htmlSlots as paginateHtmlSlots
+} from '@htmlbricks/hb-paginate/release/docs';
 
 const paginateExampleValues = {
 	page: 2,
@@ -230,43 +265,64 @@ export const allComponentsMetas = readable([
 		definition: bannerDefinition,
 		storybookArgs: bannerStorybookArgs,
 		name: 'banner',
-		category: 'basic'
+		category: 'basic',
+		cssVars: bannerCssVars,
+		cssParts: bannerCssParts,
+		htmlSlots: bannerHtmlSlots
 	},
 	{
 		definition: areaCodeDefinition,
 		storybookArgs: areaCodeStorybookArgs,
 		name: 'area-code',
-		category: 'dev'
+		category: 'dev',
+		cssVars: areaCodeCssVars,
+		cssParts: areaCodeCssParts,
+		htmlSlots: areaCodeHtmlSlots
 	},
 	{
 		definition: offcanvasDefinition,
 		storybookArgs: offcanvasStorybookArgs,
 		name: 'offcanvas',
-		category: 'layout'
+		category: 'layout',
+		cssVars: offcanvasCssVars,
+		cssParts: offcanvasCssParts,
+		htmlSlots: offcanvasHtmlSlots
 	},
 	{
 		definition: layoutDefinition,
 		storybookArgs: layoutStorybookArgs,
 		name: 'layout',
-		category: 'layout'
+		category: 'layout',
+		cssVars: layoutCssVars,
+		cssParts: layoutCssParts,
+		htmlSlots: layoutHtmlSlots
 	},
 	{
 		definition: footerDefinition,
 		storybookArgs: footerStorybookArgs,
 		name: 'footer',
-		category: 'layout'
+		category: 'layout',
+		cssVars: footerCssVars,
+		cssParts: footerCssParts,
+		htmlSlots: footerHtmlSlots
 	},
 	{
 		definition: inputTextDefinition,
 		storybookArgs: inputTextStorybookArgs,
 		name: 'input-text',
-		category: 'form'
+		category: 'form',
+		cssVars: inputTextCssVars,
+		cssParts: inputTextCssParts,
+		htmlSlots: inputTextHtmlSlots
 	},
 	{
 		definition: paginateDefinition,
 		storybookArgs: paginateStorybookArgs,
 		name: 'paginate',
-		category: 'basic'
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
 	}
 ]);
 

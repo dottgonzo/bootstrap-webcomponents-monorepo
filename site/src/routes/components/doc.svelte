@@ -1,6 +1,9 @@
 <script lang="ts">
 	import ControlTable from '../../components/ControlTable.svelte';
 	import PropsTable from '../../components/PropsTable.svelte';
+	import SlotTable from '../../components/SlotTable.svelte';
+	import CssPartsTable from '../../components/CssPartsTable.svelte';
+	import CssVarsTable from '../../components/CssVarsTable.svelte';
 	import EventsTable from '../../components/EventsTable.svelte';
 	import { allComponentsMetas } from '../../stores/components';
 	import { allComponentsExampleValues } from '../../stores/components';
@@ -8,10 +11,16 @@
 	import { componentsVersion } from '../../stores/app';
 	import { page } from '$app/stores';
 
+	import type { CssPart, HtmlSlot, CssVar } from '@htmlbricks/hb-jsutils/main';
+
 	import { pageName } from '../../stores/app';
 	let name: string;
 	let storybookargs: any;
 	let definition: any;
+
+	let cssVars: CssVar[];
+	let cssParts: CssPart[];
+	let htmlSlots: HtmlSlot[];
 
 	let controlTab: 'props' | 'schemes' | 'events' | 'style' | 'slots' = 'props';
 
@@ -21,8 +30,14 @@
 	$: {
 		name = $page.url?.href?.split('c=')?.[1]?.split('&')[0];
 		pageName.set(name || 'docs');
-		storybookargs = $allComponentsMetas.find((f) => f.name === name)?.storybookArgs;
-		definition = $allComponentsMetas.find((f) => f.name === name)?.definition;
+		const meta = $allComponentsMetas.find((f) => f.name === name);
+		storybookargs = meta?.storybookArgs;
+		definition = meta?.definition;
+
+		cssVars = meta?.cssVars;
+		cssParts = meta?.cssParts;
+		htmlSlots = meta?.htmlSlots;
+
 		args = $allComponentsExampleValues[name];
 		com = '<hb-' + name;
 		if (args) {
@@ -83,7 +98,10 @@
 						on:click={() => {
 							controlTab = 'events';
 						}}
-						class="nav-link disabled">events</button
+						class="nav-link {definition?.definitions?.Events?.properties &&
+						Object.keys(definition.definitions.Events.properties)?.length
+							? ''
+							: 'disabled'}">events</button
 					>
 				</li>
 				<li class="nav-item {controlTab === 'style' ? 'active' : ''}">
@@ -91,7 +109,7 @@
 						on:click={() => {
 							controlTab = 'style';
 						}}
-						class="nav-link disabled">style</button
+						class="nav-link {cssVars?.length || cssParts?.length ? '' : 'disabled'}">style</button
 					>
 				</li>
 				<li class="nav-item {controlTab === 'slots' ? 'active' : ''}">
@@ -99,7 +117,7 @@
 						on:click={() => {
 							controlTab = 'slots';
 						}}
-						class="nav-link disabled">slots</button
+						class="nav-link {htmlSlots?.length ? '' : 'disabled'}">slots</button
 					>
 				</li>
 			</ul>
@@ -110,7 +128,12 @@
 					{:else if controlTab === 'schemes'}
 						<PropsTable {definition} {storybookargs} />
 					{:else if controlTab === 'events'}
-						<EventsTable />
+						<EventsTable {definition} />
+					{:else if controlTab === 'slots'}
+						<SlotTable slots={htmlSlots} />
+					{:else if controlTab === 'style'}
+						{#if cssVars?.length}<CssVarsTable vars={cssVars} />{/if}
+						{#if cssParts?.length}<CssPartsTable parts={cssParts} />{/if}
 					{/if}
 				</div>
 			</div>

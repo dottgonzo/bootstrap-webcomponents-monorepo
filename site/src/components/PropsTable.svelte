@@ -43,7 +43,7 @@
 				return '[ ]';
 			case 'object':
 				// if (propDefinition.items) return defToInterfaceString(propDefinition.items) + '[ ]';
-				return '{}';
+				return defToInterfaceString(propDefinition);
 			default:
 				return propDefinition.type;
 		}
