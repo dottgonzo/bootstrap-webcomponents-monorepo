@@ -1,3 +1,15 @@
+export type cssPart = {
+  name: string;
+  description: string;
+};
+export type htmlSlots = {
+  name: string;
+  description: string;
+};
+export type cssVars = {
+  defaultValue: string;
+  name: string;
+};
 export function addComponent(
   componentName: string,
   version: string,

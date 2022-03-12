@@ -3,15 +3,21 @@ export const storybookArgs = {
 	showvalidation: { control: { type: "boolean" } },
 };
 
-export const CssVars = [
+export const cssVars = [
 	{
 		defaultValue: "string",
 		name: "string",
 	},
 ];
-export const Slots = [
+export const cssParts = [
 	{
-		defaultValue: "string",
 		name: "string",
+		description: "string",
+	},
+];
+export const htmlSlots = [
+	{
+		name: "string",
+		description: "string",
 	},
 ];
