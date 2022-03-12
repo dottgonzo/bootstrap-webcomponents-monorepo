@@ -32,9 +32,9 @@ export type TextSchemaEntry = {
 };
 
 export type Component = {
-	setvalue: boolean;
-	setvalid: boolean;
-	showvalidation: "yes" | "no";
+	setvalue?: boolean;
+	setvalid?: boolean;
+	showvalidation?: "yes" | "no";
 	schemaentry: TextSchemaEntry;
 };
 

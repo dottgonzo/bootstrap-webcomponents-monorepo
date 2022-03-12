@@ -13,3 +13,26 @@ export const storybookArgs = {
 	navpage: { control: { type: "text" } },
 	navlinks: { control: { type: "array" } },
 };
+
+export const cssVars: CssVar[] = [];
+export const cssParts: CssPart[] = [
+	{
+		name: "header",
+		description: "header",
+	},
+];
+export const htmlSlots: HtmlSlot[] = [
+	{
+		name: "test",
+		description: "test",
+	},
+	{
+		name: "header",
+		description: "header",
+	},
+
+	{
+		name: "footer",
+		description: "footer",
+	},
+];
