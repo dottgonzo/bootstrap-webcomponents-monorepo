@@ -1,3 +1,5 @@
+import type { CssPart, CssVar, HtmlSlot } from "../../jsutils/main";
+
 export const storybookArgs = {
 	_testInnerHtml: { control: { disable: true } },
 	pagetitle: { control: { type: "text" } },

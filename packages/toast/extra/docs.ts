@@ -1,3 +1,5 @@
+import type { CssPart, CssVar, HtmlSlot } from "../../jsutils/main";
+
 export const storybookArgs = {
 	show: { control: { type: "boolean" } },
 	small: { control: { type: "text" } },

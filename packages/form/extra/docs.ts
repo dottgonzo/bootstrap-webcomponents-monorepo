@@ -1,3 +1,5 @@
+import type { CssPart, CssVar, HtmlSlot } from "../../jsutils/main";
+
 export const storybookArgs = {
 	schema: { control: { type: "array" } },
 	submit: { action: "submit" },

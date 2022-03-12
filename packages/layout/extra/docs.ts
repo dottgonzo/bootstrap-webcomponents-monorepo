@@ -1,3 +1,5 @@
+import type { CssPart, CssVar, HtmlSlot } from "../../jsutils/main";
+
 export const storybookArgs = {
 	pagechange: { action: "pagechange" },
 	offcanvasswitch: { action: "offcanvasswitchEvent" },

@@ -1,3 +1,5 @@
+import type { CssPart, CssVar, HtmlSlot } from "../../jsutils/main";
+
 export const storybookArgs = {
 	shipments: { control: { type: "array" } },
 	user: { control: { type: "object" } },

@@ -1,3 +1,5 @@
+import type { CssPart, CssVar, HtmlSlot } from "../../jsutils/main";
+
 export const storybookArgs = {
 	id: { control: { disable: true } },
 	phone: { control: { type: "object" } },

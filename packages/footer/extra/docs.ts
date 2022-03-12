@@ -1,3 +1,5 @@
+import type { CssPart, CssVar, HtmlSlot } from "../../jsutils/main";
+
 export const storybookArgs = {
 	smallrow: { control: { type: "object" } },
 	columns: { control: { type: "array" } },

@@ -1,3 +1,5 @@
+import type { CssPart, CssVar, HtmlSlot } from "../../jsutils/main";
+
 export const storybookArgs = {
 	changeRangeValues: { action: "changeRangeValuesEvent" },
 	withbubbles: { control: { type: "boolean" } },

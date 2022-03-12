@@ -1,3 +1,5 @@
+import type { CssPart, CssVar, HtmlSlot } from "../../jsutils/main";
+
 export const storybookArgs = {
 	allowdecline: { control: { type: "boolean" } },
 	language: { control: { type: "text" } },

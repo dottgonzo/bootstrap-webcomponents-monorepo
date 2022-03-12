@@ -1,3 +1,5 @@
+import type { CssPart, CssVar, HtmlSlot } from "../../jsutils/main";
+
 export const storybookArgs = {
 	key: { control: { type: "text" } },
 	plugins: { control: { type: "text" } },
