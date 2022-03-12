@@ -221,7 +221,8 @@ const offcanvasExampleValues = {
 			icon: 'graph-up'
 		}
 	],
-	navpage: 'settings'
+	navpage: 'settings',
+	companytitle: 'acme corp'
 };
 
 export const allComponentsMetas = readable([

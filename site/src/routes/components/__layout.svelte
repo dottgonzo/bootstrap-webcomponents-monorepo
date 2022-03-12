@@ -157,7 +157,7 @@
 	socials={JSON.stringify({ facebook: 'fbbb', youtube: 'yttttttt' })}
 	on:pagechange={(e) => pageChange(e.detail)}
 >
-	<div id="sveltelay" style="margin:auto;max-width:1000px" slot="page">
+	<div class="container-fluid" slot="page">
 		<slot />
 	</div>
 </hb-layout>
@@ -175,7 +175,7 @@
 	$dark: #4e4e4e;
 	@import 'bootstrap/scss/bootstrap';
 
-	#sveltelay {
+	body {
 		font-family: 'Roboto', sans-serif;
 	}
 </style>

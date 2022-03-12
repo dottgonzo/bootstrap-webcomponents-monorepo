@@ -9,12 +9,15 @@
 		<tr>
 			<th>Prop Name</th>
 			<th>value</th>
-			<th>controls</th>
 		</tr>
 
 		{#each Object.keys(definition.definitions.Component.properties) as prop (prop)}
 			<tr>
-				<td>{prop}</td>
+				<td
+					>{prop}{#if definition.definitions.Component?.required?.find((f) => f === prop)}<span
+							style="color:red">*</span
+						>{/if}
+				</td>
 				<td>
 					{#if storybookargs[prop]?.control?.options}
 						<!-- <select bind:value={args[prop]}>
