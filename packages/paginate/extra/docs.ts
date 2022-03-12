@@ -1,4 +1,4 @@
-import type { CssPart, CssVar, HtmlSlot } from "../../jsutils/main";
+import type { CssPart, CssVar, HtmlSlot } from "@htmlbricks/hb-jsutils/main";
 
 export const storybookArgs = {
 	page: { control: { type: "number" } },
