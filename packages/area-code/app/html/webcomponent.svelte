@@ -11,9 +11,18 @@
 	 *
 	 */
 
+	import { get_current_component } from "svelte/internal";
+	import { createEventDispatcher } from "svelte";
+
 	export let id: string;
 	export let content: string;
+	const component = get_current_component();
+	const svelteDispatch = createEventDispatcher();
 
+	function dispatch(name, detail) {
+		svelteDispatch(name, detail);
+		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
+	}
 	$: {
 		if (!id) {
 			id = null;
@@ -27,7 +36,7 @@
 		if (flash) return;
 		navigator.clipboard.writeText(content);
 		flash = true;
-
+		dispatch("clipboardCopyText", { text: content });
 		setInterval(() => {
 			flash = false;
 		}, 5000);
@@ -45,7 +54,7 @@
 <style lang="scss">
 	#content {
 		background-color: rgb(232 232 232 / 57%);
-		padding: 26px 12px 26px 12px;
+		padding: 28px 12px 28px 12px;
 		position: relative;
 	}
 	#copycode {

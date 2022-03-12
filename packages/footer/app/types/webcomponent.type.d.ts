@@ -86,4 +86,6 @@ export type Component = {
 	policies: IPolicies[];
 };
 
-export type Events = {};
+export type Events = {
+	footerClick: { elClick: string };
+};

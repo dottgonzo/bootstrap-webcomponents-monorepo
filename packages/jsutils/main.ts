@@ -1,14 +1,15 @@
 export type CssPart = {
   name: string;
-  description: string;
+  description?: string;
 };
 export type HtmlSlot = {
   name: string;
-  description: string;
+  description?: string;
 };
 export type CssVar = {
   defaultValue: string;
   name: string;
+  theme?: string;
 };
 export function addComponent(
   componentName: string,

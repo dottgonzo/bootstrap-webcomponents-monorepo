@@ -2,4 +2,6 @@ export type Component = {
 	content: string;
 };
 
-export type Events = {};
+export type Events = {
+	clipboardCopyText: { text: string };
+};

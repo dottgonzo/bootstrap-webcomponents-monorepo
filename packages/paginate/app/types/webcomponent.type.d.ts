@@ -1,7 +1,8 @@
 export type Component = {
-	primarycolor: number;
 	pages: number;
 	page: number;
 };
 
-export type Events = {};
+export type Events = {
+	pagechange: { page: number; pages: number };
+};

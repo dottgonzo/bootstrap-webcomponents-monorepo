@@ -6,7 +6,6 @@ export const storybookArgs = {
 	companytitle: { control: { type: "text" } },
 	groups: { control: { type: "text" } },
 	enablefooter: { control: { type: "boolean" } },
-	pageclick: { action: "pageclickEvent" },
 	offcanvasswitch: { action: "offcanvasswitchEvent" },
 	pagechange: { action: "pagechangeEvent" },
 	type: { control: { options: ["autohide", "small", "open"] } },

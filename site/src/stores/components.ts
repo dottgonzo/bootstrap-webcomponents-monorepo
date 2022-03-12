@@ -69,7 +69,8 @@ const inputTextExampleValues = {
 
 const bannerExampleValues = {
 	title: 'ciao',
-	description: 'desc'
+	description: 'desc',
+	logouri: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg'
 };
 const areaCodeExampleValues = {
 	content: 'desc'

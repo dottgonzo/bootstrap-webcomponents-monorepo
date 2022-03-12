@@ -18,4 +18,9 @@ export type Component = {
 	sidebar?: { title?: string; logo?: string };
 };
 
-export type Events = {};
+export type Events = {
+	offcanvasswitch: { isOpen: boolean };
+	pagechange: { page: string };
+	userClick: { key: string };
+	footerClick: { elClick: string };
+};

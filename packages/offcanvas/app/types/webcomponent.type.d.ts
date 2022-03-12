@@ -11,4 +11,7 @@ export type Component = {
 	type?: "open" | "autohide" | "small";
 };
 
-export type Events = {};
+export type Events = {
+	offcanvasswitch: { isOpen: boolean };
+	pagechange: { page: string };
+};

@@ -38,4 +38,4 @@ export type Component = {
 	schemaentry: TextSchemaEntry;
 };
 
-export type Events = { setValue: { value: string } };
+export type Events = { setValue: { value: string }; setValid: { valid: boolean } };

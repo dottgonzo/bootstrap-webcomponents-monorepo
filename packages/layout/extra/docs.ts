@@ -14,5 +14,16 @@ export const storybookArgs = {
 };
 
 export const cssVars: CssVar[] = [];
-export const cssParts: CssPart[] = [];
-export const htmlSlots: HtmlSlot[] = [];
+export const cssParts: CssPart[] = [
+	{ name: "footer", description: "" },
+	{ name: "container", description: "" },
+	{ name: "navbar", description: "" },
+	{ name: "page", description: "" },
+];
+export const htmlSlots: HtmlSlot[] = [
+	{ name: "nav-left-slot", description: "" },
+	{ name: "nav-center-slot", description: "" },
+	{ name: "nav-right-slot", description: "" },
+	{ name: "page", description: "" },
+	{ name: "nav-header-slot", description: "" },
+];
