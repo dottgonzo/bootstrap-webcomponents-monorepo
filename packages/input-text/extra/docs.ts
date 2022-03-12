@@ -1,21 +1,23 @@
+import type { CssPart, CssVar, HtmlSlot } from "../../jsutils/main";
+
 export const storybookArgs = {
 	schemaentry: { control: { type: "object" } },
 	showvalidation: { control: { type: "boolean" } },
 };
 
-export const cssVars = [
+export const cssVars: CssVar[] = [
 	{
 		defaultValue: "string",
 		name: "string",
 	},
 ];
-export const cssParts = [
+export const cssParts: CssPart[] = [
 	{
 		name: "string",
 		description: "string",
 	},
 ];
-export const htmlSlots = [
+export const htmlSlots: HtmlSlot[] = [
 	{
 		name: "string",
 		description: "string",

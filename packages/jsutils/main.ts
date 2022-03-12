@@ -1,12 +1,12 @@
-export type cssPart = {
+export type CssPart = {
   name: string;
   description: string;
 };
-export type htmlSlots = {
+export type HtmlSlot = {
   name: string;
   description: string;
 };
-export type cssVars = {
+export type CssVar = {
   defaultValue: string;
   name: string;
 };
