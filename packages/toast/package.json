@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-toast",
 	"displayName": "Svelte-Bootstrap Toast WebComponent",
 	"description": "Svelte-Bootstrap Toast WebComponent",
-	"version": "0.5.22",
+	"version": "0.5.23",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
