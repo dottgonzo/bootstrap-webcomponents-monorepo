@@ -12,3 +12,7 @@ export const storybookArgs = {
 	pagename: { control: { type: "string" } },
 	cookielaw: { control: { type: "boolean" } },
 };
+
+export const cssVars: CssVar[] = [];
+export const cssParts: CssPart[] = [];
+export const htmlSlots: HtmlSlot[] = [];

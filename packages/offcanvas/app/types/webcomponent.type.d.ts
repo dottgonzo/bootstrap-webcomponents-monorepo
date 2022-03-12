@@ -10,3 +10,5 @@ export type Component = {
 	enablefooter?: boolean;
 	type?: "open" | "autohide" | "small";
 };
+
+export type Events = {};

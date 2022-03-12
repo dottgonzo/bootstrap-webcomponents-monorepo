@@ -14,3 +14,7 @@ export const storybookArgs = {
 	company: { control: { type: "object" } },
 	footerclick: { action: "footerClickEvent" },
 };
+
+export const cssVars: CssVar[] = [];
+export const cssParts: CssPart[] = [];
+export const htmlSlots: HtmlSlot[] = [];

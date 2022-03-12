@@ -5,3 +5,7 @@ export const storybookArgs = {
 	title: { control: { type: "text" } },
 	description: { control: { type: "text" } },
 };
+
+export const cssVars: CssVar[] = [];
+export const cssParts: CssPart[] = [];
+export const htmlSlots: HtmlSlot[] = [];

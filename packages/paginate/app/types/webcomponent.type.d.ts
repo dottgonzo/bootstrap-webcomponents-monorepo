@@ -3,3 +3,5 @@ export type Component = {
 	pages: number;
 	page: number;
 };
+
+export type Events = {};

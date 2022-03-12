@@ -17,3 +17,5 @@ export type Component = {
 	cookielawlanguage?: string;
 	sidebar?: { title?: string; logo?: string };
 };
+
+export type Events = {};

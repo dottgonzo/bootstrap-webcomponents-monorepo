@@ -3,3 +3,5 @@ export type Component = {
 	description?: string;
 	logouri?: string;
 };
+
+export type Events = {};

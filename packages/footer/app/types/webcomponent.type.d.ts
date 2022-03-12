@@ -85,3 +85,5 @@ export type Component = {
 	copyrighttext: string;
 	policies: IPolicies[];
 };
+
+export type Events = {};

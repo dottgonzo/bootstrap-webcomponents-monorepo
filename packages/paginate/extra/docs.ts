@@ -5,3 +5,7 @@ export const storybookArgs = {
 	pages: { control: { type: "number" } },
 	pagechange: { action: "pagechange" },
 };
+
+export const cssVars: CssVar[] = [];
+export const cssParts: CssPart[] = [];
+export const htmlSlots: HtmlSlot[] = [];
