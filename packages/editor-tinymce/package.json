@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-editor-tinymce",
 	"displayName": "Svelte TinyMCE WebComponent",
 	"description": "Svelte TinyMCE WebComponent",
-	"version": "0.5.21",
+	"version": "0.5.22",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
