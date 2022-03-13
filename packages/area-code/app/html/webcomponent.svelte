@@ -48,7 +48,7 @@
 		<div style="display:{flash ? 'inline-block' : 'none'}" id="flash">copied to the clipboard</div>
 		<button id="copybutton" on:click={copyToClipBoard}>{flash ? "ok!" : "copy"}</button>
 	</div>
-	<code>{content}</code>
+	<code part="content" style="overflow-wrap: break-word;">{content}</code>
 </div>
 
 <style lang="scss">

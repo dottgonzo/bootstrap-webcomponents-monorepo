@@ -107,6 +107,28 @@
 						}}>schemes</button
 					>
 				</li>
+
+				<li class="nav-item">
+					<button
+						on:click={() => {
+							controlTab = 'style';
+						}}
+						class="nav-link {cssVars?.length || cssParts?.length ? '' : 'disabled'} {controlTab ===
+						'style'
+							? 'active'
+							: ''}">style</button
+					>
+				</li>
+				<li class="nav-item">
+					<button
+						on:click={() => {
+							controlTab = 'slots';
+						}}
+						class="nav-link {htmlSlots?.length ? '' : 'disabled'} {controlTab === 'slots'
+							? 'active'
+							: ''}">slots</button
+					>
+				</li>
 				<li class="nav-item">
 					<button
 						on:click={() => {
@@ -133,27 +155,6 @@
 							</span>
 						{/if}
 					</button>
-				</li>
-				<li class="nav-item">
-					<button
-						on:click={() => {
-							controlTab = 'style';
-						}}
-						class="nav-link {cssVars?.length || cssParts?.length ? '' : 'disabled'} {controlTab ===
-						'style'
-							? 'active'
-							: ''}">style</button
-					>
-				</li>
-				<li class="nav-item">
-					<button
-						on:click={() => {
-							controlTab = 'slots';
-						}}
-						class="nav-link {htmlSlots?.length ? '' : 'disabled'} {controlTab === 'slots'
-							? 'active'
-							: ''}">slots</button
-					>
 				</li>
 			</ul>
 			<div style="border-left: 1px solid #dee2e6;min-height:100%;padding:0px 20px 0px 20px">

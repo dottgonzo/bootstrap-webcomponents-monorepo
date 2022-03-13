@@ -6,5 +6,5 @@ export const storybookArgs = {
 };
 
 export const cssVars: CssVar[] = [];
-export const cssParts: CssPart[] = [];
+export const cssParts: CssPart[] = [{ name: "content", description: "the code html tag" }];
 export const htmlSlots: HtmlSlot[] = [];
