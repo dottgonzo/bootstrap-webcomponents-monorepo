@@ -22,7 +22,7 @@
 	let cssParts: CssPart[];
 	let htmlSlots: HtmlSlot[];
 
-	let controlTab: 'props' | 'schemes' | 'events' | 'style' | 'slots' = 'props';
+	let controlTab: 'props' | 'schemes' | 'events' | 'style' | 'slots';
 
 	let com: string;
 	let cdnUri: string;
@@ -58,7 +58,8 @@
 		}
 
 		com += ` />`;
-		cdnUri = `<${'script'} src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${name}@${$componentsVersion}/release/release.js"></${'script'}>`;
+		cdnUri = `<${'script'} id="hb-${name}-script" src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${name}@${$componentsVersion}/release/release.js"></${'script'}>`;
+		controlTab = 'props';
 	}
 </script>
 
@@ -93,7 +94,7 @@
 						}}>schemes</button
 					>
 				</li>
-				<li class="nav-item {controlTab === 'events' ? 'active' : ''}">
+				<li class="nav-item">
 					<button
 						on:click={() => {
 							controlTab = 'events';
@@ -101,23 +102,28 @@
 						class="nav-link {definition?.definitions?.Events?.properties &&
 						Object.keys(definition.definitions.Events.properties)?.length
 							? ''
-							: 'disabled'}">events</button
+							: 'disabled'} {controlTab === 'events' ? 'active' : ''}">events</button
 					>
 				</li>
-				<li class="nav-item {controlTab === 'style' ? 'active' : ''}">
+				<li class="nav-item">
 					<button
 						on:click={() => {
 							controlTab = 'style';
 						}}
-						class="nav-link {cssVars?.length || cssParts?.length ? '' : 'disabled'}">style</button
+						class="nav-link {cssVars?.length || cssParts?.length ? '' : 'disabled'} {controlTab ===
+						'style'
+							? 'active'
+							: ''}">style</button
 					>
 				</li>
-				<li class="nav-item {controlTab === 'slots' ? 'active' : ''}">
+				<li class="nav-item">
 					<button
 						on:click={() => {
 							controlTab = 'slots';
 						}}
-						class="nav-link {htmlSlots?.length ? '' : 'disabled'}">slots</button
+						class="nav-link {htmlSlots?.length ? '' : 'disabled'} {controlTab === 'slots'
+							? 'active'
+							: ''}">slots</button
 					>
 				</li>
 			</ul>

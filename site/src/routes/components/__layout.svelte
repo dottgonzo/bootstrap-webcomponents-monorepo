@@ -110,6 +110,11 @@
 
 	onMount(() => {
 		addComponent('bundle', $componentsVersion);
+		window.onstorage = () => {
+			// When local storage changes, dump the list to
+			// the console.
+			console.log(JSON.parse(window.localStorage.getItem('componentsEvents')));
+		};
 	});
 	function pageChange(d) {
 		goto('/components/doc?c=' + d.page);

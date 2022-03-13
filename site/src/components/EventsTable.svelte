@@ -1,4 +1,7 @@
 <script lang="ts">
+	// import { onDestroy, onMount } from 'svelte';
+	import { events } from '../stores/events';
+
 	export let definition: any;
 	// export let storybookargs: any;
 	function defToInterfaceString(definition: {
@@ -49,6 +52,21 @@
 				return propDefinition.type;
 		}
 	}
+
+	// onMount(() => {
+	// 	if (!definition?.definitions?.Events?.properties?.length) return;
+	// 	console.log('mount events');
+	// 	for (const e of Object.keys(definition.definitions.Events.properties)) {
+	// 		addEventListener(e, (eve) => {
+	// 			console.log(eve);
+	// 		});
+	// 	}
+	// });
+	// onDestroy(() => {
+	// 	if (!definition?.definitions?.Events?.properties?.length) return;
+
+	// 	console.log('remove events');
+	// });
 </script>
 
 <table style="width:100%">
@@ -64,3 +82,6 @@
 		</tr>
 	{/each}
 </table>
+{#each $events as event (event._id)}
+	<div>event {event.name}</div>
+{/each}
