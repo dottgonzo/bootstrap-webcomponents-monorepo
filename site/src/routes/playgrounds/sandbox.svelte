@@ -6,6 +6,7 @@
 	import { page } from '$app/stores';
 	import { componentsVersion, pageName } from '../../stores/app';
 	import { onMount } from 'svelte';
+	import dayjs from 'dayjs';
 	let name: string;
 
 	let args: any;
@@ -50,7 +51,8 @@
 				el.addEventListener(eve, (e: any) => {
 					let items = JSON.parse(localStorage.getItem('componentsEvents') || '[]');
 					if (items.length > 1000) items.length = 1000;
-
+					// remove older then 2 days
+					items = items.filter((f) => f.unixtime > dayjs().subtract(2, 'days').valueOf());
 					const unixtime = Date.now();
 					items.push({
 						name: eve,
