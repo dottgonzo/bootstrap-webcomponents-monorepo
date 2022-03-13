@@ -36,7 +36,7 @@
 		if (!companylogouri) companylogouri = "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg";
 		if (!companytitle) companytitle = "";
 		if (!enablefooter || (enablefooter as unknown as string) === "no") enablefooter = false;
-		if (opened && (opened as unknown as string) !== "no") {
+		if (type === "open" || (opened && (opened as unknown as string) !== "no")) {
 			opened = true;
 			if (sendOff) clearInterval(sendOff);
 			if (!switched)
