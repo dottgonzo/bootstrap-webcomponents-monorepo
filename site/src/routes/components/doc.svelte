@@ -9,6 +9,7 @@
 	import { allComponentsExampleValues } from '../../stores/components';
 	import base64 from 'base-64';
 	import { componentsVersion } from '../../stores/app';
+	import { events } from '../../stores/events';
 	import { page } from '$app/stores';
 
 	import type { CssPart, HtmlSlot, CssVar } from '@htmlbricks/hb-jsutils/main';
@@ -22,13 +23,18 @@
 	let cssParts: CssPart[];
 	let htmlSlots: HtmlSlot[];
 
-	let controlTab: 'props' | 'schemes' | 'events' | 'style' | 'slots';
+	let controlTab: 'props' | 'schemes' | 'events' | 'style' | 'slots' | 'install';
 
 	let com: string;
 	let cdnUri: string;
 	let args: string;
+	let lastName: string;
 	$: {
 		name = $page.url?.href?.split('c=')?.[1]?.split('&')[0];
+		if (!lastName || lastName !== name) {
+			lastName = name;
+			controlTab = 'install';
+		}
 		pageName.set(name || 'docs');
 		const meta = $allComponentsMetas.find((f) => f.name === name);
 		storybookargs = meta?.storybookArgs;
@@ -59,29 +65,35 @@
 
 		com += ` />`;
 		cdnUri = `<${'script'} id="hb-${name}-script" src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${name}@${$componentsVersion}/release/release.js"></${'script'}>`;
-		controlTab = 'props';
 	}
 </script>
 
 {#if name}
 	<div style="margin-top:40px; padding-right:0px" class="row">
 		<div class="col-7">
-			<div style="margin-top:40px"><hb-area-code content={cdnUri} /></div>
-			<div style="padding:10px;border:1px solid yellow;margin-top:20px">
-				<iframe
-					style="width:100%;height:600px"
-					title="component"
-					src="/playgrounds/sandbox?c={name}&p={base64.encode(JSON.stringify(args))}"
-				/>
+			<div style="margin-top:40px">
+				<div style="padding:10px;border:1px solid yellow;margin-top:20px">
+					<iframe
+						style="width:100%;height:600px"
+						title="component"
+						src="/playgrounds/sandbox?c={name}&p={base64.encode(JSON.stringify(args))}"
+					/>
+				</div>
 			</div>
-			<div style="margin-top:20px"><hb-area-code content={com} /></div>
 		</div>
 		<div style="padding-right:0px" class="col-5">
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
 					<button
+						class="nav-link {controlTab === 'install' ? 'active' : ''}"
+						on:click={() => {
+							controlTab = 'install';
+						}}>install</button
+					>
+				</li>
+				<li class="nav-item">
+					<button
 						class="nav-link {controlTab === 'props' ? 'active' : ''}"
-						aria-current="page"
 						on:click={() => {
 							controlTab = 'props';
 						}}>props</button
@@ -100,11 +112,27 @@
 						on:click={() => {
 							controlTab = 'events';
 						}}
-						class="nav-link {definition?.definitions?.Events?.properties &&
+						class="nav-link position-relative {definition?.definitions?.Events?.properties &&
 						Object.keys(definition.definitions.Events.properties)?.length
 							? ''
-							: 'disabled'} {controlTab === 'events' ? 'active' : ''}">events</button
-					>
+							: 'disabled'} {controlTab === 'events' ? 'active' : ''}"
+						>events
+						{#if definition?.definitions?.Events?.properties && Object.keys(definition.definitions.Events.properties)?.length}
+							<span
+								class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+							>
+								{#if !$events?.filter((f) => f.component === name)?.length}
+									0
+								{:else if $events?.filter((f) => f.component === name)?.length < 100}
+									{$events?.filter((f) => f.component === name)?.length?.toString()}
+								{:else}
+									99+
+								{/if}
+
+								<span class="visually-hidden">unread messages</span>
+							</span>
+						{/if}
+					</button>
 				</li>
 				<li class="nav-item">
 					<button
@@ -132,6 +160,9 @@
 				<div style="padding-top:20px">
 					{#if controlTab === 'props'}
 						<ControlTable {definition} {storybookargs} bind:args />
+					{:else if controlTab === 'install'}
+						<div><hb-area-code content={cdnUri} /></div>
+						<div style="margin-top:20px"><hb-area-code content={com} /></div>
 					{:else if controlTab === 'schemes'}
 						<PropsTable {definition} {storybookargs} />
 					{:else if controlTab === 'events'}

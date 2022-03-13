@@ -84,12 +84,9 @@
 	{/each}
 </table>
 <div
-	style="margin-top:20px;background-color:rgb(232 232 232 / 36%);padding:10px;max-height:600px;height:600px;overflow-y:scroll"
+	style="margin-top:20px;background-color:rgb(232 232 232 / 36%);padding:10px;max-height:350px;height:350px;overflow-y:scroll"
 >
-	{#each $events
-		.slice()
-		.filter((f) => f.component === $pageName)
-		.reverse() as event (event._id)}
+	{#each $events.filter((f) => f.component === $pageName) as event (event._id)}
 		<div>
 			[{dayjs(event.unixtime).format('HH:mm:ss')}
 			{event.name}]: {JSON.stringify(event.data)}

@@ -48,15 +48,19 @@
 			for (const eve of Object.keys(meta.definition.definitions.Events.properties)) {
 				const el = document.getElementById(`com-${name}`);
 				el.addEventListener(eve, (e: any) => {
-					const items = JSON.parse(localStorage.getItem('componentsEvents') || '[]');
+					let items = JSON.parse(localStorage.getItem('componentsEvents') || '[]');
+					if (items.length > 100) items.length = 100;
+
 					const unixtime = Date.now();
 					items.push({
 						name: eve,
 						component: name,
 						data: e.detail,
 						_id: unixtime + '_' + items.length,
-						unixtime
+						unixtime,
+						seq: items?.[0]?.seq ? items[0].seq + 1 : 1
 					});
+					items = items.sort((a, b) => b.seq - a.seq);
 					localStorage.setItem('componentsEvents', JSON.stringify(items));
 					console.log(e.detail);
 				});
