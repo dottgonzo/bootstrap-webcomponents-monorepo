@@ -64,7 +64,6 @@
 					});
 					items = items.sort((a, b) => b.seq - a.seq);
 					localStorage.setItem('componentsEvents', JSON.stringify(items));
-					console.log(e.detail);
 				});
 			}
 		}
