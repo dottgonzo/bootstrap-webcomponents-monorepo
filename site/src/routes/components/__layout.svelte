@@ -156,7 +156,7 @@
 	sidebar={JSON.stringify({
 		logo: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg',
 		title: 'HtmlB',
-		type: 'open'
+		type: 'autohide'
 	})}
 	contacts={JSON.stringify({
 		sites: [{ label: 'dariocaruso.info', uri: 'https://dariocaruso.info' }],
