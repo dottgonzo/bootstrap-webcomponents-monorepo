@@ -111,6 +111,7 @@
 			companylogouri={sidebar?.logo}
 			on:offcanvasswitch={(el) => openmenu(el.detail)}
 			opened={navopen ? "yes" : "no"}
+			type={sidebar?.type ? sidebar.type : "autohide"}
 			on:pagechange={(p) => dispatch("pagechange", p.detail)}
 		>
 			<span slot="header"><slot name="nav-header-slot" /></span>

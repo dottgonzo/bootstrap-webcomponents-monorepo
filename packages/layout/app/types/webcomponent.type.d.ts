@@ -15,7 +15,7 @@ export type Component = {
 	cookielawuri4more?: string;
 	cookielawallowdecline?: string;
 	cookielawlanguage?: string;
-	sidebar?: { title?: string; logo?: string };
+	sidebar?: { title?: string; logo?: string; type?: string };
 };
 
 export type Events = {

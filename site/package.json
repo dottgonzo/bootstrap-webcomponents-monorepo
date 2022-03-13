@@ -42,6 +42,7 @@
 		"@htmlbricks/hb-paginate": "^0.5.26",
 		"@htmlbricks/hb-sidenav-link": "^0.5.26",
 		"base-64": "^1.0.0",
-		"bootstrap": "^5.1.3"
+		"bootstrap": "^5.1.3",
+		"dayjs": "^1.10.8"
 	}
 }

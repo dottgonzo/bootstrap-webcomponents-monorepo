@@ -1,7 +1,8 @@
 <script lang="ts">
 	// import { onDestroy, onMount } from 'svelte';
 	import { events } from '../stores/events';
-
+	import { pageName } from '../stores/app';
+	import dayjs from 'dayjs';
 	export let definition: any;
 	// export let storybookargs: any;
 	function defToInterfaceString(definition: {
@@ -82,6 +83,16 @@
 		</tr>
 	{/each}
 </table>
-{#each $events as event (event._id)}
-	<div>event {event.name}</div>
-{/each}
+<div
+	style="margin-top:20px;background-color:rgb(232 232 232 / 36%);padding:10px;max-height:600px;height:600px;overflow-y:scroll"
+>
+	{#each $events
+		.slice()
+		.filter((f) => f.component === $pageName)
+		.reverse() as event (event._id)}
+		<div>
+			[{dayjs(event.unixtime).format('HH:mm:ss')}
+			{event.name}]: {JSON.stringify(event.data)}
+		</div>
+	{/each}
+</div>

@@ -4,6 +4,7 @@
 	import { addComponent } from '@htmlbricks/hb-jsutils';
 	import { onMount } from 'svelte';
 	import { pageName, componentsVersion } from '../../stores/app';
+	import { events } from '../../stores/events';
 	import { allComponentsMetas } from '../../stores/components';
 
 	const navlinks = (): INavLink[] => {
@@ -110,10 +111,13 @@
 
 	onMount(() => {
 		addComponent('bundle', $componentsVersion);
+		events.set(JSON.parse(window.localStorage.getItem('componentsEvents') || '[]'));
+
 		window.onstorage = () => {
 			// When local storage changes, dump the list to
 			// the console.
-			console.log(JSON.parse(window.localStorage.getItem('componentsEvents')));
+			console.log('change');
+			events.set(JSON.parse(window.localStorage.getItem('componentsEvents')));
 		};
 	});
 	function pageChange(d) {
@@ -151,7 +155,8 @@
 	})}
 	sidebar={JSON.stringify({
 		logo: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg',
-		title: 'HtmlB'
+		title: 'HtmlB',
+		type: 'open'
 	})}
 	contacts={JSON.stringify({
 		sites: [{ label: 'dariocaruso.info', uri: 'https://dariocaruso.info' }],
