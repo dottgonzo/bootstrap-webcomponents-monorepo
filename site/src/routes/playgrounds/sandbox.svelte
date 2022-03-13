@@ -49,7 +49,7 @@
 				const el = document.getElementById(`com-${name}`);
 				el.addEventListener(eve, (e: any) => {
 					let items = JSON.parse(localStorage.getItem('componentsEvents') || '[]');
-					if (items.length > 100) items.length = 100;
+					if (items.length > 1000) items.length = 1000;
 
 					const unixtime = Date.now();
 					items.push({
