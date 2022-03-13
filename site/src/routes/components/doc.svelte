@@ -67,12 +67,13 @@
 	<div style="margin-top:40px; padding-right:0px" class="row">
 		<div class="col-7">
 			<div style="margin-top:40px"><hb-area-code content={cdnUri} /></div>
-
-			<iframe
-				style="width:100%;height:600px;margin-top:20px;border:1px solid yellow"
-				title="component"
-				src="/playgrounds/sandbox?c={name}&p={base64.encode(JSON.stringify(args))}"
-			/>
+			<div style="padding:10px;border:1px solid yellow;margin-top:20px">
+				<iframe
+					style="width:100%;height:600px"
+					title="component"
+					src="/playgrounds/sandbox?c={name}&p={base64.encode(JSON.stringify(args))}"
+				/>
+			</div>
 			<div style="margin-top:20px"><hb-area-code content={com} /></div>
 		</div>
 		<div style="padding-right:0px" class="col-5">

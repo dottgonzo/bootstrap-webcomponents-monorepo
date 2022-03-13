@@ -65,4 +65,6 @@
 	});
 </script>
 
-{@html com}
+<div style="border:1px solid yellow">
+	{@html com}
+</div>
