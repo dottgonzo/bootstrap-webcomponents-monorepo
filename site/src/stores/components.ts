@@ -153,7 +153,7 @@ import {
 	cssVars as cookieLawBannerCssVars,
 	cssParts as cookieLawBannerCssParts,
 	htmlSlots as cookieLawBannerHtmlSlots,
-	i18nLanguages as cookieLawI18nLanguages
+	i18nLanguages as cookieLawBannerI18nLanguages
 } from '@htmlbricks/hb-cookie-law-banner/release/docs';
 import {
 	storybookArgs as dialogStorybookArgs,
@@ -362,14 +362,14 @@ import {
 	cssVars as tableCssVars,
 	cssParts as tableCssParts,
 	htmlSlots as tableHtmlSlots,
-	i18nLanguages as tableHtmlI18nLanguages
+	i18nLanguages as tableI18nLanguages
 } from '@htmlbricks/hb-table/release/docs';
 import {
 	storybookArgs as toastStorybookArgs,
 	cssVars as toastCssVars,
 	cssParts as toastCssParts,
 	htmlSlots as toastHtmlSlots,
-	i18nLanguages as toastHtmlI18nLanguages
+	i18nLanguages as toastI18nLanguages
 } from '@htmlbricks/hb-toast/release/docs';
 // TODO: SUPER TRIKY ERROR
 // import {
@@ -597,7 +597,8 @@ export const allComponentsMetas = readable([
 		category: 'basic',
 		cssVars: bannerCssVars,
 		cssParts: bannerCssParts,
-		htmlSlots: bannerHtmlSlots
+		htmlSlots: bannerHtmlSlots,
+		i18n: bannerI18nLanguages
 	},
 	{
 		definition: areaCodeDefinition,
@@ -606,7 +607,8 @@ export const allComponentsMetas = readable([
 		category: 'dev',
 		cssVars: areaCodeCssVars,
 		cssParts: areaCodeCssParts,
-		htmlSlots: areaCodeHtmlSlots
+		htmlSlots: areaCodeHtmlSlots,
+		i18n: areaCodeI18nLanguages
 	},
 	{
 		definition: offcanvasDefinition,
@@ -615,7 +617,8 @@ export const allComponentsMetas = readable([
 		category: 'layout',
 		cssVars: offcanvasCssVars,
 		cssParts: offcanvasCssParts,
-		htmlSlots: offcanvasHtmlSlots
+		htmlSlots: offcanvasHtmlSlots,
+		i18n: offcanvasI18nLanguages
 	},
 	{
 		definition: layoutDefinition,
@@ -624,7 +627,8 @@ export const allComponentsMetas = readable([
 		category: 'layout',
 		cssVars: layoutCssVars,
 		cssParts: layoutCssParts,
-		htmlSlots: layoutHtmlSlots
+		htmlSlots: layoutHtmlSlots,
+		i18n: layoutI18nLanguages
 	},
 	{
 		definition: footerDefinition,
@@ -633,7 +637,8 @@ export const allComponentsMetas = readable([
 		category: 'layout',
 		cssVars: footerCssVars,
 		cssParts: footerCssParts,
-		htmlSlots: footerHtmlSlots
+		htmlSlots: footerHtmlSlots,
+		i18n: footerI18nLanguages
 	},
 	{
 		definition: inputTextDefinition,
@@ -642,7 +647,8 @@ export const allComponentsMetas = readable([
 		category: 'form',
 		cssVars: inputTextCssVars,
 		cssParts: inputTextCssParts,
-		htmlSlots: inputTextHtmlSlots
+		htmlSlots: inputTextHtmlSlots,
+		i18n: inputTextI18nLanguages
 	},
 	{
 		definition: paginateDefinition,
@@ -651,7 +657,8 @@ export const allComponentsMetas = readable([
 		category: 'basic',
 		cssVars: paginateCssVars,
 		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		htmlSlots: paginateHtmlSlots,
+		i18n: paginateI18nLanguages
 	},
 
 	{
@@ -661,7 +668,8 @@ export const allComponentsMetas = readable([
 		category: 'basic',
 		cssVars: authCssVars,
 		cssParts: authCssParts,
-		htmlSlots: authHtmlSlots
+		htmlSlots: authHtmlSlots,
+		i18n: authI18nLanguages
 	},
 	{
 		definition: calendarEventsDefinition,
@@ -670,494 +678,381 @@ export const allComponentsMetas = readable([
 		category: 'basic',
 		cssVars: calendarEventsCssVars,
 		cssParts: calendarEventsCssParts,
-		htmlSlots: calendarEventsHtmlSlots
+		htmlSlots: calendarEventsHtmlSlots,
+		i18n: calendarEventsI18nLanguages
 	},
 
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: cardVideoDefinition,
+		storybookArgs: cardVideoStorybookArgs,
+		name: 'card-video',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: cardVideoCssVars,
+		cssParts: cardVideoCssParts,
+		htmlSlots: cardVideoHtmlSlots,
+		i18n: cardVideoI18nLanguages
+	},
+
+	{
+		definition: chartjsDefinition,
+		storybookArgs: chartjsStorybookArgs,
+		name: 'chartjs',
+		category: 'basic',
+		cssVars: chartjsCssVars,
+		cssParts: chartjsCssParts,
+		htmlSlots: chartjsHtmlSlots,
+		i18n: chartjsI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: checkoutDefinition,
+		storybookArgs: checkoutStorybookArgs,
+		name: 'checkout',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: checkoutCssVars,
+		cssParts: checkoutCssParts,
+		htmlSlots: checkoutHtmlSlots,
+		i18n: checkoutI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: checkoutShoppingCartDefinition,
+		storybookArgs: checkoutShoppingCartStorybookArgs,
+		name: 'checkout-shopping-cart',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: checkoutShoppingCartCssVars,
+		cssParts: checkoutShoppingCartCssParts,
+		htmlSlots: checkoutShoppingCartHtmlSlots,
+		i18n: checkoutShoppingCartI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: contactItemDefinition,
+		storybookArgs: contactItemStorybookArgs,
+		name: 'contact-item',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: contactItemCssVars,
+		cssParts: contactItemCssParts,
+		htmlSlots: contactItemHtmlSlots,
+		i18n: contactItemI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: cookieLawBannerDefinition,
+		storybookArgs: cookieLawBannerStorybookArgs,
+		name: 'cookie-law-banner',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: cookieLawBannerCssVars,
+		cssParts: cookieLawBannerCssParts,
+		htmlSlots: cookieLawBannerHtmlSlots,
+		i18n: cookieLawBannerI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: dialogDefinition,
+		storybookArgs: dialogStorybookArgs,
+		name: 'dialog',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: dialogCssVars,
+		cssParts: dialogCssParts,
+		htmlSlots: dialogHtmlSlots,
+		i18n: dialogI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: downloaderDefinition,
+		storybookArgs: downloaderStorybookArgs,
+		name: 'downloader',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: downloaderCssVars,
+		cssParts: downloaderCssParts,
+		htmlSlots: downloaderHtmlSlots,
+		i18n: downloaderI18nLanguages
+	},
+
+	{
+		definition: dropdownSimpleDefinition,
+		storybookArgs: dropdownSimpleStorybookArgs,
+		name: 'dropdown-simple',
+		category: 'basic',
+		cssVars: dropdownSimpleCssVars,
+		cssParts: dropdownSimpleCssParts,
+		htmlSlots: dropdownSimpleHtmlSlots,
+		i18n: dropdownSimpleI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: editorTinymceDefinition,
+		storybookArgs: editorTinymceStorybookArgs,
+		name: 'editor-tinymce',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: editorTinymceCssVars,
+		cssParts: editorTinymceCssParts,
+		htmlSlots: editorTinymceHtmlSlots,
+		i18n: editorTinymceI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: editorVideoDefinition,
+		storybookArgs: editorVideoStorybookArgs,
+		name: 'editor-video',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: editorVideoCssVars,
+		cssParts: editorVideoCssParts,
+		htmlSlots: editorVideoHtmlSlots,
+		i18n: editorVideoI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: formDefinition,
+		storybookArgs: formStorybookArgs,
+		name: 'form',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: formCssVars,
+		cssParts: formCssParts,
+		htmlSlots: formHtmlSlots,
+		i18n: formI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: funnelDefinition,
+		storybookArgs: funnelStorybookArgs,
+		name: 'funnel',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: funnelCssVars,
+		cssParts: funnelCssParts,
+		htmlSlots: funnelHtmlSlots,
+		i18n: funnelI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: galleryVideoDefinition,
+		storybookArgs: galleryVideoStorybookArgs,
+		name: 'gallery-video',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: galleryVideoCssVars,
+		cssParts: galleryVideoCssParts,
+		htmlSlots: galleryVideoHtmlSlots,
+		i18n: galleryVideoI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: gaugeDefinition,
+		storybookArgs: gaugeStorybookArgs,
+		name: 'gauge',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: gaugeCssVars,
+		cssParts: gaugeCssParts,
+		htmlSlots: gaugeHtmlSlots,
+		i18n: gaugeI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: inputAreaDefinition,
+		storybookArgs: inputAreaStorybookArgs,
+		name: 'input-area',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: inputAreaCssVars,
+		cssParts: inputAreaCssParts,
+		htmlSlots: inputAreaHtmlSlots,
+		i18n: inputAreaI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: inputCheckboxDefinition,
+		storybookArgs: inputCheckboxStorybookArgs,
+		name: 'input-checkbox',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: inputCheckboxCssVars,
+		cssParts: inputCheckboxCssParts,
+		htmlSlots: inputCheckboxHtmlSlots,
+		i18n: inputCheckboxI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: inputDateDefinition,
+		storybookArgs: inputDateStorybookArgs,
+		name: 'input-date',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: inputDateCssVars,
+		cssParts: inputDateCssParts,
+		htmlSlots: inputDateHtmlSlots,
+		i18n: inputDateI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: inputEmailDefinition,
+		storybookArgs: inputEmailStorybookArgs,
+		name: 'input-email',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: inputEmailCssVars,
+		cssParts: inputEmailCssParts,
+		htmlSlots: inputEmailHtmlSlots,
+		i18n: inputEmailI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: inputFileDefinition,
+		storybookArgs: inputFileStorybookArgs,
+		name: 'inputFile',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: inputFileCssVars,
+		cssParts: inputFileCssParts,
+		htmlSlots: inputFileHtmlSlots,
+		i18n: inputFileI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: inputNumberDefinition,
+		storybookArgs: inputNumberStorybookArgs,
+		name: 'inputNumber',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: inputNumberCssVars,
+		cssParts: inputNumberCssParts,
+		htmlSlots: inputNumberHtmlSlots,
+		i18n: inputNumberI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: inputRadioDefinition,
+		storybookArgs: inputRadioStorybookArgs,
+		name: 'inputRadio',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: inputRadioCssVars,
+		cssParts: inputRadioCssParts,
+		htmlSlots: inputRadioHtmlSlots,
+		i18n: inputRadioI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: inputSelectDefinition,
+		storybookArgs: inputSelectStorybookArgs,
+		name: 'inputSelect',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: inputSelectCssVars,
+		cssParts: inputSelectCssParts,
+		htmlSlots: inputSelectHtmlSlots,
+		i18n: inputSelectI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: mapDefinition,
+		storybookArgs: mapStorybookArgs,
+		name: 'map',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: mapCssVars,
+		cssParts: mapCssParts,
+		htmlSlots: mapHtmlSlots,
+		i18n: mapI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: modalVideoDefinition,
+		storybookArgs: modalVideoStorybookArgs,
+		name: 'modalVideo',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: modalVideoCssVars,
+		cssParts: modalVideoCssParts,
+		htmlSlots: modalVideoHtmlSlots,
+		i18n: modalVideoI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: navbarDefinition,
+		storybookArgs: navbarStorybookArgs,
+		name: 'navbar',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: navbarCssVars,
+		cssParts: navbarCssParts,
+		htmlSlots: navbarHtmlSlots,
+		i18n: navbarI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: orderListDefinition,
+		storybookArgs: orderListStorybookArgs,
+		name: 'orderList',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: orderListCssVars,
+		cssParts: orderListCssParts,
+		htmlSlots: orderListHtmlSlots,
+		i18n: orderListI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: pageCheckoutDefinition,
+		storybookArgs: pageCheckoutStorybookArgs,
+		name: 'pageCheckout',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: pageCheckoutCssVars,
+		cssParts: pageCheckoutCssParts,
+		htmlSlots: pageCheckoutHtmlSlots,
+		i18n: pageCheckoutI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: pageInvoiceDefinition,
+		storybookArgs: pageInvoiceStorybookArgs,
+		name: 'pageInvoice',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: pageInvoiceCssVars,
+		cssParts: pageInvoiceCssParts,
+		htmlSlots: pageInvoiceHtmlSlots,
+		i18n: pageInvoiceI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: pageLoginregisterDefinition,
+		storybookArgs: pageLoginregisterStorybookArgs,
+		name: 'pageLoginregister',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: pageLoginregisterCssVars,
+		cssParts: pageLoginregisterCssParts,
+		htmlSlots: pageLoginregisterHtmlSlots,
+		i18n: pageLoginregisterI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: paymentPaypalDefinition,
+		storybookArgs: paymentPaypalStorybookArgs,
+		name: 'paymentPaypal',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: paymentPaypalCssVars,
+		cssParts: paymentPaypalCssParts,
+		htmlSlots: paymentPaypalHtmlSlots,
+		i18n: paymentPaypalI18nLanguages
+	},
+	// {
+	// 	definition: playerLiveDefinition,
+	// 	storybookArgs: playerLiveStorybookArgs,
+	// 	name: 'playerLive',
+	// 	category: 'basic',
+	// 	cssVars: playerLiveCssVars,
+	// 	cssParts: playerLiveCssParts,
+	// 	htmlSlots: playerLiveHtmlSlots,
+	// 	i18n: playerLiveI18nLanguages
+	// },
+	{
+		definition: productComparisonDefinition,
+		storybookArgs: productComparisonStorybookArgs,
+		name: 'productComparison',
+		category: 'basic',
+		cssVars: productComparisonCssVars,
+		cssParts: productComparisonCssParts,
+		htmlSlots: productComparisonHtmlSlots,
+		i18n: productComparisonI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: rangeSliderDefinition,
+		storybookArgs: rangeSliderStorybookArgs,
+		name: 'rangeSlider',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: rangeSliderCssVars,
+		cssParts: rangeSliderCssParts,
+		htmlSlots: rangeSliderHtmlSlots,
+		i18n: rangeSliderI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: sidenavLinkDefinition,
+		storybookArgs: sidenavLinkStorybookArgs,
+		name: 'sidenavLink',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: sidenavLinkCssVars,
+		cssParts: sidenavLinkCssParts,
+		htmlSlots: sidenavLinkHtmlSlots,
+		i18n: sidenavLinkI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: tableDefinition,
+		storybookArgs: tableStorybookArgs,
+		name: 'table',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: tableCssVars,
+		cssParts: tableCssParts,
+		htmlSlots: tableHtmlSlots,
+		i18n: tableI18nLanguages
 	},
 	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
+		definition: toastDefinition,
+		storybookArgs: toastStorybookArgs,
+		name: 'toast',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
-	},
-	{
-		definition: paginateDefinition,
-		storybookArgs: paginateStorybookArgs,
-		name: 'paginate',
-		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		cssVars: toastCssVars,
+		cssParts: toastCssParts,
+		htmlSlots: toastHtmlSlots,
+		i18n: toastI18nLanguages
 	}
 ]);
 
