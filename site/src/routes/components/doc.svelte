@@ -6,7 +6,7 @@
 	import CssVarsTable from '../../components/CssVarsTable.svelte';
 	import EventsTable from '../../components/EventsTable.svelte';
 	import { allComponentsMetas } from '../../stores/components';
-	import { allComponentsExampleValues } from '../../stores/components';
+	import { allComponentsExampleValues } from '../../stores/examples';
 	import base64 from 'base-64';
 	import { componentsVersion } from '../../stores/app';
 	import { events } from '../../stores/events';
