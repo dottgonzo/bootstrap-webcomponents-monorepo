@@ -218,6 +218,46 @@ const offcanvasExampleValues = {
 	companytitle: 'acme corp'
 };
 
+const authExampleValues = {};
+const calendarEventsExampleValues = {};
+const cardVideoExampleValues = {};
+const chartjsExampleValues = {};
+const checkoutExampleValues = {};
+const checkoutShoppingCartExampleValues = {};
+const contactItemExampleValues = {};
+const cookieLawBannerExampleValues = {};
+const dialogExampleValues = {};
+const downloaderExampleValues = {};
+const dropdownSimpleExampleValues = {};
+const editorTinymceExampleValues = {};
+const editorVideoExampleValues = {};
+const formExampleValues = {};
+const funnelExampleValues = {};
+const galleryVideoExampleValues = {};
+const gaugeExampleValues = {};
+const inputAreaExampleValues = {};
+const inputCheckboxExampleValues = {};
+const inputDateExampleValues = {};
+const inputEmailExampleValues = {};
+const inputFileExampleValues = {};
+const inputNumberExampleValues = {};
+const inputRadioExampleValues = {};
+const inputSelectExampleValues = {};
+const mapExampleValues = {};
+const modalVideoExampleValues = {};
+const navbarExampleValues = {};
+const orderListExampleValues = {};
+const pageCheckoutExampleValues = {};
+const pageInvoiceExampleValues = {};
+const pageLoginregisterExampleValues = {};
+const paymentPaypalExampleValues = {};
+const playerLiveExampleValues = {};
+const productComparisonExampleValues = {};
+const rangeSliderExampleValues = {};
+const sidenavLinkExampleValues = {};
+const tableExampleValues = {};
+const toastExampleValues = {};
+
 export const allComponentsExampleValues = writable({
 	banner: bannerExampleValues,
 	layout: layoutExampleValues,
@@ -225,5 +265,44 @@ export const allComponentsExampleValues = writable({
 	'input-text': inputTextExampleValues,
 	offcanvas: offcanvasExampleValues,
 	paginate: paginateExampleValues,
-	footer: footerExampleValues
+	footer: footerExampleValues,
+	auth: authExampleValues,
+	'calendar-events': calendarEventsExampleValues,
+	'card-video': cardVideoExampleValues,
+	chartjs: chartjsExampleValues,
+	checkout: checkoutExampleValues,
+	'checkout-shopping-cart': checkoutShoppingCartExampleValues,
+	'contact-item': contactItemExampleValues,
+	'cookie-law-banner': cookieLawBannerExampleValues,
+	dialog: dialogExampleValues,
+	downloader: downloaderExampleValues,
+	'dropdown-simple': dropdownSimpleExampleValues,
+	'editor-tinymce': editorTinymceExampleValues,
+	'editor-video': editorVideoExampleValues,
+	form: formExampleValues,
+	funnel: funnelExampleValues,
+	'gallery-video': galleryVideoExampleValues,
+	gauge: gaugeExampleValues,
+	'input-area': inputAreaExampleValues,
+	'input-checkbox': inputCheckboxExampleValues,
+	'input-date': inputDateExampleValues,
+	'input-email': inputEmailExampleValues,
+	'input-file': inputFileExampleValues,
+	'input-number': inputNumberExampleValues,
+	'input-radio': inputRadioExampleValues,
+	'input-select': inputSelectExampleValues,
+	map: mapExampleValues,
+	'modal-video': modalVideoExampleValues,
+	navbar: navbarExampleValues,
+	'order-list': orderListExampleValues,
+	'page-checkout': pageCheckoutExampleValues,
+	'page-invoice': pageInvoiceExampleValues,
+	'page-loginregister': pageLoginregisterExampleValues,
+	'payment-paypal': paymentPaypalExampleValues,
+	'player-live': playerLiveExampleValues,
+	'product-comparison': productComparisonExampleValues,
+	'range-slider': rangeSliderExampleValues,
+	'sidenav-link': sidenavLinkExampleValues,
+	table: tableExampleValues,
+	toast: toastExampleValues
 });
