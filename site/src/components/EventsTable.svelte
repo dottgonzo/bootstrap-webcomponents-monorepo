@@ -86,6 +86,24 @@
 <div
 	style="margin-top:20px;background-color:rgb(232 232 232 / 36%);padding:10px;max-height:350px;height:350px;overflow-y:scroll"
 >
+	<div style="text-align:right">
+		{#if $events?.filter((f) => f.component === $pageName)?.length}
+			<button
+				class="btn btn-default"
+				on:click={() => {
+					localStorage.setItem(
+						'componentsEvents',
+						JSON.stringify($events.filter((f) => f.component !== $pageName))
+					);
+					events.set($events.filter((f) => f.component !== $pageName));
+				}}><i class="bi bi-arrow-clockwise" /></button
+			>
+		{:else}
+			<button class="btn btn-default" on:click={() => null} disabled
+				><i class="bi bi-arrow-clockwise" /></button
+			>
+		{/if}
+	</div>
 	{#each $events.filter((f) => f.component === $pageName) as event (event._id)}
 		<div>
 			[{dayjs(event.unixtime).format('HH:mm:ss')}
