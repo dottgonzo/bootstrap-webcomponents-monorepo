@@ -20,7 +20,7 @@
 		"start": "sirv dist",
 		"dev": "rm -rf ./dist && rollup -c -w",
 		"build": "rm -rf ./dist && rollup -c",
-		"generate-schema": "ts-json-schema-generator --path 'app/types/webcomponent.type.d.ts' > dist/webcomponent.type.d.json && cp app/types/webcomponent.type.d.json ./dist/",
+		"generate-schema": "ts-json-schema-generator --path 'app/types/webcomponent.type.d.ts' > dist/webcomponent.type.d.json",
 		"copydest": "rm -rf release && mkdir -p release && mkdir -p release && cp dist/* ./release/",
 		"build-extra": "tsc --moduleResolution node --module es2020 --esModuleInterop true --outDir dist --sourceMap --skipLibCheck extra/*",
 		"build:release": "PRODUCTION=true npm run build && npm run build-extra && npm run generate-schema && npm run copydest",
@@ -70,5 +70,5 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "0dc070fbbe8ca3d5ce302a3ba88380f8c5cafcdc"
+	"gitHead": "ba009a80aae70135a562fb59662f33eb4abfda87"
 }
