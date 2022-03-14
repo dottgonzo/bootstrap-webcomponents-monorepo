@@ -11,6 +11,10 @@ export type CssVar = {
   name: string;
   theme?: string;
 };
+export type i18nLang = {
+  language: string;
+  lang: string;
+};
 export function addComponent(
   componentName: string,
   version: string,
