@@ -17,3 +17,5 @@ export type Component = {
 	payment: IShoppingPayment;
 	completed: "yes" | "no";
 };
+
+export type Events = {};

@@ -8,3 +8,5 @@ export type Component = {
 	headers: IHeader;
 	targetfilename: string;
 };
+
+export type Events = {};

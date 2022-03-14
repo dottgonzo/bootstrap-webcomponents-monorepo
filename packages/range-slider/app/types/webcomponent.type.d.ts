@@ -12,3 +12,5 @@ export type Component = {
 	maxval: number;
 	withbubbles: boolean;
 };
+
+export type Events = {};

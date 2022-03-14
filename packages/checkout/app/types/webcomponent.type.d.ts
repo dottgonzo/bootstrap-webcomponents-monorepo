@@ -51,3 +51,5 @@ export type Component = {
 	payment: IPayment;
 	completed: "yes" | "no";
 };
+
+export type Events = {};

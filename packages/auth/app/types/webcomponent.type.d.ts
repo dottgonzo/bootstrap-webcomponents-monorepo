@@ -21,3 +21,5 @@ export type Component = {
 	passwordpattern: string;
 	recoverycode: string;
 };
+
+export type Events = {};

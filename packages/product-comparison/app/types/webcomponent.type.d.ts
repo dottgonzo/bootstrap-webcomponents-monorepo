@@ -33,3 +33,5 @@ export type Component = {
 	products: Product[];
 	options: Options;
 };
+
+export type Events = {};

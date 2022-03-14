@@ -52,3 +52,5 @@ export type Component = {
 	enableselect: string;
 	disablepagination: string;
 };
+
+export type Events = {};

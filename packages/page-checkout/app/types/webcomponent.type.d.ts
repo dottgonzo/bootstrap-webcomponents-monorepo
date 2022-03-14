@@ -8,3 +8,5 @@ export type Component = {
 	gateways: IGateway[];
 	completed: "yes" | "no";
 };
+
+export type Events = {};

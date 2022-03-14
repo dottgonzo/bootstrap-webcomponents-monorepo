@@ -6,3 +6,5 @@ export type Component = {
 	step: number;
 	submitstep: "yes" | "no";
 };
+
+export type Events = {};

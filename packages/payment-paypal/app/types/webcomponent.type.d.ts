@@ -3,3 +3,5 @@ export type Component = {
 	currency: "EUR" | "USD";
 	total: number;
 };
+
+export type Events = {};

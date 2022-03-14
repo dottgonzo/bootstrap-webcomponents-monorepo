@@ -102,3 +102,5 @@ export type Component = {
 	getvals: "yes" | "no" | null;
 	showvalidation: "yes" | "no";
 };
+
+export type Events = {};

@@ -9,3 +9,5 @@ export type Component = {
 	source: { type: string; url?: string };
 	options: { centerFromGeometries?: string };
 };
+
+export type Events = {};

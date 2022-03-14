@@ -15,3 +15,5 @@ export type Component = {
 	form: string;
 	track: ITrack;
 };
+
+export type Events = {};

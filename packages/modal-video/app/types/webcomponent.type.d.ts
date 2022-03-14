@@ -4,3 +4,5 @@ export type Component = {
 	title: string;
 	provider: string;
 };
+
+export type Events = {};

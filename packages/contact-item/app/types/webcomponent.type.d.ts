@@ -39,3 +39,5 @@ export type Component = {
 	social: ISocial;
 	config: IConfig;
 };
+
+export type Events = {};

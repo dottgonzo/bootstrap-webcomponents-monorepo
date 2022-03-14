@@ -17,3 +17,5 @@ export type Component = {
 	navlink: INavLink;
 	navpage: string;
 };
+
+export type Events = {};

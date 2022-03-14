@@ -37,3 +37,5 @@ export type Component = {
 	usertype: "email" | "username";
 	disableregister: boolean;
 };
+
+export type Events = {};

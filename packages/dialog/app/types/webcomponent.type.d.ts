@@ -11,3 +11,5 @@ export type Component = {
 	closelabel?: string;
 	confirmlabel?: string;
 };
+
+export type Events = {};

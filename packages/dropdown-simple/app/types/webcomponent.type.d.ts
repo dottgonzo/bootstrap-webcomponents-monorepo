@@ -11,3 +11,5 @@ export type Component = {
 	list: IDropDownMenuListItem[];
 	open: boolean;
 };
+
+export type Events = {};

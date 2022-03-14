@@ -19,3 +19,5 @@ export type Component = {
 	events: IEvent[];
 	selected: Date;
 };
+
+export type Events = {};

@@ -28,3 +28,5 @@ export type Component = {
 	capabilities: ICapabilities;
 	cookielawuri4more: string;
 };
+
+export type Events = {};

@@ -5,3 +5,5 @@ export type Component = {
 	small: string;
 	content: string;
 };
+
+export type Events = {};

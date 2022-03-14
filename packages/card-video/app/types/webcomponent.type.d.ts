@@ -8,3 +8,5 @@ export type Component = {
 	time: string;
 	dateformat: string;
 };
+
+export type Events = {};

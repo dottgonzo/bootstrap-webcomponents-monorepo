@@ -4,3 +4,5 @@ export type Component = {
 	toolbar: string;
 	images_upload_url: string;
 };
+
+export type Events = {};

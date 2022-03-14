@@ -33,3 +33,5 @@ export type Component = {
 	items: IItem[];
 	headers: IHeaders;
 };
+
+export type Events = {};

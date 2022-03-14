@@ -16,3 +16,5 @@ export type Component = {
 	usermenu: IUserMenu;
 	noburger: string;
 };
+
+export type Events = {};

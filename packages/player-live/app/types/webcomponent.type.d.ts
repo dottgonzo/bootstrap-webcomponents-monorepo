@@ -9,3 +9,5 @@ export type Component = {
 		text: string;
 	};
 };
+
+export type Events = {};

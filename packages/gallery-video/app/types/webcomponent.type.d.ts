@@ -24,3 +24,5 @@ export type Component = {
 	initialdate: Date;
 	lastdate: Date;
 };
+
+export type Events = {};

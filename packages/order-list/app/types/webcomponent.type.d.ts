@@ -12,3 +12,5 @@ export interface OrderPayment extends IShoppingPayment {
 export type Component = {
 	payment: OrderPayment;
 };
+
+export type Events = {};

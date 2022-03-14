@@ -68,3 +68,4 @@ export type Component = {
 	showvalidation: "yes" | "no";
 	schemaentry: FormSchemaEntry;
 };
+export type Events = { setValue: { value: string }; setValid: { valid: boolean } };
