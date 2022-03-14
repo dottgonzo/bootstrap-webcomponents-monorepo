@@ -1,4 +1,4 @@
-import { readable, writable } from 'svelte/store';
+import { readable } from 'svelte/store';
 
 import bannerDefinition from '@htmlbricks/hb-banner/release/webcomponent.type.d.json';
 import areaCodeDefinition from '@htmlbricks/hb-area-code/release/webcomponent.type.d.json';

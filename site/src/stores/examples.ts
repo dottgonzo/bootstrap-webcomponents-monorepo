@@ -1,13 +1,5 @@
-import { readable, writable } from 'svelte/store';
+import { writable } from 'svelte/store';
 
-// TODO: SUPER TRIKY ERROR
-// import {
-// 	storybookArgs as playerLiveStorybookArgs,
-// 	cssVars as playerLiveCssVars,
-// 	cssParts as playerLiveCssParts,
-// 	htmlSlots as playerLiveHtmlSlots,
-// 	i18nLanguages as playerLiveI18nLanguages
-// } from '@htmlbricks/hb-player-live/release/docs';
 const paginateExampleValues = {
 	page: 2,
 	pages: 4

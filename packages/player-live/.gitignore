@@ -126,3 +126,5 @@ npm-debug.log
 /dist
 /build
 /release
+
+webcomponent.type.d.json
