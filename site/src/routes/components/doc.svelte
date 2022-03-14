@@ -23,7 +23,7 @@
 	let cssParts: CssPart[];
 	let htmlSlots: HtmlSlot[];
 
-	let controlTab: 'props' | 'schemes' | 'events' | 'style' | 'slots' | 'install';
+	let controlTab: 'props' | 'schemes' | 'events' | 'style' | 'slots' | 'install' | 'i18n';
 
 	let com: string;
 	let cdnUri: string;
@@ -127,6 +127,14 @@
 						class="nav-link {htmlSlots?.length ? '' : 'disabled'} {controlTab === 'slots'
 							? 'active'
 							: ''}">slots</button
+					>
+				</li>
+				<li class="nav-item">
+					<button
+						on:click={() => {
+							controlTab = 'i18n';
+						}}
+						class="nav-link disabled {controlTab === 'i18n' ? 'active' : ''}">i18n (0)</button
 					>
 				</li>
 				<li class="nav-item">
