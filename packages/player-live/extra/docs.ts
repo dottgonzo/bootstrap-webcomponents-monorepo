@@ -6,3 +6,8 @@ export const storybookArgs = {
 	mediatype: { control: { type: "text" } },
 	liveStatus: { action: "liveStatusEvent" },
 };
+
+export const cssVars: CssVar[] = [];
+export const cssParts: CssPart[] = [];
+export const htmlSlots: HtmlSlot[] = [];
+export const i18nLanguages: i18nLang[] = [];

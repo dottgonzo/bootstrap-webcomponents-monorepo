@@ -10,3 +10,8 @@ export const storybookArgs = {
 	gateways: { control: { type: "array" } },
 	completed: { control: { type: "radio" }, options: ["yes", "no"] },
 };
+
+export const cssVars: CssVar[] = [];
+export const cssParts: CssPart[] = [];
+export const htmlSlots: HtmlSlot[] = [];
+export const i18nLanguages: i18nLang[] = [];

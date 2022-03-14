@@ -6,3 +6,8 @@ export const storybookArgs = {
 	dropdownSwitch: { action: "dropdownSwitchEvent" },
 	dropDownClick: { action: "dropDownClickEvent" },
 };
+
+export const cssVars: CssVar[] = [];
+export const cssParts: CssPart[] = [];
+export const htmlSlots: HtmlSlot[] = [];
+export const i18nLanguages: i18nLang[] = [];

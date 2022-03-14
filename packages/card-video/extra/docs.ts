@@ -10,3 +10,8 @@ export const storybookArgs = {
 	linklabel: { control: { type: "text" } },
 	dateformat: { control: { type: "text" } },
 };
+
+export const cssVars: CssVar[] = [];
+export const cssParts: CssPart[] = [];
+export const htmlSlots: HtmlSlot[] = [];
+export const i18nLanguages: i18nLang[] = [];

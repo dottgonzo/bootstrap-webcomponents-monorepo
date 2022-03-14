@@ -9,3 +9,8 @@ export const storybookArgs = {
 	toastShow: { action: "toastShow" },
 	toastConfirm: { action: "toastConfirm" },
 };
+
+export const cssVars: CssVar[] = [];
+export const cssParts: CssPart[] = [];
+export const htmlSlots: HtmlSlot[] = [];
+export const i18nLanguages: i18nLang[] = [];

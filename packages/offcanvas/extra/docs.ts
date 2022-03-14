@@ -35,3 +35,4 @@ export const htmlSlots: HtmlSlot[] = [
 		description: "footer",
 	},
 ];
+export const i18nLanguages: i18nLang[] = [];

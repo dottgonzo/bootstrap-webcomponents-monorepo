@@ -6,3 +6,8 @@ export const storybookArgs = {
 	toolbar: { control: { type: "text" } },
 	images_upload_url: { control: { type: "text" } },
 };
+
+export const cssVars: CssVar[] = [];
+export const cssParts: CssPart[] = [];
+export const htmlSlots: HtmlSlot[] = [];
+export const i18nLanguages: i18nLang[] = [];
