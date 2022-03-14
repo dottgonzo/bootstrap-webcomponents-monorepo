@@ -335,13 +335,7 @@ import {
 	htmlSlots as paymentPaypalHtmlSlots,
 	i18nLanguages as paymentPaypalI18nLanguages
 } from '@htmlbricks/hb-payment-paypal/release/docs';
-import {
-	storybookArgs as playerLiveStorybookArgs,
-	cssVars as playerLiveCssVars,
-	cssParts as playerLiveCssParts,
-	htmlSlots as playerLiveHtmlSlots,
-	i18nLanguages as playerLiveI18nLanguages
-} from '@htmlbricks/hb-player-live/release/docs';
+
 import {
 	storybookArgs as productComparisonStorybookArgs,
 	cssVars as productComparisonCssVars,
@@ -377,7 +371,14 @@ import {
 	htmlSlots as toastHtmlSlots,
 	i18nLanguages as toastHtmlI18nLanguages
 } from '@htmlbricks/hb-toast/release/docs';
-
+// TODO: SUPER TRIKY ERROR
+// import {
+// 	storybookArgs as playerLiveStorybookArgs,
+// 	cssVars as playerLiveCssVars,
+// 	cssParts as playerLiveCssParts,
+// 	htmlSlots as playerLiveHtmlSlots,
+// 	i18nLanguages as playerLiveI18nLanguages
+// } from '@htmlbricks/hb-player-live/release/docs';
 const paginateExampleValues = {
 	page: 2,
 	pages: 4
@@ -642,6 +643,512 @@ export const allComponentsMetas = readable([
 		cssVars: inputTextCssVars,
 		cssParts: inputTextCssParts,
 		htmlSlots: inputTextHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+
+	{
+		definition: authDefinition,
+		storybookArgs: authStorybookArgs,
+		name: 'auth',
+		category: 'basic',
+		cssVars: authCssVars,
+		cssParts: authCssParts,
+		htmlSlots: authHtmlSlots
+	},
+	{
+		definition: calendarEventsDefinition,
+		storybookArgs: calendarEventsStorybookArgs,
+		name: 'calendar-events',
+		category: 'basic',
+		cssVars: calendarEventsCssVars,
+		cssParts: calendarEventsCssParts,
+		htmlSlots: calendarEventsHtmlSlots
+	},
+
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
+	},
+	{
+		definition: paginateDefinition,
+		storybookArgs: paginateStorybookArgs,
+		name: 'paginate',
+		category: 'basic',
+		cssVars: paginateCssVars,
+		cssParts: paginateCssParts,
+		htmlSlots: paginateHtmlSlots
 	},
 	{
 		definition: paginateDefinition,

@@ -68,7 +68,7 @@
 	}
 </script>
 
-{#if name}
+{#if name && args}
 	<div style="margin-top:40px; padding-right:0px" class="row">
 		<div class="col-7">
 			<div style="margin-top:40px">
