@@ -52,495 +52,333 @@ import {
 	storybookArgs as bannerStorybookArgs,
 	cssVars as bannerCssVars,
 	cssParts as bannerCssParts,
-	htmlSlots as bannerHtmlSlots
+	htmlSlots as bannerHtmlSlots,
+	i18nLanguages as bannerI18nLanguages
 } from '@htmlbricks/hb-banner/release/docs';
 import {
 	storybookArgs as areaCodeStorybookArgs,
 	cssVars as areaCodeCssVars,
 	cssParts as areaCodeCssParts,
-	htmlSlots as areaCodeHtmlSlots
+	htmlSlots as areaCodeHtmlSlots,
+	i18nLanguages as areaCodeI18nLanguages
 } from '@htmlbricks/hb-area-code/release/docs';
 import {
 	storybookArgs as offcanvasStorybookArgs,
 	cssVars as offcanvasCssVars,
 	cssParts as offcanvasCssParts,
-	htmlSlots as offcanvasHtmlSlots
+	htmlSlots as offcanvasHtmlSlots,
+	i18nLanguages as offcanvasI18nLanguages
 } from '@htmlbricks/hb-offcanvas/release/docs';
 import {
 	storybookArgs as layoutStorybookArgs,
 	cssVars as layoutCssVars,
 	cssParts as layoutCssParts,
-	htmlSlots as layoutHtmlSlots
+	htmlSlots as layoutHtmlSlots,
+	i18nLanguages as layoutI18nLanguages
 } from '@htmlbricks/hb-layout/release/docs';
 import {
 	storybookArgs as footerStorybookArgs,
 	cssVars as footerCssVars,
 	cssParts as footerCssParts,
-	htmlSlots as footerHtmlSlots
+	htmlSlots as footerHtmlSlots,
+	i18nLanguages as footerI18nLanguages
 } from '@htmlbricks/hb-footer/release/docs';
 import {
 	storybookArgs as inputTextStorybookArgs,
 	cssVars as inputTextCssVars,
 	cssParts as inputTextCssParts,
-	htmlSlots as inputTextHtmlSlots
+	htmlSlots as inputTextHtmlSlots,
+	i18nLanguages as inputTextI18nLanguages
 } from '@htmlbricks/hb-input-text/release/docs';
 import {
 	storybookArgs as paginateStorybookArgs,
 	cssVars as paginateCssVars,
 	cssParts as paginateCssParts,
-	htmlSlots as paginateHtmlSlots
+	htmlSlots as paginateHtmlSlots,
+	i18nLanguages as paginateI18nLanguages
 } from '@htmlbricks/hb-paginate/release/docs';
 
 import {
 	storybookArgs as authStorybookArgs,
 	cssVars as authCssVars,
 	cssParts as authCssParts,
-	htmlSlots as authHtmlSlots
+	htmlSlots as authHtmlSlots,
+	i18nLanguages as authI18nLanguages
 } from '@htmlbricks/hb-auth/release/docs';
 
-// import {
-//         storybookArgs as calendarEventsStorybookArgs,
-//         cssVars as calendarEventsCssVars,
-//         cssParts as calendarEventsCssParts,
-//         htmlSlots as calendarEventsHtmlSlots
-// } from '@htmlbricks/hb-calendar-events/release/docs';
-// import {
-//         storybookArgs as cardVideoStorybookArgs,
-//         cssVars as cardVideoCssVars,
-//         cssParts as cardVideoCssParts,
-//         htmlSlots as cardVideoHtmlSlots
-// } from '@htmlbricks/hb-card-video/release/docs';
-// import {
-//         storybookArgs as chartjsStorybookArgs,
-//         cssVars as chartjsCssVars,
-//         cssParts as chartjsCssParts,
-//         htmlSlots as chartjsHtmlSlots
-// } from '@htmlbricks/hb-chartjs/release/docs';
-// import {
-//         storybookArgs as checkoutStorybookArgs,
-//         cssVars as checkoutCssVars,
-//         cssParts as checkoutCssParts,
-//         htmlSlots as checkoutHtmlSlots
-// } from '@htmlbricks/hb-checkout/release/docs';
-// import {
-//         storybookArgs as checkoutShoppingCartStorybookArgs,
-//         cssVars as checkoutShoppingCartCssVars,
-//         cssParts as checkoutShoppingCartCssParts,
-//         htmlSlots as checkoutShoppingCartHtmlSlots
-// } from '@htmlbricks/hb-checkout-shopping-cart/release/docs';
-// import {
-//         storybookArgs as contactItemStorybookArgs,
-//         cssVars as contactItemCssVars,
-//         cssParts as contactItemCssParts,
-//         htmlSlots as contactItemHtmlSlots
-// } from '@htmlbricks/hb-contact-item/release/docs';
-// import {
-//         storybookArgs as cookieLawBannerStorybookArgs,
-//         cssVars as cookieLawBannerCssVars,
-//         cssParts as cookieLawBannerCssParts,
-//         htmlSlots as cookieLawBannerHtmlSlots
-// } from '@htmlbricks/hb-cookie-law-banner/release/docs';
-// import {
-//         storybookArgs as dialogStorybookArgs,
-//         cssVars as dialogCssVars,
-//         cssParts as dialogCssParts,
-//         htmlSlots as dialogHtmlSlots
-// } from '@htmlbricks/hb-dialog/release/docs';
-// import {
-//         storybookArgs as downloaderStorybookArgs,
-//         cssVars as downloaderCssVars,
-//         cssParts as downloaderCssParts,
-//         htmlSlots as downloaderHtmlSlots
-// } from '@htmlbricks/hb-downloader/release/docs';
-// import {
-//         storybookArgs as dropdownSimpleStorybookArgs,
-//         cssVars as dropdownSimpleCssVars,
-//         cssParts as dropdownSimpleCssParts,
-//         htmlSlots as dropdownSimpleHtmlSlots
-// } from '@htmlbricks/hb-dropdown-simple/release/docs';
-// import {
-//         storybookArgs as editorTinymceStorybookArgs,
-//         cssVars as editorTinymceCssVars,
-//         cssParts as editorTinymceCssParts,
-//         htmlSlots as editorTinymceHtmlSlots
-// } from '@htmlbricks/hb-editor-tinymce/release/docs';
-// import {
-//         storybookArgs as editorVideoStorybookArgs,
-//         cssVars as editorVideoCssVars,
-//         cssParts as editorVideoCssParts,
-//         htmlSlots as editorVideoHtmlSlots
-// } from '@htmlbricks/hb-editor-video/release/docs';
+import {
+	storybookArgs as calendarEventsStorybookArgs,
+	cssVars as calendarEventsCssVars,
+	cssParts as calendarEventsCssParts,
+	htmlSlots as calendarEventsHtmlSlots,
+	i18nLanguages as calendarEventsI18nLanguages
+} from '@htmlbricks/hb-calendar-events/release/docs';
+import {
+	storybookArgs as cardVideoStorybookArgs,
+	cssVars as cardVideoCssVars,
+	cssParts as cardVideoCssParts,
+	htmlSlots as cardVideoHtmlSlots,
+	i18nLanguages as cardVideoI18nLanguages
+} from '@htmlbricks/hb-card-video/release/docs';
+import {
+	storybookArgs as chartjsStorybookArgs,
+	cssVars as chartjsCssVars,
+	cssParts as chartjsCssParts,
+	htmlSlots as chartjsHtmlSlots,
+	i18nLanguages as chartjsI18nLanguages
+} from '@htmlbricks/hb-chartjs/release/docs';
+import {
+	storybookArgs as checkoutStorybookArgs,
+	cssVars as checkoutCssVars,
+	cssParts as checkoutCssParts,
+	htmlSlots as checkoutHtmlSlots,
+	i18nLanguages as checkoutI18nLanguages
+} from '@htmlbricks/hb-checkout/release/docs';
+import {
+	storybookArgs as checkoutShoppingCartStorybookArgs,
+	cssVars as checkoutShoppingCartCssVars,
+	cssParts as checkoutShoppingCartCssParts,
+	htmlSlots as checkoutShoppingCartHtmlSlots,
+	i18nLanguages as checkoutShoppingCartI18nLanguages
+} from '@htmlbricks/hb-checkout-shopping-cart/release/docs';
+import {
+	storybookArgs as contactItemStorybookArgs,
+	cssVars as contactItemCssVars,
+	cssParts as contactItemCssParts,
+	htmlSlots as contactItemHtmlSlots,
+	i18nLanguages as contactItemI18nLanguages
+} from '@htmlbricks/hb-contact-item/release/docs';
+import {
+	storybookArgs as cookieLawBannerStorybookArgs,
+	cssVars as cookieLawBannerCssVars,
+	cssParts as cookieLawBannerCssParts,
+	htmlSlots as cookieLawBannerHtmlSlots,
+	i18nLanguages as cookieLawBannerI18nLanguages
+} from '@htmlbricks/hb-cookie-law-banner/release/docs';
+import {
+	storybookArgs as dialogStorybookArgs,
+	cssVars as dialogCssVars,
+	cssParts as dialogCssParts,
+	htmlSlots as dialogHtmlSlots,
+	i18nLanguages as dialogI18nLanguages
+} from '@htmlbricks/hb-dialog/release/docs';
+import {
+	storybookArgs as downloaderStorybookArgs,
+	cssVars as downloaderCssVars,
+	cssParts as downloaderCssParts,
+	htmlSlots as downloaderHtmlSlots,
+	i18nLanguages as downloaderI18nLanguages
+} from '@htmlbricks/hb-downloader/release/docs';
+import {
+	storybookArgs as dropdownSimpleStorybookArgs,
+	cssVars as dropdownSimpleCssVars,
+	cssParts as dropdownSimpleCssParts,
+	htmlSlots as dropdownSimpleHtmlSlots,
+	i18nLanguages as dropdownSimpleI18nLanguages
+} from '@htmlbricks/hb-dropdown-simple/release/docs';
+import {
+	storybookArgs as editorTinymceStorybookArgs,
+	cssVars as editorTinymceCssVars,
+	cssParts as editorTinymceCssParts,
+	htmlSlots as editorTinymceHtmlSlots,
+	i18nLanguages as editorTinymceI18nLanguages
+} from '@htmlbricks/hb-editor-tinymce/release/docs';
+import {
+	storybookArgs as editorVideoStorybookArgs,
+	cssVars as editorVideoCssVars,
+	cssParts as editorVideoCssParts,
+	htmlSlots as editorVideoHtmlSlots,
+	i18nLanguages as editorVideoI18nLanguages
+} from '@htmlbricks/hb-editor-video/release/docs';
 
-// import {
-//         storybookArgs as formStorybookArgs,
-//         cssVars as formCssVars,
-//         cssParts as formCssParts,
-//         htmlSlots as formHtmlSlots
-// } from '@htmlbricks/hb-form/release/docs';
-// import {
-//         storybookArgs as funnelStorybookArgs,
-//         cssVars as funnelCssVars,
-//         cssParts as funnelCssParts,
-//         htmlSlots as funnelHtmlSlots
-// } from '@htmlbricks/hb-funnel/release/docs';
-// import {
-//         storybookArgs as galleryVideoStorybookArgs,
-//         cssVars as galleryVideoCssVars,
-//         cssParts as galleryVideoCssParts,
-//         htmlSlots as galleryVideoHtmlSlots
-// } from '@htmlbricks/hb-gallery-video/release/docs';
-// import {
-//         storybookArgs as gaugeStorybookArgs,
-//         cssVars as gaugeCssVars,
-//         cssParts as gaugeCssParts,
-//         htmlSlots as gaugeHtmlSlots
-// } from '@htmlbricks/hb-gauge/release/docs';
-// import {
-//         storybookArgs as inputAreaStorybookArgs,
-//         cssVars as inputAreaCssVars,
-//         cssParts as inputAreaCssParts,
-//         htmlSlots as inputAreaHtmlSlots
-// } from '@htmlbricks/hb-input-area/release/docs';
-// import {
-//         storybookArgs as inputCheckboxStorybookArgs,
-//         cssVars as inputCheckboxCssVars,
-//         cssParts as inputCheckboxCssParts,
-//         htmlSlots as inputCheckboxHtmlSlots
-// } from '@htmlbricks/hb-input-checkbox/release/docs';
-// import {
-//         storybookArgs as inputDateStorybookArgs,
-//         cssVars as inputDateCssVars,
-//         cssParts as inputDateCssParts,
-//         htmlSlots as inputDateHtmlSlots
-// } from '@htmlbricks/hb-input-date/release/docs';
-// import {
-//         storybookArgs as inputEmailStorybookArgs,
-//         cssVars as inputEmailCssVars,
-//         cssParts as inputEmailCssParts,
-//         htmlSlots as inputEmailHtmlSlots
-// } from '@htmlbricks/hb-input-email/release/docs';
-// import {
-//         storybookArgs as inputFileStorybookArgs,
-//         cssVars as inputFileCssVars,
-//         cssParts as inputFileCssParts,
-//         htmlSlots as inputFileHtmlSlots
-// } from '@htmlbricks/hb-input-file/release/docs';
-// import {
-//         storybookArgs as inputNumberStorybookArgs,
-//         cssVars as inputNumberCssVars,
-//         cssParts as inputNumberCssParts,
-//         htmlSlots as inputNumberHtmlSlots
-// } from '@htmlbricks/hb-input-number/release/docs';
-// import {
-//         storybookArgs as inputRadioStorybookArgs,
-//         cssVars as inputRadioCssVars,
-//         cssParts as inputRadioCssParts,
-//         htmlSlots as inputRadioHtmlSlots
-// } from '@htmlbricks/hb-input-radio/release/docs';
-// import {
-//         storybookArgs as inputSelectStorybookArgs,
-//         cssVars as inputSelectCssVars,
-//         cssParts as inputSelectCssParts,
-//         htmlSlots as inputSelectHtmlSlots
-// } from '@htmlbricks/hb-input-select/release/docs';
+import {
+	storybookArgs as formStorybookArgs,
+	cssVars as formCssVars,
+	cssParts as formCssParts,
+	htmlSlots as formHtmlSlots,
+	i18nLanguages as formI18nLanguages
+} from '@htmlbricks/hb-form/release/docs';
+import {
+	storybookArgs as funnelStorybookArgs,
+	cssVars as funnelCssVars,
+	cssParts as funnelCssParts,
+	htmlSlots as funnelHtmlSlots,
+	i18nLanguages as funnelI18nLanguages
+} from '@htmlbricks/hb-funnel/release/docs';
+import {
+	storybookArgs as galleryVideoStorybookArgs,
+	cssVars as galleryVideoCssVars,
+	cssParts as galleryVideoCssParts,
+	htmlSlots as galleryVideoHtmlSlots,
+	i18nLanguages as galleryVideoI18nLanguages
+} from '@htmlbricks/hb-gallery-video/release/docs';
+import {
+	storybookArgs as gaugeStorybookArgs,
+	cssVars as gaugeCssVars,
+	cssParts as gaugeCssParts,
+	htmlSlots as gaugeHtmlSlots,
+	i18nLanguages as gaugeI18nLanguages
+} from '@htmlbricks/hb-gauge/release/docs';
+import {
+	storybookArgs as inputAreaStorybookArgs,
+	cssVars as inputAreaCssVars,
+	cssParts as inputAreaCssParts,
+	htmlSlots as inputAreaHtmlSlots,
+	i18nLanguages as inputAreaI18nLanguages
+} from '@htmlbricks/hb-input-area/release/docs';
+import {
+	storybookArgs as inputCheckboxStorybookArgs,
+	cssVars as inputCheckboxCssVars,
+	cssParts as inputCheckboxCssParts,
+	htmlSlots as inputCheckboxHtmlSlots,
+	i18nLanguages as inputCheckboxI18nLanguages
+} from '@htmlbricks/hb-input-checkbox/release/docs';
+import {
+	storybookArgs as inputDateStorybookArgs,
+	cssVars as inputDateCssVars,
+	cssParts as inputDateCssParts,
+	htmlSlots as inputDateHtmlSlots,
+	i18nLanguages as inputDateI18nLanguages
+} from '@htmlbricks/hb-input-date/release/docs';
+import {
+	storybookArgs as inputEmailStorybookArgs,
+	cssVars as inputEmailCssVars,
+	cssParts as inputEmailCssParts,
+	htmlSlots as inputEmailHtmlSlots,
+	i18nLanguages as inputEmailI18nLanguages
+} from '@htmlbricks/hb-input-email/release/docs';
+import {
+	storybookArgs as inputFileStorybookArgs,
+	cssVars as inputFileCssVars,
+	cssParts as inputFileCssParts,
+	htmlSlots as inputFileHtmlSlots,
+	i18nLanguages as inputFileI18nLanguages
+} from '@htmlbricks/hb-input-file/release/docs';
+import {
+	storybookArgs as inputNumberStorybookArgs,
+	cssVars as inputNumberCssVars,
+	cssParts as inputNumberCssParts,
+	htmlSlots as inputNumberHtmlSlots,
+	i18nLanguages as inputNumberI18nLanguages
+} from '@htmlbricks/hb-input-number/release/docs';
+import {
+	storybookArgs as inputRadioStorybookArgs,
+	cssVars as inputRadioCssVars,
+	cssParts as inputRadioCssParts,
+	htmlSlots as inputRadioHtmlSlots,
+	i18nLanguages as inputRadioI18nLanguages
+} from '@htmlbricks/hb-input-radio/release/docs';
+import {
+	storybookArgs as inputSelectStorybookArgs,
+	cssVars as inputSelectCssVars,
+	cssParts as inputSelectCssParts,
+	htmlSlots as inputSelectHtmlSlots,
+	i18nLanguages as inputSelectI18nLanguages
+} from '@htmlbricks/hb-input-select/release/docs';
 
-// import {
-//         storybookArgs as mapStorybookArgs,
-//         cssVars as mapCssVars,
-//         cssParts as mapCssParts,
-//         htmlSlots as mapHtmlSlots
-// } from '@htmlbricks/hb-map/release/docs';
-// import {
-//         storybookArgs asmodalVideoStorybookArgs,
-//         cssVars asmodalVideoCssVars,
-//         cssParts asmodalVideoCssParts,
-//         htmlSlots asmodalVideoHtmlSlots
-// } from '@htmlbricks/hb-modal-video/release/docs';
-// import {
-//         storybookArgs as navbarStorybookArgs,
-//         cssVars as navbarCssVars,
-//         cssParts as navbarCssParts,
-//         htmlSlots as navbarHtmlSlots
-// } from '@htmlbricks/hb-navbar/release/docs';
+import {
+	storybookArgs as mapStorybookArgs,
+	cssVars as mapCssVars,
+	cssParts as mapCssParts,
+	htmlSlots as mapHtmlSlots,
+	i18nLanguages as mapI18nLanguages
+} from '@htmlbricks/hb-map/release/docs';
+import {
+	storybookArgs as modalVideoStorybookArgs,
+	cssVars as modalVideoCssVars,
+	cssParts as modalVideoCssParts,
+	htmlSlots as modalVideoHtmlSlots,
+	i18nLanguages as modalVideoI18nLanguages
+} from '@htmlbricks/hb-modal-video/release/docs';
+import {
+	storybookArgs as navbarStorybookArgs,
+	cssVars as navbarCssVars,
+	cssParts as navbarCssParts,
+	htmlSlots as navbarHtmlSlots,
+	i18nLanguages as navbarI18nLanguages
+} from '@htmlbricks/hb-navbar/release/docs';
 
-// import {
-//         storybookArgs as orderListStorybookArgs,
-//         cssVars as orderListCssVars,
-//         cssParts as orderListCssParts,
-//         htmlSlots as orderListHtmlSlots
-// } from '@htmlbricks/hb-order-list/release/docs';
-// import {
-//         storybookArgs as pageCheckoutStorybookArgs,
-//         cssVars as pageCheckoutCssVars,
-//         cssParts as pageCheckoutCssParts,
-//         htmlSlots as pageCheckoutHtmlSlots
-// } from '@htmlbricks/hb-page-checkout/release/docs';
-// import {
-//         storybookArgs as pageInvoiceStorybookArgs,
-//         cssVars as pageInvoiceCssVars,
-//         cssParts as pageInvoiceCssParts,
-//         htmlSlots as pageInvoiceHtmlSlots
-// } from '@htmlbricks/hb-page-invoice/release/docs';
+import {
+	storybookArgs as orderListStorybookArgs,
+	cssVars as orderListCssVars,
+	cssParts as orderListCssParts,
+	htmlSlots as orderListHtmlSlots,
+	i18nLanguages as orderListI18nLanguages
+} from '@htmlbricks/hb-order-list/release/docs';
+import {
+	storybookArgs as pageCheckoutStorybookArgs,
+	cssVars as pageCheckoutCssVars,
+	cssParts as pageCheckoutCssParts,
+	htmlSlots as pageCheckoutHtmlSlots,
+	i18nLanguages as pageCheckoutI18nLanguages
+} from '@htmlbricks/hb-page-checkout/release/docs';
+import {
+	storybookArgs as pageInvoiceStorybookArgs,
+	cssVars as pageInvoiceCssVars,
+	cssParts as pageInvoiceCssParts,
+	htmlSlots as pageInvoiceHtmlSlots,
+	i18nLanguages as pageInvoiceI18nLanguages
+} from '@htmlbricks/hb-page-invoice/release/docs';
 
-// import {
-//         storybookArgs as pageLoginregisterStorybookArgs,
-//         cssVars as pageLoginregisterCssVars,
-//         cssParts as pageLoginregisterCssParts,
-//         htmlSlots as pageLoginregisterHtmlSlots
-// } from '@htmlbricks/hb-page-loginregister/release/docs';
+import {
+	storybookArgs as pageLoginregisterStorybookArgs,
+	cssVars as pageLoginregisterCssVars,
+	cssParts as pageLoginregisterCssParts,
+	htmlSlots as pageLoginregisterHtmlSlots,
+	i18nLanguages as pageLoginregisterI18nLanguages
+} from '@htmlbricks/hb-page-loginregister/release/docs';
 
+import {
+	storybookArgs as paymentPaypalStorybookArgs,
+	cssVars as paymentPaypalCssVars,
+	cssParts as paymentPaypalCssParts,
+	htmlSlots as paymentPaypalHtmlSlots,
+	i18nLanguages as paymentPaypalI18nLanguages
+} from '@htmlbricks/hb-payment-paypal/release/docs';
+
+import {
+	storybookArgs as productComparisonStorybookArgs,
+	cssVars as productComparisonCssVars,
+	cssParts as productComparisonCssParts,
+	htmlSlots as productComparisonHtmlSlots,
+	i18nLanguages as productComparisonI18nLanguages
+} from '@htmlbricks/hb-product-comparison/release/docs';
+import {
+	storybookArgs as rangeSliderStorybookArgs,
+	cssVars as rangeSliderCssVars,
+	cssParts as rangeSliderCssParts,
+	htmlSlots as rangeSliderHtmlSlots,
+	i18nLanguages as rangeSliderI18nLanguages
+} from '@htmlbricks/hb-range-slider/release/docs';
+import {
+	storybookArgs as sidenavLinkStorybookArgs,
+	cssVars as sidenavLinkCssVars,
+	cssParts as sidenavLinkCssParts,
+	htmlSlots as sidenavLinkHtmlSlots,
+	i18nLanguages as sidenavLinkI18nLanguages
+} from '@htmlbricks/hb-sidenav-link/release/docs';
+import {
+	storybookArgs as tableStorybookArgs,
+	cssVars as tableCssVars,
+	cssParts as tableCssParts,
+	htmlSlots as tableHtmlSlots,
+	i18nLanguages as tableI18nLanguages
+} from '@htmlbricks/hb-table/release/docs';
+import {
+	storybookArgs as toastStorybookArgs,
+	cssVars as toastCssVars,
+	cssParts as toastCssParts,
+	htmlSlots as toastHtmlSlots,
+	i18nLanguages as toastI18nLanguages
+} from '@htmlbricks/hb-toast/release/docs';
+// TODO: SUPER TRIKY ERROR
 // import {
-//         storybookArgs as paymentpaypalStorybookArgs,
-//         cssVars as paymentpaypalCssVars,
-//         cssParts as paymentpaypalCssParts,
-//         htmlSlots as paymentpaypalHtmlSlots
-// } from '@htmlbricks/hb-payment-paypal/release/docs';
-// import {
-//         storybookArgs as playerLiveStorybookArgs,
-//         cssVars as playerLiveCssVars,
-//         cssParts as playerLiveCssParts,
-//         htmlSlots as playerLiveHtmlSlots
+// 	storybookArgs as playerLiveStorybookArgs,
+// 	cssVars as playerLiveCssVars,
+// 	cssParts as playerLiveCssParts,
+// 	htmlSlots as playerLiveHtmlSlots,
+// 	i18nLanguages as playerLiveI18nLanguages
 // } from '@htmlbricks/hb-player-live/release/docs';
-// import {
-//         storybookArgs as productComparisonStorybookArgs,
-//         cssVars as productComparisonCssVars,
-//         cssParts as productComparisonCssParts,
-//         htmlSlots as productComparisonHtmlSlots
-// } from '@htmlbricks/hb-product-comparison/release/docs';
-// import {
-//         storybookArgs as rangeSliderStorybookArgs,
-//         cssVars as rangeSliderCssVars,
-//         cssParts as rangeSliderCssParts,
-//         htmlSlots as rangeSliderHtmlSlots
-// } from '@htmlbricks/hb-range-slider/release/docs';
-// import {
-//         storybookArgs as sidenavLinkStorybookArgs,
-//         cssVars as sidenavLinkCssVars,
-//         cssParts as sidenavLinkCssParts,
-//         htmlSlots as sidenavLinkHtmlSlots
-// } from '@htmlbricks/hb-sidenav-link/release/docs';
-// import {
-//         storybookArgs as tableStorybookArgs,
-//         cssVars as tableCssVars,
-//         cssParts as tableCssParts,
-//         htmlSlots as tableHtmlSlots
-// } from '@htmlbricks/hb-table/release/docs';
-// import {
-//         storybookArgs as toastStorybookArgs,
-//         cssVars as toastCssVars,
-//         cssParts as toastCssParts,
-//         htmlSlots as toastHtmlSlots
-// } from '@htmlbricks/hb-toast/release/docs';
-
-const paginateExampleValues = {
-	page: 2,
-	pages: 4
-};
-
-const inputTextExampleValues = {
-	schemaentry: {
-		type: 'text',
-		placeholder: 'Insert your last name here...',
-		id: 'lastName',
-		required: true,
-		label: 'Last Name',
-		validationTip: 'This field cannot be empty.'
-	}
-};
-
-const bannerExampleValues = {
-	title: 'ciao',
-	description: 'desc',
-	logouri: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg'
-};
-const areaCodeExampleValues = {
-	content: 'desc'
-};
-const sidebar = { title: 'ciao' };
-const company1 = {
-	logoUri: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg',
-	siteName: 'testsite',
-	companyName: 'testcompany S.R.L.',
-	registration: 'copyright',
-	description: `testo e descrizione di esempio dell applicazione`,
-	vatNumber: 'aa - ffffff',
-	fiscalCode: 'f4f5f6fff'
-};
-
-const navlinks2 = [
-	{
-		label: 'Home',
-		key: 'home',
-		icon: 'house-door',
-		badge: {
-			text: 'bbb'
-		}
-	},
-	{
-		label: 'Dashboard',
-		key: 'dashboard',
-		icon: 'speedometer',
-		badge: {
-			text: 'bbb'
-		}
-	},
-	{
-		label: 'Settings',
-		key: 'settings',
-		icon: 'gear',
-		group: 'admin',
-		badge: {
-			text: 'bbb'
-		}
-	},
-	{
-		label: 'Users',
-		key: 'users',
-		icon: 'people-fill',
-		group: 'admin',
-		badge: {
-			text: 'uuuuu'
-		}
-	},
-	{
-		label: 'Stats',
-		key: 'stats',
-		icon: 'graph-up',
-		group: 'stats',
-		badge: {
-			text: 'bbb'
-		}
-	}
-];
-
-const contacts1 = {
-	sites: [
-		{
-			label: 'dariocaruso.info',
-			uri: 'https://dariocaruso.info'
-		}
-	],
-	phones: [
-		{
-			number: '6666666666666'
-		}
-	],
-	addresses: [],
-	emails: []
-};
-const usermenu1 = {
-	list: [
-		{
-			key: 'list1',
-			label: 'list1'
-		},
-		{
-			key: 'list2',
-			label: 'list2'
-		},
-		{
-			key: 'list3',
-			label: 'list3',
-			group: 'list1',
-			badge: '3'
-		},
-		{
-			key: 'list4',
-			label: 'list4',
-			badge: '555'
-		}
-	],
-	imgUri: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg'
-};
-const socials1 = {
-	facebook: 'fbbb',
-	youtube: 'yttttttt'
-};
-const columns1 = [
-	{
-		cells: [
-			{
-				label: 'test',
-				key: 'test'
-			},
-			{
-				label: 'test2',
-				key: 'test2'
-			},
-			{
-				label: 'test3',
-				key: 'test3'
-			}
-		],
-		title: 'stringtitle'
-	}
-];
-const brandandcontacts1 = {};
-const footerbottom1 = {};
-const policies1 = [
-	{
-		label: 'Privacy Policy',
-		key: 'privacypolicy'
-	},
-	{
-		label: 'Condizioni Generali',
-		key: 'generalcondition'
-	},
-	{
-		label: 'Cookie Policy',
-		key: 'cookiepolicy'
-	}
-];
-const layoutExampleValues = {
-	company: company1,
-	contacts: contacts1,
-	socials: socials1,
-	navlinks: navlinks2,
-	usermenu: usermenu1,
-	sidebar
-};
-const footerExampleValues = {
-	company: company1,
-	brandandcontacts: brandandcontacts1,
-	columns: columns1,
-	footerbottom: footerbottom1,
-	policies: policies1,
-	contacts: contacts1,
-	socials: socials1
-};
-const offcanvasExampleValues = {
-	opened: true,
-	id: 'BasicOffcanvasOnSettings',
-	navlinks: [
-		{
-			label: 'Home',
-			key: 'home',
-			icon: 'house-door'
-		},
-		{
-			label: 'Dashboard',
-			key: 'dashboard',
-			icon: 'speedometer'
-		},
-		{
-			label: 'Settings',
-			key: 'settings',
-			icon: 'gear'
-		},
-		{
-			label: 'Users',
-			key: 'users',
-			icon: 'people-fill'
-		},
-		{
-			label: 'Stats',
-			key: 'stats',
-			icon: 'graph-up'
-		}
-	],
-	navpage: 'settings',
-	companytitle: 'acme corp'
-};
 
 export const allComponentsMetas = readable([
 	{
@@ -550,7 +388,8 @@ export const allComponentsMetas = readable([
 		category: 'basic',
 		cssVars: bannerCssVars,
 		cssParts: bannerCssParts,
-		htmlSlots: bannerHtmlSlots
+		htmlSlots: bannerHtmlSlots,
+		i18n: bannerI18nLanguages
 	},
 	{
 		definition: areaCodeDefinition,
@@ -559,7 +398,8 @@ export const allComponentsMetas = readable([
 		category: 'dev',
 		cssVars: areaCodeCssVars,
 		cssParts: areaCodeCssParts,
-		htmlSlots: areaCodeHtmlSlots
+		htmlSlots: areaCodeHtmlSlots,
+		i18n: areaCodeI18nLanguages
 	},
 	{
 		definition: offcanvasDefinition,
@@ -568,7 +408,8 @@ export const allComponentsMetas = readable([
 		category: 'layout',
 		cssVars: offcanvasCssVars,
 		cssParts: offcanvasCssParts,
-		htmlSlots: offcanvasHtmlSlots
+		htmlSlots: offcanvasHtmlSlots,
+		i18n: offcanvasI18nLanguages
 	},
 	{
 		definition: layoutDefinition,
@@ -577,7 +418,8 @@ export const allComponentsMetas = readable([
 		category: 'layout',
 		cssVars: layoutCssVars,
 		cssParts: layoutCssParts,
-		htmlSlots: layoutHtmlSlots
+		htmlSlots: layoutHtmlSlots,
+		i18n: layoutI18nLanguages
 	},
 	{
 		definition: footerDefinition,
@@ -586,7 +428,8 @@ export const allComponentsMetas = readable([
 		category: 'layout',
 		cssVars: footerCssVars,
 		cssParts: footerCssParts,
-		htmlSlots: footerHtmlSlots
+		htmlSlots: footerHtmlSlots,
+		i18n: footerI18nLanguages
 	},
 	{
 		definition: inputTextDefinition,
@@ -595,7 +438,8 @@ export const allComponentsMetas = readable([
 		category: 'form',
 		cssVars: inputTextCssVars,
 		cssParts: inputTextCssParts,
-		htmlSlots: inputTextHtmlSlots
+		htmlSlots: inputTextHtmlSlots,
+		i18n: inputTextI18nLanguages
 	},
 	{
 		definition: paginateDefinition,
@@ -604,16 +448,401 @@ export const allComponentsMetas = readable([
 		category: 'basic',
 		cssVars: paginateCssVars,
 		cssParts: paginateCssParts,
-		htmlSlots: paginateHtmlSlots
+		htmlSlots: paginateHtmlSlots,
+		i18n: paginateI18nLanguages
+	},
+
+	{
+		definition: authDefinition,
+		storybookArgs: authStorybookArgs,
+		name: 'auth',
+		category: 'components',
+		cssVars: authCssVars,
+		cssParts: authCssParts,
+		htmlSlots: authHtmlSlots,
+		i18n: authI18nLanguages
+	},
+	{
+		definition: calendarEventsDefinition,
+		storybookArgs: calendarEventsStorybookArgs,
+		name: 'calendar-events',
+		category: 'components',
+		cssVars: calendarEventsCssVars,
+		cssParts: calendarEventsCssParts,
+		htmlSlots: calendarEventsHtmlSlots,
+		i18n: calendarEventsI18nLanguages
+	},
+
+	{
+		definition: cardVideoDefinition,
+		storybookArgs: cardVideoStorybookArgs,
+		name: 'card-video',
+		category: 'components',
+		cssVars: cardVideoCssVars,
+		cssParts: cardVideoCssParts,
+		htmlSlots: cardVideoHtmlSlots,
+		i18n: cardVideoI18nLanguages
+	},
+
+	{
+		definition: chartjsDefinition,
+		storybookArgs: chartjsStorybookArgs,
+		name: 'chartjs',
+		category: 'graph',
+		cssVars: chartjsCssVars,
+		cssParts: chartjsCssParts,
+		htmlSlots: chartjsHtmlSlots,
+		i18n: chartjsI18nLanguages
+	},
+	{
+		definition: checkoutDefinition,
+		storybookArgs: checkoutStorybookArgs,
+		name: 'checkout',
+		category: 'payment',
+		cssVars: checkoutCssVars,
+		cssParts: checkoutCssParts,
+		htmlSlots: checkoutHtmlSlots,
+		i18n: checkoutI18nLanguages
+	},
+	{
+		definition: checkoutShoppingCartDefinition,
+		storybookArgs: checkoutShoppingCartStorybookArgs,
+		name: 'checkout-shopping-cart',
+		category: 'payment',
+		cssVars: checkoutShoppingCartCssVars,
+		cssParts: checkoutShoppingCartCssParts,
+		htmlSlots: checkoutShoppingCartHtmlSlots,
+		i18n: checkoutShoppingCartI18nLanguages
+	},
+	{
+		definition: contactItemDefinition,
+		storybookArgs: contactItemStorybookArgs,
+		name: 'contact-item',
+		category: 'basic',
+		cssVars: contactItemCssVars,
+		cssParts: contactItemCssParts,
+		htmlSlots: contactItemHtmlSlots,
+		i18n: contactItemI18nLanguages
+	},
+	{
+		definition: cookieLawBannerDefinition,
+		storybookArgs: cookieLawBannerStorybookArgs,
+		name: 'cookie-law-banner',
+		category: 'layout',
+		cssVars: cookieLawBannerCssVars,
+		cssParts: cookieLawBannerCssParts,
+		htmlSlots: cookieLawBannerHtmlSlots,
+		i18n: cookieLawBannerI18nLanguages
+	},
+	{
+		definition: dialogDefinition,
+		storybookArgs: dialogStorybookArgs,
+		name: 'dialog',
+		category: 'basic',
+		cssVars: dialogCssVars,
+		cssParts: dialogCssParts,
+		htmlSlots: dialogHtmlSlots,
+		i18n: dialogI18nLanguages
+	},
+	{
+		definition: downloaderDefinition,
+		storybookArgs: downloaderStorybookArgs,
+		name: 'downloader',
+		category: 'basic',
+		cssVars: downloaderCssVars,
+		cssParts: downloaderCssParts,
+		htmlSlots: downloaderHtmlSlots,
+		i18n: downloaderI18nLanguages
+	},
+
+	{
+		definition: dropdownSimpleDefinition,
+		storybookArgs: dropdownSimpleStorybookArgs,
+		name: 'dropdown-simple',
+		category: 'basic',
+		cssVars: dropdownSimpleCssVars,
+		cssParts: dropdownSimpleCssParts,
+		htmlSlots: dropdownSimpleHtmlSlots,
+		i18n: dropdownSimpleI18nLanguages
+	},
+	{
+		definition: editorTinymceDefinition,
+		storybookArgs: editorTinymceStorybookArgs,
+		name: 'editor-tinymce',
+		category: 'editor',
+		cssVars: editorTinymceCssVars,
+		cssParts: editorTinymceCssParts,
+		htmlSlots: editorTinymceHtmlSlots,
+		i18n: editorTinymceI18nLanguages
+	},
+	{
+		definition: editorVideoDefinition,
+		storybookArgs: editorVideoStorybookArgs,
+		name: 'editor-video',
+		category: 'editor',
+		cssVars: editorVideoCssVars,
+		cssParts: editorVideoCssParts,
+		htmlSlots: editorVideoHtmlSlots,
+		i18n: editorVideoI18nLanguages
+	},
+	{
+		definition: formDefinition,
+		storybookArgs: formStorybookArgs,
+		name: 'form',
+		category: 'form',
+		cssVars: formCssVars,
+		cssParts: formCssParts,
+		htmlSlots: formHtmlSlots,
+		i18n: formI18nLanguages
+	},
+	{
+		definition: funnelDefinition,
+		storybookArgs: funnelStorybookArgs,
+		name: 'funnel',
+		category: 'form',
+		cssVars: funnelCssVars,
+		cssParts: funnelCssParts,
+		htmlSlots: funnelHtmlSlots,
+		i18n: funnelI18nLanguages
+	},
+	{
+		definition: galleryVideoDefinition,
+		storybookArgs: galleryVideoStorybookArgs,
+		name: 'gallery-video',
+		category: 'components',
+		cssVars: galleryVideoCssVars,
+		cssParts: galleryVideoCssParts,
+		htmlSlots: galleryVideoHtmlSlots,
+		i18n: galleryVideoI18nLanguages
+	},
+	{
+		definition: gaugeDefinition,
+		storybookArgs: gaugeStorybookArgs,
+		name: 'gauge',
+		category: 'graph',
+		cssVars: gaugeCssVars,
+		cssParts: gaugeCssParts,
+		htmlSlots: gaugeHtmlSlots,
+		i18n: gaugeI18nLanguages
+	},
+	{
+		definition: inputAreaDefinition,
+		storybookArgs: inputAreaStorybookArgs,
+		name: 'input-area',
+		category: 'input',
+		cssVars: inputAreaCssVars,
+		cssParts: inputAreaCssParts,
+		htmlSlots: inputAreaHtmlSlots,
+		i18n: inputAreaI18nLanguages
+	},
+	{
+		definition: inputCheckboxDefinition,
+		storybookArgs: inputCheckboxStorybookArgs,
+		name: 'input-checkbox',
+		category: 'input',
+		cssVars: inputCheckboxCssVars,
+		cssParts: inputCheckboxCssParts,
+		htmlSlots: inputCheckboxHtmlSlots,
+		i18n: inputCheckboxI18nLanguages
+	},
+	{
+		definition: inputDateDefinition,
+		storybookArgs: inputDateStorybookArgs,
+		name: 'input-date',
+		category: 'input',
+		cssVars: inputDateCssVars,
+		cssParts: inputDateCssParts,
+		htmlSlots: inputDateHtmlSlots,
+		i18n: inputDateI18nLanguages
+	},
+	{
+		definition: inputEmailDefinition,
+		storybookArgs: inputEmailStorybookArgs,
+		name: 'input-email',
+		category: 'input',
+		cssVars: inputEmailCssVars,
+		cssParts: inputEmailCssParts,
+		htmlSlots: inputEmailHtmlSlots,
+		i18n: inputEmailI18nLanguages
+	},
+	{
+		definition: inputFileDefinition,
+		storybookArgs: inputFileStorybookArgs,
+		name: 'input-file',
+		category: 'input',
+		cssVars: inputFileCssVars,
+		cssParts: inputFileCssParts,
+		htmlSlots: inputFileHtmlSlots,
+		i18n: inputFileI18nLanguages
+	},
+	{
+		definition: inputNumberDefinition,
+		storybookArgs: inputNumberStorybookArgs,
+		name: 'input-number',
+		category: 'input',
+		cssVars: inputNumberCssVars,
+		cssParts: inputNumberCssParts,
+		htmlSlots: inputNumberHtmlSlots,
+		i18n: inputNumberI18nLanguages
+	},
+	{
+		definition: inputRadioDefinition,
+		storybookArgs: inputRadioStorybookArgs,
+		name: 'input-radio',
+		category: 'input',
+		cssVars: inputRadioCssVars,
+		cssParts: inputRadioCssParts,
+		htmlSlots: inputRadioHtmlSlots,
+		i18n: inputRadioI18nLanguages
+	},
+	{
+		definition: inputSelectDefinition,
+		storybookArgs: inputSelectStorybookArgs,
+		name: 'input-select',
+		category: 'input',
+		cssVars: inputSelectCssVars,
+		cssParts: inputSelectCssParts,
+		htmlSlots: inputSelectHtmlSlots,
+		i18n: inputSelectI18nLanguages
+	},
+	{
+		definition: mapDefinition,
+		storybookArgs: mapStorybookArgs,
+		name: 'map',
+		category: 'graph',
+		cssVars: mapCssVars,
+		cssParts: mapCssParts,
+		htmlSlots: mapHtmlSlots,
+		i18n: mapI18nLanguages
+	},
+	{
+		definition: modalVideoDefinition,
+		storybookArgs: modalVideoStorybookArgs,
+		name: 'modal-video',
+		category: 'basic',
+		cssVars: modalVideoCssVars,
+		cssParts: modalVideoCssParts,
+		htmlSlots: modalVideoHtmlSlots,
+		i18n: modalVideoI18nLanguages
+	},
+	{
+		definition: navbarDefinition,
+		storybookArgs: navbarStorybookArgs,
+		name: 'navbar',
+		category: 'layout',
+		cssVars: navbarCssVars,
+		cssParts: navbarCssParts,
+		htmlSlots: navbarHtmlSlots,
+		i18n: navbarI18nLanguages
+	},
+	{
+		definition: orderListDefinition,
+		storybookArgs: orderListStorybookArgs,
+		name: 'order-list',
+		category: 'basic',
+		cssVars: orderListCssVars,
+		cssParts: orderListCssParts,
+		htmlSlots: orderListHtmlSlots,
+		i18n: orderListI18nLanguages
+	},
+	{
+		definition: pageCheckoutDefinition,
+		storybookArgs: pageCheckoutStorybookArgs,
+		name: 'page-checkout',
+		category: 'page',
+		cssVars: pageCheckoutCssVars,
+		cssParts: pageCheckoutCssParts,
+		htmlSlots: pageCheckoutHtmlSlots,
+		i18n: pageCheckoutI18nLanguages
+	},
+	{
+		definition: pageInvoiceDefinition,
+		storybookArgs: pageInvoiceStorybookArgs,
+		name: 'page-invoice',
+		category: 'page',
+		cssVars: pageInvoiceCssVars,
+		cssParts: pageInvoiceCssParts,
+		htmlSlots: pageInvoiceHtmlSlots,
+		i18n: pageInvoiceI18nLanguages
+	},
+	{
+		definition: pageLoginregisterDefinition,
+		storybookArgs: pageLoginregisterStorybookArgs,
+		name: 'page-loginregister',
+		category: 'page',
+		cssVars: pageLoginregisterCssVars,
+		cssParts: pageLoginregisterCssParts,
+		htmlSlots: pageLoginregisterHtmlSlots,
+		i18n: pageLoginregisterI18nLanguages
+	},
+	{
+		definition: paymentPaypalDefinition,
+		storybookArgs: paymentPaypalStorybookArgs,
+		name: 'payment-paypal',
+		category: 'payment',
+		cssVars: paymentPaypalCssVars,
+		cssParts: paymentPaypalCssParts,
+		htmlSlots: paymentPaypalHtmlSlots,
+		i18n: paymentPaypalI18nLanguages
+	},
+	// {
+	// 	definition: playerLiveDefinition,
+	// 	storybookArgs: playerLiveStorybookArgs,
+	// 	name: 'player-live',
+	// 	category: 'basic',
+	// 	cssVars: playerLiveCssVars,
+	// 	cssParts: playerLiveCssParts,
+	// 	htmlSlots: playerLiveHtmlSlots,
+	// 	i18n: playerLiveI18nLanguages
+	// },
+	{
+		definition: productComparisonDefinition,
+		storybookArgs: productComparisonStorybookArgs,
+		name: 'product-comparison',
+		category: 'components',
+		cssVars: productComparisonCssVars,
+		cssParts: productComparisonCssParts,
+		htmlSlots: productComparisonHtmlSlots,
+		i18n: productComparisonI18nLanguages
+	},
+	{
+		definition: rangeSliderDefinition,
+		storybookArgs: rangeSliderStorybookArgs,
+		name: 'range-slider',
+		category: 'basic',
+		cssVars: rangeSliderCssVars,
+		cssParts: rangeSliderCssParts,
+		htmlSlots: rangeSliderHtmlSlots,
+		i18n: rangeSliderI18nLanguages
+	},
+	{
+		definition: sidenavLinkDefinition,
+		storybookArgs: sidenavLinkStorybookArgs,
+		name: 'sidenav-link',
+		category: 'basic',
+		cssVars: sidenavLinkCssVars,
+		cssParts: sidenavLinkCssParts,
+		htmlSlots: sidenavLinkHtmlSlots,
+		i18n: sidenavLinkI18nLanguages
+	},
+	{
+		definition: tableDefinition,
+		storybookArgs: tableStorybookArgs,
+		name: 'table',
+		category: 'table',
+		cssVars: tableCssVars,
+		cssParts: tableCssParts,
+		htmlSlots: tableHtmlSlots,
+		i18n: tableI18nLanguages
+	},
+	{
+		definition: toastDefinition,
+		storybookArgs: toastStorybookArgs,
+		name: 'toast',
+		category: 'basic',
+		cssVars: toastCssVars,
+		cssParts: toastCssParts,
+		htmlSlots: toastHtmlSlots,
+		i18n: toastI18nLanguages
 	}
 ]);
-
-export const allComponentsExampleValues = writable({
-	banner: bannerExampleValues,
-	layout: layoutExampleValues,
-	'area-code': areaCodeExampleValues,
-	'input-text': inputTextExampleValues,
-	offcanvas: offcanvasExampleValues,
-	paginate: paginateExampleValues,
-	footer: footerExampleValues
-});

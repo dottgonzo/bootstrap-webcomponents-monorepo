@@ -39,7 +39,7 @@
 			}
 
 			com += ` />`;
-			meta = $allComponentsMetas.find((f) => f.name === name);
+			meta = $allComponentsMetas?.find((f) => f.name === name);
 		}
 	}
 	onMount(() => {

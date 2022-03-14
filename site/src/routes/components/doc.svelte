@@ -6,7 +6,7 @@
 	import CssVarsTable from '../../components/CssVarsTable.svelte';
 	import EventsTable from '../../components/EventsTable.svelte';
 	import { allComponentsMetas } from '../../stores/components';
-	import { allComponentsExampleValues } from '../../stores/components';
+	import { allComponentsExampleValues } from '../../stores/examples';
 	import base64 from 'base-64';
 	import { componentsVersion } from '../../stores/app';
 	import { events } from '../../stores/events';
@@ -68,7 +68,7 @@
 	}
 </script>
 
-{#if name}
+{#if name && args}
 	<div style="margin-top:40px; padding-right:0px" class="row">
 		<div class="col-7">
 			<div style="margin-top:40px">
