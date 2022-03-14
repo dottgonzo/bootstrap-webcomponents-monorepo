@@ -8,6 +8,46 @@ import footerDefinition from '@htmlbricks/hb-footer/release/webcomponent.type.d.
 import inputTextDefinition from '@htmlbricks/hb-input-text/release/webcomponent.type.d.json';
 import paginateDefinition from '@htmlbricks/hb-paginate/release/webcomponent.type.d.json';
 
+import authDefinition from '@htmlbricks/hb-auth/release/webcomponent.type.d.json';
+import calendarEventsDefinition from '@htmlbricks/hb-calendar-events/release/webcomponent.type.d.json';
+import cardVideoDefinition from '@htmlbricks/hb-card-video/release/webcomponent.type.d.json';
+import chartjsDefinition from '@htmlbricks/hb-chartjs/release/webcomponent.type.d.json';
+import checkoutDefinition from '@htmlbricks/hb-checkout/release/webcomponent.type.d.json';
+import checkoutShoppingCartDefinition from '@htmlbricks/hb-checkout-shopping-cart/release/webcomponent.type.d.json';
+import contactItemDefinition from '@htmlbricks/hb-contact-item/release/webcomponent.type.d.json';
+import cookieLawBannerDefinition from '@htmlbricks/hb-cookie-law-banner/release/webcomponent.type.d.json';
+import dialogDefinition from '@htmlbricks/hb-dialog/release/webcomponent.type.d.json';
+import downloaderDefinition from '@htmlbricks/hb-downloader/release/webcomponent.type.d.json';
+import dropdownSimpleDefinition from '@htmlbricks/hb-dropdown-simple/release/webcomponent.type.d.json';
+import editorTinymceDefinition from '@htmlbricks/hb-editor-tinymce/release/webcomponent.type.d.json';
+import editorVideoDefinition from '@htmlbricks/hb-editor-video/release/webcomponent.type.d.json';
+import formDefinition from '@htmlbricks/hb-form/release/webcomponent.type.d.json';
+import funnelDefinition from '@htmlbricks/hb-funnel/release/webcomponent.type.d.json';
+import galleryVideoDefinition from '@htmlbricks/hb-gallery-video/release/webcomponent.type.d.json';
+import gaugeDefinition from '@htmlbricks/hb-gauge/release/webcomponent.type.d.json';
+import inputAreaDefinition from '@htmlbricks/hb-input-area/release/webcomponent.type.d.json';
+import inputCheckboxDefinition from '@htmlbricks/hb-input-checkbox/release/webcomponent.type.d.json';
+import inputDateDefinition from '@htmlbricks/hb-input-date/release/webcomponent.type.d.json';
+import inputEmailDefinition from '@htmlbricks/hb-input-email/release/webcomponent.type.d.json';
+import inputFileDefinition from '@htmlbricks/hb-input-file/release/webcomponent.type.d.json';
+import inputNumberDefinition from '@htmlbricks/hb-input-number/release/webcomponent.type.d.json';
+import inputRadioDefinition from '@htmlbricks/hb-input-radio/release/webcomponent.type.d.json';
+import inputSelectDefinition from '@htmlbricks/hb-input-select/release/webcomponent.type.d.json';
+import mapDefinition from '@htmlbricks/hb-map/release/webcomponent.type.d.json';
+import modalVideoDefinition from '@htmlbricks/hb-modal-video/release/webcomponent.type.d.json';
+import navbarDefinition from '@htmlbricks/hb-navbar/release/webcomponent.type.d.json';
+import orderListDefinition from '@htmlbricks/hb-order-list/release/webcomponent.type.d.json';
+import pageCheckoutDefinition from '@htmlbricks/hb-page-checkout/release/webcomponent.type.d.json';
+import pageInvoiceDefinition from '@htmlbricks/hb-page-invoice/release/webcomponent.type.d.json';
+import pageLoginregisterDefinition from '@htmlbricks/hb-page-loginregister/release/webcomponent.type.d.json';
+import paymentPaypalDefinition from '@htmlbricks/hb-payment-paypal/release/webcomponent.type.d.json';
+import playerLiveDefinition from '@htmlbricks/hb-player-live/release/webcomponent.type.d.json';
+import productComparisonDefinition from '@htmlbricks/hb-product-comparison/release/webcomponent.type.d.json';
+import rangeSliderDefinition from '@htmlbricks/hb-range-slider/release/webcomponent.type.d.json';
+import sidenavLinkDefinition from '@htmlbricks/hb-sidenav-link/release/webcomponent.type.d.json';
+import tableDefinition from '@htmlbricks/hb-table/release/webcomponent.type.d.json';
+import toastDefinition from '@htmlbricks/hb-toast/release/webcomponent.type.d.json';
+
 import {
 	storybookArgs as bannerStorybookArgs,
 	cssVars as bannerCssVars,
@@ -50,6 +90,247 @@ import {
 	cssParts as paginateCssParts,
 	htmlSlots as paginateHtmlSlots
 } from '@htmlbricks/hb-paginate/release/docs';
+
+import {
+	storybookArgs as authStorybookArgs,
+	cssVars as authCssVars,
+	cssParts as authCssParts,
+	htmlSlots as authHtmlSlots
+} from '@htmlbricks/hb-auth/release/docs';
+
+// import {
+//         storybookArgs as calendarEventsStorybookArgs,
+//         cssVars as calendarEventsCssVars,
+//         cssParts as calendarEventsCssParts,
+//         htmlSlots as calendarEventsHtmlSlots
+// } from '@htmlbricks/hb-calendar-events/release/docs';
+// import {
+//         storybookArgs as cardVideoStorybookArgs,
+//         cssVars as cardVideoCssVars,
+//         cssParts as cardVideoCssParts,
+//         htmlSlots as cardVideoHtmlSlots
+// } from '@htmlbricks/hb-card-video/release/docs';
+// import {
+//         storybookArgs as chartjsStorybookArgs,
+//         cssVars as chartjsCssVars,
+//         cssParts as chartjsCssParts,
+//         htmlSlots as chartjsHtmlSlots
+// } from '@htmlbricks/hb-chartjs/release/docs';
+// import {
+//         storybookArgs as checkoutStorybookArgs,
+//         cssVars as checkoutCssVars,
+//         cssParts as checkoutCssParts,
+//         htmlSlots as checkoutHtmlSlots
+// } from '@htmlbricks/hb-checkout/release/docs';
+// import {
+//         storybookArgs as checkoutShoppingCartStorybookArgs,
+//         cssVars as checkoutShoppingCartCssVars,
+//         cssParts as checkoutShoppingCartCssParts,
+//         htmlSlots as checkoutShoppingCartHtmlSlots
+// } from '@htmlbricks/hb-checkout-shopping-cart/release/docs';
+// import {
+//         storybookArgs as contactItemStorybookArgs,
+//         cssVars as contactItemCssVars,
+//         cssParts as contactItemCssParts,
+//         htmlSlots as contactItemHtmlSlots
+// } from '@htmlbricks/hb-contact-item/release/docs';
+// import {
+//         storybookArgs as cookieLawBannerStorybookArgs,
+//         cssVars as cookieLawBannerCssVars,
+//         cssParts as cookieLawBannerCssParts,
+//         htmlSlots as cookieLawBannerHtmlSlots
+// } from '@htmlbricks/hb-cookie-law-banner/release/docs';
+// import {
+//         storybookArgs as dialogStorybookArgs,
+//         cssVars as dialogCssVars,
+//         cssParts as dialogCssParts,
+//         htmlSlots as dialogHtmlSlots
+// } from '@htmlbricks/hb-dialog/release/docs';
+// import {
+//         storybookArgs as downloaderStorybookArgs,
+//         cssVars as downloaderCssVars,
+//         cssParts as downloaderCssParts,
+//         htmlSlots as downloaderHtmlSlots
+// } from '@htmlbricks/hb-downloader/release/docs';
+// import {
+//         storybookArgs as dropdownSimpleStorybookArgs,
+//         cssVars as dropdownSimpleCssVars,
+//         cssParts as dropdownSimpleCssParts,
+//         htmlSlots as dropdownSimpleHtmlSlots
+// } from '@htmlbricks/hb-dropdown-simple/release/docs';
+// import {
+//         storybookArgs as editorTinymceStorybookArgs,
+//         cssVars as editorTinymceCssVars,
+//         cssParts as editorTinymceCssParts,
+//         htmlSlots as editorTinymceHtmlSlots
+// } from '@htmlbricks/hb-editor-tinymce/release/docs';
+// import {
+//         storybookArgs as editorVideoStorybookArgs,
+//         cssVars as editorVideoCssVars,
+//         cssParts as editorVideoCssParts,
+//         htmlSlots as editorVideoHtmlSlots
+// } from '@htmlbricks/hb-editor-video/release/docs';
+
+// import {
+//         storybookArgs as formStorybookArgs,
+//         cssVars as formCssVars,
+//         cssParts as formCssParts,
+//         htmlSlots as formHtmlSlots
+// } from '@htmlbricks/hb-form/release/docs';
+// import {
+//         storybookArgs as funnelStorybookArgs,
+//         cssVars as funnelCssVars,
+//         cssParts as funnelCssParts,
+//         htmlSlots as funnelHtmlSlots
+// } from '@htmlbricks/hb-funnel/release/docs';
+// import {
+//         storybookArgs as galleryVideoStorybookArgs,
+//         cssVars as galleryVideoCssVars,
+//         cssParts as galleryVideoCssParts,
+//         htmlSlots as galleryVideoHtmlSlots
+// } from '@htmlbricks/hb-gallery-video/release/docs';
+// import {
+//         storybookArgs as gaugeStorybookArgs,
+//         cssVars as gaugeCssVars,
+//         cssParts as gaugeCssParts,
+//         htmlSlots as gaugeHtmlSlots
+// } from '@htmlbricks/hb-gauge/release/docs';
+// import {
+//         storybookArgs as inputAreaStorybookArgs,
+//         cssVars as inputAreaCssVars,
+//         cssParts as inputAreaCssParts,
+//         htmlSlots as inputAreaHtmlSlots
+// } from '@htmlbricks/hb-input-area/release/docs';
+// import {
+//         storybookArgs as inputCheckboxStorybookArgs,
+//         cssVars as inputCheckboxCssVars,
+//         cssParts as inputCheckboxCssParts,
+//         htmlSlots as inputCheckboxHtmlSlots
+// } from '@htmlbricks/hb-input-checkbox/release/docs';
+// import {
+//         storybookArgs as inputDateStorybookArgs,
+//         cssVars as inputDateCssVars,
+//         cssParts as inputDateCssParts,
+//         htmlSlots as inputDateHtmlSlots
+// } from '@htmlbricks/hb-input-date/release/docs';
+// import {
+//         storybookArgs as inputEmailStorybookArgs,
+//         cssVars as inputEmailCssVars,
+//         cssParts as inputEmailCssParts,
+//         htmlSlots as inputEmailHtmlSlots
+// } from '@htmlbricks/hb-input-email/release/docs';
+// import {
+//         storybookArgs as inputFileStorybookArgs,
+//         cssVars as inputFileCssVars,
+//         cssParts as inputFileCssParts,
+//         htmlSlots as inputFileHtmlSlots
+// } from '@htmlbricks/hb-input-file/release/docs';
+// import {
+//         storybookArgs as inputNumberStorybookArgs,
+//         cssVars as inputNumberCssVars,
+//         cssParts as inputNumberCssParts,
+//         htmlSlots as inputNumberHtmlSlots
+// } from '@htmlbricks/hb-input-number/release/docs';
+// import {
+//         storybookArgs as inputRadioStorybookArgs,
+//         cssVars as inputRadioCssVars,
+//         cssParts as inputRadioCssParts,
+//         htmlSlots as inputRadioHtmlSlots
+// } from '@htmlbricks/hb-input-radio/release/docs';
+// import {
+//         storybookArgs as inputSelectStorybookArgs,
+//         cssVars as inputSelectCssVars,
+//         cssParts as inputSelectCssParts,
+//         htmlSlots as inputSelectHtmlSlots
+// } from '@htmlbricks/hb-input-select/release/docs';
+
+// import {
+//         storybookArgs as mapStorybookArgs,
+//         cssVars as mapCssVars,
+//         cssParts as mapCssParts,
+//         htmlSlots as mapHtmlSlots
+// } from '@htmlbricks/hb-map/release/docs';
+// import {
+//         storybookArgs asmodalVideoStorybookArgs,
+//         cssVars asmodalVideoCssVars,
+//         cssParts asmodalVideoCssParts,
+//         htmlSlots asmodalVideoHtmlSlots
+// } from '@htmlbricks/hb-modal-video/release/docs';
+// import {
+//         storybookArgs as navbarStorybookArgs,
+//         cssVars as navbarCssVars,
+//         cssParts as navbarCssParts,
+//         htmlSlots as navbarHtmlSlots
+// } from '@htmlbricks/hb-navbar/release/docs';
+
+// import {
+//         storybookArgs as orderListStorybookArgs,
+//         cssVars as orderListCssVars,
+//         cssParts as orderListCssParts,
+//         htmlSlots as orderListHtmlSlots
+// } from '@htmlbricks/hb-order-list/release/docs';
+// import {
+//         storybookArgs as pageCheckoutStorybookArgs,
+//         cssVars as pageCheckoutCssVars,
+//         cssParts as pageCheckoutCssParts,
+//         htmlSlots as pageCheckoutHtmlSlots
+// } from '@htmlbricks/hb-page-checkout/release/docs';
+// import {
+//         storybookArgs as pageInvoiceStorybookArgs,
+//         cssVars as pageInvoiceCssVars,
+//         cssParts as pageInvoiceCssParts,
+//         htmlSlots as pageInvoiceHtmlSlots
+// } from '@htmlbricks/hb-page-invoice/release/docs';
+
+// import {
+//         storybookArgs as pageLoginregisterStorybookArgs,
+//         cssVars as pageLoginregisterCssVars,
+//         cssParts as pageLoginregisterCssParts,
+//         htmlSlots as pageLoginregisterHtmlSlots
+// } from '@htmlbricks/hb-page-loginregister/release/docs';
+
+// import {
+//         storybookArgs as paymentpaypalStorybookArgs,
+//         cssVars as paymentpaypalCssVars,
+//         cssParts as paymentpaypalCssParts,
+//         htmlSlots as paymentpaypalHtmlSlots
+// } from '@htmlbricks/hb-payment-paypal/release/docs';
+// import {
+//         storybookArgs as playerLiveStorybookArgs,
+//         cssVars as playerLiveCssVars,
+//         cssParts as playerLiveCssParts,
+//         htmlSlots as playerLiveHtmlSlots
+// } from '@htmlbricks/hb-player-live/release/docs';
+// import {
+//         storybookArgs as productComparisonStorybookArgs,
+//         cssVars as productComparisonCssVars,
+//         cssParts as productComparisonCssParts,
+//         htmlSlots as productComparisonHtmlSlots
+// } from '@htmlbricks/hb-product-comparison/release/docs';
+// import {
+//         storybookArgs as rangeSliderStorybookArgs,
+//         cssVars as rangeSliderCssVars,
+//         cssParts as rangeSliderCssParts,
+//         htmlSlots as rangeSliderHtmlSlots
+// } from '@htmlbricks/hb-range-slider/release/docs';
+// import {
+//         storybookArgs as sidenavLinkStorybookArgs,
+//         cssVars as sidenavLinkCssVars,
+//         cssParts as sidenavLinkCssParts,
+//         htmlSlots as sidenavLinkHtmlSlots
+// } from '@htmlbricks/hb-sidenav-link/release/docs';
+// import {
+//         storybookArgs as tableStorybookArgs,
+//         cssVars as tableCssVars,
+//         cssParts as tableCssParts,
+//         htmlSlots as tableHtmlSlots
+// } from '@htmlbricks/hb-table/release/docs';
+// import {
+//         storybookArgs as toastStorybookArgs,
+//         cssVars as toastCssVars,
+//         cssParts as toastCssParts,
+//         htmlSlots as toastHtmlSlots
+// } from '@htmlbricks/hb-toast/release/docs';
 
 const paginateExampleValues = {
 	page: 2,
