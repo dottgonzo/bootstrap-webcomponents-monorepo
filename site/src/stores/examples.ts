@@ -728,7 +728,10 @@ const paymentPaypalExampleValues = {
 	label: 'bbbb',
 	paypalid: 'test'
 };
-const playerLiveExampleValues = {};
+const playerLiveExampleValues = {
+	width: 400,
+	mediauri: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
+};
 const productComparisonExampleValues = {
 	headers: [
 		{

@@ -371,14 +371,15 @@ import {
 	htmlSlots as toastHtmlSlots,
 	i18nLanguages as toastI18nLanguages
 } from '@htmlbricks/hb-toast/release/docs';
-// TODO: SUPER TRIKY ERROR
-// import {
-// 	storybookArgs as playerLiveStorybookArgs,
-// 	cssVars as playerLiveCssVars,
-// 	cssParts as playerLiveCssParts,
-// 	htmlSlots as playerLiveHtmlSlots,
-// 	i18nLanguages as playerLiveI18nLanguages
-// } from '@htmlbricks/hb-player-live/release/docs';
+
+// SUPER TRIKY ERROR IF IMPORT FROM REPO!!
+import {
+	storybookArgs as playerLiveStorybookArgs,
+	cssVars as playerLiveCssVars,
+	cssParts as playerLiveCssParts,
+	htmlSlots as playerLiveHtmlSlots,
+	i18nLanguages as playerLiveI18nLanguages
+} from '../../node_modules/@htmlbricks/hb-player-live/release/docs';
 
 export const allComponentsMetas = readable([
 	{
@@ -785,16 +786,16 @@ export const allComponentsMetas = readable([
 		htmlSlots: paymentPaypalHtmlSlots,
 		i18n: paymentPaypalI18nLanguages
 	},
-	// {
-	// 	definition: playerLiveDefinition,
-	// 	storybookArgs: playerLiveStorybookArgs,
-	// 	name: 'player-live',
-	// 	category: 'basic',
-	// 	cssVars: playerLiveCssVars,
-	// 	cssParts: playerLiveCssParts,
-	// 	htmlSlots: playerLiveHtmlSlots,
-	// 	i18n: playerLiveI18nLanguages
-	// },
+	{
+		definition: playerLiveDefinition,
+		storybookArgs: playerLiveStorybookArgs,
+		name: 'player-live',
+		category: 'basic',
+		cssVars: playerLiveCssVars,
+		cssParts: playerLiveCssParts,
+		htmlSlots: playerLiveHtmlSlots,
+		i18n: playerLiveI18nLanguages
+	},
 	{
 		definition: productComparisonDefinition,
 		storybookArgs: productComparisonStorybookArgs,
