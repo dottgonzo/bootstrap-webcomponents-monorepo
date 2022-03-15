@@ -5,8 +5,7 @@
 	export let slots: HtmlSlot[];
 
 	function updateSlot(name: string, s: any) {
-		const val = s?.value;
-		console.log('updating slot ', name, val);
+		const val: string = s?.value;
 
 		if (val && val.length) {
 			const newContent: HtmlSlotsContent = {
@@ -14,7 +13,6 @@
 				content: val,
 				name: name
 			};
-			console.info('updating slot');
 			if (!$htmlSlotsContents.length) {
 				htmlSlotsContents.set([newContent]);
 			} else if (!$htmlSlotsContents.find((f) => f.component === $pageName && f.name === name)) {
@@ -29,7 +27,6 @@
 				htmlSlotsContents.set(previous);
 			}
 		} else if ($htmlSlotsContents.find((f) => f.component === $pageName && f.name === name)) {
-			console.log('removing slot');
 			const previous = $htmlSlotsContents;
 			const toRemove = previous.findIndex((f) => f.component === $pageName && f.name === name);
 			previous.splice(toRemove);
