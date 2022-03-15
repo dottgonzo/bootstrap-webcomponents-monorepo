@@ -11,7 +11,7 @@
 	import { allComponentsExampleValues } from '../../stores/examples';
 	import base64 from 'base-64';
 	import { componentsVersion } from '../../stores/app';
-	import { events } from '../../stores/events';
+	import { events, htmlSlotsContents } from '../../stores/events';
 	import { page } from '$app/stores';
 
 	import type { CssPart, HtmlSlot, CssVar } from '@htmlbricks/hb-jsutils/main';
@@ -47,6 +47,7 @@
 		htmlSlots = meta?.htmlSlots;
 
 		args = $allComponentsExampleValues[name];
+
 		com = '<hb-' + name;
 		if (args) {
 			for (const k of Object.keys(args)) {
@@ -78,7 +79,12 @@
 					<iframe
 						style="width:100%;height:600px"
 						title="component"
-						src="/playgrounds/sandbox?c={name}&p={base64.encode(JSON.stringify(args))}"
+						src="/playgrounds/sandbox?s={$htmlSlotsContents.filter((f) => f.component === name)
+							?.length
+							? base64.encode(
+									JSON.stringify($htmlSlotsContents.filter((f) => f.component === name))
+							  )
+							: ''}&c={name}&p={base64.encode(JSON.stringify(args))}"
 					/>
 				</div>
 			</div>

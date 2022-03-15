@@ -16,8 +16,11 @@
 	$: {
 		name = $page.url?.href?.split('c=')?.[1]?.split('&')[0];
 		const paramsBase64 = $page.url?.href?.split('p=')?.[1]?.split('&')[0];
+		const htmlSlot64 = $page.url?.href?.split('s=')?.[1]?.split('&')[0];
 		pageName.set(name || 'docs');
 		if (name) {
+			let htmlSlots: { name: string; content: string }[];
+			if (htmlSlot64) htmlSlots = JSON.parse(base64.decode(htmlSlot64));
 			args = paramsBase64 ? JSON.parse(base64.decode(paramsBase64)) : {};
 
 			com = `<hb-${name} id="com-${name}"`;
@@ -38,7 +41,14 @@
 				}
 			}
 
-			com += ` />`;
+			com += ` >`;
+			if (htmlSlots && htmlSlots.length) {
+				for (const sl of htmlSlots) {
+					com += `<div slot="${sl.name}">${sl.content}</div>`;
+				}
+			}
+
+			com += `</hb-${name}>`;
 			meta = $allComponentsMetas?.find((f) => f.name === name);
 		}
 	}
