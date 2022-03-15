@@ -142,7 +142,16 @@
 						}}
 						class="nav-link {htmlSlots?.length ? '' : 'disabled'} {controlTab === 'slots'
 							? 'active'
-							: ''}">slots</button
+							: ''}"
+						>slots <span
+							style={$htmlSlotsContents?.filter((f) => f.component === $pageName).length
+								? 'color:red;'
+								: ''}
+							class="badge bg-secondary"
+							><span
+								>{$htmlSlotsContents?.filter((f) => f.component === $pageName).length || 0}</span
+							>/{htmlSlots?.length || 0}</span
+						></button
 					>
 				</li>
 				<li class="nav-item">

@@ -28,7 +28,6 @@
 
 						<hb-input-select
 							schemaentry={JSON.stringify({
-								type: 'select',
 								id: prop,
 								value: args[prop],
 								params: {
@@ -48,7 +47,6 @@
 					{:else if storybookargs[prop]?.control?.type === 'text'}
 						<hb-input-text
 							schemaentry={JSON.stringify({
-								type: 'text',
 								id: prop,
 								value: args[prop]
 							})}
@@ -72,7 +70,6 @@
 					{:else if storybookargs[prop]?.control?.type === 'boolean'}
 						<hb-input-select
 							schemaentry={JSON.stringify({
-								type: 'select',
 								id: prop,
 								value: args[prop] && args[prop] !== 'no' ? 'yes' : 'no',
 								params: {
@@ -101,7 +98,6 @@
 					{:else if ['object', 'array'].includes(storybookargs[prop]?.control?.type)}
 						<hb-input-area
 							schemaentry={JSON.stringify({
-								type: 'textarea',
 								id: prop,
 								value: JSON.stringify(args[prop])
 							})}

@@ -4,9 +4,7 @@
 	import { pageName } from '../stores/app';
 	export let slots: HtmlSlot[];
 
-	function updateSlot(name: string, s: any) {
-		const val: string = s?.value;
-
+	function updateSlot(name: string, val: string) {
 		if (val && val.length) {
 			const newContent: HtmlSlotsContent = {
 				component: $pageName,
@@ -46,15 +44,19 @@
 		<tr>
 			<td>{s.name}</td>
 			<td>{s.description}</td>
-			<td
-				><input
-					type="text"
-					on:input={(e) => {
-						updateSlot(s.name, e.target);
+			<td>
+				<hb-input-text
+					schemaentry={JSON.stringify({
+						id: $pageName + '_' + s.name,
+						value:
+							$htmlSlotsContents.find((f) => f.component === s.name && f.name === s.name)
+								?.content || ''
+					})}
+					on:setValue={(e) => {
+						updateSlot(s.name, e.detail.value);
 					}}
-				/>{$htmlSlotsContents.find((f) => f.component === s.name && f.name === s.name)?.content ||
-					''}</td
-			>
+				/>
+			</td>
 		</tr>
 	{/each}
 </table>
