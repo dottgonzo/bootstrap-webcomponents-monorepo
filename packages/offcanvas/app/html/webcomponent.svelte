@@ -110,7 +110,7 @@
 		class="offcanvas offcanvas-start show"
 		tabindex="-1"
 		aria-labelledby="offcanvasExampleLabel"
-		style="visibility: visible; {opened ? 'transform:none!important' : 'transform:translateX(-100%)!important;'}"
+		style="overflow-y: auto; visibility: visible; {opened ? 'transform:none!important' : 'transform:translateX(-100%)!important'};"
 	>
 		<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="min-height:100vh;padding-top:0px!important">
 			<h4 class="offcanvas-title">
