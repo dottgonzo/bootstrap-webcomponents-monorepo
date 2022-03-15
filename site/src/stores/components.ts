@@ -436,7 +436,7 @@ export const allComponentsMetas = readable([
 		definition: inputTextDefinition,
 		storybookArgs: inputTextStorybookArgs,
 		name: 'input-text',
-		category: 'form',
+		category: 'input',
 		cssVars: inputTextCssVars,
 		cssParts: inputTextCssParts,
 		htmlSlots: inputTextHtmlSlots,

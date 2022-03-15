@@ -63,6 +63,34 @@
 					catIcon = 'input-cursor-text';
 
 					break;
+				case 'payment':
+					catIcon = 'credit-card';
+
+					break;
+				case 'editor':
+					catIcon = 'pencil-square';
+
+					break;
+				case 'input':
+					catIcon = 'input-cursor-text';
+
+					break;
+				case 'graph':
+					catIcon = 'graph-up';
+
+					break;
+				case 'components':
+					catIcon = 'motherboard';
+
+					break;
+				case 'page':
+					catIcon = 'window-fullscreen';
+
+					break;
+				case 'table':
+					catIcon = 'table';
+
+					break;
 			}
 
 			const subLinks: INavLink[] = $allComponentsMetas
