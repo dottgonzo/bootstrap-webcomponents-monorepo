@@ -2,6 +2,8 @@
 	import ControlTable from '../../components/ControlTable.svelte';
 	import PropsTable from '../../components/PropsTable.svelte';
 	import SlotTable from '../../components/SlotTable.svelte';
+	import InfoTable from '../../components/InfoTable.svelte';
+	import InstallTable from '../../components/InstallTable.svelte';
 	import CssPartsTable from '../../components/CssPartsTable.svelte';
 	import CssVarsTable from '../../components/CssVarsTable.svelte';
 	import EventsTable from '../../components/EventsTable.svelte';
@@ -23,7 +25,7 @@
 	let cssParts: CssPart[];
 	let htmlSlots: HtmlSlot[];
 
-	let controlTab: 'props' | 'schemes' | 'events' | 'style' | 'slots' | 'install' | 'i18n';
+	let controlTab: 'props' | 'schemes' | 'events' | 'style' | 'slots' | 'install' | 'i18n' | 'info';
 
 	let com: string;
 	let cdnUri: string;
@@ -33,7 +35,7 @@
 		name = $page.url?.href?.split('c=')?.[1]?.split('&')[0];
 		if (!lastName || lastName !== name) {
 			lastName = name;
-			controlTab = 'install';
+			controlTab = 'info';
 		}
 		pageName.set(name || 'docs');
 		const meta = $allComponentsMetas.find((f) => f.name === name);
@@ -83,6 +85,14 @@
 		</div>
 		<div style="padding-right:0px" class="col-5">
 			<ul class="nav nav-tabs">
+				<li class="nav-item">
+					<button
+						class="nav-link {controlTab === 'info' ? 'active' : ''}"
+						on:click={() => {
+							controlTab = 'info';
+						}}>info</button
+					>
+				</li>
 				<li class="nav-item">
 					<button
 						class="nav-link {controlTab === 'install' ? 'active' : ''}"
@@ -169,9 +179,10 @@
 				<div style="padding-top:20px">
 					{#if controlTab === 'props'}
 						<ControlTable {definition} {storybookargs} bind:args />
+					{:else if controlTab === 'info'}
+						<InfoTable />
 					{:else if controlTab === 'install'}
-						<div><hb-area-code content={cdnUri} /></div>
-						<div style="margin-top:20px"><hb-area-code content={com} /></div>
+						<InstallTable {com} cdn={cdnUri} />
 					{:else if controlTab === 'schemes'}
 						<PropsTable {definition} {storybookargs} />
 					{:else if controlTab === 'events'}
