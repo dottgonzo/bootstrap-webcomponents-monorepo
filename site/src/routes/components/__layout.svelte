@@ -16,12 +16,19 @@
 			icon: 'house-door'
 		};
 
-		const components: INavLink = {
+		const storybook: INavLink = {
 			key: 'storybook',
 			label: 'storybook',
 			group: '',
 			active: false,
 			icon: 'grid-3x3-gap'
+		};
+		const github: INavLink = {
+			key: 'github',
+			label: 'github',
+			group: '',
+			active: false,
+			icon: 'github'
 		};
 		const documentation: INavLink = {
 			key: 'documentation',
@@ -46,7 +53,7 @@
 				}
 			]
 		};
-		const arr: INavLink[] = [home, documentation, components];
+		const arr: INavLink[] = [home, documentation, storybook, github];
 		let cats: string[] = [];
 
 		$allComponentsMetas.forEach((f) => {
