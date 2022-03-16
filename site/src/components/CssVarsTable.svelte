@@ -13,7 +13,7 @@
 	{#each vars as c (c.name)}
 		<tr>
 			<td>{c.name}</td>
-			<td>{c.value}</td>
+			<td>{c.defaultValue}</td>
 		</tr>
 	{/each}
 </table>
