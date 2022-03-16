@@ -217,7 +217,9 @@
 		addresses: [],
 		emails: []
 	})}
-	socials={JSON.stringify({ facebook: 'fbbb', youtube: 'yttttttt' })}
+	socials={JSON.stringify({
+		github: 'https://github.com/dottgonzo/bootstrap-webcomponents-monorepo'
+	})}
 	on:pagechange={(e) => pageChange(e.detail)}
 >
 	<div class="container-fluid" slot="page">
