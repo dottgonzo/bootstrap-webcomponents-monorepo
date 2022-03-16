@@ -11,7 +11,7 @@
 		content = 'loading';
 		try {
 			const pageraw = await fetch(
-				`https://cdn.jsdelivr.net/gh/dottgonzo/bootstrap-webcomponents-monorepo@${componentsVersion}/packages/${$pageName}/README.md`
+				`https://cdn.jsdelivr.net/gh/dottgonzo/bootstrap-webcomponents-monorepo@${$componentsVersion}/packages/${$pageName}/README.md`
 			);
 			const txt = await pageraw.text();
 			const md = new MarkdownIt();

@@ -10,11 +10,11 @@
 	import { allComponentsMetas } from '../../stores/components';
 	import { allComponentsExampleValues } from '../../stores/examples';
 	import base64 from 'base-64';
-	import { componentsVersion } from '../../stores/app';
+	import { componentsVersion, lang } from '../../stores/app';
 	import { events, htmlSlotsContents } from '../../stores/events';
 	import { page } from '$app/stores';
 
-	import type { CssPart, HtmlSlot, CssVar } from '@htmlbricks/hb-jsutils/main';
+	import type { CssPart, HtmlSlot, CssVar, i18nLang } from '@htmlbricks/hb-jsutils/main';
 
 	import { pageName } from '../../stores/app';
 	let name: string;
@@ -24,6 +24,7 @@
 	let cssVars: CssVar[];
 	let cssParts: CssPart[];
 	let htmlSlots: HtmlSlot[];
+	let i18nLangs: i18nLang[];
 
 	let controlTab: 'props' | 'schemes' | 'events' | 'style' | 'slots' | 'install' | 'i18n' | 'info';
 
@@ -45,6 +46,7 @@
 		cssVars = meta?.cssVars;
 		cssParts = meta?.cssParts;
 		htmlSlots = meta?.htmlSlots;
+		i18nLangs = meta?.i18n;
 
 		args = $allComponentsExampleValues[name];
 
@@ -148,9 +150,8 @@
 								? 'color:red;'
 								: ''}
 							class="badge bg-secondary"
-							><span
-								>{$htmlSlotsContents?.filter((f) => f.component === $pageName).length || 0}</span
-							>/{htmlSlots?.length || 0}</span
+							>{$htmlSlotsContents?.filter((f) => f.component === $pageName).length ||
+								0}/{htmlSlots?.length || 0}</span
 						></button
 					>
 				</li>
@@ -159,8 +160,15 @@
 						on:click={() => {
 							controlTab = 'i18n';
 						}}
-						class="nav-link disabled {controlTab === 'i18n' ? 'active' : ''}">i18n (0)</button
-					>
+						class="nav-link {i18nLangs?.length ? '' : 'disabled'} {controlTab === 'i18n'
+							? 'active'
+							: ''}"
+						>i18n
+
+						<span style={$lang && i18nLangs?.length ? 'color:red;' : ''} class="badge bg-secondary"
+							>{$lang ? $lang + '/' : ''}{i18nLangs?.length || 0}</span
+						>
+					</button>
 				</li>
 				<li class="nav-item">
 					<button
