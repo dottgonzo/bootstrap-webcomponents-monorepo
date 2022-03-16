@@ -1,6 +1,6 @@
-import { readable, writable } from 'svelte/store';
+import { readable, writable, type Readable, type Writable } from 'svelte/store';
 
-export const pageName = writable('');
-export const componentsVersion = readable('0.5.37');
+export const pageName: Writable<string> = writable('');
+export const componentsVersion: Readable<string> = readable('0.5.39');
 
-export const lang = writable('');
+export const lang: Writable<string> = writable('');

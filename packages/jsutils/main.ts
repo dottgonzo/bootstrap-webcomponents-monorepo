@@ -48,11 +48,11 @@ export class LanguageTranslator {
     this.lang = lang;
   }
 
-  translateWord(wordKey: string) {
+  translateWord(wordKey: string, lang?: string) {
     return LanguageTranslator.getDictionaryWord(
       wordKey,
       this.dictionary,
-      this.lang
+      lang || this.lang
     );
   }
   translateDate(

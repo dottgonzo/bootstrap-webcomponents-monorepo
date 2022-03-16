@@ -25,8 +25,8 @@ var LanguageTranslator = /** @class */ (function () {
             lang = LanguageTranslator.getDefaultLang();
         this.lang = lang;
     };
-    LanguageTranslator.prototype.translateWord = function (wordKey) {
-        return LanguageTranslator.getDictionaryWord(wordKey, this.dictionary, this.lang);
+    LanguageTranslator.prototype.translateWord = function (wordKey, lang) {
+        return LanguageTranslator.getDictionaryWord(wordKey, this.dictionary, lang || this.lang);
     };
     LanguageTranslator.prototype.translateDate = function (dateISOString, timeOptions, lang) {
         return LanguageTranslator.formatDate(dateISOString, timeOptions, lang || this.lang);
