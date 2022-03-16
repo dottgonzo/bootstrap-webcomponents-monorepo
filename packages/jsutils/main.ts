@@ -9,6 +9,7 @@ export type HtmlSlot = {
 export type CssVar = {
   defaultValue: string;
   name: string;
+  description?: string;
   theme?: string;
 };
 export type i18nLang = {
