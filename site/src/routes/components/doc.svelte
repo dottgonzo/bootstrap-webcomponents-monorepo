@@ -52,12 +52,15 @@
 
 		args = $allComponentsExampleValues[name];
 
-		com = '<hb-' + name;
+		com = `<hb-${name} id="com-${name}"`;
+		// if (lang && !args?.['i18nlang'] && meta?.i18n?.length) {
+		// 	com += ` i18nlang="${lang}"`;
+		// }
 		if (args) {
 			for (const k of Object.keys(args)) {
 				switch (typeof args[k]) {
-					case 'string':
 					case 'number':
+					case 'string':
 						if (args[k]) com += ` ${k}="${args[k]}"`;
 						break;
 					case 'boolean':
@@ -69,6 +72,15 @@
 				}
 			}
 		}
+
+		com += ` >`;
+		if ($htmlSlotsContents.filter((f) => f.component === name)?.length) {
+			for (const sl of $htmlSlotsContents.filter((f) => f.component === name)) {
+				com += `<div slot="${sl.name}">${sl.content}</div>`;
+			}
+		}
+
+		com += `</hb-${name}>`;
 
 		com += ` />`;
 		cdnUri = `<${'script'} id="hb-${name}-script" src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${name}@${$componentsVersion}/release/release.js"></${'script'}>`;
