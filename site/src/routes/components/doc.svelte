@@ -180,7 +180,7 @@
 							? ''
 							: 'disabled'} {controlTab === 'events' ? 'active' : ''}"
 						>events
-						{#if definition?.definitions?.Events?.properties && Object.keys(definition.definitions.Events.properties)?.length}
+						{#if $events?.filter((f) => f.component === name)?.length && definition?.definitions?.Events?.properties && Object.keys(definition.definitions.Events.properties)?.length}
 							<span
 								class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
 							>

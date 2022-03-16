@@ -36,6 +36,13 @@
 					group: 'Docs',
 					active: false,
 					icon: 'lightning'
+				},
+				{
+					key: 'readme',
+					label: 'Readme',
+					group: 'Docs',
+					active: false,
+					icon: 'book-half'
 				}
 			]
 		};
@@ -149,8 +156,19 @@
 		};
 	});
 	function pageChange(d) {
-		goto('/components/doc?c=' + d.page);
-		console.log(d);
+		if (!d.page) return console.error('wrong page', d);
+		switch (d.page) {
+			case 'readme':
+				return goto('/components/' + d.page);
+			case 'github':
+				return window
+					.open('https://github.com/dottgonzo/bootstrap-webcomponents-monorepo', '_blank')
+					.focus();
+			case 'storybook':
+				return window.open('https://storybook.freewebcomponents.com', '_blank').focus();
+			default:
+				return goto('/components/doc?c=' + d.page);
+		}
 	}
 </script>
 
