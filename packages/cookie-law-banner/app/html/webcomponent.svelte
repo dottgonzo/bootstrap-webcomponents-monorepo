@@ -53,8 +53,11 @@
 		// 	localDictionary = dictionary[i18nlang];
 		// }
 
-		if (!translator || translator.lang !== i18nlang) translator = new LanguageTranslator({ dictionary, lang: i18nlang });
-
+		if (!translator) {
+			translator = new LanguageTranslator({ dictionary, lang: i18nlang });
+		} else if (translator && i18nlang && translator.lang && translator.lang !== i18nlang) {
+			translator = new LanguageTranslator({ dictionary, lang: i18nlang });
+		}
 		// translator.translateWord = (w) => {
 		// 	return localDictionary[w] || dictionary["en"][w] || "";
 		// };
