@@ -218,7 +218,7 @@
 		emails: []
 	})}
 	socials={JSON.stringify({
-		github: 'https://github.com/dottgonzo/bootstrap-webcomponents-monorepo'
+		github: { pageUri: 'https://github.com/dottgonzo/bootstrap-webcomponents-monorepo' }
 	})}
 	on:pagechange={(e) => pageChange(e.detail)}
 >

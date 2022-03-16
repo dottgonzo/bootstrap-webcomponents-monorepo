@@ -76,10 +76,8 @@
 		}
 		if (!socials) {
 			socials = null;
-		} else {
-			try {
-				socials = JSON.parse(socials as unknown as string);
-			} catch (err) {}
+		} else if (typeof socials === "string") {
+			socials = JSON.parse(socials as unknown as string);
 		}
 		if (!contacts) {
 			contacts = null;
@@ -231,7 +229,7 @@
 							{/if}
 							{#if socials?.github}
 								<li>
-									<hb-contact-item social={JSON.stringify({ name: "github", label: "pagina github", pageUri: "https://github.com" })} />
+									<hb-contact-item social={JSON.stringify({ name: "github", label: "pagina github", pageUri: socials.github })} />
 								</li>
 							{/if}
 							{#if socials?.twitch}
