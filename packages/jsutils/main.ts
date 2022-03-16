@@ -32,54 +32,84 @@ export function addComponent(
   }
 }
 
-export function getDefaultLang() {
-  let browserLang = "en";
-  if (
-    navigator?.languages &&
-    navigator.languages[0]?.split("-")[0]?.toLowerCase()?.length
-  ) {
-    browserLang = navigator.languages[0]?.split("-")[0]?.toLowerCase();
-  }
-  return browserLang;
-}
-
-export function getDictionaryWord(
-  wordKey: string,
-  dictionary: { [x: string]: { [x: string]: string } },
-  lang?: string
-) {
-  if (!wordKey) throw new Error("no wordKey provided");
-  if (!dictionary) throw new Error("no dictionary provided");
-
-  if (lang && dictionary[lang]?.[wordKey]) return dictionary[lang][wordKey];
-
-  let w: string = "";
-  const defLng = getDefaultLang();
-  if (!lang || defLng !== lang) {
-    const defaultLng = dictionary?.[defLng];
-    if (defaultLng?.[wordKey]) {
-      w = defaultLng[wordKey];
-    }
-  }
-
-  return w;
-}
-
-export class languageWords {
+export class LanguageTranslator {
   dictionary: { [x: string]: { [x: string]: string } };
   lang: string;
   constructor(opts: {
     lang?: string;
     dictionary: { [x: string]: { [x: string]: string } };
   }) {
+    if (!opts?.dictionary) throw new Error("no dictionary provided");
     this.dictionary = opts.dictionary;
-    this.lang = opts.lang ? opts.lang : getDefaultLang();
+    this.setLang(opts?.lang);
   }
-  setLang(lang: string) {
-    if (!lang) throw new Error("no lang provided");
+  setLang(lang?: string) {
+    if (!lang) lang = LanguageTranslator.getDefaultLang();
     this.lang = lang;
   }
-  translate(wordKey: string) {
-    return getDictionaryWord(wordKey, this.dictionary, this.lang);
+
+  translateWord(wordKey: string) {
+    return LanguageTranslator.getDictionaryWord(
+      wordKey,
+      this.dictionary,
+      this.lang
+    );
+  }
+  translateDate(
+    dateISOString: Date,
+    timeOptions: Intl.DateTimeFormatOptions,
+    lang?: string
+  ) {
+    return LanguageTranslator.formatDate(
+      dateISOString,
+      timeOptions,
+      lang || this.lang
+    );
+  }
+  static getDefaultLang() {
+    let browserLang = "en";
+    if (
+      navigator?.languages &&
+      navigator.languages[0]?.split("-")[0]?.toLowerCase()?.length
+    ) {
+      browserLang = navigator.languages[0]?.split("-")[0]?.toLowerCase();
+    }
+    return browserLang;
+  }
+  static getDictionaryWord(
+    wordKey: string,
+    dictionary: { [x: string]: { [x: string]: string } },
+    lang?: string
+  ) {
+    if (!wordKey) throw new Error("no wordKey provided");
+    if (!dictionary) throw new Error("no dictionary provided");
+
+    if (lang && dictionary[lang]?.[wordKey]) return dictionary[lang][wordKey];
+
+    let w: string = "";
+    const defLng = LanguageTranslator.getDefaultLang();
+    if (!lang || defLng !== lang) {
+      const defaultLng = dictionary?.[defLng];
+      if (defaultLng?.[wordKey]) {
+        w = defaultLng[wordKey];
+      }
+    }
+
+    return w;
+  }
+  static formatDate(
+    dateISOString: Date,
+    timeOptions: Intl.DateTimeFormatOptions,
+    lang?: string
+  ) {
+    if (!dateISOString) throw new Error("no date provided");
+    if (typeof dateISOString.getMonth !== "function") {
+      throw new Error("wrong date format");
+    }
+    const dayDateFormat = new Intl.DateTimeFormat(
+      lang || LanguageTranslator.getDefaultLang(),
+      timeOptions
+    );
+    return dayDateFormat.format(dateISOString);
   }
 }
