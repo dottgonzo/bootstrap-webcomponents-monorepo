@@ -8,6 +8,7 @@ export type HtmlSlot = {
 };
 export type CssVar = {
   defaultValue: string;
+  valueType: string;
   name: string;
   description?: string;
   theme?: string;

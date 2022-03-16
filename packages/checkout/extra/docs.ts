@@ -12,7 +12,14 @@ export const storybookArgs = {
 	completed: { control: { type: "radio" }, options: ["yes", "no"] },
 };
 
-export const cssVars: CssVar[] = [];
+export const cssVars: CssVar[] = [
+	{
+		name: "--edit-color",
+		defaultValue: "green",
+		description: "",
+		valueType: "",
+	},
+];
 export const cssParts: CssPart[] = [];
 export const htmlSlots: HtmlSlot[] = [];
 export const i18nLanguages: i18nLang[] = [];

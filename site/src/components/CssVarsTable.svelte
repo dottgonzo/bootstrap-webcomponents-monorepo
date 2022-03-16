@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { CssVar } from '@htmlbricks/hb-jsutils/main';
 
-	export let vars: CssVar[];
+	export let vars: any[];
 </script>
 
 <table style="width:100%">
