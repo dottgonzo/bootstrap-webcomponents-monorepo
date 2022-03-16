@@ -52,4 +52,9 @@ export type Component = {
 	completed: "yes" | "no";
 };
 
-export type Events = {};
+export type Events = {
+	paymentCompleted: { total: number; method: string; completed: true };
+	saveUser: IUser;
+	saveShipment: IShipment;
+	completed: { control: { type: "radio" }; options: ["yes", "no"] };
+};

@@ -17,9 +17,43 @@ export const cssVars: CssVar[] = [
 		name: "--edit-color",
 		defaultValue: "green",
 		description: "",
-		valueType: "",
+		valueType: "color",
+	},
+	{
+		name: "--paypal-button-color",
+		defaultValue: "yellow",
+		description: "",
+		valueType: "color",
+	},
+	{
+		name: "--hb-heckout-border",
+		defaultValue: "0.5px solid rgba(197, 197, 197, 0.808)",
+		description: "",
+		valueType: "string",
 	},
 ];
-export const cssParts: CssPart[] = [];
-export const htmlSlots: HtmlSlot[] = [];
+export const cssParts: CssPart[] = [
+	{
+		name: "title",
+	},
+	{
+		name: "subtitle",
+	},
+];
+export const htmlSlots: HtmlSlot[] = [
+	{
+		name: "payment_terms",
+	},
+	{
+		name: "payment_completed",
+	},
+
+	{
+		name: "userinfo",
+	},
+	,
+	{
+		name: "title",
+	},
+];
 export const i18nLanguages: i18nLang[] = [];
