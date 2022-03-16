@@ -4,6 +4,7 @@
 	import SlotTable from '../../components/SlotTable.svelte';
 	import InfoTable from '../../components/InfoTable.svelte';
 	import InstallTable from '../../components/InstallTable.svelte';
+	import I18nTable from '../../components/LangTable.svelte';
 	import CssPartsTable from '../../components/CssPartsTable.svelte';
 	import CssVarsTable from '../../components/CssVarsTable.svelte';
 	import EventsTable from '../../components/EventsTable.svelte';
@@ -32,6 +33,7 @@
 	let cdnUri: string;
 	let args: string;
 	let lastName: string;
+	let i18nlang: string;
 	$: {
 		name = $page.url?.href?.split('c=')?.[1]?.split('&')[0];
 		if (!lastName || lastName !== name) {
@@ -210,6 +212,8 @@
 						<PropsTable {definition} {storybookargs} />
 					{:else if controlTab === 'events'}
 						<EventsTable {definition} />
+					{:else if controlTab === 'i18n'}
+						<I18nTable bind:args />
 					{:else if controlTab === 'slots'}
 						<SlotTable slots={htmlSlots} />
 					{:else if controlTab === 'style'}
