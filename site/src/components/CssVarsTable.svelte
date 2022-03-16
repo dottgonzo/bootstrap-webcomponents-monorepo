@@ -9,6 +9,7 @@
 	<tr>
 		<th>Css Var Name</th>
 		<th>Css Var Default Value</th>
+		<th>Css Var Type</th>
 		<th>Css Var Description</th>
 		<th>Css Var Theme</th>
 	</tr>
@@ -25,6 +26,7 @@
 					})}
 				/>
 			</td>
+			<td>{v.valueType}</td>
 			<td>{v.description}</td>
 			<td>{v.theme || ''}</td>
 		</tr>

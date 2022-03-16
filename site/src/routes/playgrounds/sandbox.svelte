@@ -21,8 +21,8 @@
 		pageName.set(name || 'docs');
 		if (name) {
 			let htmlSlots: { name: string; content: string }[];
-			if (htmlSlot64) htmlSlots = JSON.parse(base64.decode(htmlSlot64));
-			args = paramsBase64 ? JSON.parse(base64.decode(paramsBase64)) : {};
+			if (htmlSlot64) htmlSlots = JSON.parse(decodeURIComponent(htmlSlot64));
+			args = paramsBase64 ? JSON.parse(decodeURIComponent(paramsBase64)) : {};
 			meta = $allComponentsMetas?.find((f) => f.name === name);
 
 			com = `<hb-${name} id="com-${name}"`;

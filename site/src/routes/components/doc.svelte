@@ -97,10 +97,10 @@
 						title="component"
 						src="/playgrounds/sandbox?s={$htmlSlotsContents.filter((f) => f.component === name)
 							?.length
-							? base64.encode(
+							? encodeURIComponent(
 									JSON.stringify($htmlSlotsContents.filter((f) => f.component === name))
 							  )
-							: ''}&c={name}&p={base64.encode(JSON.stringify(args))}"
+							: ''}&c={name}&p={encodeURIComponent(JSON.stringify(args))}"
 					/>
 				</div>
 			</div>
