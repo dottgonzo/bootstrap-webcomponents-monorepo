@@ -27,6 +27,15 @@
       "cwd": "${workspaceFolder}/site"
     },
     {
+      "type": "node",
+      "request": "launch",
+      "runtimeVersion": "16.14.0",
+      "name": "write readme",
+      "runtimeArgs": ["-r", "ts-node/register/transpile-only", "."],
+      "skipFiles": ["<node_internals>/**"],
+      "cwd": "${workspaceFolder}/readmewriter"
+    },
+    {
       "name": "Launch Chrome",
       "request": "launch",
       "type": "pwa-chrome",

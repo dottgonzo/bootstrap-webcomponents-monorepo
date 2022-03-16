@@ -1,0 +1,21 @@
+{
+  "name": "readmewriter",
+  "version": "0.0.0",
+  "description": "Readm.md writer for components",
+  "main": "main.ts",
+  "scripts": {
+    "test": "mocha",
+    "build:check": "tsc"
+  },
+  "keywords": [
+    "readme",
+    "writer"
+  ],
+  "author": "Dario Caruso",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@types/node": "^16.11.26",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2"
+  }
+}
