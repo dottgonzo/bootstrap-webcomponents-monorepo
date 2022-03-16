@@ -13,8 +13,8 @@
 	import type { IActionButton, IFilter, IRow, ITableHeader } from "../../../table/app/types/webcomponent.type";
 
 	import pkg from "../../package.json";
-	import { createEventDispatcher } from "svelte";
-	import { get_current_component } from "svelte/internal";
+	// import { createEventDispatcher } from "svelte";
+	// import { get_current_component } from "svelte/internal";
 	import dayjs from "dayjs";
 	import debounce from "debounce";
 	import "dayjs/locale/it";
@@ -106,12 +106,12 @@
 
 		total = subTotal + taxTotal + (payment.shipmentFee || 0);
 	}
-	const component = get_current_component();
-	const svelteDispatch = createEventDispatcher();
-	function dispatch(name, detail) {
-		svelteDispatch(name, detail);
-		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
-	}
+	// const component = get_current_component();
+	// const svelteDispatch = createEventDispatcher();
+	// function dispatch(name, detail) {
+	// 	svelteDispatch(name, detail);
+	// 	component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
+	// }
 	function addComponent(componentName: string) {
 		if (!document.getElementById("hb-" + componentName + "-script")) {
 			const script = document.createElement("script");

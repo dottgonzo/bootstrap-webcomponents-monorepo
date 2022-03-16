@@ -4,4 +4,6 @@ export type Component = {
 	total: number;
 };
 
-export type Events = {};
+export type Events = {
+	paymentCompleted: { method: "paypal"; total: number };
+};
