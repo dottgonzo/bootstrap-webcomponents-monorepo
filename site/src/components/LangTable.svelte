@@ -11,6 +11,33 @@
 	}
 </script>
 
-{#each $allComponentsMetas[$pageName].i18nLanguages as l (l.lang)}
-	<div>{l.lang}</div>
-{/each}
+<!-- {#each $allComponentsMetas.find((f) => f.name === $pageName)?.i18n || [] as l (l.lang)}
+	<div> -->
+<hb-input-radio
+	schemaentry={JSON.stringify({
+		id: $pageName + '_lang_chooser',
+		params: {
+			options: ($allComponentsMetas.find((f) => f.name === $pageName)?.i18n || []).map((m) => {
+				const o = {
+					value: m.lang,
+					label: m.lang
+				};
+				return o;
+			})
+		}
+	})}
+	on:setValue={(v) => {
+		const val = v?.detail?.value;
+		if (args?.i18nlang) {
+			if (val) {
+				args.i18nlang = val;
+			} else {
+				delete args.val;
+			}
+		} else if (val) {
+			args.i18nlang = val;
+		}
+	}}
+/>
+<!-- </div>
+{/each} -->

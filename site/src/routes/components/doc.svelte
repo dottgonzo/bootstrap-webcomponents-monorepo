@@ -167,8 +167,9 @@
 							: ''}"
 						>i18n
 
-						<span style={$lang && i18nLangs?.length ? 'color:red;' : ''} class="badge bg-secondary"
-							>{$lang ? $lang + '/' : ''}{i18nLangs?.length || 0}</span
+						<span
+							style={$lang && i18nLangs?.length ? 'color:black;' : ''}
+							class="badge bg-secondary">{$lang ? $lang : ''} | {i18nLangs?.length || 0}</span
 						>
 					</button>
 				</li>

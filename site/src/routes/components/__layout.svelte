@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import type { INavLink } from '@htmlbricks/hb-sidenav-link/release/webcomponent.type';
-	import { addComponent } from '@htmlbricks/hb-jsutils';
+	import { addComponent, LanguageTranslator } from '@htmlbricks/hb-jsutils';
 	import { onMount } from 'svelte';
-	import { pageName, componentsVersion } from '../../stores/app';
+	import { pageName, componentsVersion, lang } from '../../stores/app';
 	import { events } from '../../stores/events';
 	import { allComponentsMetas } from '../../stores/components';
 
@@ -154,6 +154,8 @@
 	onMount(() => {
 		addComponent('bundle', $componentsVersion);
 		events.set(JSON.parse(window.localStorage.getItem('componentsEvents') || '[]'));
+
+		if (!$lang) lang.set(LanguageTranslator.getDefaultLang());
 
 		window.onstorage = () => {
 			// When local storage changes, dump the list to
