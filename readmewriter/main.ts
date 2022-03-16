@@ -11,7 +11,9 @@ async function writeReadme() {
   for (const pkg of packages) {
     const packagePath = path.join(packagesPath, pkg);
     const readmePath = path.join(packagePath, "README.md");
-
+    let txt = `# ${pkg} web component\n`;
+    txt += `\n`;
+    await fs.writeFile(readmePath, txt);
     console.log("write", readmePath);
   }
 }

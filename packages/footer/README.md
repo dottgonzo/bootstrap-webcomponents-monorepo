@@ -1,0 +1,2 @@
+# footer web component
+
