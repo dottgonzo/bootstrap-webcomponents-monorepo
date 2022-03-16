@@ -1,4 +1,5 @@
-import { readable } from 'svelte/store';
+import { readable, type Readable } from 'svelte/store';
+import type { CssPart, CssVar, HtmlSlot, i18nLang } from '@htmlbricks/hb-jsutils';
 
 import bannerDefinition from '@htmlbricks/hb-banner/release/webcomponent.type.d.json';
 import areaCodeDefinition from '@htmlbricks/hb-area-code/release/webcomponent.type.d.json';
@@ -381,7 +382,18 @@ import {
 	i18nLanguages as playerLiveI18nLanguages
 } from '../../node_modules/@htmlbricks/hb-player-live/release/docs';
 
-export const allComponentsMetas = readable([
+export const allComponentsMetas: Readable<
+	{
+		definition: any;
+		storybookArgs: any;
+		name: string;
+		category: string;
+		cssVars: CssVar[];
+		cssParts: CssPart[];
+		htmlSlots: HtmlSlot[];
+		i18n: i18nLang[];
+	}[]
+> = readable([
 	{
 		definition: bannerDefinition,
 		storybookArgs: bannerStorybookArgs,

@@ -45,6 +45,13 @@
 					icon: 'lightning'
 				},
 				{
+					key: 'comparison',
+					label: 'Comparison',
+					group: 'Docs',
+					active: false,
+					icon: 'symmetry-vertical'
+				},
+				{
 					key: 'readme',
 					label: 'Readme',
 					group: 'Docs',
@@ -53,6 +60,7 @@
 				}
 			]
 		};
+
 		const arr: INavLink[] = [home, documentation, storybook, github];
 		let cats: string[] = [];
 
@@ -167,6 +175,7 @@
 	function pageChange(d) {
 		if (!d.page) return console.error('wrong page', d);
 		switch (d.page) {
+			case 'comparison':
 			case 'readme':
 				return goto('/components/' + d.page);
 			case 'github':
