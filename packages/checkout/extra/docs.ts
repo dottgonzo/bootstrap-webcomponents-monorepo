@@ -51,7 +51,6 @@ export const htmlSlots: HtmlSlot[] = [
 	{
 		name: "userinfo",
 	},
-	,
 	{
 		name: "title",
 	},
