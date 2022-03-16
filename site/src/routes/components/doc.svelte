@@ -10,7 +10,6 @@
 	import EventsTable from '../../components/EventsTable.svelte';
 	import { allComponentsMetas } from '../../stores/components';
 	import { allComponentsExampleValues } from '../../stores/examples';
-	import base64 from 'base-64';
 	import { componentsVersion, lang } from '../../stores/app';
 	import { events, htmlSlotsContents } from '../../stores/events';
 	import { page } from '$app/stores';

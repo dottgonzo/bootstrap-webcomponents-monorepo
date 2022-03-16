@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { addComponent } from '@htmlbricks/hb-jsutils';
-	import base64 from 'base-64';
 	import { allComponentsMetas } from '../../stores/components';
 
 	import { page } from '$app/stores';
