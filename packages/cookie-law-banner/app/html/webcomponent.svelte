@@ -14,18 +14,20 @@
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 	import { dictionary } from "@app/functions/i18n";
+	import { LanguageTranslator } from "@htmlbricks/hb-jsutils";
 
 	import type { ICapabilities } from "@app/types/webcomponent.type";
 
 	export let id: string;
 	export let allowdecline: "yes" | "no";
-	export let language: string;
+	export let i18nlang: string;
 	export let capabilities: ICapabilities;
 	export let cookielawuri4more: string;
 	let localDictionary = dictionary["en"];
-	let getWord: (e: string) => string;
+	// let translator.translateWord: (e: string) => string;
 
 	let isSet: boolean;
+	let translator: LanguageTranslator;
 	$: {
 		if (!id) id = "";
 		if (!cookielawuri4more) cookielawuri4more = "";
@@ -39,20 +41,23 @@
 
 		isSet = localStorage.getItem(localStorageItem) ? true : false;
 		if (allowdecline !== "yes") allowdecline = "no";
-		if (!language || !dictionary[language]) {
-			const autolang = navigator?.languages ? navigator.languages[0]?.split("-")[0]?.toLowerCase() : null;
-			if (autolang && dictionary[autolang]) {
-				language = autolang;
-			} else {
-				language = "en";
-			}
-			localDictionary = dictionary[language];
-		} else {
-			localDictionary = dictionary[language];
-		}
-		getWord = (w) => {
-			return localDictionary[w] || dictionary["en"][w] || "";
-		};
+		// if (!i18nlang || !dictionary[i18nlang]) {
+		// 	const autolang = navigator?.languages ? navigator.languages[0]?.split("-")[0]?.toLowerCase() : null;
+		// 	if (autolang && dictionary[autolang]) {
+		// 		i18nlang = autolang;
+		// 	} else {
+		// 		i18nlang = "en";
+		// 	}
+		// 	localDictionary = dictionary[i18nlang];
+		// } else {
+		// 	localDictionary = dictionary[i18nlang];
+		// }
+
+		if (!translator || translator.lang !== i18nlang) translator = new LanguageTranslator({ dictionary, lang: i18nlang });
+
+		// translator.translateWord = (w) => {
+		// 	return localDictionary[w] || dictionary["en"][w] || "";
+		// };
 	}
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -74,19 +79,19 @@
 		<div id="cookielaw_content">
 			<h3>
 				<slot name="title">
-					{getWord("cookieLawTitle")}
+					{translator.translateWord("cookieLawTitle")}
 				</slot>
 			</h3>
 			<slot name="text">
-				{getWord("basicCookieLaw")}
+				{translator.translateWord("basicCookieLaw")}
 			</slot>
 		</div>
 		<div id="cookielaw_buttons">
 			{#if cookielawuri4more !== "no"}
-				<a href={cookielawuri4more || "https://wikipedia.org/wiki/HTTP_cookie"} target="_blank">{getWord("learnmore")}</a>
+				<a href={cookielawuri4more || "https://wikipedia.org/wiki/HTTP_cookie"} target="_blank">{translator.translateWord("learnmore")}</a>
 			{/if}
-			{#if allowdecline === "yes"}<button type="button" on:click={() => dispatchChoose(false)}>{getWord("decline")}</button>{/if}
-			<button type="button" on:click={() => dispatchChoose(true)}>{getWord("accept")}</button>
+			{#if allowdecline === "yes"}<button type="button" on:click={() => dispatchChoose(false)}>{translator.translateWord("decline")}</button>{/if}
+			<button type="button" on:click={() => dispatchChoose(true)}>{translator.translateWord("accept")}</button>
 		</div>
 	</div>
 </div>

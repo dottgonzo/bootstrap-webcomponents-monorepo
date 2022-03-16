@@ -24,7 +24,7 @@ export interface ICapabilities {
 
 export type Component = {
 	allowdecline: "yes" | "no";
-	language: string;
+	i18nlang: string;
 	capabilities: ICapabilities;
 	cookielawuri4more: string;
 };

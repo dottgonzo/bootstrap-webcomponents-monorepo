@@ -32,3 +32,13 @@ CookielawWithDecline.args = {
   id: "CookielawWithDecline",
   allowdecline: true,
 };
+export const CookielawEn = Template.bind({});
+CookielawEn.args = {
+  id: "CookielawEn",
+  i18nlang: "en",
+};
+export const CookielawIt = Template.bind({});
+CookielawIt.args = {
+  id: "CookielawIt",
+  i18nlang: "it",
+};
