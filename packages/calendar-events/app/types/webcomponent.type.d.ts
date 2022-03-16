@@ -20,4 +20,8 @@ export type Component = {
 	selected: Date;
 };
 
-export type Events = {};
+export type Events = {
+	calendarEventClick: { eventId: string };
+	changeCalendarDate: { date: Date };
+	changeSelectedDate: { selected: Date };
+};

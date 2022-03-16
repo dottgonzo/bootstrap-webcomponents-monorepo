@@ -7,7 +7,7 @@ export type HtmlSlot = {
   description?: string;
 };
 export type CssVar = {
-  defaultValue: string;
+  defaultValue?: string;
   valueType: "color" | "string" | "htmlsize" | "number";
   name: string;
   description?: string;

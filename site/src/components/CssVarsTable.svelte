@@ -16,7 +16,15 @@
 	{#each vars as v (v.name)}
 		<tr>
 			<td>{v.name}</td>
-			<td>{v.defaultValue}</td>
+			<td>
+				<hb-input-text
+					schemaentry={JSON.stringify({
+						value: v.defaultValue?.toString() || '',
+						label: v.name,
+						id: `css_${$pageName}_${v.name}`
+					})}
+				/>
+			</td>
 			<td>{v.description}</td>
 			<td>{v.theme || ''}</td>
 		</tr>
