@@ -44,6 +44,31 @@
 								args[prop] = e.detail.value;
 							}}
 						/>
+					{:else if storybookargs[prop]?.options}
+						<!-- <select bind:value={args[prop]}>
+							{#each storybookargs[prop].control.options as opt (opt)}
+								<option value={opt}>{opt}</option>
+							{/each}
+						</select> -->
+
+						<hb-input-radio
+							schemaentry={JSON.stringify({
+								id: prop + '_se',
+								value: args[prop],
+								params: {
+									options: storybookargs[prop].options.map((m) => {
+										const v = {
+											label: m,
+											value: m
+										};
+										return v;
+									})
+								}
+							})}
+							on:setValue={(e) => {
+								args[prop] = e.detail.value;
+							}}
+						/>
 					{:else if storybookargs[prop]?.control?.type === 'text'}
 						<hb-input-text
 							schemaentry={JSON.stringify({
@@ -54,6 +79,23 @@
 								args[prop] = e.detail.value;
 							}}
 						/>
+						<!-- {:else if storybookargs[prop]?.control?.type === 'radio'}
+						<hb-input-radio
+							schemaentry={JSON.stringify({
+								id: '_radio' + prop,
+								params: {
+									options: storybookargs[prop].control.options.map((m) => {
+										const opt = {
+											value: m
+										};
+										return opt;
+									})
+								}
+							})}
+							on:setValue={(e) => {
+								args[prop] = e.detail.value;
+							}}
+						/> -->
 						<!-- <input type="text" bind:value={args[prop]} /> -->
 					{:else if storybookargs[prop]?.control?.type === 'number'}
 						<hb-input-number
