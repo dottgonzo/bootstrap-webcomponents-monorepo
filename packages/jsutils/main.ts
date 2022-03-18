@@ -11,7 +11,12 @@ export type CssVar = {
   valueType: "color" | "string" | "htmlsize" | "number";
   name: string;
   description?: string;
-  theme?: string;
+  theme?: string; // deprecated
+};
+export type styleSetup = {
+  parts: CssPart[];
+  themes: string[];
+  vars: CssVar[];
 };
 export type i18nLang = {
   language: string;
