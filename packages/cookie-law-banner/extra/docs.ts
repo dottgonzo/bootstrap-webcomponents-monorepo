@@ -1,4 +1,4 @@
-import type { CssPart, CssVar, HtmlSlot, i18nLang } from "@htmlbricks/hb-jsutils/main";
+import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup } from "@htmlbricks/hb-jsutils/main";
 
 export const storybookArgs = {
 	allowdecline: { control: { type: "boolean" } },

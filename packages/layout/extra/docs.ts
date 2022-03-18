@@ -1,4 +1,4 @@
-import type { CssPart, CssVar, HtmlSlot, i18nLang } from "@htmlbricks/hb-jsutils/main";
+import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup } from "@htmlbricks/hb-jsutils/main";
 
 export const storybookArgs = {
 	pagechange: { action: "pagechange" },
@@ -28,3 +28,9 @@ export const htmlSlots: HtmlSlot[] = [
 	{ name: "nav-header-slot", description: "" },
 ];
 export const i18nLanguages: i18nLang[] = [];
+
+export const styleSetup: StyleSetup = {
+	vars: cssVars,
+	parts: cssParts,
+	themes: [],
+};
