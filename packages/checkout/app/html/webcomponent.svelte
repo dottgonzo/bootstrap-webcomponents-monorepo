@@ -504,7 +504,7 @@
 	.detail_btn {
 		float: right;
 		margin-right: 10px;
-		color: green;
+		color: var(--edit-color);
 		font-weight: bold;
 		text-transform: capitalize;
 	}
