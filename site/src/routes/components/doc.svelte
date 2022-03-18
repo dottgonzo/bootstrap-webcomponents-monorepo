@@ -11,7 +11,7 @@
 	import { allComponentsMetas } from '../../stores/components';
 	import { allComponentsExampleValues } from '../../stores/examples';
 	import { componentsVersion, lang } from '../../stores/app';
-	import { events, htmlSlotsContents } from '../../stores/events';
+	import { events, htmlSlotsContents, cssVarsValues } from '../../stores/events';
 	import { page } from '$app/stores';
 
 	import type { CssPart, HtmlSlot, CssVar, i18nLang } from '@htmlbricks/hb-jsutils/main';
@@ -71,7 +71,13 @@
 				}
 			}
 		}
-
+		if (cssVars && cssVars.filter((f) => typeof f.defaultValue !== 'undefined').length) {
+			com += ` style="`;
+			for (const css of cssVars.filter((f) => typeof f.defaultValue !== 'undefined')) {
+				com += `${css.name}:${css.defaultValue};`;
+			}
+			com += `"`;
+		}
 		com += ` >`;
 		if ($htmlSlotsContents.filter((f) => f.component === name)?.length) {
 			for (const sl of $htmlSlotsContents.filter((f) => f.component === name)) {
@@ -98,6 +104,10 @@
 							?.length
 							? encodeURIComponent(
 									JSON.stringify($htmlSlotsContents.filter((f) => f.component === name))
+							  )
+							: ''}&z={$cssVarsValues.filter((f) => f.component === name)?.length
+							? encodeURIComponent(
+									JSON.stringify($cssVarsValues.filter((f) => f.component === name))
 							  )
 							: ''}&c={name}&p={encodeURIComponent(JSON.stringify(args))}"
 					/>
