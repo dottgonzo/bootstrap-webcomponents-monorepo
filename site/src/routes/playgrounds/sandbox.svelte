@@ -1,23 +1,24 @@
 <script lang="ts">
 	import { addComponent, type CssVar } from '@htmlbricks/hb-jsutils';
 	import { allComponentsMetas } from '../../stores/components';
-	import type { CssVarsValues } from '../../stores/events';
 	import { page } from '$app/stores';
 	import { componentsVersion, pageName } from '../../stores/app';
 	import { onMount } from 'svelte';
 	import dayjs from 'dayjs';
 	let name: string;
-	let cssVars: CssVarsValues[];
+	let cssVars: { name: string; value: string }[];
+	let cssParts: { name: string; content: string }[];
 
 	let args: any;
 
 	let com: string;
 	let meta;
 	$: {
-		name = $page.url?.href?.split('c=')?.[1]?.split('&')[0];
-		const paramsBase64 = $page.url?.href?.split('p=')?.[1]?.split('&')[0];
-		const htmlSlot64 = $page.url?.href?.split('s=')?.[1]?.split('&')[0];
-		const cssVars64 = $page.url?.href?.split('z=')?.[1]?.split('&')[0];
+		name = $page.url?.href?.split('component=')?.[1]?.split('&')[0];
+		const paramsBase64 = $page.url?.href?.split('params=')?.[1]?.split('&')[0];
+		const htmlSlot64 = $page.url?.href?.split('slots=')?.[1]?.split('&')[0];
+		const cssVars64 = $page.url?.href?.split('css=')?.[1]?.split('&')[0];
+		const cssParts64 = $page.url?.href?.split('parts=')?.[1]?.split('&')[0];
 
 		// const lang = $page.url?.href?.split('i18n=')?.[1]?.split('&')[0];
 		pageName.set(name || 'docs');
@@ -25,6 +26,7 @@
 			let htmlSlots: { name: string; content: string }[];
 			if (htmlSlot64) htmlSlots = JSON.parse(decodeURIComponent(htmlSlot64));
 			if (cssVars64) cssVars = JSON.parse(decodeURIComponent(cssVars64));
+			if (cssParts64) cssParts = JSON.parse(decodeURIComponent(cssParts64));
 			args = paramsBase64 ? JSON.parse(decodeURIComponent(paramsBase64)) : {};
 			meta = $allComponentsMetas?.find((f) => f.name === name);
 

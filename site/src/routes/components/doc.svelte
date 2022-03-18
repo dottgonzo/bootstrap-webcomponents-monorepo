@@ -11,12 +11,13 @@
 	import { allComponentsMetas } from '../../stores/components';
 	import { allComponentsExampleValues } from '../../stores/examples';
 	import { componentsVersion, lang } from '../../stores/app';
-	import { events, htmlSlotsContents, cssVarsValues } from '../../stores/events';
+	import { events, htmlSlotsContents, cssVarsValues, cssPartsContents } from '../../stores/events';
 	import { page } from '$app/stores';
 
 	import type { HtmlSlot, StyleSetup, i18nLang } from '@htmlbricks/hb-jsutils/main';
 
 	import { pageName } from '../../stores/app';
+	import { bootstrapThemeCssVars } from '../../stores/themes';
 	let name: string;
 	let storybookargs: any;
 	let definition: any;
@@ -32,6 +33,7 @@
 	let args: string;
 	let lastName: string;
 	let i18nlang: string;
+	let allCssVars: { name: string; value: string }[];
 	$: {
 		name = $page.url?.href?.split('c=')?.[1]?.split('&')[0];
 		if (!lastName || lastName !== name) {
@@ -90,6 +92,13 @@
 
 		com += ` />`;
 		cdnUri = `<${'script'} id="hb-${name}-script" src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${name}@${$componentsVersion}/release/release.js"></${'script'}>`;
+
+		allCssVars = $cssVarsValues
+			.filter((f) => f.component === name)
+			?.map((m) => {
+				return { name: m.name, value: m.value };
+			});
+		if (meta.styleSetup.themes.includes('bootstrap')) allCssVars.concat($bootstrapThemeCssVars);
 	}
 </script>
 
@@ -101,16 +110,18 @@
 					<iframe
 						style="width:100%;height:600px"
 						title="component"
-						src="/playgrounds/sandbox?s={$htmlSlotsContents.filter((f) => f.component === name)
+						src="/playgrounds/sandbox?slots={$htmlSlotsContents.filter((f) => f.component === name)
 							?.length
 							? encodeURIComponent(
 									JSON.stringify($htmlSlotsContents.filter((f) => f.component === name))
 							  )
-							: ''}&z={$cssVarsValues.filter((f) => f.component === name)?.length
-							? encodeURIComponent(
-									JSON.stringify($cssVarsValues.filter((f) => f.component === name))
-							  )
-							: ''}&c={name}&p={encodeURIComponent(JSON.stringify(args))}"
+							: ''}&css={allCssVars.length
+							? encodeURIComponent(JSON.stringify(allCssVars))
+							: ''}&component={name}&params={encodeURIComponent(
+							JSON.stringify(args)
+						)}&parts={encodeURIComponent(
+							JSON.stringify($cssPartsContents.filter((f) => f.component === name))
+						)}"
 					/>
 				</div>
 			</div>

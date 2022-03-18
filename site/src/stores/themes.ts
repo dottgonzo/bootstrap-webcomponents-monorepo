@@ -1,6 +1,9 @@
-import { readable, type Readable } from 'svelte/store';
+import { writable, type Writable } from 'svelte/store';
 
-export const bootstrapTheme: Readable<{ name: string; value: string }[]> = readable([
+export const useCustomTheme: Writable<boolean> = writable(false);
+export const useCustomThemeGlobally: Writable<boolean> = writable(false);
+
+export const bootstrapThemeCssVars: Writable<{ name: string; value: string }[]> = writable([
 	{
 		name: '--bs-primary',
 		value: '#07689f'
