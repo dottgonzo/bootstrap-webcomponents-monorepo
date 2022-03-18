@@ -13,7 +13,7 @@ export type CssVar = {
   description?: string;
   theme?: string; // deprecated
 };
-export type styleSetup = {
+export type StyleSetup = {
   parts: CssPart[];
   themes: string[];
   vars: CssVar[];
