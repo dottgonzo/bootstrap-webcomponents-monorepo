@@ -48,8 +48,8 @@
 					}}
 				/>
 			</td>
-			<td>{v.valueType}</td>
-			<td>{v.description}</td>
+			<td>{v.valueType || ''}</td>
+			<td>{v.description || ''}</td>
 		</tr>
 	{/each}
 </table>
