@@ -15,3 +15,8 @@ export const i18nLanguages: i18nLang[] = [
 	{ lang: "it", language: "italian" },
 	{ lang: "en", language: "english" },
 ];
+export const styleSetup: StyleSetup = {
+	vars: cssVars,
+	parts: cssParts,
+	themes: [],
+};

@@ -54,49 +54,56 @@ import {
 	cssVars as bannerCssVars,
 	cssParts as bannerCssParts,
 	htmlSlots as bannerHtmlSlots,
-	i18nLanguages as bannerI18nLanguages
+	i18nLanguages as bannerI18nLanguages,
+	styleSetup as bannerStyleSetup
 } from '@htmlbricks/hb-banner/release/docs';
 import {
 	storybookArgs as areaCodeStorybookArgs,
 	cssVars as areaCodeCssVars,
 	cssParts as areaCodeCssParts,
 	htmlSlots as areaCodeHtmlSlots,
-	i18nLanguages as areaCodeI18nLanguages
+	i18nLanguages as areaCodeI18nLanguages,
+	styleSetup as areaCodeStyleSetup
 } from '@htmlbricks/hb-area-code/release/docs';
 import {
 	storybookArgs as offcanvasStorybookArgs,
 	cssVars as offcanvasCssVars,
 	cssParts as offcanvasCssParts,
 	htmlSlots as offcanvasHtmlSlots,
-	i18nLanguages as offcanvasI18nLanguages
+	i18nLanguages as offcanvasI18nLanguages,
+	styleSetup as offcanvasStyleSetup
 } from '@htmlbricks/hb-offcanvas/release/docs';
 import {
 	storybookArgs as layoutStorybookArgs,
 	cssVars as layoutCssVars,
 	cssParts as layoutCssParts,
 	htmlSlots as layoutHtmlSlots,
-	i18nLanguages as layoutI18nLanguages
+	i18nLanguages as layoutI18nLanguages,
+	styleSetup as layoutStyleSetup
 } from '@htmlbricks/hb-layout/release/docs';
 import {
 	storybookArgs as footerStorybookArgs,
 	cssVars as footerCssVars,
 	cssParts as footerCssParts,
 	htmlSlots as footerHtmlSlots,
-	i18nLanguages as footerI18nLanguages
+	i18nLanguages as footerI18nLanguages,
+	styleSetup as footerStyleSetup
 } from '@htmlbricks/hb-footer/release/docs';
 import {
 	storybookArgs as inputTextStorybookArgs,
 	cssVars as inputTextCssVars,
 	cssParts as inputTextCssParts,
 	htmlSlots as inputTextHtmlSlots,
-	i18nLanguages as inputTextI18nLanguages
+	i18nLanguages as inputTextI18nLanguages,
+	styleSetup as inputTextStyleSetup
 } from '@htmlbricks/hb-input-text/release/docs';
 import {
 	storybookArgs as paginateStorybookArgs,
 	cssVars as paginateCssVars,
 	cssParts as paginateCssParts,
 	htmlSlots as paginateHtmlSlots,
-	i18nLanguages as paginateI18nLanguages
+	i18nLanguages as paginateI18nLanguages,
+	styleSetup as paginateStyleSetup
 } from '@htmlbricks/hb-paginate/release/docs';
 
 import {
@@ -104,7 +111,8 @@ import {
 	cssVars as authCssVars,
 	cssParts as authCssParts,
 	htmlSlots as authHtmlSlots,
-	i18nLanguages as authI18nLanguages
+	i18nLanguages as authI18nLanguages,
+	styleSetup as authStyleSetup
 } from '@htmlbricks/hb-auth/release/docs';
 
 import {
@@ -112,84 +120,96 @@ import {
 	cssVars as calendarEventsCssVars,
 	cssParts as calendarEventsCssParts,
 	htmlSlots as calendarEventsHtmlSlots,
-	i18nLanguages as calendarEventsI18nLanguages
+	i18nLanguages as calendarEventsI18nLanguages,
+	styleSetup as calendarStyleSetup
 } from '@htmlbricks/hb-calendar-events/release/docs';
 import {
 	storybookArgs as cardVideoStorybookArgs,
 	cssVars as cardVideoCssVars,
 	cssParts as cardVideoCssParts,
 	htmlSlots as cardVideoHtmlSlots,
-	i18nLanguages as cardVideoI18nLanguages
+	i18nLanguages as cardVideoI18nLanguages,
+	styleSetup as cardVideoStyleSetup
 } from '@htmlbricks/hb-card-video/release/docs';
 import {
 	storybookArgs as chartjsStorybookArgs,
 	cssVars as chartjsCssVars,
 	cssParts as chartjsCssParts,
 	htmlSlots as chartjsHtmlSlots,
-	i18nLanguages as chartjsI18nLanguages
+	i18nLanguages as chartjsI18nLanguages,
+	styleSetup as chartjsStyleSetup
 } from '@htmlbricks/hb-chartjs/release/docs';
 import {
 	storybookArgs as checkoutStorybookArgs,
 	cssVars as checkoutCssVars,
 	cssParts as checkoutCssParts,
 	htmlSlots as checkoutHtmlSlots,
-	i18nLanguages as checkoutI18nLanguages
+	i18nLanguages as checkoutI18nLanguages,
+	styleSetup as checkoutStyleSetup
 } from '@htmlbricks/hb-checkout/release/docs';
 import {
 	storybookArgs as checkoutShoppingCartStorybookArgs,
 	cssVars as checkoutShoppingCartCssVars,
 	cssParts as checkoutShoppingCartCssParts,
 	htmlSlots as checkoutShoppingCartHtmlSlots,
-	i18nLanguages as checkoutShoppingCartI18nLanguages
+	i18nLanguages as checkoutShoppingCartI18nLanguages,
+	styleSetup as checkoutShoppingCartStyleSetup
 } from '@htmlbricks/hb-checkout-shopping-cart/release/docs';
 import {
 	storybookArgs as contactItemStorybookArgs,
 	cssVars as contactItemCssVars,
 	cssParts as contactItemCssParts,
 	htmlSlots as contactItemHtmlSlots,
-	i18nLanguages as contactItemI18nLanguages
+	i18nLanguages as contactItemI18nLanguages,
+	styleSetup as contactStyleSetup
 } from '@htmlbricks/hb-contact-item/release/docs';
 import {
 	storybookArgs as cookieLawBannerStorybookArgs,
 	cssVars as cookieLawBannerCssVars,
 	cssParts as cookieLawBannerCssParts,
 	htmlSlots as cookieLawBannerHtmlSlots,
-	i18nLanguages as cookieLawBannerI18nLanguages
+	i18nLanguages as cookieLawBannerI18nLanguages,
+	styleSetup as cookieLawBannerStyleSetup
 } from '@htmlbricks/hb-cookie-law-banner/release/docs';
 import {
 	storybookArgs as dialogStorybookArgs,
 	cssVars as dialogCssVars,
 	cssParts as dialogCssParts,
 	htmlSlots as dialogHtmlSlots,
-	i18nLanguages as dialogI18nLanguages
+	i18nLanguages as dialogI18nLanguages,
+	styleSetup as dialogStyleSetup
 } from '@htmlbricks/hb-dialog/release/docs';
 import {
 	storybookArgs as downloaderStorybookArgs,
 	cssVars as downloaderCssVars,
 	cssParts as downloaderCssParts,
 	htmlSlots as downloaderHtmlSlots,
-	i18nLanguages as downloaderI18nLanguages
+	i18nLanguages as downloaderI18nLanguages,
+	styleSetup as downloaderStyleSetup
 } from '@htmlbricks/hb-downloader/release/docs';
 import {
 	storybookArgs as dropdownSimpleStorybookArgs,
 	cssVars as dropdownSimpleCssVars,
 	cssParts as dropdownSimpleCssParts,
 	htmlSlots as dropdownSimpleHtmlSlots,
-	i18nLanguages as dropdownSimpleI18nLanguages
+	i18nLanguages as dropdownSimpleI18nLanguages,
+	styleSetup as dropdownStyleSetup
 } from '@htmlbricks/hb-dropdown-simple/release/docs';
 import {
 	storybookArgs as editorTinymceStorybookArgs,
 	cssVars as editorTinymceCssVars,
 	cssParts as editorTinymceCssParts,
 	htmlSlots as editorTinymceHtmlSlots,
-	i18nLanguages as editorTinymceI18nLanguages
+	i18nLanguages as editorTinymceI18nLanguages,
+	styleSetup as editorTinymceStyleSetup
 } from '@htmlbricks/hb-editor-tinymce/release/docs';
 import {
 	storybookArgs as editorVideoStorybookArgs,
 	cssVars as editorVideoCssVars,
 	cssParts as editorVideoCssParts,
 	htmlSlots as editorVideoHtmlSlots,
-	i18nLanguages as editorVideoI18nLanguages
+	i18nLanguages as editorVideoI18nLanguages,
+	styleSetup as editorVideoStyleSetup
 } from '@htmlbricks/hb-editor-video/release/docs';
 
 import {
@@ -197,84 +217,96 @@ import {
 	cssVars as formCssVars,
 	cssParts as formCssParts,
 	htmlSlots as formHtmlSlots,
-	i18nLanguages as formI18nLanguages
+	i18nLanguages as formI18nLanguages,
+	styleSetup as formI18nStyleSetup
 } from '@htmlbricks/hb-form/release/docs';
 import {
 	storybookArgs as funnelStorybookArgs,
 	cssVars as funnelCssVars,
 	cssParts as funnelCssParts,
 	htmlSlots as funnelHtmlSlots,
-	i18nLanguages as funnelI18nLanguages
+	i18nLanguages as funnelI18nLanguages,
+	styleSetup as funnelStyleSetup
 } from '@htmlbricks/hb-funnel/release/docs';
 import {
 	storybookArgs as galleryVideoStorybookArgs,
 	cssVars as galleryVideoCssVars,
 	cssParts as galleryVideoCssParts,
 	htmlSlots as galleryVideoHtmlSlots,
-	i18nLanguages as galleryVideoI18nLanguages
+	i18nLanguages as galleryVideoI18nLanguages,
+	styleSetup as galleryStyleSetup
 } from '@htmlbricks/hb-gallery-video/release/docs';
 import {
 	storybookArgs as gaugeStorybookArgs,
 	cssVars as gaugeCssVars,
 	cssParts as gaugeCssParts,
 	htmlSlots as gaugeHtmlSlots,
-	i18nLanguages as gaugeI18nLanguages
+	i18nLanguages as gaugeI18nLanguages,
+	styleSetup as gaugeStyleSetup
 } from '@htmlbricks/hb-gauge/release/docs';
 import {
 	storybookArgs as inputAreaStorybookArgs,
 	cssVars as inputAreaCssVars,
 	cssParts as inputAreaCssParts,
 	htmlSlots as inputAreaHtmlSlots,
-	i18nLanguages as inputAreaI18nLanguages
+	i18nLanguages as inputAreaI18nLanguages,
+	styleSetup as inputAreaStyleSetup
 } from '@htmlbricks/hb-input-area/release/docs';
 import {
 	storybookArgs as inputCheckboxStorybookArgs,
 	cssVars as inputCheckboxCssVars,
 	cssParts as inputCheckboxCssParts,
 	htmlSlots as inputCheckboxHtmlSlots,
-	i18nLanguages as inputCheckboxI18nLanguages
+	i18nLanguages as inputCheckboxI18nLanguages,
+	styleSetup as inputCheckboxStyleSetup
 } from '@htmlbricks/hb-input-checkbox/release/docs';
 import {
 	storybookArgs as inputDateStorybookArgs,
 	cssVars as inputDateCssVars,
 	cssParts as inputDateCssParts,
 	htmlSlots as inputDateHtmlSlots,
-	i18nLanguages as inputDateI18nLanguages
+	i18nLanguages as inputDateI18nLanguages,
+	styleSetup as inputDateStyleSetup
 } from '@htmlbricks/hb-input-date/release/docs';
 import {
 	storybookArgs as inputEmailStorybookArgs,
 	cssVars as inputEmailCssVars,
 	cssParts as inputEmailCssParts,
 	htmlSlots as inputEmailHtmlSlots,
-	i18nLanguages as inputEmailI18nLanguages
+	i18nLanguages as inputEmailI18nLanguages,
+	styleSetup as inputEmailStyleSetup
 } from '@htmlbricks/hb-input-email/release/docs';
 import {
 	storybookArgs as inputFileStorybookArgs,
 	cssVars as inputFileCssVars,
 	cssParts as inputFileCssParts,
 	htmlSlots as inputFileHtmlSlots,
-	i18nLanguages as inputFileI18nLanguages
+	i18nLanguages as inputFileI18nLanguages,
+	styleSetup as inputFileStyleSetup
 } from '@htmlbricks/hb-input-file/release/docs';
 import {
 	storybookArgs as inputNumberStorybookArgs,
 	cssVars as inputNumberCssVars,
 	cssParts as inputNumberCssParts,
 	htmlSlots as inputNumberHtmlSlots,
-	i18nLanguages as inputNumberI18nLanguages
+	i18nLanguages as inputNumberI18nLanguages,
+	styleSetup as inputNumberStyleSetup
 } from '@htmlbricks/hb-input-number/release/docs';
 import {
 	storybookArgs as inputRadioStorybookArgs,
 	cssVars as inputRadioCssVars,
 	cssParts as inputRadioCssParts,
 	htmlSlots as inputRadioHtmlSlots,
-	i18nLanguages as inputRadioI18nLanguages
+	i18nLanguages as inputRadioI18nLanguages,
+	styleSetup as inputRadioStyleSetup
 } from '@htmlbricks/hb-input-radio/release/docs';
 import {
 	storybookArgs as inputSelectStorybookArgs,
 	cssVars as inputSelectCssVars,
 	cssParts as inputSelectCssParts,
 	htmlSlots as inputSelectHtmlSlots,
-	i18nLanguages as inputSelectI18nLanguages
+	i18nLanguages as inputSelectI18nLanguages,
+	styleSetup as inputSelectStyleSetup
 } from '@htmlbricks/hb-input-select/release/docs';
 
 import {
@@ -282,21 +314,24 @@ import {
 	cssVars as mapCssVars,
 	cssParts as mapCssParts,
 	htmlSlots as mapHtmlSlots,
-	i18nLanguages as mapI18nLanguages
+	i18nLanguages as mapI18nLanguages,
+	styleSetup as mapStyleSetup
 } from '@htmlbricks/hb-map/release/docs';
 import {
 	storybookArgs as modalVideoStorybookArgs,
 	cssVars as modalVideoCssVars,
 	cssParts as modalVideoCssParts,
 	htmlSlots as modalVideoHtmlSlots,
-	i18nLanguages as modalVideoI18nLanguages
+	i18nLanguages as modalVideoI18nLanguages,
+	styleSetup as modalVideoStyleSetup
 } from '@htmlbricks/hb-modal-video/release/docs';
 import {
 	storybookArgs as navbarStorybookArgs,
 	cssVars as navbarCssVars,
 	cssParts as navbarCssParts,
 	htmlSlots as navbarHtmlSlots,
-	i18nLanguages as navbarI18nLanguages
+	i18nLanguages as navbarI18nLanguages,
+	styleSetup as navbarStyleSetup
 } from '@htmlbricks/hb-navbar/release/docs';
 
 import {
@@ -304,21 +339,24 @@ import {
 	cssVars as orderListCssVars,
 	cssParts as orderListCssParts,
 	htmlSlots as orderListHtmlSlots,
-	i18nLanguages as orderListI18nLanguages
+	i18nLanguages as orderListI18nLanguages,
+	styleSetup as orderListStyleSetup
 } from '@htmlbricks/hb-order-list/release/docs';
 import {
 	storybookArgs as pageCheckoutStorybookArgs,
 	cssVars as pageCheckoutCssVars,
 	cssParts as pageCheckoutCssParts,
 	htmlSlots as pageCheckoutHtmlSlots,
-	i18nLanguages as pageCheckoutI18nLanguages
+	i18nLanguages as pageCheckoutI18nLanguages,
+	styleSetup as pageCheckoutStyleSetup
 } from '@htmlbricks/hb-page-checkout/release/docs';
 import {
 	storybookArgs as pageInvoiceStorybookArgs,
 	cssVars as pageInvoiceCssVars,
 	cssParts as pageInvoiceCssParts,
 	htmlSlots as pageInvoiceHtmlSlots,
-	i18nLanguages as pageInvoiceI18nLanguages
+	i18nLanguages as pageInvoiceI18nLanguages,
+	styleSetup as pageInvoiceStyleSetup
 } from '@htmlbricks/hb-page-invoice/release/docs';
 
 import {
@@ -326,7 +364,8 @@ import {
 	cssVars as pageLoginregisterCssVars,
 	cssParts as pageLoginregisterCssParts,
 	htmlSlots as pageLoginregisterHtmlSlots,
-	i18nLanguages as pageLoginregisterI18nLanguages
+	i18nLanguages as pageLoginregisterI18nLanguages,
+	styleSetup as pageLoginregisterStyleSetup
 } from '@htmlbricks/hb-page-loginregister/release/docs';
 
 import {
@@ -334,7 +373,8 @@ import {
 	cssVars as paymentPaypalCssVars,
 	cssParts as paymentPaypalCssParts,
 	htmlSlots as paymentPaypalHtmlSlots,
-	i18nLanguages as paymentPaypalI18nLanguages
+	i18nLanguages as paymentPaypalI18nLanguages,
+	styleSetup as paymentPaypalStyleSetup
 } from '@htmlbricks/hb-payment-paypal/release/docs';
 
 import {
@@ -342,35 +382,40 @@ import {
 	cssVars as productComparisonCssVars,
 	cssParts as productComparisonCssParts,
 	htmlSlots as productComparisonHtmlSlots,
-	i18nLanguages as productComparisonI18nLanguages
+	i18nLanguages as productComparisonI18nLanguages,
+	styleSetup as productComparisonStyleSetup
 } from '@htmlbricks/hb-product-comparison/release/docs';
 import {
 	storybookArgs as rangeSliderStorybookArgs,
 	cssVars as rangeSliderCssVars,
 	cssParts as rangeSliderCssParts,
 	htmlSlots as rangeSliderHtmlSlots,
-	i18nLanguages as rangeSliderI18nLanguages
+	i18nLanguages as rangeSliderI18nLanguages,
+	styleSetup as rangeSliderStyleSetup
 } from '@htmlbricks/hb-range-slider/release/docs';
 import {
 	storybookArgs as sidenavLinkStorybookArgs,
 	cssVars as sidenavLinkCssVars,
 	cssParts as sidenavLinkCssParts,
 	htmlSlots as sidenavLinkHtmlSlots,
-	i18nLanguages as sidenavLinkI18nLanguages
+	i18nLanguages as sidenavLinkI18nLanguages,
+	styleSetup as sidenavStyleSetup
 } from '@htmlbricks/hb-sidenav-link/release/docs';
 import {
 	storybookArgs as tableStorybookArgs,
 	cssVars as tableCssVars,
 	cssParts as tableCssParts,
 	htmlSlots as tableHtmlSlots,
-	i18nLanguages as tableI18nLanguages
+	i18nLanguages as tableI18nLanguages,
+	styleSetup as tableI18nStyleSetup
 } from '@htmlbricks/hb-table/release/docs';
 import {
 	storybookArgs as toastStorybookArgs,
 	cssVars as toastCssVars,
 	cssParts as toastCssParts,
 	htmlSlots as toastHtmlSlots,
-	i18nLanguages as toastI18nLanguages
+	i18nLanguages as toastI18nLanguages,
+	styleSetup as toastCssStyleSetup
 } from '@htmlbricks/hb-toast/release/docs';
 
 // SUPER TRIKY ERROR IF IMPORT FROM REPO!!
@@ -379,7 +424,8 @@ import {
 	cssVars as playerLiveCssVars,
 	cssParts as playerLiveCssParts,
 	htmlSlots as playerLiveHtmlSlots,
-	i18nLanguages as playerLiveI18nLanguages
+	i18nLanguages as playerLiveI18nLanguages,
+	styleSetup as playerLiveStyleSetup
 } from '../../node_modules/@htmlbricks/hb-player-live/release/docs';
 
 export const allComponentsMetas: Readable<
@@ -401,6 +447,7 @@ export const allComponentsMetas: Readable<
 		category: 'basic',
 		cssVars: bannerCssVars,
 		cssParts: bannerCssParts,
+		styleSetup: bannerStyleSetup,
 		htmlSlots: bannerHtmlSlots,
 		i18n: bannerI18nLanguages
 	},
@@ -411,6 +458,7 @@ export const allComponentsMetas: Readable<
 		category: 'dev',
 		cssVars: areaCodeCssVars,
 		cssParts: areaCodeCssParts,
+		styleSetup: areaCodeStyleSetup,
 		htmlSlots: areaCodeHtmlSlots,
 		i18n: areaCodeI18nLanguages
 	},
@@ -421,6 +469,7 @@ export const allComponentsMetas: Readable<
 		category: 'layout',
 		cssVars: offcanvasCssVars,
 		cssParts: offcanvasCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: offcanvasHtmlSlots,
 		i18n: offcanvasI18nLanguages
 	},
@@ -431,6 +480,7 @@ export const allComponentsMetas: Readable<
 		category: 'layout',
 		cssVars: layoutCssVars,
 		cssParts: layoutCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: layoutHtmlSlots,
 		i18n: layoutI18nLanguages
 	},
@@ -441,6 +491,7 @@ export const allComponentsMetas: Readable<
 		category: 'layout',
 		cssVars: footerCssVars,
 		cssParts: footerCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: footerHtmlSlots,
 		i18n: footerI18nLanguages
 	},
@@ -451,6 +502,7 @@ export const allComponentsMetas: Readable<
 		category: 'input',
 		cssVars: inputTextCssVars,
 		cssParts: inputTextCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: inputTextHtmlSlots,
 		i18n: inputTextI18nLanguages
 	},
@@ -461,6 +513,7 @@ export const allComponentsMetas: Readable<
 		category: 'basic',
 		cssVars: paginateCssVars,
 		cssParts: paginateCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: paginateHtmlSlots,
 		i18n: paginateI18nLanguages
 	},
@@ -472,6 +525,7 @@ export const allComponentsMetas: Readable<
 		category: 'components',
 		cssVars: authCssVars,
 		cssParts: authCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: authHtmlSlots,
 		i18n: authI18nLanguages
 	},
@@ -482,6 +536,7 @@ export const allComponentsMetas: Readable<
 		category: 'components',
 		cssVars: calendarEventsCssVars,
 		cssParts: calendarEventsCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: calendarEventsHtmlSlots,
 		i18n: calendarEventsI18nLanguages
 	},
@@ -493,6 +548,7 @@ export const allComponentsMetas: Readable<
 		category: 'components',
 		cssVars: cardVideoCssVars,
 		cssParts: cardVideoCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: cardVideoHtmlSlots,
 		i18n: cardVideoI18nLanguages
 	},
@@ -504,6 +560,7 @@ export const allComponentsMetas: Readable<
 		category: 'graph',
 		cssVars: chartjsCssVars,
 		cssParts: chartjsCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: chartjsHtmlSlots,
 		i18n: chartjsI18nLanguages
 	},
@@ -514,6 +571,7 @@ export const allComponentsMetas: Readable<
 		category: 'payment',
 		cssVars: checkoutCssVars,
 		cssParts: checkoutCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: checkoutHtmlSlots,
 		i18n: checkoutI18nLanguages
 	},
@@ -524,6 +582,7 @@ export const allComponentsMetas: Readable<
 		category: 'payment',
 		cssVars: checkoutShoppingCartCssVars,
 		cssParts: checkoutShoppingCartCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: checkoutShoppingCartHtmlSlots,
 		i18n: checkoutShoppingCartI18nLanguages
 	},
@@ -534,6 +593,7 @@ export const allComponentsMetas: Readable<
 		category: 'basic',
 		cssVars: contactItemCssVars,
 		cssParts: contactItemCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: contactItemHtmlSlots,
 		i18n: contactItemI18nLanguages
 	},
@@ -544,6 +604,7 @@ export const allComponentsMetas: Readable<
 		category: 'layout',
 		cssVars: cookieLawBannerCssVars,
 		cssParts: cookieLawBannerCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: cookieLawBannerHtmlSlots,
 		i18n: cookieLawBannerI18nLanguages
 	},
@@ -554,6 +615,7 @@ export const allComponentsMetas: Readable<
 		category: 'basic',
 		cssVars: dialogCssVars,
 		cssParts: dialogCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: dialogHtmlSlots,
 		i18n: dialogI18nLanguages
 	},
@@ -564,6 +626,7 @@ export const allComponentsMetas: Readable<
 		category: 'basic',
 		cssVars: downloaderCssVars,
 		cssParts: downloaderCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: downloaderHtmlSlots,
 		i18n: downloaderI18nLanguages
 	},
@@ -575,6 +638,7 @@ export const allComponentsMetas: Readable<
 		category: 'basic',
 		cssVars: dropdownSimpleCssVars,
 		cssParts: dropdownSimpleCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: dropdownSimpleHtmlSlots,
 		i18n: dropdownSimpleI18nLanguages
 	},
@@ -585,6 +649,7 @@ export const allComponentsMetas: Readable<
 		category: 'editor',
 		cssVars: editorTinymceCssVars,
 		cssParts: editorTinymceCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: editorTinymceHtmlSlots,
 		i18n: editorTinymceI18nLanguages
 	},
@@ -595,6 +660,7 @@ export const allComponentsMetas: Readable<
 		category: 'editor',
 		cssVars: editorVideoCssVars,
 		cssParts: editorVideoCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: editorVideoHtmlSlots,
 		i18n: editorVideoI18nLanguages
 	},
@@ -605,6 +671,7 @@ export const allComponentsMetas: Readable<
 		category: 'form',
 		cssVars: formCssVars,
 		cssParts: formCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: formHtmlSlots,
 		i18n: formI18nLanguages
 	},
@@ -615,6 +682,7 @@ export const allComponentsMetas: Readable<
 		category: 'form',
 		cssVars: funnelCssVars,
 		cssParts: funnelCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: funnelHtmlSlots,
 		i18n: funnelI18nLanguages
 	},
@@ -625,6 +693,7 @@ export const allComponentsMetas: Readable<
 		category: 'components',
 		cssVars: galleryVideoCssVars,
 		cssParts: galleryVideoCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: galleryVideoHtmlSlots,
 		i18n: galleryVideoI18nLanguages
 	},
@@ -635,6 +704,7 @@ export const allComponentsMetas: Readable<
 		category: 'graph',
 		cssVars: gaugeCssVars,
 		cssParts: gaugeCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: gaugeHtmlSlots,
 		i18n: gaugeI18nLanguages
 	},
@@ -645,6 +715,7 @@ export const allComponentsMetas: Readable<
 		category: 'input',
 		cssVars: inputAreaCssVars,
 		cssParts: inputAreaCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: inputAreaHtmlSlots,
 		i18n: inputAreaI18nLanguages
 	},
@@ -655,6 +726,7 @@ export const allComponentsMetas: Readable<
 		category: 'input',
 		cssVars: inputCheckboxCssVars,
 		cssParts: inputCheckboxCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: inputCheckboxHtmlSlots,
 		i18n: inputCheckboxI18nLanguages
 	},
@@ -665,6 +737,7 @@ export const allComponentsMetas: Readable<
 		category: 'input',
 		cssVars: inputDateCssVars,
 		cssParts: inputDateCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: inputDateHtmlSlots,
 		i18n: inputDateI18nLanguages
 	},
@@ -675,6 +748,7 @@ export const allComponentsMetas: Readable<
 		category: 'input',
 		cssVars: inputEmailCssVars,
 		cssParts: inputEmailCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: inputEmailHtmlSlots,
 		i18n: inputEmailI18nLanguages
 	},
@@ -685,6 +759,7 @@ export const allComponentsMetas: Readable<
 		category: 'input',
 		cssVars: inputFileCssVars,
 		cssParts: inputFileCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: inputFileHtmlSlots,
 		i18n: inputFileI18nLanguages
 	},
@@ -695,6 +770,7 @@ export const allComponentsMetas: Readable<
 		category: 'input',
 		cssVars: inputNumberCssVars,
 		cssParts: inputNumberCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: inputNumberHtmlSlots,
 		i18n: inputNumberI18nLanguages
 	},
@@ -705,6 +781,7 @@ export const allComponentsMetas: Readable<
 		category: 'input',
 		cssVars: inputRadioCssVars,
 		cssParts: inputRadioCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: inputRadioHtmlSlots,
 		i18n: inputRadioI18nLanguages
 	},
@@ -715,6 +792,7 @@ export const allComponentsMetas: Readable<
 		category: 'input',
 		cssVars: inputSelectCssVars,
 		cssParts: inputSelectCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: inputSelectHtmlSlots,
 		i18n: inputSelectI18nLanguages
 	},
@@ -725,6 +803,7 @@ export const allComponentsMetas: Readable<
 		category: 'graph',
 		cssVars: mapCssVars,
 		cssParts: mapCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: mapHtmlSlots,
 		i18n: mapI18nLanguages
 	},
@@ -735,6 +814,7 @@ export const allComponentsMetas: Readable<
 		category: 'basic',
 		cssVars: modalVideoCssVars,
 		cssParts: modalVideoCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: modalVideoHtmlSlots,
 		i18n: modalVideoI18nLanguages
 	},
@@ -745,6 +825,7 @@ export const allComponentsMetas: Readable<
 		category: 'layout',
 		cssVars: navbarCssVars,
 		cssParts: navbarCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: navbarHtmlSlots,
 		i18n: navbarI18nLanguages
 	},
@@ -755,6 +836,7 @@ export const allComponentsMetas: Readable<
 		category: 'basic',
 		cssVars: orderListCssVars,
 		cssParts: orderListCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: orderListHtmlSlots,
 		i18n: orderListI18nLanguages
 	},
@@ -765,6 +847,7 @@ export const allComponentsMetas: Readable<
 		category: 'page',
 		cssVars: pageCheckoutCssVars,
 		cssParts: pageCheckoutCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: pageCheckoutHtmlSlots,
 		i18n: pageCheckoutI18nLanguages
 	},
@@ -775,6 +858,7 @@ export const allComponentsMetas: Readable<
 		category: 'page',
 		cssVars: pageInvoiceCssVars,
 		cssParts: pageInvoiceCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: pageInvoiceHtmlSlots,
 		i18n: pageInvoiceI18nLanguages
 	},
@@ -785,6 +869,7 @@ export const allComponentsMetas: Readable<
 		category: 'page',
 		cssVars: pageLoginregisterCssVars,
 		cssParts: pageLoginregisterCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: pageLoginregisterHtmlSlots,
 		i18n: pageLoginregisterI18nLanguages
 	},
@@ -795,6 +880,7 @@ export const allComponentsMetas: Readable<
 		category: 'payment',
 		cssVars: paymentPaypalCssVars,
 		cssParts: paymentPaypalCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: paymentPaypalHtmlSlots,
 		i18n: paymentPaypalI18nLanguages
 	},
@@ -805,6 +891,7 @@ export const allComponentsMetas: Readable<
 		category: 'basic',
 		cssVars: playerLiveCssVars,
 		cssParts: playerLiveCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: playerLiveHtmlSlots,
 		i18n: playerLiveI18nLanguages
 	},
@@ -815,6 +902,7 @@ export const allComponentsMetas: Readable<
 		category: 'components',
 		cssVars: productComparisonCssVars,
 		cssParts: productComparisonCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: productComparisonHtmlSlots,
 		i18n: productComparisonI18nLanguages
 	},
@@ -825,6 +913,7 @@ export const allComponentsMetas: Readable<
 		category: 'basic',
 		cssVars: rangeSliderCssVars,
 		cssParts: rangeSliderCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: rangeSliderHtmlSlots,
 		i18n: rangeSliderI18nLanguages
 	},
@@ -835,6 +924,7 @@ export const allComponentsMetas: Readable<
 		category: 'basic',
 		cssVars: sidenavLinkCssVars,
 		cssParts: sidenavLinkCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: sidenavLinkHtmlSlots,
 		i18n: sidenavLinkI18nLanguages
 	},
@@ -845,6 +935,7 @@ export const allComponentsMetas: Readable<
 		category: 'table',
 		cssVars: tableCssVars,
 		cssParts: tableCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: tableHtmlSlots,
 		i18n: tableI18nLanguages
 	},
@@ -855,6 +946,7 @@ export const allComponentsMetas: Readable<
 		category: 'basic',
 		cssVars: toastCssVars,
 		cssParts: toastCssParts,
+		styleSetup: aa StyleSetup,
 		htmlSlots: toastHtmlSlots,
 		i18n: toastI18nLanguages
 	}
