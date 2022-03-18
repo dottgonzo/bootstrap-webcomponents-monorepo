@@ -14,15 +14,14 @@
 	import { events, htmlSlotsContents, cssVarsValues } from '../../stores/events';
 	import { page } from '$app/stores';
 
-	import type { CssPart, HtmlSlot, CssVar, i18nLang } from '@htmlbricks/hb-jsutils/main';
+	import type { HtmlSlot, StyleSetup, i18nLang } from '@htmlbricks/hb-jsutils/main';
 
 	import { pageName } from '../../stores/app';
 	let name: string;
 	let storybookargs: any;
 	let definition: any;
 
-	let cssVars: CssVar[];
-	let cssParts: CssPart[];
+	let styleSetup: StyleSetup;
 	let htmlSlots: HtmlSlot[];
 	let i18nLangs: i18nLang[];
 
@@ -44,8 +43,7 @@
 		storybookargs = meta?.storybookArgs;
 		definition = meta?.definition;
 
-		cssVars = meta?.cssVars;
-		cssParts = meta?.cssParts;
+		styleSetup = meta?.styleSetup;
 		htmlSlots = meta?.htmlSlots;
 		i18nLangs = meta?.i18n;
 
@@ -71,9 +69,12 @@
 				}
 			}
 		}
-		if (cssVars && cssVars.filter((f) => typeof f.defaultValue !== 'undefined').length) {
+		if (
+			styleSetup.vars &&
+			styleSetup.vars.filter((f) => typeof f.defaultValue !== 'undefined').length
+		) {
 			com += ` style="`;
-			for (const css of cssVars.filter((f) => typeof f.defaultValue !== 'undefined')) {
+			for (const css of styleSetup.vars.filter((f) => typeof f.defaultValue !== 'undefined')) {
 				com += `${css.name}:${css.defaultValue};`;
 			}
 			com += `"`;
@@ -154,10 +155,9 @@
 						on:click={() => {
 							controlTab = 'style';
 						}}
-						class="nav-link {cssVars?.length || cssParts?.length ? '' : 'disabled'} {controlTab ===
-						'style'
-							? 'active'
-							: ''}">style</button
+						class="nav-link {styleSetup.vars?.length || styleSetup?.parts?.length
+							? ''
+							: 'disabled'} {controlTab === 'style' ? 'active' : ''}">style</button
 					>
 				</li>
 				<li class="nav-item">
@@ -239,8 +239,8 @@
 					{:else if controlTab === 'slots'}
 						<SlotTable slots={htmlSlots} />
 					{:else if controlTab === 'style'}
-						{#if cssVars?.length}<CssVarsTable vars={cssVars} />{/if}
-						{#if cssParts?.length}<CssPartsTable parts={cssParts} />{/if}
+						{#if styleSetup?.vars?.length}<CssVarsTable vars={styleSetup.vars} />{/if}
+						{#if styleSetup?.parts?.length}<CssPartsTable parts={styleSetup.parts} />{/if}
 					{/if}
 				</div>
 			</div>

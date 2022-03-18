@@ -1,5 +1,5 @@
 import { readable, type Readable } from 'svelte/store';
-import type { CssPart, CssVar, HtmlSlot, i18nLang } from '@htmlbricks/hb-jsutils';
+import type { HtmlSlot, i18nLang, StyleSetup } from '@htmlbricks/hb-jsutils';
 
 import bannerDefinition from '@htmlbricks/hb-banner/release/webcomponent.type.d.json';
 import areaCodeDefinition from '@htmlbricks/hb-area-code/release/webcomponent.type.d.json';
@@ -51,56 +51,42 @@ import toastDefinition from '@htmlbricks/hb-toast/release/webcomponent.type.d.js
 
 import {
 	storybookArgs as bannerStorybookArgs,
-	cssVars as bannerCssVars,
-	cssParts as bannerCssParts,
 	htmlSlots as bannerHtmlSlots,
 	i18nLanguages as bannerI18nLanguages,
 	styleSetup as bannerStyleSetup
 } from '@htmlbricks/hb-banner/release/docs';
 import {
 	storybookArgs as areaCodeStorybookArgs,
-	cssVars as areaCodeCssVars,
-	cssParts as areaCodeCssParts,
 	htmlSlots as areaCodeHtmlSlots,
 	i18nLanguages as areaCodeI18nLanguages,
 	styleSetup as areaCodeStyleSetup
 } from '@htmlbricks/hb-area-code/release/docs';
 import {
 	storybookArgs as offcanvasStorybookArgs,
-	cssVars as offcanvasCssVars,
-	cssParts as offcanvasCssParts,
 	htmlSlots as offcanvasHtmlSlots,
 	i18nLanguages as offcanvasI18nLanguages,
 	styleSetup as offcanvasStyleSetup
 } from '@htmlbricks/hb-offcanvas/release/docs';
 import {
 	storybookArgs as layoutStorybookArgs,
-	cssVars as layoutCssVars,
-	cssParts as layoutCssParts,
 	htmlSlots as layoutHtmlSlots,
 	i18nLanguages as layoutI18nLanguages,
 	styleSetup as layoutStyleSetup
 } from '@htmlbricks/hb-layout/release/docs';
 import {
 	storybookArgs as footerStorybookArgs,
-	cssVars as footerCssVars,
-	cssParts as footerCssParts,
 	htmlSlots as footerHtmlSlots,
 	i18nLanguages as footerI18nLanguages,
 	styleSetup as footerStyleSetup
 } from '@htmlbricks/hb-footer/release/docs';
 import {
 	storybookArgs as inputTextStorybookArgs,
-	cssVars as inputTextCssVars,
-	cssParts as inputTextCssParts,
 	htmlSlots as inputTextHtmlSlots,
 	i18nLanguages as inputTextI18nLanguages,
 	styleSetup as inputTextStyleSetup
 } from '@htmlbricks/hb-input-text/release/docs';
 import {
 	storybookArgs as paginateStorybookArgs,
-	cssVars as paginateCssVars,
-	cssParts as paginateCssParts,
 	htmlSlots as paginateHtmlSlots,
 	i18nLanguages as paginateI18nLanguages,
 	styleSetup as paginateStyleSetup
@@ -108,8 +94,6 @@ import {
 
 import {
 	storybookArgs as authStorybookArgs,
-	cssVars as authCssVars,
-	cssParts as authCssParts,
 	htmlSlots as authHtmlSlots,
 	i18nLanguages as authI18nLanguages,
 	styleSetup as authStyleSetup
@@ -117,96 +101,72 @@ import {
 
 import {
 	storybookArgs as calendarEventsStorybookArgs,
-	cssVars as calendarEventsCssVars,
-	cssParts as calendarEventsCssParts,
 	htmlSlots as calendarEventsHtmlSlots,
 	i18nLanguages as calendarEventsI18nLanguages,
-	styleSetup as calendarStyleSetup
+	styleSetup as calendarEventsStyleSetup
 } from '@htmlbricks/hb-calendar-events/release/docs';
 import {
 	storybookArgs as cardVideoStorybookArgs,
-	cssVars as cardVideoCssVars,
-	cssParts as cardVideoCssParts,
 	htmlSlots as cardVideoHtmlSlots,
 	i18nLanguages as cardVideoI18nLanguages,
 	styleSetup as cardVideoStyleSetup
 } from '@htmlbricks/hb-card-video/release/docs';
 import {
 	storybookArgs as chartjsStorybookArgs,
-	cssVars as chartjsCssVars,
-	cssParts as chartjsCssParts,
 	htmlSlots as chartjsHtmlSlots,
 	i18nLanguages as chartjsI18nLanguages,
 	styleSetup as chartjsStyleSetup
 } from '@htmlbricks/hb-chartjs/release/docs';
 import {
 	storybookArgs as checkoutStorybookArgs,
-	cssVars as checkoutCssVars,
-	cssParts as checkoutCssParts,
 	htmlSlots as checkoutHtmlSlots,
 	i18nLanguages as checkoutI18nLanguages,
 	styleSetup as checkoutStyleSetup
 } from '@htmlbricks/hb-checkout/release/docs';
 import {
 	storybookArgs as checkoutShoppingCartStorybookArgs,
-	cssVars as checkoutShoppingCartCssVars,
-	cssParts as checkoutShoppingCartCssParts,
 	htmlSlots as checkoutShoppingCartHtmlSlots,
 	i18nLanguages as checkoutShoppingCartI18nLanguages,
 	styleSetup as checkoutShoppingCartStyleSetup
 } from '@htmlbricks/hb-checkout-shopping-cart/release/docs';
 import {
 	storybookArgs as contactItemStorybookArgs,
-	cssVars as contactItemCssVars,
-	cssParts as contactItemCssParts,
 	htmlSlots as contactItemHtmlSlots,
 	i18nLanguages as contactItemI18nLanguages,
-	styleSetup as contactStyleSetup
+	styleSetup as contactItemStyleSetup
 } from '@htmlbricks/hb-contact-item/release/docs';
 import {
 	storybookArgs as cookieLawBannerStorybookArgs,
-	cssVars as cookieLawBannerCssVars,
-	cssParts as cookieLawBannerCssParts,
 	htmlSlots as cookieLawBannerHtmlSlots,
 	i18nLanguages as cookieLawBannerI18nLanguages,
 	styleSetup as cookieLawBannerStyleSetup
 } from '@htmlbricks/hb-cookie-law-banner/release/docs';
 import {
 	storybookArgs as dialogStorybookArgs,
-	cssVars as dialogCssVars,
-	cssParts as dialogCssParts,
 	htmlSlots as dialogHtmlSlots,
 	i18nLanguages as dialogI18nLanguages,
 	styleSetup as dialogStyleSetup
 } from '@htmlbricks/hb-dialog/release/docs';
 import {
 	storybookArgs as downloaderStorybookArgs,
-	cssVars as downloaderCssVars,
-	cssParts as downloaderCssParts,
 	htmlSlots as downloaderHtmlSlots,
 	i18nLanguages as downloaderI18nLanguages,
 	styleSetup as downloaderStyleSetup
 } from '@htmlbricks/hb-downloader/release/docs';
 import {
 	storybookArgs as dropdownSimpleStorybookArgs,
-	cssVars as dropdownSimpleCssVars,
-	cssParts as dropdownSimpleCssParts,
 	htmlSlots as dropdownSimpleHtmlSlots,
 	i18nLanguages as dropdownSimpleI18nLanguages,
-	styleSetup as dropdownStyleSetup
+	styleSetup as dropdownSimpleStyleSetup
 } from '@htmlbricks/hb-dropdown-simple/release/docs';
 import {
 	storybookArgs as editorTinymceStorybookArgs,
-	cssVars as editorTinymceCssVars,
-	cssParts as editorTinymceCssParts,
 	htmlSlots as editorTinymceHtmlSlots,
 	i18nLanguages as editorTinymceI18nLanguages,
 	styleSetup as editorTinymceStyleSetup
 } from '@htmlbricks/hb-editor-tinymce/release/docs';
 import {
 	storybookArgs as editorVideoStorybookArgs,
-	cssVars as editorVideoCssVars,
-	cssParts as editorVideoCssParts,
 	htmlSlots as editorVideoHtmlSlots,
 	i18nLanguages as editorVideoI18nLanguages,
 	styleSetup as editorVideoStyleSetup
@@ -214,96 +174,72 @@ import {
 
 import {
 	storybookArgs as formStorybookArgs,
-	cssVars as formCssVars,
-	cssParts as formCssParts,
 	htmlSlots as formHtmlSlots,
 	i18nLanguages as formI18nLanguages,
-	styleSetup as formI18nStyleSetup
+	styleSetup as formStyleSetup
 } from '@htmlbricks/hb-form/release/docs';
 import {
 	storybookArgs as funnelStorybookArgs,
-	cssVars as funnelCssVars,
-	cssParts as funnelCssParts,
 	htmlSlots as funnelHtmlSlots,
 	i18nLanguages as funnelI18nLanguages,
 	styleSetup as funnelStyleSetup
 } from '@htmlbricks/hb-funnel/release/docs';
 import {
 	storybookArgs as galleryVideoStorybookArgs,
-	cssVars as galleryVideoCssVars,
-	cssParts as galleryVideoCssParts,
 	htmlSlots as galleryVideoHtmlSlots,
 	i18nLanguages as galleryVideoI18nLanguages,
-	styleSetup as galleryStyleSetup
+	styleSetup as galleryVideoStyleSetup
 } from '@htmlbricks/hb-gallery-video/release/docs';
 import {
 	storybookArgs as gaugeStorybookArgs,
-	cssVars as gaugeCssVars,
-	cssParts as gaugeCssParts,
 	htmlSlots as gaugeHtmlSlots,
 	i18nLanguages as gaugeI18nLanguages,
 	styleSetup as gaugeStyleSetup
 } from '@htmlbricks/hb-gauge/release/docs';
 import {
 	storybookArgs as inputAreaStorybookArgs,
-	cssVars as inputAreaCssVars,
-	cssParts as inputAreaCssParts,
 	htmlSlots as inputAreaHtmlSlots,
 	i18nLanguages as inputAreaI18nLanguages,
 	styleSetup as inputAreaStyleSetup
 } from '@htmlbricks/hb-input-area/release/docs';
 import {
 	storybookArgs as inputCheckboxStorybookArgs,
-	cssVars as inputCheckboxCssVars,
-	cssParts as inputCheckboxCssParts,
 	htmlSlots as inputCheckboxHtmlSlots,
 	i18nLanguages as inputCheckboxI18nLanguages,
 	styleSetup as inputCheckboxStyleSetup
 } from '@htmlbricks/hb-input-checkbox/release/docs';
 import {
 	storybookArgs as inputDateStorybookArgs,
-	cssVars as inputDateCssVars,
-	cssParts as inputDateCssParts,
 	htmlSlots as inputDateHtmlSlots,
 	i18nLanguages as inputDateI18nLanguages,
 	styleSetup as inputDateStyleSetup
 } from '@htmlbricks/hb-input-date/release/docs';
 import {
 	storybookArgs as inputEmailStorybookArgs,
-	cssVars as inputEmailCssVars,
-	cssParts as inputEmailCssParts,
 	htmlSlots as inputEmailHtmlSlots,
 	i18nLanguages as inputEmailI18nLanguages,
 	styleSetup as inputEmailStyleSetup
 } from '@htmlbricks/hb-input-email/release/docs';
 import {
 	storybookArgs as inputFileStorybookArgs,
-	cssVars as inputFileCssVars,
-	cssParts as inputFileCssParts,
 	htmlSlots as inputFileHtmlSlots,
 	i18nLanguages as inputFileI18nLanguages,
 	styleSetup as inputFileStyleSetup
 } from '@htmlbricks/hb-input-file/release/docs';
 import {
 	storybookArgs as inputNumberStorybookArgs,
-	cssVars as inputNumberCssVars,
-	cssParts as inputNumberCssParts,
 	htmlSlots as inputNumberHtmlSlots,
 	i18nLanguages as inputNumberI18nLanguages,
 	styleSetup as inputNumberStyleSetup
 } from '@htmlbricks/hb-input-number/release/docs';
 import {
 	storybookArgs as inputRadioStorybookArgs,
-	cssVars as inputRadioCssVars,
-	cssParts as inputRadioCssParts,
 	htmlSlots as inputRadioHtmlSlots,
 	i18nLanguages as inputRadioI18nLanguages,
 	styleSetup as inputRadioStyleSetup
 } from '@htmlbricks/hb-input-radio/release/docs';
 import {
 	storybookArgs as inputSelectStorybookArgs,
-	cssVars as inputSelectCssVars,
-	cssParts as inputSelectCssParts,
 	htmlSlots as inputSelectHtmlSlots,
 	i18nLanguages as inputSelectI18nLanguages,
 	styleSetup as inputSelectStyleSetup
@@ -311,24 +247,18 @@ import {
 
 import {
 	storybookArgs as mapStorybookArgs,
-	cssVars as mapCssVars,
-	cssParts as mapCssParts,
 	htmlSlots as mapHtmlSlots,
 	i18nLanguages as mapI18nLanguages,
 	styleSetup as mapStyleSetup
 } from '@htmlbricks/hb-map/release/docs';
 import {
 	storybookArgs as modalVideoStorybookArgs,
-	cssVars as modalVideoCssVars,
-	cssParts as modalVideoCssParts,
 	htmlSlots as modalVideoHtmlSlots,
 	i18nLanguages as modalVideoI18nLanguages,
 	styleSetup as modalVideoStyleSetup
 } from '@htmlbricks/hb-modal-video/release/docs';
 import {
 	storybookArgs as navbarStorybookArgs,
-	cssVars as navbarCssVars,
-	cssParts as navbarCssParts,
 	htmlSlots as navbarHtmlSlots,
 	i18nLanguages as navbarI18nLanguages,
 	styleSetup as navbarStyleSetup
@@ -336,24 +266,18 @@ import {
 
 import {
 	storybookArgs as orderListStorybookArgs,
-	cssVars as orderListCssVars,
-	cssParts as orderListCssParts,
 	htmlSlots as orderListHtmlSlots,
 	i18nLanguages as orderListI18nLanguages,
 	styleSetup as orderListStyleSetup
 } from '@htmlbricks/hb-order-list/release/docs';
 import {
 	storybookArgs as pageCheckoutStorybookArgs,
-	cssVars as pageCheckoutCssVars,
-	cssParts as pageCheckoutCssParts,
 	htmlSlots as pageCheckoutHtmlSlots,
 	i18nLanguages as pageCheckoutI18nLanguages,
 	styleSetup as pageCheckoutStyleSetup
 } from '@htmlbricks/hb-page-checkout/release/docs';
 import {
 	storybookArgs as pageInvoiceStorybookArgs,
-	cssVars as pageInvoiceCssVars,
-	cssParts as pageInvoiceCssParts,
 	htmlSlots as pageInvoiceHtmlSlots,
 	i18nLanguages as pageInvoiceI18nLanguages,
 	styleSetup as pageInvoiceStyleSetup
@@ -361,8 +285,6 @@ import {
 
 import {
 	storybookArgs as pageLoginregisterStorybookArgs,
-	cssVars as pageLoginregisterCssVars,
-	cssParts as pageLoginregisterCssParts,
 	htmlSlots as pageLoginregisterHtmlSlots,
 	i18nLanguages as pageLoginregisterI18nLanguages,
 	styleSetup as pageLoginregisterStyleSetup
@@ -370,8 +292,6 @@ import {
 
 import {
 	storybookArgs as paymentPaypalStorybookArgs,
-	cssVars as paymentPaypalCssVars,
-	cssParts as paymentPaypalCssParts,
 	htmlSlots as paymentPaypalHtmlSlots,
 	i18nLanguages as paymentPaypalI18nLanguages,
 	styleSetup as paymentPaypalStyleSetup
@@ -379,50 +299,38 @@ import {
 
 import {
 	storybookArgs as productComparisonStorybookArgs,
-	cssVars as productComparisonCssVars,
-	cssParts as productComparisonCssParts,
 	htmlSlots as productComparisonHtmlSlots,
 	i18nLanguages as productComparisonI18nLanguages,
 	styleSetup as productComparisonStyleSetup
 } from '@htmlbricks/hb-product-comparison/release/docs';
 import {
 	storybookArgs as rangeSliderStorybookArgs,
-	cssVars as rangeSliderCssVars,
-	cssParts as rangeSliderCssParts,
 	htmlSlots as rangeSliderHtmlSlots,
 	i18nLanguages as rangeSliderI18nLanguages,
 	styleSetup as rangeSliderStyleSetup
 } from '@htmlbricks/hb-range-slider/release/docs';
 import {
 	storybookArgs as sidenavLinkStorybookArgs,
-	cssVars as sidenavLinkCssVars,
-	cssParts as sidenavLinkCssParts,
 	htmlSlots as sidenavLinkHtmlSlots,
 	i18nLanguages as sidenavLinkI18nLanguages,
-	styleSetup as sidenavStyleSetup
+	styleSetup as sidenavLinkStyleSetup
 } from '@htmlbricks/hb-sidenav-link/release/docs';
 import {
 	storybookArgs as tableStorybookArgs,
-	cssVars as tableCssVars,
-	cssParts as tableCssParts,
 	htmlSlots as tableHtmlSlots,
 	i18nLanguages as tableI18nLanguages,
-	styleSetup as tableI18nStyleSetup
+	styleSetup as tableStyleSetup
 } from '@htmlbricks/hb-table/release/docs';
 import {
 	storybookArgs as toastStorybookArgs,
-	cssVars as toastCssVars,
-	cssParts as toastCssParts,
 	htmlSlots as toastHtmlSlots,
 	i18nLanguages as toastI18nLanguages,
-	styleSetup as toastCssStyleSetup
+	styleSetup as toastStyleSetup
 } from '@htmlbricks/hb-toast/release/docs';
 
 // SUPER TRIKY ERROR IF IMPORT FROM REPO!!
 import {
 	storybookArgs as playerLiveStorybookArgs,
-	cssVars as playerLiveCssVars,
-	cssParts as playerLiveCssParts,
 	htmlSlots as playerLiveHtmlSlots,
 	i18nLanguages as playerLiveI18nLanguages,
 	styleSetup as playerLiveStyleSetup
@@ -434,8 +342,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: any;
 		name: string;
 		category: string;
-		cssVars: CssVar[];
-		cssParts: CssPart[];
+		styleSetup: StyleSetup;
 		htmlSlots: HtmlSlot[];
 		i18n: i18nLang[];
 	}[]
@@ -445,8 +352,6 @@ export const allComponentsMetas: Readable<
 		storybookArgs: bannerStorybookArgs,
 		name: 'banner',
 		category: 'basic',
-		cssVars: bannerCssVars,
-		cssParts: bannerCssParts,
 		styleSetup: bannerStyleSetup,
 		htmlSlots: bannerHtmlSlots,
 		i18n: bannerI18nLanguages
@@ -456,8 +361,6 @@ export const allComponentsMetas: Readable<
 		storybookArgs: areaCodeStorybookArgs,
 		name: 'area-code',
 		category: 'dev',
-		cssVars: areaCodeCssVars,
-		cssParts: areaCodeCssParts,
 		styleSetup: areaCodeStyleSetup,
 		htmlSlots: areaCodeHtmlSlots,
 		i18n: areaCodeI18nLanguages
@@ -467,9 +370,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: offcanvasStorybookArgs,
 		name: 'offcanvas',
 		category: 'layout',
-		cssVars: offcanvasCssVars,
-		cssParts: offcanvasCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: offcanvasStyleSetup,
 		htmlSlots: offcanvasHtmlSlots,
 		i18n: offcanvasI18nLanguages
 	},
@@ -478,9 +379,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: layoutStorybookArgs,
 		name: 'layout',
 		category: 'layout',
-		cssVars: layoutCssVars,
-		cssParts: layoutCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: layoutStyleSetup,
 		htmlSlots: layoutHtmlSlots,
 		i18n: layoutI18nLanguages
 	},
@@ -489,9 +388,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: footerStorybookArgs,
 		name: 'footer',
 		category: 'layout',
-		cssVars: footerCssVars,
-		cssParts: footerCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: footerStyleSetup,
 		htmlSlots: footerHtmlSlots,
 		i18n: footerI18nLanguages
 	},
@@ -500,9 +397,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: inputTextStorybookArgs,
 		name: 'input-text',
 		category: 'input',
-		cssVars: inputTextCssVars,
-		cssParts: inputTextCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: inputTextStyleSetup,
 		htmlSlots: inputTextHtmlSlots,
 		i18n: inputTextI18nLanguages
 	},
@@ -511,9 +406,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: paginateStorybookArgs,
 		name: 'paginate',
 		category: 'basic',
-		cssVars: paginateCssVars,
-		cssParts: paginateCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: paginateStyleSetup,
 		htmlSlots: paginateHtmlSlots,
 		i18n: paginateI18nLanguages
 	},
@@ -523,9 +416,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: authStorybookArgs,
 		name: 'auth',
 		category: 'components',
-		cssVars: authCssVars,
-		cssParts: authCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: authStyleSetup,
 		htmlSlots: authHtmlSlots,
 		i18n: authI18nLanguages
 	},
@@ -534,9 +425,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: calendarEventsStorybookArgs,
 		name: 'calendar-events',
 		category: 'components',
-		cssVars: calendarEventsCssVars,
-		cssParts: calendarEventsCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: calendarEventsStyleSetup,
 		htmlSlots: calendarEventsHtmlSlots,
 		i18n: calendarEventsI18nLanguages
 	},
@@ -546,9 +435,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: cardVideoStorybookArgs,
 		name: 'card-video',
 		category: 'components',
-		cssVars: cardVideoCssVars,
-		cssParts: cardVideoCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: cardVideoStyleSetup,
 		htmlSlots: cardVideoHtmlSlots,
 		i18n: cardVideoI18nLanguages
 	},
@@ -558,9 +445,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: chartjsStorybookArgs,
 		name: 'chartjs',
 		category: 'graph',
-		cssVars: chartjsCssVars,
-		cssParts: chartjsCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: chartjsStyleSetup,
 		htmlSlots: chartjsHtmlSlots,
 		i18n: chartjsI18nLanguages
 	},
@@ -569,9 +454,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: checkoutStorybookArgs,
 		name: 'checkout',
 		category: 'payment',
-		cssVars: checkoutCssVars,
-		cssParts: checkoutCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: checkoutStyleSetup,
 		htmlSlots: checkoutHtmlSlots,
 		i18n: checkoutI18nLanguages
 	},
@@ -580,9 +463,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: checkoutShoppingCartStorybookArgs,
 		name: 'checkout-shopping-cart',
 		category: 'payment',
-		cssVars: checkoutShoppingCartCssVars,
-		cssParts: checkoutShoppingCartCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: checkoutShoppingCartStyleSetup,
 		htmlSlots: checkoutShoppingCartHtmlSlots,
 		i18n: checkoutShoppingCartI18nLanguages
 	},
@@ -591,9 +472,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: contactItemStorybookArgs,
 		name: 'contact-item',
 		category: 'basic',
-		cssVars: contactItemCssVars,
-		cssParts: contactItemCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: contactItemStyleSetup,
 		htmlSlots: contactItemHtmlSlots,
 		i18n: contactItemI18nLanguages
 	},
@@ -602,9 +481,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: cookieLawBannerStorybookArgs,
 		name: 'cookie-law-banner',
 		category: 'layout',
-		cssVars: cookieLawBannerCssVars,
-		cssParts: cookieLawBannerCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: cookieLawBannerStyleSetup,
 		htmlSlots: cookieLawBannerHtmlSlots,
 		i18n: cookieLawBannerI18nLanguages
 	},
@@ -613,9 +490,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: dialogStorybookArgs,
 		name: 'dialog',
 		category: 'basic',
-		cssVars: dialogCssVars,
-		cssParts: dialogCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: dialogStyleSetup,
 		htmlSlots: dialogHtmlSlots,
 		i18n: dialogI18nLanguages
 	},
@@ -624,9 +499,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: downloaderStorybookArgs,
 		name: 'downloader',
 		category: 'basic',
-		cssVars: downloaderCssVars,
-		cssParts: downloaderCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: downloaderStyleSetup,
 		htmlSlots: downloaderHtmlSlots,
 		i18n: downloaderI18nLanguages
 	},
@@ -636,9 +509,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: dropdownSimpleStorybookArgs,
 		name: 'dropdown-simple',
 		category: 'basic',
-		cssVars: dropdownSimpleCssVars,
-		cssParts: dropdownSimpleCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: dropdownSimpleStyleSetup,
 		htmlSlots: dropdownSimpleHtmlSlots,
 		i18n: dropdownSimpleI18nLanguages
 	},
@@ -647,9 +518,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: editorTinymceStorybookArgs,
 		name: 'editor-tinymce',
 		category: 'editor',
-		cssVars: editorTinymceCssVars,
-		cssParts: editorTinymceCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: editorTinymceStyleSetup,
 		htmlSlots: editorTinymceHtmlSlots,
 		i18n: editorTinymceI18nLanguages
 	},
@@ -658,9 +527,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: editorVideoStorybookArgs,
 		name: 'editor-video',
 		category: 'editor',
-		cssVars: editorVideoCssVars,
-		cssParts: editorVideoCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: editorVideoStyleSetup,
 		htmlSlots: editorVideoHtmlSlots,
 		i18n: editorVideoI18nLanguages
 	},
@@ -669,9 +536,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: formStorybookArgs,
 		name: 'form',
 		category: 'form',
-		cssVars: formCssVars,
-		cssParts: formCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: formStyleSetup,
 		htmlSlots: formHtmlSlots,
 		i18n: formI18nLanguages
 	},
@@ -680,9 +545,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: funnelStorybookArgs,
 		name: 'funnel',
 		category: 'form',
-		cssVars: funnelCssVars,
-		cssParts: funnelCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: funnelStyleSetup,
 		htmlSlots: funnelHtmlSlots,
 		i18n: funnelI18nLanguages
 	},
@@ -691,9 +554,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: galleryVideoStorybookArgs,
 		name: 'gallery-video',
 		category: 'components',
-		cssVars: galleryVideoCssVars,
-		cssParts: galleryVideoCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: galleryVideoStyleSetup,
 		htmlSlots: galleryVideoHtmlSlots,
 		i18n: galleryVideoI18nLanguages
 	},
@@ -702,9 +563,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: gaugeStorybookArgs,
 		name: 'gauge',
 		category: 'graph',
-		cssVars: gaugeCssVars,
-		cssParts: gaugeCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: gaugeStyleSetup,
 		htmlSlots: gaugeHtmlSlots,
 		i18n: gaugeI18nLanguages
 	},
@@ -713,9 +572,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: inputAreaStorybookArgs,
 		name: 'input-area',
 		category: 'input',
-		cssVars: inputAreaCssVars,
-		cssParts: inputAreaCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: inputAreaStyleSetup,
 		htmlSlots: inputAreaHtmlSlots,
 		i18n: inputAreaI18nLanguages
 	},
@@ -724,9 +581,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: inputCheckboxStorybookArgs,
 		name: 'input-checkbox',
 		category: 'input',
-		cssVars: inputCheckboxCssVars,
-		cssParts: inputCheckboxCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: inputCheckboxStyleSetup,
 		htmlSlots: inputCheckboxHtmlSlots,
 		i18n: inputCheckboxI18nLanguages
 	},
@@ -735,9 +590,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: inputDateStorybookArgs,
 		name: 'input-date',
 		category: 'input',
-		cssVars: inputDateCssVars,
-		cssParts: inputDateCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: inputDateStyleSetup,
 		htmlSlots: inputDateHtmlSlots,
 		i18n: inputDateI18nLanguages
 	},
@@ -746,9 +599,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: inputEmailStorybookArgs,
 		name: 'input-email',
 		category: 'input',
-		cssVars: inputEmailCssVars,
-		cssParts: inputEmailCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: inputEmailStyleSetup,
 		htmlSlots: inputEmailHtmlSlots,
 		i18n: inputEmailI18nLanguages
 	},
@@ -757,9 +608,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: inputFileStorybookArgs,
 		name: 'input-file',
 		category: 'input',
-		cssVars: inputFileCssVars,
-		cssParts: inputFileCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: inputFileStyleSetup,
 		htmlSlots: inputFileHtmlSlots,
 		i18n: inputFileI18nLanguages
 	},
@@ -768,9 +617,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: inputNumberStorybookArgs,
 		name: 'input-number',
 		category: 'input',
-		cssVars: inputNumberCssVars,
-		cssParts: inputNumberCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: inputNumberStyleSetup,
 		htmlSlots: inputNumberHtmlSlots,
 		i18n: inputNumberI18nLanguages
 	},
@@ -779,9 +626,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: inputRadioStorybookArgs,
 		name: 'input-radio',
 		category: 'input',
-		cssVars: inputRadioCssVars,
-		cssParts: inputRadioCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: inputRadioStyleSetup,
 		htmlSlots: inputRadioHtmlSlots,
 		i18n: inputRadioI18nLanguages
 	},
@@ -790,9 +635,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: inputSelectStorybookArgs,
 		name: 'input-select',
 		category: 'input',
-		cssVars: inputSelectCssVars,
-		cssParts: inputSelectCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: inputSelectStyleSetup,
 		htmlSlots: inputSelectHtmlSlots,
 		i18n: inputSelectI18nLanguages
 	},
@@ -801,9 +644,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: mapStorybookArgs,
 		name: 'map',
 		category: 'graph',
-		cssVars: mapCssVars,
-		cssParts: mapCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: mapStyleSetup,
 		htmlSlots: mapHtmlSlots,
 		i18n: mapI18nLanguages
 	},
@@ -812,9 +653,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: modalVideoStorybookArgs,
 		name: 'modal-video',
 		category: 'basic',
-		cssVars: modalVideoCssVars,
-		cssParts: modalVideoCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: modalVideoStyleSetup,
 		htmlSlots: modalVideoHtmlSlots,
 		i18n: modalVideoI18nLanguages
 	},
@@ -823,9 +662,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: navbarStorybookArgs,
 		name: 'navbar',
 		category: 'layout',
-		cssVars: navbarCssVars,
-		cssParts: navbarCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: navbarStyleSetup,
 		htmlSlots: navbarHtmlSlots,
 		i18n: navbarI18nLanguages
 	},
@@ -834,9 +671,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: orderListStorybookArgs,
 		name: 'order-list',
 		category: 'basic',
-		cssVars: orderListCssVars,
-		cssParts: orderListCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: orderListStyleSetup,
 		htmlSlots: orderListHtmlSlots,
 		i18n: orderListI18nLanguages
 	},
@@ -845,9 +680,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: pageCheckoutStorybookArgs,
 		name: 'page-checkout',
 		category: 'page',
-		cssVars: pageCheckoutCssVars,
-		cssParts: pageCheckoutCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: pageCheckoutStyleSetup,
 		htmlSlots: pageCheckoutHtmlSlots,
 		i18n: pageCheckoutI18nLanguages
 	},
@@ -856,9 +689,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: pageInvoiceStorybookArgs,
 		name: 'page-invoice',
 		category: 'page',
-		cssVars: pageInvoiceCssVars,
-		cssParts: pageInvoiceCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: pageInvoiceStyleSetup,
 		htmlSlots: pageInvoiceHtmlSlots,
 		i18n: pageInvoiceI18nLanguages
 	},
@@ -867,9 +698,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: pageLoginregisterStorybookArgs,
 		name: 'page-loginregister',
 		category: 'page',
-		cssVars: pageLoginregisterCssVars,
-		cssParts: pageLoginregisterCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: pageLoginregisterStyleSetup,
 		htmlSlots: pageLoginregisterHtmlSlots,
 		i18n: pageLoginregisterI18nLanguages
 	},
@@ -878,9 +707,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: paymentPaypalStorybookArgs,
 		name: 'payment-paypal',
 		category: 'payment',
-		cssVars: paymentPaypalCssVars,
-		cssParts: paymentPaypalCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: paymentPaypalStyleSetup,
 		htmlSlots: paymentPaypalHtmlSlots,
 		i18n: paymentPaypalI18nLanguages
 	},
@@ -889,9 +716,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: playerLiveStorybookArgs,
 		name: 'player-live',
 		category: 'basic',
-		cssVars: playerLiveCssVars,
-		cssParts: playerLiveCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: playerLiveStyleSetup,
 		htmlSlots: playerLiveHtmlSlots,
 		i18n: playerLiveI18nLanguages
 	},
@@ -900,9 +725,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: productComparisonStorybookArgs,
 		name: 'product-comparison',
 		category: 'components',
-		cssVars: productComparisonCssVars,
-		cssParts: productComparisonCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: productComparisonStyleSetup,
 		htmlSlots: productComparisonHtmlSlots,
 		i18n: productComparisonI18nLanguages
 	},
@@ -911,9 +734,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: rangeSliderStorybookArgs,
 		name: 'range-slider',
 		category: 'basic',
-		cssVars: rangeSliderCssVars,
-		cssParts: rangeSliderCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: rangeSliderStyleSetup,
 		htmlSlots: rangeSliderHtmlSlots,
 		i18n: rangeSliderI18nLanguages
 	},
@@ -922,9 +743,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: sidenavLinkStorybookArgs,
 		name: 'sidenav-link',
 		category: 'basic',
-		cssVars: sidenavLinkCssVars,
-		cssParts: sidenavLinkCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: sidenavLinkStyleSetup,
 		htmlSlots: sidenavLinkHtmlSlots,
 		i18n: sidenavLinkI18nLanguages
 	},
@@ -933,9 +752,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: tableStorybookArgs,
 		name: 'table',
 		category: 'table',
-		cssVars: tableCssVars,
-		cssParts: tableCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: tableStyleSetup,
 		htmlSlots: tableHtmlSlots,
 		i18n: tableI18nLanguages
 	},
@@ -944,9 +761,7 @@ export const allComponentsMetas: Readable<
 		storybookArgs: toastStorybookArgs,
 		name: 'toast',
 		category: 'basic',
-		cssVars: toastCssVars,
-		cssParts: toastCssParts,
-		styleSetup: aa StyleSetup,
+		styleSetup: toastStyleSetup,
 		htmlSlots: toastHtmlSlots,
 		i18n: toastI18nLanguages
 	}
