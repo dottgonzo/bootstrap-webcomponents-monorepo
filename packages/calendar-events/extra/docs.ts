@@ -9,22 +9,8 @@ export const storybookArgs = {
 	changeSelectedDate: { action: "changeSelectedDateEvent" },
 };
 
-export const cssVars: CssVar[] = [
-	{ name: "--bs-primary", defaultValue: "", theme: "bootstrap", valueType: "color" },
-	{
-		name: "--bs-secondary",
-		defaultValue: null,
-		theme: "bootstrap",
-		valueType: "color",
-	},
-	{
-		name: "--bs-success",
-		defaultValue: null,
-		theme: "bootstrap",
-		valueType: "color",
-	},
-];
-export const cssParts: CssPart[] = [
+const cssVars: CssVar[] = [];
+const cssParts: CssPart[] = [
 	{
 		name: "calendar-header",
 	},
@@ -37,5 +23,5 @@ export const i18nLanguages: i18nLang[] = [];
 export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
-	themes: [],
+	themes: ["bootstrap"],
 };

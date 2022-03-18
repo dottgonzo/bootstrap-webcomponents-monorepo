@@ -15,7 +15,7 @@ export const storybookArgs = {
 	footerclick: { action: "footerClickEvent" },
 };
 
-export const cssVars: CssVar[] = [];
+const cssVars: CssVar[] = [];
 export const cssParts: CssPart[] = [{ name: "olumn-cell-button-content", description: "" }];
 export const htmlSlots: HtmlSlot[] = [
 	{ name: "footerpolicy", description: "" },
@@ -29,5 +29,5 @@ export const i18nLanguages: i18nLang[] = [];
 export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
-	themes: [],
+	themes: ["bootstrap"],
 };

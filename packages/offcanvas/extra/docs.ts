@@ -13,7 +13,7 @@ export const storybookArgs = {
 	navlinks: { control: { type: "array" } },
 };
 
-export const cssVars: CssVar[] = [];
+const cssVars: CssVar[] = [];
 export const cssParts: CssPart[] = [
 	{
 		name: "header",
@@ -40,5 +40,5 @@ export const i18nLanguages: i18nLang[] = [];
 export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
-	themes: [],
+	themes: ["bootstrap"],
 };

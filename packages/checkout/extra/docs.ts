@@ -12,7 +12,7 @@ export const storybookArgs = {
 	completed: { control: { type: "radio" }, options: ["yes", "no"] },
 };
 
-export const cssVars: CssVar[] = [
+const cssVars: CssVar[] = [
 	{
 		name: "--edit-color",
 		defaultValue: "green",
@@ -60,5 +60,5 @@ export const i18nLanguages: i18nLang[] = [];
 export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
-	themes: [],
+	themes: ["bootstrap"],
 };

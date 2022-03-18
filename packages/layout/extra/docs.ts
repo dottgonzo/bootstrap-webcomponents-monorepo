@@ -13,7 +13,7 @@ export const storybookArgs = {
 	cookielaw: { control: { type: "boolean" } },
 };
 
-export const cssVars: CssVar[] = [];
+const cssVars: CssVar[] = [];
 export const cssParts: CssPart[] = [
 	{ name: "footer", description: "" },
 	{ name: "container", description: "" },
@@ -32,5 +32,5 @@ export const i18nLanguages: i18nLang[] = [];
 export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
-	themes: [],
+	themes: ["bootstrap"],
 };

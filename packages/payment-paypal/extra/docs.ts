@@ -7,7 +7,7 @@ export const storybookArgs = {
 	currency: { control: { type: "string" } },
 };
 
-export const cssVars: CssVar[] = [
+const cssVars: CssVar[] = [
 	{
 		name: "--hb-checkout-border",
 		defaultValue: "0.5px solid rgba(197, 197, 197, 0.808)",
@@ -22,5 +22,5 @@ export const i18nLanguages: i18nLang[] = [];
 export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
-	themes: [],
+	themes: ["bootstrap"],
 };

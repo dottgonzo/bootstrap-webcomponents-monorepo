@@ -8,7 +8,7 @@ export const storybookArgs = {
 	dispatchTrack: { action: "dispatchTrackEvent" },
 };
 
-export const cssVars: CssVar[] = [];
+const cssVars: CssVar[] = [];
 export const cssParts: CssPart[] = [];
 export const htmlSlots: HtmlSlot[] = [];
 export const i18nLanguages: i18nLang[] = [];
@@ -16,5 +16,5 @@ export const i18nLanguages: i18nLang[] = [];
 export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
-	themes: [],
+	themes: ["bootstrap"],
 };

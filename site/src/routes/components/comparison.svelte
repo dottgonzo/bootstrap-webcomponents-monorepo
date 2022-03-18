@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 
 	import { page } from '$app/stores';
+	import { styleSetup } from '@htmlbricks/hb-banner/release/docs';
 
 	import { pageName } from '../../stores/app';
 	import { allComponentsMetas } from '../../stores/components';
@@ -42,9 +43,9 @@
 						? Object.keys(c.definition.definitions.Events.properties).length
 						: 0}</td
 				>
-				<td>{c.cssVars?.filter((f) => f.theme)?.length || 0}</td>
-				<td>{c.cssVars?.filter((f) => !f.theme)?.length || 0}</td>
-				<td>{c.cssParts?.length || 0}</td>
+				<td>{c.styleSetup?.vars?.filter((f) => f.theme)?.length || 0}</td>
+				<td>{c.styleSetup?.vars?.filter((f) => !f.theme)?.length || 0}</td>
+				<td>{c.styleSetup?.parts?.length || 0}</td>
 				<td>{c.htmlSlots?.length || 0}</td>
 				<td>{c.i18n?.length || 0}</td>
 			</tr>
