@@ -107,7 +107,12 @@
 			?.map((m) => {
 				return { name: m.name, value: m.value };
 			});
-		if (meta.styleSetup.themes.includes('bootstrap')) allCssVars.concat($bootstrapThemeCssVars);
+		if (meta.styleSetup.themes.includes('bootstrap'))
+			allCssVars.concat(
+				$bootstrapThemeCssVars.map((m) => {
+					return { name: m.name, value: m.value };
+				})
+			);
 	}
 </script>
 
@@ -259,12 +264,16 @@
 					{:else if controlTab === 'slots'}
 						<SlotTable slots={htmlSlots} />
 					{:else if controlTab === 'style'}
-						<div>
-							{#if styleSetup?.parts?.length}<CssPartsTable parts={styleSetup.parts} />{/if}
-						</div>
-						<div>
-							{#if styleSetup?.vars?.length}<CssVarsTable vars={styleSetup.vars} />{/if}
-						</div>
+						{#if styleSetup?.parts?.length}
+							<div>
+								<CssPartsTable parts={styleSetup.parts} />
+							</div>
+						{/if}
+						{#if styleSetup?.vars?.length || styleSetup?.themes?.length}
+							<div>
+								<CssVarsTable vars={styleSetup.vars} />
+							</div>
+						{/if}
 					{/if}
 				</div>
 			</div>
