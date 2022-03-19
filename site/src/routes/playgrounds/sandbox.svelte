@@ -34,7 +34,7 @@
 			if (cssParts?.length) {
 				com += '<sty' + 'le>';
 				for (const p of cssParts) {
-					com += `${$pageName}::${p.name}{${p.content}}`;
+					com += `hb-${$pageName}::part(${p.name}){${p.content}}`;
 				}
 				com += '</sty' + 'le>';
 			}
