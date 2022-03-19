@@ -32,7 +32,7 @@
 <table style="width:100%">
 	<tr>
 		<th>Name</th>
-		<th>Default Value</th>
+		<th>Value</th>
 		<th>Type</th>
 		<th>Description</th>
 	</tr>
@@ -64,7 +64,8 @@
 	<table style="width:100%">
 		<tr>
 			<th>Name</th>
-			<th>Default Value</th>
+			<th>Value</th>
+			<th>Type</th>
 		</tr>
 
 		{#each $bootstrapThemeCssVars.sort((a, b) => (a.rank || 1) - (b.rank || 1)) as bv (bv.name)}
@@ -78,10 +79,11 @@
 							id: `b_css_${$pageName}_${bv.name}`
 						})}
 						on:setValue={(e) => {
-							// setCssVar(e.detail, bv.name);
+							setCssVar(e.detail, bv.name);
 						}}
 					/>
 				</td>
+				<td>{bv.type}</td>
 			</tr>
 		{/each}
 	</table>
