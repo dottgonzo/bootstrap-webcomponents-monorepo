@@ -19,7 +19,7 @@
 			}
 		} else if (!detail.value && existentChange) {
 			const changeIndex = copy.findIndex((f) => f.component === $pageName && f.name === name);
-			copy.splice(changeIndex);
+			copy.splice(changeIndex, 1);
 			cssVarsValues.set(copy);
 		}
 	}

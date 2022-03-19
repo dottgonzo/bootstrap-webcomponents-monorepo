@@ -250,8 +250,12 @@
 					{:else if controlTab === 'slots'}
 						<SlotTable slots={htmlSlots} />
 					{:else if controlTab === 'style'}
-						{#if styleSetup?.vars?.length}<CssVarsTable vars={styleSetup.vars} />{/if}
-						{#if styleSetup?.parts?.length}<CssPartsTable parts={styleSetup.parts} />{/if}
+						<div>
+							{#if styleSetup?.parts?.length}<CssPartsTable parts={styleSetup.parts} />{/if}
+						</div>
+						<div>
+							{#if styleSetup?.vars?.length}<CssVarsTable vars={styleSetup.vars} />{/if}
+						</div>
 					{/if}
 				</div>
 			</div>

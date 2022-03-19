@@ -27,7 +27,7 @@
 		} else if ($htmlSlotsContents.find((f) => f.component === $pageName && f.name === name)) {
 			const previous = $htmlSlotsContents;
 			const toRemove = previous.findIndex((f) => f.component === $pageName && f.name === name);
-			previous.splice(toRemove);
+			previous.splice(toRemove, 1);
 			htmlSlotsContents.set(previous);
 		}
 	}
@@ -36,14 +36,13 @@
 <table style="width:100%">
 	<tr>
 		<th>Slot Name</th>
-		<th>Slot Description</th>
 		<th>Slot Content</th>
+		<th>Slot Description</th>
 	</tr>
 
 	{#each slots as s (s.name)}
 		<tr>
 			<td>{s.name}</td>
-			<td>{s.description}</td>
 			<td>
 				<hb-input-text
 					schemaentry={JSON.stringify({
@@ -57,6 +56,7 @@
 					}}
 				/>
 			</td>
+			<td>{s.description || ''}</td>
 		</tr>
 	{/each}
 </table>
