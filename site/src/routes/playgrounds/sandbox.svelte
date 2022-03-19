@@ -30,7 +30,16 @@
 			args = paramsBase64 ? JSON.parse(decodeURIComponent(paramsBase64)) : {};
 			meta = $allComponentsMetas?.find((f) => f.name === name);
 
-			com = `<hb-${name} id="com-${name}"`;
+			com = '';
+			if (cssParts?.length) {
+				com += '<sty' + 'le>';
+				for (const p of cssParts) {
+					com += `${$pageName}::${p.name}{${p.content}}`;
+				}
+				com += '</sty' + 'le>';
+			}
+
+			com += `<hb-${name} id="com-${name}"`;
 			// if (lang && !args?.['i18nlang'] && meta?.i18n?.length) {
 			// 	com += ` i18nlang="${lang}"`;
 			// }
