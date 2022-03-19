@@ -28,36 +28,37 @@
 	}
 </script>
 
-<div>variables</div>
-<table style="width:100%">
-	<tr>
-		<th>Name</th>
-		<th>Value</th>
-		<th>Type</th>
-		<th>Description</th>
-	</tr>
-
-	{#each vars as v (v.name)}
+{#if vars?.length}
+	<div>variables</div>
+	<table style="width:100%">
 		<tr>
-			<td>{v.name}</td>
-			<td>
-				<hb-input-text
-					schemaentry={JSON.stringify({
-						value: v.defaultValue?.toString() || '',
-						label: v.name,
-						id: `css_${$pageName}_${v.name}`
-					})}
-					on:setValue={(e) => {
-						setCssVar(e.detail, v.name);
-					}}
-				/>
-			</td>
-			<td>{v.valueType || ''}</td>
-			<td>{v.description || ''}</td>
+			<th>Name</th>
+			<th>Value</th>
+			<th>Type</th>
+			<th>Description</th>
 		</tr>
-	{/each}
-</table>
 
+		{#each vars as v (v.name)}
+			<tr>
+				<td>{v.name}</td>
+				<td>
+					<hb-input-text
+						schemaentry={JSON.stringify({
+							value: v.defaultValue?.toString() || '',
+							label: v.name,
+							id: `css_${$pageName}_${v.name}`
+						})}
+						on:setValue={(e) => {
+							setCssVar(e.detail, v.name);
+						}}
+					/>
+				</td>
+				<td>{v.valueType || ''}</td>
+				<td>{v.description || ''}</td>
+			</tr>
+		{/each}
+	</table>
+{/if}
 {#if $allComponentsMetas.find((f) => f.name === $pageName && f.styleSetup?.themes?.includes?.('bootstrap'))}
 	<div>bootstrap theme vars</div>
 
