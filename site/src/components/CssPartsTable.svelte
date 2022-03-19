@@ -5,7 +5,7 @@
 
 	export let parts: CssPart[];
 	function setPartVal(detail, name: string) {
-		const val = detail?.val;
+		const val = detail?.value;
 		console.log('setPart', val, name);
 		const partsContents = $cssPartsContents;
 		const partsContensExists = $cssPartsContents.find(
