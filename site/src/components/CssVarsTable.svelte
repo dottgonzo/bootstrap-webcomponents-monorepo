@@ -69,7 +69,7 @@
 			<th>Type</th>
 		</tr>
 
-		{#each $bootstrapThemeCssVars.sort((a, b) => (a.rank || 1) - (b.rank || 1)) as bv (bv.name)}
+		{#each $bootstrapThemeCssVars.sort((a, b) => (b.rank || 1) - (a.rank || 1)) as bv (bv.name)}
 			<tr>
 				<td>{bv.name}</td>
 				<td>
