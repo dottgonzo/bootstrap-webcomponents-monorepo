@@ -180,7 +180,9 @@
 						on:click={() => {
 							controlTab = 'style';
 						}}
-						class="nav-link {styleSetup.vars?.length || styleSetup?.parts?.length
+						class="nav-link {styleSetup.vars?.length ||
+						styleSetup?.parts?.length ||
+						styleSetup?.themes?.length
 							? ''
 							: 'disabled'} {controlTab === 'style' ? 'active' : ''}">style</button
 					>
