@@ -51,7 +51,16 @@
 
 		args = $allComponentsExampleValues[name];
 
-		com = `<hb-${name} id="com-${name}"`;
+		com = '';
+		if ($cssPartsContents.filter((f) => f.component === name)?.length) {
+			com += '<sty' + 'le>';
+			for (const p of $cssPartsContents.filter((f) => f.component === name)) {
+				com += `hb-${$pageName}::part(${p.name}){${p.content}}`;
+			}
+			com += '</sty' + 'le>';
+		}
+
+		com += `<hb-${name} id="com-${name}"`;
 		// if (lang && !args?.['i18nlang'] && meta?.i18n?.length) {
 		// 	com += ` i18nlang="${lang}"`;
 		// }
