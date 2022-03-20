@@ -4,12 +4,16 @@
 	import { get_current_component, onMount } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 	import type { TextSchemaEntry } from "@app/types/webcomponent.type";
+
+	import AColorPicker from "a-color-picker";
+	import debounce from "debounce";
+	import htmlColors from "html-colors";
+	import rgbHex from "rgb-hex";
+
+	export let schemaentry: FormSchemaEntry;
 	export let setvalue: boolean;
 	export let setvalid: boolean;
 	export let showvalidation: "yes" | "no";
-	import AColorPicker from "a-color-picker";
-	export let schemaentry: FormSchemaEntry;
-	import debounce from "debounce";
 
 	let value: string;
 	let regex: RegExp | undefined;
@@ -28,6 +32,8 @@
 	// let picker: ColorPicker;
 	let colorVal = schemaentry?.value;
 	function bootValue() {
+		if (!value.startsWith("#") && htmlColors.hex(value)) value = htmlColors.hex(value);
+		if ((value.startsWith("rgb") || (value.split(",").length >= 3 && value.split(",").length <= 4)) && rgbHex(value)) value = "#" + rgbHex(value);
 		colorVal = value;
 	}
 	$: {

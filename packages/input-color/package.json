@@ -35,6 +35,7 @@
 		"@rollup/plugin-typescript": "^8.2.1",
 		"@tsconfig/svelte": "^1.0.10",
 		"@types/node": "^16.7.1",
+		"@types/rgb-hex": "^3.0.0",
 		"@typescript-eslint/eslint-plugin": "^4.22.0",
 		"@typescript-eslint/parser": "^4.22.0",
 		"eslint": "^7.25.0",
@@ -72,6 +73,8 @@
 	"contributors": [],
 	"gitHead": "062b2dc2d375bf81a8485572cd41ae40115aef3e",
 	"dependencies": {
-		"debounce": "^1.2.1"
+		"debounce": "^1.2.1",
+		"html-colors": "^0.0.6",
+		"rgb-hex": "^4.0.0"
 	}
 }
