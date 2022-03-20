@@ -12,11 +12,11 @@ export type CssVar = {
   valueType: "color" | "string" | "htmlsize" | "number";
   name: string;
   description?: string;
-  theme?: string;
+  theme?: supportedTheme;
 };
 export type StyleSetup = {
   parts: CssPart[];
-  themes: supportedTheme[];
+  // themes: supportedTheme[];
   vars: CssVar[];
 };
 export type i18nLang = {
