@@ -6,7 +6,7 @@ export const storybookArgs = {
 	pagechange: { action: "pagechange" },
 };
 
-const cssVars: CssVar[] = [];
+const cssVars: CssVar[] = [{ name: "--bs-primary", valueType: "color", themes: ["bootstrap"] }];
 export const cssParts: CssPart[] = [];
 export const htmlSlots: HtmlSlot[] = [];
 export const i18nLanguages: i18nLang[] = [];
