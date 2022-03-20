@@ -1,4 +1,5 @@
 export type supportedTheme = "bootstrap";
+export type cssValueType = "color" | "string" | "htmlsize" | "number";
 export type CssPart = {
   name: string;
   description?: string;
@@ -9,7 +10,7 @@ export type HtmlSlot = {
 };
 export type CssVar = {
   defaultValue?: string;
-  valueType: "color" | "string" | "htmlsize" | "number";
+  valueType: cssValueType;
   name: string;
   description?: string;
   theme?: supportedTheme;
