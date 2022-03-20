@@ -40,7 +40,10 @@
 				<td>
 					<hb-input-text
 						schemaentry={JSON.stringify({
-							value: bv.value?.toString() || '',
+							value:
+								$globalCssVarsValues.find((f) => f.name == bv.name)?.value ||
+								bv.value?.toString() ||
+								'',
 							label: bv.name,
 							id: `b_css_${$pageName}_${bv.name}`
 						})}
