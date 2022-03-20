@@ -31,7 +31,6 @@
 		<tr>
 			<th>Name</th>
 			<th>Value</th>
-			<th>Type</th>
 		</tr>
 
 		{#each $defaultBootstrapThemeCssVars.sort((a, b) => (b.rank || 1) - (a.rank || 1)) as bv (bv.name)}
@@ -62,7 +61,6 @@
 						/>
 					{/if}
 				</td>
-				<td>{bv.type}</td>
 			</tr>
 		{/each}
 	</table>

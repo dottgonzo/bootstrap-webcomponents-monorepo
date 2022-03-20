@@ -32,7 +32,6 @@
 		<tr>
 			<th>Name</th>
 			<th>Value</th>
-			<th>Type</th>
 			<th>Description</th>
 		</tr>
 
@@ -64,7 +63,6 @@
 						/>
 					{/if}
 				</td>
-				<td>{v.valueType || ''}</td>
 				<td>{v.description || ''}</td>
 			</tr>
 		{/each}
@@ -77,7 +75,6 @@
 		<tr>
 			<th>Name</th>
 			<th>Value</th>
-			<th>Type</th>
 		</tr>
 
 		{#each $defaultBootstrapThemeCssVars
@@ -110,7 +107,6 @@
 						/>
 					{/if}
 				</td>
-				<td>{bv.type}</td>
 			</tr>
 		{/each}
 	</table>
