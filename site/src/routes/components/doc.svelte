@@ -186,9 +186,7 @@
 						on:click={() => {
 							controlTab = 'style';
 						}}
-						class="nav-link {styleSetup?.vars?.length ||
-						styleSetup?.parts?.length ||
-						styleSetup?.themes?.length
+						class="nav-link {styleSetup?.vars?.length || styleSetup?.parts?.length
 							? ''
 							: 'disabled'} {controlTab === 'style' ? 'active' : ''}">style</button
 					>
@@ -277,7 +275,7 @@
 								<CssPartsTable parts={styleSetup.parts} />
 							</div>
 						{/if}
-						{#if styleSetup?.vars?.length || styleSetup?.themes?.length}
+						{#if styleSetup?.vars?.length}
 							<div>
 								<CssVarsTable vars={styleSetup.vars} />
 							</div>

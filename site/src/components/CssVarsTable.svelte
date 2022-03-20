@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { CssVar } from '@htmlbricks/hb-jsutils/main';
 	import { defaultBootstrapThemeCssVars } from '../stores/themes';
-	import { allComponentsMetas } from '../stores/components';
 	import { pageName } from '../stores/app';
 	import { cssVarsValues } from '../stores/events';
 
@@ -28,7 +27,7 @@
 	}
 </script>
 
-{#if vars?.length}
+{#if vars.filter((f) => !f?.theme)?.length}
 	<div>variables</div>
 	<table style="width:100%">
 		<tr>
@@ -38,7 +37,7 @@
 			<th>Description</th>
 		</tr>
 
-		{#each vars as v (v.name)}
+		{#each vars.filter((f) => !f?.theme) as v (v.name)}
 			<tr>
 				<td>{v.name}</td>
 				<td>
@@ -72,7 +71,7 @@
 		{/each}
 	</table>
 {/if}
-{#if $allComponentsMetas.find((f) => f.name === $pageName && f.styleSetup?.themes?.includes?.('bootstrap'))}
+{#if vars.filter((f) => f?.theme)?.length}
 	<div>bootstrap theme vars</div>
 
 	<table style="width:100%">
@@ -82,7 +81,9 @@
 			<th>Type</th>
 		</tr>
 
-		{#each $defaultBootstrapThemeCssVars.sort((a, b) => (b.rank || 1) - (a.rank || 1)) as bv (bv.name)}
+		{#each $defaultBootstrapThemeCssVars
+			.filter((f) => vars.filter((ff) => ff.theme === 'bootstrap').find((ff) => ff.name === f.name))
+			.sort((a, b) => (b.rank || 1) - (a.rank || 1)) as bv (bv.name)}
 			<tr>
 				<td>{bv.name}</td>
 				<td>
