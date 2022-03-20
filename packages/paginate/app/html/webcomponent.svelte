@@ -18,10 +18,12 @@
 
 	export let pages: number;
 	export let page: number;
-
-	if (!id) id = null;
+	export let style: { [x: string]: string };
 
 	$: {
+		if (!id) id = null;
+		if (!style) style = null;
+
 		if (!page) {
 			page = 0;
 		} else {
