@@ -27,6 +27,7 @@ import funnelDefinition from '@htmlbricks/hb-funnel/release/webcomponent.type.d.
 import galleryVideoDefinition from '@htmlbricks/hb-gallery-video/release/webcomponent.type.d.json';
 import gaugeDefinition from '@htmlbricks/hb-gauge/release/webcomponent.type.d.json';
 import inputAreaDefinition from '@htmlbricks/hb-input-area/release/webcomponent.type.d.json';
+import inputColorDefinition from '@htmlbricks/hb-input-color/release/webcomponent.type.d.json';
 import inputCheckboxDefinition from '@htmlbricks/hb-input-checkbox/release/webcomponent.type.d.json';
 import inputDateDefinition from '@htmlbricks/hb-input-date/release/webcomponent.type.d.json';
 import inputEmailDefinition from '@htmlbricks/hb-input-email/release/webcomponent.type.d.json';
@@ -202,6 +203,12 @@ import {
 	i18nLanguages as inputAreaI18nLanguages,
 	styleSetup as inputAreaStyleSetup
 } from '@htmlbricks/hb-input-area/release/docs';
+import {
+	storybookArgs as inputColorStorybookArgs,
+	htmlSlots as inputColorHtmlSlots,
+	i18nLanguages as inputColorI18nLanguages,
+	styleSetup as inputColorStyleSetup
+} from '@htmlbricks/hb-input-color/release/docs';
 import {
 	storybookArgs as inputCheckboxStorybookArgs,
 	htmlSlots as inputCheckboxHtmlSlots,
@@ -575,6 +582,15 @@ export const allComponentsMetas: Readable<
 		styleSetup: inputAreaStyleSetup,
 		htmlSlots: inputAreaHtmlSlots,
 		i18n: inputAreaI18nLanguages
+	},
+	{
+		definition: inputColorDefinition,
+		storybookArgs: inputColorStorybookArgs,
+		name: 'input-color',
+		category: 'input',
+		styleSetup: inputColorStyleSetup,
+		htmlSlots: inputColorHtmlSlots,
+		i18n: inputColorI18nLanguages
 	},
 	{
 		definition: inputCheckboxDefinition,

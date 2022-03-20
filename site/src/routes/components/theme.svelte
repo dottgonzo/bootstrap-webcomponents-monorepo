@@ -38,19 +38,29 @@
 			<tr>
 				<td>{bv.name}</td>
 				<td>
-					<hb-input-text
-						schemaentry={JSON.stringify({
-							value:
-								$globalCssVarsValues.find((f) => f.name == bv.name)?.value ||
-								bv.value?.toString() ||
-								'',
-							label: bv.name,
-							id: `b_css_${$pageName}_${bv.name}`
-						})}
-						on:setValue={(e) => {
-							setCssThemeVar(e.detail, bv.name);
-						}}
-					/>
+					{#if bv.type === 'color'}
+						<hb-input-color
+							schemaentry={JSON.stringify({
+								value: bv.value?.toString() || '',
+								label: bv.name,
+								id: `gcss_${$pageName}_${bv.name}`
+							})}
+							on:setValue={(e) => {
+								setCssThemeVar(e.detail, bv.name);
+							}}
+						/>
+					{:else if bv.type === 'string'}
+						<hb-input-text
+							schemaentry={JSON.stringify({
+								value: bv.value?.toString() || '',
+								label: bv.name,
+								id: `gcss_${$pageName}_${bv.name}`
+							})}
+							on:setValue={(e) => {
+								setCssThemeVar(e.detail, bv.name);
+							}}
+						/>
+					{/if}
 				</td>
 				<td>{bv.type}</td>
 			</tr>

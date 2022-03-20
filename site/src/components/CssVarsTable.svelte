@@ -41,16 +41,29 @@
 			<tr>
 				<td>{v.name}</td>
 				<td>
-					<hb-input-text
-						schemaentry={JSON.stringify({
-							value: v.defaultValue?.toString() || '',
-							label: v.name,
-							id: `css_${$pageName}_${v.name}`
-						})}
-						on:setValue={(e) => {
-							setCssVar(e.detail, v.name);
-						}}
-					/>
+					{#if v.valueType === 'color'}
+						<hb-input-color
+							schemaentry={JSON.stringify({
+								value: v.defaultValue?.toString() || '',
+								label: v.name,
+								id: `css_${$pageName}_${v.name}`
+							})}
+							on:setValue={(e) => {
+								setCssVar(e.detail, v.name);
+							}}
+						/>
+					{:else if v.valueType === 'string'}
+						<hb-input-text
+							schemaentry={JSON.stringify({
+								value: v.defaultValue?.toString() || '',
+								label: v.name,
+								id: `css_${$pageName}_${v.name}`
+							})}
+							on:setValue={(e) => {
+								setCssVar(e.detail, v.name);
+							}}
+						/>
+					{/if}
 				</td>
 				<td>{v.valueType || ''}</td>
 				<td>{v.description || ''}</td>
@@ -72,16 +85,29 @@
 			<tr>
 				<td>{bv.name}</td>
 				<td>
-					<hb-input-text
-						schemaentry={JSON.stringify({
-							value: bv.value?.toString() || '',
-							label: bv.name,
-							id: `b_css_${$pageName}_${bv.name}`
-						})}
-						on:setValue={(e) => {
-							setCssVar(e.detail, bv.name);
-						}}
-					/>
+					{#if bv.type === 'color'}
+						<hb-input-color
+							schemaentry={JSON.stringify({
+								value: bv.value?.toString() || '',
+								label: bv.name,
+								id: `css_${$pageName}_${bv.name}`
+							})}
+							on:setValue={(e) => {
+								setCssVar(e.detail, bv.name);
+							}}
+						/>
+					{:else if bv.type === 'string'}
+						<hb-input-text
+							schemaentry={JSON.stringify({
+								value: bv.value?.toString() || '',
+								label: bv.name,
+								id: `css_${$pageName}_${bv.name}`
+							})}
+							on:setValue={(e) => {
+								setCssVar(e.detail, bv.name);
+							}}
+						/>
+					{/if}
 				</td>
 				<td>{bv.type}</td>
 			</tr>
