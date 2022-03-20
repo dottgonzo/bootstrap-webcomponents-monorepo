@@ -18,4 +18,6 @@ export type Component = {
 	navpage: string;
 };
 
-export type Events = {};
+export type Events = {
+	pagechange: { page: string };
+};

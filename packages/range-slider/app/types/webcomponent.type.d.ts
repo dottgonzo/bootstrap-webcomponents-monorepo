@@ -13,4 +13,6 @@ export type Component = {
 	withbubbles: boolean;
 };
 
-export type Events = {};
+export type Events = {
+	changeRangeValues: { status: { minValue: number; maxValue: number; minPercent; number } };
+};
