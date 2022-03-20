@@ -15,7 +15,7 @@ export interface INavLink {
 
 export type Component = {
 	navlink: INavLink;
-	navpage: string;
+	navpage?: string;
 };
 
 export type Events = {

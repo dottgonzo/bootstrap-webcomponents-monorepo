@@ -809,7 +809,17 @@ const rangeSliderExampleValues = {
 	minval: 20,
 	maxval: 60
 };
-const sidenavLinkExampleValues = {};
+const sidenavLinkExampleValues = {
+	navpage: 'home',
+	navlink: {
+		label: 'Home',
+		key: 'home',
+		icon: 'house-door',
+		badge: {
+			text: 'bbb'
+		}
+	}
+};
 const tableExampleValues = {
 	headers: [
 		{

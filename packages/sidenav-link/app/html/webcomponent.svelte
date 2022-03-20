@@ -156,4 +156,7 @@
 	.nav-link {
 		padding: 0.5rem 0.2rem 0.5rem 0.2rem;
 	}
+	.nav-item {
+		list-style: none;
+	}
 </style>
