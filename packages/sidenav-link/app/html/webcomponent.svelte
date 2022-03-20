@@ -55,7 +55,7 @@
 </svelte:head>
 <template>
 	{#if navlink}
-		<li class="nav-item">
+		<li part="li" class="nav-item">
 			{#if navlink.subLinks?.length}
 				<button
 					on:click={() => {
