@@ -12,6 +12,7 @@ export type CssVar = {
   valueType: "color" | "string" | "htmlsize" | "number";
   name: string;
   description?: string;
+  theme?: string;
 };
 export type StyleSetup = {
   parts: CssPart[];
