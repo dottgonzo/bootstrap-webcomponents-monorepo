@@ -1,10 +1,9 @@
 <script lang="ts">
 	import type { CssVar } from '@htmlbricks/hb-jsutils/main';
-	import { bootstrapThemeCssVars } from '../stores/themes';
+	import { defaultBootstrapThemeCssVars } from '../stores/themes';
 	import { allComponentsMetas } from '../stores/components';
 	import { pageName } from '../stores/app';
 	import { cssVarsValues } from '../stores/events';
-	import { styleSetup } from '@htmlbricks/hb-banner/release/docs';
 
 	export let vars: CssVar[];
 
@@ -69,7 +68,7 @@
 			<th>Type</th>
 		</tr>
 
-		{#each $bootstrapThemeCssVars.sort((a, b) => (b.rank || 1) - (a.rank || 1)) as bv (bv.name)}
+		{#each $defaultBootstrapThemeCssVars.sort((a, b) => (b.rank || 1) - (a.rank || 1)) as bv (bv.name)}
 			<tr>
 				<td>{bv.name}</td>
 				<td>

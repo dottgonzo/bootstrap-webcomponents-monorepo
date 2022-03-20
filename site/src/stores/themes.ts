@@ -1,11 +1,11 @@
-import { writable, type Writable } from 'svelte/store';
+import { writable, type Writable, readable, type Readable } from 'svelte/store';
 
 export const useCustomTheme: Writable<boolean> = writable(false);
 export const useCustomThemeGlobally: Writable<boolean> = writable(false);
 
-export const bootstrapThemeCssVars: Writable<
+export const defaultBootstrapThemeCssVars: Readable<
 	{ name: string; value: string; rank?: number; type: 'string' | 'color' }[]
-> = writable([
+> = readable([
 	{ name: '--bs-blue:', value: '#0d6efd', type: 'color' },
 	{ name: '--bs-indigo:', value: '#6610f2', type: 'color' },
 	{ name: '--bs-purple:', value: '#6f42c1', type: 'color' },
@@ -71,3 +71,11 @@ export const bootstrapThemeCssVars: Writable<
 	{ name: '--bs-body-color:', value: '#212529', type: 'color' },
 	{ name: '--bs-body-bg:', value: '#fff', type: 'color' }
 ]);
+
+// export const globalBootstrapThemeCssVars: Writable<
+// 	{ name: string; value: string; rank?: number; type: 'string' | 'color' }[]
+// > = writable([]);
+
+// export const bootstrapThemeCssVars: Writable<
+// 	{ name: string; value: string; rank?: number; type: 'string' | 'color' }[]
+// > = writable([]);

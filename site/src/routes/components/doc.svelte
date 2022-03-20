@@ -11,13 +11,18 @@
 	import { allComponentsMetas } from '../../stores/components';
 	import { allComponentsExampleValues } from '../../stores/examples';
 	import { componentsVersion, lang } from '../../stores/app';
-	import { events, htmlSlotsContents, cssVarsValues, cssPartsContents } from '../../stores/events';
+	import {
+		events,
+		htmlSlotsContents,
+		cssVarsValues,
+		cssPartsContents,
+		globalCssVarsValues
+	} from '../../stores/events';
 	import { page } from '$app/stores';
 
 	import type { HtmlSlot, StyleSetup, i18nLang } from '@htmlbricks/hb-jsutils/main';
 
 	import { pageName } from '../../stores/app';
-	import { bootstrapThemeCssVars } from '../../stores/themes';
 	let name: string;
 	let storybookargs: any;
 	let definition: any;
@@ -107,12 +112,13 @@
 			?.map((m) => {
 				return { name: m.name, value: m.value };
 			});
-		if (meta.styleSetup.themes.includes('bootstrap'))
-			allCssVars.concat(
-				$bootstrapThemeCssVars.map((m) => {
-					return { name: m.name, value: m.value };
-				})
-			);
+		// if (meta.styleSetup.themes.includes('bootstrap')) {
+		// 	const toAdd = $globalCssVarsValues.filter(
+		// 		(f) => !allCssVars.find((ff) => ff.name === f.name)
+		// 	);
+
+		// 	allCssVars.concat(toAdd);
+		// }
 	}
 </script>
 

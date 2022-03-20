@@ -6,7 +6,17 @@
 	import { pageName, componentsVersion, lang } from '../../stores/app';
 	import { events } from '../../stores/events';
 	import { allComponentsMetas } from '../../stores/components';
-
+	// import {
+	// 	globalBootstrapThemeCssVars,
+	// 	bootstrapThemeCssVars,
+	// 	defaultootstrapThemeCssVars
+	// } from '../../stores/themes';
+	// if (!$globalBootstrapThemeCssVars?.length) {
+	// 	globalBootstrapThemeCssVars.set($defaultootstrapThemeCssVars);
+	// }
+	// if (!$bootstrapThemeCssVars?.length) {
+	// 	bootstrapThemeCssVars.set($defaultootstrapThemeCssVars);
+	// }
 	const navlinks = (): INavLink[] => {
 		const home: INavLink = {
 			key: 'main',
@@ -60,7 +70,22 @@
 				}
 			]
 		};
-
+		const settings: INavLink = {
+			key: 'settings',
+			label: 'settings',
+			group: 'settings',
+			active: false,
+			icon: 'gear',
+			subLinks: [
+				{
+					key: 'theme',
+					label: 'Theme',
+					group: 'theme',
+					active: false,
+					icon: 'palette'
+				}
+			]
+		};
 		const arr: INavLink[] = [home, documentation, storybook, github];
 		let cats: string[] = [];
 
@@ -136,6 +161,7 @@
 			};
 			arr.push(navLink);
 		});
+		arr.push(settings);
 
 		// components.categories.forEach((g) => {
 		// 	const subLinks: INavLink[] = [];
@@ -177,6 +203,7 @@
 		switch (d.page) {
 			case 'comparison':
 			case 'readme':
+			case 'theme':
 				return goto('/components/' + d.page);
 			case 'github':
 				return window
