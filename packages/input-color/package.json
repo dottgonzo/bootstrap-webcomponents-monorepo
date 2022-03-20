@@ -72,6 +72,6 @@
 	"contributors": [],
 	"gitHead": "bdf3e6694c55b6a764db65cc71ce8e95dc356474",
 	"dependencies": {
-		"a-color-picker": "^1.2.1"
+		"debounce": "^1.2.1"
 	}
 }

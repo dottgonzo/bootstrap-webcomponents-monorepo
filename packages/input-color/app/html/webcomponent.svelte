@@ -9,6 +9,7 @@
 	export let showvalidation: "yes" | "no";
 	import AColorPicker from "a-color-picker";
 	export let schemaentry: FormSchemaEntry;
+	import debounce from "debounce";
 
 	let value: string;
 	let regex: RegExp | undefined;
@@ -20,15 +21,18 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	let showPicker: boolean;
-	function showColorPicker() {
-		showPicker = true;
+	// let showPicker: boolean;
+	// function showColorPicker() {
+	// 	showPicker = true;
+	// }
+	// let picker: ColorPicker;
+	let colorVal = schemaentry?.value;
+	function bootValue() {
+		colorVal = value;
 	}
-	let picker: ColorPicker;
-
 	$: {
 		if (!showvalidation) showvalidation = "no";
-		if (!showPicker) showPicker = false;
+		// if (!showPicker) showPicker = false;
 		if (schemaentry && typeof schemaentry === "string") {
 			schemaentry = JSON.parse(schemaentry as unknown as string);
 		} else if (!schemaentry) {
@@ -46,7 +50,8 @@
 		}
 
 		value = value != null ? value : (schemaentry?.value as string);
-
+		if (value) bootValue();
+		// if (!colorVal) colorVal = value?.toString();
 		// regex = schemaentry?.validationRegex && new RegExp(schemaentry.validationRegex);
 		valid = !schemaentry?.required || (typeof value === "string" && value.length > 1) ? true : false;
 		// ? (!schemaentry?.required || value != null) &&
@@ -62,40 +67,38 @@
 		// 			(regex ? regex.test(value) : true))
 		// 	: false;
 
-		console.log(valid, value, "validinput");
 		setTimeout(() => {
 			if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
 			if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
 		}, 0);
 	}
-	let pickerEl: HTMLElement;
+	// let pickerEl: HTMLElement;
 	// function mountPicker() {
 	// 	if (schemaentry?.id && !pickerEl) {
 	// 		pickerEl = component.shadowRoot.getElementById(schemaentry.id);
 	// 	}
 	// }
-	onMount(() => {
-		pickerEl = component.shadowRoot.getElementById("picker2");
-		console.log(pickerEl);
-		AColorPicker.createPicker(pickerEl, {});
-	});
+	// onMount(() => {
+	// 	pickerEl = component.shadowRoot.getElementById("picker2");
+	// 	console.log(pickerEl);
+	// 	AColorPicker.createPicker(pickerEl, {});
+	// });
+	function resetVal() {
+		console.log("resetval", colorVal, value);
+		value = colorVal;
+	}
 </script>
 
-<span id="picker2" />
-
-{#if !showPicker}66
-{/if}
-<span id="picker">
-	<input
-		bind:value
-		type="text"
-		class="form-control {showvalidation === 'yes' && schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
-		id={schemaentry?.id}
-		required={schemaentry?.required}
-		placeholder={schemaentry?.placeholder}
-		readonly={schemaentry?.readonly}
-	/>
-</span>
+<input
+	on:input={debounce(resetVal, 200)}
+	bind:value={colorVal}
+	type="color"
+	class="form-control {showvalidation === 'yes' && schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
+	id={schemaentry?.id}
+	required={schemaentry?.required}
+	placeholder={schemaentry?.placeholder}
+	readonly={schemaentry?.readonly}
+/>
 {#if schemaentry?.validationTip && showvalidation === "yes"}
 	<div part="invalid-feedback" class="invalid-feedback mb-1">
 		{schemaentry.validationTip}

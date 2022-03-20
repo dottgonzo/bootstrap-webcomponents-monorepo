@@ -22,6 +22,7 @@ const inputEntry1 = {
   required: true,
   label: "Last color",
   validationTip: "This field cannot be empty.",
+  value: "#ffffff",
 };
 
 const Template: Story = (args) =>
