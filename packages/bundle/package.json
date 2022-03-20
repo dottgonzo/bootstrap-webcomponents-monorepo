@@ -2,7 +2,7 @@
   "name": "@htmlbricks/hb-bundle",
   "displayName": "HTMLBricks bundle",
   "description": "HTMLBricks bundle",
-  "version": "0.6.22",
+  "version": "0.6.23",
   "main": "release/release.js",
   "publishConfig": {
     "access": "public"
