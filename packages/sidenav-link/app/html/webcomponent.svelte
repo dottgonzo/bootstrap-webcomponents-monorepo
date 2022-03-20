@@ -77,7 +77,7 @@
 						{#each navlink.subLinks as navLinkSub (navLinkSub.key)}
 							{#if navLinkSub.key === navpage}
 								<button
-									style="width: 100%;text-align:left;box-shadow: none!important;"
+									style="width: 100%;text-align:left;box-shadow: none!important;background-color:var(--bs-primary)"
 									class="btn btn-outline-primary nav-link active"
 									aria-current="page"
 								>
@@ -114,7 +114,11 @@
 					</div>
 				{/if}
 			{:else if navlink.key === navpage}
-				<button style="width: 100%;text-align:left;box-shadow: none!important;" class="btn btn-outline-primary nav-link active" aria-current="page">
+				<button
+					style="width: 100%;text-align:left;box-shadow: none!important;background-color:var(--bs-primary)"
+					class="btn btn-outline-primary nav-link active"
+					aria-current="page"
+				>
 					<i class="bi me-2 bi-{navlink.icon}" />
 					{navlink.label}
 					{#if navlink.badge}
