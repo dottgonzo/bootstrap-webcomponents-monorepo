@@ -9,7 +9,7 @@
 
 	function setCssVar(detail, name: string) {
 		let copy = $cssVarsValues;
-
+		console.log('$copy', copy);
 		const existentChange = copy?.find((f) => f.component === $pageName && f.name === name);
 		if (detail.value) {
 			if (existentChange && existentChange.value !== detail.value) {
