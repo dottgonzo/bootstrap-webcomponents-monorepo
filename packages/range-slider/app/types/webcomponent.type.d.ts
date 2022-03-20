@@ -14,5 +14,5 @@ export type Component = {
 };
 
 export type Events = {
-	changeRangeValues: { status: { minValue: number; maxValue: number; minPercent; number } };
+	changeRangeValues: { status: { minValue: number; maxValue: number; minPercent: number } };
 };
