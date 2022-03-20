@@ -19,7 +19,6 @@
 
 	import { groupMultipleBy } from "@app/functions/utils";
 
-
 	const registeredComponents: IRegisterComponent = {
 		row: { component: null, options: { row: true } },
 		select: { component: "hb-input-select" },
@@ -27,6 +26,7 @@
 		text: { component: "hb-input-text" },
 		number: { component: "hb-input-number" },
 		email: { component: "hb-input-email" },
+		color: { component: "hb-input-color" },
 		file: { component: "hb-input-file" },
 		textarea: { component: "hb-input-area" },
 		checkbox: { component: "hb-input-checkbox", options: { labelIsHandledByComponent: true } },
@@ -187,6 +187,7 @@
 	addComponent("input-radio");
 	addComponent("input-select");
 	addComponent("input-file");
+	addComponent("input-color");
 
 	const component = get_current_component();
 
@@ -239,6 +240,22 @@
 
 									{#if component === "hb-input-text"}
 										<hb-input-text
+											on:setValid={(d) => setValidByMessage(d.detail)}
+											on:setValue={(d) => setValueByMessage(d.detail)}
+											schemaentry={JSON.stringify(
+												{
+													...entry,
+													value: allValues[entry.id] ?? entry.value,
+												},
+												null,
+												0,
+											)}
+											setvalue
+											setvalid
+											{showvalidation}
+										/>
+									{:else if component === "hb-input-color"}
+										<hb-input-color
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -395,6 +412,22 @@
 				{/if}
 
 				{#if component === "hb-input-text"}
+					<hb-input-text
+						on:setValid={(d) => setValidByMessage(d.detail)}
+						on:setValue={(d) => setValueByMessage(d.detail)}
+						schemaentry={JSON.stringify(
+							{
+								...entry,
+								value: allValues[entry.id] ?? entry.value,
+							},
+							null,
+							0,
+						)}
+						setvalue
+						setvalid
+						{showvalidation}
+					/>
+				{:else if component === "hb-input-color"}
 					<hb-input-text
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}

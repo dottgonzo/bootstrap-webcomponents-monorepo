@@ -66,6 +66,7 @@ export type IComponentName =
 	| "hb-input-email"
 	| "hb-input-area"
 	| "hb-input-checkbox"
+	| "hb-input-color"
 	| "hb-input-radio";
 
 export interface ISchemaOption {
