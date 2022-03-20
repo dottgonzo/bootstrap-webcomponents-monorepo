@@ -86,7 +86,7 @@
 			}
 		}
 		if (
-			styleSetup.vars &&
+			styleSetup?.vars &&
 			styleSetup.vars.filter((f) => typeof f.defaultValue !== 'undefined').length
 		) {
 			com += ` style="`;
@@ -186,7 +186,7 @@
 						on:click={() => {
 							controlTab = 'style';
 						}}
-						class="nav-link {styleSetup.vars?.length ||
+						class="nav-link {styleSetup?.vars?.length ||
 						styleSetup?.parts?.length ||
 						styleSetup?.themes?.length
 							? ''
