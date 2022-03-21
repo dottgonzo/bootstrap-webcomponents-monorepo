@@ -25,7 +25,7 @@
 	import { styleSetup as footerStyleSetup } from "../../node_modules/@htmlbricks/hb-footer/release/docs";
 	import { styleSetup as navbarStyleSetup } from "../../node_modules/@htmlbricks/hb-navbar/release/docs";
 	import { styleSetup as cookieLawBannerStyleSetup } from "../../node_modules/@htmlbricks/hb-cookie-law-banner/release/docs";
-	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
 
 	export let id: string;
 	export let socials: ISocials;
@@ -45,54 +45,19 @@
 
 	let parsedStyle: { [x: string]: string };
 
-	let offcanvasStyleToSet: string = "";
-	let footerStyleToSet: string = "";
-	let navbarStyleToSet: string = "";
-	let cookieLawBannerStyleToSet: string = "";
+	let offcanvasStyleToSet: string;
+	let footerStyleToSet: string;
+	let navbarStyleToSet: string;
+	let cookieLawBannerStyleToSet: string;
 
 	let navopen: boolean;
 	$: {
 		if (style) {
 			parsedStyle = parseStyle(style);
-			if (Object.keys(parsedStyle)?.length && offcanvasStyleSetup?.vars?.filter((f) => Object.keys(parsedStyle).includes(f.name))?.length) {
-				offcanvasStyleToSet = "";
-				for (const k of Object.keys(parsedStyle)) {
-					const isPresentOnOffcanvas = offcanvasStyleSetup.vars.filter((f) => f.name === k && f.defaultValue !== parsedStyle[k]);
-					if (isPresentOnOffcanvas) {
-						offcanvasStyleToSet += `${k}:${parsedStyle[k]};`;
-					}
-				}
-			}
-
-			if (Object.keys(parsedStyle)?.length && footerStyleSetup?.vars?.filter((f) => Object.keys(parsedStyle).includes(f.name))?.length) {
-				footerStyleToSet = "";
-				for (const k of Object.keys(parsedStyle)) {
-					const isPresentOnFooter = footerStyleSetup.vars.filter((f) => f.name === k && f.defaultValue !== parsedStyle[k]);
-					if (isPresentOnFooter) {
-						footerStyleToSet += `${k}:${parsedStyle[k]};`;
-					}
-				}
-			}
-
-			if (Object.keys(parsedStyle)?.length && navbarStyleSetup?.vars?.filter((f) => Object.keys(parsedStyle).includes(f.name))?.length) {
-				navbarStyleToSet = "";
-				for (const k of Object.keys(parsedStyle)) {
-					const isPresentOnNavbar = navbarStyleSetup.vars.filter((f) => f.name === k && f.defaultValue !== parsedStyle[k]);
-					if (isPresentOnNavbar) {
-						navbarStyleToSet += `${k}:${parsedStyle[k]};`;
-					}
-				}
-			}
-
-			if (Object.keys(parsedStyle)?.length && cookieLawBannerStyleSetup?.vars?.filter((f) => Object.keys(parsedStyle).includes(f.name))?.length) {
-				cookieLawBannerStyleToSet = "";
-				for (const k of Object.keys(parsedStyle)) {
-					const isPresentOnCookieLawBanner = cookieLawBannerStyleSetup.vars.filter((f) => f.name === k && f.defaultValue !== parsedStyle[k]);
-					if (isPresentOnCookieLawBanner) {
-						cookieLawBannerStyleToSet += `${k}:${parsedStyle[k]};`;
-					}
-				}
-			}
+			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+			footerStyleToSet = getChildStyleToPass(parsedStyle, footerStyleSetup?.vars);
+			navbarStyleToSet = getChildStyleToPass(parsedStyle, navbarStyleSetup?.vars);
+			cookieLawBannerStyleToSet = getChildStyleToPass(parsedStyle, cookieLawBannerStyleSetup?.vars);
 		}
 		if (!id) id = "";
 		if (!cookielawuri4more) cookielawuri4more = "";

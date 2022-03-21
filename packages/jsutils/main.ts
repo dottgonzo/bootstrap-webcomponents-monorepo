@@ -24,6 +24,30 @@ export type i18nLang = {
   language: string;
   lang: string;
 };
+
+export function getChildStyleToPass(
+  parsedStyle: { [x: string]: string },
+  vars: CssVar[]
+) {
+  let toreturn = "";
+  if (
+    parsedStyle &&
+    vars?.length &&
+    Object.keys(parsedStyle)?.length &&
+    vars?.filter((f) => Object.keys(parsedStyle).includes(f.name))?.length
+  ) {
+    for (const k of Object.keys(parsedStyle)) {
+      const isPresent = vars?.filter(
+        (f) => f.name === k && f.defaultValue !== parsedStyle[k]
+      );
+      if (isPresent) {
+        toreturn += `${k}:${parsedStyle[k]};`;
+      }
+    }
+  }
+  return toreturn;
+}
+
 export function addComponent(
   componentName: string,
   version: string,
