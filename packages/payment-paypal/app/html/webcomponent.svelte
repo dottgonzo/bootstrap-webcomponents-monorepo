@@ -127,7 +127,7 @@
 	// 	document.head.appendChild(script);
 	// }
 
-	addComponent("form", pkg.version, true);
+	addComponent("form", pkg.version);
 </script>
 
 <div part="btn" id="paypalbtn" />

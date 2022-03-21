@@ -17,7 +17,7 @@
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { addComponent } from "@htmlbricks/hb-jsutils/main";
 
-	addComponent("form", pkg.version, true);
+	addComponent("form", pkg.version);
 	export let id: string;
 	export let steps: number;
 	export let schemes: { schema: FormSchema; valid: boolean }[];

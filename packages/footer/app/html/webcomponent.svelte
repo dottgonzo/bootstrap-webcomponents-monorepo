@@ -134,8 +134,7 @@
 		});
 	}
 
-
-	addComponent("contact-item", pkg.version, true);
+	addComponent("contact-item", pkg.version);
 </script>
 
 <footer>

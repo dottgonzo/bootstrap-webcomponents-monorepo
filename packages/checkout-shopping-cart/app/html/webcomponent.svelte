@@ -114,7 +114,7 @@
 	// 	component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	// }
 
-	addComponent("table", pkg.version, true);
+	addComponent("table", pkg.version);
 </script>
 
 <svelte:head>

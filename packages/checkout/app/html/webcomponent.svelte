@@ -162,8 +162,8 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	addComponent("form", pkg.version, true);
-	addComponent("payment-paypal", pkg.version, true);
+	addComponent("form", pkg.version);
+	addComponent("payment-paypal", pkg.version);
 
 	function editUserForm() {
 		editUser = true;

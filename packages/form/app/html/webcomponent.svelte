@@ -167,17 +167,17 @@
 		valids[id] = valid;
 	};
 
-	addComponent("input-date", pkg.version, true);
+	addComponent("input-date", pkg.version);
 
-	addComponent("input-text", pkg.version, true);
-	addComponent("input-email", pkg.version, true);
-	addComponent("input-checkbox", pkg.version, true);
-	addComponent("input-number", pkg.version, true);
-	addComponent("input-area", pkg.version, true);
-	addComponent("input-radio", pkg.version, true);
-	addComponent("input-select", pkg.version, true);
-	addComponent("input-file", pkg.version, true);
-	addComponent("input-color", pkg.version, true);
+	addComponent("input-text", pkg.version);
+	addComponent("input-email", pkg.version);
+	addComponent("input-checkbox", pkg.version);
+	addComponent("input-number", pkg.version);
+	addComponent("input-area", pkg.version);
+	addComponent("input-radio", pkg.version);
+	addComponent("input-select", pkg.version);
+	addComponent("input-file", pkg.version);
+	addComponent("input-color", pkg.version);
 
 	const component = get_current_component();
 

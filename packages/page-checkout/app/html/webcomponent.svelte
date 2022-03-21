@@ -69,8 +69,8 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	addComponent("checkout-shopping-cart", pkg.version, true);
-	addComponent("checkout", pkg.version, true);
+	addComponent("checkout-shopping-cart", pkg.version);
+	addComponent("checkout", pkg.version);
 	function saveShipment(detail: IShipment) {
 		const shipmentIndex = shipments.findIndex((f) => f.id === detail.id);
 		const shipment = shipments[shipmentIndex];

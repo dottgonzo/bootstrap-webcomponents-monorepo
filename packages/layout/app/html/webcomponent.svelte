@@ -138,10 +138,10 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	addComponent("footer", pkg.version, true);
-	addComponent("offcanvas", pkg.version, true);
-	addComponent("navbar", pkg.version, true);
-	addComponent("cookie-law-banner", pkg.version, true);
+	addComponent("footer", pkg.version);
+	addComponent("offcanvas", pkg.version);
+	addComponent("navbar", pkg.version);
+	addComponent("cookie-law-banner", pkg.version);
 
 	function openmenu(o) {
 		if (o.isOpen || o.isOpen === false) navopen = o.isOpen;

@@ -86,8 +86,8 @@
 		getVideo().currentTime = seconds;
 	}
 
-	addComponent("range-slider", pkg.version, true);
-	addComponent("form", pkg.version, true);
+	addComponent("range-slider", pkg.version);
+	addComponent("form", pkg.version);
 
 	function dispatchTrackVals(trackStatus: IDispatchValsEvent) {
 		track.minValue = trackStatus.minValue;

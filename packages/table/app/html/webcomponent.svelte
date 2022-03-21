@@ -392,8 +392,8 @@
 		});
 	}
 
-	addComponent("paginate", pkg.version, true);
-	addComponent("dialog", pkg.version, true);
+	addComponent("paginate", pkg.version);
+	addComponent("dialog", pkg.version);
 
 	function changeSort(key: string) {
 		console.log(sortedBy, sortedDirection);

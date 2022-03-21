@@ -203,8 +203,8 @@
 	// 	return app();
 	// }
 
-	addComponent("paginate", pkg.version, true);
-	addComponent("card-video", pkg.version, true);
+	addComponent("paginate", pkg.version);
+	addComponent("card-video", pkg.version);
 
 	// onMount(async () => {
 	// 	await reloadCards();

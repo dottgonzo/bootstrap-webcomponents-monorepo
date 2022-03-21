@@ -90,7 +90,7 @@
 		});
 	}
 
-	addComponent("sidenav-link", pkg.version, true);
+	addComponent("sidenav-link", pkg.version);
 </script>
 
 <svelte:head>

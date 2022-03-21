@@ -142,8 +142,8 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	addComponent("layout", pkg.version, true);
-	addComponent("auth", pkg.version, true);
+	addComponent("layout", pkg.version);
+	addComponent("auth", pkg.version);
 </script>
 
 <hb-layout onescreen="yes" socials={socials || ""} columns={columns || ""} contacts={contacts || ""} company={company || ""} style="display:block">
