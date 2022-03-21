@@ -13,7 +13,7 @@ export const storybookArgs = {
 	cookielaw: { control: { type: "boolean" } },
 };
 
-const cssVars: CssVar[] = [];
+const cssVars: CssVar[] = [{ name: "--bs-primary", defaultValue: "#07689f", valueType: "color", theme: "bootstrap" }];
 export const cssParts: CssPart[] = [
 	{ name: "footer", description: "" },
 	{ name: "container", description: "" },
