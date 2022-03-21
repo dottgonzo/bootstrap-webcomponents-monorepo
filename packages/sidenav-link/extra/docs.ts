@@ -5,7 +5,7 @@ export const storybookArgs = {
 	navlink: { control: { type: "object" } },
 };
 
-const cssVars: CssVar[] = [];
+const cssVars: CssVar[] = [{ name: "--bs-primary", defaultValue: "#07689f", valueType: "color", theme: "bootstrap" }];
 export const cssParts: CssPart[] = [{ name: "li", description: "list element" }];
 export const htmlSlots: HtmlSlot[] = [];
 export const i18nLanguages: i18nLang[] = [];

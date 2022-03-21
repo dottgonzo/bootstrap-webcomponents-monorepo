@@ -16,6 +16,9 @@
 
 	import type { Component } from "../types/webcomponent.type";
 	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+
+	import { styleSetup as sidenavLinkStyleSetup } from "../../node_modules/@htmlbricks/hb-sidenav-link/release/docs";
 
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
@@ -28,11 +31,26 @@
 	export let companytitle: string;
 	export let enablefooter: boolean;
 	export let type: Component["type"];
+	export let style: string;
 
+	let parsedStyle: { [x: string]: string };
+	let sidenavLinkStyleToSet: string = "";
 	let sendOff;
 	let switched;
 	$: {
 		if (!id) id = null;
+		if (style) {
+			parsedStyle = parseStyle(style);
+			if (Object.keys(parsedStyle)?.length && sidenavLinkStyleSetup?.vars?.filter((f) => Object.keys(parsedStyle).includes(f.name))?.length) {
+				sidenavLinkStyleToSet = "";
+				for (const k of Object.keys(parsedStyle)) {
+					const isPresentOnSidenavLink = sidenavLinkStyleSetup.vars.filter((f) => f.name === k && f.defaultValue !== parsedStyle[k]);
+					if (isPresentOnSidenavLink) {
+						sidenavLinkStyleToSet += `${k}:${parsedStyle[k]};`;
+					}
+				}
+			}
+		}
 		if (!type) type = "autohide";
 		if (!companylogouri) companylogouri = "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg";
 		if (!companytitle) companytitle = "";
@@ -123,7 +141,12 @@
 			<ul class="nav nav-pills flex-column mb-auto" style="margin-top:25px">
 				{#if navlinks?.length && navlinks.filter((f) => !f.group)?.length}
 					{#each navlinks.filter((f) => !f.group) as navLink (navLink.key)}
-						<hb-sidenav-link navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
+						<hb-sidenav-link
+							style={sidenavLinkStyleToSet}
+							navlink={JSON.stringify(navLink)}
+							{navpage}
+							on:pagechange={(e) => changePage(e.detail.page)}
+						/>
 					{/each}
 				{/if}
 				{#if groups?.length}
@@ -132,7 +155,12 @@
 						<hr style="margin-top:0px;margin-bottom: 10px;" />
 
 						{#each navlinks.filter((f) => f.group && f.group === navLinkGroup.key) as navLink (navLink.key)}
-							<hb-sidenav-link navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
+							<hb-sidenav-link
+								style={sidenavLinkStyleToSet}
+								navlink={JSON.stringify(navLink)}
+								{navpage}
+								on:pagechange={(e) => changePage(e.detail.page)}
+							/>
 						{/each}
 					{/each}
 				{/if}
@@ -145,7 +173,12 @@
 						<hr style="margin-top:0px;margin-bottom: 10px;" />
 
 						{#each navlinks.filter((f) => f.group && f.group === navLinkGroup) as navLink (navLink.key)}
-							<hb-sidenav-link navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
+							<hb-sidenav-link
+								style={sidenavLinkStyleToSet}
+								navlink={JSON.stringify(navLink)}
+								{navpage}
+								on:pagechange={(e) => changePage(e.detail.page)}
+							/>
 						{/each}
 					{/each}
 				{/if}
