@@ -72,7 +72,5 @@
 	],
 	"contributors": [],
 	"gitHead": "062b2dc2d375bf81a8485572cd41ae40115aef3e",
-	"dependencies": {
-		"style-to-object": "^0.3.0"
-	}
+	"dependencies": {}
 }

@@ -70,5 +70,13 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "062b2dc2d375bf81a8485572cd41ae40115aef3e"
+	"gitHead": "062b2dc2d375bf81a8485572cd41ae40115aef3e",
+	"dependencies": {
+		"style-to-object": "^0.3.0",
+		"@htmlbricks/hb-footer": "^0.6.20",
+		"@htmlbricks/hb-offcanvas": "^0.6.20",
+		"@htmlbricks/hb-navbar": "^0.6.20",
+		"@htmlbricks/hb-cookie-law-banner": "^0.6.20",
+		"@htmlbricks/hb-jsutils": "^0.6.20"
+	}
 }

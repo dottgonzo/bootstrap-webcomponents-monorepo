@@ -19,6 +19,13 @@
 	import type { IUserMenu } from "../../../navbar/app/types/webcomponent.type";
 	import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
 	import type { Component } from "../types/webcomponent.type";
+	import parseStyle from "style-to-object";
+
+	import { styleSetup as offcanvasStyleSetup } from "../../node_modules/@htmlbricks/hb-offcanvas/release/docs";
+	import { styleSetup as footerStyleSetup } from "../../node_modules/@htmlbricks/hb-footer/release/docs";
+	import { styleSetup as navbarStyleSetup } from "../../node_modules/@htmlbricks/hb-navbar/release/docs";
+	import { styleSetup as cookieLawBannerStyleSetup } from "../../node_modules/@htmlbricks/hb-cookie-law-banner/release/docs";
+	import { addComponent } from "@htmlbricks/hb-jsutils/main";
 
 	export let id: string;
 	export let socials: ISocials;
@@ -34,9 +41,59 @@
 	export let cookielawallowdecline: string;
 	export let cookielawlanguage: string;
 	export let sidebar: Component["sidebar"];
+	export let style: string;
+
+	let parsedStyle: { [x: string]: string };
+
+	let offcanvasStyleToSet: string = "";
+	let footerStyleToSet: string = "";
+	let navbarStyleToSet: string = "";
+	let cookieLawBannerStyleToSet: string = "";
 
 	let navopen: boolean;
 	$: {
+		if (style) {
+			parsedStyle = parseStyle(style);
+			if (Object.keys(parsedStyle)?.length && offcanvasStyleSetup?.vars?.filter((f) => Object.keys(parsedStyle).includes(f.name))?.length) {
+				offcanvasStyleToSet = "";
+				for (const k of Object.keys(parsedStyle)) {
+					const isPresentOnOffcanvas = offcanvasStyleSetup.vars.filter((f) => f.name === k && f.defaultValue !== parsedStyle[k]);
+					if (isPresentOnOffcanvas) {
+						offcanvasStyleToSet += `${k}:${parsedStyle[k]};`;
+					}
+				}
+			}
+
+			if (Object.keys(parsedStyle)?.length && footerStyleSetup?.vars?.filter((f) => Object.keys(parsedStyle).includes(f.name))?.length) {
+				footerStyleToSet = "";
+				for (const k of Object.keys(parsedStyle)) {
+					const isPresentOnFooter = footerStyleSetup.vars.filter((f) => f.name === k && f.defaultValue !== parsedStyle[k]);
+					if (isPresentOnFooter) {
+						footerStyleToSet += `${k}:${parsedStyle[k]};`;
+					}
+				}
+			}
+
+			if (Object.keys(parsedStyle)?.length && navbarStyleSetup?.vars?.filter((f) => Object.keys(parsedStyle).includes(f.name))?.length) {
+				navbarStyleToSet = "";
+				for (const k of Object.keys(parsedStyle)) {
+					const isPresentOnNavbar = navbarStyleSetup.vars.filter((f) => f.name === k && f.defaultValue !== parsedStyle[k]);
+					if (isPresentOnNavbar) {
+						navbarStyleToSet += `${k}:${parsedStyle[k]};`;
+					}
+				}
+			}
+
+			if (Object.keys(parsedStyle)?.length && cookieLawBannerStyleSetup?.vars?.filter((f) => Object.keys(parsedStyle).includes(f.name))?.length) {
+				cookieLawBannerStyleToSet = "";
+				for (const k of Object.keys(parsedStyle)) {
+					const isPresentOnCookieLawBanner = cookieLawBannerStyleSetup.vars.filter((f) => f.name === k && f.defaultValue !== parsedStyle[k]);
+					if (isPresentOnCookieLawBanner) {
+						cookieLawBannerStyleToSet += `${k}:${parsedStyle[k]};`;
+					}
+				}
+			}
+		}
 		if (!id) id = "";
 		if (!cookielawuri4more) cookielawuri4more = "";
 		if (!cookielawallowdecline) cookielawallowdecline = "";
@@ -80,20 +137,20 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
+	// function addComponent(componentName: string) {
+	// 	if (!document.getElementById("hb-" + componentName + "-script")) {
+	// 		const script = document.createElement("script");
+	// 		script.id = "hb-" + componentName + "-script";
+	// 		script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
+	// 		if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("footer");
-	addComponent("offcanvas");
-	addComponent("navbar");
-	addComponent("cookie-law-banner");
+	// 		document.head.appendChild(script);
+	// 	}
+	// }
+	addComponent("footer", pkg.version, true);
+	addComponent("offcanvas", pkg.version, true);
+	addComponent("navbar", pkg.version, true);
+	addComponent("cookie-law-banner", pkg.version, true);
 
 	function openmenu(o) {
 		if (o.isOpen || o.isOpen === false) navopen = o.isOpen;
@@ -105,6 +162,7 @@
 <div style={onescreen ? "display: flex;flex-direction: column;	height: 100vh;" : "display:block"} part="container">
 	{#if navlinks?.length}
 		<hb-offcanvas
+			style={offcanvasStyleToSet}
 			navpage={pagename || ""}
 			navlinks={navlinks || "[]"}
 			companytitle={sidebar?.title}
@@ -119,6 +177,7 @@
 	{/if}
 	<hb-navbar
 		part="navbar"
+		style={navbarStyleToSet}
 		noburger={navlinks ? "" : "yes"}
 		companylogouri={company?.logoUri || ""}
 		companybrandname={company?.siteName || ""}
@@ -136,13 +195,13 @@
 		<slot name="page">page</slot>
 	</div>
 	{#if cookielaw || cookielawallowdecline || cookielawlanguage || cookielawuri4more}
-		<hb-cookie-law-banner language={cookielawlanguage} allowdecline={cookielawallowdecline} {cookielawuri4more} />
+		<hb-cookie-law-banner style={cookieLawBannerStyleToSet} language={cookielawlanguage} allowdecline={cookielawallowdecline} {cookielawuri4more} />
 	{/if}
 	<hb-footer
 		part="footer"
 		socials={socials ? JSON.stringify(socials) : ""}
 		contacts={contacts ? JSON.stringify(contacts) : ""}
-		style="display:block;"
+		style="display:block;{offcanvasStyleToSet}"
 		company={company ? JSON.stringify(company) : ""}
 		columns={columns || ""}
 		on:footerClick={(el) => dispatch("footerClick", el.detail)}
