@@ -19,9 +19,9 @@
 	export let pages: number;
 	export let page: number;
 
-	if (!id) id = null;
-
 	$: {
+		if (!id) id = null;
+
 		if (!page) {
 			page = 0;
 		} else {
