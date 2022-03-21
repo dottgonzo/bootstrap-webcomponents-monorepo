@@ -15,6 +15,7 @@
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
 	import type { IUserMenu } from "@app/types/webcomponent.type";
+	import { addComponent } from "@htmlbricks/hb-jsutils/main";
 
 	export let id: string;
 	export let companybrandname: string;
@@ -45,18 +46,8 @@
 			usermenu = JSON.parse(usermenu);
 		}
 	}
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-			document.head.appendChild(script);
-		}
-	}
-
-	addComponent("dropdown-simple");
+	addComponent("dropdown-simple", pkg.version, true);
 
 	// if (!document.getElementById("spectrumelements")) {
 	// 	const script = document.createElement("script");

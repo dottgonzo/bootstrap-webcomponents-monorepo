@@ -15,6 +15,7 @@
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
 	import type { IBrandAndContacts, IColumn, ICompany, IContacts, IFooterBottom, IPolicies, ISmallRow, ISocials } from "@app/types/webcomponent.type";
+	import { addComponent } from "@htmlbricks/hb-jsutils/main";
 
 	export let id: string;
 	export let company: ICompany;
@@ -133,17 +134,8 @@
 		});
 	}
 
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("contact-item");
+	addComponent("contact-item", pkg.version, true);
 </script>
 
 <footer>

@@ -19,6 +19,7 @@
 	import type { IUserMenu } from "../../../navbar/app/types/webcomponent.type";
 	import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
 	import type { IPage } from "@app/types/webcomponent.type";
+	import { addComponent } from "@htmlbricks/hb-jsutils/main";
 
 	export let id: string;
 
@@ -140,18 +141,9 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("layout");
-	addComponent("auth");
+	addComponent("layout", pkg.version, true);
+	addComponent("auth", pkg.version, true);
 </script>
 
 <hb-layout onescreen="yes" socials={socials || ""} columns={columns || ""} contacts={contacts || ""} company={company || ""} style="display:block">

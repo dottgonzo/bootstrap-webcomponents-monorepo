@@ -18,6 +18,7 @@
 	import pkg from "../../package.json";
 
 	import { groupMultipleBy } from "@app/functions/utils";
+	import { addComponent } from "@htmlbricks/hb-jsutils/main";
 
 	const registeredComponents: IRegisterComponent = {
 		row: { component: null, options: { row: true } },
@@ -166,28 +167,17 @@
 		valids[id] = valid;
 	};
 
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
+	addComponent("input-date", pkg.version, true);
 
-			document.head.appendChild(script);
-		}
-	}
-
-	addComponent("input-date");
-
-	addComponent("input-text");
-	addComponent("input-email");
-	addComponent("input-checkbox");
-	addComponent("input-number");
-	addComponent("input-area");
-	addComponent("input-radio");
-	addComponent("input-select");
-	addComponent("input-file");
-	addComponent("input-color");
+	addComponent("input-text", pkg.version, true);
+	addComponent("input-email", pkg.version, true);
+	addComponent("input-checkbox", pkg.version, true);
+	addComponent("input-number", pkg.version, true);
+	addComponent("input-area", pkg.version, true);
+	addComponent("input-radio", pkg.version, true);
+	addComponent("input-select", pkg.version, true);
+	addComponent("input-file", pkg.version, true);
+	addComponent("input-color", pkg.version, true);
 
 	const component = get_current_component();
 

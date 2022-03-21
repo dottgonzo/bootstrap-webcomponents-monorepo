@@ -5,6 +5,8 @@
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
 	import type { IHeader } from "@app/types/webcomponent.type";
+	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 	function dispatch(name, detail) {
@@ -12,17 +14,7 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
-
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("dialog");
+	addComponent("dialog", pkg.version, true);
 
 	export let downloadid: string;
 	export let uri: string;

@@ -14,6 +14,7 @@
 	import dayjs from "dayjs";
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
+	import { addComponent } from "@htmlbricks/hb-jsutils/main";
 
 	// import dispatch from "@app/functions/webcomponent";
 
@@ -201,18 +202,9 @@
 
 	// 	return app();
 	// }
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("paginate");
-	addComponent("card-video");
+	addComponent("paginate", pkg.version, true);
+	addComponent("card-video", pkg.version, true);
 
 	// onMount(async () => {
 	// 	await reloadCards();

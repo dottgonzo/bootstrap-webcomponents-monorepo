@@ -15,16 +15,17 @@
 	import { get_current_component } from "svelte/internal";
 	import pkg from "../../package.json";
 	import type { IShipment, IUser, IGateway, IPayment as CheckoutPayment } from "../../../checkout/app/types/webcomponent.type";
-	import type { IPayment as CartPayment, IShopItem } from "../../../checkout-shopping-cart/app/types/webcomponent.type";
+	import type { IShoppingPayment, IShopItem } from "../../../checkout-shopping-cart/app/types/webcomponent.type";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
+	import { addComponent } from "@htmlbricks/hb-jsutils/main";
 
 	export let id: string;
 	export let shipments: IShipment[];
 	export let user: IUser;
-	export let payment: CartPayment & CheckoutPayment;
+	export let payment: IShoppingPayment & CheckoutPayment;
 	export let gateways: IGateway[];
 	export let completed: "yes" | "no";
-	const defaultPayment: CartPayment & CheckoutPayment = {
+	const defaultPayment: IShoppingPayment & CheckoutPayment = {
 		merchantName: "merchant",
 		countryCode: "IT",
 		total: 0,
@@ -67,18 +68,9 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("checkout-shopping-cart");
-	addComponent("checkout");
+	addComponent("checkout-shopping-cart", pkg.version, true);
+	addComponent("checkout", pkg.version, true);
 	function saveShipment(detail: IShipment) {
 		const shipmentIndex = shipments.findIndex((f) => f.id === detail.id);
 		const shipment = shipments[shipmentIndex];

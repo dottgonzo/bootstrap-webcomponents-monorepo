@@ -17,6 +17,7 @@
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { formCreditCardSchema } from "@app/functions/formSchemes";
 	import { loadScript } from "@paypal/paypal-js";
+	import { addComponent } from "@htmlbricks/hb-jsutils/main";
 
 	export let id: string;
 	export let paypalid: string;
@@ -126,17 +127,7 @@
 	// 	document.head.appendChild(script);
 	// }
 
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
-
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("form");
+	addComponent("form", pkg.version, true);
 </script>
 
 <div part="btn" id="paypalbtn" />

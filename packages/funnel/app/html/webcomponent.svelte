@@ -15,18 +15,9 @@
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
+	import { addComponent } from "@htmlbricks/hb-jsutils/main";
 
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
-
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("form");
+	addComponent("form", pkg.version, true);
 	export let id: string;
 	export let steps: number;
 	export let schemes: { schema: FormSchema; valid: boolean }[];

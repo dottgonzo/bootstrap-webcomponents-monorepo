@@ -18,6 +18,7 @@
 	import pkg from "../../package.json";
 	import type { IDispatchValsEvent, ITrack } from "@app/types/webcomponent.type";
 	import duration from "dayjs/plugin/duration";
+	import { addComponent } from "@htmlbricks/hb-jsutils/main";
 
 	dayjs.extend(duration);
 
@@ -84,18 +85,9 @@
 	function setVideoTime(seconds: number) {
 		getVideo().currentTime = seconds;
 	}
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("range-slider");
-	addComponent("form");
+	addComponent("range-slider", pkg.version, true);
+	addComponent("form", pkg.version, true);
 
 	function dispatchTrackVals(trackStatus: IDispatchValsEvent) {
 		track.minValue = trackStatus.minValue;
