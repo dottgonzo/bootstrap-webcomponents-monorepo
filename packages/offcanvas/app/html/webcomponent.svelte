@@ -15,7 +15,7 @@
 	import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
 
 	import type { Component } from "../types/webcomponent.type";
-	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
 	import parseStyle from "style-to-object";
 
 	import { styleSetup as sidenavLinkStyleSetup } from "../../node_modules/@htmlbricks/hb-sidenav-link/release/docs";
@@ -41,15 +41,7 @@
 		if (!id) id = null;
 		if (style) {
 			parsedStyle = parseStyle(style);
-			if (Object.keys(parsedStyle)?.length && sidenavLinkStyleSetup?.vars?.filter((f) => Object.keys(parsedStyle).includes(f.name))?.length) {
-				sidenavLinkStyleToSet = "";
-				for (const k of Object.keys(parsedStyle)) {
-					const isPresentOnSidenavLink = sidenavLinkStyleSetup.vars.filter((f) => f.name === k && f.defaultValue !== parsedStyle[k]);
-					if (isPresentOnSidenavLink) {
-						sidenavLinkStyleToSet += `${k}:${parsedStyle[k]};`;
-					}
-				}
-			}
+			sidenavLinkStyleToSet = getChildStyleToPass(parsedStyle, sidenavLinkStyleSetup?.vars);
 		}
 		if (!type) type = "autohide";
 		if (!companylogouri) companylogouri = "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg";

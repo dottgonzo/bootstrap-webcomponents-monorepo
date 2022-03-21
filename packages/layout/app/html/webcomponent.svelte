@@ -45,10 +45,10 @@
 
 	let parsedStyle: { [x: string]: string };
 
-	let offcanvasStyleToSet: string;
-	let footerStyleToSet: string;
-	let navbarStyleToSet: string;
-	let cookieLawBannerStyleToSet: string;
+	let offcanvasStyleToSet: string = "";
+	let footerStyleToSet: string = "";
+	let navbarStyleToSet: string = "";
+	let cookieLawBannerStyleToSet: string = "";
 
 	let navopen: boolean;
 	$: {
