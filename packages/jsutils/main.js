@@ -1,6 +1,27 @@
 "use strict";
 exports.__esModule = true;
-exports.LanguageTranslator = exports.addComponent = void 0;
+exports.LanguageTranslator = exports.addComponent = exports.getChildStyleToPass = void 0;
+function getChildStyleToPass(parsedStyle, vars) {
+    var _a, _b;
+    var toreturn = "";
+    if (parsedStyle &&
+        (vars === null || vars === void 0 ? void 0 : vars.length) &&
+        ((_a = Object.keys(parsedStyle)) === null || _a === void 0 ? void 0 : _a.length) &&
+        ((_b = vars === null || vars === void 0 ? void 0 : vars.filter(function (f) { return Object.keys(parsedStyle).includes(f.name); })) === null || _b === void 0 ? void 0 : _b.length)) {
+        var _loop_1 = function (k) {
+            var isPresent = vars === null || vars === void 0 ? void 0 : vars.filter(function (f) { return f.name === k && f.defaultValue !== parsedStyle[k]; });
+            if (isPresent) {
+                toreturn += "".concat(k, ":").concat(parsedStyle[k], ";");
+            }
+        };
+        for (var _i = 0, _c = Object.keys(parsedStyle); _i < _c.length; _i++) {
+            var k = _c[_i];
+            _loop_1(k);
+        }
+    }
+    return toreturn;
+}
+exports.getChildStyleToPass = getChildStyleToPass;
 function addComponent(componentName, version, allowLocal) {
     if (!document.getElementById("hb-" + componentName + "-script")) {
         var script = document.createElement("script");
