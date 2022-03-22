@@ -5,5 +5,3 @@
 		goto('/components/main');
 	});
 </script>
-
->
