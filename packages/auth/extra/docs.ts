@@ -26,9 +26,14 @@ export const storybookArgs = {
 	recoverycode: { control: { type: "string" } },
 };
 
-const cssVars: CssVar[] = [];
+const cssVars: CssVar[] = [{ name: "--bs-primary", valueType: "color", theme: "bootstrap", defaultValue: "#07689f" }];
 export const cssParts: CssPart[] = [];
-export const htmlSlots: HtmlSlot[] = [];
+export const htmlSlots: HtmlSlot[] = [
+	{
+		name: "header",
+		description: "",
+	},
+];
 export const i18nLanguages: i18nLang[] = [];
 
 export const styleSetup: StyleSetup = {
