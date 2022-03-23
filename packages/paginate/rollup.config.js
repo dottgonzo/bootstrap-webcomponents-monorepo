@@ -61,6 +61,17 @@ export default {
 				customElement: true,
 			},
 		}),
+		replace({
+			values: {
+				':#0d6efd': ':var(--bs-primary,#07689f)',
+				':#6c757d': ':var(--bs-secondary,#c9d6df)',
+				':#198754': ':var(--bs-success,#11d3bc)',
+				':#dc3545': ':var(--bs-danger,#f67280)',
+				':#0dcaf0': ':var(--bs-info,#a2d5f2)',
+				':#198754': ':var(--bs-warning,#ffc107)',
+			},
+			delimiters: ['', '']
+		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
 		css({ output: "bundle.css" }),
