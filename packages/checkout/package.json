@@ -32,6 +32,7 @@
 		"@rollup/plugin-commonjs": "^18.0.0",
 		"@rollup/plugin-json": "^4.1.0",
 		"@rollup/plugin-node-resolve": "^11.2.1",
+		"@rollup/plugin-replace": "^4.0.0",
 		"@rollup/plugin-typescript": "^8.2.1",
 		"@tsconfig/svelte": "^1.0.10",
 		"@types/node": "^16.7.1",
@@ -76,5 +77,5 @@
 		"html5-webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "d4f88dff18f0068be79fd0726bef230185b4e98c"
+	"gitHead": "dd8760413bbc13d635abf663ab5525436fd72c3e"
 }
