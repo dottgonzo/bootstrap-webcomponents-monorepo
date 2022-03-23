@@ -52,6 +52,8 @@
 </div>
 
 <style lang="scss">
+	@import "../styles/webcomponent.scss";
+
 	#content {
 		background-color: var(--hb--area-code-background);
 		padding: 28px 12px 28px 12px;
