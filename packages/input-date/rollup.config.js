@@ -12,6 +12,7 @@ import css from "rollup-plugin-css-only";
 import copy from "rollup-plugin-copy";
 import json from "@rollup/plugin-json";
 import alias from "@rollup/plugin-alias";
+import replace from '@rollup/plugin-replace';
 import path from "path";
 // import { spawn } from "child_process";
 
