@@ -9,7 +9,12 @@ export const storybookArgs = {
 	changeSelectedDate: { action: "changeSelectedDateEvent" },
 };
 
-const cssVars: CssVar[] = [];
+const cssVars: CssVar[] = [
+	{ name: "--bs-primary", valueType: "color", theme: "bootstrap", defaultValue: "#07689f" },
+	{ name: "--bs-secondary", valueType: "color", theme: "bootstrap", defaultValue: "#c9d6df" },
+	{ name: "--bs-success", valueType: "color", theme: "bootstrap", defaultValue: "#11d3bc" },
+];
+
 const cssParts: CssPart[] = [
 	{
 		name: "calendar-header",
