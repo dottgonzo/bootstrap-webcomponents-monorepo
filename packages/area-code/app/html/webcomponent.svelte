@@ -53,7 +53,7 @@
 
 <style lang="scss">
 	#content {
-		background-color: rgb(232 232 232 / 57%);
+		background-color: var(--hb--area-code-background);
 		padding: 28px 12px 28px 12px;
 		position: relative;
 	}

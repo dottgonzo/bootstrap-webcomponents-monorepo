@@ -5,7 +5,13 @@ export const storybookArgs = {
 	clipboardCopyText: { action: "clipboardCopyTextEvent" },
 };
 
-const cssVars: CssVar[] = [];
+const cssVars: CssVar[] = [
+	{
+		name: "--hb--area-code-background",
+		defaultValue: "rgb(232 232 232 / 57%)",
+		valueType: "color",
+	},
+];
 export const cssParts: CssPart[] = [{ name: "content", description: "the code html tag" }];
 export const htmlSlots: HtmlSlot[] = [];
 export const i18nLanguages: i18nLang[] = [];
