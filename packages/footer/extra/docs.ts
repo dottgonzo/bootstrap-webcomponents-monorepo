@@ -16,7 +16,7 @@ export const storybookArgs = {
 };
 
 const cssVars: CssVar[] = [];
-export const cssParts: CssPart[] = [{ name: "olumn-cell-button-content", description: "" }];
+export const cssParts: CssPart[] = [{ name: "column-cell-button-content", description: "" }];
 export const htmlSlots: HtmlSlot[] = [
 	{ name: "footerpolicy", description: "" },
 	{ description: "", name: "footerheader" },
