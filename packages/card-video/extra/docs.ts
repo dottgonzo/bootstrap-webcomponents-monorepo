@@ -13,7 +13,7 @@ export const storybookArgs = {
 
 const cssVars: CssVar[] = [];
 export const cssParts: CssPart[] = [];
-export const htmlSlots: HtmlSlot[] = [];
+export const htmlSlots: HtmlSlot[] = [{ name: "card-footer", description: "" }];
 export const i18nLanguages: i18nLang[] = [];
 
 export const styleSetup: StyleSetup = {
