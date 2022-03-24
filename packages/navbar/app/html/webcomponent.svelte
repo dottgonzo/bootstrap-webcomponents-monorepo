@@ -15,7 +15,10 @@
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
 	import type { IUserMenu } from "@app/types/webcomponent.type";
-	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
 
 	export let id: string;
 	export let companybrandname: string;
@@ -27,6 +30,10 @@
 
 	let isOpen: boolean;
 	$: {
+		if (style) {
+			parsedStyle = parseStyle(style);
+			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+		}
 		if (!companybrandname) companybrandname = "";
 		if (!companylogouri) companylogouri = "";
 		if (!id) id = "";

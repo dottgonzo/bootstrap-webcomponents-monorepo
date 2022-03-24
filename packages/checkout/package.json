@@ -66,6 +66,8 @@
 		"typescript-transform-paths": "^2.2.3"
 	},
 	"dependencies": {
+		"@htmlbricks/hb-form": "^0.7.10",
+		"@htmlbricks/hb-payment-paypal": "^0.7.10",
 		"@google-pay/button-element": "^3.0.0",
 		"dayjs": "^1.10.7",
 		"debounce": "^1.2.1"

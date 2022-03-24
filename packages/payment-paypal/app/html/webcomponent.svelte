@@ -17,7 +17,10 @@
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { formCreditCardSchema } from "@app/functions/formSchemes";
 	import { loadScript } from "@paypal/paypal-js";
-	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
 
 	export let id: string;
 	export let paypalid: string;
@@ -29,6 +32,10 @@
 	let formCreditCardSchemaSubmitted: "yes" | "no" = "no";
 	$: {
 		if (!id) id = null;
+		if (style) {
+			parsedStyle = parseStyle(style);
+			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+		}
 		if (!total) total = null;
 		else total = Number(total);
 		if (!currency) currency = "EUR";

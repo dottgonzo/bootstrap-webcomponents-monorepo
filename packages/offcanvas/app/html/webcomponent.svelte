@@ -39,6 +39,7 @@
 	let switched;
 	$: {
 		if (!id) id = null;
+
 		if (style) {
 			parsedStyle = parseStyle(style);
 			sidenavLinkStyleToSet = getChildStyleToPass(parsedStyle, sidenavLinkStyleSetup?.vars);

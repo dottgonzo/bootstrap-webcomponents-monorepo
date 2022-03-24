@@ -15,7 +15,10 @@
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
 	import type { IBrandAndContacts, IColumn, ICompany, IContacts, IFooterBottom, IPolicies, ISmallRow, ISocials } from "@app/types/webcomponent.type";
-	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
 
 	export let id: string;
 	export let company: ICompany;
@@ -31,7 +34,10 @@
 	export let policies: IPolicies[];
 	$: {
 		if (!id) id = "";
-
+		if (style) {
+			parsedStyle = parseStyle(style);
+			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+		}
 		if (!copyrighttext) copyrighttext = "";
 		if (!description) description = "";
 

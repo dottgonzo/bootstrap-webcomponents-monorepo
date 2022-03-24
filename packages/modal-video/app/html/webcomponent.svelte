@@ -3,7 +3,10 @@
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
-	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
 
 	import pkg from "../../package.json";
 	const component = get_current_component();
@@ -24,6 +27,10 @@
 
 	$: {
 		if (!id) id = null;
+		if (style) {
+			parsedStyle = parseStyle(style);
+			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+		}
 		if (!item) item = "";
 		if (!uri) uri = "";
 		if (!title) title = "";

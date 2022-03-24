@@ -17,7 +17,10 @@
 	import type { IShipment, IUser, IGateway, IPayment as CheckoutPayment } from "../../../checkout/app/types/webcomponent.type";
 	import type { IShoppingPayment, IShopItem } from "../../../checkout-shopping-cart/app/types/webcomponent.type";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
-	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
 
 	export let id: string;
 	export let shipments: IShipment[];
@@ -35,6 +38,10 @@
 
 	$: {
 		if (!id) id = null;
+		if (style) {
+			parsedStyle = parseStyle(style);
+			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+		}
 		if (!completed) completed = "no";
 		if (!shipments) shipments = [];
 		else if (typeof shipments === "string") shipments = JSON.parse(shipments) || [];

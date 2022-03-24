@@ -21,7 +21,10 @@
 	import dayjs from "dayjs";
 	import debounce from "debounce";
 	import "dayjs/locale/it";
-	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
 
 	export let id: string;
 
@@ -70,6 +73,10 @@
 	let total: number;
 	$: {
 		if (!id) id = null;
+		if (style) {
+			parsedStyle = parseStyle(style);
+			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+		}
 		if (!printer) printer = "no";
 		if (!items) items = [];
 		else if (typeof items === "string") items = JSON.parse(items);

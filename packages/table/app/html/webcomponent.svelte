@@ -20,7 +20,10 @@
 	import type { Component as ModalComponent } from "../../../dialog/app/types/webcomponent.type";
 
 	import pkg from "@app/../package.json";
-	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
 
 	// import dispatch from "@app/functions/webcomponent";
 
@@ -57,6 +60,10 @@
 	let sortedDirection: string;
 	let modalConfirm: ModalComponent & { itemId: string; action: string };
 	$: {
+		if (style) {
+			parsedStyle = parseStyle(style);
+			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+		}
 		if (!modalConfirm) {
 			modalConfirm = {
 				show: "no",

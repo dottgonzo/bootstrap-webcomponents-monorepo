@@ -5,7 +5,10 @@
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
 	import type { IHeader } from "@app/types/webcomponent.type";
-	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -27,6 +30,10 @@
 	let downloaded: boolean;
 	let errorMessage: string;
 	$: {
+		if (style) {
+			parsedStyle = parseStyle(style);
+			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+		}
 		if (!downloadid) downloadid = "";
 		if (!downloaded) downloaded = false;
 		if (!uri) uri = "";

@@ -18,7 +18,10 @@
 	import pkg from "../../package.json";
 	import type { IDispatchValsEvent, ITrack } from "@app/types/webcomponent.type";
 	import duration from "dayjs/plugin/duration";
-	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
 
 	dayjs.extend(duration);
 
@@ -43,6 +46,10 @@
 	let enablesubmit: boolean;
 
 	$: {
+		if (style) {
+			parsedStyle = parseStyle(style);
+			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+		}
 		if (!id) {
 			id = "";
 		}

@@ -18,7 +18,10 @@
 	import pkg from "../../package.json";
 
 	import { groupMultipleBy } from "@app/functions/utils";
-	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
 
 	const registeredComponents: IRegisterComponent = {
 		row: { component: null, options: { row: true } },
@@ -50,6 +53,10 @@
 	let dependencyMap: Record<string, FormSchemaEntry[]>;
 	let getControls: (schema: FormSchema) => IControl[];
 	$: {
+		if (style) {
+			parsedStyle = parseStyle(style);
+			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+		}
 		if (!showvalidation) showvalidation = "no";
 		if (!visibility) visibility = {};
 		if (submitted && submitted === "yes" && schema && typeof schema !== "string") {

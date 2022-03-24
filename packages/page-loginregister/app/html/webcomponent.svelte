@@ -19,7 +19,10 @@
 	import type { IUserMenu } from "../../../navbar/app/types/webcomponent.type";
 	import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
 	import type { IPage } from "@app/types/webcomponent.type";
-	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
 
 	export let id: string;
 
@@ -55,6 +58,10 @@
 
 	$: {
 		if (!id) id = "";
+		if (style) {
+			parsedStyle = parseStyle(style);
+			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+		}
 		if (!oauth2providers) {
 			oauth2providers = null;
 		}

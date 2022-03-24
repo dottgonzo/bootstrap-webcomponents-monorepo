@@ -15,7 +15,10 @@
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
-	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
 
 	addComponent("form", pkg.version);
 	export let id: string;
@@ -27,7 +30,10 @@
 	// let getvals: "yes" | "no" = "no";
 	$: {
 		if (!id) id = "";
-
+		if (style) {
+			parsedStyle = parseStyle(style);
+			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+		}
 		if (!step && step !== 0) step = 1;
 		else if (typeof step === "string") step = Number(step);
 		if (schemes && typeof schemes === "string") {

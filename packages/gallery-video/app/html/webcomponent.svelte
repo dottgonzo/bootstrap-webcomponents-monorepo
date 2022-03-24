@@ -14,7 +14,10 @@
 	import dayjs from "dayjs";
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
-	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
 
 	// import dispatch from "@app/functions/webcomponent";
 
@@ -45,6 +48,10 @@
 	let cardItems: ICard[];
 
 	$: {
+		if (style) {
+			parsedStyle = parseStyle(style);
+			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+		}
 		console.log(disabletextfilter, "disabletextfilter");
 		if (!linkLabel) {
 			linkLabel = "";

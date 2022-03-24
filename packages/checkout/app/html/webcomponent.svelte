@@ -20,7 +20,14 @@
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { formUserSchema, formCreditCardSchema } from "@app/functions/formSchemes";
 	import dayjs from "dayjs";
-	import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
+	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
+	import { styleSetup as paymentPaypalStyleSetup } from "../../node_modules/@htmlbricks/hb-payment-paypal/release/docs";
+	let formStyleToSet: string = "";
+	let paymentPaypalStyleToSet: string = "";
 
 	// import debounce from "debounce";
 	// import { printInvoice, OpenInvoiceWindow } from "../../../page-invoice/extra/utils";
@@ -54,6 +61,11 @@
 	let formCreditCardSchemaSubmitted: "yes" | "no" = "no";
 	const nullishdefaultpayment: IPayment = { type: "plain", total: 0, currencyCode: "EUR", countryCode: "IT", merchantName: "merchant" };
 	$: {
+		if (style) {
+			parsedStyle = parseStyle(style);
+			formStyleToSet = getChildStyleToPass(parsedStyle, formStyleSetup?.vars);
+			paymentPaypalStyleToSet = getChildStyleToPass(parsedStyle, paymentPaypalStyleSetup?.vars);
+		}
 		if (!id) id = null;
 		if (!completed) completed = "no";
 		if (!payment) payment = nullishdefaultpayment;
