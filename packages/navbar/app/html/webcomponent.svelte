@@ -26,7 +26,6 @@
 	export let id: string;
 	export let companybrandname: string;
 	export let companylogouri: string;
-	export let pagetitle: string;
 	export let switchopen: string;
 	export let usermenu: IUserMenu;
 	export let noburger: string;
@@ -40,7 +39,6 @@
 		if (!companybrandname) companybrandname = "";
 		if (!companylogouri) companylogouri = "";
 		if (!id) id = "";
-		if (!pagetitle) pagetitle = "";
 		if (!switchopen || switchopen === "no") {
 			switchopen = "";
 			isOpen = false;

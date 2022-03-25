@@ -677,7 +677,7 @@ const modalVideoExampleValues: modalVideoComponent = {
 };
 const navbarExampleValues: navbarComponent = {
 	companybrandname: 'testbrand2',
-	pagetitle: 'pagetest'
+	companylogouri: ''
 };
 const orderListExampleValues: orderListComponent = {
 	payment: {
@@ -698,7 +698,7 @@ const orderListExampleValues: orderListComponent = {
 				name: 'testitem2',
 				image: 'https://upload.wikimedia.org/wikipedia/commons/4/49/Fredmeyer_edit_1.jpg'
 			}
-		]
+		] as unknown as any
 	}
 };
 const pageCheckoutExampleValues: pageCheckoutComponent = {
