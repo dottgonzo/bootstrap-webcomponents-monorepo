@@ -25,7 +25,7 @@
 	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
 	import { styleSetup as rangeSliderStyleSetup } from "../../node_modules/@htmlbricks/hb-range-slider/release/docs";
 	let formStyleToSet: string = "";
-	let rangeSliderPaypalStyleToSet: string = "";
+	let rangeSliderStyleToSet: string = "";
 
 	dayjs.extend(duration);
 
@@ -235,6 +235,7 @@
 		{#if durationInSeconds && track}
 			<div style="width: 100%;margin-top:20px">
 				<hb-range-slider
+					style={rangeSliderStyleToSet}
 					max={max.toString()}
 					min={min.toString()}
 					maxval={track.maxValue.toString()}
@@ -246,9 +247,9 @@
 			</div>
 		{/if}
 		{#if form}<hb-form
+				style={formStyleToSet + "margin:40px auto 20px auto; display:block"}
 				on:submit={(e) => formSubmit(e.detail)}
 				on:change={(e) => formCheck(e.detail)}
-				style="margin:40px auto 20px auto; display:block"
 				submitted={sendform}
 				schema={form}
 			/>{/if}

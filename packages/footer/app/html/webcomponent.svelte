@@ -185,22 +185,22 @@
 						<ul class="list-unstyled">
 							{#if contacts.phones?.length}
 								{#each contacts.phones as phone (phone._id)}
-									<li><hb-contact-item phone={JSON.stringify(phone)} /></li>
+									<li><hb-contact-item style={contactItemStyleToSet} phone={JSON.stringify(phone)} /></li>
 								{/each}
 							{/if}
 							{#if contacts.addresses?.length}
 								{#each contacts.addresses as address (address._id)}
-									<li><hb-contact-item address={JSON.stringify(address)} /></li>
+									<li><hb-contact-item style={contactItemStyleToSet} address={JSON.stringify(address)} /></li>
 								{/each}
 							{/if}
 							{#if contacts.emails?.length}
 								{#each contacts.emails as email (email._id)}
-									<li><hb-contact-item email={JSON.stringify(email)} /></li>
+									<li><hb-contact-item style={contactItemStyleToSet} email={JSON.stringify(email)} /></li>
 								{/each}
 							{/if}
 							{#if contacts.sites?.length}
 								{#each contacts.sites as site (site._id)}
-									<li><hb-contact-item site={JSON.stringify(site)} /></li>
+									<li><hb-contact-item style={contactItemStyleToSet} site={JSON.stringify(site)} /></li>
 								{/each}
 							{/if}
 						</ul>
@@ -212,38 +212,38 @@
 						<ul class="list-unstyled">
 							{#if socials.facebook}
 								<li>
-									<hb-contact-item social={JSON.stringify({ name: "facebook", label: "pagina facebook", pageUri: "https://facebook.com" })} />
+									<hb-contact-item style={contactItemStyleToSet} social={JSON.stringify({ name: "facebook", label: "pagina facebook", pageUri: "https://facebook.com" })} />
 								</li>
 							{/if}
 
 							{#if socials?.gmail}
 								<li>
-									<hb-contact-item social={JSON.stringify({ name: "gmail", label: "pagina gmail", pageUri: "https://gmail.com" })} />
+									<hb-contact-item style={contactItemStyleToSet} social={JSON.stringify({ name: "gmail", label: "pagina gmail", pageUri: "https://gmail.com" })} />
 								</li>
 							{/if}
 							{#if socials?.twitter}
 								<li>
-									<hb-contact-item social={JSON.stringify({ name: "twitter", label: "pagina twitter", pageUri: "https://twitter.com" })} />
+									<hb-contact-item style={contactItemStyleToSet} social={JSON.stringify({ name: "twitter", label: "pagina twitter", pageUri: "https://twitter.com" })} />
 								</li>
 							{/if}
 							{#if socials?.github}
 								<li>
-									<hb-contact-item social={JSON.stringify({ name: "github", label: "pagina github", pageUri: socials.github })} />
+									<hb-contact-item style={contactItemStyleToSet} social={JSON.stringify({ name: "github", label: "pagina github", pageUri: socials.github })} />
 								</li>
 							{/if}
 							{#if socials?.twitch}
 								<li>
-									<hb-contact-item social={JSON.stringify({ name: "twitch", label: "pagina twitch", pageUri: "https://twitch.com" })} />
+									<hb-contact-item style={contactItemStyleToSet} social={JSON.stringify({ name: "twitch", label: "pagina twitch", pageUri: "https://twitch.com" })} />
 								</li>
 							{/if}
 							{#if socials?.youtube}
 								<li>
-									<hb-contact-item social={JSON.stringify({ name: "youtube", label: "pagina youtube", pageUri: "https://youtube.com" })} />
+									<hb-contact-item style={contactItemStyleToSet} social={JSON.stringify({ name: "youtube", label: "pagina youtube", pageUri: "https://youtube.com" })} />
 								</li>
 							{/if}
 							{#if socials?.discord}
 								<li>
-									<hb-contact-item social={JSON.stringify({ name: "discord", label: "pagina discord", pageUri: "https://discord.com" })} />
+									<hb-contact-item style={contactItemStyleToSet} social={JSON.stringify({ name: "discord", label: "pagina discord", pageUri: "https://discord.com" })} />
 								</li>
 							{/if}
 						</ul>
@@ -268,13 +268,13 @@
 											>
 										</li>
 									{:else if cell.phone}
-										<li><hb-contact-item phone={JSON.stringify(cell.phone)} /></li>
+										<li><hb-contact-item style={contactItemStyleToSet} phone={JSON.stringify(cell.phone)} /></li>
 									{:else if cell.address}
-										<li><hb-contact-item address={JSON.stringify(cell.address)} /></li>
+										<li><hb-contact-item style={contactItemStyleToSet} address={JSON.stringify(cell.address)} /></li>
 									{:else if cell.email}
-										<li><hb-contact-item email={JSON.stringify(cell.email)} /></li>
+										<li><hb-contact-item style={contactItemStyleToSet} email={JSON.stringify(cell.email)} /></li>
 									{:else if cell.site}
-										<li><hb-contact-item site={JSON.stringify(cell.site)} /></li>
+										<li><hb-contact-item style={contactItemStyleToSet} site={JSON.stringify(cell.site)} /></li>
 									{:else if cell.label}
 										<li>
 											<button

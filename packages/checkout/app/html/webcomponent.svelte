@@ -234,6 +234,7 @@
 
 			<div>
 				<hb-form
+					style={formStyleToSet}
 					schema={JSON.stringify(formUserSchema)}
 					submitted={formUserSchemaSubmitted}
 					on:submit={(e) => {
@@ -281,6 +282,7 @@
 					<h4 class="subtitle" part="subtitle" style="margin-top:20px"><i class="bi bi-truck" /> Shipment Service</h4>
 					<div>
 						<hb-form
+							style={formStyleToSet}
 							schema={JSON.stringify(formShipmentSchema)}
 							submitted={formShipmentSchemaSubmitted}
 							on:submit={(e) => {
@@ -340,6 +342,7 @@
 					<div class="payment_button_container">
 						{#if g.id === "paypal"}
 							<hb-payment-paypal
+								style={paymentPaypalStyleToSet}
 								class="payment_button"
 								paypalid={g.paypalid}
 								total={payment?.total?.toString()}

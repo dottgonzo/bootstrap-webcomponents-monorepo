@@ -153,7 +153,7 @@
 	</div>
 	<div class="row cart_divider">
 		<div class="col">
-			<hb-table disablepagination="yes" rows={JSON.stringify(tableRows)} headers={JSON.stringify(tableHeaders)} />
+			<hb-table style={tableStyleToSet} disablepagination="yes" rows={JSON.stringify(tableRows)} headers={JSON.stringify(tableHeaders)} />
 		</div>
 	</div>
 </div>

@@ -129,7 +129,7 @@
 	}
 </script>
 
-<hb-dialog id={downloadid} show={uri ? "yes" : "no"} on:modalShow={(d) => dialogShowEvent(d.detail)}>
+<hb-dialog style={dialogStyleToSet} id={downloadid} show={uri ? "yes" : "no"} on:modalShow={(d) => dialogShowEvent(d.detail)}>
 	<span slot="title">
 		<slot name="title">Downloading</slot>
 	</span>
