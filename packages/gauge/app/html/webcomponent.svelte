@@ -27,9 +27,9 @@
 			}
 		}
 	}
-	function updateGauge(val: number) {
-		if (gauge) gauge.refresh(val, null, null, null);
-	}
+	// function updateGauge(val: number) {
+	// 	if (gauge) gauge.refresh(val, null, null, null);
+	// }
 	function recreateGauge() {
 		if (gauge) gauge.destroy();
 		gauge = null;
@@ -55,7 +55,7 @@
 	});
 </script>
 
-<div style="width:100%" id="gauge" />
+<div part="gauge" style="width:100%" id="gauge" />
 <svelte:window on:resize={debounce(recreateGauge, 200)} />
 
 <style lang="scss">

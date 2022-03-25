@@ -138,12 +138,12 @@
 
 		total = subTotal + taxTotal;
 	}
-	const component = get_current_component();
-	const svelteDispatch = createEventDispatcher();
-	function dispatch(name, detail) {
-		svelteDispatch(name, detail);
-		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
-	}
+	// const component = get_current_component();
+	// const svelteDispatch = createEventDispatcher();
+	// function dispatch(name, detail) {
+	// 	svelteDispatch(name, detail);
+	// 	component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
+	// }
 
 	addComponent("table", pkg.version);
 </script>

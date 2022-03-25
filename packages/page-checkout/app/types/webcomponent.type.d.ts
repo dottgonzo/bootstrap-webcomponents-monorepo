@@ -9,4 +9,8 @@ export type Component = {
 	completed: "yes" | "no";
 };
 
-export type Events = {};
+export type Events = {
+	saveUser: IUser;
+	// saveShipment: { action: "saveShipment" };
+	paymentCompleted: { total: number; method: string; completed: true };
+};
