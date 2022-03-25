@@ -10,7 +10,7 @@ export type Component = {
 	pagename?: string;
 	usermenu?: IUserMenu;
 	cookielaw?: string;
-	columns: IColumn[];
+	columns?: IColumn[];
 	onescreen?: "yes";
 	cookielawuri4more?: string;
 	cookielawallowdecline?: string;

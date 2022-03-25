@@ -1,67 +1,73 @@
 import { writable } from 'svelte/store';
 import dayjs from 'dayjs';
 
+import type { Component as bannerComponent } from '@htmlbricks/hb-banner/release/webcomponent.type';
+import type { Component as areaCodeComponent } from '@htmlbricks/hb-area-code/release/webcomponent.type';
+import type { Component as offcanvasComponent } from '@htmlbricks/hb-offcanvas/release/webcomponent.type';
+import type { Component as layoutComponent } from '@htmlbricks/hb-layout/release/webcomponent.type';
+import type { Component as footerComponent } from '@htmlbricks/hb-footer/release/webcomponent.type';
+import type { Component as inputTextComponent } from '@htmlbricks/hb-input-text/release/webcomponent.type';
+import type { Component as paginateComponent } from '@htmlbricks/hb-paginate/release/webcomponent.type';
+import type { Component as authComponent } from '@htmlbricks/hb-auth/release/webcomponent.type';
+import type { Component as calendarEventsComponent } from '@htmlbricks/hb-calendar-events/release/webcomponent.type';
+import type { Component as cardVideoComponent } from '@htmlbricks/hb-card-video/release/webcomponent.type';
+import type { Component as chartjsComponent } from '@htmlbricks/hb-chartjs/release/webcomponent.type';
+import type { Component as checkoutComponent } from '@htmlbricks/hb-checkout/release/webcomponent.type';
+import type { Component as checkoutShoppingCartComponent } from '@htmlbricks/hb-checkout-shopping-cart/release/webcomponent.type';
+import type { Component as contactItemComponent } from '@htmlbricks/hb-contact-item/release/webcomponent.type';
+import type { Component as cookieLawBannerComponent } from '@htmlbricks/hb-cookie-law-banner/release/webcomponent.type';
+import type { Component as dialogComponent } from '@htmlbricks/hb-dialog/release/webcomponent.type';
+import type { Component as downloaderComponent } from '@htmlbricks/hb-downloader/release/webcomponent.type';
+import type { Component as dropdownSimpleComponent } from '@htmlbricks/hb-dropdown-simple/release/webcomponent.type';
+import type { Component as editorTinymceComponent } from '@htmlbricks/hb-editor-tinymce/release/webcomponent.type';
+import type { Component as editorVideoComponent } from '@htmlbricks/hb-editor-video/release/webcomponent.type';
+import type { Component as formComponent } from '@htmlbricks/hb-form/release/webcomponent.type';
+import type { Component as funnelComponent } from '@htmlbricks/hb-funnel/release/webcomponent.type';
+import type { Component as galleryVideoComponent } from '@htmlbricks/hb-gallery-video/release/webcomponent.type';
+import type { Component as gaugeComponent } from '@htmlbricks/hb-gauge/release/webcomponent.type';
+import type { Component as inputAreaComponent } from '@htmlbricks/hb-input-area/release/webcomponent.type';
+import type { Component as inputColorComponent } from '@htmlbricks/hb-input-color/release/webcomponent.type';
+import type { Component as inputCheckboxComponent } from '@htmlbricks/hb-input-checkbox/release/webcomponent.type';
+import type { Component as inputDateComponent } from '@htmlbricks/hb-input-date/release/webcomponent.type';
+import type { Component as inputEmailComponent } from '@htmlbricks/hb-input-email/release/webcomponent.type';
+import type { Component as inputFileComponent } from '@htmlbricks/hb-input-file/release/webcomponent.type';
+import type { Component as inputNumberComponent } from '@htmlbricks/hb-input-number/release/webcomponent.type';
+import type { Component as inputRadioComponent } from '@htmlbricks/hb-input-radio/release/webcomponent.type';
+import type { Component as inputSelectComponent } from '@htmlbricks/hb-input-select/release/webcomponent.type';
+import type { Component as mapComponent } from '@htmlbricks/hb-map/release/webcomponent.type';
+import type { Component as modalVideoComponent } from '@htmlbricks/hb-modal-video/release/webcomponent.type';
+import type { Component as navbarComponent } from '@htmlbricks/hb-navbar/release/webcomponent.type';
+import type { Component as orderListComponent } from '@htmlbricks/hb-order-list/release/webcomponent.type';
+import type { Component as pageCheckoutComponent } from '@htmlbricks/hb-page-checkout/release/webcomponent.type';
+import type { Component as pageInvoiceComponent } from '@htmlbricks/hb-page-invoice/release/webcomponent.type';
+import type { Component as pageLoginregisterComponent } from '@htmlbricks/hb-page-loginregister/release/webcomponent.type';
+import type { Component as paymentPaypalComponent } from '@htmlbricks/hb-payment-paypal/release/webcomponent.type';
+import type { Component as playerLiveComponent } from '@htmlbricks/hb-player-live/release/webcomponent.type';
+import type { Component as productComparisonComponent } from '@htmlbricks/hb-product-comparison/release/webcomponent.type';
+import type { Component as rangeSliderComponent } from '@htmlbricks/hb-range-slider/release/webcomponent.type';
+import type { Component as sidenavLinkComponent } from '@htmlbricks/hb-sidenav-link/release/webcomponent.type';
+import type { Component as tableComponent } from '@htmlbricks/hb-table/release/webcomponent.type';
+import type { Component as toastComponent } from '@htmlbricks/hb-toast/release/webcomponent.type';
 
-import type {Component as bannerComponent} from '@htmlbricks/hb-banner/release/webcomponent.type';
-import type {Component as areaCodeComponent} from '@htmlbricks/hb-area-code/release/webcomponent.type';
-import type {Component as offcanvasComponent} from '@htmlbricks/hb-offcanvas/release/webcomponent.type';
-import type {Component as layoutComponent} from '@htmlbricks/hb-layout/release/webcomponent.type';
-import type {Component as footerComponent} from '@htmlbricks/hb-footer/release/webcomponent.type';
-import type {Component as inputTextComponent} from '@htmlbricks/hb-input-text/release/webcomponent.type';
-import type {Component as paginateComponent} from '@htmlbricks/hb-paginate/release/webcomponent.type';
-import type {Component as authComponent} from '@htmlbricks/hb-auth/release/webcomponent.type';
-import type {Component as calendarEventsComponent} from '@htmlbricks/hb-calendar-events/release/webcomponent.type';
-import type {Component as cardVideoComponent} from '@htmlbricks/hb-card-video/release/webcomponent.type';
-import type {Component as chartjsComponent} from '@htmlbricks/hb-chartjs/release/webcomponent.type';
-import type {Component as checkoutComponent} from '@htmlbricks/hb-checkout/release/webcomponent.type';
-import type {Component as checkoutShoppingCartComponent} from '@htmlbricks/hb-checkout-shopping-cart/release/webcomponent.type';
-import type {Component as contactItemComponent} from '@htmlbricks/hb-contact-item/release/webcomponent.type';
-import type {Component as cookieLawBannerComponent} from '@htmlbricks/hb-cookie-law-banner/release/webcomponent.type';
-import type {Component as dialogComponent} from '@htmlbricks/hb-dialog/release/webcomponent.type';
-import type {Component as downloaderComponent} from '@htmlbricks/hb-downloader/release/webcomponent.type';
-import type {Component as dropdownSimpleComponent} from '@htmlbricks/hb-dropdown-simple/release/webcomponent.type';
-import type {Component as editorTinymceComponent} from '@htmlbricks/hb-editor-tinymce/release/webcomponent.type';
-import type {Component as editorVideoComponent} from '@htmlbricks/hb-editor-video/release/webcomponent.type';
-import type {Component as formComponent} from '@htmlbricks/hb-form/release/webcomponent.type';
-import type {Component as funnelComponent} from '@htmlbricks/hb-funnel/release/webcomponent.type';
-import type {Component as galleryVideoComponent} from '@htmlbricks/hb-gallery-video/release/webcomponent.type';
-import type {Component as gaugeComponent} from '@htmlbricks/hb-gauge/release/webcomponent.type';
-import type {Component as inputAreaComponent} from '@htmlbricks/hb-input-area/release/webcomponent.type';
-import type {Component as inputColorComponent} from '@htmlbricks/hb-input-color/release/webcomponent.type';
-import type {Component as inputCheckboxComponent} from '@htmlbricks/hb-input-checkbox/release/webcomponent.type';
-import type {Component as inputDateComponent} from '@htmlbricks/hb-input-date/release/webcomponent.type';
-import type {Component as inputEmailComponent} from '@htmlbricks/hb-input-email/release/webcomponent.type';
-import type {Component as inputFileComponent} from '@htmlbricks/hb-input-file/release/webcomponent.type';
-import type {Component as inputNumberComponent} from '@htmlbricks/hb-input-number/release/webcomponent.type';
-import type {Component as inputRadioComponent} from '@htmlbricks/hb-input-radio/release/webcomponent.type';
-import type {Component as inputSelectComponent} from '@htmlbricks/hb-input-select/release/webcomponent.type';
-import type {Component as mapComponent} from '@htmlbricks/hb-map/release/webcomponent.type';
-import type {Component as modalVideoComponent} from '@htmlbricks/hb-modal-video/release/webcomponent.type';
-import type {Component as navbarComponent} from '@htmlbricks/hb-navbar/release/webcomponent.type';
-import type {Component as orderListComponent} from '@htmlbricks/hb-order-list/release/webcomponent.type';
-import type {Component as pageCheckoutComponent} from '@htmlbricks/hb-page-checkout/release/webcomponent.type';
-import type {Component as pageInvoiceComponent} from '@htmlbricks/hb-page-invoice/release/webcomponent.type';
-import type {Component as pageLoginregisterComponent} from '@htmlbricks/hb-page-loginregister/release/webcomponent.type';
-import type {Component as paymentPaypalComponent} from '@htmlbricks/hb-payment-paypal/release/webcomponent.type';
-import type {Component as playerLiveComponent} from '@htmlbricks/hb-player-live/release/webcomponent.type';
-import type {Component as productComparisonComponent} from '@htmlbricks/hb-product-comparison/release/webcomponent.type';
-import type {Component as rangeSliderComponent} from '@htmlbricks/hb-range-slider/release/webcomponent.type';
-import type {Component as sidenavLinkComponent} from '@htmlbricks/hb-sidenav-link/release/webcomponent.type';
-import type {Component as tableComponent} from '@htmlbricks/hb-table/release/webcomponent.type';
-import type {Component as toastComponent} from '@htmlbricks/hb-toast/release/webcomponent.type';
-
-
-const paginateExampleValues = {
+const paginateExampleValues: paginateComponent = {
 	page: 2,
 	pages: 4
 };
 
-const inputTextExampleValues = {
+const inputColorExampleValues: inputColorComponent = {
+	schemaentry: {
+		placeholder: 'Insert your last name here...',
+		id: 'colortxt',
+		required: true,
+		validationTip: 'This field cannot be empty.'
+	}
+};
+
+const inputTextExampleValues: inputTextComponent = {
 	schemaentry: {
 		placeholder: 'Insert your last name here...',
 		id: 'lastName',
 		required: true,
-		label: 'Last Name',
 		validationTip: 'This field cannot be empty.'
 	}
 };
@@ -71,15 +77,15 @@ const bannerExampleValues: bannerComponent = {
 	description: 'desc',
 	logouri: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg'
 };
-const areaCodeExampleValues = {
+const areaCodeExampleValues: areaCodeComponent = {
 	content: 'desc'
 };
 const sidebar = { title: 'ciao' };
-const company1 = {
+const company1: footerComponent['company'] = {
 	logoUri: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg',
 	siteName: 'testsite',
 	companyName: 'testcompany S.R.L.',
-	registration: 'copyright',
+	registration: { text: 'copyright' },
 	description: `testo e descrizione di esempio dell applicazione`,
 	vatNumber: 'aa - ffffff',
 	fiscalCode: 'f4f5f6fff'
@@ -209,7 +215,7 @@ const policies1 = [
 		key: 'cookiepolicy'
 	}
 ];
-const layoutExampleValues = {
+const layoutExampleValues: layoutComponent = {
 	company: company1,
 	contacts: contacts1,
 	socials: socials1,
@@ -217,7 +223,7 @@ const layoutExampleValues = {
 	usermenu: usermenu1,
 	sidebar
 };
-const footerExampleValues = {
+const footerExampleValues: footerComponent = {
 	company: company1,
 	brandandcontacts: brandandcontacts1,
 	columns: columns1,
@@ -226,7 +232,7 @@ const footerExampleValues = {
 	contacts: contacts1,
 	socials: socials1
 };
-const offcanvasExampleValues = {
+const offcanvasExampleValues: offcanvasComponent = {
 	opened: true,
 	id: 'BasicOffcanvasOnSettings',
 	navlinks: [
@@ -499,22 +505,22 @@ const googlepay = {
 	gatewayId: 'example',
 	gatewayMerchantId: 'exampleGatewayMerchantId'
 };
-const authExampleValues = {
+const authExampleValues: authComponent = {
 	type: 'login',
 	logouri: 'https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg'
 };
 
-const calendarEventsExampleValues = {
+const calendarEventsExampleValues: calendarEventsComponent = {
 	events
 };
 
-const cardVideoExampleValues = {
+const cardVideoExampleValues: cardVideoComponent = {
 	videosrc: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
 	title: 'aa',
 	description: 'desc6',
 	time: '2021-08-15T18:55:22.135Z'
 };
-const chartjsExampleValues = {
+const chartjsExampleValues: chartjsComponent = {
 	data: {
 		type: 'line',
 		data: {
@@ -531,7 +537,7 @@ const chartjsExampleValues = {
 		options: {}
 	}
 };
-const checkoutExampleValues = {
+const checkoutExampleValues: checkoutComponent = {
 	shipments: [
 		{
 			price: 10,
@@ -555,7 +561,7 @@ const checkoutExampleValues = {
 	gateways: [paypal],
 	payment: defaultPayment
 };
-const checkoutShoppingCartExampleValues = {
+const checkoutShoppingCartExampleValues: checkoutShoppingCartComponent = {
 	payment: {
 		items: [
 			{
@@ -571,17 +577,17 @@ const checkoutShoppingCartExampleValues = {
 		]
 	}
 };
-const contactItemExampleValues = {
+const contactItemExampleValues: contactItemComponent = {
 	email: { address: 'dev@dariocaruso.info' }
 };
-const cookieLawBannerExampleValues = {
+const cookieLawBannerExampleValues: cookieLawBannerComponent = {
 	allowdecline: true
 };
-const dialogExampleValues = {
+const dialogExampleValues: dialogComponent = {
 	show: true
 };
-const downloaderExampleValues = {};
-const dropdownSimpleExampleValues = {
+const downloaderExampleValues: downloaderComponent = {};
+const dropdownSimpleExampleValues: dropdownSimpleComponent = {
 	list: [
 		{
 			key: 'ciao',
@@ -598,26 +604,26 @@ const dropdownSimpleExampleValues = {
 		}
 	]
 };
-const editorTinymceExampleValues = {};
-const editorVideoExampleValues = {};
-const formExampleValues = {
+const editorTinymceExampleValues: editorTinymceComponent = {};
+const editorVideoExampleValues: editorVideoComponent = {};
+const formExampleValues: formComponent = {
 	schema: schema1
 };
-const funnelExampleValues = {
+const funnelExampleValues: funnelComponent = {
 	schemes: [preferences, preferences2]
 };
-const galleryVideoExampleValues = {
+const galleryVideoExampleValues: galleryVideoComponent = {
 	cards,
 	headers
 };
-const gaugeExampleValues = {
+const gaugeExampleValues: gaugeComponent = {
 	options: {
 		value: 50,
 		min: 0,
 		max: 100
 	}
 };
-const inputAreaExampleValues = {
+const inputAreaExampleValues: inputAreaComponent = {
 	schemaentry: {
 		placeholder: 'Insert your last name here...',
 		id: 'lastName',
@@ -626,18 +632,18 @@ const inputAreaExampleValues = {
 		validationTip: 'This field cannot be empty.'
 	}
 };
-const inputCheckboxExampleValues = {};
-const inputDateExampleValues = {};
-const inputEmailExampleValues = {};
-const inputFileExampleValues = {
+const inputCheckboxExampleValues: inputCheckboxComponent = {};
+const inputDateExampleValues: inputDateComponent = {};
+const inputEmailExampleValues: inputEmailComponent = {};
+const inputFileExampleValues: inputFileComponent = {
 	placeholder: 'Insert your last name here...',
 	id: 'lastName',
 	required: true,
 	label: 'Last Name',
 	validationTip: 'This field cannot be empty.'
 };
-const inputNumberExampleValues = {};
-const inputRadioExampleValues = {
+const inputNumberExampleValues: inputNumberComponent = {};
+const inputRadioExampleValues: inputRadioComponent = {
 	placeholder: 'Choose here...',
 	id: 'check0',
 	required: true,
@@ -651,8 +657,8 @@ const inputRadioExampleValues = {
 		]
 	}
 };
-const inputSelectExampleValues = {};
-const mapExampleValues = {
+const inputSelectExampleValues: inputSelectComponent = {};
+const mapExampleValues: mapComponent = {
 	center: [10, 10],
 	zoom: 9,
 	source: { type: 'osm' },
@@ -682,14 +688,14 @@ const mapExampleValues = {
 		}
 	]
 };
-const modalVideoExampleValues = {
+const modalVideoExampleValues: modalVideoComponent = {
 	uri: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4'
 };
-const navbarExampleValues = {
+const navbarExampleValues: navbarComponent = {
 	companybrandname: 'testbrand2',
 	pagetitle: 'pagetest'
 };
-const orderListExampleValues = {
+const orderListExampleValues: orderListComponent = {
 	payment: {
 		orderNumber: 'ssss',
 
@@ -711,7 +717,7 @@ const orderListExampleValues = {
 		]
 	}
 };
-const pageCheckoutExampleValues = {
+const pageCheckoutExampleValues: pageCheckoutComponent = {
 	shipments: [],
 	user: {
 		fullName: 'fdfff fffff',
@@ -738,7 +744,7 @@ const pageCheckoutExampleValues = {
 		]
 	}
 };
-const pageInvoiceExampleValues = {
+const pageInvoiceExampleValues: pageInvoiceComponent = {
 	headers: {
 		serial: 'seriale1',
 		from: {
@@ -771,19 +777,19 @@ const pageInvoiceExampleValues = {
 		}
 	]
 };
-const pageLoginregisterExampleValues = {
+const pageLoginregisterExampleValues: pageLoginregisterComponent = {
 	type: 'login',
 	company: company1
 };
-const paymentPaypalExampleValues = {
+const paymentPaypalExampleValues: paymentPaypalComponent = {
 	label: 'bbbb',
 	paypalid: 'test'
 };
-const playerLiveExampleValues = {
+const playerLiveExampleValues: playerLiveComponent = {
 	width: 400,
 	mediauri: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
 };
-const productComparisonExampleValues = {
+const productComparisonExampleValues: productComparisonComponent = {
 	headers: [
 		{
 			id: 'char1',
@@ -855,12 +861,12 @@ const productComparisonExampleValues = {
 	],
 	options: { currency: '€' }
 };
-const rangeSliderExampleValues = {
+const rangeSliderExampleValues: rangeSliderComponent = {
 	withbubbles: true,
 	minval: 20,
 	maxval: 60
 };
-const sidenavLinkExampleValues = {
+const sidenavLinkExampleValues: sidenavLinkComponent = {
 	navpage: 'home',
 	navlink: {
 		label: 'Home',
@@ -871,7 +877,7 @@ const sidenavLinkExampleValues = {
 		}
 	}
 };
-const tableExampleValues = {
+const tableExampleValues: tableComponent = {
 	headers: [
 		{
 			label: 'title',
@@ -987,7 +993,7 @@ const tableExampleValues = {
 		}
 	]
 };
-const toastExampleValues = {
+const toastExampleValues: toastComponent = {
 	small: '11 mins ago',
 	title: 'Bootstrap',
 	show: true,
@@ -1028,6 +1034,7 @@ export const allComponentsExampleValues = writable({
 	'input-number': inputNumberExampleValues,
 	'input-radio': inputRadioExampleValues,
 	'input-select': inputSelectExampleValues,
+	'input-color': inputColorExampleValues,
 	map: mapExampleValues,
 	'modal-video': modalVideoExampleValues,
 	navbar: navbarExampleValues,
