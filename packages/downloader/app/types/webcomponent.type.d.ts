@@ -9,4 +9,7 @@ export type Component = {
 	targetfilename: string;
 };
 
-export type Events = {};
+export type Events = {
+	downloadError: { downloaded: boolean; id: string; error: Error };
+	downloadComplete: { downloaded: boolean; id: string };
+};
