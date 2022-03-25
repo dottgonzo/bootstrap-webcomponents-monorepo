@@ -410,7 +410,7 @@ const preferences: funnelComponent['schemes'][0] = [
 		validationTip: 'Min 8, Max 120'
 	}
 ];
-const preferences2 = [
+const preferences2: funnelComponent['schemes'][0] = [
 	{
 		type: 'text',
 		placeholder: 'Inserisci titolo di default2',
@@ -475,27 +475,7 @@ const cards: galleryVideoComponent['cards'] = [
 	},
 	{ title: 'bb13', time: '2021-08-07T22:46:39.565Z' }
 ];
-const headers: galleryVideoComponent['headers'] = [
-	{
-		label: 'title',
-		key: 'title',
-		search: true
-	},
-	{
-		label: 'description',
-		key: 'description'
-	},
-	{
-		label: 'nested',
-		key: 'testnested.nested'
-	},
-	{
-		label: 'data',
-		key: 'time',
-		type: 'datetime',
-		format: 'DD MMMM YYYY'
-	}
-];
+
 const defaultgw = {
 	id: 'paypal',
 	label: 'bbbb',
@@ -520,7 +500,7 @@ const cardVideoExampleValues: cardVideoComponent = {
 	videosrc: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
 	title: 'aa',
 	description: 'desc6',
-	time: '2021-08-15T18:55:22.135Z'
+	time: new Date('2021-08-15T18:55:22.135Z')
 };
 const chartjsExampleValues: chartjsComponent = {
 	data: {
@@ -545,7 +525,7 @@ const checkoutExampleValues: checkoutComponent = {
 			price: 10,
 			currency: '€',
 
-			arriveDate: '2022-01-20T08:03:57.562Z',
+			arriveDate: new Date('2022-01-20T08:03:57.562Z'),
 			available: true,
 			label: 'zio barca',
 			id: 'ziobarca'
@@ -554,7 +534,7 @@ const checkoutExampleValues: checkoutComponent = {
 			price: 20,
 			currency: '€',
 
-			arriveDate: '2022-01-21T02:22:57.562Z',
+			arriveDate: new Date('2022-01-21T02:22:57.562Z'),
 			available: true,
 			label: 'zio barca2',
 			id: 'ziobarca2'
@@ -786,11 +766,11 @@ const pageLoginregisterExampleValues: pageLoginregisterComponent = {
 	company: company1
 };
 const paymentPaypalExampleValues: paymentPaypalComponent = {
-	label: 'bbbb',
+	currency: 'EUR',
+	total: 40,
 	paypalid: 'test'
 };
 const playerLiveExampleValues: playerLiveComponent = {
-	width: 400,
 	mediauri: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
 };
 const productComparisonExampleValues: productComparisonComponent = {

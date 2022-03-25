@@ -48,10 +48,10 @@ export type Component = {
 	id?: string;
 	style?: string;
 	shipments: IShipment[];
-	user: IUser;
+	user?: IUser;
 	gateways: IGateway[];
 	payment: IPayment;
-	completed: "yes" | "no";
+	completed?: "yes" | "no";
 };
 
 export type Events = {

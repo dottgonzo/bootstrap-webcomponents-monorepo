@@ -18,7 +18,6 @@
 	import { createEventDispatcher, current_component, get_current_component } from "svelte/internal";
 
 	export let mediauri: string;
-	export let mediatype: string;
 	export let id: string;
 	export let forcecover: string;
 	export let replacewithtext: {
@@ -39,9 +38,7 @@
 		if (!forcecover) {
 			forcecover = null;
 		}
-		if (!mediatype) {
-			mediatype = null;
-		}
+
 		if (!replacewithtext) {
 			replacewithtext = null;
 		} else {
