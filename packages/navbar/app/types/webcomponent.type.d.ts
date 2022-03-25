@@ -17,4 +17,7 @@ export type Component = {
 	noburger: string;
 };
 
-export type Events = {};
+export type Events = {
+	userClick: { key: string };
+	navmenuswitch: { isOpen: boolean };
+};

@@ -12,4 +12,7 @@ export type Component = {
 	open: boolean;
 };
 
-export type Events = {};
+export type Events = {
+	dropdownSwitch: { open: boolean; id: string };
+	dropDownClick: { key: string };
+};
