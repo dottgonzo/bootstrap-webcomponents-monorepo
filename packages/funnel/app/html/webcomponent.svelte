@@ -96,6 +96,7 @@
 
 {#if schemes}
 	<hb-form
+		style={formStyleToSet}
 		id={`scheme-${step}-${steps}`}
 		on:submit={(e) => submitFunnel()}
 		on:change={(e) => schemeUpdate(e.detail)}

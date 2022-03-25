@@ -193,7 +193,7 @@
 		</div>
 		<div class="row" style="margin-top:40px">
 			<div class="col">
-				<hb-table disablepagination="yes" rows={JSON.stringify(tableRows)} headers={JSON.stringify(tableHeaders)} />
+				<hb-table style={tableStyleToSet} disablepagination="yes" rows={JSON.stringify(tableRows)} headers={JSON.stringify(tableHeaders)} />
 			</div>
 		</div>
 		<div class="row" style="margin-top:40px">

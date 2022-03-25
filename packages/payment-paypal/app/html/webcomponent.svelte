@@ -17,12 +17,12 @@
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { formCreditCardSchema } from "@app/functions/formSchemes";
 	import { loadScript } from "@paypal/paypal-js";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
-	import parseStyle from "style-to-object";
-	let parsedStyle: { [x: string]: string };
-	export let style: string;
-	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
-	let formStyleToSet: string = "";
+	// import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	// import parseStyle from "style-to-object";
+	// let parsedStyle: { [x: string]: string };
+	// export let style: string;
+	// import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
+	// let formStyleToSet: string = "";
 
 	export let id: string;
 	export let paypalid: string;
@@ -34,10 +34,10 @@
 	let formCreditCardSchemaSubmitted: "yes" | "no" = "no";
 	$: {
 		if (!id) id = null;
-		if (style) {
-			parsedStyle = parseStyle(style);
-			formStyleToSet = getChildStyleToPass(parsedStyle, formStyleSetup?.vars);
-		}
+		// if (style) {
+		// 	parsedStyle = parseStyle(style);
+		// 	formStyleToSet = getChildStyleToPass(parsedStyle, formStyleSetup?.vars);
+		// }
 		if (!total) total = null;
 		else total = Number(total);
 		if (!currency) currency = "EUR";
@@ -136,7 +136,7 @@
 	// 	document.head.appendChild(script);
 	// }
 
-	addComponent("form", pkg.version);
+	// addComponent("form", pkg.version);
 </script>
 
 <div part="btn" id="paypalbtn" />

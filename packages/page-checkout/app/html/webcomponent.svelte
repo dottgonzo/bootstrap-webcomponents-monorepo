@@ -19,7 +19,7 @@
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
 	import { styleSetup as checkoutStyleSetup } from "../../node_modules/@htmlbricks/hb-checkout/release/docs";
-	import { styleSetup as checkoutShoppingCartStyleToSet } from "../../node_modules/@htmlbricks/hb-checkout-shopping-cart/release/docs";
+	import { styleSetup as checkoutShoppingCartStyleSetup } from "../../node_modules/@htmlbricks/hb-checkout-shopping-cart/release/docs";
 
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
@@ -112,6 +112,7 @@
 	<div class="row">
 		<div class="col-7" style="padding-right:30px">
 			<hb-checkout
+				style={checkoutStyleToSet}
 				on:paymentCompleted={(e) => paymentCompleted(e.detail)}
 				on:saveUser={(e) => dispatch("saveUser", e.detail)}
 				on:saveShipment={(e) => saveShipment(e.detail)}
@@ -123,7 +124,7 @@
 			/>
 		</div>
 		<div class="col-5" style="padding-left:30px">
-			<hb-checkout-shopping-cart {completed} payment={JSON.stringify(payment)} />
+			<hb-checkout-shopping-cart style={checkoutShoppingCartStyleToSet} {completed} payment={JSON.stringify(payment)} />
 		</div>
 	</div>
 </div>

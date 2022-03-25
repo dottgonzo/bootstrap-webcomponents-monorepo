@@ -104,7 +104,11 @@
 			</slot>
 		</div>
 		{#if usermenu}
-			<hb-dropdown-simple on:dropDownClick={(e) => dispatch("userClick", e.detail.key)} list={JSON.stringify(usermenu.list)} position="right"
+			<hb-dropdown-simple
+				style={dropdownSimpleStyleToSet}
+				on:dropDownClick={(e) => dispatch("userClick", e.detail.key)}
+				list={JSON.stringify(usermenu.list)}
+				position="right"
 				><span slot="dropdownbutton"><img style="height: 30px;vertical-align: middle;" alt="" src={usermenu.imgUri} /></span></hb-dropdown-simple
 			>
 			<!-- 

@@ -269,6 +269,7 @@
 
 									{#if component === "hb-input-text"}
 										<hb-input-text
+											style={inputTextStyleToSet}
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -285,6 +286,7 @@
 										/>
 									{:else if component === "hb-input-color"}
 										<hb-input-color
+											style={inputColorStyleToSet}
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -301,6 +303,7 @@
 										/>
 									{:else if component === "hb-input-file"}
 										<hb-input-file
+											style={inputFileStyleToSet}
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -317,6 +320,7 @@
 										/>
 									{:else if component === "hb-input-email"}
 										<hb-input-email
+											style={inputEmailStyleToSet}
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -333,6 +337,7 @@
 										/>
 									{:else if component === "hb-input-date"}
 										<hb-input-date
+											style={inputDateStyleToSet}
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -349,6 +354,7 @@
 										/>
 									{:else if component === "hb-input-checkbox"}
 										<hb-input-checkbox
+											style={inputCheckboxStyleToSet}
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -365,6 +371,7 @@
 										/>
 									{:else if component === "hb-input-number"}
 										<hb-input-number
+											style={inputNumberStyleToSet}
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -381,6 +388,7 @@
 										/>
 									{:else if component === "hb-input-area"}
 										<hb-input-area
+											style={inputAreaStyleToSet}
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -397,6 +405,7 @@
 										/>
 									{:else if component === "hb-input-radio"}
 										<hb-input-radio
+											style={inputRadioStyleToSet}
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -413,6 +422,7 @@
 										/>
 									{:else if component === "hb-input-select"}
 										<hb-input-select
+											style={inputSelectStyleToSet}
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(
@@ -442,6 +452,7 @@
 
 				{#if component === "hb-input-text"}
 					<hb-input-text
+						style={inputTextStyleToSet}
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -458,6 +469,7 @@
 					/>
 				{:else if component === "hb-input-color"}
 					<hb-input-text
+						style={inputColorStyleToSet}
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -474,6 +486,7 @@
 					/>
 				{:else if component === "hb-input-file"}
 					<hb-input-file
+						style={inputFileStyleToSet}
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -490,6 +503,7 @@
 					/>
 				{:else if component === "hb-input-email"}
 					<hb-input-email
+						style={inputEmailStyleToSet}
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -506,6 +520,7 @@
 					/>
 				{:else if component === "hb-input-date"}
 					<hb-input-date
+						style={inputDateStyleToSet}
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -522,6 +537,7 @@
 					/>
 				{:else if component === "hb-input-checkbox"}
 					<hb-input-checkbox
+						style={inputCheckboxStyleToSet}
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -538,6 +554,7 @@
 					/>
 				{:else if component === "hb-input-number"}
 					<hb-input-number
+						style={inputNumberStyleToSet}
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -554,6 +571,7 @@
 					/>
 				{:else if component === "hb-input-area"}
 					<hb-input-area
+						style={inputAreaStyleToSet}
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -570,6 +588,7 @@
 					/>
 				{:else if component === "hb-input-radio"}
 					<hb-input-radio
+						style={inputRadioStyleToSet}
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(
@@ -586,6 +605,7 @@
 					/>
 				{:else if component === "hb-input-select"}
 					<hb-input-select
+						style={inputSelectStyleToSet}
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(

@@ -448,6 +448,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
 </svelte:head>
 <hb-dialog
+	style={dialogStyleToSet}
 	id={modalConfirm.itemId || "confirmationModal"}
 	show={modalConfirm.show}
 	title={modalConfirm.title}
@@ -730,7 +731,7 @@
 				{/if}
 				{#if disablepagination !== "" && disablepagination !== "yes"}
 					<hb-paginate
-						style="float:right"
+						style="float:right;{paginateStyleToSet}"
 						on:pagechange={changePage}
 						page={page.toString()}
 						pages={pages.toString()}

@@ -51,7 +51,7 @@
 	}
 </script>
 
-<hb-dialog id={item} show={uri ? "yes" : "no"} on:modalShow={(d) => dialogShowEvent(d.detail)}>
+<hb-dialog style={dialogStyleToSet} id={item} show={uri ? "yes" : "no"} on:modalShow={(d) => dialogShowEvent(d.detail)}>
 	{#if title}
 		<span slot="title">
 			<slot name="title">Video: {title}</slot>

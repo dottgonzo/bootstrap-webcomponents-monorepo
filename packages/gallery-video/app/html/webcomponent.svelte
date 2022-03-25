@@ -313,6 +313,7 @@
 				{#each !externalfilter ? cardItems.slice(page * size, (page + 1) * size) : cardItems as item (item._id)}
 					<div class="col-12 col-xxl-3 col-xl-4 col-md-6" style="padding:12px">
 						<hb-card-video
+							style={cardVideoStyleToSet}
 							title={item.title || ""}
 							description={item.description || ""}
 							time={item.time ? dayjs(item.time).format() : undefined}
@@ -325,7 +326,13 @@
 				{/each}
 			</div>
 			<nav style="margin-top:20px" aria-label="Page navigation example">
-				<hb-paginate on:pagechange={changePage} page={page.toString()} pages={pages.toString()} primarycolor={primarycolor || ""} />
+				<hb-paginate
+					style={paginateStyleToSet}
+					on:pagechange={changePage}
+					page={page.toString()}
+					pages={pages.toString()}
+					primarycolor={primarycolor || ""}
+				/>
 			</nav>
 		{/if}
 	{/if}

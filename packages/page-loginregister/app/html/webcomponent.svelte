@@ -159,12 +159,20 @@
 	addComponent("auth", pkg.version);
 </script>
 
-<hb-layout onescreen="yes" socials={socials || ""} columns={columns || ""} contacts={contacts || ""} company={company || ""} style="display:block">
+<hb-layout
+	onescreen="yes"
+	socials={socials || ""}
+	columns={columns || ""}
+	contacts={contacts || ""}
+	company={company || ""}
+	style="display:block;{layoutStyleToSet}"
+>
 	<span slot="nav-right-slot"><slot name="nav-right-slot" /></span>
 	<span slot="nav-left-slot"><slot name="nav-left-slot" /></span>
 	<span slot="nav-center-slot"><slot name="nav-center-slot" /></span>
 
 	<hb-auth
+		style={authStyleToSet}
 		sessionkey={sessionkey || ""}
 		loginuri={loginuri || ""}
 		part="loginbox"
