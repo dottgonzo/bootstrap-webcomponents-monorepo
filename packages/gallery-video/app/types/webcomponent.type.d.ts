@@ -20,7 +20,6 @@ export type Component = {
 	dateformat: string;
 	primarycolor: string;
 	filter: string;
-	id: string;
 	externalfilter: string;
 	disabletextfilter: string;
 	initialdate: Date;

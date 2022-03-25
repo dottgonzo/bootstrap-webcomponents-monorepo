@@ -267,7 +267,7 @@ const offcanvasExampleValues: offcanvasComponent = {
 	navpage: 'settings',
 	companytitle: 'acme corp'
 };
-const events = [
+const events: calendarEventsComponent['events'] = [
 	{
 		date: new Date(),
 		id: 'test',
@@ -286,7 +286,7 @@ const paypal = {
 	paypalid: 'test'
 };
 
-const defaultPayment = {
+const defaultPayment: checkoutComponent['payment'] = {
 	merchantName: 'testmerchant',
 	countryCode: 'it',
 	currencyCode: 'EUR',
