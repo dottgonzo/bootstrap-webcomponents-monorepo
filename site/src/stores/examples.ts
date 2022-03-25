@@ -383,7 +383,7 @@ const schema1 = [
 		validationTip: 'This field cannot be empty2.'
 	}
 ];
-const preferences = [
+const preferences: funnelComponent['schemes'][0] = [
 	{
 		type: 'text',
 		placeholder: 'Inserisci titolo di default',
@@ -475,7 +475,7 @@ const cards: galleryVideoComponent['cards'] = [
 	},
 	{ title: 'bb13', time: '2021-08-07T22:46:39.565Z' }
 ];
-const headers = [
+const headers: galleryVideoComponent['headers'] = [
 	{
 		label: 'title',
 		key: 'title',
@@ -567,16 +567,19 @@ const checkoutShoppingCartExampleValues: checkoutShoppingCartComponent = {
 	payment: {
 		items: [
 			{
+				id: 'efewf',
 				unitaryPrice: 2,
 				taxPercentage: 3,
 				name: 'testitem'
 			},
 			{
+				id: 'efewf4',
 				unitaryPrice: 5,
 				taxPercentage: 7,
 				name: 'testitem2'
 			}
-		]
+		],
+		countryCode: 'IT'
 	}
 };
 const contactItemExampleValues: contactItemComponent = {
@@ -615,8 +618,7 @@ const funnelExampleValues: funnelComponent = {
 	schemes: [preferences, preferences2]
 };
 const galleryVideoExampleValues: galleryVideoComponent = {
-	cards,
-	headers
+	cards
 };
 const gaugeExampleValues: gaugeComponent = {
 	options: {

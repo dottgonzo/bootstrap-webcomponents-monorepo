@@ -13,17 +13,17 @@ export type Component = {
 	id?: string;
 	style?: string;
 	cards: ICard[];
-	size: number;
-	page: number;
-	pages: number;
-	linkLabel: string;
-	dateformat: string;
-	primarycolor: string;
-	filter: string;
-	externalfilter: string;
-	disabletextfilter: string;
-	initialdate: Date;
-	lastdate: Date;
+	size?: number;
+	page?: number;
+	pages?: number;
+	linkLabel?: string;
+	dateformat?: string;
+	primarycolor?: string;
+	filter?: string;
+	externalfilter?: string;
+	disabletextfilter?: string;
+	initialdate?: Date;
+	lastdate?: Date;
 };
 
 export type Events = {};
