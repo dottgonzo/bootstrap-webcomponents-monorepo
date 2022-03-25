@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-editor-tinymce",
 	"displayName": "Svelte TinyMCE WebComponent",
 	"description": "Svelte TinyMCE WebComponent",
-	"version": "0.8.1",
+	"version": "0.8.2",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -27,7 +27,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.8.1",
+		"@htmlbricks/hb-jsutils": "^0.8.2",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
 		"@rollup/plugin-json": "^4.1.0",
