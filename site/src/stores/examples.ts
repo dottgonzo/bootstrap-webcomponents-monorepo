@@ -1,5 +1,56 @@
 import { writable } from 'svelte/store';
 import dayjs from 'dayjs';
+
+
+import type {Component as bannerComponent} from '@htmlbricks/hb-banner/release/webcomponent.type';
+import type {Component as areaCodeComponent} from '@htmlbricks/hb-area-code/release/webcomponent.type';
+import type {Component as offcanvasComponent} from '@htmlbricks/hb-offcanvas/release/webcomponent.type';
+import type {Component as layoutComponent} from '@htmlbricks/hb-layout/release/webcomponent.type';
+import type {Component as footerComponent} from '@htmlbricks/hb-footer/release/webcomponent.type';
+import type {Component as inputTextComponent} from '@htmlbricks/hb-input-text/release/webcomponent.type';
+import type {Component as paginateComponent} from '@htmlbricks/hb-paginate/release/webcomponent.type';
+import type {Component as authComponent} from '@htmlbricks/hb-auth/release/webcomponent.type';
+import type {Component as calendarEventsComponent} from '@htmlbricks/hb-calendar-events/release/webcomponent.type';
+import type {Component as cardVideoComponent} from '@htmlbricks/hb-card-video/release/webcomponent.type';
+import type {Component as chartjsComponent} from '@htmlbricks/hb-chartjs/release/webcomponent.type';
+import type {Component as checkoutComponent} from '@htmlbricks/hb-checkout/release/webcomponent.type';
+import type {Component as checkoutShoppingCartComponent} from '@htmlbricks/hb-checkout-shopping-cart/release/webcomponent.type';
+import type {Component as contactItemComponent} from '@htmlbricks/hb-contact-item/release/webcomponent.type';
+import type {Component as cookieLawBannerComponent} from '@htmlbricks/hb-cookie-law-banner/release/webcomponent.type';
+import type {Component as dialogComponent} from '@htmlbricks/hb-dialog/release/webcomponent.type';
+import type {Component as downloaderComponent} from '@htmlbricks/hb-downloader/release/webcomponent.type';
+import type {Component as dropdownSimpleComponent} from '@htmlbricks/hb-dropdown-simple/release/webcomponent.type';
+import type {Component as editorTinymceComponent} from '@htmlbricks/hb-editor-tinymce/release/webcomponent.type';
+import type {Component as editorVideoComponent} from '@htmlbricks/hb-editor-video/release/webcomponent.type';
+import type {Component as formComponent} from '@htmlbricks/hb-form/release/webcomponent.type';
+import type {Component as funnelComponent} from '@htmlbricks/hb-funnel/release/webcomponent.type';
+import type {Component as galleryVideoComponent} from '@htmlbricks/hb-gallery-video/release/webcomponent.type';
+import type {Component as gaugeComponent} from '@htmlbricks/hb-gauge/release/webcomponent.type';
+import type {Component as inputAreaComponent} from '@htmlbricks/hb-input-area/release/webcomponent.type';
+import type {Component as inputColorComponent} from '@htmlbricks/hb-input-color/release/webcomponent.type';
+import type {Component as inputCheckboxComponent} from '@htmlbricks/hb-input-checkbox/release/webcomponent.type';
+import type {Component as inputDateComponent} from '@htmlbricks/hb-input-date/release/webcomponent.type';
+import type {Component as inputEmailComponent} from '@htmlbricks/hb-input-email/release/webcomponent.type';
+import type {Component as inputFileComponent} from '@htmlbricks/hb-input-file/release/webcomponent.type';
+import type {Component as inputNumberComponent} from '@htmlbricks/hb-input-number/release/webcomponent.type';
+import type {Component as inputRadioComponent} from '@htmlbricks/hb-input-radio/release/webcomponent.type';
+import type {Component as inputSelectComponent} from '@htmlbricks/hb-input-select/release/webcomponent.type';
+import type {Component as mapComponent} from '@htmlbricks/hb-map/release/webcomponent.type';
+import type {Component as modalVideoComponent} from '@htmlbricks/hb-modal-video/release/webcomponent.type';
+import type {Component as navbarComponent} from '@htmlbricks/hb-navbar/release/webcomponent.type';
+import type {Component as orderListComponent} from '@htmlbricks/hb-order-list/release/webcomponent.type';
+import type {Component as pageCheckoutComponent} from '@htmlbricks/hb-page-checkout/release/webcomponent.type';
+import type {Component as pageInvoiceComponent} from '@htmlbricks/hb-page-invoice/release/webcomponent.type';
+import type {Component as pageLoginregisterComponent} from '@htmlbricks/hb-page-loginregister/release/webcomponent.type';
+import type {Component as paymentPaypalComponent} from '@htmlbricks/hb-payment-paypal/release/webcomponent.type';
+import type {Component as playerLiveComponent} from '@htmlbricks/hb-player-live/release/webcomponent.type';
+import type {Component as productComparisonComponent} from '@htmlbricks/hb-product-comparison/release/webcomponent.type';
+import type {Component as rangeSliderComponent} from '@htmlbricks/hb-range-slider/release/webcomponent.type';
+import type {Component as sidenavLinkComponent} from '@htmlbricks/hb-sidenav-link/release/webcomponent.type';
+import type {Component as tableComponent} from '@htmlbricks/hb-table/release/webcomponent.type';
+import type {Component as toastComponent} from '@htmlbricks/hb-toast/release/webcomponent.type';
+
+
 const paginateExampleValues = {
 	page: 2,
 	pages: 4
@@ -15,7 +66,7 @@ const inputTextExampleValues = {
 	}
 };
 
-const bannerExampleValues = {
+const bannerExampleValues: bannerComponent = {
 	title: 'ciao',
 	description: 'desc',
 	logouri: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg'
@@ -128,15 +179,15 @@ const columns1 = [
 		cells: [
 			{
 				label: 'test',
-				key: 'test'
+				_id: 'test'
 			},
 			{
 				label: 'test2',
-				key: 'test2'
+				_id: 'test2'
 			},
 			{
 				label: 'test3',
-				key: 'test3'
+				_id: 'test3'
 			}
 		],
 		title: 'stringtitle'

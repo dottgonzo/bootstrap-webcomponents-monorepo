@@ -12,7 +12,7 @@ export const storybookArgs = {
 	socials: { control: { type: "object" } },
 	contacts: { control: { type: "object" } },
 	company: { control: { type: "object" } },
-	footerclick: { action: "footerClickEvent" },
+	footerClick: { action: "footerClickEvent" },
 };
 
 const cssVars: CssVar[] = [];

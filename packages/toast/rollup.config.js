@@ -46,6 +46,8 @@ export default {
         copy({
             targets: [
                 { src: "public/**/*", dest: "dist" },
+                { src: "extra/**/*", dest: "dist" },
+                { src: "app/types/**/*", dest: "dist" },
                 { src: "assets/**/*", dest: "dist" },
             ],
         }),

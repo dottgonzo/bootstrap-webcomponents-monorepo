@@ -5,12 +5,8 @@ import {
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
 import { storybookArgs } from "../../packages/footer/extra/docs";
+import { IColumn } from "../../packages/footer/release/webcomponent.type";
 
-interface IColumn {
-  _id?: string;
-  cells: { label: string; key: string }[];
-  title: string;
-}
 const copy1 = Object.assign({}, argTypesExtraUtils);
 const copy2 = Object.assign({}, storybookArgs);
 
@@ -40,15 +36,15 @@ const columns1: IColumn[] = [
     cells: [
       {
         label: "test",
-        key: "test",
+        _id: "test",
       },
       {
         label: "test2",
-        key: "test2",
+        _id: "test2",
       },
       {
         label: "test3",
-        key: "test3",
+        _id: "test3",
       },
     ],
     title: "stringtitle",
@@ -59,15 +55,15 @@ const columns2: IColumn[] = [
     cells: [
       {
         label: "test",
-        key: "test",
+        _id: "test",
       },
       {
         label: "test2",
-        key: "test2",
+        _id: "test2",
       },
       {
         label: "test3",
-        key: "test3",
+        _id: "test3",
       },
     ],
     title: "stringtitle",
@@ -76,15 +72,15 @@ const columns2: IColumn[] = [
     cells: [
       {
         label: "test",
-        key: "test",
+        _id: "test",
       },
       {
         label: "test2",
-        key: "test2",
+        _id: "test2",
       },
       {
         label: "test3",
-        key: "test3",
+        _id: "test3",
       },
     ],
     title: "stringtitle",
@@ -95,15 +91,15 @@ const columns3: IColumn[] = [
     cells: [
       {
         label: "test",
-        key: "test",
+        _id: "test",
       },
       {
         label: "test2",
-        key: "test2",
+        _id: "test2",
       },
       {
         label: "test3",
-        key: "test3",
+        _id: "test3",
       },
     ],
     title: "stringtitle",
@@ -112,15 +108,15 @@ const columns3: IColumn[] = [
     cells: [
       {
         label: "test",
-        key: "test",
+        _id: "test",
       },
       {
         label: "test2",
-        key: "test2",
+        _id: "test2",
       },
       {
         label: "test3",
-        key: "test3",
+        _id: "test3",
       },
     ],
     title: "stringtitle",
@@ -129,15 +125,15 @@ const columns3: IColumn[] = [
     cells: [
       {
         label: "test",
-        key: "test",
+        _id: "test",
       },
       {
         label: "test2",
-        key: "test2",
+        _id: "test2",
       },
       {
         label: "test3",
-        key: "test3",
+        _id: "test3",
       },
     ],
     title: "stringtitle",
