@@ -12,4 +12,7 @@ export type Component = {
 	confirmlabel?: string;
 };
 
-export type Events = {};
+export type Events = {
+	modalConfirm: { id: string; confirm: boolean };
+	modalShow: { id: string; show: true };
+};

@@ -12,6 +12,8 @@ export const storybookArgs = {
 	content: { control: { type: "text" } },
 	closelabel: { control: { type: "text" } },
 	confirmlabel: { control: { type: "text" } },
+	modalShow: { action: "modalShow" },
+	modalConfirm: { action: "modalConfirm" },
 };
 
 const cssVars: CssVar[] = [];

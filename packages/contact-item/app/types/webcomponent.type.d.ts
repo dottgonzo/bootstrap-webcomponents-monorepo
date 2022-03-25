@@ -40,4 +40,6 @@ export type Component = {
 	config: IConfig;
 };
 
-export type Events = {};
+export type Events = {
+	contactclick: { action: string; options: any };
+};

@@ -29,4 +29,6 @@ export type Component = {
 	cookielawuri4more: string;
 };
 
-export type Events = {};
+export type Events = {
+	acceptCookieLaw: { accepted: "yes" | "no" };
+};

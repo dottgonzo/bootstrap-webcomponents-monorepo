@@ -10,7 +10,10 @@ export const storybookArgs = {
 
 const cssVars: CssVar[] = [];
 export const cssParts: CssPart[] = [];
-export const htmlSlots: HtmlSlot[] = [];
+export const htmlSlots: HtmlSlot[] = [
+	{ name: "title", description: "" },
+	{ name: "text", description: "" },
+];
 export const i18nLanguages: i18nLang[] = [
 	{ lang: "it", language: "italian" },
 	{ lang: "en", language: "english" },
