@@ -5,10 +5,10 @@ export interface IHeader {
 export type Component = {
 	id?: string;
 	style?: string;
-	downloadid: string;
+	downloadid?: string;
 	uri: string;
-	headers: IHeader;
-	targetfilename: string;
+	headers?: IHeader;
+	targetfilename?: string;
 };
 
 export type Events = {

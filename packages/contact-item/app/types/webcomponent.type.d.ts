@@ -34,12 +34,12 @@ export interface ISocial {
 export type Component = {
 	id?: string;
 	style?: string;
-	phone: IPhone;
-	address: IAddress;
-	email: IEmail;
-	site: ISite;
-	social: ISocial;
-	config: IConfig;
+	phone?: IPhone;
+	address?: IAddress;
+	email?: IEmail;
+	site?: ISite;
+	social?: ISocial;
+	config?: IConfig;
 };
 
 export type Events = {

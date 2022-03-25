@@ -89,7 +89,7 @@
 				xhr = null;
 				downloaded = true;
 				errorMessage = null;
-				return dispatch("downloadComplete", { downloaded, id: downloadid });
+				return dispatch("downloadComplete", { downloaded, id: downloadid || "default" });
 			};
 			xhr.onerror = (error) => {
 				return onRequestError(error);

@@ -25,10 +25,10 @@ export interface ICapabilities {
 export type Component = {
 	id?: string;
 	style?: string;
-	allowdecline: "yes" | "no";
-	i18nlang: string;
-	capabilities: ICapabilities;
-	cookielawuri4more: string;
+	allowdecline?: "yes" | "no";
+	i18nlang?: string;
+	capabilities?: ICapabilities;
+	cookielawuri4more?: string;
 };
 
 export type Events = {
