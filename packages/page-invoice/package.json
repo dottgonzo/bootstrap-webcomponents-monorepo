@@ -67,7 +67,8 @@
 	},
 	"dependencies": {
 		"dayjs": "^1.10.7",
-		"debounce": "^1.2.1"
+		"debounce": "^1.2.1",
+		"@htmlbricks/hb-table": "^0.7.10"
 	},
 	"keywords": [
 		"svelte",

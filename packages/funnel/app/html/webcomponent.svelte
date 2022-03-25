@@ -19,6 +19,8 @@
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
+	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
+	let formStyleToSet: string = "";
 
 	addComponent("form", pkg.version);
 	export let id: string;
@@ -32,7 +34,7 @@
 		if (!id) id = "";
 		if (style) {
 			parsedStyle = parseStyle(style);
-			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+			formStyleToSet = getChildStyleToPass(parsedStyle, formStyleSetup?.vars);
 		}
 		if (!step && step !== 0) step = 1;
 		else if (typeof step === "string") step = Number(step);

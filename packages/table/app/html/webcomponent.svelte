@@ -25,6 +25,11 @@
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
 
+	import { styleSetup as paginateStyleSetup } from "../../node_modules/@htmlbricks/hb-paginate/release/docs";
+	import { styleSetup as dialogStyleSetup } from "../../node_modules/@htmlbricks/hb-dialog/release/docs";
+	let paginateStyleToSet: string = "";
+	let dialogStyleToSet: string = "";
+
 	// import dispatch from "@app/functions/webcomponent";
 
 	export let id: string;
@@ -62,7 +67,8 @@
 	$: {
 		if (style) {
 			parsedStyle = parseStyle(style);
-			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+			paginateStyleToSet = getChildStyleToPass(parsedStyle, paginateStyleSetup?.vars);
+			dialogStyleToSet = getChildStyleToPass(parsedStyle, dialogStyleSetup?.vars);
 		}
 		if (!modalConfirm) {
 			modalConfirm = {

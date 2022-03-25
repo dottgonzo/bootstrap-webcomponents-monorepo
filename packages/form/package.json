@@ -65,6 +65,18 @@
 		"typescript": "^4.2.4",
 		"typescript-transform-paths": "^2.2.3"
 	},
+	"dependencies": {
+		"@htmlbricks/hb-input-select": "^0.7.10",
+		"@htmlbricks/hb-input-date": "^0.7.10",
+		"@htmlbricks/hb-input-area": "^0.7.10",
+		"@htmlbricks/hb-input-text": "^0.7.10",
+		"@htmlbricks/hb-input-number": "^0.7.10",
+		"@htmlbricks/hb-input-email": "^0.7.10",
+		"@htmlbricks/hb-input-color": "^0.7.10",
+		"@htmlbricks/hb-input-file": "^0.7.10",
+		"@htmlbricks/hb-input-checkbox": "^0.7.10",
+		"@htmlbricks/hb-input-radio": "^0.7.10"
+	},
 	"keywords": [
 		"svelte",
 		"svelte-webcomponents",

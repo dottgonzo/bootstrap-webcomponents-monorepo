@@ -19,6 +19,8 @@
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
+	import { styleSetup as contactItemStyleSetup } from "../../node_modules/@htmlbricks/hb-contact-item/release/docs";
+	let contactItemStyleToSet: string = "";
 
 	export let id: string;
 	export let company: ICompany;
@@ -36,7 +38,7 @@
 		if (!id) id = "";
 		if (style) {
 			parsedStyle = parseStyle(style);
-			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+			contactItemStyleToSet = getChildStyleToPass(parsedStyle, contactItemStyleSetup?.vars);
 		}
 		if (!copyrighttext) copyrighttext = "";
 		if (!description) description = "";

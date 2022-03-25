@@ -16,9 +16,12 @@
 	import pkg from "../../package.json";
 	import type { IUserMenu } from "@app/types/webcomponent.type";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { styleSetup as dropdownSimpleStyleSetup } from "../../node_modules/@htmlbricks/hb-dropdown-simple/release/docs";
+
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
+	let dropdownSimpleStyleToSet: string = "";
 
 	export let id: string;
 	export let companybrandname: string;
@@ -32,7 +35,7 @@
 	$: {
 		if (style) {
 			parsedStyle = parseStyle(style);
-			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+			dropdownSimpleStyleToSet = getChildStyleToPass(parsedStyle, dropdownSimpleStyleSetup?.vars);
 		}
 		if (!companybrandname) companybrandname = "";
 		if (!companylogouri) companylogouri = "";

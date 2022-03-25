@@ -23,6 +23,28 @@
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
 
+	import { styleSetup as inputSelectStyleSetup } from "../../node_modules/@htmlbricks/hb-input-select/release/docs";
+	import { styleSetup as inputDateStyleSetup } from "../../node_modules/@htmlbricks/hb-input-date/release/docs";
+	import { styleSetup as inputAreaStyleSetup } from "../../node_modules/@htmlbricks/hb-input-area/release/docs";
+	import { styleSetup as inputTextStyleSetup } from "../../node_modules/@htmlbricks/hb-input-text/release/docs";
+	import { styleSetup as inputNumberStyleSetup } from "../../node_modules/@htmlbricks/hb-input-number/release/docs";
+	import { styleSetup as inputEmailStyleSetup } from "../../node_modules/@htmlbricks/hb-input-email/release/docs";
+	import { styleSetup as inputColorStyleSetup } from "../../node_modules/@htmlbricks/hb-input-color/release/docs";
+	import { styleSetup as inputFileStyleSetup } from "../../node_modules/@htmlbricks/hb-input-file/release/docs";
+	import { styleSetup as inputCheckboxStyleSetup } from "../../node_modules/@htmlbricks/hb-input-checkbox/release/docs";
+	import { styleSetup as inputRadioStyleSetup } from "../../node_modules/@htmlbricks/hb-input-radio/release/docs";
+
+	let inputSelectStyleToSet: string = "";
+	let inputDateStyleToSet: string = "";
+	let inputAreaStyleToSet: string = "";
+	let inputTextStyleToSet: string = "";
+	let inputNumberStyleToSet: string = "";
+	let inputEmailStyleToSet: string = "";
+	let inputColorStyleToSet: string = "";
+	let inputFileStyleToSet: string = "";
+	let inputCheckboxStyleToSet: string = "";
+	let inputRadioStyleToSet: string = "";
+
 	const registeredComponents: IRegisterComponent = {
 		row: { component: null, options: { row: true } },
 		select: { component: "hb-input-select" },
@@ -55,7 +77,17 @@
 	$: {
 		if (style) {
 			parsedStyle = parseStyle(style);
-			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+
+			inputSelectStyleToSet = getChildStyleToPass(parsedStyle, inputSelectStyleSetup?.vars);
+			inputDateStyleToSet = getChildStyleToPass(parsedStyle, inputDateStyleSetup?.vars);
+			inputAreaStyleToSet = getChildStyleToPass(parsedStyle, inputAreaStyleSetup?.vars);
+			inputTextStyleToSet = getChildStyleToPass(parsedStyle, inputTextStyleSetup?.vars);
+			inputNumberStyleToSet = getChildStyleToPass(parsedStyle, inputNumberStyleSetup?.vars);
+			inputEmailStyleToSet = getChildStyleToPass(parsedStyle, inputEmailStyleSetup?.vars);
+			inputColorStyleToSet = getChildStyleToPass(parsedStyle, inputColorStyleSetup?.vars);
+			inputFileStyleToSet = getChildStyleToPass(parsedStyle, inputFileStyleSetup?.vars);
+			inputCheckboxStyleToSet = getChildStyleToPass(parsedStyle, inputCheckboxStyleSetup?.vars);
+			inputRadioStyleToSet = getChildStyleToPass(parsedStyle, inputRadioStyleSetup?.vars);
 		}
 		if (!showvalidation) showvalidation = "no";
 		if (!visibility) visibility = {};

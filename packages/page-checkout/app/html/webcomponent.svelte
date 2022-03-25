@@ -18,9 +18,14 @@
 	import type { IShoppingPayment, IShopItem } from "../../../checkout-shopping-cart/app/types/webcomponent.type";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { styleSetup as checkoutStyleSetup } from "../../node_modules/@htmlbricks/hb-checkout/release/docs";
+	import { styleSetup as checkoutShoppingCartStyleToSet } from "../../node_modules/@htmlbricks/hb-checkout-shopping-cart/release/docs";
+
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
+	let checkoutStyleToSet: string = "";
+	let checkoutShoppingCartStyleToSet: string = "";
 
 	export let id: string;
 	export let shipments: IShipment[];
@@ -40,7 +45,8 @@
 		if (!id) id = null;
 		if (style) {
 			parsedStyle = parseStyle(style);
-			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+			checkoutStyleToSet = getChildStyleToPass(parsedStyle, checkoutStyleSetup?.vars);
+			checkoutShoppingCartStyleToSet = getChildStyleToPass(parsedStyle, checkoutShoppingCartStyleSetup?.vars);
 		}
 		if (!completed) completed = "no";
 		if (!shipments) shipments = [];

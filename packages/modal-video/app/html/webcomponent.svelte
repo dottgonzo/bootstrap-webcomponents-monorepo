@@ -7,6 +7,8 @@
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
+	import { styleSetup as dialogStyleSetup } from "../../node_modules/@htmlbricks/hb-dialog/release/docs";
+	let dialogStyleToSet: string = "";
 
 	import pkg from "../../package.json";
 	const component = get_current_component();
@@ -29,7 +31,7 @@
 		if (!id) id = null;
 		if (style) {
 			parsedStyle = parseStyle(style);
-			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+			dialogStyleToSet = getChildStyleToPass(parsedStyle, dialogStyleSetup?.vars);
 		}
 		if (!item) item = "";
 		if (!uri) uri = "";

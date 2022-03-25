@@ -24,6 +24,11 @@
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
 
+	import { styleSetup as layoutStyleSetup } from "../../node_modules/@htmlbricks/hb-layout/release/docs";
+	import { styleSetup as authStyleSetup } from "../../node_modules/@htmlbricks/hb-auth/release/docs";
+	let layoutStyleToSet: string = "";
+	let authStyleToSet: string = "";
+
 	export let id: string;
 
 	export let socials: ISocials;
@@ -60,7 +65,8 @@
 		if (!id) id = "";
 		if (style) {
 			parsedStyle = parseStyle(style);
-			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+			layoutStyleToSet = getChildStyleToPass(parsedStyle, layoutStyleSetup?.vars);
+			authStyleToSet = getChildStyleToPass(parsedStyle, authStyleSetup?.vars);
 		}
 		if (!oauth2providers) {
 			oauth2providers = null;

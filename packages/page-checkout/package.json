@@ -66,6 +66,8 @@
 		"typescript-transform-paths": "^2.2.3"
 	},
 	"dependencies": {
+		"@htmlbricks/hb-checkout": "^0.7.10",
+		"@htmlbricks/hb-checkout-shopping-cart": "^0.7.10",
 		"dayjs": "^1.10.7",
 		"debounce": "^1.2.1"
 	},

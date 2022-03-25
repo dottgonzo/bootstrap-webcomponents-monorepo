@@ -23,6 +23,8 @@
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
+	let tableStyleToSet: string = "";
+	import { styleSetup as tableStyleSetup } from "../../node_modules/@htmlbricks/hb-table/release/docs";
 
 	export let id: string;
 
@@ -54,7 +56,7 @@
 	$: {
 		if (style) {
 			parsedStyle = parseStyle(style);
-			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+			tableStyleToSet = getChildStyleToPass(parsedStyle, tableStyleSetup?.vars);
 		}
 		if (!id) id = null;
 		if (!completed) completed = "no";

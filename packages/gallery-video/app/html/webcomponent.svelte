@@ -42,6 +42,12 @@
 
 	export let initialdate: Date;
 	export let lastdate: Date;
+
+	import { styleSetup as paginateStyleSetup } from "../../node_modules/@htmlbricks/hb-paginate/release/docs";
+	import { styleSetup as cardVideoStyleSetup } from "../../node_modules/@htmlbricks/hb-card-video/release/docs";
+	let paginateStyleToSet: string = "";
+	let cardVideoStyleToSet: string = "";
+
 	let firstCardData: Date;
 	let lastCardData: Date;
 	let enableDate = true;
@@ -50,7 +56,8 @@
 	$: {
 		if (style) {
 			parsedStyle = parseStyle(style);
-			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+			paginateStyleToSet = getChildStyleToPass(parsedStyle, paginateStyleSetup?.vars);
+			cardVideoStyleToSet = getChildStyleToPass(parsedStyle, cardVideoStyleSetup?.vars);
 		}
 		console.log(disabletextfilter, "disabletextfilter");
 		if (!linkLabel) {

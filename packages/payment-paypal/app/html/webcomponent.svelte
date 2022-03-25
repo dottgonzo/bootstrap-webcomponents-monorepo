@@ -21,6 +21,8 @@
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
+	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
+	let formStyleToSet: string = "";
 
 	export let id: string;
 	export let paypalid: string;
@@ -34,7 +36,7 @@
 		if (!id) id = null;
 		if (style) {
 			parsedStyle = parseStyle(style);
-			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+			formStyleToSet = getChildStyleToPass(parsedStyle, formStyleSetup?.vars);
 		}
 		if (!total) total = null;
 		else total = Number(total);

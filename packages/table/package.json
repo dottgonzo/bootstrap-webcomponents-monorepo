@@ -72,6 +72,8 @@
 	],
 	"contributors": [],
 	"dependencies": {
+		"@htmlbricks/hb-paginate": "^0.7.10",
+		"@htmlbricks/hb-dialog": "^0.7.10",
 		"bootstrap-icons": "^1.5.0",
 		"dayjs": "^1.10.7"
 	},

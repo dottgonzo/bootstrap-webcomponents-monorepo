@@ -22,6 +22,10 @@
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
+	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
+	import { styleSetup as rangeSliderStyleSetup } from "../../node_modules/@htmlbricks/hb-range-slider/release/docs";
+	let formStyleToSet: string = "";
+	let rangeSliderPaypalStyleToSet: string = "";
 
 	dayjs.extend(duration);
 
@@ -48,7 +52,8 @@
 	$: {
 		if (style) {
 			parsedStyle = parseStyle(style);
-			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
+			formStyleToSet = getChildStyleToPass(parsedStyle, formStyleSetup?.vars);
+			rangeSliderStyleToSet = getChildStyleToPass(parsedStyle, rangeSliderStyleSetup?.vars);
 		}
 		if (!id) {
 			id = "";
