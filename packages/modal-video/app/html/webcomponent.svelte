@@ -33,7 +33,7 @@
 			parsedStyle = parseStyle(style);
 			dialogStyleToSet = getChildStyleToPass(parsedStyle, dialogStyleSetup?.vars);
 		}
-		if (!item) item = "";
+		if (!item) item = "defaultItem";
 		if (!uri) uri = "";
 		if (!title) title = "";
 		if (!provider) provider = "";
