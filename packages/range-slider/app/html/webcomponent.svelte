@@ -86,7 +86,6 @@
 	function dispatchVals() {
 		const status = { minValue: minValReal, maxValue: maxValReal, minPercent, maxPercent };
 		dispatch("changeRangeValues", status);
-		console.log("status", status, minPercent, maxPercent);
 	}
 	function changeValMin(e) {
 		if (!e?.target?.value || Number(e.target.value) === Infinity || isNaN(Number(e.target.value)))

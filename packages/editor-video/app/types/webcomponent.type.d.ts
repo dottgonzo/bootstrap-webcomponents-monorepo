@@ -16,4 +16,7 @@ export type Component = {
 	track: ITrack;
 };
 
-export type Events = {};
+export type Events = {
+	changeTrackValues: { minVaule: number; maxValue: number };
+	dispatchTrack: { track: ITrack };
+};

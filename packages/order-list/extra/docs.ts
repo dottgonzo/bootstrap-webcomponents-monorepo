@@ -5,7 +5,7 @@ export const storybookArgs = {
 };
 
 const cssVars: CssVar[] = [];
-export const cssParts: CssPart[] = [];
+export const cssParts: CssPart[] = [{ name: "item_image", description: "" }];
 export const htmlSlots: HtmlSlot[] = [];
 export const i18nLanguages: i18nLang[] = [];
 
