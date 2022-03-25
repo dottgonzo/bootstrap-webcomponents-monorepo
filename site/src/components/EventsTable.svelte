@@ -104,10 +104,12 @@
 			>
 		{/if}
 	</div>
-	{#each $events.filter((f) => f.component === $pageName) as event (event._id)}
-		<div>
-			[{dayjs(event.unixtime).format('HH:mm:ss')}
-			{event.name}]: {JSON.stringify(event.data)}
-		</div>
-	{/each}
+	{#if $events?.filter((f) => f.component === $pageName)?.length}
+		{#each $events.filter((f) => f.component === $pageName) as event (event._id)}
+			<div>
+				[{dayjs(event.unixtime).format('HH:mm:ss')}
+				{event.name}]: {JSON.stringify(event.data)}
+			</div>
+		{/each}
+	{/if}
 </div>
