@@ -1,27 +1,27 @@
 export type Component = {
 	id?: string;
 	style?: string;
-	type: "login" | "register" | "activate" | "recover" | "forgetpassword";
+	type?: "login" | "register" | "activate" | "recover" | "forgetpassword";
 
-	language: string;
+	language?: string;
 
-	sessionkey: string;
+	sessionkey?: string;
 
-	redirectonlogin: string;
-	redirectoncreate: string;
-	loginuri: string;
-	registeruri: string;
-	activateuri: string;
-	recoveruri: string;
-	requestmethod: string;
-	appendqueryparams: string;
-	appendbodyparams: string;
-	logouri: string;
-	oauth2providers: string;
-	disableregister: boolean;
+	redirectonlogin?: string;
+	redirectoncreate?: string;
+	loginuri?: string;
+	registeruri?: string;
+	activateuri?: string;
+	recoveruri?: string;
+	requestmethod?: string;
+	appendqueryparams?: string;
+	appendbodyparams?: string;
+	logouri?: string;
+	oauth2providers?: string;
+	disableregister?: boolean;
 
-	passwordpattern: string;
-	recoverycode: string;
+	passwordpattern?: string;
+	recoverycode?: string;
 };
 
 export type Events = {

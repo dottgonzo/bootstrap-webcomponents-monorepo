@@ -8,7 +8,7 @@ export type Component = {
 	user: IUser;
 	payment: IShoppingPayment & IPayment;
 	gateways: IGateway[];
-	completed: "yes" | "no";
+	completed?: "yes" | "no";
 };
 
 export type Events = {

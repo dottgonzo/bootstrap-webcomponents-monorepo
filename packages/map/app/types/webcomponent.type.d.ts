@@ -9,7 +9,7 @@ export type Component = {
 		line?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] }; id?: string; popupHtml?: string }[];
 	}[];
 	source: { type: string; url?: string };
-	options: { centerFromGeometries?: string };
+	options: { centerFromGeometries?: boolean };
 };
 
 export type Events = {};
