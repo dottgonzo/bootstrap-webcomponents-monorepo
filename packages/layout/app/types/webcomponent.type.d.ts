@@ -3,6 +3,8 @@ import type { IUserMenu } from "../../../navbar/app/types/webcomponent.type";
 import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
 
 export type Component = {
+	id?: string;
+	style?: string;
 	socials?: ISocials;
 	contacts?: IContacts;
 	company?: ICompany;

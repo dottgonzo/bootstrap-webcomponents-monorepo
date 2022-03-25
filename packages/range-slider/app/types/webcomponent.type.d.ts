@@ -6,11 +6,13 @@ export type dispatchValsEvent = {
 };
 
 export type Component = {
-	min: number;
-	max: number;
-	minval: number;
-	maxval: number;
-	withbubbles: boolean;
+	id?: string;
+	style?: string;
+	min?: number;
+	max?: number;
+	minval?: number;
+	maxval?: number;
+	withbubbles?: boolean;
 };
 
 export type Events = {

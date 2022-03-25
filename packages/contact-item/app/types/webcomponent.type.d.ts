@@ -32,6 +32,8 @@ export interface ISocial {
 }
 
 export type Component = {
+	id?: string;
+	style?: string;
 	phone: IPhone;
 	address: IAddress;
 	email: IEmail;

@@ -29,6 +29,8 @@ export interface IHeaders {
 }
 
 export type Component = {
+	id?: string;
+	style?: string;
 	printer: "yes" | "no";
 	items: IItem[];
 	headers: IHeaders;

@@ -1,4 +1,6 @@
 export type Component = {
+	id?: string;
+	style?: string;
 	show?: "yes" | "no";
 	dialogclasses?: string;
 	title: string;

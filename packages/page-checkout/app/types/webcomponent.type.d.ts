@@ -2,6 +2,8 @@ import type { IShoppingPayment, IShopItem } from "../../../checkout-shopping-car
 import type { IShipment, IUser, IGateway, IPayment } from "../../../checkout/app/types/webcomponent.type";
 
 export type Component = {
+	id?: string;
+	style?: string;
 	shipments: IShipment[];
 	user: IUser;
 	payment: IShoppingPayment & IPayment;

@@ -1,4 +1,6 @@
 export type Component = {
+	id?: string;
+	style?: string;
 	zoom: number;
 	center: number[];
 	data: {

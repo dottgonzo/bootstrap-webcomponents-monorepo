@@ -29,6 +29,8 @@ export type Options = {
 };
 
 export type Component = {
+	id?: string;
+	style?: string;
 	headers: Header[];
 	products: Product[];
 	options: Options;

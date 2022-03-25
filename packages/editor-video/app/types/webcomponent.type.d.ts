@@ -11,6 +11,8 @@ export interface ITrack {
 }
 
 export type Component = {
+	id?: string;
+	style?: string;
 	src: string;
 	form: string;
 	track: ITrack;

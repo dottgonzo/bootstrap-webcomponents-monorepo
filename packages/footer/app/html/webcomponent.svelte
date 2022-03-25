@@ -28,11 +28,9 @@
 	export let brandandcontacts: IBrandAndContacts;
 	export let columns: IColumn[];
 	export let footerbottom: IFooterBottom;
-	export let description: string;
 
 	export let socials: ISocials;
 	export let contacts: IContacts;
-	export let copyrighttext: string;
 	export let policies: IPolicies[];
 	$: {
 		if (!id) id = "";
@@ -40,8 +38,6 @@
 			parsedStyle = parseStyle(style);
 			contactItemStyleToSet = getChildStyleToPass(parsedStyle, contactItemStyleSetup?.vars);
 		}
-		if (!copyrighttext) copyrighttext = "";
-		if (!description) description = "";
 
 		if (!company) {
 			company = null;
@@ -212,38 +208,59 @@
 						<ul class="list-unstyled">
 							{#if socials.facebook}
 								<li>
-									<hb-contact-item style={contactItemStyleToSet} social={JSON.stringify({ name: "facebook", label: "pagina facebook", pageUri: "https://facebook.com" })} />
+									<hb-contact-item
+										style={contactItemStyleToSet}
+										social={JSON.stringify({ name: "facebook", label: "pagina facebook", pageUri: "https://facebook.com" })}
+									/>
 								</li>
 							{/if}
 
 							{#if socials?.gmail}
 								<li>
-									<hb-contact-item style={contactItemStyleToSet} social={JSON.stringify({ name: "gmail", label: "pagina gmail", pageUri: "https://gmail.com" })} />
+									<hb-contact-item
+										style={contactItemStyleToSet}
+										social={JSON.stringify({ name: "gmail", label: "pagina gmail", pageUri: "https://gmail.com" })}
+									/>
 								</li>
 							{/if}
 							{#if socials?.twitter}
 								<li>
-									<hb-contact-item style={contactItemStyleToSet} social={JSON.stringify({ name: "twitter", label: "pagina twitter", pageUri: "https://twitter.com" })} />
+									<hb-contact-item
+										style={contactItemStyleToSet}
+										social={JSON.stringify({ name: "twitter", label: "pagina twitter", pageUri: "https://twitter.com" })}
+									/>
 								</li>
 							{/if}
 							{#if socials?.github}
 								<li>
-									<hb-contact-item style={contactItemStyleToSet} social={JSON.stringify({ name: "github", label: "pagina github", pageUri: socials.github })} />
+									<hb-contact-item
+										style={contactItemStyleToSet}
+										social={JSON.stringify({ name: "github", label: "pagina github", pageUri: socials.github })}
+									/>
 								</li>
 							{/if}
 							{#if socials?.twitch}
 								<li>
-									<hb-contact-item style={contactItemStyleToSet} social={JSON.stringify({ name: "twitch", label: "pagina twitch", pageUri: "https://twitch.com" })} />
+									<hb-contact-item
+										style={contactItemStyleToSet}
+										social={JSON.stringify({ name: "twitch", label: "pagina twitch", pageUri: "https://twitch.com" })}
+									/>
 								</li>
 							{/if}
 							{#if socials?.youtube}
 								<li>
-									<hb-contact-item style={contactItemStyleToSet} social={JSON.stringify({ name: "youtube", label: "pagina youtube", pageUri: "https://youtube.com" })} />
+									<hb-contact-item
+										style={contactItemStyleToSet}
+										social={JSON.stringify({ name: "youtube", label: "pagina youtube", pageUri: "https://youtube.com" })}
+									/>
 								</li>
 							{/if}
 							{#if socials?.discord}
 								<li>
-									<hb-contact-item style={contactItemStyleToSet} social={JSON.stringify({ name: "discord", label: "pagina discord", pageUri: "https://discord.com" })} />
+									<hb-contact-item
+										style={contactItemStyleToSet}
+										social={JSON.stringify({ name: "discord", label: "pagina discord", pageUri: "https://discord.com" })}
+									/>
 								</li>
 							{/if}
 						</ul>

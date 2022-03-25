@@ -32,6 +32,8 @@ export type TextSchemaEntry = {
 };
 
 export type Component = {
+	id?: string;
+	style?: string;
 	setvalue?: boolean;
 	setvalid?: boolean;
 	showvalidation?: "yes" | "no";

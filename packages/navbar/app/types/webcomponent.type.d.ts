@@ -9,6 +9,8 @@ export interface IUserMenu {
 	list?: IUserMenuListItem[];
 }
 export type Component = {
+	id?: string;
+	style?: string;
 	companybrandname: string;
 	companylogouri: string;
 	pagetitle: string;

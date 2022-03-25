@@ -14,6 +14,8 @@ export interface INavLink {
 }
 
 export type Component = {
+	id?: string;
+	style?: string;
 	navlink: INavLink;
 	navpage?: string;
 };

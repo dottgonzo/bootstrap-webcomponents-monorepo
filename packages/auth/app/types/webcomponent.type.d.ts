@@ -1,4 +1,6 @@
 export type Component = {
+	id?: string;
+	style?: string;
 	type: "login" | "register" | "activate" | "recover" | "forgetpassword";
 
 	language: string;

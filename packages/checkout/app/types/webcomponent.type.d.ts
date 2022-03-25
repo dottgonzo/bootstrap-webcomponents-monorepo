@@ -45,6 +45,8 @@ export type IPayment = {
 };
 
 export type Component = {
+	id?: string;
+	style?: string;
 	shipments: IShipment[];
 	user: IUser;
 	gateways: IGateway[];

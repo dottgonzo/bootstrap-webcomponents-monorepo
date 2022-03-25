@@ -94,6 +94,8 @@ export type FormRendererProps = {
 };
 
 export type Component = {
+	id?: string;
+	style?: string;
 	schema: FormSchema;
 
 	values: Record<string, string | number | boolean>;

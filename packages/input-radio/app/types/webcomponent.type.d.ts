@@ -58,6 +58,8 @@ export type FormSchemaEntry = {
 };
 
 export type Component = {
+	id?: string;
+	style?: string;
 	setvalue: boolean;
 	setvalid: boolean;
 	showvalidation: "yes" | "no";

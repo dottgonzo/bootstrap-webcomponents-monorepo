@@ -7,6 +7,8 @@ export interface IPage {
 	pageName: string;
 }
 export type Component = {
+	id?: string;
+	style?: string;
 	socials: ISocials;
 	contacts: IContacts;
 

@@ -7,6 +7,8 @@ export interface IDropDownMenuListItem {
 }
 
 export type Component = {
+	id?: string;
+	style?: string;
 	position: "left" | "right";
 	list: IDropDownMenuListItem[];
 	open: boolean;

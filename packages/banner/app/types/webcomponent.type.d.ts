@@ -1,4 +1,6 @@
 export type Component = {
+	id?: string;
+	style?: string;
 	title?: string;
 	description?: string;
 	logouri?: string;

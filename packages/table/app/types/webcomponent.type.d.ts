@@ -39,6 +39,8 @@ export interface IActionButton {
 }
 
 export type Component = {
+	id?: string;
+	style?: string;
 	externalfilter: string;
 	rows: IRow[];
 	size: number;

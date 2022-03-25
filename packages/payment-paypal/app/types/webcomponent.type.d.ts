@@ -1,4 +1,6 @@
 export type Component = {
+	id?: string;
+	style?: string;
 	paypalid: string;
 	currency: "EUR" | "USD";
 	total: number;

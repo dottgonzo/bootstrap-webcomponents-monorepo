@@ -1,7 +1,8 @@
 export type Component = {
+	id?: string;
+	style?: string;
 	mediauri: string;
 	mediatype: string;
-	id: string;
 	forcecover: string;
 	replacewithtext: {
 		title: string;

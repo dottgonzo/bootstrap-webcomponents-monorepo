@@ -46,13 +46,13 @@ export interface IPolicies {
 }
 
 export interface ISocials {
-	facebook: string;
-	gmail: string;
-	twitter: string;
-	github: string;
-	youtube: string;
-	twitch: string;
-	discord: string;
+	facebook?: string;
+	gmail?: string;
+	twitter?: string;
+	github?: string;
+	youtube?: string;
+	twitch?: string;
+	discord?: string;
 }
 
 export interface IContacts {
@@ -74,15 +74,15 @@ export interface ICompany {
 }
 
 export type Component = {
+	id?: string;
+	style?: string;
 	company: ICompany;
-	smallrow: ISmallRow;
+	smallrow?: ISmallRow;
 	brandandcontacts: IBrandAndContacts;
 	columns: IColumn[];
 	footerbottom: IFooterBottom;
-	description: string;
 	socials: ISocials;
 	contacts: IContacts;
-	copyrighttext: string;
 	policies: IPolicies[];
 };
 

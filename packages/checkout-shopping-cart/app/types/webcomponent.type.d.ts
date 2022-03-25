@@ -14,6 +14,8 @@ export interface IShoppingPayment {
 }
 
 export type Component = {
+	id?: string;
+	style?: string;
 	payment: IShoppingPayment;
 	completed: "yes" | "no";
 };

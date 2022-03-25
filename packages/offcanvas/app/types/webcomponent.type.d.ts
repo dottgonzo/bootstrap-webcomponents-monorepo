@@ -1,6 +1,8 @@
 import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
 
 export type Component = {
+	id?: string;
+	style?: string;
 	opened?: boolean;
 	navlinks?: INavLink[];
 	navpage?: string;
