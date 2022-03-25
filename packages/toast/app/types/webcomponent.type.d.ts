@@ -6,4 +6,7 @@ export type Component = {
 	content: string;
 };
 
-export type Events = {};
+export type Events = {
+	toastShow: { id: string; show: boolean };
+	// toastConfirm: { id: string; confirm: boolean };
+};

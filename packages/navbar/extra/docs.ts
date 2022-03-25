@@ -12,8 +12,17 @@ export const storybookArgs = {
 };
 
 const cssVars: CssVar[] = [];
-export const cssParts: CssPart[] = [];
-export const htmlSlots: HtmlSlot[] = [];
+export const cssParts: CssPart[] = [
+	{ name: "left-slot", description: "" },
+	{ name: "center-slot", description: "" },
+	{ name: "right-slot", description: "" },
+];
+export const htmlSlots: HtmlSlot[] = [
+	{ name: "left-slot", description: "" },
+	{ name: "right-slot", description: "" },
+	{ name: "center-slot", description: "" },
+	{ name: "brand", description: "" },
+];
 export const i18nLanguages: i18nLang[] = [];
 
 export const styleSetup: StyleSetup = {

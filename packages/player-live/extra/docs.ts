@@ -8,7 +8,11 @@ export const storybookArgs = {
 };
 
 const cssVars: CssVar[] = [];
-export const cssParts: CssPart[] = [];
+export const cssParts: CssPart[] = [
+	{ name: "container", description: "" },
+	{ name: "replacewithtext", description: "" },
+	{ name: "video", description: "" },
+];
 export const htmlSlots: HtmlSlot[] = [];
 export const i18nLanguages: i18nLang[] = [];
 

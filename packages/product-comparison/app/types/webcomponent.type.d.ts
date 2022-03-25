@@ -34,4 +34,6 @@ export type Component = {
 	options: Options;
 };
 
-export type Events = {};
+export type Events = {
+	purchaseClick: { id: string };
+};

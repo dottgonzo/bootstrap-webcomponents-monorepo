@@ -10,4 +10,6 @@ export type Component = {
 	};
 };
 
-export type Events = {};
+export type Events = {
+	liveStatus: { live: boolean };
+};

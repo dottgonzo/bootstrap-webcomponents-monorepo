@@ -15,7 +15,7 @@ const cssVars: CssVar[] = [
 	{ name: "--bs-danger", valueType: "color", theme: "bootstrap", defaultValue: "#f67280" },
 ];
 export const cssParts: CssPart[] = [];
-export const htmlSlots: HtmlSlot[] = [];
+export const htmlSlots: HtmlSlot[] = [{ name: "title", description: "" }];
 export const i18nLanguages: i18nLang[] = [];
 
 export const styleSetup: StyleSetup = {

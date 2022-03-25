@@ -4,11 +4,15 @@ export const storybookArgs = {
 	products: { control: { type: "array" } },
 	options: { control: { type: "object" } },
 	headers: { control: { type: "array" } },
-	purchaseClick: { action: "pagechangeEvent" },
+	purchaseClick: { action: "purchaseClickEvent" },
 };
 
 const cssVars: CssVar[] = [];
-export const cssParts: CssPart[] = [];
+export const cssParts: CssPart[] = [
+	{ name: "container", description: "" },
+	{ name: "col", description: "" },
+	{ name: "row", description: "" },
+];
 export const htmlSlots: HtmlSlot[] = [];
 export const i18nLanguages: i18nLang[] = [];
 
