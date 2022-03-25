@@ -12,7 +12,7 @@ export interface ICard {
 export type Component = {
 	id?: string;
 	style?: string;
-	cards: string;
+	cards: ICard[];
 	size: number;
 	page: number;
 	pages: number;
