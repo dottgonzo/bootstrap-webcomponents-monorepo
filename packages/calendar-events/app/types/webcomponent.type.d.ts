@@ -17,9 +17,9 @@ export interface IEvent {
 export type Component = {
 	id?: string;
 	style?: string;
-	date: Date;
-	events: IEvent[];
-	selected: Date;
+	date?: Date;
+	events?: IEvent[];
+	selected?: Date;
 };
 
 export type Events = {

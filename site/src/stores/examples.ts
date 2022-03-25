@@ -280,7 +280,7 @@ const events: calendarEventsComponent['events'] = [
 	}
 ];
 
-const paypal = {
+const paypal: checkoutComponent['gateways'][0] = {
 	id: 'paypal',
 	label: 'bbbb',
 	paypalid: 'test'
@@ -437,7 +437,7 @@ const preferences2 = [
 		validationTip: 'Min 8, Max 120'
 	}
 ];
-const cards = [
+const cards: galleryVideoComponent['cards'] = [
 	{
 		title: 'bau',
 		videoSrc: 'https://comapi.be-on.tv/v1/public/records/61043eedb50af916a6429fdc/video',
