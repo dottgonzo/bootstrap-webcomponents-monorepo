@@ -5,6 +5,8 @@ export const storybookArgs = {
 	submit: { action: "submit" },
 	submitted: { control: { type: "boolean" } },
 	showvalidation: { control: { type: "boolean" } },
+	setvalid: { control: { type: "boolean" } },
+	setvalue: { control: { type: "boolean" } },
 };
 
 const cssVars: CssVar[] = [

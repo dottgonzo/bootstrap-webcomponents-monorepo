@@ -3,6 +3,8 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup } from "@htmlbrick
 export const storybookArgs = {
 	schemaentry: { control: { type: "object" } },
 	showvalidation: { control: { type: "boolean" } },
+	setvalid: { control: { type: "boolean" } },
+	setvalue: { control: { type: "boolean" } },
 	setValid: { action: "setValid" },
 	setValue: { action: "setValue" },
 };

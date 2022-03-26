@@ -109,6 +109,19 @@
 							}}
 						/>
 						<!-- <input type="text" bind:value={args[prop]} /> -->
+					{:else if storybookargs[prop]?.control?.type === 'date'}
+						<!-- TODO: COMPLETE HERE -->
+						<hb-input-date
+							schemaentry={JSON.stringify({
+								id: prop,
+								value: args[prop]
+							})}
+							on:setValue={(e) => {
+								console.log('setvalue for c', e.detail);
+								// args[prop] = Number(e.detail.value);
+							}}
+						/>
+						<!-- <input type="text" bind:value={args[prop]} /> -->
 					{:else if storybookargs[prop]?.control?.type === 'boolean'}
 						<hb-input-select
 							schemaentry={JSON.stringify({
