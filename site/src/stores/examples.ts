@@ -612,32 +612,75 @@ const inputAreaExampleValues: inputAreaComponent = {
 		validationTip: 'This field cannot be empty.'
 	}
 };
-const inputCheckboxExampleValues: inputCheckboxComponent = {};
-const inputDateExampleValues: inputDateComponent = {};
-const inputEmailExampleValues: inputEmailComponent = {};
-const inputFileExampleValues: inputFileComponent = {
-	placeholder: 'Insert your last name here...',
-	id: 'lastName',
-	required: true,
-	label: 'Last Name',
-	validationTip: 'This field cannot be empty.'
-};
-const inputNumberExampleValues: inputNumberComponent = {};
-const inputRadioExampleValues: inputRadioComponent = {
-	placeholder: 'Choose here...',
-	id: 'check0',
-	required: true,
-	label: 'Check 0',
-	validationTip: 'Check 1',
-	group: 'ciao',
-	params: {
-		options: [
-			{ label: '777', value: '555' },
-			{ label: 'testlabel', value: 'testvalue' }
-		]
+const inputCheckboxExampleValues: inputCheckboxComponent = {
+	schemaentry: {
+		placeholder: 'Insert your last name here...',
+		id: 'lastName',
+		required: true,
+		label: 'Last Name',
+		validationTip: 'This field cannot be empty.'
 	}
 };
-const inputSelectExampleValues: inputSelectComponent = {};
+const inputDateExampleValues: inputDateComponent = {
+	schemaentry: {
+		placeholder: 'Insert your last name here...',
+		id: 'lastName',
+		required: true,
+		label: 'Last Name',
+		validationTip: 'This field cannot be empty.'
+	}
+};
+const inputEmailExampleValues: inputEmailComponent = {
+	schemaentry: {
+		placeholder: 'Insert your last name here...',
+		id: 'lastName',
+		required: true,
+		label: 'Last Name',
+		validationTip: 'This field cannot be empty.'
+	}
+};
+const inputFileExampleValues: inputFileComponent = {
+	schemaentry: {
+		placeholder: 'Insert your last name here...',
+		id: 'lastName',
+		required: true,
+		label: 'Last Name',
+		validationTip: 'This field cannot be empty.'
+	}
+};
+const inputNumberExampleValues: inputNumberComponent = {
+	schemaentry: {
+		placeholder: 'Insert your last name here...',
+		id: 'lastName',
+		required: true,
+		label: 'Last Name',
+		validationTip: 'This field cannot be empty.'
+	}
+};
+const inputRadioExampleValues: inputRadioComponent = {
+	schemaentry: {
+		placeholder: 'Choose here...',
+		id: 'check0',
+		required: true,
+		label: 'Check 0',
+		validationTip: 'Check 1',
+		params: {
+			options: [
+				{ label: '777', value: '555' },
+				{ label: 'testlabel', value: 'testvalue' }
+			]
+		}
+	}
+};
+const inputSelectExampleValues: inputSelectComponent = {
+	schemaentry: {
+		placeholder: 'Insert your last name here...',
+		id: 'lastName',
+		required: true,
+		label: 'Last Name',
+		validationTip: 'This field cannot be empty.'
+	}
+};
 const mapExampleValues: mapComponent = {
 	center: [10, 10],
 	zoom: 9,
