@@ -5,16 +5,31 @@ export const storybookArgs = {
 		options: ["login", "register"],
 		control: { type: "select" }, // Automatically inferred when 'options' is defined
 	},
-	language: { control: { type: "string" } },
-	logouri: { control: { type: "string" } },
-	loginuri: { control: { type: "string" } },
-	registeruri: { control: { type: "string" } },
+	language: { control: { type: "text" } },
+	logouri: { control: { type: "text" } },
+	loginuri: { control: { type: "text" } },
+	registeruri: { control: { type: "text" } },
 	login: { action: "loginEvent" },
 	register: { action: "registerEvent" },
 	contacts: { control: { type: "object" } },
 	company: { control: { type: "object" } },
 	socials: { control: { type: "object" } },
 	oauth2providers: { control: { type: "array" } },
+
+	appendbodyparams: { control: { type: "text" } },
+	appendqueryparams: { control: { type: "text" } },
+	cookielaw: { control: { type: "text" } },
+	disableregister: { control: { type: "text" } },
+
+	page: { control: { type: "text" } },
+	passwordpattern: { control: { type: "text" } },
+	redirectoncreate: { control: { type: "text" } },
+	redirectonlogin: { control: { type: "text" } },
+	requestmethod: { control: { type: "text" } },
+	sessionkey: { control: { type: "text" } },
+	usermenu: { control: { type: "text" } },
+	userpattern: { control: { type: "text" } },
+	usertype: { control: { type: "text" } },
 };
 
 const cssVars: CssVar[] = [

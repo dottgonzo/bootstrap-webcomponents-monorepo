@@ -69,7 +69,7 @@
 								args[prop] = e.detail.value;
 							}}
 						/>
-					{:else if storybookargs[prop]?.control?.type === 'text'}
+					{:else if storybookargs[prop]?.control?.type === 'text' || storybookargs[prop]?.control?.type === 'string'}
 						<hb-input-text
 							schemaentry={JSON.stringify({
 								id: prop,
