@@ -4,7 +4,7 @@
 
 	function defToInterfaceString(definition: {
 		properties: any;
-		type: 'object' | 'string' | 'array';
+		type: 'object' | 'string' | 'number' | 'array' | 'boolean';
 		$ref?: string;
 	}) {
 		if (definition.$ref) return definition.$ref.replace('#/definitions/', '');
@@ -18,15 +18,28 @@
 						case 'array':
 							if (prop.items) text += defToInterfaceString(prop.items) + '[ ],';
 							else text += '[ ],';
+							break;
 						case 'object':
-							// if (propDefinition.items) return defToInterfaceString(propDefinition.items) + '[ ]';
-							text += '{ },';
+							if (prop.properties) {
+								text += defToInterfaceString(prop);
+							} else {
+								text += '{ },';
+							}
+							break;
+
 						default:
 							text += prop.type + ',';
+							break;
 					}
 			}
 			text += ' }';
 			return text.replace(', }', ' }');
+		} else if (definition.type === 'number' && !definition.properties) {
+			return 'number';
+		} else if (definition.type === 'string' && !definition.properties) {
+			return 'string';
+		} else if (definition.type === 'boolean' && !definition.properties) {
+			return 'boolean';
 		}
 	}
 

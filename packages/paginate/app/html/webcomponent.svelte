@@ -131,10 +131,4 @@
 <style lang="scss">
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
-	.page-link {
-		color: var(--bs-primary);
-	}
-	.page-item.active .page-link {
-		background-color: var(--bs-primary);
-	}
 </style>
