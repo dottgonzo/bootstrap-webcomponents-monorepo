@@ -32,7 +32,6 @@
 	let cdnUri: string;
 	let args: string;
 	let lastName: string;
-	let i18nlang: string;
 	let allCssVars: { name: string; value: string }[];
 	$: {
 		name = $page.url?.href?.split('c=')?.[1]?.split('&')[0];
