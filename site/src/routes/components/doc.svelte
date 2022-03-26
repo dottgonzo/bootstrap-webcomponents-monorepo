@@ -1,4 +1,5 @@
 <script lang="ts">
+	import AllSchemeTable from '../../components/AllSchemesTable.svelte';
 	import ControlTable from '../../components/ControlTable.svelte';
 	import PropsTable from '../../components/PropsTable.svelte';
 	import SlotTable from '../../components/SlotTable.svelte';
@@ -257,6 +258,7 @@
 						<InstallTable {com} cdn={cdnUri} />
 					{:else if controlTab === 'schemes'}
 						<PropsTable {definition} {storybookargs} />
+						<AllSchemeTable {definition} />
 					{:else if controlTab === 'events'}
 						<EventsTable {definition} />
 					{:else if controlTab === 'i18n'}
