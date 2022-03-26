@@ -579,7 +579,14 @@ const dropdownSimpleExampleValues: dropdownSimpleComponent = {
 	]
 };
 const editorTinymceExampleValues: editorTinymceComponent = {};
-const editorVideoExampleValues: editorVideoComponent = {};
+const editorVideoExampleValues: editorVideoComponent = {
+	id: 'BasicVideoeditorWithTrack',
+	track: {
+		maxValue: 2,
+		minValue: 0
+	},
+	src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4'
+};
 const formExampleValues: formComponent = {
 	schema: schema1
 };

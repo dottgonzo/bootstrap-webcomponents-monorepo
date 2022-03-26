@@ -14,8 +14,8 @@ export type Component = {
 	id?: string;
 	style?: string;
 	src: string;
-	form: string;
-	track: ITrack;
+	form?: string;
+	track?: ITrack;
 };
 
 export type Events = {
