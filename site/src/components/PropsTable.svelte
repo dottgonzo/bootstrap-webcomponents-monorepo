@@ -63,6 +63,7 @@
 	}
 </script>
 
+<h2 style="margin-bottom:20px;">Component attributes</h2>
 <table style="width:100%">
 	<tr>
 		<th>Prop Name</th>
