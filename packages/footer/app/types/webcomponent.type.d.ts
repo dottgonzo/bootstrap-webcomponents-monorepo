@@ -37,8 +37,6 @@ export interface IBrandAndContacts {
 	companyName: string;
 	companyLogoUri: string;
 }
-export interface ISmallRow {}
-export interface IFooterBottom {}
 
 export interface IPolicies {
 	label: string;
@@ -77,10 +75,8 @@ export type Component = {
 	id?: string;
 	style?: string;
 	company: ICompany;
-	smallrow?: ISmallRow;
 	brandandcontacts: IBrandAndContacts;
 	columns: IColumn[];
-	footerbottom: IFooterBottom;
 	socials: ISocials;
 	contacts: IContacts;
 	policies: IPolicies[];

@@ -14,7 +14,7 @@
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
-	import type { IBrandAndContacts, IColumn, ICompany, IContacts, IFooterBottom, IPolicies, ISmallRow, ISocials } from "@app/types/webcomponent.type";
+	import type { IBrandAndContacts, IColumn, ICompany, IContacts, IPolicies, ISocials } from "@app/types/webcomponent.type";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
@@ -24,10 +24,8 @@
 
 	export let id: string;
 	export let company: ICompany;
-	export let smallrow: ISmallRow;
 	export let brandandcontacts: IBrandAndContacts;
 	export let columns: IColumn[];
-	export let footerbottom: IFooterBottom;
 
 	export let socials: ISocials;
 	export let contacts: IContacts;
@@ -63,20 +61,6 @@
 		} else {
 			try {
 				brandandcontacts = JSON.parse(brandandcontacts as unknown as string);
-			} catch (err) {}
-		}
-		if (!smallrow) {
-			smallrow = null;
-		} else {
-			try {
-				smallrow = JSON.parse(smallrow as unknown as string);
-			} catch (err) {}
-		}
-		if (!footerbottom) {
-			footerbottom = null;
-		} else {
-			try {
-				footerbottom = JSON.parse(footerbottom as unknown as string);
 			} catch (err) {}
 		}
 		if (!socials) {

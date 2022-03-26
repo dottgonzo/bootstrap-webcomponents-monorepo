@@ -58,7 +58,7 @@
 		<th>default value</th>
 	</tr>
 
-	{#each Object.keys(definition.definitions.Component.properties) as prop (prop)}
+	{#each Object.keys(definition.definitions.Component.properties).filter((f) => !['id', 'style'].includes(f)) as prop (prop)}
 		<tr>
 			<td>{prop}</td>
 			<td>{propToType(prop)}</td>
