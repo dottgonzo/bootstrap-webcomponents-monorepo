@@ -57,7 +57,7 @@ export type Component = {
 
 export type Events = {
 	pagechange: { page: number; pages: number };
-	removeFilter: { key: tring };
+	removeFilter: { key: string };
 	changeFilter: { filter: IFilter };
 	tableCustomActionClick: { itemId: string; action: string };
 	tableaction: { itemId: string; action: string };
