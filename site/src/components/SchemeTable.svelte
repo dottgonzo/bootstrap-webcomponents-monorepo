@@ -68,7 +68,6 @@
 			<th>Prop Name</th>
 			<th>type</th>
 			<th>required</th>
-			<th>default value</th>
 		</tr>
 		{#each definition?.properties ? Object.keys(definition?.properties) : [] as prop (prop)}
 			<tr>

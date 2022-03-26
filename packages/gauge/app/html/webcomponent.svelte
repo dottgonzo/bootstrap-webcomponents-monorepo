@@ -22,9 +22,9 @@
 		if (!id) id = "";
 		if (options && typeof options === "string") {
 			options = JSON.parse(options);
-			if (gaugeEl && gauge) {
-				recreateGauge();
-			}
+		}
+		if (gaugeEl && gauge) {
+			recreateGauge();
 		}
 	}
 	// function updateGauge(val: number) {
