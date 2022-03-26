@@ -4,6 +4,7 @@ export const storybookArgs = {
 	uri: { control: { type: "text" } },
 	title: { control: { type: "text" } },
 	item: { control: { type: "text" } },
+	provider: { control: { type: "text" } },
 };
 
 const cssVars: CssVar[] = [

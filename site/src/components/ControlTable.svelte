@@ -11,7 +11,7 @@
 			<th>value</th>
 		</tr>
 
-		{#each Object.keys(definition.definitions.Component.properties) as prop (prop)}
+		{#each Object.keys(definition.definitions.Component.properties).filter((f) => !['style', 'id'].includes(f)) as prop (prop)}
 			<tr>
 				<td
 					>{prop}{#if definition.definitions.Component?.required?.find((f) => f === prop)}<span
