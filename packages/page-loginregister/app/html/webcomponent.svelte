@@ -35,7 +35,6 @@
 	export let contacts: IContacts;
 
 	export let company: ICompany;
-	export let navlinks: INavLink[];
 	export let page: IPage;
 	export let usermenu: IUserMenu;
 	export let cookielaw: string;
@@ -135,9 +134,7 @@
 		if (!company) {
 			company = null;
 		}
-		if (!navlinks) {
-			navlinks = null;
-		}
+
 		if (!socials) {
 			socials = null;
 		}

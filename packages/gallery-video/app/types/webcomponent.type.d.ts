@@ -4,7 +4,7 @@ export interface ICard {
 	description?: string;
 	time?: Date;
 	pageUri?: string;
-	_id: string;
+	_id?: string;
 	provider?: "youtube";
 	dateformat?: string;
 }
