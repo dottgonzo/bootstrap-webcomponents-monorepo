@@ -15,14 +15,6 @@ export type FormSchemaEntry = {
 	 */
 	value?: string | number | boolean;
 
-	/**
-	 * This form control will show only if these dependencies are satisfied.
-	 */
-	dependencies?: {
-		id: string;
-		values?: any[];
-	}[];
-
 	readonly?: boolean;
 
 	/**

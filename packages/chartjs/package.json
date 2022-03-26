@@ -71,7 +71,7 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "07ab8a996a4a249036e33c5a6af691d646cfac0b",
+	"gitHead": "7e038a6ad68945e8707bac3c5824e0b3ad37bd6a",
 	"dependencies": {
 		"chart.js": "^3.7.0",
 		"debounce": "^1.2.1"
