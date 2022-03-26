@@ -10,6 +10,6 @@ export type Component = {
 };
 
 export type Events = {
-	update: { step; scheme: { schema: FormSchema; valid: boolean }; valid: boolean };
-	submit: { schemes; steps; step };
+	update: { step: number; scheme: { schema: FormSchema; valid: boolean }; valid: boolean };
+	submit: { schemes: FormSchema[]; steps: number; step: number };
 };
