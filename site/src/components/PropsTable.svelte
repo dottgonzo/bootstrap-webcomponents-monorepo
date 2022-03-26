@@ -76,7 +76,11 @@
 			<td>{prop}</td>
 			<td>{propToType(prop)}</td>
 			<td>{definition.definitions.Component.required?.includes(prop) ? 'true' : 'false'}</td>
-			<td>{storybookargs[prop]?.defaultValue || ''}</td>
+			<td
+				>{definition.definitions.Component.required?.includes(prop)
+					? ' - '
+					: storybookargs[prop]?.defaultValue || ''}</td
+			>
 		</tr>
 	{/each}
 </table>
