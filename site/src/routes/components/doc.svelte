@@ -11,13 +11,7 @@
 	import { allComponentsMetas } from '../../stores/components';
 	import { allComponentsExampleValues } from '../../stores/examples';
 	import { componentsVersion, lang } from '../../stores/app';
-	import {
-		events,
-		htmlSlotsContents,
-		cssVarsValues,
-		cssPartsContents,
-		globalCssVarsValues
-	} from '../../stores/events';
+	import { events, htmlSlotsContents, cssVarsValues, cssPartsContents } from '../../stores/events';
 	import { page } from '$app/stores';
 
 	import type { HtmlSlot, StyleSetup, i18nLang } from '@htmlbricks/hb-jsutils/main';
