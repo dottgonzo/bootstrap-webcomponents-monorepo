@@ -186,11 +186,6 @@
 		// });
 		return arr;
 	};
-	$: {
-		if ($page.url?.href?.split?.('version=')?.[1]?.split?.('&')?.[0]?.length) {
-			componentsVersion.set($page.url.href.split('version=')[1].split('&')[0]);
-		}
-	}
 
 	onMount(() => {
 		if ($componentsVersion) addComponent('bundle', $componentsVersion);

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import MarkdownIt from 'markdown-it';
-	import { pageName, componentsVersion } from '../stores/app';
+	import { pageName, debugVersion } from '../stores/app';
 
 	// export let definition: any;
 	// export let storybookargs: any;
@@ -11,7 +11,7 @@
 		content = 'loading';
 		try {
 			const pageraw = await fetch(
-				`https://cdn.jsdelivr.net/gh/dottgonzo/bootstrap-webcomponents-monorepo@${$componentsVersion}/packages/${$pageName}/README.md`
+				`https://cdn.jsdelivr.net/gh/dottgonzo/bootstrap-webcomponents-monorepo@${$debugVersion}/packages/${$pageName}/README.md`
 			);
 			const txt = await pageraw.text();
 			const md = new MarkdownIt();

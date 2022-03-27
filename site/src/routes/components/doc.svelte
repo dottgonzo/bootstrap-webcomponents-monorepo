@@ -9,7 +9,7 @@
 	import CssPartsTable from '../../components/CssPartsTable.svelte';
 	import CssVarsTable from '../../components/CssVarsTable.svelte';
 	import EventsTable from '../../components/EventsTable.svelte';
-	import { componentsVersion, lang } from '../../stores/app';
+	import { componentsVersion, debugVersion, lang } from '../../stores/app';
 	import { events, htmlSlotsContents, cssVarsValues, cssPartsContents } from '../../stores/events';
 	import { page } from '$app/stores';
 	import type { ComponentSetup } from '@htmlbricks/hb-jsutils';
@@ -18,8 +18,6 @@
 
 	import { pageName } from '../../stores/app';
 	let name: string;
-
-	let i18nLangs: i18nLang[];
 
 	let controlTab: 'props' | 'schemes' | 'events' | 'style' | 'slots' | 'install' | 'i18n' | 'info';
 
@@ -46,15 +44,20 @@
 	}
 	$: {
 		name = $page.url?.href?.split('c=')?.[1]?.split('&')[0];
+		if ($page.url?.href?.split?.('version=')?.[1]?.split?.('&')?.[0]?.length) {
+			debugVersion.set($page.url.href.split('version=')[1].split('&')[0]);
+		} else {
+			debugVersion.set($componentsVersion);
+		}
 		if (!lastName || lastName !== name) {
 			lastName = name;
 			controlTab = 'info';
 		}
 		pageName.set(name || 'docs');
-		const tmpLoadId = name + '_' + $componentsVersion;
-		if (name && !meta && tmpLoadId !== lastLoadId && $componentsVersion) {
+		const tmpLoadId = name + '_' + $debugVersion;
+		if (name && !meta && tmpLoadId !== lastLoadId && $debugVersion) {
 			meta = null;
-			loadMeta(name, $componentsVersion).catch(console.error);
+			loadMeta(name, $debugVersion).catch(console.error);
 			lastLoadId = tmpLoadId;
 		}
 
@@ -152,7 +155,7 @@
 								JSON.stringify(args)
 							)}&parts={encodeURIComponent(
 								JSON.stringify($cssPartsContents.filter((f) => f.component === name))
-							)}&version={$componentsVersion}"
+							)}&version={$debugVersion}"
 						/>
 					</div>
 				</div>
@@ -225,14 +228,14 @@
 							on:click={() => {
 								controlTab = 'i18n';
 							}}
-							class="nav-link {i18nLangs?.length ? '' : 'disabled'} {controlTab === 'i18n'
+							class="nav-link {meta?.i18n?.length ? '' : 'disabled'} {controlTab === 'i18n'
 								? 'active'
 								: ''}"
 							>i18n
 
 							<span
-								style={$lang && i18nLangs?.length ? 'color:black;' : ''}
-								class="badge bg-secondary">{$lang ? $lang : ''} | {i18nLangs?.length || 0}</span
+								style={$lang && meta?.i18n?.length ? 'color:black;' : ''}
+								class="badge bg-secondary">{$lang ? $lang : ''} | {meta?.i18n?.length || 0}</span
 							>
 						</button>
 					</li>

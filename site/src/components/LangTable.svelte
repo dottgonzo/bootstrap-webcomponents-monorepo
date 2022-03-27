@@ -1,11 +1,9 @@
 <script lang="ts">
-	import { i18nLanguages } from '@htmlbricks/hb-banner/release/docs';
 	import { pageName } from '../stores/app';
-	import type { Meta } from '../stores/components';
+	import type { ComponentSetup } from '@htmlbricks/hb-jsutils';
 
-	// export let storybookargs: any;
 	export let args: any;
-	export let meta: Meta;
+	export let meta: ComponentSetup;
 </script>
 
 <hb-input-radio
@@ -34,5 +32,3 @@
 		}
 	}}
 />
-<!-- </div>
-{/each} -->
