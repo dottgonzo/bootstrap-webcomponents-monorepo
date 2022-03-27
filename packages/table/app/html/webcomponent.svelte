@@ -467,7 +467,7 @@
 />
 <div id="webcomponent">
 	<div class="container-fluid" style="padding:0px;	margin-left: 0px;margin-right: 0px;">
-		{#if headers?.length}
+		{#if headers && Array.isArray(headers)}
 			<table class="table table-responsive table-striped table-hover align-middle" style="width:100%;text-align:left">
 				<thead>
 					<tr>
@@ -509,7 +509,7 @@
 									{selectedItems.length}/{rows.length}
 								</th>
 							{/if}
-							{#if headers?.find?.((f) => f.search)}
+							{#if headers.find((f) => f.search)}
 								{#each headers as th (th.key)}
 									<th scope="col">
 										{#if th.search}
