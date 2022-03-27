@@ -1,6 +1,6 @@
 {
   "name": "@htmlbricks/manifester",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "@htmlbricks manifest",
   "main": "main.js",
   "publishConfig": {
@@ -11,9 +11,9 @@
     "test": "mocha",
     "watch-ts": "./node_modules/typescript/bin/tsc -w",
     "build": "./node_modules/typescript/bin/tsc",
-    "release:patch": "npm version patch && git push && git push --tags && npm publish",
-    "release:minor": "npm version minor && git push && git push --tags && npm publish",
-    "release:major": "npm version major && git push && git push --tags && npm publish"
+    "release:patch": "npm version patch && git add -A && git commit -m 'bump' && git push && git push --tags && npm publish",
+    "release:minor": "npm version minor && git add -A && git commit -m 'bump' && git push && git push --tags && npm publish",
+    "release:major": "npm version major && git add -A && git commit -m 'bump' && git push && git push --tags && npm publish"
   },
   "keywords": [
     "manifester"
