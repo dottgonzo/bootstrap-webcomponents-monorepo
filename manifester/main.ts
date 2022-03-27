@@ -29,6 +29,9 @@ async function assembleJson() {
     }
     const componentSetupToString = JSON.stringify(componentSetup, null, 2)
     await fs.writeFile(outputFile, componentSetupToString)
+    await fs.rm(docPathMjs)
+    await fs.rm(componentDefinitionJsonPath)
+    await fs.rm(componentEventsDefinitionJsonPath)
     console.info('written to ' + outputFile)
   } catch (err) {
     throw err
