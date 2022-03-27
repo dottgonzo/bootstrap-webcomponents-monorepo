@@ -97,6 +97,17 @@
 							}}
 						/> -->
 						<!-- <input type="text" bind:value={args[prop]} /> -->
+					{:else if storybookargs[prop]?.control?.type === 'color'}
+						<hb-input-color
+							schemaentry={JSON.stringify({
+								id: prop,
+								value: args[prop]
+							})}
+							on:setValue={(e) => {
+								console.log('setvalue for c', e.detail);
+								args[prop] = e.detail.value;
+							}}
+						/>
 					{:else if storybookargs[prop]?.control?.type === 'number'}
 						<hb-input-number
 							schemaentry={JSON.stringify({

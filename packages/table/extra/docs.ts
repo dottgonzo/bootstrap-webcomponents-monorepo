@@ -3,9 +3,6 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup } from "@htmlbrick
 export const storybookArgs = {
 	size: { control: { type: "range", min: 1, max: 100 } },
 	page: { control: { type: "number" } },
-	primarycolor: {
-		control: { type: "color" },
-	},
 
 	enableselect: { control: { type: "boolean" } },
 	selectrow: { control: { type: "boolean" } },
@@ -21,6 +18,8 @@ export const storybookArgs = {
 	clickonrow: { action: "clickonrowEvent" },
 	confirmActionModal: { action: "confirmActionModalEvent" },
 	showConfirmModal: { action: "showConfirmModal" },
+	externalfilter: { control: { type: "boolean" } },
+	pages: { control: { type: "number" } },
 };
 
 const cssVars: CssVar[] = [

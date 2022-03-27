@@ -41,12 +41,11 @@ export interface IActionButton {
 export type Component = {
 	id?: string;
 	style?: string;
-	externalfilter?: string;
+	externalfilter?: boolean;
 	rows: IRow[];
 	size?: number;
 	page?: number;
 	pages?: number;
-	primarycolor?: string;
 	headers: ITableHeader[];
 	actions?: IActionButton[];
 	selectactions?: any[];

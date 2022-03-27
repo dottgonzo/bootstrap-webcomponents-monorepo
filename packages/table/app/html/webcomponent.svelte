@@ -33,22 +33,19 @@
 	// import dispatch from "@app/functions/webcomponent";
 
 	export let id: string;
-	export let externalfilter: string;
+	export let externalfilter: boolean;
 
 	export let rows: IRow[];
 	export let size: number;
 	export let page: number;
 	export let pages: number;
-	export let primarycolor: string;
 	export let headers: ITableHeader[];
 	export let actions: IActionButton[];
 	export let selectactions: any[];
 	export let selectrow: string;
 	export let enableselect: string;
 	export let disablepagination: string;
-	if (!primarycolor) {
-		primarycolor = null;
-	}
+
 	if (!id) {
 		id = null;
 	}
@@ -81,8 +78,12 @@
 				closelabel: null,
 			};
 		}
-		if (!externalfilter) {
-			externalfilter = null;
+		if (!externalfilter && (externalfilter as unknown as any) !== "") {
+			externalfilter = false;
+		} else if ((externalfilter as unknown as any) === "") {
+			externalfilter = true;
+		} else if ((externalfilter as unknown as any) === "no") {
+			externalfilter = false;
 		}
 		if (!pages) {
 			pages = 1;
@@ -730,13 +731,7 @@
 					{/each}
 				{/if}
 				{#if disablepagination !== "" && disablepagination !== "yes"}
-					<hb-paginate
-						style="float:right;{paginateStyleToSet}"
-						on:pagechange={changePage}
-						page={page.toString()}
-						pages={pages.toString()}
-						primarycolor={primarycolor || ""}
-					/>
+					<hb-paginate style="float:right;{paginateStyleToSet}" on:pagechange={changePage} page={page.toString()} pages={pages.toString()} />
 				{/if}
 			</nav>
 		{/if}
