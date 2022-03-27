@@ -35,7 +35,6 @@
 				`https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${name}@${version}/release/manifest.json`
 			);
 			meta = await pageraw.json();
-			console.log(meta);
 		} catch (err) {
 			console.warn(`failed to fetch manifest for ${$pageName}`);
 		}

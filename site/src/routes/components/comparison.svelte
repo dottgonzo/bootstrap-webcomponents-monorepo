@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 
 	import { pageName } from '../../stores/app';
-	import { allComponentsMetas } from '../../stores/components';
+	import allComponentsMetas from '@htmlbricks/hb-bundle/release/bundle.json';
 	pageName.set('comparison');
 </script>
 
@@ -19,7 +19,7 @@
 			<th>Languages</th>
 		</tr>
 
-		{#each $allComponentsMetas as c (c.name)}
+		{#each allComponentsMetas.packages as c (c.name)}
 			<tr>
 				<td
 					><button
@@ -36,8 +36,8 @@
 						: 0}</td
 				>
 				<td
-					>{c.definitions.component.definitions?.Events?.properties
-						? Object.keys(c.definitions.component.definitions.Events.properties).length
+					>{c.definitions.events.definitions?.Events?.properties
+						? Object.keys(c.definitions.events.definitions.Events.properties).length
 						: 0}</td
 				>
 				<td>{c.styleSetup?.vars?.filter((f) => f.theme)?.length || 0}</td>

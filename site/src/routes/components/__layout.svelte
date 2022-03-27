@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 	import { pageName, componentsVersion, lang } from '../../stores/app';
 	import { events } from '../../stores/events';
-	import { allComponentsMetas } from '../../stores/components';
+	import allComponentsMetas from '@htmlbricks/hb-bundle/release/bundle.json';
 
 	// import {
 	// 	globalBootstrapThemeCssVars,
@@ -90,7 +90,7 @@
 		const arr: INavLink[] = [home, documentation, storybook, github];
 		let cats: string[] = [];
 
-		$allComponentsMetas.forEach((f) => {
+		allComponentsMetas.packages.forEach((f) => {
 			if (!cats.includes(f.category)) cats.push(f.category);
 		});
 
@@ -141,7 +141,7 @@
 					break;
 			}
 
-			const subLinks: INavLink[] = $allComponentsMetas
+			const subLinks: INavLink[] = allComponentsMetas.packages
 				.filter((fi) => fi.category === f)
 				.map((m) => {
 					const navLink: INavLink = {
