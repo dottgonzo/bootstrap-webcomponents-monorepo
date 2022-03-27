@@ -20,6 +20,7 @@
 		"start": "sirv dist",
 		"dev": "rm -rf ./dist && rollup -c -w",
 		"build": "rm -rf ./dist && rollup -c",
+		"generate-manifest": "",
 		"generate-docs": "cp $PWD/dist/docs.js $PWD/dist/docs.mjs && generate-json-from-js-object --input $PWD/dist/docs.mjs --var componentSetup --output $PWD/dist/docs.type.d.json && rm $PWD/dist/docs.mjs",
 		"generate-schema": "ts-json-schema-generator --path 'app/types/webcomponent.type.d.ts' > dist/webcomponent.type.d.json",
 		"copydest": "rm -rf release && mkdir -p release && mkdir -p release && cp dist/* ./release/",
@@ -29,6 +30,7 @@
 	},
 	"devDependencies": {
 		"@htmlbricks/hb-jsutils": "^0.8.37",
+		"@htmlbricks/manifester": "^0.0.1",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
 		"@rollup/plugin-json": "^4.1.0",
