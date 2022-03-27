@@ -9,21 +9,16 @@
 	import CssPartsTable from '../../components/CssPartsTable.svelte';
 	import CssVarsTable from '../../components/CssVarsTable.svelte';
 	import EventsTable from '../../components/EventsTable.svelte';
-	import { allComponentsMetas, type Meta } from '../../stores/components';
-	import { allComponentsExampleValues } from '../../stores/examples';
 	import { componentsVersion, lang } from '../../stores/app';
 	import { events, htmlSlotsContents, cssVarsValues, cssPartsContents } from '../../stores/events';
 	import { page } from '$app/stores';
+	import type { ComponentSetup } from '@htmlbricks/hb-jsutils';
 
 	import type { HtmlSlot, StyleSetup, i18nLang } from '@htmlbricks/hb-jsutils/main';
 
 	import { pageName } from '../../stores/app';
 	let name: string;
-	let storybookargs: any;
-	let definition: any;
 
-	let styleSetup: StyleSetup;
-	let htmlSlots: HtmlSlot[];
 	let i18nLangs: i18nLang[];
 
 	let controlTab: 'props' | 'schemes' | 'events' | 'style' | 'slots' | 'install' | 'i18n' | 'info';
@@ -33,7 +28,22 @@
 	let args: string;
 	let lastName: string;
 	let allCssVars: { name: string; value: string }[];
-	let meta: Meta;
+	let meta: ComponentSetup;
+
+	let lastLoadId = 'none';
+
+	async function loadMeta(name: string, version: string) {
+		meta = null;
+		try {
+			const pageraw = await fetch(
+				`https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${name}@${version}/release/manifest.json`
+			);
+			meta = await pageraw.json();
+			console.log(meta);
+		} catch (err) {
+			console.warn(`failed to fetch manifest for ${$pageName}`);
+		}
+	}
 	$: {
 		name = $page.url?.href?.split('c=')?.[1]?.split('&')[0];
 		if (!lastName || lastName !== name) {
@@ -41,84 +51,88 @@
 			controlTab = 'info';
 		}
 		pageName.set(name || 'docs');
-		meta = $allComponentsMetas.find((f) => f.name === name) || null;
-		storybookargs = meta?.storybookArgs;
-		definition = meta?.definition;
-
-		styleSetup = meta?.styleSetup;
-		htmlSlots = meta?.htmlSlots;
-		// i18nLangs = meta?.i18n;
-
-		args = $allComponentsExampleValues[name];
-
-		com = '';
-		if ($cssPartsContents.filter((f) => f.component === name)?.length) {
-			com += '<sty' + 'le>';
-			for (const p of $cssPartsContents.filter((f) => f.component === name)) {
-				com += `hb-${$pageName}::part(${p.name}){${p.content}}`;
-			}
-			com += '</sty' + 'le>';
+		const tmpLoadId = name + '_' + $componentsVersion;
+		if (name && !meta && tmpLoadId !== lastLoadId && $componentsVersion) {
+			meta = null;
+			loadMeta(name, $componentsVersion).catch(console.error);
+			lastLoadId = tmpLoadId;
 		}
 
-		com += `<hb-${name} id="com-${name}"`;
-		// if (lang && !args?.['i18nlang'] && meta?.i18n?.length) {
-		// 	com += ` i18nlang="${lang}"`;
-		// }
-		if (args) {
-			for (const k of Object.keys(args)) {
-				switch (typeof args[k]) {
-					case 'number':
-					case 'string':
-						if (args[k]) com += ` ${k}="${args[k]}"`;
-						break;
-					case 'boolean':
-						com += ` ${k}="${args[k] ? 'yes' : 'no'}"`;
-						break;
-					case 'object':
-						com += ` ${k}='${JSON.stringify(args[k])}'`;
-						break;
+		// i18nLangs = meta?.i18n;
+		if (meta) {
+			args = meta.examples[0];
+
+			com = '';
+			if ($cssPartsContents.filter((f) => f.component === name)?.length) {
+				com += '<sty' + 'le>';
+				for (const p of $cssPartsContents.filter((f) => f.component === name)) {
+					com += `hb-${$pageName}::part(${p.name}){${p.content}}`;
+				}
+				com += '</sty' + 'le>';
+			}
+
+			com += `<hb-${name} id="com-${name}"`;
+			// if (lang && !args?.['i18nlang'] && meta?.i18n?.length) {
+			// 	com += ` i18nlang="${lang}"`;
+			// }
+			if (args) {
+				for (const k of Object.keys(args)) {
+					switch (typeof args[k]) {
+						case 'number':
+						case 'string':
+							if (args[k]) com += ` ${k}="${args[k]}"`;
+							break;
+						case 'boolean':
+							com += ` ${k}="${args[k] ? 'yes' : 'no'}"`;
+							break;
+						case 'object':
+							com += ` ${k}='${JSON.stringify(args[k])}'`;
+							break;
+					}
 				}
 			}
-		}
-		if (
-			styleSetup?.vars &&
-			styleSetup.vars.filter((f) => typeof f.defaultValue !== 'undefined').length
-		) {
-			com += ` style="`;
-			for (const css of styleSetup.vars.filter((f) => typeof f.defaultValue !== 'undefined')) {
-				com += `${css.name}:${css.defaultValue};`;
+			if (
+				meta.styleSetup?.vars &&
+				meta.styleSetup.vars.filter((f) => typeof f.defaultValue !== 'undefined').length
+			) {
+				com += ` style="`;
+				for (const css of meta.styleSetup.vars.filter(
+					(f) => typeof f.defaultValue !== 'undefined'
+				)) {
+					com += `${css.name}:${css.defaultValue};`;
+				}
+				com += `"`;
 			}
-			com += `"`;
-		}
-		com += ` >`;
-		if ($htmlSlotsContents.filter((f) => f.component === name)?.length) {
-			for (const sl of $htmlSlotsContents.filter((f) => f.component === name)) {
-				com += `<div slot="${sl.name}">${sl.content}</div>`;
+			com += ` >`;
+			if ($htmlSlotsContents.filter((f) => f.component === name)?.length) {
+				for (const sl of $htmlSlotsContents.filter((f) => f.component === name)) {
+					com += `<div slot="${sl.name}">${sl.content}</div>`;
+				}
 			}
+
+			com += `</hb-${name}>`;
+
+			com += ` />`;
+			cdnUri = `<${'script'} id="hb-${name}-script" src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${name}@${$componentsVersion}/release/release.js"></${'script'}>`;
+
+			allCssVars = $cssVarsValues
+				.filter((f) => f.component === name)
+				?.map((m) => {
+					return { name: m.name, value: m.value };
+				});
+			// if (meta.styleSetup.themes.includes('bootstrap')) {
+			// 	const toAdd = $globalCssVarsValues.filter(
+			// 		(f) => !allCssVars.find((ff) => ff.name === f.name)
+			// 	);
+
+			// 	allCssVars.concat(toAdd);
+			// }
 		}
-
-		com += `</hb-${name}>`;
-
-		com += ` />`;
-		cdnUri = `<${'script'} id="hb-${name}-script" src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${name}@${$componentsVersion}/release/release.js"></${'script'}>`;
-
-		allCssVars = $cssVarsValues
-			.filter((f) => f.component === name)
-			?.map((m) => {
-				return { name: m.name, value: m.value };
-			});
-		// if (meta.styleSetup.themes.includes('bootstrap')) {
-		// 	const toAdd = $globalCssVarsValues.filter(
-		// 		(f) => !allCssVars.find((ff) => ff.name === f.name)
-		// 	);
-
-		// 	allCssVars.concat(toAdd);
-		// }
 	}
 </script>
 
 <div class="container-fluid">
-	{#if name && args}
+	{#if name && meta && args}
 		<div style="margin-top:40px; padding-right:0px" class="row">
 			<div class="col-7">
 				<div style="margin-top:40px">
@@ -183,7 +197,7 @@
 							on:click={() => {
 								controlTab = 'style';
 							}}
-							class="nav-link {styleSetup?.vars?.length || styleSetup?.parts?.length
+							class="nav-link {meta.styleSetup?.vars?.length || meta.styleSetup?.parts?.length
 								? ''
 								: 'disabled'} {controlTab === 'style' ? 'active' : ''}">style</button
 						>
@@ -193,7 +207,7 @@
 							on:click={() => {
 								controlTab = 'slots';
 							}}
-							class="nav-link {htmlSlots?.length ? '' : 'disabled'} {controlTab === 'slots'
+							class="nav-link {meta.htmlSlots?.length ? '' : 'disabled'} {controlTab === 'slots'
 								? 'active'
 								: ''}"
 							>slots <span
@@ -201,8 +215,8 @@
 									? 'color:red;'
 									: ''}
 								class="badge bg-secondary"
-								>{$htmlSlotsContents?.filter((f) => f.component === $pageName).length ||
-									0}/{htmlSlots?.length || 0}</span
+								>{$htmlSlotsContents?.filter((f) => f.component === $pageName).length || 0}/{meta
+									.htmlSlots?.length || 0}</span
 							></button
 						>
 					</li>
@@ -227,12 +241,13 @@
 							on:click={() => {
 								controlTab = 'events';
 							}}
-							class="nav-link position-relative {definition?.definitions?.Events?.properties &&
-							Object.keys(definition.definitions.Events.properties)?.length
+							class="nav-link position-relative {meta?.definitions?.events?.definitions?.Events
+								?.properties &&
+							Object.keys(meta.definitions.events.definitions.Events.properties)?.length
 								? ''
 								: 'disabled'} {controlTab === 'events' ? 'active' : ''}"
 							>events
-							{#if $events?.filter((f) => f.component === name)?.length && definition?.definitions?.Events?.properties && Object.keys(definition.definitions.Events.properties)?.length}
+							{#if $events?.filter((f) => f.component === name)?.length && meta?.definitions?.events?.definitions?.Events?.properties && Object.keys(meta.definitions.events.definitions.Events.properties)?.length}
 								<span
 									class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
 								>
@@ -252,30 +267,37 @@
 				</ul>
 				<div style="border-left: 1px solid #dee2e6;min-height:100%;padding:0px 20px 0px 20px">
 					<div style="padding-top:20px">
-						{#if controlTab === 'props'}
-							<ControlTable {definition} {storybookargs} bind:args />
+						{#if controlTab === 'props' && meta?.definitions?.component}
+							<ControlTable
+								definition={meta.definitions.component}
+								storybookargs={meta.storybookArgs}
+								bind:args
+							/>
 						{:else if controlTab === 'info'}
 							<InfoTable />
 						{:else if controlTab === 'install'}
 							<InstallTable {com} cdn={cdnUri} />
 						{:else if controlTab === 'schemes'}
-							<PropsTable {definition} {storybookargs} />
-							<AllSchemeTable {definition} />
+							<PropsTable
+								definition={meta.definitions.component}
+								storybookargs={meta.storybookArgs}
+							/>
+							<AllSchemeTable definition={meta.definitions.component} />
 						{:else if controlTab === 'events'}
-							<EventsTable {definition} />
+							<EventsTable definition={meta.definitions.events} />
 						{:else if controlTab === 'i18n'}
 							<I18nTable {meta} bind:args />
 						{:else if controlTab === 'slots'}
-							<SlotTable slots={htmlSlots} />
+							<SlotTable slots={meta.htmlSlots} />
 						{:else if controlTab === 'style'}
-							{#if styleSetup?.parts?.length}
+							{#if meta.styleSetup?.parts?.length}
 								<div>
-									<CssPartsTable parts={styleSetup.parts} />
+									<CssPartsTable parts={meta.styleSetup.parts} />
 								</div>
 							{/if}
-							{#if styleSetup?.vars?.length}
+							{#if meta.styleSetup?.vars?.length}
 								<div>
-									<CssVarsTable vars={styleSetup.vars} />
+									<CssVarsTable vars={meta.styleSetup.vars} />
 								</div>
 							{/if}
 						{/if}
@@ -284,6 +306,8 @@
 				<!-- {@html com} -->
 			</div>
 		</div>
+	{:else}
+		loading
 	{/if}
 </div>
 

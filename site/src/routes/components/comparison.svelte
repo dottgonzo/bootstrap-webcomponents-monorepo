@@ -28,19 +28,19 @@
 					><button
 						class="btn btn-link"
 						on:click={() => {
-							goto('/components/doc?c=' + c.name);
+							goto('/components/doc?c=' + c.name.replace('hb-', ''));
 						}}>hb-{c.name}</button
 					></td
 				>
 
 				<td
-					>{c.definition.definitions?.Component?.properties
-						? Object.keys(c.definition.definitions.Component.properties).length
+					>{c.definitions.component.definitions?.Component?.properties
+						? Object.keys(c.definitions.component.definitions.Component.properties).length
 						: 0}</td
 				>
 				<td
-					>{c.definition.definitions?.Events?.properties
-						? Object.keys(c.definition.definitions.Events.properties).length
+					>{c.definitions.component.definitions?.Events?.properties
+						? Object.keys(c.definitions.component.definitions.Events.properties).length
 						: 0}</td
 				>
 				<td>{c.styleSetup?.vars?.filter((f) => f.theme)?.length || 0}</td>

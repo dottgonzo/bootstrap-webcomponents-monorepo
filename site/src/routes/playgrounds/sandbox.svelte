@@ -29,7 +29,7 @@
 			if (cssVars64) cssVars = JSON.parse(decodeURIComponent(cssVars64));
 			if (cssParts64) cssParts = JSON.parse(decodeURIComponent(cssParts64));
 			args = paramsBase64 ? JSON.parse(decodeURIComponent(paramsBase64)) : {};
-			meta = $allComponentsMetas?.find((f) => f.name === name);
+			meta = $allComponentsMetas?.find((f) => f.name === 'hb-' + name);
 
 			com = '';
 			if (cssParts?.length) {
