@@ -466,7 +466,7 @@
 	on:modalShow={(d) => dialogShowConfirm(d.detail, modalConfirm.action)}
 />
 <div id="webcomponent">
-	<div class="container-fluid" style="padding:0px;	margin-left: 0px;margin-right: 0px;">
+	<div class="container-fluid" style="padding:0px; margin-left: 0px; margin-right: 0px;">
 		{#if headers && Array.isArray(headers)}
 			<table class="table table-responsive table-striped table-hover align-middle" style="width:100%;text-align:left">
 				<thead>
