@@ -85,12 +85,15 @@
 
 <h2 style="margin-bottom:20px;">Component attributes</h2>
 {#if rows?.length}
-	{JSON.stringify(rows)}
 	<hb-table
-		enableselect="no"
-		selectrow="no"
-		headers={JSON.stringify([])}
-		rows={JSON.stringify([])}
+		headers={JSON.stringify([
+			{ label: 'PropName', key: 'name', search: true },
+			{ label: 'type', key: 'type' },
+			{ label: 'required', key: 'required' },
+			{ label: 'default value', key: 'default' }
+		])}
+		rows={JSON.stringify(rows)}
+		size={rows.length}
 	/>
 {/if}
 <!-- <table style="width:100%">
