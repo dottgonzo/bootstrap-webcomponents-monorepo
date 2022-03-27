@@ -24,7 +24,17 @@ export type i18nLang = {
   language: string;
   lang: string;
 };
-
+export type ComponentSetup = {
+  storybookArgs: any;
+  styleSetup: StyleSetup;
+  htmlSlots: HtmlSlot[];
+  i18n: i18nLang[];
+  examples: [];
+  name: "";
+  category: "";
+  tags: [];
+  size: {};
+};
 export function getChildStyleToPass(
   parsedStyle: { [x: string]: string },
   vars: CssVar[]

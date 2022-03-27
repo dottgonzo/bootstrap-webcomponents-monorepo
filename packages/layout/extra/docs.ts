@@ -40,10 +40,14 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-export const componentSetup = {
+{
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
 	i18n: i18nLanguages,
 	examples: [],
+	name: "",
+	category: "",
+	tags: [],
+	size: {},
 };

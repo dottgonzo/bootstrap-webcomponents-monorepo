@@ -9,7 +9,7 @@
 	import CssPartsTable from '../../components/CssPartsTable.svelte';
 	import CssVarsTable from '../../components/CssVarsTable.svelte';
 	import EventsTable from '../../components/EventsTable.svelte';
-	import { allComponentsMetas } from '../../stores/components';
+	import { allComponentsMetas, type Meta } from '../../stores/components';
 	import { allComponentsExampleValues } from '../../stores/examples';
 	import { componentsVersion, lang } from '../../stores/app';
 	import { events, htmlSlotsContents, cssVarsValues, cssPartsContents } from '../../stores/events';
@@ -33,6 +33,7 @@
 	let args: string;
 	let lastName: string;
 	let allCssVars: { name: string; value: string }[];
+	let meta: Meta;
 	$: {
 		name = $page.url?.href?.split('c=')?.[1]?.split('&')[0];
 		if (!lastName || lastName !== name) {
@@ -40,13 +41,13 @@
 			controlTab = 'info';
 		}
 		pageName.set(name || 'docs');
-		const meta = $allComponentsMetas.find((f) => f.name === name);
+		meta = $allComponentsMetas.find((f) => f.name === name) || null;
 		storybookargs = meta?.storybookArgs;
 		definition = meta?.definition;
 
 		styleSetup = meta?.styleSetup;
 		htmlSlots = meta?.htmlSlots;
-		i18nLangs = meta?.i18n;
+		// i18nLangs = meta?.i18n;
 
 		args = $allComponentsExampleValues[name];
 
@@ -261,7 +262,7 @@
 					{:else if controlTab === 'events'}
 						<EventsTable {definition} />
 					{:else if controlTab === 'i18n'}
-						<I18nTable bind:args />
+						<I18nTable {meta} bind:args />
 					{:else if controlTab === 'slots'}
 						<SlotTable slots={htmlSlots} />
 					{:else if controlTab === 'style'}

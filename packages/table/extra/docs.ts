@@ -46,4 +46,8 @@ export const componentSetup = {
 	htmlSlots,
 	i18n: i18nLanguages,
 	examples: [],
+	name: "",
+	category: "",
+	tags: [],
+	size: {},
 };

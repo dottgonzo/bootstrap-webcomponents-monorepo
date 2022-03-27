@@ -343,17 +343,17 @@ import {
 	styleSetup as playerLiveStyleSetup
 } from '../../node_modules/@htmlbricks/hb-player-live/release/docs';
 
-export const allComponentsMetas: Readable<
-	{
-		definition: any;
-		storybookArgs: any;
-		name: string;
-		category: string;
-		styleSetup: StyleSetup;
-		htmlSlots: HtmlSlot[];
-		i18n: i18nLang[];
-	}[]
-> = readable([
+export type Meta = {
+	definition: any;
+	storybookArgs: any;
+	name: string;
+	category: string;
+	styleSetup: StyleSetup;
+	htmlSlots: HtmlSlot[];
+	i18n: i18nLang[];
+};
+
+export const allComponentsMetas: Readable<Meta[]> = readable([
 	{
 		definition: bannerDefinition,
 		storybookArgs: bannerStorybookArgs,

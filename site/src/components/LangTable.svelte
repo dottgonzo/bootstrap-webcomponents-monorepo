@@ -1,23 +1,18 @@
 <script lang="ts">
 	import { i18nLanguages } from '@htmlbricks/hb-banner/release/docs';
 	import { pageName } from '../stores/app';
-	import { allComponentsMetas } from '../stores/components';
+	import type { Meta } from '../stores/components';
 
 	// export let storybookargs: any;
 	export let args: any;
-
-	function updateArgs() {
-		console.log(args);
-	}
+	export let meta: Meta;
 </script>
 
-<!-- {#each $allComponentsMetas.find((f) => f.name === $pageName)?.i18n || [] as l (l.lang)}
-	<div> -->
 <hb-input-radio
 	schemaentry={JSON.stringify({
 		id: $pageName + '_lang_chooser',
 		params: {
-			options: ($allComponentsMetas.find((f) => f.name === $pageName)?.i18n || []).map((m) => {
+			options: (meta?.i18n || []).map((m) => {
 				const o = {
 					value: m.lang,
 					label: m.lang
