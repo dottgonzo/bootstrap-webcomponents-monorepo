@@ -41,10 +41,10 @@ export type ComponentSetup = {
   styleSetup: StyleSetup;
   htmlSlots: HtmlSlot[];
   i18n: i18nLang[];
-  examples: [];
-  name: "";
-  category: "";
-  tags: [];
+  examples: any[];
+  name: string;
+  category: string;
+  tags: string[];
   size: {};
 };
 export function getChildStyleToPass(

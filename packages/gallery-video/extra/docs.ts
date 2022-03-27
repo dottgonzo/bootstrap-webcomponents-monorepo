@@ -1,4 +1,5 @@
 import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	size: { control: { type: "range", min: 1, max: 100 } },
@@ -22,16 +23,45 @@ export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
 };
+const cards: Component["cards"] = [
+	{
+		title: "bau",
+		videoSrc: "https://comapi.be-on.tv/v1/public/records/61043eedb50af916a6429fdc/video",
+		time: new Date("2021-08-06T22:46:30.565Z"),
+	},
+	{
+		title: "bb1",
+		videoSrc: "https://comapi.be-on.tv/v1/public/records/61043eedb50af916a6429fdc/video",
+		time: new Date("2021-08-06T22:46:31.565Z"),
+	},
 
-export const componentSetup: ComponentSetup = {
+	{
+		title: "bb4",
+		time: new Date("2021-08-06T22:46:34.565Z"),
+		videoSrc: "https://www.youtube.com/embed/tgbNymZ7vqY",
+		provider: "youtube",
+	},
+
+	{
+		title: "bb12",
+		time: new Date("2021-08-06T22:46:34.565Z"),
+		videoSrc: "https://comapi.be-on.tv/v1/public/records/61043eedb50af916a6429fdc/video",
+	},
+];
+const examples: Component[] = [
+	{
+		cards,
+	},
+];
+export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
 	i18n: i18nLanguages,
-	examples: [],
-	name: "",
-	category: "",
-	tags: [],
+	examples,
+	name: "hb-gallery-video",
+	category: "components",
+	tags: ["components"],
 	size: {},
 };

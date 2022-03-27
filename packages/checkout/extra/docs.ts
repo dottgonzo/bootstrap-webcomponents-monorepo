@@ -1,4 +1,5 @@
 import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	shipments: { control: { type: "array" } },
@@ -68,16 +69,54 @@ export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
 };
+const paypal: Component["gateways"][0] = {
+	id: "paypal",
+	label: "bbbb",
+	paypalid: "test",
+};
 
-export const componentSetup: ComponentSetup = {
+const defaultPayment: Component["payment"] = {
+	merchantName: "testmerchant",
+	countryCode: "it",
+	currencyCode: "EUR",
+	total: 45,
+	type: "buy",
+};
+const examples: Component[] = [
+	{
+		shipments: [
+			{
+				price: 10,
+				currency: "€",
+
+				arriveDate: new Date("2022-01-20T08:03:57.562Z"),
+				available: true,
+				label: "zio barca",
+				id: "ziobarca",
+			},
+			{
+				price: 20,
+				currency: "€",
+
+				arriveDate: new Date("2022-01-21T02:22:57.562Z"),
+				available: true,
+				label: "zio barca2",
+				id: "ziobarca2",
+			},
+		],
+		gateways: [paypal],
+		payment: defaultPayment,
+	},
+];
+export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
 	i18n: i18nLanguages,
-	examples: [],
-	name: "",
-	category: "",
-	tags: [],
+	examples,
+	name: "hb-checkout",
+	category: "payment",
+	tags: ["payment"],
 	size: {},
 };

@@ -1,4 +1,5 @@
 import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	page: { control: { type: "number" } },
@@ -16,15 +17,21 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-export const componentSetup: ComponentSetup = {
+const examples: Component[] = [
+	{
+		page: 2,
+		pages: 4,
+	},
+];
+export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
 	i18n: i18nLanguages,
-	examples: [],
-	name: "",
-	category: "",
-	tags: [],
+	examples,
+	name: "hb-paginate",
+	category: "basic",
+	tags: ["basic"],
 	size: {},
 };

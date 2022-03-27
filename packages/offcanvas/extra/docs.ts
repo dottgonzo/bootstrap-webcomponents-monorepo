@@ -1,4 +1,5 @@
 import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	opened: { control: { type: "boolean" } },
@@ -42,15 +43,49 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-export const componentSetup: ComponentSetup = {
+const examples: Component[] = [
+	{
+		opened: true,
+		navlinks: [
+			{
+				label: "Home",
+				key: "home",
+				icon: "house-door",
+			},
+			{
+				label: "Dashboard",
+				key: "dashboard",
+				icon: "speedometer",
+			},
+			{
+				label: "Settings",
+				key: "settings",
+				icon: "gear",
+			},
+			{
+				label: "Users",
+				key: "users",
+				icon: "people-fill",
+			},
+			{
+				label: "Stats",
+				key: "stats",
+				icon: "graph-up",
+			},
+		],
+		navpage: "settings",
+		companytitle: "acme corp",
+	},
+];
+export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
 	i18n: i18nLanguages,
-	examples: [],
-	name: "",
-	category: "",
-	tags: [],
+	examples,
+	name: "hb-offcanvas",
+	category: "layout",
+	tags: ["layout"],
 	size: {},
 };

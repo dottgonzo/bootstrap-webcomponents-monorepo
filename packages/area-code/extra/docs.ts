@@ -1,5 +1,5 @@
 import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
-
+import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	content: { control: { type: "text" } },
 	clipboardCopyText: { action: "clipboardCopyTextEvent" },
@@ -21,15 +21,20 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-export const componentSetup: ComponentSetup = {
+const examples: Component[] = [
+	{
+		content: "desc",
+	},
+];
+export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
 	i18n: i18nLanguages,
-	examples: [],
-	name: "",
-	category: "",
-	tags: [],
+	examples,
+	name: "hb-area-code",
+	category: "dev",
+	tags: ["dev"],
 	size: {},
 };

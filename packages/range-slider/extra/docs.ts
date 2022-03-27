@@ -1,4 +1,5 @@
 import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	changeRangeValues: { action: "changeRangeValuesEvent" },
@@ -24,15 +25,22 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-export const componentSetup: ComponentSetup = {
+const examples: Component[] = [
+	{
+		withbubbles: true,
+		minval: 20,
+		maxval: 60,
+	},
+];
+export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
 	i18n: i18nLanguages,
-	examples: [],
-	name: "",
-	category: "",
-	tags: [],
+	examples,
+	name: "hb-range-slider",
+	category: "basic",
+	tags: ["basic"],
 	size: {},
 };

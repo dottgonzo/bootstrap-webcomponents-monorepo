@@ -1,4 +1,5 @@
 import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	videosrc: { control: { type: "text" } },
@@ -21,15 +22,23 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-export const componentSetup: ComponentSetup = {
+const examples: Component[] = [
+	{
+		videosrc: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+		title: "aa",
+		description: "desc6",
+		time: new Date("2021-08-15T18:55:22.135Z"),
+	},
+];
+export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
 	i18n: i18nLanguages,
-	examples: [],
-	name: "",
-	category: "",
-	tags: [],
+	examples,
+	name: "hb-card-video",
+	category: "components",
+	tags: ["components"],
 	size: {},
 };

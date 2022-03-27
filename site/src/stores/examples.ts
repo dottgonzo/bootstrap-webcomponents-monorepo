@@ -203,7 +203,6 @@ const brandandcontacts1: footerComponent['brandandcontacts'] = {
 	companyName: 'bella',
 	companyLogoUri: ''
 };
-const footerbottom1 = {};
 const policies1 = [
 	{
 		label: 'Privacy Policy',

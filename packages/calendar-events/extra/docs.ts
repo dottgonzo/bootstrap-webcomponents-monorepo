@@ -1,4 +1,6 @@
 import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { Component } from "../app/types/webcomponent.type";
+import dayjs from "dayjs";
 
 export const storybookArgs = {
 	events: { control: { type: "object" } },
@@ -29,16 +31,28 @@ export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
 };
-
-export const componentSetup: ComponentSetup = {
+const events: Component["events"] = [
+	{
+		date: new Date(),
+		id: "test",
+		label: "thetest",
+	},
+	{
+		date: dayjs().startOf("month").subtract(1, "day").toDate(),
+		id: "test2",
+		label: "thetest start",
+	},
+];
+const examples: Component[] = [{ events }];
+export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
 	i18n: i18nLanguages,
-	examples: [],
-	name: "",
-	category: "",
-	tags: [],
+	examples,
+	name: "hb-calendar-events",
+	category: "components",
+	tags: ["components"],
 	size: {},
 };

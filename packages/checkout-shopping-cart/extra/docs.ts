@@ -1,4 +1,5 @@
 import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	payment: { control: { type: "object" } },
@@ -23,15 +24,36 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-export const componentSetup: ComponentSetup = {
+const examples: Component[] = [
+	{
+		payment: {
+			items: [
+				{
+					id: "efewf",
+					unitaryPrice: 2,
+					taxPercentage: 3,
+					name: "testitem",
+				},
+				{
+					id: "efewf4",
+					unitaryPrice: 5,
+					taxPercentage: 7,
+					name: "testitem2",
+				},
+			],
+			countryCode: "IT",
+		},
+	},
+];
+export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
 	i18n: i18nLanguages,
-	examples: [],
-	name: "",
-	category: "",
-	tags: [],
+	examples,
+	name: "hb-checkout-shopping-cart",
+	category: "payment",
+	tags: ["payment"],
 	size: {},
 };

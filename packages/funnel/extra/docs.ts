@@ -1,4 +1,5 @@
 import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	submitstep: {
@@ -27,16 +28,74 @@ export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
 };
+const preferences: Component["schemes"][0] = [
+	{
+		type: "text",
+		placeholder: "Inserisci titolo di default",
+		id: "defaultTitle",
+		required: true,
 
-export const componentSetup: ComponentSetup = {
+		label: "Titolo di default",
+		value: "numtest",
+		params: {
+			minlength: 8,
+			maxlength: 120,
+		},
+	},
+	{
+		type: "number",
+		id: "age",
+		required: true,
+		label: "Age",
+		value: 9,
+		params: {
+			min: 8,
+			max: 120,
+		},
+		validationTip: "Min 8, Max 120",
+	},
+];
+const preferences2: Component["schemes"][0] = [
+	{
+		type: "text",
+		placeholder: "Inserisci titolo di default2",
+		id: "defaultTitle2",
+		required: true,
+
+		label: "Titolo di default2",
+		value: "ntest2",
+		params: {
+			minlength: 8,
+			maxlength: 120,
+		},
+	},
+	{
+		type: "number",
+		id: "age2",
+		required: true,
+		label: "Age2",
+		value: 20,
+		params: {
+			min: 8,
+			max: 120,
+		},
+		validationTip: "Min 8, Max 120",
+	},
+];
+const examples: Component[] = [
+	{
+		schemes: [preferences, preferences2],
+	},
+];
+export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
 	i18n: i18nLanguages,
-	examples: [],
-	name: "",
-	category: "",
-	tags: [],
+	examples,
+	name: "hb-funnel",
+	category: "form",
+	tags: ["form"],
 	size: {},
 };

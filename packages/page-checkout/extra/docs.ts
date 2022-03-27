@@ -1,4 +1,5 @@
 import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	shipments: { control: { type: "array" } },
@@ -28,16 +29,60 @@ export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
 };
-
-export const componentSetup: ComponentSetup = {
+const defaultgw: Component["gateways"][0] = {
+	id: "paypal",
+	label: "bbbb",
+	paypalid: "test",
+};
+const googlepay: Component["gateways"][0] = {
+	id: "google",
+	label: "GooglePay",
+	gatewayId: "example",
+	gatewayMerchantId: "exampleGatewayMerchantId",
+};
+const examples: Component[] = [
+	{
+		shipments: [],
+		user: {
+			fullName: "fdfff fffff",
+			addressWithNumber: "addreess 43",
+			city: "ff",
+			nationality: "effe",
+			zip: "3434",
+			fixed: true,
+		},
+		gateways: [defaultgw, googlepay],
+		payment: {
+			countryCode: "IT",
+			merchantName: "tizio",
+			currencyCode: "EU",
+			total: 100,
+			items: [
+				{
+					unitaryPrice: 2,
+					taxPercentage: 3,
+					name: "testitem",
+					id: "testitem",
+				},
+				{
+					unitaryPrice: 5,
+					taxPercentage: 7,
+					name: "testitem2",
+					id: "testitem2",
+				},
+			],
+		},
+	},
+];
+export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
 	i18n: i18nLanguages,
-	examples: [],
-	name: "",
-	category: "",
-	tags: [],
+	examples,
+	name: "hb-page-checkout",
+	category: "page",
+	tags: ["page"],
 	size: {},
 };

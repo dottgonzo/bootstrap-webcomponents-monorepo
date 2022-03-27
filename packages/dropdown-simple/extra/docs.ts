@@ -1,4 +1,5 @@
 import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	open: { control: { type: "boolean" } },
@@ -21,15 +22,34 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-export const componentSetup: ComponentSetup = {
+const examples: Component[] = [
+	{
+		list: [
+			{
+				key: "ciao",
+				label: "bao",
+			},
+			{
+				key: "ciao2",
+				label: "bao2",
+			},
+			{
+				key: "ciao3",
+				label: "bao3",
+				linkHref: "fefeef",
+			},
+		],
+	},
+];
+export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
 	i18n: i18nLanguages,
-	examples: [],
-	name: "",
-	category: "",
-	tags: [],
+	examples,
+	name: "hb-dropdown-simple",
+	category: "basic",
+	tags: ["basic"],
 	size: {},
 };

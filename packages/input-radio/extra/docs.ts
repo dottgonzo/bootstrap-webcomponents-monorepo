@@ -1,4 +1,5 @@
 import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	schemaentry: { control: { type: "object" } },
@@ -26,15 +27,32 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-export const componentSetup: ComponentSetup = {
+const examples: Component[] = [
+	{
+		schemaentry: {
+			placeholder: "Choose here...",
+			id: "check0",
+			required: true,
+			label: "Check 0",
+			validationTip: "Check 1",
+			params: {
+				options: [
+					{ label: "777", value: "555" },
+					{ label: "testlabel", value: "testvalue" },
+				],
+			},
+		},
+	},
+];
+export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
 	i18n: i18nLanguages,
-	examples: [],
-	name: "",
-	category: "",
-	tags: [],
+	examples,
+	name: "hb-input-radio",
+	category: "input",
+	tags: ["input"],
 	size: {},
 };

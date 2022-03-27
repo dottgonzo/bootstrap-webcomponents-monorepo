@@ -1,4 +1,5 @@
 import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	printer: { control: { type: "text" } },
@@ -23,15 +24,50 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-export const componentSetup: ComponentSetup = {
+const examples: Component[] = [
+	{
+		headers: {
+			serial: "seriale1",
+			from: {
+				piva: "piva",
+				name: "companyfrom",
+				address: "address",
+				email: "email",
+				phone: "phone",
+				logo: "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
+				shortName: "Acme SpA",
+			},
+			to: {
+				piva: "to iva",
+				name: "to name",
+				address: "to address",
+				email: "to@email.com",
+				phone: "tototo",
+			},
+		},
+		items: [
+			{
+				unitaryPrice: 2,
+				taxPercentage: 3,
+				desc: "testitem",
+			},
+			{
+				unitaryPrice: 5,
+				taxPercentage: 7,
+				desc: "testitem2",
+			},
+		],
+	},
+];
+export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
 	i18n: i18nLanguages,
-	examples: [],
-	name: "",
-	category: "",
-	tags: [],
+	examples,
+	name: "hb-page-invoice",
+	category: "page",
+	tags: ["page"],
 	size: {},
 };
