@@ -1,4 +1,4 @@
-import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup } from "@htmlbricks/hb-jsutils/main";
+import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
 
 export const storybookArgs = {
 	videosrc: { control: { type: "text" } },
@@ -21,7 +21,8 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-export const componentSetup = {
+export const componentSetup: ComponentSetup = {
+	definitions: null,
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
