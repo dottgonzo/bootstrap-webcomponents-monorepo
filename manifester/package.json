@@ -1,6 +1,6 @@
 {
   "name": "@htmlbricks/manifester",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "@htmlbricks manifest",
   "main": "main.js",
   "publishConfig": {
@@ -18,6 +18,7 @@
   "keywords": [
     "manifester"
   ],
+  "type": "module",
   "author": "Dario Caruso",
   "license": "Apache-2.0",
   "devDependencies": {
