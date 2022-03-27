@@ -24,6 +24,7 @@ async function assembleJson() {
         };
         const componentSetupToString = JSON.stringify(componentSetup, null, 2);
         await fs.writeFile(outputFile, componentSetupToString);
+        console.info('written to ' + outputFile);
     }
     catch (err) {
         throw err;
