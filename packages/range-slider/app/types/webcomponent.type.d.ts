@@ -1,10 +1,3 @@
-export type dispatchValsEvent = {
-	minValue: number;
-	maxValue: number;
-	minPercent: number;
-	maxPercent: number;
-};
-
 export type Component = {
 	id?: string;
 	style?: string;
