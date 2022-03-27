@@ -14,8 +14,6 @@
 	import { page } from '$app/stores';
 	import type { ComponentSetup } from '@htmlbricks/hb-jsutils';
 
-	import type { HtmlSlot, StyleSetup, i18nLang } from '@htmlbricks/hb-jsutils/main';
-
 	import { pageName } from '../../stores/app';
 	let name: string;
 

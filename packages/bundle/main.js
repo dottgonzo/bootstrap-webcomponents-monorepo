@@ -7,7 +7,11 @@ async function run() {
     const packages = (await fs.readdir(packagesPath, { withFileTypes: true })).filter(f => f.isDirectory && f.name !== 'bundle' && f.name !== 'jsutils').map(m => m.name)
 
     let packagesCode = ''
+    let packagesMainDatas = []
     for (const package of packages) {
+        const manifestPath = path.join(packagesPath, package, 'release', 'manifest.json')
+        const packageData = JSON.parse(await fs.readFile(manifestPath, 'utf-8'))
+        packagesMainDatas.push(packageData)
         packagesCode += `addComponent("${package}");\n`
     }
 
@@ -28,6 +32,18 @@ async function run() {
 
     }
     await fs.writeFile(path.resolve(__dirname, 'dist', 'release.js'), iifecode)
+    packagesMainDatas = packagesMainDatas.map(m => {
+        const pkgUsefulData = {
+
+            i18n: m.i18n,
+            name: m.name,
+            category: m.category,
+            tags: m.tags,
+            size: m.size,
+        }
+        return pkgUsefulData
+    })
+    await fs.writeFile(path.resolve(__dirname, 'dist', 'release.json'), JSON.stringify({ packages: packagesMainDatas, version: pkg.version }))
 }
 
 
