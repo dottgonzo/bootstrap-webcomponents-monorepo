@@ -509,7 +509,7 @@
 									{selectedItems.length}/{rows.length}
 								</th>
 							{/if}
-							{#if headers?.find((f) => f.search)}
+							{#if headers?.find?.((f) => f.search)}
 								{#each headers as th (th.key)}
 									<th scope="col">
 										{#if th.search}

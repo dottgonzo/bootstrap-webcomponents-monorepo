@@ -71,7 +71,7 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "34870d63a178c7f69de8066bf49e907624170db5",
+	"gitHead": "baa71757f07ca8472acc54a89fd260b0cdf77a04",
 	"dependencies": {
 		"@htmlbricks/hb-cookie-law-banner": "^0.8.33",
 		"@htmlbricks/hb-footer": "^0.8.33",
