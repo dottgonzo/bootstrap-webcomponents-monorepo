@@ -19,6 +19,7 @@ const examples: Component[] = [
 	{
 		payment: {
 			orderNumber: "ssss",
+			countryCode: "EU",
 
 			items: [
 				{
