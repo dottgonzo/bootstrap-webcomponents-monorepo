@@ -87,15 +87,15 @@
 	style="margin-top:20px;background-color:rgb(232 232 232 / 36%);padding:10px;max-height:350px;height:350px;overflow-y:scroll"
 >
 	<div style="text-align:right">
-		{#if $events?.filter((f) => f.component === $pageName)?.length}
+		{#if $events?.filter((f) => f.component === $pageName.replace('hb-', ''))?.length}
 			<button
 				class="btn btn-default"
 				on:click={() => {
 					localStorage.setItem(
 						'componentsEvents',
-						JSON.stringify($events.filter((f) => f.component !== $pageName))
+						JSON.stringify($events.filter((f) => f.component !== $pageName.replace('hb-', '')))
 					);
-					events.set($events.filter((f) => f.component !== $pageName));
+					events.set($events.filter((f) => f.component !== $pageName.replace('hb-', '')));
 				}}><i class="bi bi-arrow-clockwise" /></button
 			>
 		{:else}
@@ -104,8 +104,8 @@
 			>
 		{/if}
 	</div>
-	{#if $events?.filter((f) => f.component === $pageName)?.length}
-		{#each $events.filter((f) => f.component === $pageName) as event (event._id)}
+	{#if $events?.filter((f) => f.component === $pageName.replace('hb-', ''))?.length}
+		{#each $events.filter((f) => f.component === $pageName.replace('hb-', '')) as event (event._id)}
 			<div>
 				[{dayjs(event.unixtime).format('HH:mm:ss')}
 				{event.name}]: {JSON.stringify(event.data)}

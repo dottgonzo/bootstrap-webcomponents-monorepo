@@ -11,7 +11,10 @@
 		content = 'loading';
 		try {
 			const pageraw = await fetch(
-				`https://cdn.jsdelivr.net/gh/dottgonzo/bootstrap-webcomponents-monorepo@${$debugVersion}/packages/${$pageName}/README.md`
+				`https://cdn.jsdelivr.net/gh/dottgonzo/bootstrap-webcomponents-monorepo@${$debugVersion}/packages/${$pageName.replace(
+					'hb-',
+					''
+				)}/README.md`
 			);
 			const txt = await pageraw.text();
 			const md = new MarkdownIt();

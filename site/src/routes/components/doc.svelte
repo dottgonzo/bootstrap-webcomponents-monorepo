@@ -50,7 +50,7 @@
 			lastName = name;
 			controlTab = 'info';
 		}
-		pageName.set(name || 'docs');
+		pageName.set('hb-' + name || 'docs');
 		const tmpLoadId = name + '_' + $debugVersion;
 		if (name && (!meta || tmpLoadId !== lastLoadId) && $debugVersion) {
 			meta = null;

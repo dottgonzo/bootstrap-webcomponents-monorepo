@@ -18,7 +18,19 @@
 	// if (!$bootstrapThemeCssVars?.length) {
 	// 	bootstrapThemeCssVars.set($defaultootstrapThemeCssVars);
 	// }
-	const navlinks = (): INavLink[] => {
+	let navlinks: INavLink[];
+	async function fetchComponentsList(version: string) {
+		try {
+			const pageraw = await fetch(
+				`https://cdn.jsdelivr.net/npm/@htmlbricks/hb-bundle@${version}/release/list.json`
+			);
+			const meta = await pageraw.json();
+			return meta;
+		} catch (err) {
+			console.warn(`failed to fetch manifest for ${$pageName}`);
+		}
+	}
+	const getNavlinks = async (): Promise<void> => {
 		const home: INavLink = {
 			key: 'main',
 			label: 'home',
@@ -89,7 +101,7 @@
 		};
 		const arr: INavLink[] = [home, documentation, storybook, github];
 		let cats: string[] = [];
-
+		const allComponentsList = await fetchComponentsList($componentsVersion);
 		allComponentsList.packages.forEach((f) => {
 			if (!cats.includes(f.category)) cats.push(f.category);
 		});
@@ -164,30 +176,13 @@
 		});
 		arr.push(settings);
 
-		// components.categories.forEach((g) => {
-		// 	const subLinks: INavLink[] = [];
-		// 	g.components.forEach((c) => {
-		// 		const navLink: INavLink = {
-		// 			key: c.name,
-		// 			label: c.label || c.name,
-		// 			active: false
-		// 		};
-		// 		subLinks.push(navLink);
-		// 	});
-		// 	const navLink: INavLink = {
-		// 		key: g.name,
-		// 		label: g.label || g.name,
-		// 		group: 'components',
-		// 		subLinks,
-		// 		active: false
-		// 	};
-		// 	arr.push(navLink);
-		// });
-		return arr;
+		navlinks = arr;
 	};
-
+	$: {
+		if (!navlinks && $componentsVersion) getNavlinks().catch(console.error);
+	}
 	onMount(() => {
-		if ($componentsVersion) addComponent('bundle', $componentsVersion);
+		addComponent('bundle', $componentsVersion);
 		events.set(JSON.parse(window.localStorage.getItem('componentsEvents') || '[]'));
 
 		if (!$lang) lang.set(LanguageTranslator.getDefaultLang());
@@ -230,41 +225,43 @@
 		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	/>
 </svelte:head>
-<hb-layout
-	pagename={$pageName}
-	companytitle="fff"
-	companylogouri=""
-	cookielaw=""
-	navlinks={JSON.stringify(navlinks())}
-	company={JSON.stringify({
-		logoUri: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg',
-		siteName: 'tttttt',
-		companyName: 'testcompany S.R.L.',
-		registration: 'copyright',
-		description: `testo e descrizione di esempio dell applicazione`,
-		vatNumber: 'aa - ffffff',
-		fiscalCode: 'f4f5f6fff'
-	})}
-	sidebar={JSON.stringify({
-		logo: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg',
-		title: 'HtmlB',
-		type: 'autohide'
-	})}
-	contacts={JSON.stringify({
-		sites: [{ label: 'dariocaruso.info', uri: 'https://dariocaruso.info' }],
-		phones: [{ number: '6666666666666' }],
-		addresses: [],
-		emails: []
-	})}
-	socials={JSON.stringify({
-		github: { pageUri: 'https://github.com/dottgonzo/bootstrap-webcomponents-monorepo' }
-	})}
-	on:pagechange={(e) => pageChange(e.detail)}
->
-	<div slot="page">
-		<slot />
-	</div>
-</hb-layout>
+{#if navlinks}
+	<hb-layout
+		pagename={$pageName}
+		companytitle="fff"
+		companylogouri=""
+		cookielaw=""
+		navlinks={JSON.stringify(navlinks)}
+		company={JSON.stringify({
+			logoUri: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg',
+			siteName: 'tttttt',
+			companyName: 'testcompany S.R.L.',
+			registration: 'copyright',
+			description: `testo e descrizione di esempio dell applicazione`,
+			vatNumber: 'aa - ffffff',
+			fiscalCode: 'f4f5f6fff'
+		})}
+		sidebar={JSON.stringify({
+			logo: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg',
+			title: 'HtmlB',
+			type: 'autohide'
+		})}
+		contacts={JSON.stringify({
+			sites: [{ label: 'dariocaruso.info', uri: 'https://dariocaruso.info' }],
+			phones: [{ number: '6666666666666' }],
+			addresses: [],
+			emails: []
+		})}
+		socials={JSON.stringify({
+			github: { pageUri: 'https://github.com/dottgonzo/bootstrap-webcomponents-monorepo' }
+		})}
+		on:pagechange={(e) => pageChange(e.detail)}
+	>
+		<div slot="page">
+			<slot />
+		</div>
+	</hb-layout>
+{/if}
 
 <style lang="scss" global>
 	@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
