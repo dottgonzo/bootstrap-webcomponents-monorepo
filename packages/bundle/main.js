@@ -8,10 +8,11 @@ async function run() {
 
     let packagesCode = ''
     let packagesMainDatas = []
+    let packagesDatas = []
     for (const package of packages) {
         const manifestPath = path.join(packagesPath, package, 'release', 'manifest.json')
         const packageData = JSON.parse(await fs.readFile(manifestPath, 'utf-8'))
-        packagesMainDatas.push(packageData)
+        packagesDatas.push(packageData)
         packagesCode += `addComponent("${package}");\n`
     }
 
@@ -32,7 +33,7 @@ async function run() {
 
     }
     await fs.writeFile(path.resolve(__dirname, 'dist', 'release.js'), iifecode)
-    packagesMainDatas = packagesMainDatas.map(m => {
+    packagesMainDatas = packagesDatas.map(m => {
         const pkgUsefulData = {
 
             i18n: m.i18n,
@@ -43,7 +44,8 @@ async function run() {
         }
         return pkgUsefulData
     })
-    await fs.writeFile(path.resolve(__dirname, 'dist', 'release.json'), JSON.stringify({ packages: packagesMainDatas, version: pkg.version }))
+    await fs.writeFile(path.resolve(__dirname, 'dist', 'list.json'), JSON.stringify({ packages: packagesMainDatas, version: pkg.version }))
+    await fs.writeFile(path.resolve(__dirname, 'dist', 'bundle.json'), JSON.stringify({ packages: packagesDatas, version: pkg.version }))
 }
 
 
