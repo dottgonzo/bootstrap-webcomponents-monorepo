@@ -1,6 +1,26 @@
 <script lang="ts">
 	export let definition: any;
 	export let storybookargs: any;
+	import type { IRow } from '@htmlbricks/hb-table/release/webcomponent.type';
+	let rows: IRow[];
+
+	$: {
+		rows = Object.keys(definition.definitions.Component.properties)
+			.filter((f) => !['id', 'style'].includes(f))
+			.map((m) => {
+				const row: IRow = {
+					_id: m,
+					name: m,
+					type: propToType(m),
+					required: definition.definitions.Component.required?.includes(m) ? 'true' : 'false',
+					default: definition.definitions.Component.required?.includes(m)
+						? ' - '
+						: storybookargs[m]?.defaultValue || ''
+				};
+				return row;
+			});
+		console.log(rows);
+	}
 
 	function defToInterfaceString(definition: {
 		properties: any;
@@ -64,7 +84,16 @@
 </script>
 
 <h2 style="margin-bottom:20px;">Component attributes</h2>
-<table style="width:100%">
+{#if rows?.length}
+	{JSON.stringify(rows)}
+	<hb-table
+		enableselect="no"
+		selectrow="no"
+		headers={JSON.stringify([])}
+		rows={JSON.stringify([])}
+	/>
+{/if}
+<!-- <table style="width:100%">
 	<tr>
 		<th>Prop Name</th>
 		<th>type</th>
@@ -84,4 +113,4 @@
 			>
 		</tr>
 	{/each}
-</table>
+</table> -->

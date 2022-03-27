@@ -230,7 +230,6 @@ const footerExampleValues: footerComponent = {
 	company: company1,
 	brandandcontacts: brandandcontacts1,
 	columns: columns1,
-	footerbottom: footerbottom1,
 	policies: policies1,
 	contacts: contacts1,
 	socials: socials1
