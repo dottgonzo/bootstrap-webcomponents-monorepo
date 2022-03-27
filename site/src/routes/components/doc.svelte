@@ -55,7 +55,7 @@
 		}
 		pageName.set(name || 'docs');
 		const tmpLoadId = name + '_' + $debugVersion;
-		if (name && !meta && tmpLoadId !== lastLoadId && $debugVersion) {
+		if (name && (!meta || tmpLoadId !== lastLoadId) && $debugVersion) {
 			meta = null;
 			loadMeta(name, $debugVersion).catch(console.error);
 			lastLoadId = tmpLoadId;
