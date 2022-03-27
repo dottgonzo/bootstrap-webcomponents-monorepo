@@ -219,7 +219,7 @@
 			case 'storybook':
 				return window.open('https://storybook.freewebcomponents.com', '_blank').focus();
 			default:
-				return goto('/components/doc?c=' + d.page);
+				return goto('/components/doc?c=' + d.page.replace('hb-', ''));
 		}
 	}
 </script>
