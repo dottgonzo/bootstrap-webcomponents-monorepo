@@ -44,13 +44,10 @@
 	export let selectactions: any[];
 	export let selectrow: string;
 	export let enableselect: string;
-	export let disablepagination: string;
+	export let disablepagination: boolean;
 
 	if (!id) {
 		id = null;
-	}
-	if (!disablepagination) {
-		disablepagination = null;
 	}
 
 	let searchOnRangeIsPresent = false;
@@ -78,6 +75,15 @@
 				closelabel: null,
 			};
 		}
+
+		if (!disablepagination && (disablepagination as unknown as any) !== "") {
+			disablepagination = false;
+		} else if ((disablepagination as unknown as any) === "") {
+			disablepagination = true;
+		} else if ((disablepagination as unknown as any) === "no") {
+			disablepagination = false;
+		}
+
 		if (!externalfilter && (externalfilter as unknown as any) !== "") {
 			externalfilter = false;
 		} else if ((externalfilter as unknown as any) === "") {
@@ -730,7 +736,7 @@
 						</span>
 					{/each}
 				{/if}
-				{#if disablepagination !== "" && disablepagination !== "yes"}
+				{#if disablepagination}
 					<hb-paginate style="float:right;{paginateStyleToSet}" on:pagechange={changePage} page={page.toString()} pages={pages.toString()} />
 				{/if}
 			</nav>
