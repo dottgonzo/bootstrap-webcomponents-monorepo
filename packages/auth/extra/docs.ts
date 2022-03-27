@@ -48,7 +48,7 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-{
+export const componentSetup = {
 	storybookArgs,
 	styleSetup,
 	htmlSlots,
