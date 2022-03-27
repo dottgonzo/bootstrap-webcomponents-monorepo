@@ -21,9 +21,15 @@
 			console.warn(`no readme page for ${$pageName}`);
 		}
 	}
-	fetchInfo().catch(console.error);
+	$: {
+		if ($componentsVersion) {
+			fetchInfo().catch(console.error);
+		}
+	}
 	// onMount(() => {
 	// });
 </script>
 
-{@html content}
+<div class="container">
+	{@html content}
+</div>

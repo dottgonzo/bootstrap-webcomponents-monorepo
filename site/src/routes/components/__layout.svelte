@@ -6,6 +6,8 @@
 	import { pageName, componentsVersion, lang } from '../../stores/app';
 	import { events } from '../../stores/events';
 	import { allComponentsMetas } from '../../stores/components';
+	import { page } from '$app/stores';
+
 	// import {
 	// 	globalBootstrapThemeCssVars,
 	// 	bootstrapThemeCssVars,
@@ -184,9 +186,14 @@
 		// });
 		return arr;
 	};
+	$: {
+		if ($page.url?.href?.split?.('version=')?.[1]?.split?.('&')?.[0]?.length) {
+			componentsVersion.set($page.url.href.split('version=')[1].split('&')[0]);
+		}
+	}
 
 	onMount(() => {
-		addComponent('bundle', $componentsVersion);
+		if ($componentsVersion) addComponent('bundle', $componentsVersion);
 		events.set(JSON.parse(window.localStorage.getItem('componentsEvents') || '[]'));
 
 		if (!$lang) lang.set(LanguageTranslator.getDefaultLang());
@@ -260,7 +267,7 @@
 	})}
 	on:pagechange={(e) => pageChange(e.detail)}
 >
-	<div class="container-fluid" slot="page">
+	<div slot="page">
 		<slot />
 	</div>
 </hb-layout>

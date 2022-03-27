@@ -2,7 +2,7 @@
 	import { addComponent, type CssVar } from '@htmlbricks/hb-jsutils';
 	import { allComponentsMetas } from '../../stores/components';
 	import { page } from '$app/stores';
-	import { componentsVersion, pageName } from '../../stores/app';
+	import { pageName } from '../../stores/app';
 	import { onMount } from 'svelte';
 	import dayjs from 'dayjs';
 	let name: string;
@@ -10,11 +10,12 @@
 	let cssParts: { name: string; content: string }[];
 
 	let args: any;
-
+	let version: string;
 	let com: string;
 	let meta;
 	$: {
 		name = $page.url?.href?.split('component=')?.[1]?.split('&')[0];
+		version = $page.url?.href?.split('version=')?.[1]?.split('&')[0];
 		const paramsBase64 = $page.url?.href?.split('params=')?.[1]?.split('&')[0];
 		const htmlSlot64 = $page.url?.href?.split('slots=')?.[1]?.split('&')[0];
 		const cssVars64 = $page.url?.href?.split('css=')?.[1]?.split('&')[0];
@@ -77,9 +78,9 @@
 		}
 	}
 	onMount(() => {
-		if (name) addComponent(name, $componentsVersion);
+		if (name && version) addComponent(name, version);
 		console.log('ss', $allComponentsMetas, name);
-		if (meta?.definition?.definitions?.Events?.properties) {
+		if (name && version && meta?.definition?.definitions?.Events?.properties) {
 			for (const eve of Object.keys(meta.definition.definitions.Events.properties)) {
 				const el = document.getElementById(`com-${name}`);
 				el.addEventListener(eve, (e: any) => {

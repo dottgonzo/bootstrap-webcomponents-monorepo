@@ -27,13 +27,13 @@ export type i18nLang = {
 export type ComponentSetup = {
   definitions: {
     events: {
-      $ref: "#/definitions/Events";
-      $schema: "http://json-schema.org/draft-07/schema#";
+      $ref: string
+      $schema: string
       definitions: any;
     };
     component: {
-      $ref: "#/definitions/Events";
-      $schema: "http://json-schema.org/draft-07/schema#";
+      $ref: string;
+      $schema: string;
       definitions: any;
     };
   };

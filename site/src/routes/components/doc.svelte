@@ -117,172 +117,175 @@
 	}
 </script>
 
-{#if name && args}
-	<div style="margin-top:40px; padding-right:0px" class="row">
-		<div class="col-7">
-			<div style="margin-top:40px">
-				<div style="padding:10px;border:1px solid yellow;margin-top:20px">
-					<iframe
-						style="width:100%;height:600px"
-						title="component"
-						src="/playgrounds/sandbox?slots={$htmlSlotsContents.filter((f) => f.component === name)
-							?.length
-							? encodeURIComponent(
-									JSON.stringify($htmlSlotsContents.filter((f) => f.component === name))
-							  )
-							: ''}&css={allCssVars.length
-							? encodeURIComponent(JSON.stringify(allCssVars))
-							: ''}&component={name}&params={encodeURIComponent(
-							JSON.stringify(args)
-						)}&parts={encodeURIComponent(
-							JSON.stringify($cssPartsContents.filter((f) => f.component === name))
-						)}"
-					/>
+<div class="container-fluid">
+	{#if name && args}
+		<div style="margin-top:40px; padding-right:0px" class="row">
+			<div class="col-7">
+				<div style="margin-top:40px">
+					<div style="padding:10px;border:1px solid yellow;margin-top:20px">
+						<iframe
+							style="width:100%;height:600px"
+							title="component"
+							src="/playgrounds/sandbox?slots={$htmlSlotsContents.filter(
+								(f) => f.component === name
+							)?.length
+								? encodeURIComponent(
+										JSON.stringify($htmlSlotsContents.filter((f) => f.component === name))
+								  )
+								: ''}&css={allCssVars.length
+								? encodeURIComponent(JSON.stringify(allCssVars))
+								: ''}&component={name}&params={encodeURIComponent(
+								JSON.stringify(args)
+							)}&parts={encodeURIComponent(
+								JSON.stringify($cssPartsContents.filter((f) => f.component === name))
+							)}&version={$componentsVersion}"
+						/>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div style="padding-right:0px" class="col-5">
-			<ul class="nav nav-tabs">
-				<li class="nav-item">
-					<button
-						class="nav-link {controlTab === 'info' ? 'active' : ''}"
-						on:click={() => {
-							controlTab = 'info';
-						}}>info</button
-					>
-				</li>
-				<li class="nav-item">
-					<button
-						class="nav-link {controlTab === 'install' ? 'active' : ''}"
-						on:click={() => {
-							controlTab = 'install';
-						}}>install</button
-					>
-				</li>
-				<li class="nav-item">
-					<button
-						class="nav-link {controlTab === 'props' ? 'active' : ''}"
-						on:click={() => {
-							controlTab = 'props';
-						}}>props</button
-					>
-				</li>
-				<li class="nav-item">
-					<button
-						class="nav-link {controlTab === 'schemes' ? 'active' : ''}"
-						on:click={() => {
-							controlTab = 'schemes';
-						}}>schemes</button
-					>
-				</li>
-
-				<li class="nav-item">
-					<button
-						on:click={() => {
-							controlTab = 'style';
-						}}
-						class="nav-link {styleSetup?.vars?.length || styleSetup?.parts?.length
-							? ''
-							: 'disabled'} {controlTab === 'style' ? 'active' : ''}">style</button
-					>
-				</li>
-				<li class="nav-item">
-					<button
-						on:click={() => {
-							controlTab = 'slots';
-						}}
-						class="nav-link {htmlSlots?.length ? '' : 'disabled'} {controlTab === 'slots'
-							? 'active'
-							: ''}"
-						>slots <span
-							style={$htmlSlotsContents?.filter((f) => f.component === $pageName).length
-								? 'color:red;'
-								: ''}
-							class="badge bg-secondary"
-							>{$htmlSlotsContents?.filter((f) => f.component === $pageName).length ||
-								0}/{htmlSlots?.length || 0}</span
-						></button
-					>
-				</li>
-				<li class="nav-item">
-					<button
-						on:click={() => {
-							controlTab = 'i18n';
-						}}
-						class="nav-link {i18nLangs?.length ? '' : 'disabled'} {controlTab === 'i18n'
-							? 'active'
-							: ''}"
-						>i18n
-
-						<span
-							style={$lang && i18nLangs?.length ? 'color:black;' : ''}
-							class="badge bg-secondary">{$lang ? $lang : ''} | {i18nLangs?.length || 0}</span
+			<div style="padding-right:0px" class="col-5">
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+						<button
+							class="nav-link {controlTab === 'info' ? 'active' : ''}"
+							on:click={() => {
+								controlTab = 'info';
+							}}>info</button
 						>
-					</button>
-				</li>
-				<li class="nav-item">
-					<button
-						on:click={() => {
-							controlTab = 'events';
-						}}
-						class="nav-link position-relative {definition?.definitions?.Events?.properties &&
-						Object.keys(definition.definitions.Events.properties)?.length
-							? ''
-							: 'disabled'} {controlTab === 'events' ? 'active' : ''}"
-						>events
-						{#if $events?.filter((f) => f.component === name)?.length && definition?.definitions?.Events?.properties && Object.keys(definition.definitions.Events.properties)?.length}
-							<span
-								class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-							>
-								{#if !$events?.filter((f) => f.component === name)?.length}
-									0
-								{:else if $events?.filter((f) => f.component === name)?.length < 100}
-									{$events?.filter((f) => f.component === name)?.length?.toString()}
-								{:else}
-									99+
-								{/if}
+					</li>
+					<li class="nav-item">
+						<button
+							class="nav-link {controlTab === 'install' ? 'active' : ''}"
+							on:click={() => {
+								controlTab = 'install';
+							}}>install</button
+						>
+					</li>
+					<li class="nav-item">
+						<button
+							class="nav-link {controlTab === 'props' ? 'active' : ''}"
+							on:click={() => {
+								controlTab = 'props';
+							}}>props</button
+						>
+					</li>
+					<li class="nav-item">
+						<button
+							class="nav-link {controlTab === 'schemes' ? 'active' : ''}"
+							on:click={() => {
+								controlTab = 'schemes';
+							}}>schemes</button
+						>
+					</li>
 
-								<span class="visually-hidden">unread messages</span>
-							</span>
+					<li class="nav-item">
+						<button
+							on:click={() => {
+								controlTab = 'style';
+							}}
+							class="nav-link {styleSetup?.vars?.length || styleSetup?.parts?.length
+								? ''
+								: 'disabled'} {controlTab === 'style' ? 'active' : ''}">style</button
+						>
+					</li>
+					<li class="nav-item">
+						<button
+							on:click={() => {
+								controlTab = 'slots';
+							}}
+							class="nav-link {htmlSlots?.length ? '' : 'disabled'} {controlTab === 'slots'
+								? 'active'
+								: ''}"
+							>slots <span
+								style={$htmlSlotsContents?.filter((f) => f.component === $pageName).length
+									? 'color:red;'
+									: ''}
+								class="badge bg-secondary"
+								>{$htmlSlotsContents?.filter((f) => f.component === $pageName).length ||
+									0}/{htmlSlots?.length || 0}</span
+							></button
+						>
+					</li>
+					<li class="nav-item">
+						<button
+							on:click={() => {
+								controlTab = 'i18n';
+							}}
+							class="nav-link {i18nLangs?.length ? '' : 'disabled'} {controlTab === 'i18n'
+								? 'active'
+								: ''}"
+							>i18n
+
+							<span
+								style={$lang && i18nLangs?.length ? 'color:black;' : ''}
+								class="badge bg-secondary">{$lang ? $lang : ''} | {i18nLangs?.length || 0}</span
+							>
+						</button>
+					</li>
+					<li class="nav-item">
+						<button
+							on:click={() => {
+								controlTab = 'events';
+							}}
+							class="nav-link position-relative {definition?.definitions?.Events?.properties &&
+							Object.keys(definition.definitions.Events.properties)?.length
+								? ''
+								: 'disabled'} {controlTab === 'events' ? 'active' : ''}"
+							>events
+							{#if $events?.filter((f) => f.component === name)?.length && definition?.definitions?.Events?.properties && Object.keys(definition.definitions.Events.properties)?.length}
+								<span
+									class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+								>
+									{#if !$events?.filter((f) => f.component === name)?.length}
+										0
+									{:else if $events?.filter((f) => f.component === name)?.length < 100}
+										{$events?.filter((f) => f.component === name)?.length?.toString()}
+									{:else}
+										99+
+									{/if}
+
+									<span class="visually-hidden">unread messages</span>
+								</span>
+							{/if}
+						</button>
+					</li>
+				</ul>
+				<div style="border-left: 1px solid #dee2e6;min-height:100%;padding:0px 20px 0px 20px">
+					<div style="padding-top:20px">
+						{#if controlTab === 'props'}
+							<ControlTable {definition} {storybookargs} bind:args />
+						{:else if controlTab === 'info'}
+							<InfoTable />
+						{:else if controlTab === 'install'}
+							<InstallTable {com} cdn={cdnUri} />
+						{:else if controlTab === 'schemes'}
+							<PropsTable {definition} {storybookargs} />
+							<AllSchemeTable {definition} />
+						{:else if controlTab === 'events'}
+							<EventsTable {definition} />
+						{:else if controlTab === 'i18n'}
+							<I18nTable {meta} bind:args />
+						{:else if controlTab === 'slots'}
+							<SlotTable slots={htmlSlots} />
+						{:else if controlTab === 'style'}
+							{#if styleSetup?.parts?.length}
+								<div>
+									<CssPartsTable parts={styleSetup.parts} />
+								</div>
+							{/if}
+							{#if styleSetup?.vars?.length}
+								<div>
+									<CssVarsTable vars={styleSetup.vars} />
+								</div>
+							{/if}
 						{/if}
-					</button>
-				</li>
-			</ul>
-			<div style="border-left: 1px solid #dee2e6;min-height:100%;padding:0px 20px 0px 20px">
-				<div style="padding-top:20px">
-					{#if controlTab === 'props'}
-						<ControlTable {definition} {storybookargs} bind:args />
-					{:else if controlTab === 'info'}
-						<InfoTable />
-					{:else if controlTab === 'install'}
-						<InstallTable {com} cdn={cdnUri} />
-					{:else if controlTab === 'schemes'}
-						<PropsTable {definition} {storybookargs} />
-						<AllSchemeTable {definition} />
-					{:else if controlTab === 'events'}
-						<EventsTable {definition} />
-					{:else if controlTab === 'i18n'}
-						<I18nTable {meta} bind:args />
-					{:else if controlTab === 'slots'}
-						<SlotTable slots={htmlSlots} />
-					{:else if controlTab === 'style'}
-						{#if styleSetup?.parts?.length}
-							<div>
-								<CssPartsTable parts={styleSetup.parts} />
-							</div>
-						{/if}
-						{#if styleSetup?.vars?.length}
-							<div>
-								<CssVarsTable vars={styleSetup.vars} />
-							</div>
-						{/if}
-					{/if}
+					</div>
 				</div>
+				<!-- {@html com} -->
 			</div>
-			<!-- {@html com} -->
 		</div>
-	</div>
-{/if}
+	{/if}
+</div>
 
 <style lang="scss">
 </style>
