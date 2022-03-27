@@ -63,20 +63,29 @@
 </script>
 
 {#if definition.type === 'object'}
-	<table style="width:100%">
-		<tr>
-			<th>Prop Name</th>
-			<th>type</th>
-			<th>required</th>
-		</tr>
-		{#each definition?.properties ? Object.keys(definition?.properties) : [] as prop (prop)}
-			<tr>
-				<td>{prop}</td>
-				<td>{propToType(prop)}</td>
-				<td>{definition.required?.includes(prop) ? 'true' : 'false'}</td>
-			</tr>
-		{/each}
-	</table>
+	{#if definition?.properties && Object.keys(definition.properties).filter((f) => !['id', 'style'].includes(f))?.length}
+		<hb-table
+			headers={JSON.stringify([
+				{ label: 'PropName', key: 'name' },
+				{ label: 'type', key: 'type' },
+				{ label: 'required', key: 'required' }
+			])}
+			rows={JSON.stringify(
+				Object.keys(definition.properties)
+					.filter((f) => !['id', 'style'].includes(f))
+					.map((m) => {
+						const row = {
+							_id: m,
+							name: m,
+							type: propToType(m),
+							required: definition.required?.includes(m) ? 'true' : 'false'
+						};
+						return row;
+					})
+			)}
+			size={Object.keys(definition.properties).filter((f) => !['id', 'style'].includes(f)).length}
+		/>
+	{/if}
 {:else if definition.type === 'string'}
 	{#if definition.enum}
 		string: {#each definition.enum as enu (enu)}

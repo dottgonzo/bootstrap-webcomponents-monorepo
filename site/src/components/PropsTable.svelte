@@ -2,25 +2,6 @@
 	export let definition: any;
 	export let storybookargs: any;
 	import type { IRow } from '@htmlbricks/hb-table/release/webcomponent.type';
-	let rows: IRow[];
-
-	$: {
-		rows = Object.keys(definition.definitions.Component.properties)
-			.filter((f) => !['id', 'style'].includes(f))
-			.map((m) => {
-				const row: IRow = {
-					_id: m,
-					name: m,
-					type: propToType(m),
-					required: definition.definitions.Component.required?.includes(m) ? 'true' : 'false',
-					default: definition.definitions.Component.required?.includes(m)
-						? ' - '
-						: storybookargs[m]?.defaultValue || ''
-				};
-				return row;
-			});
-		console.log(rows);
-	}
 
 	function defToInterfaceString(definition: {
 		properties: any;
@@ -84,7 +65,7 @@
 </script>
 
 <h2 style="margin-bottom:20px;">Component attributes</h2>
-{#if rows?.length}
+{#if definition?.definitions?.Component?.properties && Object.keys(definition.definitions.Component.properties).filter((f) => !['id', 'style'].includes(f))?.length}
 	<hb-table
 		headers={JSON.stringify([
 			{ label: 'PropName', key: 'name', search: true },
@@ -92,8 +73,25 @@
 			{ label: 'required', key: 'required' },
 			{ label: 'default value', key: 'default' }
 		])}
-		rows={JSON.stringify(rows)}
-		size={rows.length}
+		rows={JSON.stringify(
+			Object.keys(definition.definitions.Component.properties)
+				.filter((f) => !['id', 'style'].includes(f))
+				.map((m) => {
+					const row = {
+						_id: m,
+						name: m,
+						type: propToType(m),
+						required: definition.definitions.Component.required?.includes(m) ? 'true' : 'false',
+						default: definition.definitions.Component.required?.includes(m)
+							? ' - '
+							: storybookargs[m]?.defaultValue || ''
+					};
+					return row;
+				})
+		)}
+		size={Object.keys(definition.definitions.Component.properties).filter(
+			(f) => !['id', 'style'].includes(f)
+		).length}
 	/>
 {/if}
 <!-- <table style="width:100%">
