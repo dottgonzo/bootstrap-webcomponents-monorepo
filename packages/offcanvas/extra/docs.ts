@@ -41,3 +41,11 @@ export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
 };
+
+export const componentSetup = {
+	storybookArgs,
+	styleSetup,
+	htmlSlots,
+	i18n: i18nLanguages,
+	examples: [],
+};
