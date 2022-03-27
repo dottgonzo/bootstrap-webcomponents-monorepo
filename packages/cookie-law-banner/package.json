@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-cookie-law-banner",
 	"displayName": "Svelte cookielaw WebComponent",
 	"description": "Svelte cookielaw WebComponent",
-	"version": "0.8.37",
+	"version": "0.8.38",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,8 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.8.37",
+		"@htmlbricks/hb-jsutils": "^0.8.38",
+		"@htmlbricks/manifester": "^0.0.5",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
 		"@rollup/plugin-json": "^4.1.0",
@@ -44,7 +45,6 @@
 		"eslint": "^7.25.0",
 		"eslint-plugin-jsdoc": "^33.0.0",
 		"eslint-plugin-svelte3": "^3.2.0",
-		"@htmlbricks/manifester": "^0.0.5",
 		"node-sass": "^6.0.1",
 		"postcss": "^8.2.13",
 		"postcss-load-config": "^3.0.1",

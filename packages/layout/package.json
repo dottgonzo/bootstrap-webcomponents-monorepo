@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-layout",
 	"displayName": "Svelte Bootstrap Layout WebComponent",
 	"description": "Svelte Bootstrap 5 WebComponent",
-	"version": "0.8.37",
+	"version": "0.8.38",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -31,6 +31,7 @@
 	},
 	"devDependencies": {
 		"@htmlbricks/hb-jsutils": "^0.6.23",
+		"@htmlbricks/manifester": "^0.0.5",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
 		"@rollup/plugin-json": "^4.1.0",
@@ -44,7 +45,6 @@
 		"eslint": "^7.25.0",
 		"eslint-plugin-jsdoc": "^33.0.0",
 		"eslint-plugin-svelte3": "^3.2.0",
-		"@htmlbricks/manifester": "^0.0.5",
 		"node-sass": "^6.0.1",
 		"postcss": "^8.2.13",
 		"postcss-load-config": "^3.0.1",
@@ -77,11 +77,11 @@
 	"contributors": [],
 	"gitHead": "692ccf49bb2529533fbb2c3945cfd9d235f8169e",
 	"dependencies": {
-		"@htmlbricks/hb-cookie-law-banner": "^0.8.37",
-		"@htmlbricks/hb-footer": "^0.8.37",
-		"@htmlbricks/hb-jsutils": "^0.8.37",
-		"@htmlbricks/hb-navbar": "^0.8.37",
-		"@htmlbricks/hb-offcanvas": "^0.8.37",
+		"@htmlbricks/hb-cookie-law-banner": "^0.8.38",
+		"@htmlbricks/hb-footer": "^0.8.38",
+		"@htmlbricks/hb-jsutils": "^0.8.38",
+		"@htmlbricks/hb-navbar": "^0.8.38",
+		"@htmlbricks/hb-offcanvas": "^0.8.38",
 		"style-to-object": "^0.3.0"
 	}
 }
