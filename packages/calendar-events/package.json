@@ -20,10 +20,11 @@
 		"start": "sirv dist",
 		"dev": "rm -rf ./dist && rollup -c -w",
 		"build": "rm -rf ./dist && rollup -c",
+		"generate-docs": "cp $PWD/dist/docs.js $PWD/dist/docs.mjs && generate-json-from-js-object --input $PWD/dist/docs.mjs --var componentSetup --output $PWD/dist/docs.type.d.json && rm $PWD/dist/docs.mjs",
 		"generate-schema": "ts-json-schema-generator --path 'app/types/webcomponent.type.d.ts' > dist/webcomponent.type.d.json",
 		"copydest": "rm -rf release && mkdir -p release && mkdir -p release && cp dist/* ./release/",
 		"build-extra": "tsc --moduleResolution node --module es2020 --esModuleInterop true --outDir dist --sourceMap --skipLibCheck extra/*",
-		"build:release": "PRODUCTION=true npm run build && npm run build-extra && npm run generate-schema && npm run copydest",
+		"build:release": "PRODUCTION=true npm run build && npm run build-extra && npm run generate-schema && npm run generate-docs && npm run copydest",
 		"prepublish": "npm run build:release"
 	},
 	"dependencies": {
@@ -45,6 +46,7 @@
 		"eslint": "^7.25.0",
 		"eslint-plugin-jsdoc": "^33.0.0",
 		"eslint-plugin-svelte3": "^3.2.0",
+		"generate-json-from-js-object": "^0.0.17",
 		"node-sass": "^6.0.1",
 		"postcss": "^8.2.13",
 		"postcss-load-config": "^3.0.1",
