@@ -25,6 +25,18 @@ export type i18nLang = {
   lang: string;
 };
 export type ComponentSetup = {
+  definitions: {
+    events: {
+      $ref: "#/definitions/Events";
+      $schema: "http://json-schema.org/draft-07/schema#";
+      definitions: any;
+    };
+    component: {
+      $ref: "#/definitions/Events";
+      $schema: "http://json-schema.org/draft-07/schema#";
+      definitions: any;
+    };
+  };
   storybookArgs: any;
   styleSetup: StyleSetup;
   htmlSlots: HtmlSlot[];

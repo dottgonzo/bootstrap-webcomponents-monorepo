@@ -1,6 +1,6 @@
 {
   "name": "@htmlbricks/manifester",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "@htmlbricks manifest",
   "main": "main.js",
   "publishConfig": {
