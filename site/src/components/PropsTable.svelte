@@ -1,7 +1,6 @@
 <script lang="ts">
 	export let definition: any;
 	export let storybookargs: any;
-	import type { IRow } from '@htmlbricks/hb-table/release/webcomponent.type';
 
 	function defToInterfaceString(definition: {
 		properties: any;

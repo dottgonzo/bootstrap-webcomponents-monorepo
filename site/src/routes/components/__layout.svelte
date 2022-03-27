@@ -6,7 +6,6 @@
 	import { pageName, componentsVersion, lang } from '../../stores/app';
 	import { events } from '../../stores/events';
 	import { allComponentsMetas } from '../../stores/components';
-	import { page } from '$app/stores';
 
 	// import {
 	// 	globalBootstrapThemeCssVars,

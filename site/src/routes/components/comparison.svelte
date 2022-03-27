@@ -1,9 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 
-	import { page } from '$app/stores';
-	import { styleSetup } from '@htmlbricks/hb-banner/release/docs';
-
 	import { pageName } from '../../stores/app';
 	import { allComponentsMetas } from '../../stores/components';
 	pageName.set('comparison');
