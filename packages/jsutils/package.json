@@ -2,7 +2,7 @@
   "name": "@htmlbricks/hb-jsutils",
   "displayName": "HTMLBricks jsutils",
   "description": "HTMLBricks jsutils",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "main": "main.js",
   "publishConfig": {
     "access": "public"
@@ -29,5 +29,5 @@
   "devDependencies": {
     "typescript": "^4.2.4"
   },
-  "gitHead": "33bb8be6e72e149437ee5a8787809cd7c45cf098"
+  "gitHead": "e5cd2b60370ba42cd8099f0c5d6039b0c6cf386b"
 }
