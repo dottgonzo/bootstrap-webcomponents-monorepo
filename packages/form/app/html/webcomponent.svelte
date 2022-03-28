@@ -206,18 +206,18 @@
 		valids[id] = valid;
 	};
 
-	addComponent({repoName:"@htmlbricks/hb-input-date", version:pkg.version});
+	addComponent({ repoName: "@htmlbricks/hb-input-date", version: pkg.version });
 
-	addComponent({repoName:"@htmlbricks/hb-input-text", version:pkg.version});
-	addComponent({repoName:"@htmlbricks/hb-input-email", version:pkg.version});
-	addComponent({repoName:"@htmlbricks/hb-input-checkbox", version:pkg.version});
-	addComponent({repoName:"@htmlbricks/hb-input-number", version:pkg.version});
-	addComponent({repoName:"@htmlbricks/hb-input-area", version:pkg.version});
-	addComponent({repoName:"@htmlbricks/hb-input-radio", version:pkg.version});
-	addComponent({repoName:"@htmlbricks/hb-input-select", version:pkg.version});
-	addComponent({repoName:"@htmlbricks/hb-input-file", version:pkg.version});
-	addComponent({repoName:"@htmlbricks/hb-input-color", version:pkg.version});
-hb-
+	addComponent({ repoName: "@htmlbricks/hb-input-text", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-email", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-checkbox", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-number", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-area", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-radio", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-select", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-file", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-color", version: pkg.version });
+
 	const component = get_current_component();
 
 	const svelteDispatch = createEventDispatcher();
