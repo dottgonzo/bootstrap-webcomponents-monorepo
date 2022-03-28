@@ -24,7 +24,17 @@ export type i18nLang = {
   language: string;
   lang: string;
 };
-export type ComponentSetup = {
+export interface ComponentShortSetup {
+  i18n: i18nLang[];
+  name: string;
+  category: string;
+  tags: string[];
+  size: {};
+  iifePath: string;
+  repoName: string;
+  version: string;
+}
+export interface ComponentSetup extends ComponentShortSetup {
   definitions: {
     events: {
       $ref: string;
@@ -40,16 +50,8 @@ export type ComponentSetup = {
   storybookArgs: any;
   styleSetup: StyleSetup;
   htmlSlots: HtmlSlot[];
-  i18n: i18nLang[];
   examples: any[];
-  name: string;
-  category: string;
-  tags: string[];
-  size: {};
-  iifePath: string;
-  repoName: string;
-  version: string;
-};
+}
 export function getChildStyleToPass(
   parsedStyle: { [x: string]: string },
   vars: CssVar[]
