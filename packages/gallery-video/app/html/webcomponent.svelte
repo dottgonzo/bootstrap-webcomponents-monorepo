@@ -179,7 +179,7 @@
 		// console.log("changepage");
 
 		if (!externalfilter) page = el.detail.page;
-		dispatch("pagechange", {
+		dispatch("pageChange", {
 			page: el.detail.page,
 			cards: getCurrentCards(),
 		});
@@ -328,7 +328,7 @@
 			<nav style="margin-top:20px" aria-label="Page navigation example">
 				<hb-paginate
 					style={paginateStyleToSet}
-					on:pagechange={changePage}
+					on:pageChange={changePage}
 					page={page.toString()}
 					pages={pages.toString()}
 					primarycolor={primarycolor || ""}

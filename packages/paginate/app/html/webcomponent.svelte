@@ -47,7 +47,7 @@
 		// console.log("changepage");
 
 		// page = newPage;
-		dispatch("pagechange", {
+		dispatch("pageChange", {
 			page: newPage,
 			pages,
 		});

@@ -12,7 +12,7 @@ export const storybookArgs = {
 	headers: { control: { type: "array" } },
 	actions: { control: { type: "array" } },
 	selectactions: { control: { type: "array" } },
-	pagechange: { action: "pagechangeEvent" },
+	pageChange: { action: "pagechangeEvent" },
 	tableaction: { action: "tableactionEvent" },
 	tableCustomActionClick: { action: "tableCustomActionClickEvent" },
 	cellclick: { action: "cellclickEvent" },

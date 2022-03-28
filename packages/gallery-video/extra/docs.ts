@@ -8,7 +8,7 @@ export const storybookArgs = {
 	headers: { control: { type: "array" } },
 	cards: { control: { type: "array" } },
 	primarycolor: { control: { type: "color" } },
-	pagechange: { action: "pagechangeEvent" },
+	pageChange: { action: "pagechangeEvent" },
 	externalfilter: { control: { type: "boolean" } },
 	textFilterVideos: { action: "textFilterVideosEvent" },
 	dateFilterVideos: { action: "dateFilterVideosEvent" },

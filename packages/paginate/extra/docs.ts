@@ -4,7 +4,7 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	page: { control: { type: "number" } },
 	pages: { control: { type: "number" } },
-	pagechange: { action: "pagechange" },
+	pageChange: { action: "pageChange" },
 };
 
 const cssVars: CssVar[] = [{ name: "--bs-primary", valueType: "color", theme: "bootstrap", defaultValue: "#07689f" }];

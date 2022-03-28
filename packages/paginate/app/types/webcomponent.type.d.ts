@@ -6,5 +6,5 @@ export type Component = {
 };
 
 export type Events = {
-	pagechange: { page: number; pages: number };
+	pageChange: { page: number; pages: number };
 };

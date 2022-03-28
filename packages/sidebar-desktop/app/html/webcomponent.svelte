@@ -113,7 +113,7 @@
 						style={sidenavLinkStyleToSet}
 						navlink={JSON.stringify(navLink)}
 						{navpage}
-						on:pagechange={(e) => changePage(e.detail.page)}
+						on:pageChange={(e) => changePage(e.detail.page)}
 					/>
 				{/each}
 			{/if}
@@ -127,7 +127,7 @@
 							style={sidenavLinkStyleToSet}
 							navlink={JSON.stringify(navLink)}
 							{navpage}
-							on:pagechange={(e) => changePage(e.detail.page)}
+							on:pageChange={(e) => changePage(e.detail.page)}
 						/>
 					{/each}
 				{/each}
@@ -145,7 +145,7 @@
 							style={sidenavLinkStyleToSet}
 							navlink={JSON.stringify(navLink)}
 							{navpage}
-							on:pagechange={(e) => changePage(e.detail.page)}
+							on:pageChange={(e) => changePage(e.detail.page)}
 						/>
 					{/each}
 				{/each}

@@ -223,7 +223,7 @@
 		if (!externalfilter) page = el.detail.page;
 		selectedItems.length = 0;
 
-		dispatch("pagechange", {
+		dispatch("pageChange", {
 			page: el.detail.page,
 		});
 	}
@@ -737,7 +737,7 @@
 					{/each}
 				{/if}
 				{#if disablepagination}
-					<hb-paginate style="float:right;{paginateStyleToSet}" on:pagechange={changePage} page={page.toString()} pages={pages.toString()} />
+					<hb-paginate style="float:right;{paginateStyleToSet}" on:pageChange={changePage} page={page.toString()} pages={pages.toString()} />
 				{/if}
 			</nav>
 		{/if}

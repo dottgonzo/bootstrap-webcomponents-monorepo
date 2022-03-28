@@ -87,7 +87,7 @@
 	}
 	function changePage(page: string) {
 		console.log(page);
-		dispatch("pagechange", {
+		dispatch("pageChange", {
 			page,
 		});
 		OpenSwitch(false);
@@ -116,7 +116,13 @@
 		aria-labelledby="offcanvasExampleLabel"
 		style="overflow-y: auto; visibility: visible; {opened ? 'transform:none!important' : 'transform:translateX(-100%)!important'};"
 	>
-		<hb-sidebar-desktop style="width:100%" navlinks={$$props.navlinks} navpage={$$props.$$navpage} companytitle={$$props.$$companytitle} />
+		<hb-sidebar-desktop
+			on:pageChange={(e) => dispatch("pageChange", e.detail)}
+			style="width:100%"
+			navlinks={$$props.navlinks}
+			navpage={$$props.$$navpage}
+			companytitle={$$props.$$companytitle}
+		/>
 	</div>
 	{#if type === "autohide"}
 		<div on:click={() => OpenSwitch(false)} class="modal-backdrop fade {opened ? 'show' : ''}" style="z-index:1040; {opened ? '' : 'visibility:hidden'}" />
