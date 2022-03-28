@@ -26,7 +26,7 @@
 			const meta = await pageraw.json();
 			componentsList.set(meta);
 		} catch (err) {
-			console.warn(`failed to fetch manifest for ${$pageName}`);
+			console.warn(`failed to fetch list`, err);
 		}
 	}
 	const getNavlinks = async (): Promise<void> => {
@@ -200,6 +200,7 @@
 			case 'comparison':
 			case 'readme':
 			case 'theme':
+			case 'quick':
 				return goto('/components/' + d.page);
 			case 'github':
 				return window

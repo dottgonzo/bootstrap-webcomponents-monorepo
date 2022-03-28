@@ -12,13 +12,13 @@
 	import { componentsVersion, debugVersion, lang } from '../../stores/app';
 	import { events, htmlSlotsContents, cssVarsValues, cssPartsContents } from '../../stores/events';
 	import { page } from '$app/stores';
-	import type { ComponentSetup } from '@htmlbricks/hb-jsutils';
 	import { compare, validate as validateVersion } from 'compare-versions';
-	// import npmFetch from 'npm-registry-fetch';
+	import { type ComponentSetup } from '@htmlbricks/hb-jsutils';
 
 	import { getAbbreviatedPackument } from 'query-registry';
 
 	import { pageName } from '../../stores/app';
+
 	let name: string;
 
 	let controlTab: 'props' | 'schemes' | 'events' | 'style' | 'slots' | 'install' | 'i18n' | 'info';
@@ -154,56 +154,56 @@
 			// }
 		}
 	}
+	function setVersion(e: { detail: { value: string } }) {
+		if (e?.detail?.value) {
+			const ver = e.detail.value;
+			if (validateVersion(ver)) {
+				if (ver !== $debugVersion) {
+					if (ver === $componentsVersion && location.href.includes('version')) {
+						location.href =
+							location.href.split('&version=')[0] +
+							(location.href.split('&version=')[1].split('&')?.[1] || '');
+					} else if (location.href.includes('version')) {
+						location.href =
+							location.href.split('&version=')[0] +
+							'&version=' +
+							ver +
+							(location.href.split('&version=')[1].split('&')?.[1] || '');
+					} else {
+						location.href = location.href + '&version=' + ver;
+					}
+				}
+			}
+		}
+	}
 </script>
 
 <div class="container-fluid">
 	{#if name && meta && args}
 		<div style="margin-top:40px; padding-right:0px" class="row">
 			<div class="col-7">
-				<div style="margin-top:40px">
+				<div>
+					<h3 style="text-align:center">
+						{$pageName} version
+						{#if componentVersions?.versions?.length && Array.isArray(componentVersions.versions)}
+							<hb-input-select
+								style="width:150px;display:inline-block;"
+								schemaentry={JSON.stringify({
+									id: 'selectversion',
+									params: {
+										options: componentVersions?.versions.map((m) => {
+											return { value: m };
+										})
+									},
+									value: $debugVersion
+								})}
+								on:setValue={setVersion}
+							/>
+						{:else}
+							{$debugVersion}
+						{/if}
+					</h3>
 					<div style="padding:10px;border:1px solid yellow;margin-top:20px">
-						<h3 style="text-align:center">
-							{$pageName} version
-							{#if componentVersions?.versions && Array.isArray(componentVersions.versions) && componentVersions?.versions?.length}
-								<hb-input-select
-									style="width:150px;display:inline-block"
-									schemaentry={JSON.stringify({
-										id: 'selectversion',
-										params: {
-											options: componentVersions?.versions.map((m) => {
-												return { value: m };
-											})
-										},
-										value: $debugVersion
-									})}
-									on:setValue={(e) => {
-										if (e?.detail?.value) {
-											const ver = e.detail.value;
-											if (validateVersion(ver)) {
-												console.info('validated', ver, $componentsVersion, $debugVersion);
-												if (ver !== $debugVersion) {
-													if (ver === $componentsVersion && location.href.includes('version')) {
-														location.href =
-															location.href.split('&version=')[0] +
-															(location.href.split('&version=')[1].split('&')?.[1] || '');
-													} else if (location.href.includes('version')) {
-														location.href =
-															location.href.split('&version=')[0] +
-															'&version=' +
-															ver +
-															(location.href.split('&version=')[1].split('&')?.[1] || '');
-													} else {
-														location.href = location.href + '&version=' + ver;
-													}
-												}
-											}
-										}
-									}}
-								/>
-							{:else}
-								{$debugVersion}
-							{/if}
-						</h3>
 						<iframe
 							style="width:100%;height:600px"
 							title="component"
