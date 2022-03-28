@@ -82,8 +82,8 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	addComponent("checkout-shopping-cart", pkg.version);
-	addComponent("checkout", pkg.version);
+	addComponent("@htmlbricks/hb-checkout-shopping-cart", pkg.version);
+	addComponent("@htmlbricks/hb-checkout", pkg.version);
 	function saveShipment(detail: IShipment) {
 		const shipmentIndex = shipments.findIndex((f) => f.id === detail.id);
 		const shipment = shipments[shipmentIndex];

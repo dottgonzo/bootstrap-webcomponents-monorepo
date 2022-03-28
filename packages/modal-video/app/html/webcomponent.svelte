@@ -18,7 +18,7 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	addComponent("dialog", pkg.version);
+	addComponent("@htmlbricks/hb-dialog", pkg.version);
 
 	export let id: string;
 

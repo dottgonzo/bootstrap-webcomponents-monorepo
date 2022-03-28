@@ -217,8 +217,8 @@
 	// 	return app();
 	// }
 
-	addComponent("paginate", pkg.version);
-	addComponent("card-video", pkg.version);
+	addComponent("@htmlbricks/hb-paginate", pkg.version);
+	addComponent("@htmlbricks/hb-card-video", pkg.version);
 
 	// onMount(async () => {
 	// 	await reloadCards();

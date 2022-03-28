@@ -72,18 +72,23 @@ export function getChildStyleToPass(
 }
 
 export function addComponent(
-  componentName: string,
+  componentPath: string,
   version: string,
-  allowLocal?: boolean
+  opts?: { allowLocal?: boolean; iifePath: string }
 ) {
-  if (!document.getElementById("hb-" + componentName + "-script")) {
+  const componentName = componentPath.split("/")?.[1];
+  if (!componentName) throw new Error("wrong componentPath " + componentPath);
+  const iifePath = opts?.iifePath || "release/release.js";
+  if (!document.getElementById(componentName + "-script")) {
     const script = document.createElement("script");
-    script.id = "hb-" + componentName + "-script";
-    script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${version}/release/release.js`;
-    if (allowLocal && location.href.includes("localhost")) {
-      script.src = `http://localhost:6006/${componentName}/dist/release.js`;
+    script.id = componentName + "-script";
+    script.src = `https://cdn.jsdelivr.net/npm/${componentPath}@${version}/${iifePath}`;
+    if (opts?.allowLocal && location.href.includes("localhost")) {
+      script.src = `http://localhost:6006/${componentName.replace(
+        "hb-",
+        ""
+      )}/dist/release.js`;
     }
-
     document.head.appendChild(script);
   }
 }

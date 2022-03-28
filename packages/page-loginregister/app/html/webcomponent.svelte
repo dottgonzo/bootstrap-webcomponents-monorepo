@@ -152,8 +152,8 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	addComponent("layout", pkg.version);
-	addComponent("auth", pkg.version);
+	addComponent("@htmlbricks/hb-layout", pkg.version);
+	addComponent("@htmlbricks/hb-auth", pkg.version);
 </script>
 
 <hb-layout

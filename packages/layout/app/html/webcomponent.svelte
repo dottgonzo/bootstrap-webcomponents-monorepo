@@ -103,10 +103,10 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	addComponent("footer", pkg.version);
-	addComponent("offcanvas", pkg.version);
-	addComponent("navbar", pkg.version);
-	addComponent("cookie-law-banner", pkg.version);
+	addComponent("@htmlbricks/hb-footer", pkg.version);
+	addComponent("@htmlbricks/hb-offcanvas", pkg.version);
+	addComponent("@htmlbricks/hb-navbar", pkg.version);
+	addComponent("@htmlbricks/hb-cookie-law-banner", pkg.version);
 
 	function openmenu(o) {
 		if (o.isOpen || o.isOpen === false) navopen = o.isOpen;

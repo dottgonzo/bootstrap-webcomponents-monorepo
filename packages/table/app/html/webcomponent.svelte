@@ -412,8 +412,8 @@
 		});
 	}
 
-	addComponent("paginate", pkg.version);
-	addComponent("dialog", pkg.version);
+	addComponent("@htmlbricks/hb-paginate", pkg.version);
+	addComponent("@htmlbricks/hb-dialog", pkg.version);
 
 	function changeSort(key: string) {
 		console.log(sortedBy, sortedDirection);

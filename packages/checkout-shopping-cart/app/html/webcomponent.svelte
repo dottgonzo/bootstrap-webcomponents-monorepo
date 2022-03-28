@@ -123,7 +123,7 @@
 	// 	component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	// }
 
-	addComponent("table", pkg.version);
+	addComponent("@htmlbricks/hb-table", pkg.version);
 </script>
 
 <svelte:head>

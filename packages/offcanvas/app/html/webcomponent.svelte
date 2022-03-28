@@ -101,7 +101,7 @@
 		});
 	}
 
-	addComponent("sidenav-link", pkg.version);
+	addComponent("@htmlbricks/hb-sidenav-link", pkg.version);
 </script>
 
 <svelte:head>

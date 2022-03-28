@@ -22,13 +22,18 @@ function getChildStyleToPass(parsedStyle, vars) {
     return toreturn;
 }
 exports.getChildStyleToPass = getChildStyleToPass;
-function addComponent(componentName, version, allowLocal) {
-    if (!document.getElementById("hb-" + componentName + "-script")) {
+function addComponent(componentPath, version, opts) {
+    var _a;
+    var componentName = (_a = componentPath.split("/")) === null || _a === void 0 ? void 0 : _a[1];
+    if (!componentName)
+        throw new Error("wrong componentPath " + componentPath);
+    var iifePath = (opts === null || opts === void 0 ? void 0 : opts.iifePath) || "release/release.js";
+    if (!document.getElementById(componentName + "-script")) {
         var script = document.createElement("script");
-        script.id = "hb-" + componentName + "-script";
-        script.src = "https://cdn.jsdelivr.net/npm/@htmlbricks/hb-".concat(componentName, "@").concat(version, "/release/release.js");
-        if (allowLocal && location.href.includes("localhost")) {
-            script.src = "http://localhost:6006/".concat(componentName, "/dist/release.js");
+        script.id = componentName + "-script";
+        script.src = "https://cdn.jsdelivr.net/npm/".concat(componentPath, "@").concat(version, "/").concat(iifePath);
+        if ((opts === null || opts === void 0 ? void 0 : opts.allowLocal) && location.href.includes("localhost")) {
+            script.src = "http://localhost:6006/".concat(componentName.replace("hb-", ""), "/dist/release.js");
         }
         document.head.appendChild(script);
     }

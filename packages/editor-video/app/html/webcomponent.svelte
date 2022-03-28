@@ -98,8 +98,8 @@
 		getVideo().currentTime = seconds;
 	}
 
-	addComponent("range-slider", pkg.version);
-	addComponent("form", pkg.version);
+	addComponent("@htmlbricks/hb-range-slider", pkg.version);
+	addComponent("@htmlbricks/hb-form", pkg.version);
 
 	function dispatchTrackVals(trackStatus: IDispatchValsEvent) {
 		track.minValue = trackStatus.minValue;

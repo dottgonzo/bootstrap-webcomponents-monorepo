@@ -206,18 +206,18 @@
 		valids[id] = valid;
 	};
 
-	addComponent("input-date", pkg.version);
+	addComponent("@htmlbricks/hb-input-date", pkg.version);
 
-	addComponent("input-text", pkg.version);
-	addComponent("input-email", pkg.version);
-	addComponent("input-checkbox", pkg.version);
-	addComponent("input-number", pkg.version);
-	addComponent("input-area", pkg.version);
-	addComponent("input-radio", pkg.version);
-	addComponent("input-select", pkg.version);
-	addComponent("input-file", pkg.version);
-	addComponent("input-color", pkg.version);
-
+	addComponent("@htmlbricks/hb-input-text", pkg.version);
+	addComponent("@htmlbricks/hb-input-email", pkg.version);
+	addComponent("@htmlbricks/hb-input-checkbox", pkg.version);
+	addComponent("@htmlbricks/hb-input-number", pkg.version);
+	addComponent("@htmlbricks/hb-input-area", pkg.version);
+	addComponent("@htmlbricks/hb-input-radio", pkg.version);
+	addComponent("@htmlbricks/hb-input-select", pkg.version);
+	addComponent("@htmlbricks/hb-input-file", pkg.version);
+	addComponent("@htmlbricks/hb-input-color", pkg.version);
+hb-
 	const component = get_current_component();
 
 	const svelteDispatch = createEventDispatcher();

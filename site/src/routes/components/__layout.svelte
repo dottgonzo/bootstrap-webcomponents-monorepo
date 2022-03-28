@@ -182,7 +182,7 @@
 		if (!navlinks && $componentsVersion) getNavlinks().catch(console.error);
 	}
 	onMount(() => {
-		addComponent('bundle', $componentsVersion);
+		addComponent('hb-bundle', $componentsVersion);
 		events.set(JSON.parse(window.localStorage.getItem('componentsEvents') || '[]'));
 
 		if (!$lang) lang.set(LanguageTranslator.getDefaultLang());
