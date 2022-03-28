@@ -27,8 +27,8 @@ export type i18nLang = {
 export type ComponentSetup = {
   definitions: {
     events: {
-      $ref: string
-      $schema: string
+      $ref: string;
+      $schema: string;
       definitions: any;
     };
     component: {
@@ -46,6 +46,7 @@ export type ComponentSetup = {
   category: string;
   tags: string[];
   size: {};
+  iifePath: string;
 };
 export function getChildStyleToPass(
   parsedStyle: { [x: string]: string },

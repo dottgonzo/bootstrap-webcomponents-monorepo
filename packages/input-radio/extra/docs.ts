@@ -55,4 +55,5 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	category: "input",
 	tags: ["input"],
 	size: {},
+	iifePath: "release/release.js",
 };

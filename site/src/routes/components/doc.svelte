@@ -39,6 +39,15 @@
 			console.warn(`failed to fetch manifest for ${$pageName}`);
 		}
 	}
+	async function getComponentVersion(name: string, version: string) {
+		try {
+			const pageraw = await fetch(`https://registry.npmjs.org/@htmlbricks/hb-${name}`);
+			const info = await pageraw.json();
+			return Object.keys(info.time).filter((f) => ['created', 'modified'].includes(f));
+		} catch (err) {
+			console.warn(`failed to fetch npm versions for ${$pageName}`);
+		}
+	}
 	$: {
 		name = $page.url?.href?.split('c=')?.[1]?.split('&')[0];
 		if ($page.url?.href?.split?.('version=')?.[1]?.split?.('&')?.[0]?.length) {

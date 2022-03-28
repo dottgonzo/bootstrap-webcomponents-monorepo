@@ -132,4 +132,5 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	category: "form",
 	tags: ["form"],
 	size: {},
+	iifePath: "release/release.js",
 };
