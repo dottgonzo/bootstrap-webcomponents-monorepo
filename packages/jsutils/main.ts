@@ -74,7 +74,7 @@ export function getChildStyleToPass(
 }
 
 export function addComponent(opts?: {
-  allowLocal?: boolean;
+  local?: string;
   iifePath?: string;
   repoName: string;
   provider?: "github" | "npm";
@@ -88,11 +88,8 @@ export function addComponent(opts?: {
     const script = document.createElement("script");
     script.id = componentName + "-script";
     script.src = `https://cdn.jsdelivr.net/npm/${opts.repoName}@${opts.version}/${iifePath}`;
-    if (opts?.allowLocal && location.href.includes("localhost")) {
-      script.src = `http://localhost:6006/${componentName.replace(
-        "hb-",
-        ""
-      )}/dist/release.js`;
+    if (opts?.local && location.href.includes("localhost")) {
+      script.src = `${opts.local}`;
     }
     document.head.appendChild(script);
   }

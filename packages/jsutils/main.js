@@ -34,8 +34,8 @@ function addComponent(opts) {
         var script = document.createElement("script");
         script.id = componentName + "-script";
         script.src = "https://cdn.jsdelivr.net/npm/".concat(opts.repoName, "@").concat(opts.version, "/").concat(iifePath);
-        if ((opts === null || opts === void 0 ? void 0 : opts.allowLocal) && location.href.includes("localhost")) {
-            script.src = "http://localhost:6006/".concat(componentName.replace("hb-", ""), "/dist/release.js");
+        if ((opts === null || opts === void 0 ? void 0 : opts.local) && location.href.includes("localhost")) {
+            script.src = "".concat(opts.local);
         }
         document.head.appendChild(script);
     }
