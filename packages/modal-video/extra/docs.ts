@@ -44,5 +44,4 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-modal-video",
 	version: null,
-	dependencies: [],
 };

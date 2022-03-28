@@ -135,5 +135,4 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-form",
 	version: null,
-	dependencies: [],
 };

@@ -59,5 +59,4 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-checkout-shopping-cart",
 	version: null,
-	dependencies: [],
 };

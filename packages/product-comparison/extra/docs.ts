@@ -110,5 +110,4 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-product-comparison",
 	version: null,
-	dependencies: [],
 };

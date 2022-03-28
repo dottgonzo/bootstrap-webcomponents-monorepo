@@ -73,5 +73,4 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-page-invoice",
 	version: null,
-	dependencies: [],
 };

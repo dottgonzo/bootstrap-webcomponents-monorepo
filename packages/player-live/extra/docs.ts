@@ -41,5 +41,4 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-player-live",
 	version: null,
-	dependencies: [],
 };
