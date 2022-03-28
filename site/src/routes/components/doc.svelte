@@ -32,7 +32,7 @@
 		meta = null;
 		try {
 			const pageraw = await fetch(
-				`https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${name}@${version}/release/manifest.json`
+				`https://cdn.jsdelivr.net/npm/@htmlbricks/${name}@${version}/release/manifest.json`
 			);
 			meta = await pageraw.json();
 		} catch (err) {
@@ -41,7 +41,7 @@
 	}
 	async function getComponentVersion(name: string, version: string) {
 		try {
-			const pageraw = await fetch(`https://registry.npmjs.org/@htmlbricks/hb-${name}`);
+			const pageraw = await fetch(`https://registry.npmjs.org/@htmlbricks/${name}`);
 			const info = await pageraw.json();
 			return Object.keys(info.time).filter((f) => ['created', 'modified'].includes(f));
 		} catch (err) {
@@ -59,7 +59,7 @@
 			lastName = name;
 			controlTab = 'info';
 		}
-		pageName.set('hb-' + name || 'docs');
+		pageName.set(name || 'docs');
 		const tmpLoadId = name + '_' + $debugVersion;
 		if (name && (!meta || tmpLoadId !== lastLoadId) && $debugVersion) {
 			meta = null;
@@ -75,12 +75,12 @@
 			if ($cssPartsContents.filter((f) => f.component === name)?.length) {
 				com += '<sty' + 'le>';
 				for (const p of $cssPartsContents.filter((f) => f.component === name)) {
-					com += `hb-${$pageName}::part(${p.name}){${p.content}}`;
+					com += `${$pageName}::part(${p.name}){${p.content}}`;
 				}
 				com += '</sty' + 'le>';
 			}
 
-			com += `<hb-${name} id="com-${name}"`;
+			com += `<${name} id="com-${name}"`;
 			// if (lang && !args?.['i18nlang'] && meta?.i18n?.length) {
 			// 	com += ` i18nlang="${lang}"`;
 			// }
@@ -119,10 +119,10 @@
 				}
 			}
 
-			com += `</hb-${name}>`;
+			com += `</${name}>`;
 
 			com += ` />`;
-			cdnUri = `<${'script'} id="hb-${name}-script" src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${name}@${$componentsVersion}/release/release.js"></${'script'}>`;
+			cdnUri = `<${'script'} id="${name}-script" src="https://cdn.jsdelivr.net/npm/@htmlbricks/${name}@${$componentsVersion}/release/release.js"></${'script'}>`;
 
 			allCssVars = $cssVarsValues
 				.filter((f) => f.component === name)

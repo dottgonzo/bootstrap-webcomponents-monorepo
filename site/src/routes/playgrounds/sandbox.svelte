@@ -16,7 +16,7 @@
 		meta = null;
 		try {
 			const pageraw = await fetch(
-				`https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${name}@${version}/release/manifest.json`
+				`https://cdn.jsdelivr.net/npm/@htmlbricks/${name}@${version}/release/manifest.json`
 			);
 			meta = await pageraw.json();
 			console.log(meta);
@@ -53,12 +53,12 @@
 				if (cssParts?.length) {
 					com += '<sty' + 'le>';
 					for (const p of cssParts) {
-						com += `hb-${$pageName}::part(${p.name}){${p.content}}`;
+						com += `${$pageName}::part(${p.name}){${p.content}}`;
 					}
 					com += '</sty' + 'le>';
 				}
 
-				com += `<hb-${name} id="com-${name}"`;
+				com += `<${name} id="com-${name}"`;
 				// if (lang && !args?.['i18nlang'] && meta?.i18n?.length) {
 				// 	com += ` i18nlang="${lang}"`;
 				// }
@@ -92,7 +92,7 @@
 					}
 				}
 
-				com += `</hb-${name}>`;
+				com += `</${name}>`;
 			}
 		}
 	}

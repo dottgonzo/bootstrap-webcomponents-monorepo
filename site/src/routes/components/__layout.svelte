@@ -157,7 +157,7 @@
 				.map((m) => {
 					const navLink: INavLink = {
 						key: m.name,
-						label: m.name,
+						label: m.name.replace('hb-', ''),
 						active: false
 					};
 					return navLink;
@@ -207,7 +207,7 @@
 			case 'storybook':
 				return window.open('https://storybook.freewebcomponents.com', '_blank').focus();
 			default:
-				return goto('/components/doc?c=' + d.page.replace('hb-', ''));
+				return goto('/components/doc?c=' + d.page);
 		}
 	}
 </script>
