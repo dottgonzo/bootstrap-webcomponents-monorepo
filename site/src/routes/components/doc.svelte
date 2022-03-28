@@ -13,7 +13,7 @@
 	import { events, htmlSlotsContents, cssVarsValues, cssPartsContents } from '../../stores/events';
 	import { page } from '$app/stores';
 	import { compare, validate as validateVersion } from 'compare-versions';
-	import { type ComponentSetup } from '@htmlbricks/hb-jsutils';
+	import type { ComponentSetup } from '@htmlbricks/hb-jsutils';
 
 	import { getAbbreviatedPackument } from 'query-registry';
 
