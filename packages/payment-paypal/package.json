@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-payment-paypal",
 	"displayName": "Svelte Paypal Payment WebComponent",
 	"description": "Svelte Paypal Payment WebComponent",
-	"version": "0.9.19",
+	"version": "0.9.20",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.9.19",
+		"@htmlbricks/hb-jsutils": "^0.9.20",
 		"@htmlbricks/manifester": "^0.0.18",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
