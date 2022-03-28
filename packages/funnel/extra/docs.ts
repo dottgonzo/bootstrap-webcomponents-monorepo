@@ -99,5 +99,5 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	tags: ["form"],
 	size: {},
 	iifePath: "release/release.js",
-	repoName: "@htmlbricks/hb-chartjs",
+	repoName: "@htmlbricks/hb-funnel",
 };

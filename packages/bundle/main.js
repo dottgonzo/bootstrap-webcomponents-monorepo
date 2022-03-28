@@ -41,7 +41,8 @@ async function run() {
             category: m.category,
             tags: m.tags,
             size: m.size,
-            iifePath: m.iifePath
+            iifePath: m.iifePath,
+            repoName: m.repoName
         }
         return pkgUsefulData
     })

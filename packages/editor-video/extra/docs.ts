@@ -48,5 +48,5 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	tags: ["editor"],
 	size: {},
 	iifePath: "release/release.js",
-	repoName: "@htmlbricks/hb-chartjs",
+	repoName: "@htmlbricks/hb-editor-video",
 };

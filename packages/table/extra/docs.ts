@@ -171,5 +171,5 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	tags: ["table"],
 	size: {},
 	iifePath: "release/release.js",
-	repoName: "@htmlbricks/hb-chartjs",
+	repoName: "@htmlbricks/hb-table",
 };
