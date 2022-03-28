@@ -3,7 +3,7 @@
 import { program } from 'commander'
 import fs from 'fs/promises'
 import path from 'path'
-import pkg from './package.json'
+// import pkg from './package.json'
 const options = program.option('--dir <value>').parse().opts()
 
 const componentPath = options?.dir
@@ -17,6 +17,8 @@ const componentEventsDefinitionJsonPath = path.join(componentPath, 'dist', 'webc
 const outputFile = path.join(componentPath, 'dist', 'manifest.json')
 const packageJsonPath = path.join(componentPath, 'package.json')
 
+const ownPkgPath = path.join(__dirname, 'package.json')
+
 async function assembleJson() {
   try {
     await fs.copyFile(docPathJs, docPathMjs)
@@ -24,6 +26,7 @@ async function assembleJson() {
     const componentDefinitions = JSON.parse(await fs.readFile(componentDefinitionJsonPath, 'utf-8'))
     const componentEventsDefinitions = JSON.parse(await fs.readFile(componentEventsDefinitionJsonPath, 'utf-8'))
     const packageJson = JSON.parse(await fs.readFile(packageJsonPath, 'utf-8'))
+    const pkg = JSON.parse(await fs.readFile(ownPkgPath, 'utf-8'))
     const componentSetup = mod.componentSetup
     componentSetup.definitions = {
       events: componentEventsDefinitions,
