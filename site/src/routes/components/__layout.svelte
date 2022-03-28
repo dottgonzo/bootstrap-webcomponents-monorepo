@@ -101,9 +101,10 @@
 		const arr: INavLink[] = [home, documentation, storybook, github];
 		let cats: string[] = [];
 		await fetchComponentsList($componentsVersion);
-		$componentsList.packages.forEach((f) => {
-			if (!cats.includes(f.category)) cats.push(f.category);
-		});
+		if ($componentsList?.packages)
+			$componentsList.packages.forEach((f) => {
+				if (!cats.includes(f.category)) cats.push(f.category);
+			});
 
 		cats.forEach((f) => {
 			let catIcon;

@@ -13,6 +13,10 @@
 	import { events, htmlSlotsContents, cssVarsValues, cssPartsContents } from '../../stores/events';
 	import { page } from '$app/stores';
 	import type { ComponentSetup } from '@htmlbricks/hb-jsutils';
+	import { compare, validate as validateVersion } from 'compare-versions';
+	// import npmFetch from 'npm-registry-fetch';
+
+	import { getAbbreviatedPackument } from 'query-registry';
 
 	import { pageName } from '../../stores/app';
 	let name: string;
@@ -43,11 +47,15 @@
 	async function getComponentVersions(name: string) {
 		try {
 			componentVersions = { name, versions: null };
-			const pageraw = await fetch(`https://registry.npmjs.org/@htmlbricks/${name}`);
-			const info = await pageraw.json();
+			const pkgManifest = await getAbbreviatedPackument({ name: '@htmlbricks/' + name });
+
+			const availableVersions = Object.keys(pkgManifest.versions).filter((f) =>
+				compare(f, '0.9.1', '>')
+			);
+
 			componentVersions = {
 				name,
-				versions: Object.keys(info.time).filter((f) => ['created', 'modified'].includes(f))
+				versions: availableVersions
 			};
 		} catch (err) {
 			console.warn(`failed to fetch npm versions for ${$pageName}`);
@@ -156,20 +164,41 @@
 					<div style="padding:10px;border:1px solid yellow;margin-top:20px">
 						<h3 style="text-align:center">
 							{$pageName} version
-							{#if componentVersions?.versions?.length}
+							{#if componentVersions?.versions && Array.isArray(componentVersions.versions) && componentVersions?.versions?.length}
 								<hb-input-select
-									style="width:50px"
+									style="width:150px;display:inline-block"
 									schemaentry={JSON.stringify({
 										id: 'selectversion',
 										params: {
-											options: [
-												componentVersions?.versions.map((m) => {
-													return { value: m };
-												})
-											]
+											options: componentVersions?.versions.map((m) => {
+												return { value: m };
+											})
 										},
 										value: $debugVersion
 									})}
+									on:setValue={(e) => {
+										if (e?.detail?.value) {
+											const ver = e.detail.value;
+											if (validateVersion(ver)) {
+												console.info('validated', ver, $componentsVersion, $debugVersion);
+												if (ver !== $debugVersion) {
+													if (ver === $componentsVersion && location.href.includes('version')) {
+														location.href =
+															location.href.split('&version=')[0] +
+															(location.href.split('&version=')[1].split('&')?.[1] || '');
+													} else if (location.href.includes('version')) {
+														location.href =
+															location.href.split('&version=')[0] +
+															'&version=' +
+															ver +
+															(location.href.split('&version=')[1].split('&')?.[1] || '');
+													} else {
+														location.href = location.href + '&version=' + ver;
+													}
+												}
+											}
+										}
+									}}
 								/>
 							{:else}
 								{$debugVersion}
