@@ -50,7 +50,7 @@
 			const jsonfetched = await pageraw.json();
 
 			const availableVersions = Object.keys(jsonfetched.versions).filter(
-				(f) => !repoName.includes('@htmlbricks') || compareVersions.compare(f, '0.9.14', '>=')
+				(f) => !repoName.includes('@htmlbricks') || compareVersions.compare(f, '0.9.21', '>=')
 			);
 
 			componentVersions = {

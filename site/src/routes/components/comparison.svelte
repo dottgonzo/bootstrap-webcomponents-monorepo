@@ -56,7 +56,7 @@
 						><button
 							class="btn btn-link"
 							on:click={() => {
-								goto('/components/doc?c=' + c.name.replace('hb-', ''));
+								goto('/components/doc?c=' + c.name);
 							}}>{c.name}</button
 						></td
 					>
