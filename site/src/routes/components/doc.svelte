@@ -192,7 +192,10 @@
 									id: 'selectversion',
 									params: {
 										options: componentVersions?.versions.map((m) => {
-											return { value: m };
+											return {
+												value: m,
+												label: m + (m === $componentsVersion ? ' (latest)' : '')
+											};
 										})
 									},
 									value: $debugVersion
