@@ -47,6 +47,7 @@ export type ComponentSetup = {
   tags: string[];
   size: {};
   iifePath: string;
+  repoName: string;
 };
 export function getChildStyleToPass(
   parsedStyle: { [x: string]: string },

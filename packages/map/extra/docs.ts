@@ -65,4 +65,5 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	tags: ["graph"],
 	size: {},
 	iifePath: "release/release.js",
+	repoName: "@htmlbricks/hb-chartjs",
 };

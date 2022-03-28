@@ -38,4 +38,5 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	tags: ["dev"],
 	size: {},
 	iifePath: "release/release.js",
+	repoName: "@htmlbricks/hb-area-code",
 };
