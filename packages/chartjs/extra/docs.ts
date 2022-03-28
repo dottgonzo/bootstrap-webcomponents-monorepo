@@ -49,5 +49,5 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-chartjs",
 	version: null,
-	dependencies: null,
+	dependencies: [],
 };

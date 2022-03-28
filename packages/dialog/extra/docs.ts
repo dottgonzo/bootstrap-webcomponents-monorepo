@@ -53,5 +53,5 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-dialog",
 	version: null,
-	dependencies: null,
+	dependencies: [],
 };

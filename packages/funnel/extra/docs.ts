@@ -101,5 +101,5 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-funnel",
 	version: null,
-	dependencies: null,
+	dependencies: [],
 };
