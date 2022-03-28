@@ -5,7 +5,6 @@
 	import { onMount } from 'svelte';
 	import { pageName, componentsVersion, lang } from '../../stores/app';
 	import { events } from '../../stores/events';
-	import allComponentsList from '@htmlbricks/hb-bundle/release/list.json';
 
 	// import {
 	// 	globalBootstrapThemeCssVars,

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 
-	import { pageName } from '../../stores/app';
+	import { pageName, componentsVersion } from '../../stores/app';
 	import type allComponentsMetas from '@htmlbricks/hb-bundle/release/bundle.json';
-	import allComponentsList from '@htmlbricks/hb-bundle/release/list.json';
+
 	pageName.set('comparison');
 	let metas: typeof allComponentsMetas;
 	async function fetchComponentInfo(name: string, version: string) {
@@ -17,15 +17,27 @@
 			console.warn(`failed to fetch manifest for ${$pageName}`);
 		}
 	}
-	let allPromises = [];
-	for (const l of allComponentsList.packages.map((m) => m.name)) {
-		allPromises.push(fetchComponentInfo(l, allComponentsList.version));
-	}
 
-	Promise.all(allPromises).then((p) => {
-		console.log('loaded', p);
-		metas = { packages: p, version: allComponentsList.version };
-	});
+	async function fetchAll(version) {
+		const allPromises = [];
+
+		try {
+			const pageraw = await fetch(
+				`https://cdn.jsdelivr.net/npm/@htmlbricks/hb-bundle@${version}/release/list.json`
+			);
+			const list = await pageraw.json();
+			for (const l of list.packages.map((m) => m.name)) {
+				allPromises.push(fetchComponentInfo(l, version));
+			}
+
+			const allProms = await Promise.all(allPromises);
+			metas = { packages: allProms, version: version };
+			console.log('loaded');
+		} catch (err) {
+			console.warn(`failed to fetch manifest for ${$pageName}`);
+		}
+	}
+	fetchAll($componentsVersion).catch(console.error);
 </script>
 
 {#if metas?.packages?.length}
