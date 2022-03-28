@@ -35,7 +35,7 @@
 	},
 	"devDependencies": {
 		"@htmlbricks/hb-jsutils": "^0.9.13",
-		"@htmlbricks/manifester": "^0.0.11",
+		"@htmlbricks/manifester": "^0.0.12",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
 		"@rollup/plugin-json": "^4.1.0",
