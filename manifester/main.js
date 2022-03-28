@@ -11,17 +11,20 @@ const docPathMjs = docPathJs.replace('.js', '.mjs');
 const componentDefinitionJsonPath = path.join(componentPath, 'dist', 'webcomponent.type.d.json');
 const componentEventsDefinitionJsonPath = path.join(componentPath, 'dist', 'webcomponent_events.type.d.json');
 const outputFile = path.join(componentPath, 'dist', 'manifest.json');
+const packageJsonPath = path.join(componentPath, 'package.json');
 async function assembleJson() {
     try {
         await fs.copyFile(docPathJs, docPathMjs);
         const mod = await import(docPathMjs);
         const componentDefinitions = JSON.parse(await fs.readFile(componentDefinitionJsonPath, 'utf-8'));
         const componentEventsDefinitions = JSON.parse(await fs.readFile(componentEventsDefinitionJsonPath, 'utf-8'));
+        const packageJson = JSON.parse(await fs.readFile(packageJsonPath, 'utf-8'));
         const componentSetup = mod.componentSetup;
         componentSetup.definitions = {
             events: componentEventsDefinitions,
             component: componentDefinitions,
         };
+        componentSetup.version = packageJson.version;
         const componentSetupToString = JSON.stringify(componentSetup, null, 2);
         await fs.writeFile(outputFile, componentSetupToString);
         await fs.rm(docPathMjs);
