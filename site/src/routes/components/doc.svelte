@@ -39,17 +39,25 @@
 			console.warn(`failed to fetch manifest for ${$pageName}`);
 		}
 	}
-	async function getComponentVersion(name: string, version: string) {
+	let componentVersions: { name: string; versions: string[] };
+	async function getComponentVersions(name: string) {
 		try {
+			componentVersions = { name, versions: null };
 			const pageraw = await fetch(`https://registry.npmjs.org/@htmlbricks/${name}`);
 			const info = await pageraw.json();
-			return Object.keys(info.time).filter((f) => ['created', 'modified'].includes(f));
+			componentVersions = {
+				name,
+				versions: Object.keys(info.time).filter((f) => ['created', 'modified'].includes(f))
+			};
 		} catch (err) {
 			console.warn(`failed to fetch npm versions for ${$pageName}`);
 		}
 	}
 	$: {
 		name = $page.url?.href?.split('c=')?.[1]?.split('&')[0];
+		if (!componentVersions || componentVersions.name !== name) {
+			getComponentVersions(name).catch(console.error);
+		}
 		if ($page.url?.href?.split?.('version=')?.[1]?.split?.('&')?.[0]?.length) {
 			debugVersion.set($page.url.href.split('version=')[1].split('&')[0]);
 		} else {
@@ -146,6 +154,27 @@
 			<div class="col-7">
 				<div style="margin-top:40px">
 					<div style="padding:10px;border:1px solid yellow;margin-top:20px">
+						<h3 style="text-align:center">
+							{$pageName} version
+							{#if componentVersions?.versions?.length}
+								<hb-input-select
+									style="width:50px"
+									schemaentry={JSON.stringify({
+										id: 'selectversion',
+										params: {
+											options: [
+												componentVersions?.versions.map((m) => {
+													return { value: m };
+												})
+											]
+										},
+										value: $debugVersion
+									})}
+								/>
+							{:else}
+								{$debugVersion}
+							{/if}
+						</h3>
 						<iframe
 							style="width:100%;height:600px"
 							title="component"
