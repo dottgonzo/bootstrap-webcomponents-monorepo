@@ -28,22 +28,14 @@ async function assembleJson() {
     const dependencies: { name: string; version: string }[] = []
     if (packageJson?.dependencies?.length && Array.isArray(packageJson.dependencies)) {
       for (const d of Object.keys(packageJson.dependencies).filter(
-        (f) =>
-          f.includes(packageJson.name.split('/')[0]) &&
-          !f.includes('jsutils') &&
-          !f.includes('bundle') &&
-          !f.includes('manifester')
+        (f) => f.includes('htmlbricks') && !f.includes('jsutils') && !f.includes('bundle') && !f.includes('manifester')
       )) {
         dependencies.push({ name: d, version: packageJson.dependencies[d] })
       }
     }
     if (packageJson?.devDependencies?.length && Array.isArray(packageJson.devDependencies)) {
       for (const d of Object.keys(packageJson.devDependencies).filter(
-        (f) =>
-          f.includes(packageJson.name.split('/')[0]) &&
-          !f.includes('jsutils') &&
-          !f.includes('bundle') &&
-          !f.includes('manifester')
+        (f) => f.includes('htmlbricks') && !f.includes('jsutils') && !f.includes('bundle') && !f.includes('manifester')
       )) {
         dependencies.push({ name: d, version: packageJson.devDependencies[d] })
       }
