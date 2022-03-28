@@ -9,7 +9,7 @@ export const storybookArgs = {
 	enablefooter: { control: { type: "boolean" } },
 	offcanvasswitch: { action: "offcanvasswitchEvent" },
 	pagechange: { action: "pagechangeEvent" },
-	type: { control: { options: ["autohide", "small", "open"] } },
+	type: { options: ["autohide", "small", "open"], control: { type: "select" } },
 	navpage: { control: { type: "text" } },
 	navlinks: { control: { type: "array" } },
 };
