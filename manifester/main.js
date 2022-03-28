@@ -20,15 +20,20 @@ async function assembleJson() {
         const componentDefinitions = JSON.parse(await fs.readFile(componentDefinitionJsonPath, 'utf-8'));
         const componentEventsDefinitions = JSON.parse(await fs.readFile(componentEventsDefinitionJsonPath, 'utf-8'));
         const packageJson = JSON.parse(await fs.readFile(packageJsonPath, 'utf-8'));
-        const pkg = JSON.parse(await fs.readFile('./package.json', 'utf-8'));
         const dependencies = [];
         if (packageJson?.dependencies?.length && Array.isArray(packageJson.dependencies)) {
-            for (const d of Object.keys(packageJson.dependencies).filter((f) => f.includes(pkg.name.split('/')[0]) && !f.includes('jsutils') && !f.includes('bundle'))) {
+            for (const d of Object.keys(packageJson.dependencies).filter((f) => f.includes(packageJson.name.split('/')[0]) &&
+                !f.includes('jsutils') &&
+                !f.includes('bundle') &&
+                !f.includes('manifester'))) {
                 dependencies.push({ name: d, version: packageJson.dependencies[d] });
             }
         }
         if (packageJson?.devDependencies?.length && Array.isArray(packageJson.devDependencies)) {
-            for (const d of Object.keys(packageJson.devDependencies).filter((f) => f.includes(pkg.name.split('/')[0]) && !f.includes('jsutils') && !f.includes('bundle'))) {
+            for (const d of Object.keys(packageJson.devDependencies).filter((f) => f.includes(packageJson.name.split('/')[0]) &&
+                !f.includes('jsutils') &&
+                !f.includes('bundle') &&
+                !f.includes('manifester'))) {
                 dependencies.push({ name: d, version: packageJson.devDependencies[d] });
             }
         }
