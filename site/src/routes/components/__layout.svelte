@@ -3,7 +3,7 @@
 	import type { INavLink } from '@htmlbricks/hb-sidenav-link/release/webcomponent.type';
 	import { addComponent, LanguageTranslator } from '@htmlbricks/hb-jsutils';
 	import { onMount } from 'svelte';
-	import { pageName, componentsVersion, lang } from '../../stores/app';
+	import { pageName, componentsVersion, lang, componentsList } from '../../stores/app';
 	import { events } from '../../stores/events';
 
 	// import {
@@ -24,7 +24,7 @@
 				`https://cdn.jsdelivr.net/npm/@htmlbricks/hb-bundle@${version}/release/list.json`
 			);
 			const meta = await pageraw.json();
-			return meta;
+			componentsList.set(meta);
 		} catch (err) {
 			console.warn(`failed to fetch manifest for ${$pageName}`);
 		}
@@ -100,8 +100,8 @@
 		};
 		const arr: INavLink[] = [home, documentation, storybook, github];
 		let cats: string[] = [];
-		const allComponentsList = await fetchComponentsList($componentsVersion);
-		allComponentsList.packages.forEach((f) => {
+		await fetchComponentsList($componentsVersion);
+		$componentsList.packages.forEach((f) => {
 			if (!cats.includes(f.category)) cats.push(f.category);
 		});
 
@@ -152,7 +152,7 @@
 					break;
 			}
 
-			const subLinks: INavLink[] = allComponentsList.packages
+			const subLinks: INavLink[] = $componentsList.packages
 				.filter((fi) => fi.category === f)
 				.map((m) => {
 					const navLink: INavLink = {

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 
-	import { pageName, componentsVersion } from '../../stores/app';
+	import { pageName, componentsVersion, componentsList } from '../../stores/app';
 	import type allComponentsMetas from '@htmlbricks/hb-bundle/release/bundle.json';
 
 	pageName.set('comparison');
@@ -22,11 +22,7 @@
 		const allPromises = [];
 
 		try {
-			const pageraw = await fetch(
-				`https://cdn.jsdelivr.net/npm/@htmlbricks/hb-bundle@${version}/release/list.json`
-			);
-			const list = await pageraw.json();
-			for (const l of list.packages.map((m) => m.name)) {
+			for (const l of $componentsList.packages.map((m) => m.name)) {
 				allPromises.push(fetchComponentInfo(l, version));
 			}
 
