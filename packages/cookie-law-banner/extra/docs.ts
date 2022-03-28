@@ -43,4 +43,5 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-cookie-law-banner",
 	version: null,
+	dependencies: null,
 };

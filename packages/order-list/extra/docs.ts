@@ -54,4 +54,5 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-order-list",
 	version: null,
+	dependencies: null,
 };

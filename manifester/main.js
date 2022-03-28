@@ -2,6 +2,7 @@
 import { program } from 'commander';
 import fs from 'fs/promises';
 import path from 'path';
+import pkg from './package.json';
 const options = program.option('--dir <value>').parse().opts();
 const componentPath = options?.dir;
 if (!componentPath)
@@ -25,6 +26,15 @@ async function assembleJson() {
             component: componentDefinitions,
         };
         componentSetup.version = packageJson.version;
+        componentSetup.dependencies = Object.keys(packageJson.dependencies)
+            .filter((f) => f.includes(pkg.name.split('/')[0]) && !f.includes('jsutils') && !f.includes('bundle'))
+            .map((m) => {
+            const dep = {
+                name: m,
+                version: packageJson.dependencies[m],
+            };
+            return dep;
+        });
         const componentSetupToString = JSON.stringify(componentSetup, null, 2);
         await fs.writeFile(outputFile, componentSetupToString);
         await fs.rm(docPathMjs);

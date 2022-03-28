@@ -52,4 +52,5 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-input-number",
 	version: null,
+	dependencies: null,
 };
