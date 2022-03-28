@@ -34,9 +34,9 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@htmlbricks/hb-bundle": "^0.9.10",
-		"@htmlbricks/hb-jsutils": "^0.9.10",
-		"@htmlbricks/hb-sidenav-link": "^0.9.10",
+		"@htmlbricks/hb-bundle": "^0.9.14",
+		"@htmlbricks/hb-jsutils": "^0.9.14",
+		"@htmlbricks/hb-sidenav-link": "^0.9.14",
 		"bootstrap": "^5.1.3",
 		"compare-versions": "^4.1.3",
 		"dayjs": "^1.10.8",

@@ -50,7 +50,7 @@
 			const jsonfetched = await pageraw.json();
 
 			const availableVersions = Object.keys(jsonfetched.versions).filter(
-				(f) => !repoName.includes('@htmlbricks') || compareVersions.compare(f, '0.9.10', '>=')
+				(f) => !repoName.includes('@htmlbricks') || compareVersions.compare(f, '0.9.14', '>=')
 			);
 
 			componentVersions = {
@@ -71,7 +71,7 @@
 		if ($page.url?.href?.split?.('version=')?.[1]?.split?.('&')?.[0]?.length) {
 			debugVersion.set($page.url.href.split('version=')[1].split('&')[0]);
 		} else {
-			debugVersion.set($componentsVersion);
+			debugVersion.set(shortMeta.version);
 		}
 		if (!lastName || lastName !== name) {
 			lastName = name;
