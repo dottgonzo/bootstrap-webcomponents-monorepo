@@ -25,7 +25,7 @@
 		"generate-events-schema": "ts-json-schema-generator --type 'Events' --path 'app/types/webcomponent.type.d.ts' > dist/webcomponent_events.type.d.json",
 		"generate-schemes": "npm run generate-events-schema && npm run generate-component-schema",
 		"copydest": "rm -rf release && mkdir -p release && mkdir -p release && cp dist/* ./release/",
-		"build-extra": "tsc --moduleResolution node --module es2020 --esModuleInterop --resolveJsonModule --outDir dist --sourceMap --skipLibCheck extra/*",
+		"build-extra": "tsc --moduleResolution node --module es2020 --esModuleInterop true --outDir dist --sourceMap --skipLibCheck extra/*",
 		"build:release": "PRODUCTION=true npm run build && npm run build-extra && npm run generate-manifest && npm run copydest",
 		"prepublish": "npm run build:release"
 	},
@@ -80,5 +80,5 @@
 		"html5-webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "c09271ecefb2693f3d7674a71525f8582b0eec80"
+	"gitHead": "37ef4a80cd1001f0872e5635c105d8d8301bce6b"
 }

@@ -1,5 +1,4 @@
 import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
-import { version } from "../package.json";
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
@@ -41,5 +40,5 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	size: {},
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-player-live",
-	version,
+	version: null,
 };
