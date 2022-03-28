@@ -9,7 +9,7 @@
 	export let com: string;
 
 	onMount(() => {
-		if (name && version) addComponent({ repoName: '@htmlbricks/' + name, version });
+		if (name && version) addComponent({ repoName: meta.repoName, version });
 		if (name && version && meta?.definitions?.events?.definitions?.Events?.properties) {
 			for (const eve of Object.keys(meta.definitions.events.definitions.Events.properties)) {
 				const el = document.getElementById(`com-${name}`);

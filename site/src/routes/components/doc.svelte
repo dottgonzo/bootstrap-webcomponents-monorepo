@@ -9,7 +9,7 @@
 	import CssPartsTable from '../../components/CssPartsTable.svelte';
 	import CssVarsTable from '../../components/CssVarsTable.svelte';
 	import EventsTable from '../../components/EventsTable.svelte';
-	import { componentsVersion, debugVersion, lang } from '../../stores/app';
+	import { componentsVersion, debugVersion, lang, componentsList } from '../../stores/app';
 	import { events, htmlSlotsContents, cssVarsValues, cssPartsContents } from '../../stores/events';
 	import { page } from '$app/stores';
 	import compareVersions from 'compare-versions';
@@ -32,11 +32,11 @@
 
 	let lastLoadId = 'none';
 
-	async function loadMeta(name: string, version: string) {
+	async function loadMeta(repoName: string, version: string) {
 		meta = null;
 		try {
 			const pageraw = await fetch(
-				`https://cdn.jsdelivr.net/npm/@htmlbricks/${name}@${version}/release/manifest.json`
+				`https://cdn.jsdelivr.net/npm/${repoName}@${version}/release/manifest.json`
 			);
 			meta = await pageraw.json();
 		} catch (err) {
@@ -44,9 +44,9 @@
 		}
 	}
 	let componentVersions: { name: string; versions: string[] };
-	async function getComponentVersions(name: string) {
+	async function getComponentVersions(repoName: string) {
 		try {
-			const pageraw = await fetch(`https://registry.npmjs.cf/@htmlbricks/${name}`);
+			const pageraw = await fetch(`https://registry.npmjs.cf/${repoName}`);
 			const jsonfetched = await pageraw.json();
 
 			const availableVersions = Object.keys(jsonfetched.versions).filter((f) =>
@@ -61,10 +61,12 @@
 			console.warn(`failed to fetch npm versions for ${$pageName}`);
 		}
 	}
+	let shortMeta: Partial<ComponentSetup>;
 	$: {
 		name = $page.url?.href?.split('c=')?.[1]?.split('&')[0];
 		if (!componentVersions || componentVersions.name !== name) {
-			getComponentVersions(name).catch(console.error);
+			shortMeta = $componentsList.packages.find((f) => f.name === name);
+			getComponentVersions(shortMeta.repoName).catch(console.error);
 		}
 		if ($page.url?.href?.split?.('version=')?.[1]?.split?.('&')?.[0]?.length) {
 			debugVersion.set($page.url.href.split('version=')[1].split('&')[0]);
@@ -79,7 +81,7 @@
 		const tmpLoadId = name + '_' + $debugVersion;
 		if (name && (!meta || tmpLoadId !== lastLoadId) && $debugVersion) {
 			meta = null;
-			loadMeta(name, $debugVersion).catch(console.error);
+			loadMeta(shortMeta.repoName, $debugVersion).catch(console.error);
 			lastLoadId = tmpLoadId;
 		}
 

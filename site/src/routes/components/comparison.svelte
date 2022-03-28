@@ -6,10 +6,10 @@
 
 	pageName.set('comparison');
 	let metas: typeof allComponentsMetas;
-	async function fetchComponentInfo(name: string, version: string) {
+	async function fetchComponentInfo(repoName: string, version: string) {
 		try {
 			const pageraw = await fetch(
-				`https://cdn.jsdelivr.net/npm/@htmlbricks/${name}@${version}/release/manifest.json`
+				`https://cdn.jsdelivr.net/npm/${repoName}@${version}/release/manifest.json`
 			);
 			const meta = await pageraw.json();
 			return meta;
@@ -22,7 +22,7 @@
 		const allPromises = [];
 
 		try {
-			for (const l of $componentsList.packages.map((m) => m.name)) {
+			for (const l of $componentsList.packages.map((m) => m.repoName)) {
 				allPromises.push(fetchComponentInfo(l, version));
 			}
 
