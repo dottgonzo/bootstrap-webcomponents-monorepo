@@ -12,10 +12,10 @@
 	import { componentsVersion, debugVersion, lang } from '../../stores/app';
 	import { events, htmlSlotsContents, cssVarsValues, cssPartsContents } from '../../stores/events';
 	import { page } from '$app/stores';
-	import { compare, validate as validateVersion } from 'compare-versions';
+	import compareVersions from 'compare-versions';
 	import type { ComponentSetup } from '@htmlbricks/hb-jsutils';
 
-	import { getAbbreviatedPackument } from 'query-registry';
+	// import { getAbbreviatedPackument } from 'query-registry';
 
 	import { pageName } from '../../stores/app';
 
@@ -46,11 +46,11 @@
 	let componentVersions: { name: string; versions: string[] };
 	async function getComponentVersions(name: string) {
 		try {
-			componentVersions = { name, versions: null };
-			const pkgManifest = await getAbbreviatedPackument({ name: '@htmlbricks/' + name });
+			const pageraw = await fetch(`https://registry.npmjs.cf/@htmlbricks/${name}`);
+			const jsonfetched = await pageraw.json();
 
-			const availableVersions = Object.keys(pkgManifest.versions).filter((f) =>
-				compare(f, '0.9.1', '>')
+			const availableVersions = Object.keys(jsonfetched.versions).filter((f) =>
+				compareVersions.compare(f, '0.9.1', '>')
 			);
 
 			componentVersions = {
@@ -157,7 +157,7 @@
 	function setVersion(e: { detail: { value: string } }) {
 		if (e?.detail?.value) {
 			const ver = e.detail.value;
-			if (validateVersion(ver)) {
+			if (compareVersions.validate(ver)) {
 				if (ver !== $debugVersion) {
 					if (ver === $componentsVersion && location.href.includes('version')) {
 						location.href =
