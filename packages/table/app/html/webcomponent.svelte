@@ -412,8 +412,8 @@
 		});
 	}
 
-	addComponent("@htmlbricks/hb-paginate", pkg.version);
-	addComponent("@htmlbricks/hb-dialog", pkg.version);
+	addComponent({ repoName: "@htmlbricks/hb-paginate", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-dialog", version: pkg.version });
 
 	function changeSort(key: string) {
 		console.log(sortedBy, sortedDirection);

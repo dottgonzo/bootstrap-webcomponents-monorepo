@@ -103,10 +103,10 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	addComponent("@htmlbricks/hb-footer", pkg.version);
-	addComponent("@htmlbricks/hb-offcanvas", pkg.version);
-	addComponent("@htmlbricks/hb-navbar", pkg.version);
-	addComponent("@htmlbricks/hb-cookie-law-banner", pkg.version);
+	addComponent({ repoName: "@htmlbricks/hb-footer", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-offcanvas", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-navbar", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-cookie-law-banner", version: pkg.version });
 
 	function openmenu(o) {
 		if (o.isOpen || o.isOpen === false) navopen = o.isOpen;

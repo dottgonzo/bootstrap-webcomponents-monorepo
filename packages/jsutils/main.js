@@ -22,16 +22,18 @@ function getChildStyleToPass(parsedStyle, vars) {
     return toreturn;
 }
 exports.getChildStyleToPass = getChildStyleToPass;
-function addComponent(componentPath, version, opts) {
+function addComponent(opts) {
     var _a;
-    var componentName = (_a = componentPath.split("/")) === null || _a === void 0 ? void 0 : _a[1];
+    var componentName = ((_a = opts === null || opts === void 0 ? void 0 : opts.repoName.split("/")) === null || _a === void 0 ? void 0 : _a[1]) || (opts === null || opts === void 0 ? void 0 : opts.repoName);
     if (!componentName)
-        throw new Error("wrong componentPath " + componentPath);
+        throw new Error("wrong componentPath " + (opts === null || opts === void 0 ? void 0 : opts.repoName));
+    if (!(opts === null || opts === void 0 ? void 0 : opts.version))
+        throw new Error("wrong version " + (opts === null || opts === void 0 ? void 0 : opts.version));
     var iifePath = (opts === null || opts === void 0 ? void 0 : opts.iifePath) || "release/release.js";
     if (!document.getElementById(componentName + "-script")) {
         var script = document.createElement("script");
         script.id = componentName + "-script";
-        script.src = "https://cdn.jsdelivr.net/npm/".concat(componentPath, "@").concat(version, "/").concat(iifePath);
+        script.src = "https://cdn.jsdelivr.net/npm/".concat(opts.repoName, "@").concat(opts.version, "/").concat(iifePath);
         if ((opts === null || opts === void 0 ? void 0 : opts.allowLocal) && location.href.includes("localhost")) {
             script.src = "http://localhost:6006/".concat(componentName.replace("hb-", ""), "/dist/release.js");
         }

@@ -206,17 +206,17 @@
 		valids[id] = valid;
 	};
 
-	addComponent("@htmlbricks/hb-input-date", pkg.version);
+	addComponent({repoName:"@htmlbricks/hb-input-date", version:pkg.version});
 
-	addComponent("@htmlbricks/hb-input-text", pkg.version);
-	addComponent("@htmlbricks/hb-input-email", pkg.version);
-	addComponent("@htmlbricks/hb-input-checkbox", pkg.version);
-	addComponent("@htmlbricks/hb-input-number", pkg.version);
-	addComponent("@htmlbricks/hb-input-area", pkg.version);
-	addComponent("@htmlbricks/hb-input-radio", pkg.version);
-	addComponent("@htmlbricks/hb-input-select", pkg.version);
-	addComponent("@htmlbricks/hb-input-file", pkg.version);
-	addComponent("@htmlbricks/hb-input-color", pkg.version);
+	addComponent({repoName:"@htmlbricks/hb-input-text", version:pkg.version});
+	addComponent({repoName:"@htmlbricks/hb-input-email", version:pkg.version});
+	addComponent({repoName:"@htmlbricks/hb-input-checkbox", version:pkg.version});
+	addComponent({repoName:"@htmlbricks/hb-input-number", version:pkg.version});
+	addComponent({repoName:"@htmlbricks/hb-input-area", version:pkg.version});
+	addComponent({repoName:"@htmlbricks/hb-input-radio", version:pkg.version});
+	addComponent({repoName:"@htmlbricks/hb-input-select", version:pkg.version});
+	addComponent({repoName:"@htmlbricks/hb-input-file", version:pkg.version});
+	addComponent({repoName:"@htmlbricks/hb-input-color", version:pkg.version});
 hb-
 	const component = get_current_component();
 

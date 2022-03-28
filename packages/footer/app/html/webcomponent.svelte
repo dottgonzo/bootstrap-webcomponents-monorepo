@@ -122,7 +122,7 @@
 		});
 	}
 
-	addComponent("contact-item", pkg.version);
+	addComponent("contact-item", version:pkg.version});
 </script>
 
 <footer>

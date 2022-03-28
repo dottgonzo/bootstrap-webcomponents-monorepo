@@ -174,8 +174,8 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	addComponent("@htmlbricks/hb-form", pkg.version);
-	addComponent("@htmlbricks/hb-payment-paypal", pkg.version);
+	addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-payment-paypal", version: pkg.version });
 
 	function editUserForm() {
 		editUser = true;

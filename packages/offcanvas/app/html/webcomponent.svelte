@@ -101,7 +101,7 @@
 		});
 	}
 
-	addComponent("@htmlbricks/hb-sidenav-link", pkg.version);
+	addComponent({ repoName: "@htmlbricks/hb-sidenav-link", version: pkg.version });
 </script>
 
 <svelte:head>

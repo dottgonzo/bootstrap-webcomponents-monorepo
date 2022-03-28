@@ -71,18 +71,21 @@ export function getChildStyleToPass(
   return toreturn;
 }
 
-export function addComponent(
-  componentPath: string,
-  version: string,
-  opts?: { allowLocal?: boolean; iifePath: string }
-) {
-  const componentName = componentPath.split("/")?.[1];
-  if (!componentName) throw new Error("wrong componentPath " + componentPath);
+export function addComponent(opts?: {
+  allowLocal?: boolean;
+  iifePath?: string;
+  repoName: string;
+  provider?: "github" | "npm";
+  version: string;
+}) {
+  const componentName = opts?.repoName.split("/")?.[1] || opts?.repoName;
+  if (!componentName) throw new Error("wrong componentPath " + opts?.repoName);
+  if (!opts?.version) throw new Error("wrong version " + opts?.version);
   const iifePath = opts?.iifePath || "release/release.js";
   if (!document.getElementById(componentName + "-script")) {
     const script = document.createElement("script");
     script.id = componentName + "-script";
-    script.src = `https://cdn.jsdelivr.net/npm/${componentPath}@${version}/${iifePath}`;
+    script.src = `https://cdn.jsdelivr.net/npm/${opts.repoName}@${opts.version}/${iifePath}`;
     if (opts?.allowLocal && location.href.includes("localhost")) {
       script.src = `http://localhost:6006/${componentName.replace(
         "hb-",
