@@ -118,7 +118,7 @@
 	>
 		<hb-sidebar-desktop
 			on:pageChange={(e) => dispatch("pageChange", e.detail)}
-			style="width:100%"
+			style="{sidebarDesktopStyleToSet};width:100%"
 			navlinks={$$props.navlinks}
 			navpage={$$props.$$navpage}
 			companytitle={$$props.$$companytitle}
