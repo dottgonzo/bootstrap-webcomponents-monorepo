@@ -19,7 +19,7 @@
 	import parseStyle from "style-to-object";
 
 	import { styleSetup as sidenavLinkStyleSetup } from "../../node_modules/@htmlbricks/hb-sidenav-link/release/docs";
-	import { styleSetup as sidebarDesktopStyleSetup } from "../../node_modules/@htmlbricks/hb-sidenav-link/release/docs";
+	import { styleSetup as sidebarDesktopStyleSetup } from "../../node_modules/@htmlbricks/hb-sidebar-desktop/release/docs";
 
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
@@ -118,7 +118,7 @@
 	>
 		<hb-sidebar-desktop
 			on:pageChange={(e) => dispatch("pageChange", e.detail)}
-			style="width:100%"
+			style="{sidebarDesktopStyleToSet};width:100%"
 			navlinks={$$props.navlinks}
 			navpage={$$props.$$navpage}
 			companytitle={$$props.$$companytitle}
