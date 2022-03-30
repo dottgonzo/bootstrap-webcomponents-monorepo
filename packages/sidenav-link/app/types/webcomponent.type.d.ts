@@ -21,5 +21,5 @@ export type Component = {
 };
 
 export type Events = {
-	pagechange: { page: string };
+	pageChange: { page: string };
 };

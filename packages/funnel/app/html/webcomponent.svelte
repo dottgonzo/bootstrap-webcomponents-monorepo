@@ -22,7 +22,7 @@
 	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
 	let formStyleToSet: string = "";
 
-	addComponent("form", pkg.version);
+	addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
 	export let id: string;
 	export let steps: number;
 	export let schemes: { schema: FormSchema; valid: boolean }[];

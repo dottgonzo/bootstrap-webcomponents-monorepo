@@ -51,4 +51,6 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	tags: ["basic"],
 	size: {},
 	iifePath: "release/release.js",
+	repoName: "@htmlbricks/hb-dialog",
+	version: null,
 };

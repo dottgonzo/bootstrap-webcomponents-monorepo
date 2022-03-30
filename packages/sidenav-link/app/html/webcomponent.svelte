@@ -22,7 +22,7 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 	function changePage(page: string) {
-		dispatch("pagechange", {
+		dispatch("pageChange", {
 			page,
 		});
 	}

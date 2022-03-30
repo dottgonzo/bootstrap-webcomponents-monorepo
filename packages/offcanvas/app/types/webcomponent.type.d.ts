@@ -15,5 +15,5 @@ export type Component = {
 
 export type Events = {
 	offcanvasswitch: { isOpen: boolean };
-	pagechange: { page: string };
+	pageChange: { page: string };
 };

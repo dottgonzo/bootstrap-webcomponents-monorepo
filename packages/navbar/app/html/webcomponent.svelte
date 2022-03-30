@@ -55,7 +55,7 @@
 		}
 	}
 
-	addComponent("dropdown-simple", pkg.version);
+	addComponent({ repoName: "@htmlbricks/hb-dropdown-simple", version: pkg.version });
 
 	// if (!document.getElementById("spectrumelements")) {
 	// 	const script = document.createElement("script");

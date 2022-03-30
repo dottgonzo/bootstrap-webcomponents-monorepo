@@ -136,7 +136,7 @@
 	// 	document.head.appendChild(script);
 	// }
 
-	// addComponent("form", pkg.version);
+	// addComponent({repoName:"@htmlbricks/hb-form", version:pkg.version});
 </script>
 
 <div part="btn" id="paypalbtn" />

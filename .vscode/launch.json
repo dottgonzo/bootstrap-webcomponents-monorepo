@@ -19,17 +19,6 @@
       "type": "node",
       "request": "launch",
       "runtimeVersion": "16.14.2",
-      "name": "dev site",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 9229,
-      "skipFiles": ["<node_internals>/**"],
-      "cwd": "${workspaceFolder}/site"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "runtimeVersion": "16.14.2",
       "name": "write readme",
       "runtimeArgs": ["-r", "ts-node/register/transpile-only", "."],
       "skipFiles": ["<node_internals>/**"],
@@ -46,10 +35,5 @@
       "cwd": "${workspaceFolder}/storybook"
     }
   ],
-  "compounds": [
-    {
-      "name": "Site and Storybook",
-      "configurations": ["Launch Storybook", "dev site"]
-    }
-  ]
+  "compounds": []
 }

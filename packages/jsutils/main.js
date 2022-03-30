@@ -22,13 +22,20 @@ function getChildStyleToPass(parsedStyle, vars) {
     return toreturn;
 }
 exports.getChildStyleToPass = getChildStyleToPass;
-function addComponent(componentName, version, allowLocal) {
-    if (!document.getElementById("hb-" + componentName + "-script")) {
+function addComponent(opts) {
+    var _a;
+    var componentName = ((_a = opts === null || opts === void 0 ? void 0 : opts.repoName.split("/")) === null || _a === void 0 ? void 0 : _a[1]) || (opts === null || opts === void 0 ? void 0 : opts.repoName);
+    if (!componentName)
+        throw new Error("wrong componentPath " + (opts === null || opts === void 0 ? void 0 : opts.repoName));
+    if (!(opts === null || opts === void 0 ? void 0 : opts.version))
+        throw new Error("wrong version " + (opts === null || opts === void 0 ? void 0 : opts.version));
+    var iifePath = (opts === null || opts === void 0 ? void 0 : opts.iifePath) || "release/release.js";
+    if (!document.getElementById(componentName + "-script")) {
         var script = document.createElement("script");
-        script.id = "hb-" + componentName + "-script";
-        script.src = "https://cdn.jsdelivr.net/npm/@htmlbricks/hb-".concat(componentName, "@").concat(version, "/release/release.js");
-        if (allowLocal && location.href.includes("localhost")) {
-            script.src = "http://localhost:6006/".concat(componentName, "/dist/release.js");
+        script.id = componentName + "-script";
+        script.src = "https://cdn.jsdelivr.net/npm/".concat(opts.repoName, "@").concat(opts.version, "/").concat(iifePath);
+        if ((opts === null || opts === void 0 ? void 0 : opts.local) && location.href.includes("localhost")) {
+            script.src = "".concat(opts.local);
         }
         document.head.appendChild(script);
     }

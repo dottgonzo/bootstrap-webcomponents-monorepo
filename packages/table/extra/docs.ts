@@ -12,7 +12,7 @@ export const storybookArgs = {
 	headers: { control: { type: "array" } },
 	actions: { control: { type: "array" } },
 	selectactions: { control: { type: "array" } },
-	pagechange: { action: "pagechangeEvent" },
+	pageChange: { action: "pagechangeEvent" },
 	tableaction: { action: "tableactionEvent" },
 	tableCustomActionClick: { action: "tableCustomActionClickEvent" },
 	cellclick: { action: "cellclickEvent" },
@@ -171,4 +171,6 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	tags: ["table"],
 	size: {},
 	iifePath: "release/release.js",
+	repoName: "@htmlbricks/hb-table",
+	version: null,
 };

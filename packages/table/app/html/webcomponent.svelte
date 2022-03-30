@@ -223,7 +223,7 @@
 		if (!externalfilter) page = el.detail.page;
 		selectedItems.length = 0;
 
-		dispatch("pagechange", {
+		dispatch("pageChange", {
 			page: el.detail.page,
 		});
 	}
@@ -412,8 +412,8 @@
 		});
 	}
 
-	addComponent("paginate", pkg.version);
-	addComponent("dialog", pkg.version);
+	addComponent({ repoName: "@htmlbricks/hb-paginate", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-dialog", version: pkg.version });
 
 	function changeSort(key: string) {
 		console.log(sortedBy, sortedDirection);
@@ -737,7 +737,7 @@
 					{/each}
 				{/if}
 				{#if disablepagination}
-					<hb-paginate style="float:right;{paginateStyleToSet}" on:pagechange={changePage} page={page.toString()} pages={pages.toString()} />
+					<hb-paginate style="float:right;{paginateStyleToSet}" on:pageChange={changePage} page={page.toString()} pages={pages.toString()} />
 				{/if}
 			</nav>
 		{/if}

@@ -179,7 +179,7 @@
 		// console.log("changepage");
 
 		if (!externalfilter) page = el.detail.page;
-		dispatch("pagechange", {
+		dispatch("pageChange", {
 			page: el.detail.page,
 			cards: getCurrentCards(),
 		});
@@ -217,8 +217,8 @@
 	// 	return app();
 	// }
 
-	addComponent("paginate", pkg.version);
-	addComponent("card-video", pkg.version);
+	addComponent({ repoName: "@htmlbricks/hb-paginate", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-card-video", version: pkg.version });
 
 	// onMount(async () => {
 	// 	await reloadCards();
@@ -328,7 +328,7 @@
 			<nav style="margin-top:20px" aria-label="Page navigation example">
 				<hb-paginate
 					style={paginateStyleToSet}
-					on:pagechange={changePage}
+					on:pageChange={changePage}
 					page={page.toString()}
 					pages={pages.toString()}
 					primarycolor={primarycolor || ""}

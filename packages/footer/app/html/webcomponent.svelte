@@ -122,7 +122,7 @@
 		});
 	}
 
-	addComponent("contact-item", pkg.version);
+	addComponent({ repoName: "@htmlbricks/hb-contact-item", version: pkg.version });
 </script>
 
 <footer>

@@ -53,4 +53,6 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	tags: ["basic"],
 	size: {},
 	iifePath: "release/release.js",
+	repoName: "@htmlbricks/hb-dropdown-simple",
+	version: null,
 };

@@ -44,4 +44,6 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	tags: ["payment"],
 	size: {},
 	iifePath: "release/release.js",
+	repoName: "@htmlbricks/hb-payment-paypal",
+	version: null,
 };

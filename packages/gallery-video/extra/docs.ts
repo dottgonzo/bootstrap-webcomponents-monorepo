@@ -8,7 +8,7 @@ export const storybookArgs = {
 	headers: { control: { type: "array" } },
 	cards: { control: { type: "array" } },
 	primarycolor: { control: { type: "color" } },
-	pagechange: { action: "pagechangeEvent" },
+	pageChange: { action: "pagechangeEvent" },
 	externalfilter: { control: { type: "boolean" } },
 	textFilterVideos: { action: "textFilterVideosEvent" },
 	dateFilterVideos: { action: "dateFilterVideosEvent" },
@@ -65,4 +65,6 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	tags: ["components"],
 	size: {},
 	iifePath: "release/release.js",
+	repoName: "@htmlbricks/hb-gallery-video",
+	version: null,
 };

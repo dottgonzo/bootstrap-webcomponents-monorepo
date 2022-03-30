@@ -103,10 +103,10 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	addComponent("footer", pkg.version);
-	addComponent("offcanvas", pkg.version);
-	addComponent("navbar", pkg.version);
-	addComponent("cookie-law-banner", pkg.version);
+	addComponent({ repoName: "@htmlbricks/hb-footer", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-offcanvas", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-navbar", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-cookie-law-banner", version: pkg.version });
 
 	function openmenu(o) {
 		if (o.isOpen || o.isOpen === false) navopen = o.isOpen;
@@ -126,7 +126,7 @@
 			on:offcanvasswitch={(el) => openmenu(el.detail)}
 			opened={navopen ? "yes" : "no"}
 			type={sidebar?.type ? sidebar.type : "autohide"}
-			on:pagechange={(p) => dispatch("pagechange", p.detail)}
+			on:pageChange={(p) => dispatch("pageChange", p.detail)}
 		>
 			<span slot="header"><slot name="nav-header-slot" /></span>
 		</hb-offcanvas>

@@ -206,17 +206,17 @@
 		valids[id] = valid;
 	};
 
-	addComponent("input-date", pkg.version);
+	addComponent({ repoName: "@htmlbricks/hb-input-date", version: pkg.version });
 
-	addComponent("input-text", pkg.version);
-	addComponent("input-email", pkg.version);
-	addComponent("input-checkbox", pkg.version);
-	addComponent("input-number", pkg.version);
-	addComponent("input-area", pkg.version);
-	addComponent("input-radio", pkg.version);
-	addComponent("input-select", pkg.version);
-	addComponent("input-file", pkg.version);
-	addComponent("input-color", pkg.version);
+	addComponent({ repoName: "@htmlbricks/hb-input-text", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-email", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-checkbox", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-number", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-area", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-radio", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-select", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-file", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-color", version: pkg.version });
 
 	const component = get_current_component();
 

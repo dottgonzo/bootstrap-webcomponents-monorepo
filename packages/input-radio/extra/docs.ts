@@ -56,4 +56,6 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	tags: ["input"],
 	size: {},
 	iifePath: "release/release.js",
+	repoName: "@htmlbricks/hb-input-radio",
+	version: null,
 };

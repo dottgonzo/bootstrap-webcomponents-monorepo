@@ -71,4 +71,6 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	tags: ["page"],
 	size: {},
 	iifePath: "release/release.js",
+	repoName: "@htmlbricks/hb-page-invoice",
+	version: null,
 };

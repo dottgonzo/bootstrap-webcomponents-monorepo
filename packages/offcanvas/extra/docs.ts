@@ -8,8 +8,8 @@ export const storybookArgs = {
 	groups: { control: { type: "text" } },
 	enablefooter: { control: { type: "boolean" } },
 	offcanvasswitch: { action: "offcanvasswitchEvent" },
-	pagechange: { action: "pagechangeEvent" },
-	type: { control: { options: ["autohide", "small", "open"] } },
+	pageChange: { action: "pageChangeEvent" },
+	type: { options: ["autohide", "small", "open"], control: { type: "select" } },
 	navpage: { control: { type: "text" } },
 	navlinks: { control: { type: "array" } },
 };
@@ -89,4 +89,6 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	tags: ["layout"],
 	size: {},
 	iifePath: "release/release.js",
+	repoName: "@htmlbricks/hb-offcanvas",
+	version: null,
 };

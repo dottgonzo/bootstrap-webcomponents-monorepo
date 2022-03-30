@@ -2,7 +2,7 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	pagechange: { action: "pagechange" },
+	pageChange: { action: "pageChange" },
 	offcanvasswitch: { action: "offcanvasswitchEvent" },
 	contacts: { control: { type: "object" } },
 	sidebar: { control: { type: "object" } },
@@ -162,4 +162,6 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	tags: ["layout"],
 	size: {},
 	iifePath: "release/release.js",
+	repoName: "@htmlbricks/hb-layout",
+	version: null,
 };

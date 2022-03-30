@@ -24,7 +24,17 @@ export type i18nLang = {
   language: string;
   lang: string;
 };
-export type ComponentSetup = {
+export interface ComponentShortSetup {
+  i18n: i18nLang[];
+  name: string;
+  category: string;
+  tags: string[];
+  size: {};
+  iifePath: string;
+  repoName: string;
+  version: string;
+}
+export interface ComponentSetup extends ComponentShortSetup {
   definitions: {
     events: {
       $ref: string;
@@ -40,14 +50,8 @@ export type ComponentSetup = {
   storybookArgs: any;
   styleSetup: StyleSetup;
   htmlSlots: HtmlSlot[];
-  i18n: i18nLang[];
   examples: any[];
-  name: string;
-  category: string;
-  tags: string[];
-  size: {};
-  iifePath: string;
-};
+}
 export function getChildStyleToPass(
   parsedStyle: { [x: string]: string },
   vars: CssVar[]
@@ -71,19 +75,24 @@ export function getChildStyleToPass(
   return toreturn;
 }
 
-export function addComponent(
-  componentName: string,
-  version: string,
-  allowLocal?: boolean
-) {
-  if (!document.getElementById("hb-" + componentName + "-script")) {
+export function addComponent(opts?: {
+  local?: string;
+  iifePath?: string;
+  repoName: string;
+  provider?: "github" | "npm";
+  version: string;
+}) {
+  const componentName = opts?.repoName.split("/")?.[1] || opts?.repoName;
+  if (!componentName) throw new Error("wrong componentPath " + opts?.repoName);
+  if (!opts?.version) throw new Error("wrong version " + opts?.version);
+  const iifePath = opts?.iifePath || "release/release.js";
+  if (!document.getElementById(componentName + "-script")) {
     const script = document.createElement("script");
-    script.id = "hb-" + componentName + "-script";
-    script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${version}/release/release.js`;
-    if (allowLocal && location.href.includes("localhost")) {
-      script.src = `http://localhost:6006/${componentName}/dist/release.js`;
+    script.id = componentName + "-script";
+    script.src = `https://cdn.jsdelivr.net/npm/${opts.repoName}@${opts.version}/${iifePath}`;
+    if (opts?.local && location.href.includes("localhost")) {
+      script.src = `${opts.local}`;
     }
-
     document.head.appendChild(script);
   }
 }

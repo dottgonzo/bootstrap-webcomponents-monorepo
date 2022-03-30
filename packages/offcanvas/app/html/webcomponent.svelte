@@ -19,6 +19,7 @@
 	import parseStyle from "style-to-object";
 
 	import { styleSetup as sidenavLinkStyleSetup } from "../../node_modules/@htmlbricks/hb-sidenav-link/release/docs";
+	import { styleSetup as sidebarDesktopStyleSetup } from "../../node_modules/@htmlbricks/hb-sidenav-link/release/docs";
 
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
@@ -35,6 +36,7 @@
 
 	let parsedStyle: { [x: string]: string };
 	let sidenavLinkStyleToSet: string = "";
+	let sidebarDesktopStyleToSet: string = "";
 	let sendOff;
 	let switched;
 	$: {
@@ -43,6 +45,7 @@
 		if (style) {
 			parsedStyle = parseStyle(style);
 			sidenavLinkStyleToSet = getChildStyleToPass(parsedStyle, sidenavLinkStyleSetup?.vars);
+			sidebarDesktopStyleToSet = getChildStyleToPass(parsedStyle, sidebarDesktopStyleSetup?.vars);
 		}
 		if (!type) type = "autohide";
 		if (!companylogouri) companylogouri = "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg";
@@ -69,11 +72,8 @@
 			} else if (!groups) {
 				groups = [];
 			}
-			if (typeof navlinks === "string") {
-				navlinks = JSON.parse(navlinks);
-			} else if (!navlinks) {
-				navlinks = [];
-				navlinks = null;
+			if (!navlinks) {
+				navlinks = "" as undefined;
 			}
 		} catch (err) {}
 	}
@@ -87,7 +87,7 @@
 	}
 	function changePage(page: string) {
 		console.log(page);
-		dispatch("pagechange", {
+		dispatch("pageChange", {
 			page,
 		});
 		OpenSwitch(false);
@@ -101,7 +101,8 @@
 		});
 	}
 
-	addComponent("sidenav-link", pkg.version);
+	addComponent({ repoName: "@htmlbricks/hb-sidenav-link", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-sidebar-desktop", version: pkg.version });
 </script>
 
 <svelte:head>
@@ -115,77 +116,13 @@
 		aria-labelledby="offcanvasExampleLabel"
 		style="overflow-y: auto; visibility: visible; {opened ? 'transform:none!important' : 'transform:translateX(-100%)!important'};"
 	>
-		<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="min-height:100vh;padding-top:0px!important">
-			<h4 class="offcanvas-title">
-				<slot name="header" part="header" />
-				{#if companytitle}
-					<div style="margin-top:10px">
-						{#if companylogouri}
-							<img style="height:40px;margin-right:10px" src={companylogouri} alt="" />
-						{/if}
-						{companytitle}
-					</div>
-				{/if}
-
-				<!-- <button on:click={() => OpenSwitch(false)} type="button" class="btn-close btn-sm text-reset" style="float:right;" /> -->
-			</h4>
-			<!-- <hr style="margin-top:9px;margin-bottom: 20px;" /> -->
-
-			<ul class="nav nav-pills flex-column mb-auto" style="margin-top:25px">
-				{#if navlinks?.length && navlinks.filter((f) => !f.group)?.length}
-					{#each navlinks.filter((f) => !f.group) as navLink (navLink.key)}
-						<hb-sidenav-link
-							style={sidenavLinkStyleToSet}
-							navlink={JSON.stringify(navLink)}
-							{navpage}
-							on:pagechange={(e) => changePage(e.detail.page)}
-						/>
-					{/each}
-				{/if}
-				{#if groups?.length}
-					{#each groups as navLinkGroup (navLinkGroup.key)}
-						<h5 style="margin-top: 40px;">{navLinkGroup.label}</h5>
-						<hr style="margin-top:0px;margin-bottom: 10px;" />
-
-						{#each navlinks.filter((f) => f.group && f.group === navLinkGroup.key) as navLink (navLink.key)}
-							<hb-sidenav-link
-								style={sidenavLinkStyleToSet}
-								navlink={JSON.stringify(navLink)}
-								{navpage}
-								on:pagechange={(e) => changePage(e.detail.page)}
-							/>
-						{/each}
-					{/each}
-				{/if}
-				{#if navlinks?.length}
-					{#each navlinks
-						.filter((f) => f.group && (!groups?.length || !groups.map((m) => m.key).includes(f.group)))
-						.map((m) => m.group)
-						.filter((v, i, a) => a.indexOf(v) === i) as navLinkGroup (navLinkGroup)}
-						<h5 style="margin-top: 40px;">{navLinkGroup}</h5>
-						<hr style="margin-top:0px;margin-bottom: 10px;" />
-
-						{#each navlinks.filter((f) => f.group && f.group === navLinkGroup) as navLink (navLink.key)}
-							<hb-sidenav-link
-								style={sidenavLinkStyleToSet}
-								navlink={JSON.stringify(navLink)}
-								{navpage}
-								on:pagechange={(e) => changePage(e.detail.page)}
-							/>
-						{/each}
-					{/each}
-				{/if}
-
-				<!-- {#if navlinks.filter((f) => f.group)?.length}
-					<hr />
-				{/if} -->
-			</ul>
-			<!-- TODO: add profile login/logout/managment -->
-			{#if enablefooter}
-				<hr />
-				<slot name="footer">footer</slot>
-			{/if}
-		</div>
+		<hb-sidebar-desktop
+			on:pageChange={(e) => dispatch("pageChange", e.detail)}
+			style="width:100%"
+			navlinks={$$props.navlinks}
+			navpage={$$props.$$navpage}
+			companytitle={$$props.$$companytitle}
+		/>
 	</div>
 	{#if type === "autohide"}
 		<div on:click={() => OpenSwitch(false)} class="modal-backdrop fade {opened ? 'show' : ''}" style="z-index:1040; {opened ? '' : 'visibility:hidden'}" />
