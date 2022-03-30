@@ -21,7 +21,7 @@
 	export let style: string;
 
 	export let string: string;
-	export let json: ;
+	export let json: { a: 0 };
 	export let boolean: boolean;
 
 	let parsedStyle: { [x: string]: string };
