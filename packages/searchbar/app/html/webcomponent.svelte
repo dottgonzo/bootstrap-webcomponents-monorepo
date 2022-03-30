@@ -4,7 +4,6 @@
 	interface keyable {
 		[key: string]: any;
 	}
-	import pkg from "../../package.json";
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 
@@ -22,7 +21,6 @@
 	let searchResource;
 	let searchInit;
 	let resultItemsPathArray = [];
-	let targetItems;
 
 	$: {
 		method = method.toUpperCase();
