@@ -21,6 +21,12 @@
 	import dayjs from "dayjs";
 	import debounce from "debounce";
 	import "dayjs/locale/it";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
+	let tableStyleToSet: string = "";
+	import { styleSetup as tableStyleSetup } from "../../node_modules/@htmlbricks/hb-table/release/docs";
 
 	export let id: string;
 
@@ -69,6 +75,10 @@
 	let total: number;
 	$: {
 		if (!id) id = null;
+		if (style) {
+			parsedStyle = parseStyle(style);
+			tableStyleToSet = getChildStyleToPass(parsedStyle, tableStyleSetup?.vars);
+		}
 		if (!printer) printer = "no";
 		if (!items) items = [];
 		else if (typeof items === "string") items = JSON.parse(items);
@@ -128,23 +138,14 @@
 
 		total = subTotal + taxTotal;
 	}
-	const component = get_current_component();
-	const svelteDispatch = createEventDispatcher();
-	function dispatch(name, detail) {
-		svelteDispatch(name, detail);
-		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
-	}
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
+	// const component = get_current_component();
+	// const svelteDispatch = createEventDispatcher();
+	// function dispatch(name, detail) {
+	// 	svelteDispatch(name, detail);
+	// 	component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
+	// }
 
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("table");
+	addComponent({ repoName: "@htmlbricks/hb-table", version: pkg.version });
 </script>
 
 {#if headers?.from && headers.to}
@@ -192,7 +193,7 @@
 		</div>
 		<div class="row" style="margin-top:40px">
 			<div class="col">
-				<hb-table disablepagination="yes" rows={JSON.stringify(tableRows)} headers={JSON.stringify(tableHeaders)} />
+				<hb-table style={tableStyleToSet} disablepagination="yes" rows={JSON.stringify(tableRows)} headers={JSON.stringify(tableHeaders)} />
 			</div>
 		</div>
 		<div class="row" style="margin-top:40px">

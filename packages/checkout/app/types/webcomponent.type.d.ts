@@ -45,9 +45,18 @@ export type IPayment = {
 };
 
 export type Component = {
+	id?: string;
+	style?: string;
 	shipments: IShipment[];
-	user: IUser;
+	user?: IUser;
 	gateways: IGateway[];
 	payment: IPayment;
-	completed: "yes" | "no";
+	completed?: "yes" | "no";
+};
+
+export type Events = {
+	paymentCompleted: { total: number; method: string; completed: true };
+	saveUser: IUser;
+	saveShipment: IShipment;
+	completed: { control: { type: "radio" }; options: ["yes", "no"] };
 };

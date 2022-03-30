@@ -22,7 +22,8 @@ To build the components is choosed to use svelte instead of native web component
 
 ## ONLINE RESOURCES
 
-- [Storybook App](https://htmlbricks.dev.kernel.online/)
+- [Storybook App](https://storybook.freewebcomponents.com)
+- [Demo App](https://demo.freewebcomponents.com)
 
 ## HTML QUICK START
 
@@ -47,8 +48,8 @@ now you can listen for events from the component by adding:
   // the webcomponent node on the page
 	const element=document.getElementsByTagName('hb-paginate')[0]
 
-	// add a listener for the event pagechange
-	element.addEventListener('pagechange',(event)=>{
+	// add a listener for the event pageChange
+	element.addEventListener('pageChange',(event)=>{
 
 	  // the webcomponent event data is comonly shared from event.detail
 		const message=event.detail
@@ -138,6 +139,7 @@ when is needed to publish one/more packages version update, is needed to publish
 ### uncategorized
 
 - dialog
+- area code
 - contact
 - cookie law
 - downloader

@@ -14,46 +14,46 @@
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
-	import type { IBrandAndContacts, IColumn, ICompany, IContacts, IFooterBottom, IPolicies, ISmallRow, ISocials } from "@app/types/webcomponent.type";
+	import type { IBrandAndContacts, IColumn, ICompany, IContacts, IPolicies, ISocials } from "@app/types/webcomponent.type";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
+	import { styleSetup as contactItemStyleSetup } from "../../node_modules/@htmlbricks/hb-contact-item/release/docs";
+	let contactItemStyleToSet: string = "";
 
 	export let id: string;
 	export let company: ICompany;
-	export let smallrow: ISmallRow;
 	export let brandandcontacts: IBrandAndContacts;
 	export let columns: IColumn[];
-	export let footerbottom: IFooterBottom;
-	export let description: string;
 
 	export let socials: ISocials;
 	export let contacts: IContacts;
-	export let copyrighttext: string;
 	export let policies: IPolicies[];
 	$: {
 		if (!id) id = "";
-
-		if (!copyrighttext) copyrighttext = "";
-		if (!description) description = "";
+		if (style) {
+			parsedStyle = parseStyle(style);
+			contactItemStyleToSet = getChildStyleToPass(parsedStyle, contactItemStyleSetup?.vars);
+		}
 
 		if (!company) {
 			company = null;
-		} else {
-			try {
-				company = JSON.parse(company as unknown as string);
-			} catch (err) {}
+			console.warn("no company provided!");
+		} else if (typeof company === "string") {
+			company = JSON.parse(company);
 		}
 
 		if (!columns) {
-			columns = null;
-		} else {
-			try {
-				columns = JSON.parse(columns as unknown as string);
+			columns = [];
+		} else if (typeof columns === "string") {
+			columns = JSON.parse(columns);
+		}
 
-				let n = 0;
-				for (const c of columns) {
-					if (!c._id) c._id = "ccc_" + n.toString();
-					n++;
-				}
-			} catch (err) {}
+		let n = 0;
+		for (const c of columns) {
+			if (!c._id) c._id = "ccc_" + n.toString();
+			n++;
 		}
 
 		if (!brandandcontacts) {
@@ -63,26 +63,10 @@
 				brandandcontacts = JSON.parse(brandandcontacts as unknown as string);
 			} catch (err) {}
 		}
-		if (!smallrow) {
-			smallrow = null;
-		} else {
-			try {
-				smallrow = JSON.parse(smallrow as unknown as string);
-			} catch (err) {}
-		}
-		if (!footerbottom) {
-			footerbottom = null;
-		} else {
-			try {
-				footerbottom = JSON.parse(footerbottom as unknown as string);
-			} catch (err) {}
-		}
 		if (!socials) {
 			socials = null;
-		} else {
-			try {
-				socials = JSON.parse(socials as unknown as string);
-			} catch (err) {}
+		} else if (typeof socials === "string") {
+			socials = JSON.parse(socials as unknown as string);
 		}
 		if (!contacts) {
 			contacts = null;
@@ -138,17 +122,7 @@
 		});
 	}
 
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
-
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("contact-item");
+	addComponent({ repoName: "@htmlbricks/hb-contact-item", version: pkg.version });
 </script>
 
 <footer>
@@ -191,22 +165,22 @@
 						<ul class="list-unstyled">
 							{#if contacts.phones?.length}
 								{#each contacts.phones as phone (phone._id)}
-									<li><hb-contact-item phone={JSON.stringify(phone)} /></li>
+									<li><hb-contact-item style={contactItemStyleToSet} phone={JSON.stringify(phone)} /></li>
 								{/each}
 							{/if}
 							{#if contacts.addresses?.length}
 								{#each contacts.addresses as address (address._id)}
-									<li><hb-contact-item address={JSON.stringify(address)} /></li>
+									<li><hb-contact-item style={contactItemStyleToSet} address={JSON.stringify(address)} /></li>
 								{/each}
 							{/if}
 							{#if contacts.emails?.length}
 								{#each contacts.emails as email (email._id)}
-									<li><hb-contact-item email={JSON.stringify(email)} /></li>
+									<li><hb-contact-item style={contactItemStyleToSet} email={JSON.stringify(email)} /></li>
 								{/each}
 							{/if}
 							{#if contacts.sites?.length}
 								{#each contacts.sites as site (site._id)}
-									<li><hb-contact-item site={JSON.stringify(site)} /></li>
+									<li><hb-contact-item style={contactItemStyleToSet} site={JSON.stringify(site)} /></li>
 								{/each}
 							{/if}
 						</ul>
@@ -218,44 +192,65 @@
 						<ul class="list-unstyled">
 							{#if socials.facebook}
 								<li>
-									<hb-contact-item social={JSON.stringify({ name: "facebook", label: "pagina facebook", pageUri: "https://facebook.com" })} />
+									<hb-contact-item
+										style={contactItemStyleToSet}
+										social={JSON.stringify({ name: "facebook", label: "pagina facebook", pageUri: "https://facebook.com" })}
+									/>
 								</li>
 							{/if}
 
 							{#if socials?.gmail}
 								<li>
-									<hb-contact-item social={JSON.stringify({ name: "gmail", label: "pagina gmail", pageUri: "https://gmail.com" })} />
+									<hb-contact-item
+										style={contactItemStyleToSet}
+										social={JSON.stringify({ name: "gmail", label: "pagina gmail", pageUri: "https://gmail.com" })}
+									/>
 								</li>
 							{/if}
 							{#if socials?.twitter}
 								<li>
-									<hb-contact-item social={JSON.stringify({ name: "twitter", label: "pagina twitter", pageUri: "https://twitter.com" })} />
+									<hb-contact-item
+										style={contactItemStyleToSet}
+										social={JSON.stringify({ name: "twitter", label: "pagina twitter", pageUri: "https://twitter.com" })}
+									/>
 								</li>
 							{/if}
 							{#if socials?.github}
 								<li>
-									<hb-contact-item social={JSON.stringify({ name: "github", label: "pagina github", pageUri: "https://github.com" })} />
+									<hb-contact-item
+										style={contactItemStyleToSet}
+										social={JSON.stringify({ name: "github", label: "pagina github", pageUri: socials.github })}
+									/>
 								</li>
 							{/if}
 							{#if socials?.twitch}
 								<li>
-									<hb-contact-item social={JSON.stringify({ name: "twitch", label: "pagina twitch", pageUri: "https://twitch.com" })} />
+									<hb-contact-item
+										style={contactItemStyleToSet}
+										social={JSON.stringify({ name: "twitch", label: "pagina twitch", pageUri: "https://twitch.com" })}
+									/>
 								</li>
 							{/if}
 							{#if socials?.youtube}
 								<li>
-									<hb-contact-item social={JSON.stringify({ name: "youtube", label: "pagina youtube", pageUri: "https://youtube.com" })} />
+									<hb-contact-item
+										style={contactItemStyleToSet}
+										social={JSON.stringify({ name: "youtube", label: "pagina youtube", pageUri: "https://youtube.com" })}
+									/>
 								</li>
 							{/if}
 							{#if socials?.discord}
 								<li>
-									<hb-contact-item social={JSON.stringify({ name: "discord", label: "pagina discord", pageUri: "https://discord.com" })} />
+									<hb-contact-item
+										style={contactItemStyleToSet}
+										social={JSON.stringify({ name: "discord", label: "pagina discord", pageUri: "https://discord.com" })}
+									/>
 								</li>
 							{/if}
 						</ul>
 					</div>
 				{/if}
-				{#if columns && columns.length}
+				{#if columns?.length}
 					{#each columns as column (column._id)}
 						<div
 							style="padding:20px 20px"
@@ -274,13 +269,13 @@
 											>
 										</li>
 									{:else if cell.phone}
-										<li><hb-contact-item phone={JSON.stringify(cell.phone)} /></li>
+										<li><hb-contact-item style={contactItemStyleToSet} phone={JSON.stringify(cell.phone)} /></li>
 									{:else if cell.address}
-										<li><hb-contact-item address={JSON.stringify(cell.address)} /></li>
+										<li><hb-contact-item style={contactItemStyleToSet} address={JSON.stringify(cell.address)} /></li>
 									{:else if cell.email}
-										<li><hb-contact-item email={JSON.stringify(cell.email)} /></li>
+										<li><hb-contact-item style={contactItemStyleToSet} email={JSON.stringify(cell.email)} /></li>
 									{:else if cell.site}
-										<li><hb-contact-item site={JSON.stringify(cell.site)} /></li>
+										<li><hb-contact-item style={contactItemStyleToSet} site={JSON.stringify(cell.site)} /></li>
 									{:else if cell.label}
 										<li>
 											<button

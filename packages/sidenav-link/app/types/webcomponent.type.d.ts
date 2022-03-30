@@ -14,6 +14,12 @@ export interface INavLink {
 }
 
 export type Component = {
+	id?: string;
+	style?: string;
 	navlink: INavLink;
-	navpage: string;
+	navpage?: string;
+};
+
+export type Events = {
+	pageChange: { page: string };
 };

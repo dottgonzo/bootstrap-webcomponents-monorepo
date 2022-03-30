@@ -18,6 +18,14 @@
 	import pkg from "../../package.json";
 	import type { IDispatchValsEvent, ITrack } from "@app/types/webcomponent.type";
 	import duration from "dayjs/plugin/duration";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
+	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
+	import { styleSetup as rangeSliderStyleSetup } from "../../node_modules/@htmlbricks/hb-range-slider/release/docs";
+	let formStyleToSet: string = "";
+	let rangeSliderStyleToSet: string = "";
 
 	dayjs.extend(duration);
 
@@ -42,6 +50,11 @@
 	let enablesubmit: boolean;
 
 	$: {
+		if (style) {
+			parsedStyle = parseStyle(style);
+			formStyleToSet = getChildStyleToPass(parsedStyle, formStyleSetup?.vars);
+			rangeSliderStyleToSet = getChildStyleToPass(parsedStyle, rangeSliderStyleSetup?.vars);
+		}
 		if (!id) {
 			id = "";
 		}
@@ -84,18 +97,9 @@
 	function setVideoTime(seconds: number) {
 		getVideo().currentTime = seconds;
 	}
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("range-slider");
-	addComponent("form");
+	addComponent({ repoName: "@htmlbricks/hb-range-slider", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
 
 	function dispatchTrackVals(trackStatus: IDispatchValsEvent) {
 		track.minValue = trackStatus.minValue;
@@ -231,6 +235,7 @@
 		{#if durationInSeconds && track}
 			<div style="width: 100%;margin-top:20px">
 				<hb-range-slider
+					style={rangeSliderStyleToSet}
 					max={max.toString()}
 					min={min.toString()}
 					maxval={track.maxValue.toString()}
@@ -242,9 +247,9 @@
 			</div>
 		{/if}
 		{#if form}<hb-form
+				style={formStyleToSet + "margin:40px auto 20px auto; display:block"}
 				on:submit={(e) => formSubmit(e.detail)}
 				on:change={(e) => formCheck(e.detail)}
-				style="margin:40px auto 20px auto; display:block"
 				submitted={sendform}
 				schema={form}
 			/>{/if}

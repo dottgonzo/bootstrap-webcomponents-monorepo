@@ -2,7 +2,7 @@
   "name": "@htmlbricks/hb-jsutils",
   "displayName": "HTMLBricks jsutils",
   "description": "HTMLBricks jsutils",
-  "version": "0.5.14",
+  "version": "0.10.8",
   "main": "main.js",
   "publishConfig": {
     "access": "public"
@@ -17,7 +17,8 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "build:release": "tsc"
+    "build:release": "tsc",
+    "prepublish": "npm run build:release"
   },
   "keywords": [
     "svelte",
@@ -28,5 +29,5 @@
   "devDependencies": {
     "typescript": "^4.2.4"
   },
-  "gitHead": "b2cab991888f2b2fc1f9d2981a87323d17587533"
+  "gitHead": "a5885cabd838b2db1b4e4c900c8eb950ae2c9b5f"
 }

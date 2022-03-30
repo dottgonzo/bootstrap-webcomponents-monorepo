@@ -66,6 +66,7 @@ export type IComponentName =
 	| "hb-input-email"
 	| "hb-input-area"
 	| "hb-input-checkbox"
+	| "hb-input-color"
 	| "hb-input-radio";
 
 export interface ISchemaOption {
@@ -93,12 +94,16 @@ export type FormRendererProps = {
 };
 
 export type Component = {
+	id?: string;
+	style?: string;
 	schema: FormSchema;
 
-	values: Record<string, string | number | boolean>;
+	values?: Record<string, string | number | boolean>;
 
-	isInvalid: boolean;
-	submitted: "yes" | "no" | null;
-	getvals: "yes" | "no" | null;
-	showvalidation: "yes" | "no";
+	isInvalid?: boolean;
+	submitted?: "yes" | "no" | null;
+	getvals?: "yes" | "no" | null;
+	showvalidation?: "yes" | "no";
 };
+
+export type Events = {};

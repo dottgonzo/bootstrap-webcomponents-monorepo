@@ -23,8 +23,14 @@ export interface ICapabilities {
 }
 
 export type Component = {
-	allowdecline: "yes" | "no";
-	language: string;
-	capabilities: ICapabilities;
-	cookielawuri4more: string;
+	id?: string;
+	style?: string;
+	allowdecline?: "yes" | "no";
+	i18nlang?: string;
+	capabilities?: ICapabilities;
+	cookielawuri4more?: string;
+};
+
+export type Events = {
+	acceptCookieLaw: { accepted: "yes" | "no" };
 };

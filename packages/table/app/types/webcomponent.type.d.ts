@@ -20,7 +20,7 @@ export interface ITableHeader {
 export interface IRow {
 	_id: string;
 	_actions?: IActionButton[];
-	[k: string]: string | IActionButton[];
+	[k: string]: string | IActionButton[] | any;
 }
 
 export interface IActionButton {
@@ -39,16 +39,33 @@ export interface IActionButton {
 }
 
 export type Component = {
-	externalfilter: string;
+	id?: string;
+	style?: string;
+	externalfilter?: boolean;
 	rows: IRow[];
-	size: number;
-	page: number;
-	pages: number;
-	primarycolor: string;
+	size?: number;
+	page?: number;
+	pages?: number;
 	headers: ITableHeader[];
-	actions: IActionButton[];
-	selectactions: any[];
-	selectrow: string;
-	enableselect: string;
-	disablepagination: string;
+	actions?: IActionButton[];
+	selectactions?: any[];
+	selectrow?: string;
+	enableselect?: string;
+	disablepagination?: string;
+};
+
+export type Events = {
+	pageChange: { page: number; pages: number };
+	removeFilter: { key: string };
+	changeFilter: { filter: IFilter };
+	tableCustomActionClick: { itemId: string; action: string };
+	tableaction: { itemId: string; action: string };
+	cellclick: { rowId: string; cellId: string };
+	actiononselected: { key: string; selectedItems: string[] };
+	clickonrow: { itemId: string };
+	changeSort: {
+		sortedBy: string;
+		sortedDirection: string;
+	};
+	showConfirmModal: { action: string; detail: { id: string; show: boolean } };
 };

@@ -14,27 +14,44 @@
 	import pkg from "../../package.json";
 	import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
 
+	import type { Component } from "../types/webcomponent.type";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+
+	import { styleSetup as sidenavLinkStyleSetup } from "../../node_modules/@htmlbricks/hb-sidenav-link/release/docs";
+	import { styleSetup as sidebarDesktopStyleSetup } from "../../node_modules/@htmlbricks/hb-sidebar-desktop/release/docs";
+
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	export let id: string;
 	export let opened: boolean;
 	export let navlinks: INavLink[];
 	export let navpage: string;
-	export let groups: string;
+	export let groups: Component["groups"];
 	export let companylogouri: string;
 	export let companytitle: string;
 	export let enablefooter: boolean;
-	export let type: "open" | "autohide" | "small";
-	let groupsArr: { key: string; label: string }[] = [];
+	export let type: Component["type"];
+	export let style: string;
+
+	let parsedStyle: { [x: string]: string };
+	let sidenavLinkStyleToSet: string = "";
+	let sidebarDesktopStyleToSet: string = "";
 	let sendOff;
 	let switched;
 	$: {
 		if (!id) id = null;
+
+		if (style) {
+			parsedStyle = parseStyle(style);
+			sidenavLinkStyleToSet = getChildStyleToPass(parsedStyle, sidenavLinkStyleSetup?.vars);
+			sidebarDesktopStyleToSet = getChildStyleToPass(parsedStyle, sidebarDesktopStyleSetup?.vars);
+		}
 		if (!type) type = "autohide";
 		if (!companylogouri) companylogouri = "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg";
-		if (!companytitle) companytitle = "company";
-		if (!enablefooter) enablefooter = false;
-		if (opened && (opened as unknown as string) !== "no") {
+		if (!companytitle) companytitle = "";
+		if (!enablefooter || (enablefooter as unknown as string) === "no") enablefooter = false;
+		if (type === "open" || (opened && (opened as unknown as string) !== "no")) {
 			opened = true;
 			if (sendOff) clearInterval(sendOff);
 			if (!switched)
@@ -50,17 +67,13 @@
 			navpage = "home";
 		}
 		try {
-			if (groups) {
-				groupsArr = JSON.parse(groups);
-			} else {
-				groups = null;
-				groupsArr = [];
+			if (typeof groups === "string") {
+				groups = JSON.parse(groups);
+			} else if (!groups) {
+				groups = [];
 			}
-			if (typeof navlinks === "string") {
-				navlinks = JSON.parse(navlinks);
-			} else if (!navlinks) {
-				navlinks = [];
-				navlinks = null;
+			if (!navlinks) {
+				navlinks = "" as undefined;
 			}
 		} catch (err) {}
 	}
@@ -74,7 +87,7 @@
 	}
 	function changePage(page: string) {
 		console.log(page);
-		dispatch("pagechange", {
+		dispatch("pageChange", {
 			page,
 		});
 		OpenSwitch(false);
@@ -87,17 +100,9 @@
 			isOpen: opened,
 		});
 	}
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("sidenav-link");
+	addComponent({ repoName: "@htmlbricks/hb-sidenav-link", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-sidebar-desktop", version: pkg.version });
 </script>
 
 <svelte:head>
@@ -109,63 +114,15 @@
 		class="offcanvas offcanvas-start show"
 		tabindex="-1"
 		aria-labelledby="offcanvasExampleLabel"
-		style="visibility: visible; {opened ? 'transform:none!important' : 'transform:translateX(-100%)!important;'}"
+		style="overflow-y: auto; visibility: visible; {opened ? 'transform:none!important' : 'transform:translateX(-100%)!important'};"
 	>
-		<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="min-height:100vh;padding-top:0px!important">
-			<h4 class="offcanvas-title">
-				<slot name="header" part="header">
-					<div style="margin-top:10px">
-						{#if companylogouri}
-							<img style="height:40px;margin-right:10px" src={companylogouri} alt="" />
-						{/if}
-						{companytitle}
-					</div>
-				</slot>
-
-				<!-- <button on:click={() => OpenSwitch(false)} type="button" class="btn-close btn-sm text-reset" style="float:right;" /> -->
-			</h4>
-			<!-- <hr style="margin-top:9px;margin-bottom: 20px;" /> -->
-
-			<ul class="nav nav-pills flex-column mb-auto" style="margin-top:25px">
-				{#if navlinks?.length && navlinks.filter((f) => !f.group)?.length}
-					{#each navlinks.filter((f) => !f.group) as navLink (navLink.key)}
-						<hb-sidenav-link navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
-					{/each}
-				{/if}
-				{#if groupsArr?.length}
-					{#each groupsArr as navLinkGroup (navLinkGroup.key)}
-						<h5 style="margin-top: 40px;">{navLinkGroup.label}</h5>
-						<hr style="margin-top:0px;margin-bottom: 10px;" />
-
-						{#each navlinks.filter((f) => f.group && f.group === navLinkGroup.key) as navLink (navLink.key)}
-							<hb-sidenav-link navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
-						{/each}
-					{/each}
-				{/if}
-				{#if navlinks?.length}
-					{#each navlinks
-						.filter((f) => f.group && (!groupsArr || !groupsArr.length || !groupsArr.map((m) => m.key).includes(f.group)))
-						.map((m) => m.group)
-						.filter((v, i, a) => a.indexOf(v) === i) as navLinkGroup (navLinkGroup)}
-						<h5 style="margin-top: 40px;">{navLinkGroup}</h5>
-						<hr style="margin-top:0px;margin-bottom: 10px;" />
-
-						{#each navlinks.filter((f) => f.group && f.group === navLinkGroup) as navLink (navLink.key)}
-							<hb-sidenav-link navlink={JSON.stringify(navLink)} {navpage} on:pagechange={(e) => changePage(e.detail.page)} />
-						{/each}
-					{/each}
-				{/if}
-
-				<!-- {#if navlinks.filter((f) => f.group)?.length}
-					<hr />
-				{/if} -->
-			</ul>
-			<!-- TODO: add profile login/logout/managment -->
-			{#if enablefooter}
-				<hr />
-				<slot name="footer">footer</slot>
-			{/if}
-		</div>
+		<hb-sidebar-desktop
+			on:pageChange={(e) => dispatch("pageChange", e.detail)}
+			style="{sidebarDesktopStyleToSet};width:100%"
+			navlinks={$$props.navlinks}
+			navpage={$$props.$$navpage}
+			companytitle={$$props.$$companytitle}
+		/>
 	</div>
 	{#if type === "autohide"}
 		<div on:click={() => OpenSwitch(false)} class="modal-backdrop fade {opened ? 'show' : ''}" style="z-index:1040; {opened ? '' : 'visibility:hidden'}" />

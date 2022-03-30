@@ -7,7 +7,7 @@
     {
       "type": "node",
       "request": "launch",
-      "runtimeVersion": "16.14.0",
+      "runtimeVersion": "16.14.2",
       "name": "dev streamingtable",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
@@ -18,25 +18,16 @@
     {
       "type": "node",
       "request": "launch",
-      "runtimeVersion": "16.14.0",
-      "name": "dev site",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 9229,
+      "runtimeVersion": "16.14.2",
+      "name": "write readme",
+      "runtimeArgs": ["-r", "ts-node/register/transpile-only", "."],
       "skipFiles": ["<node_internals>/**"],
-      "cwd": "${workspaceFolder}/site"
-    },
-    {
-      "name": "Launch Chrome",
-      "request": "launch",
-      "type": "pwa-chrome",
-      "url": "http://localhost:6006",
-      "webRoot": "${workspaceFolder}/storybook"
+      "cwd": "${workspaceFolder}/readmewriter"
     },
     {
       "name": "Launch Storybook",
       "request": "launch",
-      "runtimeVersion": "16.14.0",
+      "runtimeVersion": "16.14.2",
       "runtimeArgs": ["run", "storybook"],
       "runtimeExecutable": "npm",
       "skipFiles": ["<node_internals>/**"],
@@ -44,10 +35,5 @@
       "cwd": "${workspaceFolder}/storybook"
     }
   ],
-  "compounds": [
-    {
-      "name": "Storybook with chrome",
-      "configurations": ["Launch Storybook", "Launch Chrome"]
-    }
-  ]
+  "compounds": []
 }

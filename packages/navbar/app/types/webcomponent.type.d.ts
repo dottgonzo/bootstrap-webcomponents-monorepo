@@ -9,10 +9,17 @@ export interface IUserMenu {
 	list?: IUserMenuListItem[];
 }
 export type Component = {
+	id?: string;
+	style?: string;
 	companybrandname: string;
 	companylogouri: string;
-	pagetitle: string;
-	switchopen: string;
-	usermenu: IUserMenu;
-	noburger: string;
+	// pagetitle: string;
+	switchopen?: "yes" | "no";
+	usermenu?: IUserMenu;
+	noburger?: string;
+};
+
+export type Events = {
+	userClick: { key: string };
+	navmenuswitch: { isOpen: boolean };
 };

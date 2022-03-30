@@ -6,19 +6,6 @@ export type FormSchemaEntry = {
 	id: string;
 
 	/**
-	 * Identifies the component type that will be used,
-	 * available default ones are:
-	 *  - text
-	 *  - number
-	 *  - email
-	 *  - select
-	 * 	- radio
-	 *  - checkbox
-	 *  - textarea
-	 */
-	type: string;
-
-	/**
 	 * The descriptive label that will show alongside the form control.
 	 */
 	label?: string;
@@ -27,14 +14,6 @@ export type FormSchemaEntry = {
 	 * Optional default value.
 	 */
 	value?: string | number | boolean;
-
-	/**
-	 * This form control will show only if these dependencies are satisfied.
-	 */
-	dependencies?: {
-		id: string;
-		values?: any[];
-	}[];
 
 	readonly?: boolean;
 
@@ -58,8 +37,12 @@ export type FormSchemaEntry = {
 };
 
 export type Component = {
-	setvalue: boolean;
-	setvalid: boolean;
-	showvalidation: "yes" | "no";
+	id?: string;
+	style?: string;
+	setvalue?: boolean;
+	setvalid?: boolean;
+	showvalidation?: "yes" | "no";
 	schemaentry: FormSchemaEntry;
 };
+
+export type Events = { setValue: { value: string }; setValid: { valid: boolean } };

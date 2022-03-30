@@ -32,10 +32,16 @@ export interface ISocial {
 }
 
 export type Component = {
-	phone: IPhone;
-	address: IAddress;
-	email: IEmail;
-	site: ISite;
-	social: ISocial;
-	config: IConfig;
+	id?: string;
+	style?: string;
+	phone?: IPhone;
+	address?: IAddress;
+	email?: IEmail;
+	site?: ISite;
+	social?: ISocial;
+	config?: IConfig;
+};
+
+export type Events = {
+	contactclick: { action: string; options: any };
 };

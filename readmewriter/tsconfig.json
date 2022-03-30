@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "lib": ["es2020"],
+    "noEmit": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "declaration": false,
+    "strict": false,
+    "skipLibCheck": true,
+    "allowJs": true
+  }
+}

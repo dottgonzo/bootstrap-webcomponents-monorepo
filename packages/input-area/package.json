@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-input-area",
 	"displayName": "Svelte-Bootstrap Text Area Input WebComponent",
 	"description": "Svelte-Bootstrap Text Area Input WebComponent",
-	"version": "0.5.14",
+	"version": "0.10.8",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -20,17 +20,23 @@
 		"start": "sirv dist",
 		"dev": "rm -rf ./dist && rollup -c -w",
 		"build": "rm -rf ./dist && rollup -c",
-		"generate-schema": "ts-json-schema-generator --path 'app/types/webcomponent.type.d.ts' --type 'Component' > app/types/webcomponent.type.d.json && cp app/types/webcomponent.type.d.json ./dist/",
+		"generate-manifest": "npm run generate-schemes && manifester --dir $PWD",
+		"generate-component-schema": "ts-json-schema-generator --type 'Component' --path 'app/types/webcomponent.type.d.ts' > dist/webcomponent.type.d.json",
+		"generate-events-schema": "ts-json-schema-generator --type 'Events' --path 'app/types/webcomponent.type.d.ts' > dist/webcomponent_events.type.d.json",
+		"generate-schemes": "npm run generate-events-schema && npm run generate-component-schema",
 		"copydest": "rm -rf release && mkdir -p release && mkdir -p release && cp dist/* ./release/",
-		"build-extra": "tsc --module es2020 --esModuleInterop true --outDir dist --sourceMap true --skipLibCheck true extra/*",
-		"build:release": "PRODUCTION=true npm run build && npm run build-extra && npm run generate-schema && npm run copydest",
+		"build-extra": "tsc --moduleResolution node --module es2020 --esModuleInterop true --outDir dist --sourceMap --skipLibCheck extra/*",
+		"build:release": "PRODUCTION=true npm run build && npm run build-extra && npm run generate-manifest && npm run copydest",
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
+		"@htmlbricks/hb-jsutils": "^0.10.8",
+		"@htmlbricks/manifester": "^0.0.21",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
 		"@rollup/plugin-json": "^4.1.0",
 		"@rollup/plugin-node-resolve": "^11.2.1",
+		"@rollup/plugin-replace": "^4.0.0",
 		"@rollup/plugin-typescript": "^8.2.1",
 		"@tsconfig/svelte": "^1.0.10",
 		"@types/node": "^16.7.1",
@@ -56,6 +62,7 @@
 		"svelte": "^3.46.2",
 		"svelte-check": "^1.5.2",
 		"svelte-preprocess": "^4.7.2",
+		"ts-json-schema-generator": "^0.98.0",
 		"ts-node": "^9.1.1",
 		"tslib": "^2.2.0",
 		"ttypescript": "^1.5.12",
@@ -68,5 +75,5 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "b2cab991888f2b2fc1f9d2981a87323d17587533"
+	"gitHead": "a5885cabd838b2db1b4e4c900c8eb950ae2c9b5f"
 }

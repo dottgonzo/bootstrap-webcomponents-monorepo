@@ -5,6 +5,13 @@
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
 	import type { IHeader } from "@app/types/webcomponent.type";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
+	import { styleSetup as dialogStyleSetup } from "../../node_modules/@htmlbricks/hb-dialog/release/docs";
+	let dialogStyleToSet: string = "";
+
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 	function dispatch(name, detail) {
@@ -12,17 +19,7 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
-
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("dialog");
+	addComponent({ repoName: "@htmlbricks/hb-dialog", version: pkg.version });
 
 	export let downloadid: string;
 	export let uri: string;
@@ -35,6 +32,10 @@
 	let downloaded: boolean;
 	let errorMessage: string;
 	$: {
+		if (style) {
+			parsedStyle = parseStyle(style);
+			dialogStyleToSet = getChildStyleToPass(parsedStyle, dialogStyleSetup?.vars);
+		}
 		if (!downloadid) downloadid = "";
 		if (!downloaded) downloaded = false;
 		if (!uri) uri = "";
@@ -88,7 +89,7 @@
 				xhr = null;
 				downloaded = true;
 				errorMessage = null;
-				return dispatch("downloadComplete", { downloaded, id: downloadid });
+				return dispatch("downloadComplete", { downloaded, id: downloadid || "default" });
 			};
 			xhr.onerror = (error) => {
 				return onRequestError(error);
@@ -128,7 +129,7 @@
 	}
 </script>
 
-<hb-dialog id={downloadid} show={uri ? "yes" : "no"} on:modalShow={(d) => dialogShowEvent(d.detail)}>
+<hb-dialog style={dialogStyleToSet} id={downloadid} show={uri ? "yes" : "no"} on:modalShow={(d) => dialogShowEvent(d.detail)}>
 	<span slot="title">
 		<slot name="title">Downloading</slot>
 	</span>

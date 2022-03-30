@@ -29,7 +29,11 @@ export interface IHeaders {
 }
 
 export type Component = {
-	printer: "yes" | "no";
+	id?: string;
+	style?: string;
+	printer?: "yes" | "no";
 	items: IItem[];
 	headers: IHeaders;
 };
+
+export type Events = {};
