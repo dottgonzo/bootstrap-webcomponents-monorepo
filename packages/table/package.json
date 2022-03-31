@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-table",
 	"displayName": "Svelte Boostrap Streaming Table WebComponent",
 	"description": "Svelte Boostrap Streaming Table WebComponent",
-	"version": "0.10.12",
+	"version": "0.10.13",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.10.12",
+		"@htmlbricks/hb-jsutils": "^0.10.13",
 		"@htmlbricks/manifester": "^0.0.21",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
@@ -76,8 +76,8 @@
 	],
 	"contributors": [],
 	"dependencies": {
-		"@htmlbricks/hb-dialog": "^0.10.12",
-		"@htmlbricks/hb-paginate": "^0.10.12",
+		"@htmlbricks/hb-dialog": "^0.10.13",
+		"@htmlbricks/hb-paginate": "^0.10.13",
 		"bootstrap-icons": "^1.5.0",
 		"dayjs": "^1.10.7"
 	},
