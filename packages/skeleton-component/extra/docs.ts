@@ -18,9 +18,7 @@ export const styleSetup: StyleSetup = {
 const examples: Component[] = [
 	{
 		json: {
-			value: 50,
-			min: 0,
-			max: 100,
+			a: 0,
 		},
 		string: "test",
 		boolean: false,

@@ -1,7 +1,7 @@
 export type Component = {
 	id?: string;
 	style?: string;
-	json?: json;
+	json?: { a: number };
 	string: string;
 	boolean?: boolean;
 };
