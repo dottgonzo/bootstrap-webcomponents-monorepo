@@ -9,7 +9,7 @@ export const storybookArgs = {
 };
 
 const cssVars: CssVar[] = [];
-export const cssParts: CssPart[] = [{ name: "gauge", description: "" }];
+export const cssParts: CssPart[] = [{ name: "testpart", description: "test css part on 2 div tag" }];
 export const htmlSlots: HtmlSlot[] = [];
 export const i18nLanguages: i18nLang[] = [];
 

@@ -53,9 +53,9 @@
 	}
 </script>
 
-<div on:click={() => dispatchCustomEvent()} id="skeletontest">{string}</div>
+<div part="testpart" on:click={() => dispatchCustomEvent()} id="skeletontest">{string}</div>
 {#if json}<div>{json}</div>{/if}
-<div>{boolean}</div>
+<div part="testpart">{boolean}</div>
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
