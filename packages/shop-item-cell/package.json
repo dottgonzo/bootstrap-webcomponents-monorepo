@@ -61,9 +61,7 @@
 		"typescript-transform-paths": "^2.2.3"
 	},
 	"dependencies": {
-		"bootstrap-icons": "^1.8.1",
-		"dayjs": "^1.10.7",
-		"debounce": "^1.2.1"
+		"bootstrap-icons": "^1.8.1"
 	},
 	"keywords": [
 		"svelte",
