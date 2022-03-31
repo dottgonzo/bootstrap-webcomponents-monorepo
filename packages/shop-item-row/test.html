@@ -16,7 +16,21 @@
 </head>
 
 <body>
-	<hb-shop-item-row></hb-shop-item-row>
+	<hb-shop-item-row img="https://picsum.photos/200/250" url="https://picsum.photos/200/250" badge="New"
+		title="Card title" subtitle="Card subtitle" text="Some quick example text to build on the card title and make up the bulk of the
+						card's content." rating="5.55" rating-scale="10" reviews="1500" price="$500" regular-price="$600"
+		footer="Card footer" reviews-url="https://example.org"></hb-shop-item-row>
+	<hb-shop-item-row img="https://picsum.photos/200/250" url="https://example.com">
+		<span slot="badge">New1</span>
+		<span slot="title" id="title">Card title1</span>
+		<span slot="subtitle">Card subtitle1</span>
+		<span slot="text">Some quick example text to build on the card title and make up the bulk of the card's
+			content.1</span>
+		<span slot="reviews">25001</span>
+		<span slot="price">$5001</span>
+		<span slot="regular-price">$6001</span>
+		<span slot="footer">Card footer1</span>
+	</hb-shop-item-row>
 	<div style="background-color: skyblue; margin: 5px; padding: 5px">
 		<div class="card">
 			<div class="row g-0 border rounded overflow-hidden flex-md-row shadow-sm h-md-250 position-relative">

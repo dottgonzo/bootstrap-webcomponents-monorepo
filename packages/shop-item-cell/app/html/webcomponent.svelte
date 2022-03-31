@@ -14,9 +14,6 @@
 	export let price: string = undefined;
 	export let regularPrice: string = ($$props["regular-price"] = undefined);
 	export let footer: string = undefined;
-	$: {
-		console.log($$slots);
-	}
 </script>
 
 <svelte:head>
