@@ -6,4 +6,6 @@ export type Component = {
 	boolean?: boolean;
 };
 
-export type Events = {};
+export type Events = {
+	event: { test: boolean };
+};

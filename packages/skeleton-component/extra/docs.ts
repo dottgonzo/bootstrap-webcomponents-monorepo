@@ -2,7 +2,10 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	options: { control: { type: "object" } },
+	json: { control: { type: "object" } },
+	string: { control: { type: "text" } },
+	boolean: { control: { type: "object" } },
+	event: { action: "eventEvent" },
 };
 
 const cssVars: CssVar[] = [];
