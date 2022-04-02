@@ -54,6 +54,8 @@ export interface ComponentShortSetup {
     }
   ];
   readmePath: string;
+  author: string;
+  owner: string;
 }
 export interface ComponentSetup extends ComponentShortSetup {
   definitions: {
@@ -72,6 +74,11 @@ export interface ComponentSetup extends ComponentShortSetup {
   styleSetup: StyleSetup;
   htmlSlots: HtmlSlot[];
   examples: any[];
+  contributors: {
+    name: string;
+    email: string;
+    url?: string;
+  }[];
 }
 export function getChildStyleToPass(
   parsedStyle: { [x: string]: string },

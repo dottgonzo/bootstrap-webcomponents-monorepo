@@ -47,6 +47,10 @@ async function assembleJson() {
       component: componentDefinitions,
     }
     componentSetup.version = packageJson.version
+    componentSetup.author = packageJson.author
+    componentSetup.contributors = packageJson.contributors || []
+    componentSetup.owner = packageJson.owner || packageJson.author
+
     // componentSetup.dependencies = dependencies
     const componentSetupToString = JSON.stringify(componentSetup, null, 2)
     await fs.writeFile(outputFile, componentSetupToString)
