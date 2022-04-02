@@ -33,6 +33,18 @@ export interface ComponentShortSetup {
   iifePath: string;
   repoName: string;
   version: string;
+  screenshots: string[];
+  license:
+    | "Apache-2.0"
+    | "MIT"
+    | "ISC"
+    | "BSD-3-Clause"
+    | "BSD-2-Clause"
+    | "Unlicense"
+    | "Public-Domain"
+    | "Other"
+    | "AGPLv2"
+    | "AGPLv3";
 }
 export interface ComponentSetup extends ComponentShortSetup {
   definitions: {

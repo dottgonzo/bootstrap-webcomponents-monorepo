@@ -31,6 +31,8 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	htmlSlots,
 	i18n: i18nLanguages,
 	examples,
+	screenshots: [],
+	license: "Apache-2.0",
 	name: "hb-banner",
 	category: "basic",
 	tags: ["basic"],
