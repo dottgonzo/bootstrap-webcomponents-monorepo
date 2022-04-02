@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-page-loginregister",
 	"displayName": "Svelte Bootstrap Login/Register Layout WebComponent",
 	"description": "Svelte Bootstrap 5 WebComponent",
-	"version": "0.10.22",
+	"version": "0.10.23",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.10.22",
+		"@htmlbricks/hb-jsutils": "^0.10.23",
 		"@htmlbricks/manifester": "^0.0.21",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
@@ -70,8 +70,8 @@
 		"typescript-transform-paths": "^2.2.3"
 	},
 	"dependencies": {
-		"@htmlbricks/hb-auth": "^0.10.22",
-		"@htmlbricks/hb-layout": "^0.10.22"
+		"@htmlbricks/hb-auth": "^0.10.23",
+		"@htmlbricks/hb-layout": "^0.10.23"
 	},
 	"keywords": [
 		"svelte",
