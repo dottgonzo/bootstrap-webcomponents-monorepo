@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-page-invoice",
 	"displayName": "Svelte Invoice WebComponent",
 	"description": "Svelte Invoice WebComponent",
-	"version": "0.10.9",
+	"version": "0.10.17",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.10.9",
+		"@htmlbricks/hb-jsutils": "^0.10.17",
 		"@htmlbricks/manifester": "^0.0.21",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
@@ -70,7 +70,7 @@
 		"typescript-transform-paths": "^2.2.3"
 	},
 	"dependencies": {
-		"@htmlbricks/hb-table": "^0.10.9",
+		"@htmlbricks/hb-table": "^0.10.17",
 		"dayjs": "^1.10.7",
 		"debounce": "^1.2.1"
 	},
@@ -81,5 +81,5 @@
 		"html5-webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "a5885cabd838b2db1b4e4c900c8eb950ae2c9b5f"
+	"gitHead": "bdf29009026b25ab208be7fdcb099f4a68114cd6"
 }

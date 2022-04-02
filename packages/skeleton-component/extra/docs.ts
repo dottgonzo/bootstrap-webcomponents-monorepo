@@ -2,11 +2,14 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	options: { control: { type: "object" } },
+	json: { control: { type: "object" } },
+	string: { control: { type: "text" } },
+	boolean: { control: { type: "object" } },
+	event: { action: "eventEvent" },
 };
 
 const cssVars: CssVar[] = [];
-export const cssParts: CssPart[] = [{ name: "gauge", description: "" }];
+export const cssParts: CssPart[] = [{ name: "testpart", description: "test css part on 2 div tag" }];
 export const htmlSlots: HtmlSlot[] = [];
 export const i18nLanguages: i18nLang[] = [];
 
@@ -18,9 +21,7 @@ export const styleSetup: StyleSetup = {
 const examples: Component[] = [
 	{
 		json: {
-			value: 50,
-			min: 0,
-			max: 100,
+			a: 0,
 		},
 		string: "test",
 		boolean: false,
