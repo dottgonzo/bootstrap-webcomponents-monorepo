@@ -12,6 +12,7 @@ import css from "rollup-plugin-css-only";
 import copy from "rollup-plugin-copy";
 import json from "@rollup/plugin-json";
 import alias from "@rollup/plugin-alias";
+import replace from '@rollup/plugin-replace';
 import path from "path";
 // import { spawn } from "child_process";
 
@@ -60,6 +61,17 @@ export default {
 				dev: !production,
 				customElement: true,
 			},
+		}),
+		replace({
+			values: {
+				':#0d6efd': ':var(--bs-primary,#07689f)',
+				':#6c757d': ':var(--bs-secondary,#c9d6df)',
+				':#198754': ':var(--bs-success,#11d3bc)',
+				':#dc3545': ':var(--bs-danger,#f67280)',
+				':#0dcaf0': ':var(--bs-info,#a2d5f2)',
+				':#198754': ':var(--bs-warning,#ffc107)',
+			},
+			delimiters: ['', '']
 		}),
 
 		// we'll extract any component CSS out into

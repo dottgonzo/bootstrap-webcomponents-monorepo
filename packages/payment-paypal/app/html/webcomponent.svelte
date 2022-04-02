@@ -17,6 +17,12 @@
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { formCreditCardSchema } from "@app/functions/formSchemes";
 	import { loadScript } from "@paypal/paypal-js";
+	// import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	// import parseStyle from "style-to-object";
+	// let parsedStyle: { [x: string]: string };
+	// export let style: string;
+	// import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
+	// let formStyleToSet: string = "";
 
 	export let id: string;
 	export let paypalid: string;
@@ -28,6 +34,10 @@
 	let formCreditCardSchemaSubmitted: "yes" | "no" = "no";
 	$: {
 		if (!id) id = null;
+		// if (style) {
+		// 	parsedStyle = parseStyle(style);
+		// 	formStyleToSet = getChildStyleToPass(parsedStyle, formStyleSetup?.vars);
+		// }
 		if (!total) total = null;
 		else total = Number(total);
 		if (!currency) currency = "EUR";
@@ -126,17 +136,7 @@
 	// 	document.head.appendChild(script);
 	// }
 
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
-
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("form");
+	// addComponent({repoName:"@htmlbricks/hb-form", version:pkg.version});
 </script>
 
 <div part="btn" id="paypalbtn" />

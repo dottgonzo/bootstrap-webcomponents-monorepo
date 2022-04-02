@@ -1,12 +1,123 @@
 <svelte:options tag="hb-form-contact" />
 
 <script lang="ts">
-	import { createEventDispatcher } from "svelte";
+	import { createEventDispatcher, onMount, beforeUpdate, afterUpdate } from "svelte";
 	import { get_current_component } from "svelte/internal";
-	import debounce from "debounce";
+	import { fly, fade } from "svelte/transition";
+
+	interface keyable {
+		[key: string]: any;
+	}
+
+	export let action: string;
+	export let method: string = "POST";
+	export let fromKey: string = $$props["from-key"];
+	export let subjectKey: string = $$props["subject-key"];
+	export let contentKey: string = $$props["content-key"];
+	export let recaptchaSiteKey: string = $$props["recaptcha-site-key"];
+
+	let hasError = false;
+	let isSuccessVisible = false;
+	let disabled = false;
+	let name = "";
+	let email = "";
+	let subject = "";
+	let content = "";
+	let errMessage = "Something went wrong!";
+	let State = {
+		idle: "idle",
+		requesting: "requesting",
+		success: "success",
+	};
+	let token;
+	let state = State.idle;
 
 	$: {
+		method = method.toUpperCase();
+		if (!fromKey) {
+			fromKey = "from";
+		}
+		if (!subjectKey) {
+			subjectKey = "subject";
+		}
+		if (!contentKey) {
+			contentKey = "content";
+		}
 	}
+
+	function submitAfterVerification() {
+		state = State.requesting;
+		doRecaptcha();
+	}
+
+	function doRecaptcha() {
+		try {
+			grecaptcha.ready(function () {
+				grecaptcha.execute(recaptchaSiteKey, { action: "submit" }).then(function (t) {
+					state = State.success;
+					token = t;
+					if (token) {
+						sendMessage(token);
+					}
+				});
+			});
+		} catch (e) {
+			hasError = true;
+			errMessage = "Something went wrong!";
+			console.error(e);
+		}
+	}
+
+	function handleSubmit(e) {
+		hasError = false;
+		disabled = true;
+		if (recaptchaSiteKey) {
+			submitAfterVerification();
+		} else {
+			sendMessage();
+		}
+	}
+
+	function sendMessage(verify = "") {
+		const from = `${name}<${email}>`;
+		const data = { [fromKey]: from, [subjectKey]: subject, [contentKey]: content };
+		if (verify) {
+			data["g-recaptcha-response"] = verify;
+		}
+		const fetchResource = `${action}`;
+		const fetchInit = {
+			method,
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data),
+		};
+
+		const mailSenderPromise = fetchMailSenderRes(fetchResource, fetchInit);
+	}
+	async function fetchMailSenderRes(resource, init): Promise<string> {
+		const res = await fetch(resource, init);
+		const data = await res.json();
+
+		disabled = false;
+
+		if (res.ok) {
+			isSuccessVisible = true;
+
+			setTimeout(function () {
+				isSuccessVisible = false;
+			}, 3000);
+
+			dispatch("sent-mail", data);
+			return data;
+		} else {
+			hasError = true;
+			errMessage = "Something went wrong!";
+			dispatch("sent-mail-error", new Error(data));
+			throw new Error(data);
+		}
+	}
+
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 	function dispatch(name, detail) {
@@ -15,30 +126,36 @@
 	}
 </script>
 
-<svelte:head>
-</svelte:head>
-<form class="needs-validation pt-2 px-md-3" novalidate="">
+<form class="needs-validation pt-2 px-md-3" on:submit|preventDefault={handleSubmit}>
+	{#if recaptchaSiteKey}
+		<script src="https://www.google.com/recaptcha/api.js?render={recaptchaSiteKey}" async defer></script>
+	{/if}
+	{#if hasError == true}
+		<div class="alert alert-danger" role="alert">{errMessage}</div>
+	{:else if isSuccessVisible}
+		<div class="alert alert-success" role="alert" transition:fade={{ duration: 150 }}>Message sent successfully</div>
+	{/if}
 	<div class="row">
 		<div class="col-md-6 mb-3 pb-1">
 			<label class="form-label" for="cont-fn">Name</label>
-			<input class="form-control" type="text" id="cont-fn" placeholder="John Doe" />
+			<input class="form-control" type="text" id="cont-fn" placeholder="Name" bind:value={name} />
 		</div>
 		<div class="col-md-6 mb-3 pb-1">
 			<label class="form-label" for="cont-email">Email address<sup class="text-danger ms-1">*</sup></label>
-			<input class="form-control" type="email" id="cont-email" placeholder="j.doe@example.com" required="" />
+			<input class="form-control" type="email" id="cont-email" placeholder="Email address" required bind:value={email} />
 			<div class="invalid-feedback">Please enter a valid email address!</div>
 		</div>
 	</div>
 	<div class="mb-3 pb-1">
 		<label class="form-label" for="cont-subject">Subject</label>
-		<input class="form-control" type="text" id="cont-subject" placeholder="Title of your message" />
+		<input class="form-control" type="text" id="cont-subject" placeholder="Subject" bind:value={subject} />
 	</div>
 	<div class="mb-3 pb-1">
 		<label class="form-label" for="cont-message">Message</label>
-		<textarea class="form-control" id="cont-message" rows="5" placeholder="Write your message here" />
+		<textarea class="form-control" id="cont-message" rows="5" placeholder="Message" bind:value={content} />
 	</div>
 	<div class="text-center pt-2">
-		<button class="btn btn-primary g-recaptcha" data-sitekey="reCAPTCHA_site_key" data-callback="onSubmit" data-action="submit" type="submit">Send</button>
+		<button class="btn btn-primary" type="submit" {disabled}>Send</button>
 	</div>
 </form>
 

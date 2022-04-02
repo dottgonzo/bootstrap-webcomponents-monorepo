@@ -37,7 +37,7 @@
 		line?: { lngLat: number[]; icon?: { uri: string; scale?: number; anchor?: number[] }; id?: string; popupHtml?: string }[];
 	}[];
 	export let source: { type: string; url?: string };
-	export let options: { centerFromGeometries?: string };
+	export let options: { centerFromGeometries?: boolean };
 
 	$: {
 		if (!id) id = "";

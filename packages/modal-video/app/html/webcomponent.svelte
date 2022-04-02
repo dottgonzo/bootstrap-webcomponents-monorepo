@@ -3,6 +3,13 @@
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
+	import { styleSetup as dialogStyleSetup } from "../../node_modules/@htmlbricks/hb-dialog/release/docs";
+	let dialogStyleToSet: string = "";
+
 	import pkg from "../../package.json";
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -10,17 +17,8 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("dialog");
+	addComponent({ repoName: "@htmlbricks/hb-dialog", version: pkg.version });
 
 	export let id: string;
 
@@ -31,7 +29,11 @@
 
 	$: {
 		if (!id) id = null;
-		if (!item) item = "";
+		if (style) {
+			parsedStyle = parseStyle(style);
+			dialogStyleToSet = getChildStyleToPass(parsedStyle, dialogStyleSetup?.vars);
+		}
+		if (!item) item = "defaultItem";
 		if (!uri) uri = "";
 		if (!title) title = "";
 		if (!provider) provider = "";
@@ -49,7 +51,7 @@
 	}
 </script>
 
-<hb-dialog id={item} show={uri ? "yes" : "no"} on:modalShow={(d) => dialogShowEvent(d.detail)}>
+<hb-dialog style={dialogStyleToSet} id={item} show={uri ? "yes" : "no"} on:modalShow={(d) => dialogShowEvent(d.detail)}>
 	{#if title}
 		<span slot="title">
 			<slot name="title">Video: {title}</slot>

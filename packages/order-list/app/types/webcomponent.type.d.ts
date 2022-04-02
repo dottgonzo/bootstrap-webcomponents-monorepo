@@ -10,5 +10,9 @@ export interface OrderPayment extends IShoppingPayment {
 }
 
 export type Component = {
+	id?: string;
+	style?: string;
 	payment: OrderPayment;
 };
+
+export type Events = {};

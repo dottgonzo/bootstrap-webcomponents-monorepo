@@ -15,7 +15,15 @@ export interface IEvent {
 	};
 }
 export type Component = {
-	date: Date;
-	events: IEvent[];
-	selected: Date;
+	id?: string;
+	style?: string;
+	date?: Date;
+	events?: IEvent[];
+	selected?: Date;
+};
+
+export type Events = {
+	calendarEventClick: { eventId: string };
+	changeCalendarDate: { date: Date };
+	changeSelectedDate: { selectedDate: Date };
 };

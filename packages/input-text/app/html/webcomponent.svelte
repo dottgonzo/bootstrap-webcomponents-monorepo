@@ -3,7 +3,7 @@
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
-	import type { FormSchemaEntry } from "@app/types/webcomponent.type";
+	import type { TextSchemaEntry } from "@app/types/webcomponent.type";
 	export let setvalue: boolean;
 	export let setvalid: boolean;
 	export let showvalidation: "yes" | "no";

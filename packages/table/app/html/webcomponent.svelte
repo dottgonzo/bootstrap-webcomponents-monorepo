@@ -20,31 +20,34 @@
 	import type { Component as ModalComponent } from "../../../dialog/app/types/webcomponent.type";
 
 	import pkg from "@app/../package.json";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
+
+	import { styleSetup as paginateStyleSetup } from "../../node_modules/@htmlbricks/hb-paginate/release/docs";
+	import { styleSetup as dialogStyleSetup } from "../../node_modules/@htmlbricks/hb-dialog/release/docs";
+	let paginateStyleToSet: string = "";
+	let dialogStyleToSet: string = "";
 
 	// import dispatch from "@app/functions/webcomponent";
 
 	export let id: string;
-	export let externalfilter: string;
+	export let externalfilter: boolean;
 
 	export let rows: IRow[];
 	export let size: number;
 	export let page: number;
 	export let pages: number;
-	export let primarycolor: string;
 	export let headers: ITableHeader[];
 	export let actions: IActionButton[];
 	export let selectactions: any[];
 	export let selectrow: string;
 	export let enableselect: string;
-	export let disablepagination: string;
-	if (!primarycolor) {
-		primarycolor = null;
-	}
+	export let disablepagination: boolean;
+
 	if (!id) {
 		id = null;
-	}
-	if (!disablepagination) {
-		disablepagination = null;
 	}
 
 	let searchOnRangeIsPresent = false;
@@ -56,6 +59,11 @@
 	let sortedDirection: string;
 	let modalConfirm: ModalComponent & { itemId: string; action: string };
 	$: {
+		if (style) {
+			parsedStyle = parseStyle(style);
+			paginateStyleToSet = getChildStyleToPass(parsedStyle, paginateStyleSetup?.vars);
+			dialogStyleToSet = getChildStyleToPass(parsedStyle, dialogStyleSetup?.vars);
+		}
 		if (!modalConfirm) {
 			modalConfirm = {
 				show: "no",
@@ -67,8 +75,21 @@
 				closelabel: null,
 			};
 		}
-		if (!externalfilter) {
-			externalfilter = null;
+
+		if (!disablepagination && (disablepagination as unknown as any) !== "") {
+			disablepagination = false;
+		} else if ((disablepagination as unknown as any) === "") {
+			disablepagination = true;
+		} else if ((disablepagination as unknown as any) === "no") {
+			disablepagination = false;
+		}
+
+		if (!externalfilter && (externalfilter as unknown as any) !== "") {
+			externalfilter = false;
+		} else if ((externalfilter as unknown as any) === "") {
+			externalfilter = true;
+		} else if ((externalfilter as unknown as any) === "no") {
+			externalfilter = false;
 		}
 		if (!pages) {
 			pages = 1;
@@ -202,7 +223,7 @@
 		if (!externalfilter) page = el.detail.page;
 		selectedItems.length = 0;
 
-		dispatch("pagechange", {
+		dispatch("pageChange", {
 			page: el.detail.page,
 		});
 	}
@@ -391,18 +412,8 @@
 		});
 	}
 
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
-
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("paginate");
-	addComponent("dialog");
+	addComponent({ repoName: "@htmlbricks/hb-paginate", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-dialog", version: pkg.version });
 
 	function changeSort(key: string) {
 		console.log(sortedBy, sortedDirection);
@@ -444,6 +455,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
 </svelte:head>
 <hb-dialog
+	style={dialogStyleToSet}
 	id={modalConfirm.itemId || "confirmationModal"}
 	show={modalConfirm.show}
 	title={modalConfirm.title}
@@ -454,8 +466,8 @@
 	on:modalShow={(d) => dialogShowConfirm(d.detail, modalConfirm.action)}
 />
 <div id="webcomponent">
-	<div class="container-fluid" style="padding:0px;	margin-left: 0px;margin-right: 0px;">
-		{#if headers && headers.length}
+	<div class="container-fluid" style="padding:0px; margin-left: 0px; margin-right: 0px;">
+		{#if headers && Array.isArray(headers)}
 			<table class="table table-responsive table-striped table-hover align-middle" style="width:100%;text-align:left">
 				<thead>
 					<tr>
@@ -724,14 +736,8 @@
 						</span>
 					{/each}
 				{/if}
-				{#if disablepagination !== "" && disablepagination !== "yes"}
-					<hb-paginate
-						style="float:right"
-						on:pagechange={changePage}
-						page={page.toString()}
-						pages={pages.toString()}
-						primarycolor={primarycolor || ""}
-					/>
+				{#if disablepagination}
+					<hb-paginate style="float:right;{paginateStyleToSet}" on:pageChange={changePage} page={page.toString()} pages={pages.toString()} />
 				{/if}
 			</nav>
 		{/if}

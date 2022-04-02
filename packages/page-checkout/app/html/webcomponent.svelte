@@ -15,16 +15,25 @@
 	import { get_current_component } from "svelte/internal";
 	import pkg from "../../package.json";
 	import type { IShipment, IUser, IGateway, IPayment as CheckoutPayment } from "../../../checkout/app/types/webcomponent.type";
-	import type { IPayment as CartPayment, IShopItem } from "../../../checkout-shopping-cart/app/types/webcomponent.type";
+	import type { IShoppingPayment, IShopItem } from "../../../checkout-shopping-cart/app/types/webcomponent.type";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { styleSetup as checkoutStyleSetup } from "../../node_modules/@htmlbricks/hb-checkout/release/docs";
+	import { styleSetup as checkoutShoppingCartStyleSetup } from "../../node_modules/@htmlbricks/hb-checkout-shopping-cart/release/docs";
+
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
+	let checkoutStyleToSet: string = "";
+	let checkoutShoppingCartStyleToSet: string = "";
 
 	export let id: string;
 	export let shipments: IShipment[];
 	export let user: IUser;
-	export let payment: CartPayment & CheckoutPayment;
+	export let payment: IShoppingPayment & CheckoutPayment;
 	export let gateways: IGateway[];
 	export let completed: "yes" | "no";
-	const defaultPayment: CartPayment & CheckoutPayment = {
+	const defaultPayment: IShoppingPayment & CheckoutPayment = {
 		merchantName: "merchant",
 		countryCode: "IT",
 		total: 0,
@@ -34,6 +43,11 @@
 
 	$: {
 		if (!id) id = null;
+		if (style) {
+			parsedStyle = parseStyle(style);
+			checkoutStyleToSet = getChildStyleToPass(parsedStyle, checkoutStyleSetup?.vars);
+			checkoutShoppingCartStyleToSet = getChildStyleToPass(parsedStyle, checkoutShoppingCartStyleSetup?.vars);
+		}
 		if (!completed) completed = "no";
 		if (!shipments) shipments = [];
 		else if (typeof shipments === "string") shipments = JSON.parse(shipments) || [];
@@ -67,18 +81,9 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("checkout-shopping-cart");
-	addComponent("checkout");
+	addComponent({ repoName: "@htmlbricks/hb-checkout-shopping-cart", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-checkout", version: pkg.version });
 	function saveShipment(detail: IShipment) {
 		const shipmentIndex = shipments.findIndex((f) => f.id === detail.id);
 		const shipment = shipments[shipmentIndex];
@@ -107,6 +112,7 @@
 	<div class="row">
 		<div class="col-7" style="padding-right:30px">
 			<hb-checkout
+				style={checkoutStyleToSet}
 				on:paymentCompleted={(e) => paymentCompleted(e.detail)}
 				on:saveUser={(e) => dispatch("saveUser", e.detail)}
 				on:saveShipment={(e) => saveShipment(e.detail)}
@@ -118,7 +124,7 @@
 			/>
 		</div>
 		<div class="col-5" style="padding-left:30px">
-			<hb-checkout-shopping-cart {completed} payment={JSON.stringify(payment)} />
+			<hb-checkout-shopping-cart style={checkoutShoppingCartStyleToSet} {completed} payment={JSON.stringify(payment)} />
 		</div>
 	</div>
 </div>

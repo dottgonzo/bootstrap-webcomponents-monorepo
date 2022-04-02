@@ -7,33 +7,36 @@ export interface IPage {
 	pageName: string;
 }
 export type Component = {
-	socials: ISocials;
-	contacts: IContacts;
+	id?: string;
+	style?: string;
+	socials?: ISocials;
+	contacts?: IContacts;
 
 	company: ICompany;
-	navlinks: INavLink[];
-	page: IPage;
-	usermenu: IUserMenu;
-	cookielaw: string;
-	type: "login" | "register";
-	columns: IColumn[];
+	page?: IPage;
+	usermenu?: IUserMenu;
+	cookielaw?: string;
+	type?: "login" | "register";
+	columns?: IColumn[];
 
-	language: string;
+	language?: string;
 
-	sessionkey: string;
+	sessionkey?: string;
 
-	redirectonlogin: string;
-	redirectoncreate: string;
-	loginuri: string;
-	registeruri: string;
-	requestmethod: string;
-	appendqueryparams: string;
-	appendbodyparams: string;
-	logouri: string;
-	oauth2providers: string;
+	redirectonlogin?: string;
+	redirectoncreate?: string;
+	loginuri?: string;
+	registeruri?: string;
+	requestmethod?: string;
+	appendqueryparams?: string;
+	appendbodyparams?: string;
+	logouri?: string;
+	oauth2providers?: string;
 
-	passwordpattern: string;
-	userpattern: string;
-	usertype: "email" | "username";
-	disableregister: boolean;
+	passwordpattern?: string;
+	userpattern?: string;
+	usertype?: "email" | "username";
+	disableregister?: boolean;
 };
+
+export type Events = {};

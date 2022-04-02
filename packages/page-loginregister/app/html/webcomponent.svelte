@@ -19,6 +19,15 @@
 	import type { IUserMenu } from "../../../navbar/app/types/webcomponent.type";
 	import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
 	import type { IPage } from "@app/types/webcomponent.type";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
+
+	import { styleSetup as layoutStyleSetup } from "../../node_modules/@htmlbricks/hb-layout/release/docs";
+	import { styleSetup as authStyleSetup } from "../../node_modules/@htmlbricks/hb-auth/release/docs";
+	let layoutStyleToSet: string = "";
+	let authStyleToSet: string = "";
 
 	export let id: string;
 
@@ -26,7 +35,6 @@
 	export let contacts: IContacts;
 
 	export let company: ICompany;
-	export let navlinks: INavLink[];
 	export let page: IPage;
 	export let usermenu: IUserMenu;
 	export let cookielaw: string;
@@ -54,6 +62,11 @@
 
 	$: {
 		if (!id) id = "";
+		if (style) {
+			parsedStyle = parseStyle(style);
+			layoutStyleToSet = getChildStyleToPass(parsedStyle, layoutStyleSetup?.vars);
+			authStyleToSet = getChildStyleToPass(parsedStyle, authStyleSetup?.vars);
+		}
 		if (!oauth2providers) {
 			oauth2providers = null;
 		}
@@ -121,9 +134,7 @@
 		if (!company) {
 			company = null;
 		}
-		if (!navlinks) {
-			navlinks = null;
-		}
+
 		if (!socials) {
 			socials = null;
 		}
@@ -140,26 +151,25 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("layout");
-	addComponent("auth");
+	addComponent({ repoName: "@htmlbricks/hb-layout", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-auth", version: pkg.version });
 </script>
 
-<hb-layout onescreen="yes" socials={socials || ""} columns={columns || ""} contacts={contacts || ""} company={company || ""} style="display:block">
+<hb-layout
+	onescreen="yes"
+	socials={socials || ""}
+	columns={columns || ""}
+	contacts={contacts || ""}
+	company={company || ""}
+	style="display:block;{layoutStyleToSet}"
+>
 	<span slot="nav-right-slot"><slot name="nav-right-slot" /></span>
 	<span slot="nav-left-slot"><slot name="nav-left-slot" /></span>
 	<span slot="nav-center-slot"><slot name="nav-center-slot" /></span>
 
 	<hb-auth
+		style={authStyleToSet}
 		sessionkey={sessionkey || ""}
 		loginuri={loginuri || ""}
 		part="loginbox"

@@ -13,12 +13,18 @@
 	import type { IActionButton, IFilter, IRow, ITableHeader } from "../../../table/app/types/webcomponent.type";
 
 	import pkg from "../../package.json";
-	import { createEventDispatcher } from "svelte";
-	import { get_current_component } from "svelte/internal";
+	// import { createEventDispatcher } from "svelte";
+	// import { get_current_component } from "svelte/internal";
 	import dayjs from "dayjs";
 	import debounce from "debounce";
 	import "dayjs/locale/it";
 	import type { IShoppingPayment } from "@app/types/webcomponent.type";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
+	let tableStyleToSet: string = "";
+	import { styleSetup as tableStyleSetup } from "../../node_modules/@htmlbricks/hb-table/release/docs";
 
 	export let id: string;
 
@@ -48,6 +54,10 @@
 	let taxTotal: number;
 	let total: number;
 	$: {
+		if (style) {
+			parsedStyle = parseStyle(style);
+			tableStyleToSet = getChildStyleToPass(parsedStyle, tableStyleSetup?.vars);
+		}
 		if (!id) id = null;
 		if (!completed) completed = "no";
 
@@ -106,23 +116,14 @@
 
 		total = subTotal + taxTotal + (payment.shipmentFee || 0);
 	}
-	const component = get_current_component();
-	const svelteDispatch = createEventDispatcher();
-	function dispatch(name, detail) {
-		svelteDispatch(name, detail);
-		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
-	}
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
+	// const component = get_current_component();
+	// const svelteDispatch = createEventDispatcher();
+	// function dispatch(name, detail) {
+	// 	svelteDispatch(name, detail);
+	// 	component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
+	// }
 
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("table");
+	addComponent({ repoName: "@htmlbricks/hb-table", version: pkg.version });
 </script>
 
 <svelte:head>
@@ -152,7 +153,7 @@
 	</div>
 	<div class="row cart_divider">
 		<div class="col">
-			<hb-table disablepagination="yes" rows={JSON.stringify(tableRows)} headers={JSON.stringify(tableHeaders)} />
+			<hb-table style={tableStyleToSet} disablepagination="yes" rows={JSON.stringify(tableRows)} headers={JSON.stringify(tableHeaders)} />
 		</div>
 	</div>
 </div>

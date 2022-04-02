@@ -47,6 +47,8 @@
 	}
 	function changeRadio(r) {
 		value = r.target.value;
+		if (!setvalue) dispatch("setValue", { value, id: schemaentry?.id });
+		if (!setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
 	}
 </script>
 

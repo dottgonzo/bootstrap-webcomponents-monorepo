@@ -22,7 +22,7 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 	function changePage(page: string) {
-		dispatch("pagechange", {
+		dispatch("pageChange", {
 			page,
 		});
 	}
@@ -55,7 +55,7 @@
 </svelte:head>
 <template>
 	{#if navlink}
-		<li class="nav-item">
+		<li part="li" class="nav-item">
 			{#if navlink.subLinks?.length}
 				<button
 					on:click={() => {
@@ -77,7 +77,7 @@
 						{#each navlink.subLinks as navLinkSub (navLinkSub.key)}
 							{#if navLinkSub.key === navpage}
 								<button
-									style="width: 100%;text-align:left;box-shadow: none!important;"
+									style="width: 100%;text-align:left;box-shadow: none!important"
 									class="btn btn-outline-primary nav-link active"
 									aria-current="page"
 								>
@@ -114,7 +114,7 @@
 					</div>
 				{/if}
 			{:else if navlink.key === navpage}
-				<button style="width: 100%;text-align:left;box-shadow: none!important;" class="btn btn-outline-primary nav-link active" aria-current="page">
+				<button style="width: 100%;text-align:left;box-shadow: none!important" class="btn btn-outline-primary nav-link active" aria-current="page">
 					<i class="bi me-2 bi-{navlink.icon}" />
 					{navlink.label}
 					{#if navlink.badge}
@@ -155,5 +155,8 @@
 
 	.nav-link {
 		padding: 0.5rem 0.2rem 0.5rem 0.2rem;
+	}
+	.nav-item {
+		list-style: none;
 	}
 </style>

@@ -4,14 +4,13 @@
 	interface keyable {
 		[key: string]: any;
 	}
-	import pkg from "../../package.json";
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 
 	export let action: string;
 	export let method: string = "GET";
 	export let actionQueryKey: string = $$props["action-query-key"];
-	export let resultItemsKey: string = $$props["result-items-key"];
+	export let resultItemsPath: string = $$props["result-items-path"];
 	export let resultItemTitleKey: string = $$props["result-item-title-key"];
 	export let resultItemLinkKey: string = $$props["result-item-link-key"];
 
@@ -21,14 +20,14 @@
 	let showDropdown: string = "";
 	let searchResource;
 	let searchInit;
+	let resultItemsPathArray = [];
+
 	$: {
 		method = method.toUpperCase();
 		if (!actionQueryKey) {
 			actionQueryKey = "q";
 		}
-		if (!resultItemsKey) {
-			resultItemsKey = "items";
-		}
+		resultItemsPathArray = resultItemsPath.split(".");
 		if (!resultItemTitleKey) {
 			resultItemTitleKey = "title";
 		}
@@ -45,13 +44,6 @@
 			searchResource = `${action}${actionQueryKey}=${actionQueryValue}`;
 			searchInit = {
 				method,
-				// cache: "no-cache",
-				// headers: {
-				// 	"Content-Type": "application/json",
-				// 	// 'Content-Type': 'application/x-www-form-urlencoded',
-				// },
-				// redirect: "follow",
-				// referrerPolicy: "no-referrer",
 			};
 			searchPromise = fetchSearchRes(searchResource, searchInit);
 			showDropdown = "show";
@@ -118,9 +110,16 @@
 		<ul class={`dropdown-menu ${showDropdown}`} style="position: static; margin: 0px; background-color: rgba(255,255,255,0.95);">
 			{#await searchPromise}
 				<li class="dropdown-item"><span>&#8230;</span></li>
-			{:then items}
-				{#each items as item}
-					<li><a class="dropdown-item" href={item.url}>{item.productName}</a></li>
+			{:then searchResult}
+				{#each resultItemsPathArray.reduce((previousValue, currentValue) => {
+					if (currentValue) {
+						if (previousValue[currentValue]) return previousValue[currentValue];
+						else return [];
+					} else {
+						return previousValue;
+					}
+				}, searchResult) as item}
+					<li><a class="dropdown-item" href={item[resultItemLinkKey]}>{item[resultItemTitleKey]}</a></li>
 				{/each}
 			{:catch error}
 				<li class="dropdown-item alert-danger">{error.message}</li>

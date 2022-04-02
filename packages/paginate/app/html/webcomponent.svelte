@@ -16,18 +16,12 @@
 	// import dispatch from "@app/functions/webcomponent";
 	export let id: string;
 
-	export let primarycolor: number;
-
 	export let pages: number;
 	export let page: number;
 
-	if (!id) id = null;
-
-	if (!primarycolor) {
-		primarycolor = null;
-	}
-
 	$: {
+		if (!id) id = null;
+
 		if (!page) {
 			page = 0;
 		} else {
@@ -53,7 +47,7 @@
 		// console.log("changepage");
 
 		// page = newPage;
-		dispatch("pagechange", {
+		dispatch("pageChange", {
 			page: newPage,
 			pages,
 		});
@@ -64,10 +58,10 @@
 	{#if pages > 0}
 		{#if page > 0}
 			<li class="page-item">
-				<button style="color:{primarycolor}" class="page-link" on:click={() => changePage(0)}>«</button>
+				<button class="page-link" on:click={() => changePage(0)}>«</button>
 			</li>
 			<li class="page-item">
-				<button style="color:{primarycolor}" class="page-link" on:click={() => changePage(page - 1)}>&#60;</button>
+				<button class="page-link" on:click={() => changePage(page - 1)}>&#60;</button>
 			</li>
 		{:else}
 			<li class="page-item disabled"><button class="page-link" disabled>«</button></li>
@@ -75,60 +69,60 @@
 		{/if}
 		{#if pages > 5 && page > pages - 3}
 			<li class="page-item">
-				<button style="color:{primarycolor}" class="page-link" on:click={() => changePage(page - 4)}>{page - 4 + 1}</button>
+				<button class="page-link" on:click={() => changePage(page - 4)}>{page - 4 + 1}</button>
 			</li>
 		{/if}
 		{#if pages > 5 && page > pages - 2}
 			<li class="page-item">
-				<button style="color:{primarycolor}" class="page-link" on:click={() => changePage(page - 3)}>{page - 3 + 1}</button>
+				<button class="page-link" on:click={() => changePage(page - 3)}>{page - 3 + 1}</button>
 			</li>
 		{/if}
 
 		{#if page - 2 > -1}
 			<li class="page-item">
-				<button style="color:{primarycolor}" class="page-link" on:click={() => changePage(page - 2)}>{page - 2 + 1}</button>
+				<button class="page-link" on:click={() => changePage(page - 2)}>{page - 2 + 1}</button>
 			</li>
 		{/if}
 		{#if page - 1 > -1}
 			<li class="page-item">
-				<button style="color:{primarycolor}" class="page-link" on:click={() => changePage(page - 1)}>{page - 1 + 1}</button>
+				<button class="page-link" on:click={() => changePage(page - 1)}>{page - 1 + 1}</button>
 			</li>
 		{/if}
-		<li class="page-item active"><button style="color:{primarycolor}" class="page-link ">{page + 1}</button></li>
+		<li class="page-item active"><button class="page-link ">{page + 1}</button></li>
 
 		{#if page + 1 < pages}
 			<li class="page-item">
-				<button style="color:{primarycolor}" class="page-link" on:click={() => changePage(page + 1)}>{page + 1 + 1}</button>
+				<button class="page-link" on:click={() => changePage(page + 1)}>{page + 1 + 1}</button>
 			</li>
 		{/if}
 		{#if page + 2 < pages}
 			<li class="page-item">
-				<button style="color:{primarycolor}" class="page-link" on:click={() => changePage(page + 2)}>{page + 2 + 1}</button>
+				<button class="page-link" on:click={() => changePage(page + 2)}>{page + 2 + 1}</button>
 			</li>
 		{/if}
 
 		{#if page < 2 && page + 3 < pages}
 			<li class="page-item">
-				<button style="color:{primarycolor}" class="page-link" on:click={() => changePage(page + 3)}>{page + 3 + 1}</button>
+				<button class="page-link" on:click={() => changePage(page + 3)}>{page + 3 + 1}</button>
 			</li>
 		{/if}
 		{#if page === 0 && page + 4 < pages}
 			<li class="page-item">
-				<button style="color:{primarycolor}" class="page-link" on:click={() => changePage(page + 4)}>{page + 4 + 1}</button>
+				<button class="page-link" on:click={() => changePage(page + 4)}>{page + 4 + 1}</button>
 			</li>
 		{/if}
 
 		{#if page < pages - 1}
 			<li class="page-item">
-				<button style="color:{primarycolor}" class="page-link" on:click={() => changePage(page + 1)}>&#62;</button>
+				<button class="page-link" on:click={() => changePage(page + 1)}>&#62;</button>
 			</li>
 			<li class="page-item">
-				<button style="color:{primarycolor}" class="page-link" on:click={() => changePage(pages - 1)}>»</button>
+				<button class="page-link" on:click={() => changePage(pages - 1)}>»</button>
 			</li>
 		{:else}
-			<li class="page-item disabled"><button style="color:{primarycolor}" class="page-link" disabled>&#62;</button></li>
+			<li class="page-item disabled"><button class="page-link" disabled>&#62;</button></li>
 			<li class="page-item disabled">
-				<button style="color:{primarycolor}" class="page-link" disabled>»</button>
+				<button class="page-link" disabled>»</button>
 			</li>
 		{/if}
 	{/if}

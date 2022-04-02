@@ -5,9 +5,13 @@ import {
 } from "./utils/webComponentUtils";
 import { storybookArgs } from "../../packages/chartjs/extra/docs";
 
+const copy1 = Object.assign({}, argTypesExtraUtils);
+const copy2 = Object.assign({}, storybookArgs);
+
+const assigned = Object.assign({}, copy1, copy2);
 const meta: Meta = {
   title: "Charts/Chartjs",
-  argTypes: Object.assign(argTypesExtraUtils, storybookArgs),
+  argTypes: assigned,
 };
 
 export default meta;

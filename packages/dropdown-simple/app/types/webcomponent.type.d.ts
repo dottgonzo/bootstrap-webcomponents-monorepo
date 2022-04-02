@@ -7,7 +7,14 @@ export interface IDropDownMenuListItem {
 }
 
 export type Component = {
-	position: "left" | "right";
+	id?: string;
+	style?: string;
+	position?: "left" | "right";
 	list: IDropDownMenuListItem[];
-	open: boolean;
+	open?: "yes" | "no";
+};
+
+export type Events = {
+	dropdownSwitch: { open: boolean; id: string };
+	dropDownClick: { key: string };
 };

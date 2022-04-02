@@ -11,7 +11,14 @@ export interface ITrack {
 }
 
 export type Component = {
+	id?: string;
+	style?: string;
 	src: string;
-	form: string;
-	track: ITrack;
+	form?: string;
+	track?: ITrack;
+};
+
+export type Events = {
+	changeTrackValues: { minVaule: number; maxValue: number };
+	dispatchTrack: { track: ITrack };
 };

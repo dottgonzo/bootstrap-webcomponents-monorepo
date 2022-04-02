@@ -14,6 +14,10 @@
 	import dayjs from "dayjs";
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
 
 	// import dispatch from "@app/functions/webcomponent";
 
@@ -38,12 +42,23 @@
 
 	export let initialdate: Date;
 	export let lastdate: Date;
+
+	import { styleSetup as paginateStyleSetup } from "../../node_modules/@htmlbricks/hb-paginate/release/docs";
+	import { styleSetup as cardVideoStyleSetup } from "../../node_modules/@htmlbricks/hb-card-video/release/docs";
+	let paginateStyleToSet: string = "";
+	let cardVideoStyleToSet: string = "";
+
 	let firstCardData: Date;
 	let lastCardData: Date;
 	let enableDate = true;
 	let cardItems: ICard[];
 
 	$: {
+		if (style) {
+			parsedStyle = parseStyle(style);
+			paginateStyleToSet = getChildStyleToPass(parsedStyle, paginateStyleSetup?.vars);
+			cardVideoStyleToSet = getChildStyleToPass(parsedStyle, cardVideoStyleSetup?.vars);
+		}
 		console.log(disabletextfilter, "disabletextfilter");
 		if (!linkLabel) {
 			linkLabel = "";
@@ -164,7 +179,7 @@
 		// console.log("changepage");
 
 		if (!externalfilter) page = el.detail.page;
-		dispatch("pagechange", {
+		dispatch("pageChange", {
 			page: el.detail.page,
 			cards: getCurrentCards(),
 		});
@@ -201,18 +216,9 @@
 
 	// 	return app();
 	// }
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("paginate");
-	addComponent("card-video");
+	addComponent({ repoName: "@htmlbricks/hb-paginate", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-card-video", version: pkg.version });
 
 	// onMount(async () => {
 	// 	await reloadCards();
@@ -307,6 +313,7 @@
 				{#each !externalfilter ? cardItems.slice(page * size, (page + 1) * size) : cardItems as item (item._id)}
 					<div class="col-12 col-xxl-3 col-xl-4 col-md-6" style="padding:12px">
 						<hb-card-video
+							style={cardVideoStyleToSet}
 							title={item.title || ""}
 							description={item.description || ""}
 							time={item.time ? dayjs(item.time).format() : undefined}
@@ -319,7 +326,13 @@
 				{/each}
 			</div>
 			<nav style="margin-top:20px" aria-label="Page navigation example">
-				<hb-paginate on:pagechange={changePage} page={page.toString()} pages={pages.toString()} primarycolor={primarycolor || ""} />
+				<hb-paginate
+					style={paginateStyleToSet}
+					on:pageChange={changePage}
+					page={page.toString()}
+					pages={pages.toString()}
+					primarycolor={primarycolor || ""}
+				/>
 			</nav>
 		{/if}
 	{/if}

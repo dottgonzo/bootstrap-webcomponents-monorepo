@@ -1,0 +1,37 @@
+{
+  "name": "@htmlbricks/manifester",
+  "version": "0.0.21",
+  "description": "@htmlbricks manifest",
+  "main": "main.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": "main.js",
+  "scripts": {
+    "test": "mocha",
+    "watch-ts": "./node_modules/typescript/bin/tsc -w",
+    "build": "./node_modules/typescript/bin/tsc",
+    "release:patch": "npm version patch && git add -A && git commit -m 'bump' && git push && git push --tags && npm publish",
+    "release:minor": "npm version minor && git add -A && git commit -m 'bump' && git push && git push --tags && npm publish",
+    "release:major": "npm version major && git add -A && git commit -m 'bump' && git push && git push --tags && npm publish"
+  },
+  "keywords": [
+    "manifester"
+  ],
+  "type": "module",
+  "author": "Dario Caruso",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "^16.11.26",
+    "chai": "^4.3.6",
+    "mocha": "^9.2.2",
+    "prettier": "^2.6.1",
+    "prettier-plugin-organize-imports": "^2.3.4",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "commander": "^9.1.0"
+  }
+}

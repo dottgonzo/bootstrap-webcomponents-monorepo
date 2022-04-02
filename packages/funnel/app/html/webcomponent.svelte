@@ -15,18 +15,14 @@
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
+	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
+	let formStyleToSet: string = "";
 
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
-
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("form");
+	addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
 	export let id: string;
 	export let steps: number;
 	export let schemes: { schema: FormSchema; valid: boolean }[];
@@ -36,7 +32,10 @@
 	// let getvals: "yes" | "no" = "no";
 	$: {
 		if (!id) id = "";
-
+		if (style) {
+			parsedStyle = parseStyle(style);
+			formStyleToSet = getChildStyleToPass(parsedStyle, formStyleSetup?.vars);
+		}
 		if (!step && step !== 0) step = 1;
 		else if (typeof step === "string") step = Number(step);
 		if (schemes && typeof schemes === "string") {
@@ -97,6 +96,7 @@
 
 {#if schemes}
 	<hb-form
+		style={formStyleToSet}
 		id={`scheme-${step}-${steps}`}
 		on:submit={(e) => submitFunnel()}
 		on:change={(e) => schemeUpdate(e.detail)}

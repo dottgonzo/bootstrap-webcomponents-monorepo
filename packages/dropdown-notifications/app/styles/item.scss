@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+.avatar {
+	align-items: center;
+	border-radius: 0.375rem;
+	display: inline-flex;
+	font-size: 1rem;
+	font-weight: 600;
+	height: 2.875rem;
+	justify-content: center;
+	position: relative;
+	vertical-align: middle;
+	width: 2.875rem;
+}
+
+.text-wrap {
+    white-space: normal!important;
+}
+
+.text-sm {
+    font-size: .875rem!important;
+}
+
+.text-xs {
+    font-size: .75rem!important;
+}
+
+.w-64 {
+    width: 16rem!important;
+}
+
+.text-muted {
+    --x-text-opacity: 1;
+}
+
+.text-muted, .text-muted-focus:focus, .text-muted-hover:hover {
+    color: rgba(var(--x-muted-rgb),var(--x-text-opacity))!important;
+}
+

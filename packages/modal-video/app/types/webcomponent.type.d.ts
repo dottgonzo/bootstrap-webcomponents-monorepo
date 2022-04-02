@@ -1,6 +1,12 @@
 export type Component = {
-	item: string;
+	id?: string;
+	style?: string;
+	item?: string;
 	uri: string;
-	title: string;
-	provider: string;
+	title?: string;
+	provider?: string;
+};
+
+export type Events = {
+	videoModalEvent: { id: string; show: boolean };
 };

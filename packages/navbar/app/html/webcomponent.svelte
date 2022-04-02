@@ -15,21 +15,30 @@
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
 	import type { IUserMenu } from "@app/types/webcomponent.type";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { styleSetup as dropdownSimpleStyleSetup } from "../../node_modules/@htmlbricks/hb-dropdown-simple/release/docs";
+
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
+	let dropdownSimpleStyleToSet: string = "";
 
 	export let id: string;
 	export let companybrandname: string;
 	export let companylogouri: string;
-	export let pagetitle: string;
 	export let switchopen: string;
 	export let usermenu: IUserMenu;
 	export let noburger: string;
 
 	let isOpen: boolean;
 	$: {
+		if (style) {
+			parsedStyle = parseStyle(style);
+			dropdownSimpleStyleToSet = getChildStyleToPass(parsedStyle, dropdownSimpleStyleSetup?.vars);
+		}
 		if (!companybrandname) companybrandname = "";
 		if (!companylogouri) companylogouri = "";
 		if (!id) id = "";
-		if (!pagetitle) pagetitle = "";
 		if (!switchopen || switchopen === "no") {
 			switchopen = "";
 			isOpen = false;
@@ -41,24 +50,12 @@
 		}
 		if (!usermenu) {
 			usermenu = null;
-		} else {
-			try {
-				usermenu = JSON.parse(usermenu as unknown as string);
-			} catch (err) {}
-		}
-	}
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
-
-			document.head.appendChild(script);
+		} else if (typeof usermenu === "string") {
+			usermenu = JSON.parse(usermenu);
 		}
 	}
 
-	addComponent("dropdown-simple");
+	addComponent({ repoName: "@htmlbricks/hb-dropdown-simple", version: pkg.version });
 
 	// if (!document.getElementById("spectrumelements")) {
 	// 	const script = document.createElement("script");
@@ -105,7 +102,11 @@
 			</slot>
 		</div>
 		{#if usermenu}
-			<hb-dropdown-simple on:dropDownClick={(e) => dispatch("userClick", e.detail.key)} list={JSON.stringify(usermenu.list)} position="right"
+			<hb-dropdown-simple
+				style={dropdownSimpleStyleToSet}
+				on:dropDownClick={(e) => dispatch("userClick", e.detail.key)}
+				list={JSON.stringify(usermenu.list)}
+				position="right"
 				><span slot="dropdownbutton"><img style="height: 30px;vertical-align: middle;" alt="" src={usermenu.imgUri} /></span></hb-dropdown-simple
 			>
 			<!-- 

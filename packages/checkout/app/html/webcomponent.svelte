@@ -20,6 +20,15 @@
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { formUserSchema, formCreditCardSchema } from "@app/functions/formSchemes";
 	import dayjs from "dayjs";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import parseStyle from "style-to-object";
+	let parsedStyle: { [x: string]: string };
+	export let style: string;
+	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
+	import { styleSetup as paymentPaypalStyleSetup } from "../../node_modules/@htmlbricks/hb-payment-paypal/release/docs";
+	let formStyleToSet: string = "";
+	let paymentPaypalStyleToSet: string = "";
+
 	// import debounce from "debounce";
 	// import { printInvoice, OpenInvoiceWindow } from "../../../page-invoice/extra/utils";
 
@@ -52,6 +61,11 @@
 	let formCreditCardSchemaSubmitted: "yes" | "no" = "no";
 	const nullishdefaultpayment: IPayment = { type: "plain", total: 0, currencyCode: "EUR", countryCode: "IT", merchantName: "merchant" };
 	$: {
+		if (style) {
+			parsedStyle = parseStyle(style);
+			formStyleToSet = getChildStyleToPass(parsedStyle, formStyleSetup?.vars);
+			paymentPaypalStyleToSet = getChildStyleToPass(parsedStyle, paymentPaypalStyleSetup?.vars);
+		}
 		if (!id) id = null;
 		if (!completed) completed = "no";
 		if (!payment) payment = nullishdefaultpayment;
@@ -159,18 +173,9 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	function addComponent(componentName: string) {
-		if (!document.getElementById("hb-" + componentName + "-script")) {
-			const script = document.createElement("script");
-			script.id = "hb-" + componentName + "-script";
-			script.src = `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${pkg.version}/release/release.js`;
-			if (location.href.includes("localhost")) script.src = `http://localhost:6006/${componentName}/dist/release.js`;
 
-			document.head.appendChild(script);
-		}
-	}
-	addComponent("form");
-	addComponent("payment-paypal");
+	addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-payment-paypal", version: pkg.version });
 
 	function editUserForm() {
 		editUser = true;
@@ -229,6 +234,7 @@
 
 			<div>
 				<hb-form
+					style={formStyleToSet}
 					schema={JSON.stringify(formUserSchema)}
 					submitted={formUserSchemaSubmitted}
 					on:submit={(e) => {
@@ -276,6 +282,7 @@
 					<h4 class="subtitle" part="subtitle" style="margin-top:20px"><i class="bi bi-truck" /> Shipment Service</h4>
 					<div>
 						<hb-form
+							style={formStyleToSet}
 							schema={JSON.stringify(formShipmentSchema)}
 							submitted={formShipmentSchemaSubmitted}
 							on:submit={(e) => {
@@ -335,6 +342,7 @@
 					<div class="payment_button_container">
 						{#if g.id === "paypal"}
 							<hb-payment-paypal
+								style={paymentPaypalStyleToSet}
 								class="payment_button"
 								paypalid={g.paypalid}
 								total={payment?.total?.toString()}
@@ -504,7 +512,7 @@
 	.detail_btn {
 		float: right;
 		margin-right: 10px;
-		color: green;
+		color: var(--edit-color);
 		font-weight: bold;
 		text-transform: capitalize;
 	}
