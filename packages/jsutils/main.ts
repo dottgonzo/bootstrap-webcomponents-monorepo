@@ -1,5 +1,16 @@
-export type supportedTheme = "bootstrap";
+export type SupportedTheme = "bootstrap";
 export type CssValueType = "color" | "string" | "htmlsize" | "number";
+export type LicenseType =
+  | "Apache-2.0"
+  | "MIT"
+  | "ISC"
+  | "BSD-3-Clause"
+  | "BSD-2-Clause"
+  | "Unlicense"
+  | "Public-Domain"
+  | "Other"
+  | "AGPLv2"
+  | "AGPLv3";
 export type CssPart = {
   name: string;
   description?: string;
@@ -13,16 +24,22 @@ export type CssVar = {
   valueType: CssValueType;
   name: string;
   description?: string;
-  theme?: supportedTheme;
+  theme?: SupportedTheme;
 };
 export type StyleSetup = {
   parts: CssPart[];
-  // themes: supportedTheme[];
   vars: CssVar[];
 };
 export type i18nLang = {
   language: string;
   lang: string;
+};
+export type License = {
+  type: LicenseType;
+  path: string;
+  cost: number;
+  currency: "EUR" | "USD";
+  conditions?: string;
 };
 export interface ComponentShortSetup {
   i18n: i18nLang[];
@@ -34,25 +51,7 @@ export interface ComponentShortSetup {
   repoName: string;
   version: string;
   screenshots: string[];
-  licenses: [
-    {
-      type:
-        | "Apache-2.0"
-        | "MIT"
-        | "ISC"
-        | "BSD-3-Clause"
-        | "BSD-2-Clause"
-        | "Unlicense"
-        | "Public-Domain"
-        | "Other"
-        | "AGPLv2"
-        | "AGPLv3";
-      path: string;
-      cost: number;
-      currency: "EUR" | "USD";
-      conditions?: string;
-    }
-  ];
+  licenses: License[];
   readmePath: string;
   author: string;
   owner: string;
