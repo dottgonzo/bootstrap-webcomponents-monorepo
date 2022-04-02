@@ -34,17 +34,26 @@ export interface ComponentShortSetup {
   repoName: string;
   version: string;
   screenshots: string[];
-  license:
-    | "Apache-2.0"
-    | "MIT"
-    | "ISC"
-    | "BSD-3-Clause"
-    | "BSD-2-Clause"
-    | "Unlicense"
-    | "Public-Domain"
-    | "Other"
-    | "AGPLv2"
-    | "AGPLv3";
+  licenses: [
+    {
+      type:
+        | "Apache-2.0"
+        | "MIT"
+        | "ISC"
+        | "BSD-3-Clause"
+        | "BSD-2-Clause"
+        | "Unlicense"
+        | "Public-Domain"
+        | "Other"
+        | "AGPLv2"
+        | "AGPLv3";
+      path: string;
+      cost: number;
+      currency: "EUR" | "USD";
+      conditions?: string;
+    }
+  ];
+  readmePath: string;
 }
 export interface ComponentSetup extends ComponentShortSetup {
   definitions: {
