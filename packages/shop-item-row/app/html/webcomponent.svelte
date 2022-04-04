@@ -1,6 +1,9 @@
 <svelte:options tag="hb-shop-item-row" />
 
 <script lang="ts">
+	export let id: string;
+	export let style: string;
+
 	export let img: string = undefined;
 	export let url: string = undefined;
 	export let badge: string = undefined;
@@ -14,6 +17,10 @@
 	export let price: string = undefined;
 	export let regularPrice: string = ($$props["regular-price"] = undefined);
 	export let footer: string = undefined;
+	$: {
+		if (!id) id = "";
+		if (!style) style = "";
+	}
 </script>
 
 <div class="card">
