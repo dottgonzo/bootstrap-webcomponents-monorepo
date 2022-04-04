@@ -4,9 +4,17 @@
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 
+	export let id: string;
+	export let style: string;
+
 	export let clearUrl: string = $$props["clear-url"];
 	export let viewUrl: string = $$props["view-url"];
 	export let align: "left" | "right" = "left";
+
+	$: {
+		if (!id) id = "";
+		if (!style) style = "";
+	}
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();

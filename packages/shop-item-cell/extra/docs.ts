@@ -66,11 +66,11 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	screenshots: [],
 	licenses: [{ type: "Apache-2.0", path: "LICENSE.md", cost: 0, currency: "EUR" }],
 	readmePath: "README.md",
-	name: "hb-searchbar",
+	name: "hb-shop-item-cell",
 	category: "basic",
 	tags: ["basic"],
 	size: {},
 	iifePath: "release/release.js",
-	repoName: "@htmlbricks/hb-searchbar",
+	repoName: "@htmlbricks/hb-shop-item-cell",
 	version: null,
 };

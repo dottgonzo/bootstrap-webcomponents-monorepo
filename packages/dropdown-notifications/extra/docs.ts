@@ -1,0 +1,48 @@
+import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { Component } from "../app/types/webcomponent.type";
+
+export const storybookArgs = {
+	uri: { control: { type: "text" } },
+	"clear-url": { control: { type: "text" } },
+	"view-url": { control: { type: "text" } },
+	align: { control: { type: "radio" }, options: ["left", "right"] },
+};
+
+const cssVars: CssVar[] = [];
+export const cssParts: CssPart[] = [];
+export const htmlSlots: HtmlSlot[] = [{ name: "title", description: "" }];
+export const i18nLanguages: i18nLang[] = [];
+
+export const styleSetup: StyleSetup = {
+	vars: cssVars,
+	parts: cssParts,
+};
+
+const examples: Component[] = [
+	{
+		"clear-url": "",
+		"view-url": "",
+		align: "left",
+	},
+];
+export const componentSetup: ComponentSetup & { examples: Component[] } = {
+	definitions: null,
+	storybookArgs,
+	styleSetup,
+	author: null,
+	contributors: [],
+	owner: null,
+	htmlSlots,
+	i18n: i18nLanguages,
+	examples,
+	screenshots: [],
+	licenses: [{ type: "Apache-2.0", path: "LICENSE.md", cost: 0, currency: "EUR" }],
+	readmePath: "README.md",
+	name: "hb-dropdown-notifications",
+	category: "basic",
+	tags: ["basic"],
+	size: {},
+	iifePath: "release/release.js",
+	repoName: "@htmlbricks/hb-dropdown-notifications",
+	version: null,
+};
