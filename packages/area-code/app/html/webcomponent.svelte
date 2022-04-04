@@ -15,6 +15,7 @@
 	import { createEventDispatcher } from "svelte";
 
 	export let id: string;
+	export let style: string;
 	export let content: string;
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -25,10 +26,13 @@
 	}
 	$: {
 		if (!id) {
-			id = null;
+			id = "";
+		}
+		if (!style) {
+			style = "";
 		}
 		if (!content) {
-			content = null;
+			content = "";
 		}
 	}
 	let flash = false;
