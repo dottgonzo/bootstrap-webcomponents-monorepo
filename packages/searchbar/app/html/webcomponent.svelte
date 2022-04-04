@@ -7,6 +7,8 @@
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 
+	export let id: string;
+	export let style: string;
 	export let action: string;
 	export let method: string = "GET";
 	export let actionQueryKey: string = $$props["action-query-key"];
@@ -23,6 +25,8 @@
 	let resultItemsPathArray = [];
 
 	$: {
+		if (!id) id = "";
+		if (!style) style = "";
 		method = method.toUpperCase();
 		if (!actionQueryKey) {
 			actionQueryKey = "q";
