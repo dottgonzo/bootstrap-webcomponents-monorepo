@@ -2,7 +2,6 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	action: { control: { type: "text" } },
 	img: { control: { type: "text" } },
 	url: { control: { type: "text" } },
 	badge: { control: { type: "text" } },
@@ -10,11 +9,11 @@ export const storybookArgs = {
 	subtitle: { control: { type: "text" } },
 	text: { control: { type: "text" } },
 	rating: { control: { type: "number" } },
-	ratingScale: { control: { type: "number" } },
+	"rating-scale": { control: { type: "number" } },
 	reviews: { control: { type: "text" } },
-	reviewsUrl: { control: { type: "text" } },
+	"reviews-url": { control: { type: "text" } },
 	price: { control: { type: "text" } },
-	regularPrice: { control: { type: "text" } },
+	"regular-price": { control: { type: "text" } },
 	footer: { control: { type: "text" } },
 };
 
@@ -46,11 +45,11 @@ const examples: Component[] = [
 		subtitle: "",
 		text: "",
 		rating: 0,
-		ratingScale: 0,
+		"rating-scale": 0,
 		reviews: "",
-		reviewsUrl: "",
+		"reviews-url": "",
 		price: "",
-		regularPrice: "",
+		"regular-price": "",
 		footer: "",
 	},
 ];
@@ -67,11 +66,11 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	screenshots: [],
 	licenses: [{ type: "Apache-2.0", path: "LICENSE.md", cost: 0, currency: "EUR" }],
 	readmePath: "README.md",
-	name: "hb-shop-item-row",
+	name: "hb-searchbar",
 	category: "basic",
 	tags: ["basic"],
 	size: {},
 	iifePath: "release/release.js",
-	repoName: "@htmlbricks/hb-shop-item-row",
+	repoName: "@htmlbricks/hb-searchbar",
 	version: null,
 };
