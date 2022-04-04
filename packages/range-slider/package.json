@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-range-slider",
 	"displayName": "Svelte Boostrap Video Card WebComponent",
 	"description": "Svelte Boostrap Video Card WebComponent",
-	"version": "0.10.17",
+	"version": "0.10.25",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,8 +30,8 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.10.17",
-		"@htmlbricks/manifester": "^0.0.21",
+		"@htmlbricks/hb-jsutils": "^0.10.25",
+		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
 		"@rollup/plugin-json": "^4.1.0",
@@ -75,5 +75,5 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "bdf29009026b25ab208be7fdcb099f4a68114cd6"
+	"gitHead": "83c3a3d37c0cac8dc85a348b3591f17ac1ce5cd6"
 }

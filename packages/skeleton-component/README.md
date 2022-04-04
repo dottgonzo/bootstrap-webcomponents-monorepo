@@ -1,2 +1,1 @@
-# gauge web component
-
+# skeleton web component
