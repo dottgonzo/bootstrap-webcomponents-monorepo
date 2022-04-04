@@ -9,6 +9,9 @@
 		[key: string]: any;
 	}
 
+	export let id: string;
+	export let style: string;
+
 	export let action: string;
 	export let method: string = "POST";
 	export let fromKey: string = $$props["from-key"];
@@ -33,6 +36,9 @@
 	let state = State.idle;
 
 	$: {
+		if (!id) id = "";
+		if (!style) style = "";
+
 		method = method.toUpperCase();
 		if (!fromKey) {
 			fromKey = "from";
@@ -52,15 +58,15 @@
 
 	function doRecaptcha() {
 		try {
-			grecaptcha.ready(function () {
-				grecaptcha.execute(recaptchaSiteKey, { action: "submit" }).then(function (t) {
-					state = State.success;
-					token = t;
-					if (token) {
-						sendMessage(token);
-					}
-				});
-			});
+			// grecaptcha.ready(function () {
+			// 	grecaptcha.execute(recaptchaSiteKey, { action: "submit" }).then(function (t) {
+			// 		state = State.success;
+			// 		token = t;
+			// 		if (token) {
+			// 			sendMessage(token);
+			// 		}
+			// 	});
+			// });
 		} catch (e) {
 			hasError = true;
 			errMessage = "Something went wrong!";
