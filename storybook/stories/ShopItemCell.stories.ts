@@ -10,7 +10,7 @@ const copy2 = Object.assign({}, storybookArgs);
 
 const assigned = Object.assign({}, copy1, copy2);
 const meta: Meta = {
-  title: "Components/FormContact",
+  title: "Components/ShopItemCell",
   argTypes: assigned,
 };
 
@@ -19,9 +19,9 @@ export default meta;
 const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes, "shop-item-cell");
 
-export const shopItemCell1 = Template.bind({});
-shopItemCell1.args = {
-  id: "shopItemCell1",
+export const ShopItemCell1 = Template.bind({});
+ShopItemCell1.args = {
+  id: "ShopItemCell1",
   // TODO: to be completed
 };
 
