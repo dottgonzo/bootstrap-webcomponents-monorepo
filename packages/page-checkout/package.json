@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-page-checkout",
 	"displayName": "Svelte Page Payment WebComponent",
 	"description": "Svelte Page Payment WebComponent",
-	"version": "0.10.25",
+	"version": "0.10.26",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.10.25",
+		"@htmlbricks/hb-jsutils": "^0.10.26",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
@@ -70,8 +70,8 @@
 		"typescript-transform-paths": "^2.2.3"
 	},
 	"dependencies": {
-		"@htmlbricks/hb-checkout": "^0.10.25",
-		"@htmlbricks/hb-checkout-shopping-cart": "^0.10.25",
+		"@htmlbricks/hb-checkout": "^0.10.26",
+		"@htmlbricks/hb-checkout-shopping-cart": "^0.10.26",
 		"dayjs": "^1.10.7",
 		"debounce": "^1.2.1"
 	},
