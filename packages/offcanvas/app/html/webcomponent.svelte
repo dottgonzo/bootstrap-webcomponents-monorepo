@@ -118,10 +118,10 @@
 	>
 		<hb-sidebar-desktop
 			on:pageChange={(e) => dispatch("pageChange", e.detail)}
-			style="{sidebarDesktopStyleToSet};width:100%"
+			style={sidebarDesktopStyleToSet}
 			navlinks={$$props.navlinks}
-			navpage={$$props.$$navpage}
-			companytitle={$$props.$$companytitle}
+			navpage={$$props.navpage}
+			companytitle={$$props.companytitle}
 		/>
 	</div>
 	{#if type === "autohide"}
@@ -142,5 +142,8 @@
 	}
 	.nav-link {
 		padding: 0.5rem 0.2rem 0.5rem 0.2rem;
+	}
+	hb-sidebar-desktop {
+		width: 100%;
 	}
 </style>
