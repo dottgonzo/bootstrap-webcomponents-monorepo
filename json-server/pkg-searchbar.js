@@ -1,4 +1,3 @@
-// index.js
 const { faker } = require('@faker-js/faker');
 
 

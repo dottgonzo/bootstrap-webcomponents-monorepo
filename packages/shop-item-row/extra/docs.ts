@@ -10,11 +10,11 @@ export const storybookArgs = {
 	subtitle: { control: { type: "text" } },
 	text: { control: { type: "text" } },
 	rating: { control: { type: "number" } },
-	ratingScale: { control: { type: "number" } },
+	ratingscale: { control: { type: "number" } },
 	reviews: { control: { type: "text" } },
-	reviewsUrl: { control: { type: "text" } },
+	reviewsurl: { control: { type: "text" } },
 	price: { control: { type: "text" } },
-	regularPrice: { control: { type: "text" } },
+	regularprice: { control: { type: "text" } },
 	footer: { control: { type: "text" } },
 };
 
@@ -28,7 +28,7 @@ export const htmlSlots: HtmlSlot[] = [
 	{ name: "reviews", description: "reviews" },
 	{ name: "price", description: "price" },
 	{ name: "footer", description: "footer" },
-	{ name: "regular-price", description: "regular-price" },
+	{ name: "regularprice", description: "regularprice" },
 ];
 export const i18nLanguages: i18nLang[] = [];
 
@@ -46,11 +46,11 @@ const examples: Component[] = [
 		subtitle: "",
 		text: "",
 		rating: 0,
-		ratingScale: 0,
+		ratingscale: 0,
 		reviews: "",
-		reviewsUrl: "",
+		reviewsurl: "",
 		price: "",
-		regularPrice: "",
+		regularprice: "",
 		footer: "",
 	},
 ];
