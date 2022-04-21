@@ -3,11 +3,11 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	action: { control: { type: "text" } },
-	method: { control: { type: "radio" }, options: ["POST"] },
-	"from-key": { control: { type: "text" } },
-	"subject-key": { control: { type: "text" } },
-	"content-key": { control: { type: "text" } },
-	"recaptcha-site-key": { control: { type: "text" } },
+	method: { control: { type: "radio" }, options: ["POST", "GET"] },
+	formkey: { control: { type: "text" } },
+	subjectkey: { control: { type: "text" } },
+	contentkey: { control: { type: "text" } },
+	recaptchasitekey: { control: { type: "text" } },
 	"sent-mail": { action: "sent-mail" },
 	"sent-mail-error": { action: "sent-mail-error" },
 };
@@ -26,10 +26,10 @@ const examples: Component[] = [
 	{
 		action: "",
 		method: "POST",
-		"from-key": "",
-		"subject-key": "",
-		"content-key": "",
-		"recaptcha-site-key": "",
+		"formkey": "",
+		"subjectkey": "",
+		"contentkey": "",
+		"recaptchasitekey": "",
 	},
 ];
 export const componentSetup: ComponentSetup & { examples: Component[] } = {

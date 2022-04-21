@@ -4,10 +4,10 @@ export type Component = {
 
 	action: string;
 	method: "GET" | "POST";
-	"action-query-key": string;
-	"result-items-path": string;
-	"result-item-title-key": string;
-	"result-item-link-key": string;
+	"actionquerykey": string;
+	"resultitemspath": string;
+	"resultitemtitlekey": string;
+	"resultitemlinkkey": string;
 };
 
 export type Events = {

@@ -3,8 +3,8 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	uri: { control: { type: "text" } },
-	"clear-url": { control: { type: "text" } },
-	"view-url": { control: { type: "text" } },
+	clearurl: { control: { type: "text" } },
+	viewurl: { control: { type: "text" } },
 	align: { control: { type: "radio" }, options: ["left", "right"] },
 };
 
@@ -20,8 +20,8 @@ export const styleSetup: StyleSetup = {
 
 const examples: Component[] = [
 	{
-		"clear-url": "",
-		"view-url": "",
+		clearurl: "",
+		viewurl: "",
 		align: "left",
 	},
 ];
