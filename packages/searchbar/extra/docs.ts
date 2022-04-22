@@ -4,10 +4,10 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	action: { control: { type: "text" } },
 	method: { control: { type: "radio" }, options: ["GET", "POST"] },
-	"action-query-key": { control: { type: "text" } },
-	"result-items-path": { control: { type: "text" } },
-	"result-item-title-key": { control: { type: "text" } },
-	"result-item-link-key": { control: { type: "text" } },
+	"actionquerykey": { control: { type: "text" } },
+	"resultitemspath": { control: { type: "text" } },
+	"resultitemtitlekey": { control: { type: "text" } },
+	"resultitemlinkkey": { control: { type: "text" } },
 	"search-result-items": { action: "search-result-items" },
 };
 
@@ -22,7 +22,7 @@ export const styleSetup: StyleSetup = {
 };
 
 const examples: Component[] = [
-	{ action: "", method: "GET", "action-query-key": "", "result-items-path": "", "result-item-title-key": "", "result-item-link-key": "" },
+	{ action: "", method: "GET", "actionquerykey": "", "resultitemspath": "", "resultitemtitlekey": "", "resultitemlinkkey": "" },
 ];
 export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	definitions: null,

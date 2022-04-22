@@ -4,10 +4,10 @@ export type Component = {
 
 	action: string;
 	method: "POST";
-	"from-key": string;
-	"subject-key": string;
-	"content-key": string;
-	"recaptcha-site-key": string;
+	formkey: string;
+	subjectkey: string;
+	contentkey: string;
+	recaptchasitekey: string;
 };
 
 export type Events = {

@@ -2,8 +2,8 @@ export type Component = {
 	id?: string;
 	style?: string;
 
-	"clear-url": string;
-	"view-url": string;
+	clearurl: string;
+	viewurl: string;
 	align: "left" | "right";
 };
 

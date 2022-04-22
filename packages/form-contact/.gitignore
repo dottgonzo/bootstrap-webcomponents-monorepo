@@ -128,3 +128,4 @@ npm-debug.log
 /release
 
 webcomponent.type.d.json
+db.json

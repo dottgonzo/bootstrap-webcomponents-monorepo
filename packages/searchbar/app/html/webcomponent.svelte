@@ -9,18 +9,18 @@
 
 	export let id: string;
 	export let style: string;
-	export let action: string;
+	export let action: string = window.location.href;
 	export let method: string = "GET";
-	export let actionQueryKey: string = $$props["action-query-key"];
-	export let resultItemsPath: string = $$props["result-items-path"];
-	export let resultItemTitleKey: string = $$props["result-item-title-key"];
-	export let resultItemLinkKey: string = $$props["result-item-link-key"];
+	export let actionquerykey: string = "q";
+	export let resultitemspath: string = "";
+	export let resultitemtitlekey: string = "title";
+	export let resultitemlinkkey: string = "url";
 
 	let actionQueryValue: string = "";
 	let searchPromise: Promise<keyable[]> = Promise.resolve([]);
 	let isSearchCleared: boolean = false;
 	let showDropdown: string = "";
-	let searchResource;
+	let searchResource: URL = new URL(window.location.href);
 	let searchInit;
 	let resultItemsPathArray = [];
 
@@ -28,16 +28,10 @@
 		if (!id) id = "";
 		if (!style) style = "";
 		method = method.toUpperCase();
-		if (!actionQueryKey) {
-			actionQueryKey = "q";
+		if (!actionquerykey) {
+			actionquerykey = "q";
 		}
-		resultItemsPathArray = resultItemsPath.split(".");
-		if (!resultItemTitleKey) {
-			resultItemTitleKey = "title";
-		}
-		if (!resultItemLinkKey) {
-			resultItemLinkKey = "link";
-		}
+		resultItemsPathArray = resultitemspath ? resultitemspath.split(".") : [];
 		if (isSearchCleared) {
 			searchPromise = Promise.resolve([]);
 		}
@@ -45,7 +39,16 @@
 	}
 	function search(actionQueryValue) {
 		if (actionQueryValue) {
-			searchResource = `${action}${actionQueryKey}=${actionQueryValue}`;
+			try {
+				let here = new URL(window.location.href);
+
+				searchResource = new URL(`${action}`);
+				searchResource.searchParams.set(actionquerykey, actionQueryValue);
+				console.log(actionquerykey, actionQueryValue, here);
+			} catch (error) {
+				console.error(searchResource, error);
+			}
+
 			searchInit = {
 				method,
 			};
@@ -123,7 +126,7 @@
 						return previousValue;
 					}
 				}, searchResult) as item}
-					<li><a class="dropdown-item" href={item[resultItemLinkKey]}>{item[resultItemTitleKey]}</a></li>
+					<li><a class="dropdown-item" href={item[resultitemlinkkey]}>{item[resultitemtitlekey]}</a></li>
 				{/each}
 			{:catch error}
 				<li class="dropdown-item alert-danger">{error.message}</li>

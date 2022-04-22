@@ -9,11 +9,11 @@ export type Component = {
 	subtitle: string;
 	text: string;
 	rating: number;
-	ratingScale: number;
+	ratingscale: number;
 	reviews: string;
-	reviewsUrl: string;
+	reviewsurl: string;
 	price: string;
-	regularPrice: string;
+	regularprice: string;
 	footer: string;
 };
 
