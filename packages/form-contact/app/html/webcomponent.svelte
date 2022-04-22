@@ -12,20 +12,20 @@
 	export let id: string;
 	export let style: string;
 
-	export let action: string;
+	export let action: string = window.location.href;
 	export let method: string = "POST";
-	export let fromKey: string = $$props["from-key"];
-	export let subjectKey: string = $$props["subject-key"];
-	export let contentKey: string = $$props["content-key"];
-	export let recaptchaSiteKey: string = $$props["recaptcha-site-key"];
+	export let fromkey: string = "from";
+	export let subjectkey: string = "subject";
+	export let contentkey: string = "content";
+	export let recaptchasitekey: string;
 
 	let hasError = false;
 	let isSuccessVisible = false;
 	let disabled = false;
-	let name = "";
-	let email = "";
-	let subject = "";
-	let content = "";
+	let name="";
+	let email;
+	let subject="";
+	let content="";
 	let errMessage = "Something went wrong!";
 	let State = {
 		idle: "idle",
@@ -40,15 +40,6 @@
 		if (!style) style = "";
 
 		method = method.toUpperCase();
-		if (!fromKey) {
-			fromKey = "from";
-		}
-		if (!subjectKey) {
-			subjectKey = "subject";
-		}
-		if (!contentKey) {
-			contentKey = "content";
-		}
 	}
 
 	function submitAfterVerification() {
@@ -59,7 +50,7 @@
 	function doRecaptcha() {
 		try {
 			// grecaptcha.ready(function () {
-			// 	grecaptcha.execute(recaptchaSiteKey, { action: "submit" }).then(function (t) {
+			// 	grecaptcha.execute(recaptchasitekey, { action: "submit" }).then(function (t) {
 			// 		state = State.success;
 			// 		token = t;
 			// 		if (token) {
@@ -77,7 +68,7 @@
 	function handleSubmit(e) {
 		hasError = false;
 		disabled = true;
-		if (recaptchaSiteKey) {
+		if (recaptchasitekey) {
 			submitAfterVerification();
 		} else {
 			sendMessage();
@@ -86,7 +77,7 @@
 
 	function sendMessage(verify = "") {
 		const from = `${name}<${email}>`;
-		const data = { [fromKey]: from, [subjectKey]: subject, [contentKey]: content };
+		const data = { [fromkey]: from, [subjectkey]: subject, [contentkey]: content };
 		if (verify) {
 			data["g-recaptcha-response"] = verify;
 		}
@@ -133,8 +124,8 @@
 </script>
 
 <form class="needs-validation pt-2 px-md-3" on:submit|preventDefault={handleSubmit}>
-	{#if recaptchaSiteKey}
-		<script src="https://www.google.com/recaptcha/api.js?render={recaptchaSiteKey}" async defer></script>
+	{#if recaptchasitekey}
+		<script src="https://www.google.com/recaptcha/api.js?render={recaptchasitekey}" async defer></script>
 	{/if}
 	{#if hasError == true}
 		<div class="alert alert-danger" role="alert">{errMessage}</div>

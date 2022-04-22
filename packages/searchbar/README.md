@@ -1,5 +1,5 @@
-# Test server: 
+# Test server:
 
 ```sh
-node ../../json-server/pkg-searchbar.js
+json-server ../../json-server/pkg-searchbar.js
 ```

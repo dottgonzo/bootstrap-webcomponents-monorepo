@@ -30,7 +30,7 @@
 	<div class="flex-fill ms-3">
 		<div class="text-sm lg-snug w-64 text-wrap">
 			{#if url}
-				<a href={url}> <slot>{text}</slot> </a>
+				<a href={url}><slot>{text}</slot></a>
 			{:else}
 				<slot>{text}</slot>
 			{/if}

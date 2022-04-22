@@ -4,29 +4,30 @@
 	export let id: string;
 	export let style: string;
 
-	export let img: string = undefined;
-	export let url: string = undefined;
-	export let badge: string = undefined;
-	export let title: string = undefined;
-	export let subtitle: string = undefined;
-	export let text: string = undefined;
-	export let rating: number = undefined;
-	export let ratingScale: number = $$props["rating-scale"] || 5;
-	export let reviews: string = undefined;
-	export let reviewsUrl: string = $$props["reviews-url"];
-	export let price: string = undefined;
-	export let regularPrice: string = ($$props["regular-price"] = undefined);
-	export let footer: string = undefined;
+	export let img: string;
+	export let url: string;
+	export let badge: string;
+	export let title: string;
+	export let subtitle: string;
+	export let text: string;
+	export let rating: number;
+	export let ratingscale: number = 5;
+	export let reviews: string;
+	export let reviewsurl: string;
+	export let price: string;
+	export let regularprice: string;
+	export let footer: string;
+
 	$: {
 		if (!id) id = "";
 		if (!style) style = "";
 	}
+	console.log($$slots);
 </script>
 
 <div class="card">
 	<div class="row g-0 border rounded overflow-hidden flex-md-row shadow-sm h-md-250 position-relative">
 		<div class="col-auto">
-			<slot />
 			{#if img}
 				<a href={url || null} class="position-relative">
 					<img alt={title || "..."} src={img} class="img-fluid rounded-start" />
@@ -51,7 +52,7 @@
 					<div class="lh-1 d-flex align-items-center">
 						{#if rating}
 							<span class="text-warning me-1 mb-1">
-								{#each { length: ratingScale } as _, i}
+								{#each { length: ratingscale } as _, i}
 									{@const biStar = true}
 									{@const biStarHalf = i + 0.25 < rating}
 									{@const biStarFill = i + 0.75 < rating}
@@ -102,18 +103,18 @@
 							</span><span class="text-warning me-1"> <slot name="rating">{rating}</slot></span>
 						{/if}
 						{#if $$slots.reviews || reviews}
-							<span class="fs-6 text-muted"> <a class="" href={reviewsUrl || null}>(<slot name="reviews">{reviews}</slot>)</a></span>
+							<span class="fs-6 text-muted"> <a class="" href={reviewsurl || null}>(<slot name="reviews">{reviews}</slot>)</a></span>
 						{/if}
 					</div>
 				{/if}
 
-				{#if $$slots.price || price || $$slots["regular-price"] || regularPrice}
+				{#if $$slots.price || price || $$slots["regularprice"] || regularprice}
 					<div class="lh-1 mt-3">
 						{#if $$slots.price || price}
 							<span class="text-dark fw-bold"><slot name="price">{price}</slot></span>
 						{/if}
-						{#if $$slots["regular-price"] || regularPrice}
-							<del class="fs-6 text-muted"><slot name="regular-price">{regularPrice}</slot></del>
+						{#if $$slots["regularprice"] || regularprice}
+							<del class="fs-6 text-muted"><slot name="regularprice">{regularprice}</slot></del>
 						{/if}
 					</div>
 				{/if}
