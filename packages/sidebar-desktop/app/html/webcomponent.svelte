@@ -166,10 +166,10 @@
 <style lang="scss">
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
-	:host {
-		display: block;
-		width: 100px;
-	}
+	// :host {
+	// 	display: block;
+	// 	width: 100px;
+	// }
 	i {
 		min-width: 16px;
 		display: inline-block;

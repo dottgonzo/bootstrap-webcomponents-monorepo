@@ -37,7 +37,6 @@
 	let parsedStyle: { [x: string]: string };
 	let sidenavLinkStyleToSet: string = "";
 	let sidebarDesktopStyleToSet: string = "";
-	let sendOff;
 	let switched;
 	$: {
 		if (!id) id = null;
@@ -53,7 +52,6 @@
 		if (!enablefooter || (enablefooter as unknown as string) === "no") enablefooter = false;
 		if (type === "open" || (opened && (opened as unknown as string) !== "no")) {
 			opened = true;
-			if (sendOff) clearInterval(sendOff);
 			if (!switched)
 				dispatch("offcanvasswitch", {
 					isOpen: opened,

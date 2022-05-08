@@ -82,6 +82,8 @@
 		"@htmlbricks/hb-jsutils": "^0.10.29",
 		"@htmlbricks/hb-navbar": "^0.10.29",
 		"@htmlbricks/hb-offcanvas": "^0.10.29",
-		"style-to-object": "^0.3.0"
+		"@htmlbricks/hb-sidebar-desktop": "^0.10.29",
+		"style-to-object": "^0.3.0",
+		"debounce": "^1.2.1"
 	}
 }
