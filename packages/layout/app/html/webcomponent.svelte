@@ -52,7 +52,7 @@
 	let footerStyleToSet: string = "";
 	let navbarStyleToSet: string = "";
 	let cookieLawBannerStyleToSet: string = "";
-	let sidebarDesktopStyleToSet: string;
+	let sidebarDesktopStyleToSet: string = "";
 
 	let navopen: boolean;
 	let wSize: number;
