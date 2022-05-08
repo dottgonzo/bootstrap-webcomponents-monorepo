@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-searchbar",
 	"displayName": "Svelte Search Bar WebComponent",
 	"description": "Svelte Search Bar WebComponent",
-	"version": "0.10.33",
+	"version": "0.10.34",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.10.33",
+		"@htmlbricks/hb-jsutils": "^0.10.34",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
