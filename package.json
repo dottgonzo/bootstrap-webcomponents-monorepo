@@ -7,8 +7,9 @@
   "scripts": {
     "install-packages": "npx lerna bootstrap --hoist",
     "build:release": "npx lerna run build:release",
-    "publish:patch": "npm run build:release && npx lerna publish patch --ignore-prepublish --force-publish --yes",
-    "publish:minor": "npm run build:release && npx lerna publish patch --ignore-prepublish --force-publish --yes",
-    "publish:major": "npm run build:release && npx lerna publish major --ignore-prepublish --force-publish --yes"
+    "publish:skip-build": "npx lerna publish patch --ignore-prepublish --force-publish --yes",
+    "publish:patch": "npx lerna publish patch --force-publish --yes",
+    "publish:minor": "npx lerna publish patch --force-publish --yes",
+    "publish:major": "npx lerna publish major --force-publish --yes"
   }
 }
