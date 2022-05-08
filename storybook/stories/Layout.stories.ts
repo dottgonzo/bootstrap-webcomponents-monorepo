@@ -131,6 +131,7 @@ LayoutA.args = {
   socials: socials1,
   navlinks: navlinks2,
   usermenu: usermenu1,
+  sidebar: { title: "brand" },
 };
 export const LayoutAWithPage = Template.bind({});
 LayoutAWithPage.args = {
