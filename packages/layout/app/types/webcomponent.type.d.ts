@@ -13,7 +13,7 @@ export type Component = {
 	usermenu?: IUserMenu;
 	cookielaw?: string;
 	columns?: IColumn[];
-	onescreen?: "yes";
+	onescreen?: "yes" | "no" | null | "" | undefined;
 	cookielawuri4more?: string;
 	cookielawallowdecline?: string;
 	cookielawlanguage?: string;

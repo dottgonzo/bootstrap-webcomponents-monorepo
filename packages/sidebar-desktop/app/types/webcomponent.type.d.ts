@@ -9,6 +9,10 @@ export type Component = {
 	companylogouri?: string;
 	companytitle?: string;
 	enablefooter?: boolean;
+	cookielawallowdecline?: "yes" | "no" | null | "" | undefined;
+	cookielawlanguage?: string;
+	cookielawuri4more?: string;
+	onescreen?: "yes" | "no" | null | "" | undefined;
 };
 
 export type Events = {

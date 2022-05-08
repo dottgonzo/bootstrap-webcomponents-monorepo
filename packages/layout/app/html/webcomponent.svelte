@@ -28,6 +28,7 @@
 	import { styleSetup as cookieLawBannerStyleSetup } from "../../node_modules/@htmlbricks/hb-cookie-law-banner/release/docs";
 	import { styleSetup as sidebarDesktopStyleSetup } from "../../node_modules/@htmlbricks/hb-sidebar-desktop/release/docs";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { LanguageTranslator } from "@htmlbricks/hb-jsutils";
 
 	export let id: string;
 	export let socials: ISocials;
@@ -38,13 +39,16 @@
 	export let usermenu: IUserMenu;
 	export let cookielaw: string;
 	export let columns: IColumn[];
-	export let onescreen: "yes";
+	export let onescreen: boolean;
 	export let cookielawuri4more: string;
 	export let cookielawallowdecline: string;
 	export let cookielawlanguage: string;
 	export let sidebar: Component["sidebar"];
 	export let style: string;
 	export let size: "small" | "large";
+	export let i18nlang: string;
+
+	// let translator: LanguageTranslator;
 
 	let parsedStyle: { [x: string]: string };
 
@@ -83,9 +87,16 @@
 		if (!columns) {
 			columns = null;
 		}
-		if (!onescreen) {
-			onescreen = null;
+		if (typeof onescreen === "string") {
+			if (onescreen !== "no") onescreen = true;
+			else onescreen = false;
+		} else if (!onescreen) {
+			onescreen = false;
 		}
+		if (!i18nlang) {
+			i18nlang = null;
+		}
+
 		if (!sidebar) sidebar = {};
 		else if (typeof sidebar === "string") {
 			sidebar = JSON.parse(sidebar);
@@ -118,6 +129,11 @@
 					break;
 			}
 		}
+		// 		if (!translator) {
+		// 	translator = new LanguageTranslator({ dictionary, lang: i18nlang });
+		// } else if (translator && i18nlang && translator.lang && translator.lang !== i18nlang) {
+		// 	translator = new LanguageTranslator({ dictionary, lang: i18nlang });
+		// }
 	}
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -218,7 +234,12 @@
 		<slot name="page">page</slot>
 	</div>
 	{#if cookielaw || cookielawallowdecline || cookielawlanguage || cookielawuri4more}
-		<hb-cookie-law-banner style={cookieLawBannerStyleToSet} language={cookielawlanguage} allowdecline={cookielawallowdecline} {cookielawuri4more} />
+		<hb-cookie-law-banner
+			style={cookieLawBannerStyleToSet}
+			language={cookielawlanguage || i18nlang}
+			allowdecline={cookielawallowdecline}
+			{cookielawuri4more}
+		/>
 	{/if}
 	<hb-footer
 		part="footer"

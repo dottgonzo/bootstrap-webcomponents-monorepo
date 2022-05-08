@@ -34,8 +34,10 @@ export const htmlSlots: HtmlSlot[] = [
 	{ name: "page", description: "" },
 	{ name: "nav-header-slot", description: "" },
 ];
-export const i18nLanguages: i18nLang[] = [];
-
+export const i18nLanguages: i18nLang[] = [
+	{ lang: "it", language: "italian" },
+	{ lang: "en", language: "english" },
+];
 export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
