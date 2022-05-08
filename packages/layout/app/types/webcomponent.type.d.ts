@@ -15,7 +15,7 @@ export type Component = {
 	columns?: IColumn[];
 	onescreen?: "yes" | "no" | null | "" | undefined;
 	cookielawuri4more?: string;
-	cookielawallowdecline?: string;
+	cookielawallowdecline?: boolean;
 	cookielawlanguage?: string;
 	sidebar?: { title?: string; logo?: string; type?: string };
 };

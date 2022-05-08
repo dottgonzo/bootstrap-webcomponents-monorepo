@@ -5,12 +5,16 @@ export const storybookArgs = {
 	pageChange: { action: "pageChange" },
 	offcanvasswitch: { action: "offcanvasswitchEvent" },
 	contacts: { control: { type: "object" } },
+	columns: { control: { type: "object" } },
 	sidebar: { control: { type: "object" } },
 	socials: { control: { type: "object" } },
 	usermenu: { control: { type: "object" } },
 	company: { control: { type: "object" } },
 	navlinks: { control: { type: "array" } },
 	pagename: { control: { type: "string" } },
+	cookielawuri4more: { control: { type: "string" } },
+	cookielawallowdecline: { control: { type: "boolean" } },
+	cookielawlanguage: { control: { type: "string" } },
 	cookielaw: { control: { type: "boolean" } },
 };
 const cssVars: CssVar[] = [
