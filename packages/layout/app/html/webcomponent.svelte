@@ -60,8 +60,6 @@
 
 	let layoutType: "small" | "large";
 	$: {
-		sidebarDesktopStyleToSet = ";position: absolute;width:240px;height:100%;min-height:100vh;";
-
 		if (style) {
 			parsedStyle = parseStyle(style);
 			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
@@ -107,13 +105,12 @@
 			contacts = null;
 		}
 		screensize = onescreen ? "display: flex;flex-direction: column;	height: 100vh;" : "display:block;";
-
 		if (layoutType) {
 			switch (layoutType) {
 				case "small":
 					break;
 				case "large":
-					screensize = screensize + ";padding-left:240px;";
+					if (navlinks?.length) screensize = screensize + ";padding-left:240px;";
 
 					break;
 				default:
@@ -237,4 +234,10 @@
 <style lang="scss">
 	// @import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
+	hb-sidebar-desktop {
+		position: absolute;
+		width: 240px;
+		height: 100%;
+		min-height: 100vh;
+	}
 </style>
