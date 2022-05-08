@@ -53,7 +53,7 @@
 	let searchOnRangeIsPresent = false;
 
 	let filters: IFilter[] = [];
-
+	let originalRows: IRow[];
 	let selectedItems: string[] = [];
 	let sortedBy: string;
 	let sortedDirection: string;
@@ -134,9 +134,10 @@
 			} else {
 				actions = null;
 			}
-			if (typeof rows === "string") rows = JSON.parse(rows);
-
+			if (typeof rows === "string") originalRows = JSON.parse(rows);
+			rows = Object.assign([], originalRows);
 			if (filters?.length && !externalfilter) {
+				console.log("filters", filters, rows);
 				for (const filter of filters) {
 					if (filter.type === "datetime") {
 						if (filter.start) {
