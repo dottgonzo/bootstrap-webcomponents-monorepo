@@ -4,6 +4,7 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	pageChange: { action: "pageChange" },
 	offcanvasswitch: { action: "offcanvasswitchEvent" },
+	layoutStatus: { action: "layoutStatus" },
 	contacts: { control: { type: "object" } },
 	columns: { control: { type: "object" } },
 	sidebar: { control: { type: "object" } },

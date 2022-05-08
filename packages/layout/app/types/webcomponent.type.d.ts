@@ -25,4 +25,5 @@ export type Events = {
 	pageChange: { page: string };
 	userClick: { key: string };
 	footerClick: { elClick: string };
+	layoutStatus: { width: number; size: "large" | "small" };
 };
