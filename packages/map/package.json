@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-map",
 	"displayName": "Svelte-Bootstrap map",
 	"description": "Svelte-Bootstrap map",
-	"version": "0.10.37",
+	"version": "0.10.38",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.10.37",
+		"@htmlbricks/hb-jsutils": "^0.10.38",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
