@@ -1,4 +1,4 @@
-<svelte:options tag="hb-mobile-desktop" />
+<svelte:options tag="hb-layout-mobile" />
 
 <script lang="ts">
 	/**
