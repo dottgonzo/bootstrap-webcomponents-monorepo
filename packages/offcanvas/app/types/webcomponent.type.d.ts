@@ -1,4 +1,4 @@
-import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
+import type { INavLink } from "@htmlbricks/sidenav-link/app/types/webcomponent.type";
 
 export type Component = {
 	id?: string;
