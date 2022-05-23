@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.6.23",
+		"@htmlbricks/hb-jsutils": "^0.10.39",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
@@ -39,6 +39,7 @@
 		"@rollup/plugin-replace": "^4.0.0",
 		"@rollup/plugin-typescript": "^8.2.1",
 		"@tsconfig/svelte": "^1.0.10",
+		"@types/debounce": "^1.2.1",
 		"@types/node": "^16.7.1",
 		"@typescript-eslint/eslint-plugin": "^4.22.0",
 		"@typescript-eslint/parser": "^4.22.0",
@@ -77,12 +78,8 @@
 	"contributors": [],
 	"gitHead": "631b9ae33a67562a1b978cce5fc1ed436f5a9a23",
 	"dependencies": {
-		"@htmlbricks/hb-cookie-law-banner": "^0.10.39",
-		"@htmlbricks/hb-footer": "^0.10.39",
-		"@htmlbricks/hb-jsutils": "^0.10.39",
-		"@htmlbricks/hb-navbar": "^0.10.39",
-		"@htmlbricks/hb-offcanvas": "^0.10.39",
-		"@htmlbricks/hb-sidebar-desktop": "^0.10.39",
+		"@htmlbricks/hb-layout-desktop": "^0.10.39",
+		"@htmlbricks/hb-layout-mobile": "^0.10.39",
 		"debounce": "^1.2.1",
 		"style-to-object": "^0.3.0"
 	}

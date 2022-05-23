@@ -2,6 +2,8 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
+	ooterClick: { action: "footerClick" },
+	userClick: { action: "userClick" },
 	pageChange: { action: "pageChange" },
 	offcanvasswitch: { action: "offcanvasswitchEvent" },
 	layoutStatus: { action: "layoutStatus" },

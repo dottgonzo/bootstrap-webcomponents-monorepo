@@ -22,11 +22,9 @@
 	import type { Component } from "../types/webcomponent.type";
 	import parseStyle from "style-to-object";
 
-	import { styleSetup as offcanvasStyleSetup } from "../../node_modules/@htmlbricks/hb-offcanvas/release/docs";
-	import { styleSetup as footerStyleSetup } from "../../node_modules/@htmlbricks/hb-footer/release/docs";
-	import { styleSetup as navbarStyleSetup } from "../../node_modules/@htmlbricks/hb-navbar/release/docs";
-	import { styleSetup as cookieLawBannerStyleSetup } from "../../node_modules/@htmlbricks/hb-cookie-law-banner/release/docs";
-	import { styleSetup as sidebarDesktopStyleSetup } from "../../node_modules/@htmlbricks/hb-sidebar-desktop/release/docs";
+	import { styleSetup as layoutDesktopStyleSetup } from "../../node_modules/@htmlbricks/hb-layout-desktop/release/docs";
+	import { styleSetup as layoutMobileStyleSetup } from "../../node_modules/@htmlbricks/hb-layout-mobile/release/docs";
+
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
 	import { LanguageTranslator } from "@htmlbricks/hb-jsutils";
 
@@ -52,25 +50,18 @@
 
 	let parsedStyle: { [x: string]: string };
 
-	let offcanvasStyleToSet: string = "";
-	let footerStyleToSet: string = "";
-	let navbarStyleToSet: string = "";
-	let cookieLawBannerStyleToSet: string = "";
-	let sidebarDesktopStyleToSet: string = "";
+	let layoutDesktopStyleSetupToSet: string = "";
+	let layoutMobileStyleSetupToSet: string = "";
 
 	let navopen: boolean;
 	let wSize: number;
-	let screensize = "";
 
 	let layoutType: "small" | "large";
 	$: {
 		if (style) {
 			parsedStyle = parseStyle(style);
-			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
-			footerStyleToSet = getChildStyleToPass(parsedStyle, footerStyleSetup?.vars);
-			navbarStyleToSet = getChildStyleToPass(parsedStyle, navbarStyleSetup?.vars);
-			cookieLawBannerStyleToSet = getChildStyleToPass(parsedStyle, cookieLawBannerStyleSetup?.vars);
-			sidebarDesktopStyleToSet = sidebarDesktopStyleToSet + getChildStyleToPass(parsedStyle, sidebarDesktopStyleSetup?.vars);
+			layoutDesktopStyleSetupToSet = getChildStyleToPass(parsedStyle, layoutDesktopStyleSetup?.vars);
+			layoutMobileStyleSetupToSet = getChildStyleToPass(parsedStyle, layoutMobileStyleSetup?.vars);
 		}
 		if (!size) size = undefined;
 		if (!id) id = "";
@@ -87,24 +78,18 @@
 		if (!columns) {
 			columns = null;
 		}
-		if (typeof onescreen === "string") {
-			if (onescreen !== "no") onescreen = true;
-			else onescreen = false;
-		} else if (!onescreen) {
-			onescreen = false;
+		if (!onescreen) {
+			onescreen = null;
 		}
+
 		if (!i18nlang) {
 			i18nlang = null;
 		}
 
-		if (!sidebar) sidebar = {};
-		else if (typeof sidebar === "string") {
-			sidebar = JSON.parse(sidebar);
-		}
+		if (!sidebar) sidebar = null;
+
 		if (!company) {
 			company = null;
-		} else if (typeof company === "string") {
-			company = JSON.parse(company as unknown as string);
 		}
 		if (!navlinks) {
 			navlinks = null;
@@ -115,20 +100,7 @@
 		if (!contacts) {
 			contacts = null;
 		}
-		screensize = onescreen ? "display: flex;flex-direction: column;	height: 100vh;" : "display:block;";
-		if (layoutType) {
-			switch (layoutType) {
-				case "small":
-					break;
-				case "large":
-					if (navlinks?.length) screensize = screensize + ";padding-left:240px;";
 
-					break;
-				default:
-					console.warn("Layout type not supported");
-					break;
-			}
-		}
 		// 		if (!translator) {
 		// 	translator = new LanguageTranslator({ dictionary, lang: i18nlang });
 		// } else if (translator && i18nlang && translator.lang && translator.lang !== i18nlang) {
@@ -174,91 +146,54 @@
 		console.log("size:", wSize);
 	}
 
-	addComponent({ repoName: "@htmlbricks/hb-footer", version: pkg.version });
-	addComponent({ repoName: "@htmlbricks/hb-offcanvas", version: pkg.version });
-	addComponent({ repoName: "@htmlbricks/hb-navbar", version: pkg.version });
-	addComponent({ repoName: "@htmlbricks/hb-cookie-law-banner", version: pkg.version });
-	addComponent({ repoName: "@htmlbricks/hb-sidebar-desktop", version: pkg.version });
-
-	function openmenu(o) {
-		console.log("burgerclick", o);
-		navopen = o.isOpen;
-
-		dispatch("offcanvasswitch", o);
-	}
+	addComponent({ repoName: "@htmlbricks/hb-layout-desktop", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-layout-mobile", version: pkg.version });
 </script>
 
-{#if navlinks?.length}
-	{#if layoutType === "small"}
-		<hb-offcanvas
-			style={offcanvasStyleToSet}
-			navpage={pagename || ""}
-			navlinks={navlinks || "[]"}
-			companytitle={sidebar?.title}
-			companylogouri={sidebar?.logo}
-			on:offcanvasswitch={(el) => openmenu(el.detail)}
-			opened={navopen ? "yes" : "no"}
-			type="autohide"
-			on:pageChange={(p) => dispatch("pageChange", p.detail)}
-		>
-			<span slot="header"><slot name="nav-header-slot" /></span>
-		</hb-offcanvas>
-	{:else if layoutType === "large"}
-		<hb-sidebar-desktop
-			on:pageChange={(e) => dispatch("pageChange", e.detail)}
-			style={sidebarDesktopStyleToSet}
-			navlinks={navlinks || "[]"}
-			navpage={pagename || ""}
-			companytitle={sidebar?.title}
-		/>
-	{/if}
-{/if}
-<div style={screensize} part="container">
-	<hb-navbar
-		part="navbar"
-		style={navbarStyleToSet}
-		noburger={layoutType === "small" && navlinks ? "" : "yes"}
-		companylogouri={company?.logoUri || ""}
-		companybrandname={company?.siteName || ""}
-		usermenu={usermenu || ""}
-		switchopen={navopen ? "yes" : "no"}
-		on:navmenuswitch={(el) => openmenu(el.detail)}
-		on:userClick={(el) => dispatch("userClick", el.detail)}
-	>
-		<span slot="left-slot"><slot name="nav-left-slot" /></span>
-		<span slot="center-slot"><slot name="nav-center-slot" /></span>
-		<span slot="right-slot"><slot name="nav-right-slot" /></span>
-	</hb-navbar>
-
-	<div style={onescreen ? "flex: 2" : ""} part="page" id="page">
-		<slot name="page">page</slot>
-	</div>
-	{#if cookielaw || cookielawallowdecline || cookielawlanguage || cookielawuri4more}
-		<hb-cookie-law-banner
-			style={cookieLawBannerStyleToSet}
-			language={cookielawlanguage || i18nlang}
-			allowdecline={cookielawallowdecline}
-			{cookielawuri4more}
-		/>
-	{/if}
-	<hb-footer
-		part="footer"
-		socials={socials ? JSON.stringify(socials) : ""}
-		contacts={contacts ? JSON.stringify(contacts) : ""}
-		style="display:block;{footerStyleToSet}"
-		company={company ? JSON.stringify(company) : ""}
-		columns={columns || ""}
-		on:footerClick={(el) => dispatch("footerClick", el.detail)}
+{#if layoutType === "small"}
+	<hb-layout-mobile
+		style={layoutMobileStyleSetupToSet}
+		company={$$props.company}
+		sidebar={$$props.sidebar}
+		pagename={$$props.pagename}
+		socials={$$props.socials}
+		navlinks={$$props.navlinks}
+		contacts={$$props.contacts}
+		i18nlang={$$props.i18nlang}
+		columns={$$props.columns}
+		onescreen={$$props.onescreen}
+		usermenu={$$props.usermenu}
+		cookielawlanguage={$$props.cookielawlanguage}
+		cookielawallowdecline={$$props.cookielawallowdecline}
+		cookielawuri4more={$$props.cookielawuri4more}
+		cookielaw={$$props.cookielaw}
+		on:userClick={(l) => dispatch("userClick", l.detail)}
+		on:footerClick={(l) => dispatch("footerClick", l.detail)}
+		on:pageChange={(l) => dispatch("pageChange", l.detail)}
+		on:offcanvasswitch={(l) => dispatch("offcanvasswitch", l.detail)}
+		on:layoutStatus={(l) => dispatch("layoutStatus", l.detail)}
 	/>
-</div>
-
-<style lang="scss">
-	// @import "../styles/bootstrap.scss";
-	@import "../styles/webcomponent.scss";
-	hb-sidebar-desktop {
-		position: absolute;
-		width: 240px;
-		height: 100%;
-		min-height: 100vh;
-	}
-</style>
+{:else}
+	<hb-layout-desktop
+		style={layoutDesktopStyleSetupToSet}
+		company={$$props.company}
+		sidebar={$$props.sidebar}
+		pagename={$$props.pagename}
+		socials={$$props.socials}
+		navlinks={$$props.navlinks}
+		contacts={$$props.contacts}
+		i18nlang={$$props.i18nlang}
+		columns={$$props.columns}
+		onescreen={$$props.onescreen}
+		usermenu={$$props.usermenu}
+		cookielawlanguage={$$props.cookielawlanguage}
+		cookielawallowdecline={$$props.cookielawallowdecline}
+		cookielawuri4more={$$props.cookielawuri4more}
+		cookielaw={$$props.cookielaw}
+		on:userClick={(l) => dispatch("userClick", l.detail)}
+		on:footerClick={(l) => dispatch("footerClick", l.detail)}
+		on:pageChange={(l) => dispatch("pageChange", l.detail)}
+		on:offcanvasswitch={(l) => dispatch("offcanvasswitch", l.detail)}
+		on:layoutStatus={(l) => dispatch("layoutStatus", l.detail)}
+	/>
+{/if}

@@ -62,7 +62,6 @@
 	let wSize: number;
 	let screensize = "";
 
-	let layoutType: "small" | "large";
 	$: {
 		if (style) {
 			parsedStyle = parseStyle(style);
@@ -116,19 +115,7 @@
 			contacts = null;
 		}
 		screensize = onescreen ? "display: flex;flex-direction: column;	height: 100vh;" : "display:block;";
-		if (layoutType) {
-			switch (layoutType) {
-				case "small":
-					break;
-				case "large":
-					if (navlinks?.length) screensize = screensize + ";padding-left:240px;";
 
-					break;
-				default:
-					console.warn("Layout type not supported");
-					break;
-			}
-		}
 		// 		if (!translator) {
 		// 	translator = new LanguageTranslator({ dictionary, lang: i18nlang });
 		// } else if (translator && i18nlang && translator.lang && translator.lang !== i18nlang) {
@@ -140,38 +127,6 @@
 	function dispatch(name, detail) {
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
-	}
-
-	const recheckSize = debounce(detectSize, 500);
-	onMount(() => {
-		detectSize();
-		window.addEventListener("resize", recheckSize);
-		return () => {
-			window.removeEventListener("resize", recheckSize);
-		};
-	});
-
-	function detectSize() {
-		console.log("checkSize");
-		if (!window?.innerWidth) {
-			if (wSize) return wSize;
-
-			return 0;
-		}
-
-		wSize = window.innerWidth;
-		if (size) {
-			layoutType = size;
-			return;
-		}
-		if (wSize < 992) {
-			layoutType = "small";
-		} else {
-			layoutType = "large";
-		}
-		dispatch("layoutStatus", { width: wSize, size: layoutType });
-
-		console.log("size:", wSize);
 	}
 
 	addComponent({ repoName: "@htmlbricks/hb-footer", version: pkg.version });
@@ -189,35 +144,25 @@
 </script>
 
 {#if navlinks?.length}
-	{#if layoutType === "small"}
-		<hb-offcanvas
-			style={offcanvasStyleToSet}
-			navpage={pagename || ""}
-			navlinks={navlinks || "[]"}
-			companytitle={sidebar?.title}
-			companylogouri={sidebar?.logo}
-			on:offcanvasswitch={(el) => openmenu(el.detail)}
-			opened={navopen ? "yes" : "no"}
-			type="autohide"
-			on:pageChange={(p) => dispatch("pageChange", p.detail)}
-		>
-			<span slot="header"><slot name="nav-header-slot" /></span>
-		</hb-offcanvas>
-	{:else if layoutType === "large"}
-		<hb-sidebar-desktop
-			on:pageChange={(e) => dispatch("pageChange", e.detail)}
-			style={sidebarDesktopStyleToSet}
-			navlinks={navlinks || "[]"}
-			navpage={pagename || ""}
-			companytitle={sidebar?.title}
-		/>
-	{/if}
+	<hb-offcanvas
+		style={offcanvasStyleToSet}
+		navpage={pagename || ""}
+		navlinks={navlinks || "[]"}
+		companytitle={sidebar?.title}
+		companylogouri={sidebar?.logo}
+		on:offcanvasswitch={(el) => openmenu(el.detail)}
+		opened={navopen ? "yes" : "no"}
+		type="autohide"
+		on:pageChange={(p) => dispatch("pageChange", p.detail)}
+	>
+		<span slot="header"><slot name="nav-header-slot" /></span>
+	</hb-offcanvas>
 {/if}
 <div style={screensize} part="container">
 	<hb-navbar
 		part="navbar"
 		style={navbarStyleToSet}
-		noburger={layoutType === "small" && navlinks ? "" : "yes"}
+		noburger={navlinks ? "" : "yes"}
 		companylogouri={company?.logoUri || ""}
 		companybrandname={company?.siteName || ""}
 		usermenu={usermenu || ""}
