@@ -90,7 +90,7 @@
 <div id="webcomponent">
 	<slot name="test" />
 
-	<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="min-height:100vh;padding-top:0px!important">
+	<div class="d-flex flex-column p-3 bg-light" style="height:100%;padding-top:0px!important;position: absolute;width: 100%;">
 		<h4 class="offcanvas-title">
 			<slot name="header" part="header" />
 			{#if companytitle}
@@ -168,15 +168,14 @@
 	@import "../styles/webcomponent.scss";
 	// :host {
 	// 	display: block;
-	// 	width: 100px;
+	// 	height: 100vh;
+	// 	min-height: 100vh;
 	// }
 	i {
 		min-width: 16px;
 		display: inline-block;
 	}
-	.offcanvas-start {
-		width: 240px;
-	}
+
 	.nav-link {
 		padding: 0.5rem 0.2rem 0.5rem 0.2rem;
 	}

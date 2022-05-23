@@ -144,6 +144,21 @@
 	}
 </script>
 
+<hb-navbar
+	part="navbar"
+	style={navbarStyleToSet}
+	noburger="yes"
+	companylogouri={company?.logoUri || ""}
+	companybrandname={company?.siteName || ""}
+	usermenu={usermenu || ""}
+	switchopen={navopen ? "yes" : "no"}
+	on:navmenuswitch={(el) => openmenu(el.detail)}
+	on:userClick={(el) => dispatch("userClick", el.detail)}
+>
+	<span slot="left-slot"><slot name="nav-left-slot" /></span>
+	<span slot="center-slot"><slot name="nav-center-slot" /></span>
+	<span slot="right-slot"><slot name="nav-right-slot" /></span>
+</hb-navbar>
 {#if navlinks?.length}
 	<hb-sidebar-desktop
 		on:pageChange={(e) => dispatch("pageChange", e.detail)}
@@ -154,22 +169,6 @@
 	/>
 {/if}
 <div style={screensize} part="container">
-	<hb-navbar
-		part="navbar"
-		style={navbarStyleToSet}
-		noburger="yes"
-		companylogouri={company?.logoUri || ""}
-		companybrandname={company?.siteName || ""}
-		usermenu={usermenu || ""}
-		switchopen={navopen ? "yes" : "no"}
-		on:navmenuswitch={(el) => openmenu(el.detail)}
-		on:userClick={(el) => dispatch("userClick", el.detail)}
-	>
-		<span slot="left-slot"><slot name="nav-left-slot" /></span>
-		<span slot="center-slot"><slot name="nav-center-slot" /></span>
-		<span slot="right-slot"><slot name="nav-right-slot" /></span>
-	</hb-navbar>
-
 	<div style={onescreen ? "flex: 2" : ""} part="page" id="page">
 		<slot name="page">page</slot>
 	</div>
@@ -198,7 +197,9 @@
 	hb-sidebar-desktop {
 		position: absolute;
 		width: 240px;
+		max-width: 240px;
+		display: block;
 		height: 100%;
-		min-height: 100vh;
+		// min-height: 100vh;
 	}
 </style>
