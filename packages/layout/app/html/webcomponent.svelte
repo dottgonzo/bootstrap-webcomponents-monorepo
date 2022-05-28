@@ -172,7 +172,11 @@
 		on:pageChange={(l) => dispatch("pageChange", l.detail)}
 		on:offcanvasswitch={(l) => dispatch("offcanvasswitch", l.detail)}
 		on:layoutStatus={(l) => dispatch("layoutStatus", l.detail)}
-	/>
+	>
+		<div slot="page">
+			<slot name="page">page</slot>
+		</div>
+	</hb-layout-mobile>
 {:else}
 	<hb-layout-desktop
 		style={layoutDesktopStyleSetupToSet}
@@ -195,5 +199,9 @@
 		on:pageChange={(l) => dispatch("pageChange", l.detail)}
 		on:offcanvasswitch={(l) => dispatch("offcanvasswitch", l.detail)}
 		on:layoutStatus={(l) => dispatch("layoutStatus", l.detail)}
-	/>
+	>
+		<div slot="page">
+			<slot name="page">page</slot>
+		</div>
+	</hb-layout-desktop>
 {/if}
