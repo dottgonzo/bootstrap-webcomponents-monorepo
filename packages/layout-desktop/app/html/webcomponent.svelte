@@ -63,6 +63,7 @@
 	let screensize = "";
 
 	$: {
+		navopen = true;
 		if (style) {
 			parsedStyle = parseStyle(style);
 			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
@@ -115,7 +116,7 @@
 			contacts = null;
 		}
 		screensize = onescreen ? "display: flex;flex-direction: column;	height: 100vh;" : "display:block;";
-		if (navlinks?.length) screensize = screensize + ";padding-left:240px;";
+		// if (navlinks?.length) screensize = screensize + ";padding-left:240px;";
 
 		// 		if (!translator) {
 		// 	translator = new LanguageTranslator({ dictionary, lang: i18nlang });
@@ -135,6 +136,7 @@
 	addComponent({ repoName: "@htmlbricks/hb-navbar", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-cookie-law-banner", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-sidebar-desktop", version: pkg.version });
+	// addComponent({ repoName: "@htmlbricks/hb-sidebar-desktop", version: pkg.version, local: "http://localhost:6006/sidebar-desktop/dist/release.js" });
 
 	function openmenu(o) {
 		console.log("burgerclick", o);
@@ -146,60 +148,73 @@
 
 <hb-navbar
 	part="navbar"
+	noburger={navlinks?.length ? "" : "no"}
 	style={navbarStyleToSet}
-	noburger="yes"
-	companylogouri={company?.logoUri || ""}
 	companybrandname={company?.siteName || ""}
 	usermenu={usermenu || ""}
 	switchopen={navopen ? "yes" : "no"}
 	on:navmenuswitch={(el) => openmenu(el.detail)}
 	on:userClick={(el) => dispatch("userClick", el.detail)}
 >
-	<span slot="left-slot"><slot name="nav-left-slot" /></span>
+	<span slot="left-slot">
+		<!-- <span
+			on:click={() => {
+				navopen = !navopen;
+			}}>burger</span
+		> -->
+		{#if company?.logoUri}
+			<img alt="" style="max-height: 31px;vertical-align: middle;" src={company.logoUri} />
+		{/if}
+		{#if sidebar?.title}
+			{sidebar.title}
+		{/if}
+	</span>
+
 	<span slot="center-slot"><slot name="nav-center-slot" /></span>
 	<span slot="right-slot"><slot name="nav-right-slot" /></span>
 </hb-navbar>
-{#if navlinks?.length}
-	<hb-sidebar-desktop
-		on:pageChange={(e) => dispatch("pageChange", e.detail)}
-		style={sidebarDesktopStyleToSet}
-		navlinks={navlinks || "[]"}
-		navpage={pagename || ""}
-		companytitle={sidebar?.title}
-	/>
-{/if}
-<div style={screensize} part="container">
-	<div style={onescreen ? "flex: 2" : ""} part="page" id="page">
-		<slot name="page">page</slot>
-	</div>
-	{#if cookielaw || cookielawallowdecline || cookielawlanguage || cookielawuri4more}
-		<hb-cookie-law-banner
-			style={cookieLawBannerStyleToSet}
-			language={cookielawlanguage || i18nlang}
-			allowdecline={cookielawallowdecline}
-			{cookielawuri4more}
+
+<div style={navlinks?.length && navopen ? "display:grid;grid-template-columns: 240px auto;" : ""}>
+	{#if navlinks?.length && navopen}
+		<hb-sidebar-desktop
+			on:pageChange={(e) => dispatch("pageChange", e.detail)}
+			style={sidebarDesktopStyleToSet}
+			navlinks={navlinks || "[]"}
+			navpage={pagename || ""}
 		/>
 	{/if}
-	<hb-footer
-		part="footer"
-		socials={socials ? JSON.stringify(socials) : ""}
-		contacts={contacts ? JSON.stringify(contacts) : ""}
-		style="display:block;{footerStyleToSet}"
-		company={company ? JSON.stringify(company) : ""}
-		columns={columns || ""}
-		on:footerClick={(el) => dispatch("footerClick", el.detail)}
-	/>
+	<div style={screensize} part="container">
+		<div style={onescreen ? "flex: 2" : ""} part="page" id="page">
+			<slot name="page">page</slot>
+		</div>
+		{#if cookielaw || cookielawallowdecline || cookielawlanguage || cookielawuri4more}
+			<hb-cookie-law-banner
+				style={cookieLawBannerStyleToSet}
+				language={cookielawlanguage || i18nlang}
+				allowdecline={cookielawallowdecline}
+				{cookielawuri4more}
+			/>
+		{/if}
+		<hb-footer
+			part="footer"
+			socials={socials ? JSON.stringify(socials) : ""}
+			contacts={contacts ? JSON.stringify(contacts) : ""}
+			style="display:block;{footerStyleToSet}"
+			company={company ? JSON.stringify(company) : ""}
+			columns={columns || ""}
+			on:footerClick={(el) => dispatch("footerClick", el.detail)}
+		/>
+	</div>
 </div>
 
 <style lang="scss">
 	// @import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
 	hb-sidebar-desktop {
-		position: absolute;
+		display: inline-block;
 		width: 240px;
 		max-width: 240px;
-		display: block;
-		height: 100%;
+		height: calc(100vh - 52px);
 		// min-height: 100vh;
 	}
 </style>

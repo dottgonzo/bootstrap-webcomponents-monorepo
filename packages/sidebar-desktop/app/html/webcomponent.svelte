@@ -87,10 +87,10 @@
 <svelte:head>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
 </svelte:head>
-<div id="webcomponent">
+<div id="webcomponent" style="position:relative;height:100%;">
 	<slot name="test" />
 
-	<div class="d-flex flex-column p-3 bg-light" style="height:100%;padding-top:0px!important;position: absolute;width: 100%;">
+	<div class="d-flex flex-column p-3 bg-light" style="height:100%;padding-top:0px!important;position: relative;">
 		<h4 class="offcanvas-title">
 			<slot name="header" part="header" />
 			{#if companytitle}
@@ -166,11 +166,10 @@
 <style lang="scss">
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
-	// :host {
-	// 	display: block;
-	// 	height: 100vh;
-	// 	min-height: 100vh;
-	// }
+	:host {
+		display: block;
+		width: 240px;
+	}
 	i {
 		min-width: 16px;
 		display: inline-block;
