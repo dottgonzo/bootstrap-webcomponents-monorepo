@@ -115,7 +115,7 @@
 		if (!contacts) {
 			contacts = null;
 		}
-		screensize = onescreen ? "display: flex;flex-direction: column;	height: 100vh;" : "display:block;";
+		screensize = "width:100%;" + (onescreen ? "display: flex;flex-direction: column;	height: 100vh;" : "display:block;");
 		// if (navlinks?.length) screensize = screensize + ";padding-left:240px;";
 
 		// 		if (!translator) {
@@ -144,6 +144,26 @@
 
 		dispatch("offcanvasswitch", o);
 	}
+	function detectSize() {
+		console.log("resize");
+		const c = component.shadowRoot.getElementById("container");
+		const s = component.shadowRoot.getElementById("sidebarcontainer");
+		const pageHeight = c.offsetHeight;
+		const intFrameHeight = window.innerHeight; // or
+
+		s.style.height = pageHeight + "px";
+		s.style.minHeight = intFrameHeight - 52 + "px";
+	}
+
+	onMount(() => {
+		detectSize();
+		const c = component.shadowRoot.getElementById("container");
+
+		window.addEventListener("resize", detectSize);
+		return () => {
+			window.removeEventListener("resize", detectSize);
+		};
+	});
 </script>
 
 <hb-navbar
@@ -174,16 +194,18 @@
 	<span slot="right-slot"><slot name="nav-right-slot" /></span>
 </hb-navbar>
 
-<div style={navlinks?.length && navopen ? "display:grid;grid-template-columns: 240px auto;" : ""}>
+<div style="display:flex">
 	{#if navlinks?.length && navopen}
-		<hb-sidebar-desktop
-			on:pageChange={(e) => dispatch("pageChange", e.detail)}
-			style={sidebarDesktopStyleToSet}
-			navlinks={navlinks || "[]"}
-			navpage={pagename || ""}
-		/>
+		<div id="sidebarcontainer">
+			<hb-sidebar-desktop
+				on:pageChange={(e) => dispatch("pageChange", e.detail)}
+				style={sidebarDesktopStyleToSet}
+				navlinks={navlinks || "[]"}
+				navpage={pagename || ""}
+			/>
+		</div>
 	{/if}
-	<div style={screensize} part="container">
+	<div id="container" style={screensize} part="container">
 		<div style={onescreen ? "flex: 2" : ""} part="page" id="page">
 			<slot name="page">page</slot>
 		</div>
@@ -211,10 +233,13 @@
 	// @import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
 	hb-sidebar-desktop {
-		display: inline-block;
+		// display: inline-block;
 		width: 240px;
 		max-width: 240px;
-		min-height: calc(100vh - 52px);
+		height: 100%;
 		// min-height: 100vh;
+	}
+	#sidebarcontainer {
+		// min-height: calc(100vh - 52px);
 	}
 </style>
