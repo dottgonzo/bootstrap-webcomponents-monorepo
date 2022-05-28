@@ -214,7 +214,7 @@
 		display: inline-block;
 		width: 240px;
 		max-width: 240px;
-		height: calc(100vh - 52px);
+		min-height: calc(100vh - 52px);
 		// min-height: 100vh;
 	}
 </style>

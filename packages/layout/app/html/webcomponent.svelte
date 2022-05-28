@@ -176,6 +176,13 @@
 		<div slot="page">
 			<slot name="page">page</slot>
 		</div>
+		<div>
+			<span slot="left-slot">
+				<slot name="left-slot" />
+			</span>
+			<span slot="center-slot"><slot name="nav-center-slot" /></span>
+			<span slot="right-slot"><slot name="nav-right-slot" /></span>
+		</div>
 	</hb-layout-mobile>
 {:else}
 	<hb-layout-desktop
