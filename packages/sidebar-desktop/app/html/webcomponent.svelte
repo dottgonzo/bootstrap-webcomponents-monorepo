@@ -90,7 +90,7 @@
 <div id="webcomponent" style="position:relative;height:100%;">
 	<slot name="test" />
 
-	<div class="d-flex flex-column p-3 bg-light" style="height:100%;padding-top:0px!important;position: relative;">
+	<div class="d-flex flex-column p-3 bg-light" style="height:100%;padding-top:0px!important;position: relative; max-height: 100%; overflow-y: auto;">
 		<h4 class="offcanvas-title">
 			<slot name="header" part="header" />
 			{#if companytitle}
