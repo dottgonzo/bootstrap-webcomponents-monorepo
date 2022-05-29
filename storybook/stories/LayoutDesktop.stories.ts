@@ -189,6 +189,46 @@ const navlinksMany = [
       text: "bbb",
     },
   },
+
+  {
+    label: "Stats4",
+    key: "stats4",
+    icon: "graph-up",
+    group: "stats",
+    badge: {
+      text: "bbb",
+    },
+  },
+
+  {
+    label: "Stats5",
+    key: "stats5",
+    icon: "graph-up",
+    group: "stats",
+    badge: {
+      text: "bbb",
+    },
+  },
+
+  {
+    label: "Stats6",
+    key: "stats6",
+    icon: "graph-up",
+    group: "stats",
+    badge: {
+      text: "bbb",
+    },
+  },
+
+  {
+    label: "Stats7",
+    key: "stats7",
+    icon: "graph-up",
+    group: "stats",
+    badge: {
+      text: "bbb",
+    },
+  },
 ];
 
 const contacts1 = {

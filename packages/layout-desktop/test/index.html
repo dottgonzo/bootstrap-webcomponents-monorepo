@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<script id="hb-bundle" src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-bundle@0.10.35/release/release.js"></script>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+			}
+			#layout_container {
+				display: flex;
+				background-color: yellow;
+			}
+			#layout_page {
+				background-color: green;
+				min-height: calc(100vh - 30px);
+				flex-grow: 1;
+			}
+			#layout_sidebar {
+				background-color: blue;
+				width: 240px;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="height: 30px; background-color: red"></div>
+		<div id="layout_container">
+			<div id="layout_sidebar">sidebar</div>
+			<div id="layout_page">page</div>
+		</div>
+	</body>
+</html>

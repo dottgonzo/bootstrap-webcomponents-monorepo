@@ -84,6 +84,7 @@
 		"@htmlbricks/hb-offcanvas": "^0.10.46",
 		"@htmlbricks/hb-sidebar-desktop": "^0.10.46",
 		"debounce": "^1.2.1",
-		"style-to-object": "^0.3.0"
+		"style-to-object": "^0.3.0",
+		"svelte-observe-resize": "^1.0.1"
 	}
 }

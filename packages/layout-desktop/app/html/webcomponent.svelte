@@ -15,6 +15,7 @@
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
 	import debounce from "debounce";
+	import observeResize from "svelte-observe-resize";
 
 	import type { IContacts, ISocials, ICompany, IColumn } from "../../../footer/app/types/webcomponent.type";
 	import type { IUserMenu } from "../../../navbar/app/types/webcomponent.type";
@@ -115,7 +116,7 @@
 		if (!contacts) {
 			contacts = null;
 		}
-		screensize = "width:100%;" + (onescreen ? "display: flex;flex-direction: column;	height: 100vh;" : "display:block;");
+		// screensize = onescreen ? "display: flex;flex-direction: column;	height: 100vh;" : "display:block;";
 		// if (navlinks?.length) screensize = screensize + ";padding-left:240px;";
 
 		// 		if (!translator) {
@@ -123,6 +124,7 @@
 		// } else if (translator && i18nlang && translator.lang && translator.lang !== i18nlang) {
 		// 	translator = new LanguageTranslator({ dictionary, lang: i18nlang });
 		// }
+		handleResize();
 	}
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -144,29 +146,40 @@
 
 		dispatch("offcanvasswitch", o);
 	}
-	function detectSize() {
-		console.log("resize");
-		const c = component.shadowRoot.getElementById("container");
-		const s = component.shadowRoot.getElementById("sidebarcontainer");
+	let a = 0;
+	let c: HTMLElement;
+	let s: HTMLElement;
+	let n: HTMLElement;
+	function handleResize() {
+		a++;
+		if (!n) n = component?.shadowRoot?.getElementById?.("navbar");
+		if (!c) c = component?.shadowRoot?.getElementById?.("container");
+		if (!s) s = component?.shadowRoot?.getElementById?.("sidebarcontainer");
+		if (!c || !s || !n) return;
 		const pageHeight = c.offsetHeight;
-		const intFrameHeight = window.innerHeight; // or
-
-		s.style.height = pageHeight + "px";
-		s.style.minHeight = intFrameHeight - 52 + "px";
+		const intFrameHeight = window.innerHeight - n.offsetHeight;
+		console.log("ss", s.style.height);
+		console.log("resize", pageHeight, intFrameHeight, a, s.style.height);
+		s.setAttribute("style", "height:" + (pageHeight > intFrameHeight ? pageHeight : intFrameHeight) + "px");
 	}
+	// function detectSize() {
+	// 	console.log("resize");
+	// 	const c = component.shadowRoot.getElementById("container");
+	// 	const s = component.shadowRoot.getElementById("sidebarcontainer");
+	// 	const pageHeight = c.offsetHeight;
+	// 	const intFrameHeight = window.innerHeight; // or
+
+	// 	s.style.height = pageHeight + "px";
+	// 	s.style.minHeight = intFrameHeight - 52 + "px";
+	// }
 
 	onMount(() => {
-		detectSize();
-		const c = component.shadowRoot.getElementById("container");
-
-		window.addEventListener("resize", detectSize);
-		return () => {
-			window.removeEventListener("resize", detectSize);
-		};
+		handleResize();
 	});
 </script>
 
 <hb-navbar
+	id="navbar"
 	part="navbar"
 	noburger={navlinks?.length ? "" : "no"}
 	style={navbarStyleToSet}
@@ -194,18 +207,17 @@
 	<span slot="right-slot"><slot name="nav-right-slot" /></span>
 </hb-navbar>
 
-<div style="display:flex">
+<div id="grid_container">
 	{#if navlinks?.length && navopen}
-		<div id="sidebarcontainer">
-			<hb-sidebar-desktop
-				on:pageChange={(e) => dispatch("pageChange", e.detail)}
-				style={sidebarDesktopStyleToSet}
-				navlinks={navlinks || "[]"}
-				navpage={pagename || ""}
-			/>
-		</div>
+		<hb-sidebar-desktop
+			id="sidebarcontainer"
+			on:pageChange={(e) => dispatch("pageChange", e.detail)}
+			style={sidebarDesktopStyleToSet}
+			navlinks={navlinks || "[]"}
+			navpage={pagename || ""}
+		/>
 	{/if}
-	<div id="container" style={screensize} part="container">
+	<div id="container" use:observeResize on:resize={debounce(handleResize, 200)} style={screensize} part="container">
 		<div style={onescreen ? "flex: 2" : ""} part="page" id="page">
 			<slot name="page">page</slot>
 		</div>
@@ -235,11 +247,15 @@
 	hb-sidebar-desktop {
 		// display: inline-block;
 		width: 240px;
-		max-width: 240px;
-		height: 100%;
-		// min-height: 100vh;
+		z-index: 1;
+		position: absolute;
 	}
-	#sidebarcontainer {
-		// min-height: calc(100vh - 52px);
+	#grid_container {
+		position: relative;
+	}
+	#container {
+		position: absolute;
+		padding-left: 240px;
+		width: calc(100% - 240px);
 	}
 </style>

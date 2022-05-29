@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<script id="hb-bundle" src="https://cdn.jsdelivr.net/npm/@htmlbricks/hb-bundle@0.10.46/release/release.js"></script>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+			}
+			#layout_container {
+				display: table;
+				background-color: yellow;
+			}
+			#layout_page {
+				background-color: green;
+				min-height: calc(100vh - 60px);
+				width: calc(100vw - 260px);
+				position: relative;
+				display: block;
+				margin-left: 240px;
+			}
+			#layout_sidebar_container {
+				float: left;
+				background-color: blue;
+				width: 240px;
+				left: 0px;
+				position: relative;
+				max-height: 100%;
+			}
+			#layout_sidebar_inner {
+				background-color: orange;
+				display: inline;
+				max-height: 100%;
+			}
+			hb-sidebar-desktop {
+			}
+		</style>
+	</head>
+	<body>
+		<div style="height: 60px; background-color: red"></div>
+		<div id="layout_container">
+			<div id="layout_sidebar_container">
+				<div id="layout_sidebar_inner">
+					<hb-sidebar-desktop
+						navlinks='[{"label":"Home","key":"home","icon":"house-door","badge":{"text":"bbb"}},{"label":"Dashboard","key":"dashboard","icon":"speedometer","badge":{"text":"bbb"}},{"label":"Settings","key":"settings","icon":"gear","group":"admin","badge":{"text":"bbb"}},{"label":"Users","key":"users","icon":"people-fill","group":"admin","badge":{"text":"uuuuu"}},{"label":"Stats","key":"stats","icon":"graph-up","group":"stats","badge":{"text":"bbb"}},{"label":"Stats1","key":"stats1","icon":"graph-up","group":"stats","badge":{"text":"bbb"}},{"label":"Stats2","key":"stats2","icon":"graph-up","group":"stats","badge":{"text":"bbb"}},{"label":"Stats3","key":"stats3","icon":"graph-up","group":"stats","badge":{"text":"bbb"}},{"label":"Stats4","key":"stats4","icon":"graph-up","group":"stats","badge":{"text":"bbb"}},{"label":"Stats5","key":"stats5","icon":"graph-up","group":"stats","badge":{"text":"bbb"}},{"label":"Stats","key":"stats","icon":"graph-up","group":"stats","badge":{"text":"bbb"}},{"label":"Stats","key":"stats","icon":"graph-up","group":"stats","badge":{"text":"bbb"}},{"label":"Stats4","key":"stats4","icon":"graph-up","group":"stats","badge":{"text":"bbb"}},{"label":"Stats5","key":"stats5","icon":"graph-up","group":"stats","badge":{"text":"bbb"}},{"label":"Stats6","key":"stats6","icon":"graph-up","group":"stats","badge":{"text":"bbb"}},{"label":"Stats7","key":"stats7","icon":"graph-up","group":"stats","badge":{"text":"bbb"}}]'
+						navpage=""
+						style=""
+					></hb-sidebar-desktop>
+				</div>
+			</div>
+			<div id="layout_page">
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+				page<br />
+			</div>
+		</div>
+	</body>
+</html>
