@@ -116,7 +116,7 @@
 		if (!contacts) {
 			contacts = null;
 		}
-		// screensize = onescreen ? "display: flex;flex-direction: column;	height: 100vh;" : "display:block;";
+		screensize = onescreen ? "display: flex;flex-direction: column;	height: 100vh;" : "display:block;";
 		// if (navlinks?.length) screensize = screensize + ";padding-left:240px;";
 
 		// 		if (!translator) {
@@ -155,7 +155,7 @@
 		if (!n) n = component?.shadowRoot?.getElementById?.("navbar");
 		if (!c) c = component?.shadowRoot?.getElementById?.("container");
 		if (!s) s = component?.shadowRoot?.getElementById?.("sidebarcontainer");
-		if (!c || !s || !n) return;
+		if (!c || !s || !n) return console.log("not found now");
 		const pageHeight = c.offsetHeight;
 		const intFrameHeight = window.innerHeight - n.offsetHeight;
 		console.log("ss", s.style.height);
