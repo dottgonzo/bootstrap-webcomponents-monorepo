@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-form",
 	"displayName": "Svelte-Bootstrap Text Input WebComponent",
 	"description": "Svelte-Bootstrap Text Input WebComponent",
-	"version": "0.10.48",
+	"version": "0.10.49",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.10.48",
+		"@htmlbricks/hb-jsutils": "^0.10.49",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
@@ -70,16 +70,16 @@
 		"typescript-transform-paths": "^2.2.3"
 	},
 	"dependencies": {
-		"@htmlbricks/hb-input-area": "^0.10.48",
-		"@htmlbricks/hb-input-checkbox": "^0.10.48",
-		"@htmlbricks/hb-input-color": "^0.10.48",
-		"@htmlbricks/hb-input-date": "^0.10.48",
-		"@htmlbricks/hb-input-email": "^0.10.48",
-		"@htmlbricks/hb-input-file": "^0.10.48",
-		"@htmlbricks/hb-input-number": "^0.10.48",
-		"@htmlbricks/hb-input-radio": "^0.10.48",
-		"@htmlbricks/hb-input-select": "^0.10.48",
-		"@htmlbricks/hb-input-text": "^0.10.48"
+		"@htmlbricks/hb-input-area": "^0.10.49",
+		"@htmlbricks/hb-input-checkbox": "^0.10.49",
+		"@htmlbricks/hb-input-color": "^0.10.49",
+		"@htmlbricks/hb-input-date": "^0.10.49",
+		"@htmlbricks/hb-input-email": "^0.10.49",
+		"@htmlbricks/hb-input-file": "^0.10.49",
+		"@htmlbricks/hb-input-number": "^0.10.49",
+		"@htmlbricks/hb-input-radio": "^0.10.49",
+		"@htmlbricks/hb-input-select": "^0.10.49",
+		"@htmlbricks/hb-input-text": "^0.10.49"
 	},
 	"keywords": [
 		"svelte",
