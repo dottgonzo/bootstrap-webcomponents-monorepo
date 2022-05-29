@@ -211,7 +211,7 @@
 	<span slot="right-slot"><slot name="nav-right-slot" /></span>
 </hb-navbar>
 
-<div id="layout_container">
+<div id="layout_container" style={navlinks?.length && navopen === true ? "grid-template-columns: 240px auto;" : ""}>
 	<div id="layout_sidebar">
 		<div id="inner_sidebar">
 			{#if navlinks?.length && navopen === true}
@@ -256,7 +256,6 @@
 	@import "../styles/webcomponent.scss";
 	#layout_container {
 		display: grid;
-		grid-template-columns: 240px auto;
 	}
 	#layout_page {
 		min-height: calc(100vh - 52px);
