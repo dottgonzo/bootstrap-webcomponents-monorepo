@@ -62,6 +62,7 @@
 	let navopen: boolean;
 	let wSize: number;
 	let screensize;
+	// let handleResize: () => void;
 
 	$: {
 		if (navopen !== true && navopen !== false) navopen = true;
@@ -117,18 +118,31 @@
 			contacts = null;
 		}
 		screensize = onescreen ? "display: flex;flex-direction: column;	height: 100vh;" : "display:block;";
-		if (navopen) {
-			screensize = screensize + "padding-left: 240px;width: calc(100% - 240px);";
-		} else {
-			screensize = screensize + "width: 100%";
-		}
+		// if (navopen) {
+		// 	screensize = screensize + "padding-left: 240px;width: calc(100% - 240px);";
+		// } else {
+		// 	screensize = screensize + "width: 100%";
+		// }
 
 		// 		if (!translator) {
 		// 	translator = new LanguageTranslator({ dictionary, lang: i18nlang });
 		// } else if (translator && i18nlang && translator.lang && translator.lang !== i18nlang) {
 		// 	translator = new LanguageTranslator({ dictionary, lang: i18nlang });
 		// }
-		handleResize();
+		// handleResize = () => {
+		// a++;
+		// let n = component?.shadowRoot?.getElementById?.("navbar");
+		// let c = component?.shadowRoot?.getElementById?.("container");
+		// let s = component?.shadowRoot?.getElementById?.("sidebarcontainer");
+		// if (!c || !s || !n) return console.log("not found now");
+		// const pageHeight = c.offsetHeight;
+		// const intFrameHeight = window.innerHeight - n.offsetHeight;
+		// console.log("ss", s.style.height);
+		// console.log("resize", pageHeight, intFrameHeight, a, s.style.height);
+		// if (!pageHeight) return setTimeout(handleResize, 200);
+		// s.setAttribute("style", "height:" + (pageHeight > intFrameHeight ? pageHeight : intFrameHeight) + "px");
+		// };
+		// handleResize();
 	}
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -147,26 +161,12 @@
 	function openmenu(o) {
 		console.log("burgerclick", o);
 		navopen = o.isOpen;
-		handleResize();
+		// handleResize();
 
 		dispatch("offcanvasswitch", o);
 	}
 	let a = 0;
-	let c: HTMLElement;
-	let s: HTMLElement;
-	let n: HTMLElement;
-	function handleResize() {
-		a++;
-		if (!n) n = component?.shadowRoot?.getElementById?.("navbar");
-		if (!c) c = component?.shadowRoot?.getElementById?.("container");
-		if (!s) s = component?.shadowRoot?.getElementById?.("sidebarcontainer");
-		if (!c || !s || !n) return console.log("not found now");
-		const pageHeight = c.offsetHeight;
-		const intFrameHeight = window.innerHeight - n.offsetHeight;
-		console.log("ss", s.style.height);
-		console.log("resize", pageHeight, intFrameHeight, a, s.style.height);
-		s.setAttribute("style", "height:" + (pageHeight > intFrameHeight ? pageHeight : intFrameHeight) + "px");
-	}
+
 	// function detectSize() {
 	// 	console.log("resize");
 	// 	const c = component.shadowRoot.getElementById("container");
@@ -178,9 +178,9 @@
 	// 	s.style.minHeight = intFrameHeight - 52 + "px";
 	// }
 
-	onMount(() => {
-		handleResize();
-	});
+	// onMount(() => {
+	// 	handleResize();
+	// });
 </script>
 
 <hb-navbar
@@ -212,53 +212,69 @@
 	<span slot="right-slot"><slot name="nav-right-slot" /></span>
 </hb-navbar>
 
-<div id="grid_container">
-	{#if navlinks?.length && navopen === true}
-		<hb-sidebar-desktop
-			id="sidebarcontainer"
-			on:pageChange={(e) => dispatch("pageChange", e.detail)}
-			style={sidebarDesktopStyleToSet}
-			navlinks={navlinks || "[]"}
-			navpage={pagename || ""}
-		/>
-	{/if}
-	<div id="container" use:observeResize on:resize={debounce(handleResize, 200)} style={screensize} part="container">
-		<div style={onescreen ? "flex: 2" : ""} part="page" id="page">
-			<slot name="page">page</slot>
+<div id="layout_container">
+	<div id="layout_sidebar">
+		<div id="inner_sidebar">
+			{#if navlinks?.length && navopen === true}
+				<hb-sidebar-desktop
+					id="sidebarcontainer"
+					on:pageChange={(e) => dispatch("pageChange", e.detail)}
+					style={sidebarDesktopStyleToSet}
+					navlinks={navlinks || "[]"}
+					navpage={pagename || ""}
+				/>
+			{/if}
 		</div>
-		{#if cookielaw || cookielawallowdecline || cookielawlanguage || cookielawuri4more}
-			<hb-cookie-law-banner
-				style={cookieLawBannerStyleToSet}
-				language={cookielawlanguage || i18nlang}
-				allowdecline={cookielawallowdecline}
-				{cookielawuri4more}
+	</div>
+	<div id="layout_page">
+		<div id="container" style={screensize} part="container">
+			<div style={onescreen ? "flex: 2" : ""} part="page" id="page">
+				<slot name="page">page</slot>
+			</div>
+			{#if cookielaw || cookielawallowdecline || cookielawlanguage || cookielawuri4more}
+				<hb-cookie-law-banner
+					style={cookieLawBannerStyleToSet}
+					language={cookielawlanguage || i18nlang}
+					allowdecline={cookielawallowdecline}
+					{cookielawuri4more}
+				/>
+			{/if}
+			<hb-footer
+				part="footer"
+				socials={socials ? JSON.stringify(socials) : ""}
+				contacts={contacts ? JSON.stringify(contacts) : ""}
+				style="display:block;{footerStyleToSet}"
+				company={company ? JSON.stringify(company) : ""}
+				columns={columns || ""}
+				on:footerClick={(el) => dispatch("footerClick", el.detail)}
 			/>
-		{/if}
-		<hb-footer
-			part="footer"
-			socials={socials ? JSON.stringify(socials) : ""}
-			contacts={contacts ? JSON.stringify(contacts) : ""}
-			style="display:block;{footerStyleToSet}"
-			company={company ? JSON.stringify(company) : ""}
-			columns={columns || ""}
-			on:footerClick={(el) => dispatch("footerClick", el.detail)}
-		/>
+		</div>
 	</div>
 </div>
 
 <style lang="scss">
 	// @import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
-	hb-sidebar-desktop {
-		// display: inline-block;
-		width: 240px;
-		z-index: 1;
-		position: absolute;
+	#layout_container {
+		display: grid;
+		grid-template-columns: 240px auto;
 	}
-	#grid_container {
+	#layout_page {
+		min-height: calc(100vh - 52px);
+		// height: max-content;
+	}
+	#layout_sidebar {
+		width: 240px;
+		grid-row-start: 1;
+		grid-row-end: 1;
+		display: flex;
 		position: relative;
 	}
-	#container {
+	#inner_sidebar {
 		position: absolute;
+		height: 100%;
+	}
+	hb-sidebar-desktop {
+		height: 100%;
 	}
 </style>
