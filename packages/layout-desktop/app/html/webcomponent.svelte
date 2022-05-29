@@ -15,7 +15,6 @@
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
 	import debounce from "debounce";
-	import observeResize from "svelte-observe-resize";
 
 	import type { IContacts, ISocials, ICompany, IColumn } from "../../../footer/app/types/webcomponent.type";
 	import type { IUserMenu } from "../../../navbar/app/types/webcomponent.type";

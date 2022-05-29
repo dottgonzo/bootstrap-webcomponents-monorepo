@@ -75,7 +75,7 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "72e2d0058ea8f54d6dcee4dcc44a7743fa874ac2",
+	"gitHead": "da2bd6986c4d75e3c046fc5f2a0b1e7758ef69dd",
 	"dependencies": {
 		"@htmlbricks/hb-cookie-law-banner": "^0.10.50",
 		"@htmlbricks/hb-footer": "^0.10.50",
@@ -84,7 +84,6 @@
 		"@htmlbricks/hb-offcanvas": "^0.10.50",
 		"@htmlbricks/hb-sidebar-desktop": "^0.10.50",
 		"debounce": "^1.2.1",
-		"style-to-object": "^0.3.0",
-		"svelte-observe-resize": "^1.0.1"
+		"style-to-object": "^0.3.0"
 	}
 }
