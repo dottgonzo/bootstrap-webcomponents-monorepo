@@ -75,6 +75,121 @@ const navlinks2 = [
     },
   },
 ];
+const navlinksMany = [
+  {
+    label: "Home",
+    key: "home",
+    icon: "house-door",
+    badge: {
+      text: "bbb",
+    },
+  },
+  {
+    label: "Dashboard",
+    key: "dashboard",
+    icon: "speedometer",
+    badge: {
+      text: "bbb",
+    },
+  },
+  {
+    label: "Settings",
+    key: "settings",
+    icon: "gear",
+    group: "admin",
+    badge: {
+      text: "bbb",
+    },
+  },
+  {
+    label: "Users",
+    key: "users",
+    icon: "people-fill",
+    group: "admin",
+    badge: {
+      text: "uuuuu",
+    },
+  },
+  {
+    label: "Stats",
+    key: "stats",
+    icon: "graph-up",
+    group: "stats",
+    badge: {
+      text: "bbb",
+    },
+  },
+
+  {
+    label: "Stats1",
+    key: "stats1",
+    icon: "graph-up",
+    group: "stats",
+    badge: {
+      text: "bbb",
+    },
+  },
+
+  {
+    label: "Stats2",
+    key: "stats2",
+    icon: "graph-up",
+    group: "stats",
+    badge: {
+      text: "bbb",
+    },
+  },
+
+  {
+    label: "Stats3",
+    key: "stats3",
+    icon: "graph-up",
+    group: "stats",
+    badge: {
+      text: "bbb",
+    },
+  },
+
+  {
+    label: "Stats4",
+    key: "stats4",
+    icon: "graph-up",
+    group: "stats",
+    badge: {
+      text: "bbb",
+    },
+  },
+
+  {
+    label: "Stats5",
+    key: "stats5",
+    icon: "graph-up",
+    group: "stats",
+    badge: {
+      text: "bbb",
+    },
+  },
+
+  {
+    label: "Stats",
+    key: "stats",
+    icon: "graph-up",
+    group: "stats",
+    badge: {
+      text: "bbb",
+    },
+  },
+
+  {
+    label: "Stats",
+    key: "stats",
+    icon: "graph-up",
+    group: "stats",
+    badge: {
+      text: "bbb",
+    },
+  },
+];
 
 const contacts1 = {
   sites: [
@@ -132,6 +247,35 @@ LayoutA.args = {
   navlinks: navlinks2,
   usermenu: usermenu1,
   sidebar: { title: "brand" },
+};
+
+export const LayoutWithBigSidebar = Template.bind({});
+LayoutWithBigSidebar.args = {
+  id: "LayoutWithBigSidebar",
+  company: company1,
+  contacts: contacts1,
+  socials: socials1,
+  navlinks: navlinksMany,
+  usermenu: usermenu1,
+  sidebar: { title: "brand" },
+};
+export const LayoutWithBigSidebarAndBigText = Template.bind({});
+LayoutWithBigSidebarAndBigText.args = {
+  id: "LayoutWithBigSidebarAndBigText",
+  company: company1,
+  contacts: contacts1,
+  socials: socials1,
+  navlinks: navlinksMany,
+  usermenu: usermenu1,
+  sidebar: { title: "brand" },
+  _testInnerHtml:
+    '<div slot="page">paddddddddddddddddddddddddddddddddddddddddddge<br/>\
+    ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>\
+    ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao\
+    <br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>\
+    ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao\
+    <br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>\
+    ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao</div>',
 };
 export const LayoutAWithPage = Template.bind({});
 LayoutAWithPage.args = {
