@@ -61,10 +61,10 @@
 
 	let navopen: boolean;
 	let wSize: number;
-	let screensize = "";
+	let screensize;
 
 	$: {
-		navopen = true;
+		if (navopen !== true && navopen !== false) navopen = true;
 		if (style) {
 			parsedStyle = parseStyle(style);
 			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
@@ -117,7 +117,11 @@
 			contacts = null;
 		}
 		screensize = onescreen ? "display: flex;flex-direction: column;	height: 100vh;" : "display:block;";
-		// if (navlinks?.length) screensize = screensize + ";padding-left:240px;";
+		if (navopen) {
+			screensize = screensize + "padding-left: 240px;width: calc(100% - 240px);";
+		} else {
+			screensize = screensize + "width: 100%";
+		}
 
 		// 		if (!translator) {
 		// 	translator = new LanguageTranslator({ dictionary, lang: i18nlang });
@@ -143,6 +147,7 @@
 	function openmenu(o) {
 		console.log("burgerclick", o);
 		navopen = o.isOpen;
+		handleResize();
 
 		dispatch("offcanvasswitch", o);
 	}
@@ -208,7 +213,7 @@
 </hb-navbar>
 
 <div id="grid_container">
-	{#if navlinks?.length && navopen}
+	{#if navlinks?.length && navopen === true}
 		<hb-sidebar-desktop
 			id="sidebarcontainer"
 			on:pageChange={(e) => dispatch("pageChange", e.detail)}
@@ -255,7 +260,5 @@
 	}
 	#container {
 		position: absolute;
-		padding-left: 240px;
-		width: calc(100% - 240px);
 	}
 </style>
