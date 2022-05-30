@@ -150,11 +150,11 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	addComponent({ repoName: "@htmlbricks/hb-footer", version: pkg.version });
-	addComponent({ repoName: "@htmlbricks/hb-offcanvas", version: pkg.version });
-	addComponent({ repoName: "@htmlbricks/hb-navbar", version: pkg.version });
-	addComponent({ repoName: "@htmlbricks/hb-cookie-law-banner", version: pkg.version });
-	addComponent({ repoName: "@htmlbricks/hb-sidebar-desktop", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-footer", version: pkg.version, local: "http://localhost:6006/footer/dist/release.js" });
+	addComponent({ repoName: "@htmlbricks/hb-offcanvas", version: pkg.version, local: "http://localhost:6006/offcanvas/dist/release.js" });
+	addComponent({ repoName: "@htmlbricks/hb-navbar", version: pkg.version, local: "http://localhost:6006/navbar/dist/release.js" });
+	addComponent({ repoName: "@htmlbricks/hb-cookie-law-banner", version: pkg.version, local: "http://localhost:6006/cookie-law-banner/dist/release.js" });
+	addComponent({ repoName: "@htmlbricks/hb-sidebar-desktop", version: pkg.version, local: "http://localhost:6006/sidebar-desktop/dist/release.js" });
 	// addComponent({ repoName: "@htmlbricks/hb-sidebar-desktop", version: pkg.version, local: "http://localhost:6006/sidebar-desktop/dist/release.js" });
 
 	function openmenu(o) {
@@ -182,71 +182,73 @@
 	// });
 </script>
 
-<hb-navbar
-	id="navbar"
-	part="navbar"
-	noburger={navlinks?.length ? "" : "no"}
-	style={navbarStyleToSet}
-	companybrandname={company?.siteName || ""}
-	usermenu={usermenu || ""}
-	switchopen={navopen ? "yes" : "no"}
-	on:navmenuswitch={(el) => openmenu(el.detail)}
-	on:userClick={(el) => dispatch("userClick", el.detail)}
->
-	<span slot="left-slot">
-		<!-- <span
+<div id="desktop">
+	<hb-navbar
+		id="navbar"
+		part="navbar"
+		noburger={navlinks?.length ? "" : "no"}
+		style={navbarStyleToSet}
+		companybrandname={company?.siteName || ""}
+		usermenu={usermenu || ""}
+		switchopen={navopen ? "yes" : "no"}
+		on:navmenuswitch={(el) => openmenu(el.detail)}
+		on:userClick={(el) => dispatch("userClick", el.detail)}
+	>
+		<span slot="left-slot">
+			<!-- <span
 			on:click={() => {
 				navopen = !navopen;
 			}}>burger</span
 		> -->
-		{#if company?.logoUri}
-			<img alt="" style="max-height: 31px;vertical-align: middle;" src={company.logoUri} />
-		{/if}
-		{#if sidebar?.title}
-			{sidebar.title}
-		{/if}
-	</span>
-
-	<span slot="center-slot"><slot name="nav-center-slot" /></span>
-	<span slot="right-slot"><slot name="nav-right-slot" /></span>
-</hb-navbar>
-
-<div id="layout_container" style={navlinks?.length && navopen === true ? "grid-template-columns: 240px auto;" : ""}>
-	<div id="layout_sidebar">
-		<div id="inner_sidebar">
-			{#if navlinks?.length && navopen === true}
-				<hb-sidebar-desktop
-					id="sidebarcontainer"
-					on:pageChange={(e) => dispatch("pageChange", e.detail)}
-					style={sidebarDesktopStyleToSet}
-					navlinks={navlinks || "[]"}
-					navpage={pagename || ""}
-				/>
+			{#if company?.logoUri}
+				<img alt="" style="max-height: 31px;vertical-align: middle;" src={company.logoUri} />
 			{/if}
-		</div>
-	</div>
-	<div id="layout_page">
-		<div id="container" style={screensize} part="container">
-			<div style={onescreen ? "flex: 2" : ""} part="page" id="page">
-				<slot name="page">page</slot>
+			{#if sidebar?.title}
+				{sidebar.title}
+			{/if}
+		</span>
+
+		<span slot="center-slot"><slot name="nav-center-slot" /></span>
+		<span slot="right-slot"><slot name="nav-right-slot" /></span>
+	</hb-navbar>
+
+	<div id="layout_container" style={navlinks?.length && navopen === true ? "grid-template-columns: 240px auto;" : ""}>
+		<div id="layout_sidebar">
+			<div id="inner_sidebar">
+				{#if navlinks?.length && navopen === true}
+					<hb-sidebar-desktop
+						id="sidebarcontainer"
+						on:pageChange={(e) => dispatch("pageChange", e.detail)}
+						style={sidebarDesktopStyleToSet}
+						navlinks={navlinks || "[]"}
+						navpage={pagename || ""}
+					/>
+				{/if}
 			</div>
-			{#if cookielaw || cookielawallowdecline || cookielawlanguage || cookielawuri4more}
-				<hb-cookie-law-banner
-					style={cookieLawBannerStyleToSet}
-					language={cookielawlanguage || i18nlang}
-					allowdecline={cookielawallowdecline}
-					{cookielawuri4more}
+		</div>
+		<div id="layout_page">
+			<div id="container" style={screensize} part="container">
+				<div style={onescreen ? "flex: 2" : ""} part="page" id="page">
+					<slot name="page">page</slot>
+				</div>
+				{#if cookielaw || cookielawallowdecline || cookielawlanguage || cookielawuri4more}
+					<hb-cookie-law-banner
+						style={cookieLawBannerStyleToSet}
+						language={cookielawlanguage || i18nlang}
+						allowdecline={cookielawallowdecline}
+						{cookielawuri4more}
+					/>
+				{/if}
+				<hb-footer
+					part="footer"
+					socials={socials ? JSON.stringify(socials) : ""}
+					contacts={contacts ? JSON.stringify(contacts) : ""}
+					style="display:block;{footerStyleToSet}"
+					company={company ? JSON.stringify(company) : ""}
+					columns={columns || ""}
+					on:footerClick={(el) => dispatch("footerClick", el.detail)}
 				/>
-			{/if}
-			<hb-footer
-				part="footer"
-				socials={socials ? JSON.stringify(socials) : ""}
-				contacts={contacts ? JSON.stringify(contacts) : ""}
-				style="display:block;{footerStyleToSet}"
-				company={company ? JSON.stringify(company) : ""}
-				columns={columns || ""}
-				on:footerClick={(el) => dispatch("footerClick", el.detail)}
-			/>
+			</div>
 		</div>
 	</div>
 </div>
@@ -254,13 +256,18 @@
 <style lang="scss">
 	// @import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
+	#desktop {
+		min-height: 100vh;
+		display: grid;
+		grid-template-rows: max-content auto;
+	}
 	#layout_container {
 		display: grid;
 	}
-	#layout_page {
-		min-height: calc(100vh - 50px);
-		// height: max-content;
-	}
+	// #layout_page {
+	// 	min-height: calc(100vh - 50px);
+	// 	// height: max-content;
+	// }
 	#layout_sidebar {
 		width: 240px;
 		grid-row-start: 1;
