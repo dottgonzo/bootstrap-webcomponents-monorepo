@@ -78,7 +78,7 @@
 
 		if (!disablepagination && (disablepagination as unknown as any) !== "") {
 			disablepagination = false;
-		} else if ((disablepagination as unknown as any) === "") {
+		} else if ((disablepagination as unknown as any) === "" || (disablepagination as unknown as string) === "yes") {
 			disablepagination = true;
 		} else if ((disablepagination as unknown as any) === "no") {
 			disablepagination = false;
@@ -86,7 +86,7 @@
 
 		if (!externalfilter && (externalfilter as unknown as any) !== "") {
 			externalfilter = false;
-		} else if ((externalfilter as unknown as any) === "") {
+		} else if ((externalfilter as unknown as any) === "" || (externalfilter as unknown as string) === "yes") {
 			externalfilter = true;
 		} else if ((externalfilter as unknown as any) === "no") {
 			externalfilter = false;
