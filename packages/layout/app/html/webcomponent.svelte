@@ -176,13 +176,11 @@
 		<div slot="page">
 			<slot name="page">page</slot>
 		</div>
-		<div>
-			<span slot="nav-header-slot"><slot name="nav-header-slot" /></span>
+		<span slot="nav-header-slot"><slot name="nav-header-slot" /></span>
 
-			<span slot="nav-left-slot"><slot name="nav-left-slot" /></span>
-			<span slot="nav-center-slot"><slot name="nav-center-slot" /></span>
-			<span slot="nav-right-slot"><slot name="nav-right-slot" /></span>
-		</div>
+		<span slot="nav-left-slot"><slot name="nav-left-slot" /></span>
+		<span slot="nav-center-slot"><slot name="nav-center-slot" /></span>
+		<span slot="nav-right-slot"><slot name="nav-right-slot" /></span>
 	</hb-layout-mobile>
 {:else}
 	<hb-layout-desktop
@@ -210,9 +208,7 @@
 		<div slot="page">
 			<slot name="page">page</slot>
 		</div>
-		<div>
-			<span slot="nav-center-slot"><slot name="nav-center-slot" /></span>
-			<span slot="nav-right-slot"><slot name="nav-right-slot" /></span>
-		</div>
+		<span slot="nav-center-slot"><slot name="nav-center-slot" /></span>
+		<span slot="nav-right-slot"><slot name="nav-right-slot" /></span>
 	</hb-layout-desktop>
 {/if}
