@@ -75,18 +75,27 @@
 				closelabel: null,
 			};
 		}
-
-		if (!disablepagination && (disablepagination as unknown as any) !== "") {
-			disablepagination = false;
-		} else if ((disablepagination as unknown as any) === "" || (disablepagination as unknown as string) === "yes") {
-			disablepagination = true;
-		} else if ((disablepagination as unknown as any) === "no") {
-			disablepagination = false;
+		console.log(disablepagination, "disablepag");
+		if (typeof disablepagination !== "boolean") {
+			if (
+				(disablepagination as unknown as any) === "" ||
+				(disablepagination as unknown as string) === "yes" ||
+				(disablepagination as unknown as string) === "true"
+			) {
+				disablepagination = true;
+			} else {
+				disablepagination = false;
+			}
 		}
+		console.log(disablepagination, "disablepag2");
 
 		if (!externalfilter && (externalfilter as unknown as any) !== "") {
 			externalfilter = false;
-		} else if ((externalfilter as unknown as any) === "" || (externalfilter as unknown as string) === "yes") {
+		} else if (
+			(externalfilter as unknown as any) === "" ||
+			(externalfilter as unknown as string) === "yes" ||
+			(externalfilter as unknown as string) === "true"
+		) {
 			externalfilter = true;
 		} else if ((externalfilter as unknown as any) === "no") {
 			externalfilter = false;
@@ -413,7 +422,7 @@
 		});
 	}
 
-	addComponent({ repoName: "@htmlbricks/hb-paginate", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-paginate", version: pkg.version, local: "http://localhost:6006/paginate/dist/release.js" });
 	addComponent({ repoName: "@htmlbricks/hb-dialog", version: pkg.version });
 
 	function changeSort(key: string) {
@@ -737,8 +746,13 @@
 						</span>
 					{/each}
 				{/if}
-				{#if !disablepagination}
-					<hb-paginate style="float:right;{paginateStyleToSet}" on:pageChange={changePage} page={page.toString()} pages={pages.toString()} />
+				{#if disablepagination !== true}
+					<hb-paginate
+						style="float:right;{paginateStyleToSet}"
+						on:pageChange={changePage}
+						page={page?.toString() || 1}
+						pages={pages?.toString() || 1}
+					/>
 				{/if}
 			</nav>
 		{/if}
