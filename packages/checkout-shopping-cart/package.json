@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-checkout-shopping-cart",
 	"displayName": "Svelte Shopping Cart WebComponent",
 	"description": "Svelte Shopping Cart WebComponent",
-	"version": "0.10.58",
+	"version": "0.10.59",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.10.58",
+		"@htmlbricks/hb-jsutils": "^0.10.59",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
@@ -70,7 +70,7 @@
 		"typescript-transform-paths": "^2.2.3"
 	},
 	"dependencies": {
-		"@htmlbricks/hb-table": "^0.10.58",
+		"@htmlbricks/hb-table": "^0.10.59",
 		"dayjs": "^1.10.7",
 		"debounce": "^1.2.1"
 	},
@@ -81,5 +81,5 @@
 		"html5-webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "d9a11fcadee32535c556f548df9e612ba3733486"
+	"gitHead": "e1f66c5cb67e4ee3a4a4c04d70f5db86e3bd873a"
 }
