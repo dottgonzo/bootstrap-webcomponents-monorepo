@@ -5,6 +5,7 @@ export const storybookArgs = {
 	label: { control: { type: "text" } },
 	icon: { control: { type: "text" } },
 	link_label: { control: { type: "text" } },
+	dashboardIndicatorClick: { action: "dashboardIndicatorClickEvent" },
 };
 
 const cssVars: CssVar[] = [];

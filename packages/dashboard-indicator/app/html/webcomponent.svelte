@@ -53,31 +53,42 @@
 <div class="panel panel-green">
 	<div class="panel-heading">
 		<div class="row">
-			<div><i class="bi bi-{icon}" style="font-size: 2rem;" /></div>
+			<div><i id="icon" class="bi bi-{icon}" /></div>
 			<div id="panel-heading-content">
-				<div class="huge">{number}</div>
+				<div id="number">{number}</div>
 				<div>{label}</div>
 			</div>
 		</div>
 	</div>
 	{#if link_label}
-		<a href="/admin/requests" class=""
-			><div class="panel-footer">
-				<span class="pull-left">{link_label}</span><span style="float:right"><i class="bi bi-arrow-right-circle" /></span>
-				<div class="clearfix" />
-			</div>
-		</a>
+		<div
+			on:click={() => {
+				dispatch("dashboardIndicatorClick", {
+					id,
+				});
+			}}
+			class="panel-footer"
+		>
+			<span class="pull-left">{link_label}</span><span style="float:right"><i class="bi bi-arrow-right-circle-fill" /></span>
+			<div class="clearfix" />
+		</div>
 	{/if}
 </div>
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
+	#icon {
+		font-size: 4rem;
+	}
 	.row {
 		display: grid;
 		grid-template-columns: max-content auto;
 	}
 	#panel-heading-content {
 		text-align: right;
+	}
+	#number {
+		font-size: 3rem;
 	}
 	.panel {
 		margin-bottom: 20px;
@@ -98,9 +109,7 @@
 		border-top-left-radius: 3px;
 		border-top-right-radius: 3px;
 	}
-	.panel-green > a {
-		color: #5cb85c;
-	}
+
 	a {
 		text-decoration: none;
 	}
@@ -110,5 +119,7 @@
 		border-top: 1px solid #ddd;
 		border-bottom-right-radius: 3px;
 		border-bottom-left-radius: 3px;
+		color: #5cb85c;
+		cursor: pointer;
 	}
 </style>

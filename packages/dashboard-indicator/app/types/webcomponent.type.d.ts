@@ -7,4 +7,6 @@ export type Component = {
 	link_label?: string;
 };
 
-export type Events = {};
+export type Events = {
+	dashboardIndicatorClick: { id: string };
+};
