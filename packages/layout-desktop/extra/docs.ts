@@ -36,11 +36,9 @@ export const cssParts: CssPart[] = [
 	{ name: "page", description: "" },
 ];
 export const htmlSlots: HtmlSlot[] = [
-	{ name: "nav-left-slot", description: "" },
 	{ name: "nav-center-slot", description: "" },
 	{ name: "nav-right-slot", description: "" },
 	{ name: "page", description: "" },
-	{ name: "nav-header-slot", description: "" },
 ];
 export const i18nLanguages: i18nLang[] = [
 	{ lang: "it", language: "italian" },
