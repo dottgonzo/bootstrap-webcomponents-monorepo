@@ -177,11 +177,11 @@
 			<slot name="page">page</slot>
 		</div>
 		<div>
-			<span slot="left-slot">
-				<slot name="left-slot" />
+			<span slot="nav-left-slot">
+				<slot name="nav-left-slot" />
 			</span>
-			<span slot="center-slot"><slot name="nav-center-slot" /></span>
-			<span slot="right-slot"><slot name="nav-right-slot" /></span>
+			<span slot="nav-center-slot"><slot name="nav-center-slot" /></span>
+			<span slot="nav-right-slot"><slot name="nav-right-slot" /></span>
 		</div>
 	</hb-layout-mobile>
 {:else}
@@ -209,6 +209,13 @@
 	>
 		<div slot="page">
 			<slot name="page">page</slot>
+		</div>
+		<div>
+			<span slot="nav-left-slot">
+				<slot name="nav-left-slot" />
+			</span>
+			<span slot="nav-center-slot"><slot name="nav-center-slot" /></span>
+			<span slot="nav-right-slot"><slot name="nav-right-slot" /></span>
 		</div>
 	</hb-layout-desktop>
 {/if}
