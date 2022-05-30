@@ -99,9 +99,9 @@
 		box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
 	}
 	.panel-green > .panel-heading {
-		border-color: #5cb85c;
+		border-color: var(--hb--dashboard-indicator-background);
 		color: #fff;
-		background-color: #5cb85c;
+		background-color: var(--hb--dashboard-indicator-background);
 	}
 	.panel-heading {
 		padding: 10px 15px;
@@ -119,7 +119,7 @@
 		border-top: 1px solid #ddd;
 		border-bottom-right-radius: 3px;
 		border-bottom-left-radius: 3px;
-		color: #5cb85c;
+		color: var(--hb--dashboard-indicator-background);
 		cursor: pointer;
 	}
 </style>

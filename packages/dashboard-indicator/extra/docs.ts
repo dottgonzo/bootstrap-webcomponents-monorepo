@@ -8,7 +8,13 @@ export const storybookArgs = {
 	dashboardIndicatorClick: { action: "dashboardIndicatorClickEvent" },
 };
 
-const cssVars: CssVar[] = [];
+const cssVars: CssVar[] = [
+	{
+		name: "--hb--dashboard-indicator-background",
+		defaultValue: "#5cb85c",
+		valueType: "color",
+	},
+];
 export const cssParts: CssPart[] = [];
 export const htmlSlots: HtmlSlot[] = [];
 export const i18nLanguages: i18nLang[] = [];
