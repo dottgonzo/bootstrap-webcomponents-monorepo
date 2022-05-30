@@ -81,13 +81,15 @@
 </script>
 
 <nav id="navbar">
-	<div style="text-align:left" class="navitem" part="left-slot">
-		{#if !noburger}
-			<button style="font-size:20px;border:none" on:click={() => switchMenu()}>☰</button>
-		{/if}
-		<slot name="left-slot" />
+	<div id="left_side" style="text-align:left" class="navitem" part="left-slot">
+		<div style="		padding-left: 10px;">
+			{#if !noburger}
+				<button style="font-size:20px;border:none" on:click={() => switchMenu()}>☰</button>
+			{/if}
+			<slot name="left-slot" />
+		</div>
 	</div>
-	<div part="center-slot" class="navitem">
+	<div id="center_side" part="center-slot" class="navitem">
 		<slot name="brand">
 			{#if companylogouri}<img style="height: 30px;vertical-align: middle;" alt="" src={companylogouri} />{/if}
 			{companybrandname}
@@ -95,21 +97,20 @@
 		<slot name="center-slot" />
 	</div>
 
-	<div part="right-slot" class="navitem">
-		<div style="display: inline-block;">
+	<div id="rigth_side" part="right-slot" class="navitem">
+		<div style="display: inline-block;padding-right:10px;">
 			<slot name="right-slot">
 				<!-- <div style="text-align:right;margin-right:10px">{pagetitle}</div> -->
 			</slot>
-		</div>
-		{#if usermenu}
-			<hb-dropdown-simple
-				style={dropdownSimpleStyleToSet}
-				on:dropDownClick={(e) => dispatch("userClick", e.detail.key)}
-				list={JSON.stringify(usermenu.list)}
-				position="right"
-				><span slot="dropdownbutton"><img style="height: 30px;vertical-align: middle;" alt="" src={usermenu.imgUri} /></span></hb-dropdown-simple
-			>
-			<!-- 
+			{#if usermenu}
+				<hb-dropdown-simple
+					style={dropdownSimpleStyleToSet}
+					on:dropDownClick={(e) => dispatch("userClick", e.detail.key)}
+					list={JSON.stringify(usermenu.list)}
+					position="right"
+					><span slot="dropdownbutton"><img style="height: 30px;vertical-align: middle;" alt="" src={usermenu.imgUri} /></span></hb-dropdown-simple
+				>
+				<!-- 
 					<sp-avatar size="100" label="Dog the User" src={usermenu.imgUri} />
 				<sp-action-menu size="m" style="margin-right:5px;max-height:30px">
 					{#each usermenu.list as menuItem (menuItem.key)}
@@ -122,10 +123,11 @@
 					{/each}
 				</sp-action-menu> -->
 
-			<!-- <bootstrapdropdown-component list={usermenu.list?.length ? JSON.stringify(usermenu.list) : ""}>
+				<!-- <bootstrapdropdown-component list={usermenu.list?.length ? JSON.stringify(usermenu.list) : ""}>
 				<div slot="dropdownbutton">user</div>
 			</bootstrapdropdown-component> -->
-		{/if}
+			{/if}
+		</div>
 	</div>
 </nav>
 <!-- Insert content requiring theme application here. -->

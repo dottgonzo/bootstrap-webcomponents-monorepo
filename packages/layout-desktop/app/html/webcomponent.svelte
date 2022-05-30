@@ -152,7 +152,7 @@
 
 	addComponent({ repoName: "@htmlbricks/hb-footer", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-offcanvas", version: pkg.version });
-	addComponent({ repoName: "@htmlbricks/hb-navbar", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-navbar", version: pkg.version, local: "http://localhost:6006/navbar/dist/release.js" });
 	addComponent({ repoName: "@htmlbricks/hb-cookie-law-banner", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-sidebar-desktop", version: pkg.version });
 	// addComponent({ repoName: "@htmlbricks/hb-sidebar-desktop", version: pkg.version, local: "http://localhost:6006/sidebar-desktop/dist/release.js" });
