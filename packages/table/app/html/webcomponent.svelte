@@ -737,7 +737,7 @@
 						</span>
 					{/each}
 				{/if}
-				{#if disablepagination}
+				{#if !disablepagination}
 					<hb-paginate style="float:right;{paginateStyleToSet}" on:pageChange={changePage} page={page.toString()} pages={pages.toString()} />
 				{/if}
 			</nav>
