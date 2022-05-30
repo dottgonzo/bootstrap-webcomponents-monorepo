@@ -328,7 +328,7 @@ LayoutAWithPage.args = {
   usermenu: usermenu1,
   cookielaw: "yes",
   _testInnerHtml:
-    '<div slot="page">paddddddddddddddddddddddddddddddddddddddddddge</div>',
+    '<div slot="page">paddddddddddddddddddddddddddddddddddddddddddge</div><div slot="nav-right-slot">rghtslot</div>',
 };
 export const LayoutAWithoutBurger = Template.bind({});
 LayoutAWithoutBurger.args = {
