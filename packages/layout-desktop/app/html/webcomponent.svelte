@@ -116,7 +116,7 @@
 		if (!contacts) {
 			contacts = null;
 		}
-		screensize = onescreen ? "display: flex;flex-direction: column;	height: calc(100vh - 52px);" : "display:block;";
+		screensize = onescreen ? "display: flex;flex-direction: column;	height: calc(100vh - 50px);" : "display:block;";
 		// if (navopen) {
 		// 	screensize = screensize + "padding-left: 240px;width: calc(100% - 240px);";
 		// } else {
@@ -174,7 +174,7 @@
 	// 	const intFrameHeight = window.innerHeight; // or
 
 	// 	s.style.height = pageHeight + "px";
-	// 	s.style.minHeight = intFrameHeight - 52 + "px";
+	// 	s.style.minHeight = intFrameHeight - 50 + "px";
 	// }
 
 	// onMount(() => {
@@ -258,7 +258,7 @@
 		display: grid;
 	}
 	#layout_page {
-		min-height: calc(100vh - 52px);
+		min-height: calc(100vh - 50px);
 		// height: max-content;
 	}
 	#layout_sidebar {
