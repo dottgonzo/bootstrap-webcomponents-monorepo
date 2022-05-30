@@ -73,6 +73,7 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 	function switchMenu() {
+		console.log("nswitch");
 		isOpen = !isOpen;
 		dispatch("navmenuswitch", {
 			isOpen,
@@ -81,8 +82,8 @@
 </script>
 
 <nav id="navbar">
-	<div id="left_side" style="text-align:left" class="navitem" part="left-slot">
-		<div style="		padding-left: 10px;">
+	<div id="left_side" class="navitem" part="left-slot">
+		<div style="padding-left: 10px;">
 			{#if !noburger}
 				<button style="font-size:20px;border:none" on:click={() => switchMenu()}>☰</button>
 			{/if}
