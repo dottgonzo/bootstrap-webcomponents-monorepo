@@ -208,7 +208,7 @@
 		<div slot="page">
 			<slot name="page">page</slot>
 		</div>
-		<span slot="nav-center-slot"><slot name="nav-center-slot" /></span>
-		<span slot="nav-right-slot"><slot name="nav-right-slot" /></span>
+		<div slot="nav-center-slot"><slot name="nav-center-slot" /></div>
+		<div slot="nav-right-slot"><slot name="nav-right-slot" /></div>
 	</hb-layout-desktop>
 {/if}
