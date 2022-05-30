@@ -422,7 +422,7 @@
 		});
 	}
 
-	addComponent({ repoName: "@htmlbricks/hb-paginate", version: pkg.version, local: "http://localhost:6006/paginate/dist/release.js" });
+	addComponent({ repoName: "@htmlbricks/hb-paginate", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-dialog", version: pkg.version });
 
 	function changeSort(key: string) {
