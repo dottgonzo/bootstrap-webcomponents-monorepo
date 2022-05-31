@@ -2,17 +2,13 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	smallrow: { control: { type: "object" } },
 	columns: { control: { type: "array" } },
 	policies: { control: { type: "array" } },
-	companyname: { control: { type: "text" } },
-	companylogouri: { control: { type: "text" } },
 	brandandcontacts: { control: { type: "object" } },
-	footerbottom: { control: { type: "object" } },
-	copyrighttext: { control: { type: "object" } },
 	socials: { control: { type: "object" } },
 	contacts: { control: { type: "object" } },
 	company: { control: { type: "object" } },
+	type: { control: { type: "select", options: ["small", "regular", "large"] } },
 	footerClick: { action: "footerClickEvent" },
 };
 

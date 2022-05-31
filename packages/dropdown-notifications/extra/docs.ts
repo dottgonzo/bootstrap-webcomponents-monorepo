@@ -5,7 +5,7 @@ export const storybookArgs = {
 	uri: { control: { type: "text" } },
 	clearurl: { control: { type: "text" } },
 	viewurl: { control: { type: "text" } },
-	align: { control: { type: "radio" }, options: ["left", "right"] },
+	align: { control: { type: "select" }, options: ["left", "right"] },
 };
 
 const cssVars: CssVar[] = [];

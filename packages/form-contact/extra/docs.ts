@@ -3,7 +3,7 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	action: { control: { type: "text" } },
-	method: { control: { type: "radio" }, options: ["POST", "GET"] },
+	method: { control: { type: "select" }, options: ["POST", "GET"] },
 	formkey: { control: { type: "text" } },
 	subjectkey: { control: { type: "text" } },
 	contentkey: { control: { type: "text" } },
@@ -26,10 +26,10 @@ const examples: Component[] = [
 	{
 		action: "",
 		method: "POST",
-		"formkey": "",
-		"subjectkey": "",
-		"contentkey": "",
-		"recaptchasitekey": "",
+		formkey: "",
+		subjectkey: "",
+		contentkey: "",
+		recaptchasitekey: "",
 	},
 ];
 export const componentSetup: ComponentSetup & { examples: Component[] } = {

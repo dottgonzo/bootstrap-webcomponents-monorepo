@@ -236,3 +236,10 @@ FooterWithBottom.args = {
   footerbottom: footerbottom1,
   company: company1,
 };
+export const FooterSmall = Template.bind({});
+FooterSmall.args = {
+  id: "FooterSmall",
+  footerbottom: footerbottom1,
+  company: company1,
+  type: "small",
+};

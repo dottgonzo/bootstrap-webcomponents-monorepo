@@ -80,6 +80,7 @@ export type Component = {
 	socials: ISocials;
 	contacts: IContacts;
 	policies: IPolicies[];
+	type?: "small" | "regular" | "large";
 };
 
 export type Events = {

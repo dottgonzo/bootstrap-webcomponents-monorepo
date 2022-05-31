@@ -23,6 +23,7 @@
 	let contactItemStyleToSet: string = "";
 
 	export let id: string;
+	export let type: "small" | "regular" | "large";
 	export let company: ICompany;
 	export let brandandcontacts: IBrandAndContacts;
 	export let columns: IColumn[];
@@ -32,6 +33,7 @@
 	export let policies: IPolicies[];
 	$: {
 		if (!id) id = "";
+		if (type !== "small" && type !== "regular" && type !== "large") type = "regular";
 		if (style) {
 			parsedStyle = parseStyle(style);
 			contactItemStyleToSet = getChildStyleToPass(parsedStyle, contactItemStyleSetup?.vars);
@@ -126,9 +128,14 @@
 </script>
 
 <footer>
-	<div class="container">
-		<slot name="footerheader" class="row">
-			<!-- <div class="row">
+	{#if type === "small"}
+		<div class="container-fluid" style="background-color:red">
+			<div class="container" style="background-color:blue">small</div>
+		</div>
+	{:else if type === "regular"}
+		<div class="container">
+			<slot name="footerheader" class="row">
+				<!-- <div class="row">
 			<div class="col" style="max-height:40px">
 				{#if companylogouri}
 					<span><img style="height: 100%;" alt="" src={companylogouri} /></span>
@@ -137,193 +144,202 @@
 				{company.siteName}
 			</div>
 		</div> -->
-		</slot>
-		<slot name="footercontent">
-			<div class="row">
-				<div style="padding:20px 20px" class="col-md-{12 / (1 + (contacts ? 1 : 0) + (socials ? 1 : 0) + (columns?.length ? columns.length : 0))}">
-					<div class="row">
-						<div class="col">
-							{#if company?.logoUri}
-								<span><img style="height: 40px" alt="" src={company.logoUri} /></span>
-							{/if}
-							{company?.siteName || ""}
+			</slot>
+			<slot name="footercontent">
+				<div class="row">
+					<div style="padding:20px 20px" class="col-md-{12 / (1 + (contacts ? 1 : 0) + (socials ? 1 : 0) + (columns?.length ? columns.length : 0))}">
+						<div class="row">
+							<div class="col">
+								{#if company?.logoUri}
+									<span><img style="height: 40px" alt="" src={company.logoUri} /></span>
+								{/if}
+								{company?.siteName || ""}
+							</div>
+						</div>
+						<div id="description" style="margin:20px auto 10px auto">
+							{company?.description || ""}
+						</div>
+						<div id="company" style="margin:20px auto 10px auto">
+							{company?.companyName || ""}
+						</div>
+						<div id="fiscal" style="margin:20px auto 10px auto">
+							{company?.vatNumber || company?.fiscalCode || ""}
 						</div>
 					</div>
-					<div id="description" style="margin:20px auto 10px auto">
-						{company?.description || ""}
-					</div>
-					<div id="company" style="margin:20px auto 10px auto">
-						{company?.companyName || ""}
-					</div>
-					<div id="fiscal" style="margin:20px auto 10px auto">
-						{company?.vatNumber || company?.fiscalCode || ""}
-					</div>
-				</div>
-				{#if contacts}
-					<div style="padding:20px 20px" class="col-md-{12 / (1 + (contacts ? 1 : 0) + (socials ? 1 : 0) + (columns?.length ? columns.length : 0))}">
-						<h5 style="margin-bottom:20px">Contatti</h5>
-						<ul class="list-unstyled">
-							{#if contacts.phones?.length}
-								{#each contacts.phones as phone (phone._id)}
-									<li><hb-contact-item style={contactItemStyleToSet} phone={JSON.stringify(phone)} /></li>
-								{/each}
-							{/if}
-							{#if contacts.addresses?.length}
-								{#each contacts.addresses as address (address._id)}
-									<li><hb-contact-item style={contactItemStyleToSet} address={JSON.stringify(address)} /></li>
-								{/each}
-							{/if}
-							{#if contacts.emails?.length}
-								{#each contacts.emails as email (email._id)}
-									<li><hb-contact-item style={contactItemStyleToSet} email={JSON.stringify(email)} /></li>
-								{/each}
-							{/if}
-							{#if contacts.sites?.length}
-								{#each contacts.sites as site (site._id)}
-									<li><hb-contact-item style={contactItemStyleToSet} site={JSON.stringify(site)} /></li>
-								{/each}
-							{/if}
-						</ul>
-					</div>
-				{/if}
-				{#if socials}
-					<div style="padding:20px 20px" class="col-md-{12 / (1 + (contacts ? 1 : 0) + (socials ? 1 : 0) + (columns?.length ? columns.length : 0))}">
-						<h5 style="margin-bottom:20px">Social</h5>
-						<ul class="list-unstyled">
-							{#if socials.facebook}
-								<li>
-									<hb-contact-item
-										style={contactItemStyleToSet}
-										social={JSON.stringify({ name: "facebook", label: "pagina facebook", pageUri: "https://facebook.com" })}
-									/>
-								</li>
-							{/if}
-
-							{#if socials?.gmail}
-								<li>
-									<hb-contact-item
-										style={contactItemStyleToSet}
-										social={JSON.stringify({ name: "gmail", label: "pagina gmail", pageUri: "https://gmail.com" })}
-									/>
-								</li>
-							{/if}
-							{#if socials?.twitter}
-								<li>
-									<hb-contact-item
-										style={contactItemStyleToSet}
-										social={JSON.stringify({ name: "twitter", label: "pagina twitter", pageUri: "https://twitter.com" })}
-									/>
-								</li>
-							{/if}
-							{#if socials?.github}
-								<li>
-									<hb-contact-item
-										style={contactItemStyleToSet}
-										social={JSON.stringify({ name: "github", label: "pagina github", pageUri: socials.github })}
-									/>
-								</li>
-							{/if}
-							{#if socials?.twitch}
-								<li>
-									<hb-contact-item
-										style={contactItemStyleToSet}
-										social={JSON.stringify({ name: "twitch", label: "pagina twitch", pageUri: "https://twitch.com" })}
-									/>
-								</li>
-							{/if}
-							{#if socials?.youtube}
-								<li>
-									<hb-contact-item
-										style={contactItemStyleToSet}
-										social={JSON.stringify({ name: "youtube", label: "pagina youtube", pageUri: "https://youtube.com" })}
-									/>
-								</li>
-							{/if}
-							{#if socials?.discord}
-								<li>
-									<hb-contact-item
-										style={contactItemStyleToSet}
-										social={JSON.stringify({ name: "discord", label: "pagina discord", pageUri: "https://discord.com" })}
-									/>
-								</li>
-							{/if}
-						</ul>
-					</div>
-				{/if}
-				{#if columns?.length}
-					{#each columns as column (column._id)}
+					{#if contacts}
 						<div
 							style="padding:20px 20px"
 							class="col-md-{12 / (1 + (contacts ? 1 : 0) + (socials ? 1 : 0) + (columns?.length ? columns.length : 0))}"
 						>
-							<h5 style="margin-bottom:20px">{column.title ? column.title : ""}</h5>
+							<h5 style="margin-bottom:20px">Contatti</h5>
 							<ul class="list-unstyled">
-								{#each column.cells as cell (cell._id)}
-									{#if cell.label}
-										<li>
-											<button
-												part="column-cell-button-content"
-												style="padding:0px"
-												class="btn text-small"
-												on:click={() => footerClick(cell._id)}>{cell.label}</button
-											>
-										</li>
-									{:else if cell.phone}
-										<li><hb-contact-item style={contactItemStyleToSet} phone={JSON.stringify(cell.phone)} /></li>
-									{:else if cell.address}
-										<li><hb-contact-item style={contactItemStyleToSet} address={JSON.stringify(cell.address)} /></li>
-									{:else if cell.email}
-										<li><hb-contact-item style={contactItemStyleToSet} email={JSON.stringify(cell.email)} /></li>
-									{:else if cell.site}
-										<li><hb-contact-item style={contactItemStyleToSet} site={JSON.stringify(cell.site)} /></li>
-									{:else if cell.label}
-										<li>
-											<button
-												part="column-cell-button-content"
-												style="padding:0px"
-												class="btn text-small"
-												on:click={() => footerClick(cell._id)}>{cell.label}</button
-											>
-										</li>
-									{/if}
-								{/each}
+								{#if contacts.phones?.length}
+									{#each contacts.phones as phone (phone._id)}
+										<li><hb-contact-item style={contactItemStyleToSet} phone={JSON.stringify(phone)} /></li>
+									{/each}
+								{/if}
+								{#if contacts.addresses?.length}
+									{#each contacts.addresses as address (address._id)}
+										<li><hb-contact-item style={contactItemStyleToSet} address={JSON.stringify(address)} /></li>
+									{/each}
+								{/if}
+								{#if contacts.emails?.length}
+									{#each contacts.emails as email (email._id)}
+										<li><hb-contact-item style={contactItemStyleToSet} email={JSON.stringify(email)} /></li>
+									{/each}
+								{/if}
+								{#if contacts.sites?.length}
+									{#each contacts.sites as site (site._id)}
+										<li><hb-contact-item style={contactItemStyleToSet} site={JSON.stringify(site)} /></li>
+									{/each}
+								{/if}
 							</ul>
 						</div>
-					{/each}
-				{/if}
-			</div>
-		</slot>
+					{/if}
+					{#if socials}
+						<div
+							style="padding:20px 20px"
+							class="col-md-{12 / (1 + (contacts ? 1 : 0) + (socials ? 1 : 0) + (columns?.length ? columns.length : 0))}"
+						>
+							<h5 style="margin-bottom:20px">Social</h5>
+							<ul class="list-unstyled">
+								{#if socials.facebook}
+									<li>
+										<hb-contact-item
+											style={contactItemStyleToSet}
+											social={JSON.stringify({ name: "facebook", label: "pagina facebook", pageUri: "https://facebook.com" })}
+										/>
+									</li>
+								{/if}
 
-		<div class="row">
-			<slot name="footerpolicy">
-				{#if policies?.length}
-					{#each policies as policy (policy.key)}
-						<div class="col" style="margin:20px auto 20px auto;max-height:20px;text-align:center;font-size:0.9rem;">
-							<button on:click={() => footerClick(policy.key)} class="btn btn-link">{policy.label}</button>
+								{#if socials?.gmail}
+									<li>
+										<hb-contact-item
+											style={contactItemStyleToSet}
+											social={JSON.stringify({ name: "gmail", label: "pagina gmail", pageUri: "https://gmail.com" })}
+										/>
+									</li>
+								{/if}
+								{#if socials?.twitter}
+									<li>
+										<hb-contact-item
+											style={contactItemStyleToSet}
+											social={JSON.stringify({ name: "twitter", label: "pagina twitter", pageUri: "https://twitter.com" })}
+										/>
+									</li>
+								{/if}
+								{#if socials?.github}
+									<li>
+										<hb-contact-item
+											style={contactItemStyleToSet}
+											social={JSON.stringify({ name: "github", label: "pagina github", pageUri: socials.github })}
+										/>
+									</li>
+								{/if}
+								{#if socials?.twitch}
+									<li>
+										<hb-contact-item
+											style={contactItemStyleToSet}
+											social={JSON.stringify({ name: "twitch", label: "pagina twitch", pageUri: "https://twitch.com" })}
+										/>
+									</li>
+								{/if}
+								{#if socials?.youtube}
+									<li>
+										<hb-contact-item
+											style={contactItemStyleToSet}
+											social={JSON.stringify({ name: "youtube", label: "pagina youtube", pageUri: "https://youtube.com" })}
+										/>
+									</li>
+								{/if}
+								{#if socials?.discord}
+									<li>
+										<hb-contact-item
+											style={contactItemStyleToSet}
+											social={JSON.stringify({ name: "discord", label: "pagina discord", pageUri: "https://discord.com" })}
+										/>
+									</li>
+								{/if}
+							</ul>
 						</div>
-					{/each}
-				{/if}
+					{/if}
+					{#if columns?.length}
+						{#each columns as column (column._id)}
+							<div
+								style="padding:20px 20px"
+								class="col-md-{12 / (1 + (contacts ? 1 : 0) + (socials ? 1 : 0) + (columns?.length ? columns.length : 0))}"
+							>
+								<h5 style="margin-bottom:20px">{column.title ? column.title : ""}</h5>
+								<ul class="list-unstyled">
+									{#each column.cells as cell (cell._id)}
+										{#if cell.label}
+											<li>
+												<button
+													part="column-cell-button-content"
+													style="padding:0px"
+													class="btn text-small"
+													on:click={() => footerClick(cell._id)}>{cell.label}</button
+												>
+											</li>
+										{:else if cell.phone}
+											<li><hb-contact-item style={contactItemStyleToSet} phone={JSON.stringify(cell.phone)} /></li>
+										{:else if cell.address}
+											<li><hb-contact-item style={contactItemStyleToSet} address={JSON.stringify(cell.address)} /></li>
+										{:else if cell.email}
+											<li><hb-contact-item style={contactItemStyleToSet} email={JSON.stringify(cell.email)} /></li>
+										{:else if cell.site}
+											<li><hb-contact-item style={contactItemStyleToSet} site={JSON.stringify(cell.site)} /></li>
+										{:else if cell.label}
+											<li>
+												<button
+													part="column-cell-button-content"
+													style="padding:0px"
+													class="btn text-small"
+													on:click={() => footerClick(cell._id)}>{cell.label}</button
+												>
+											</li>
+										{/if}
+									{/each}
+								</ul>
+							</div>
+						{/each}
+					{/if}
+				</div>
 			</slot>
-		</div>
-		<div class="row">
-			<slot name="footerbottom">
-				{#if company?.siteName}
-					<div class="col" style="max-height:20px;text-align:center;font-size:0.8rem;margin:10px auto 5px auto">
-						<!-- {#if company.logoUri}
+
+			<div class="row">
+				<slot name="footerpolicy">
+					{#if policies?.length}
+						{#each policies as policy (policy.key)}
+							<div class="col" style="margin:20px auto 20px auto;max-height:20px;text-align:center;font-size:0.9rem;">
+								<button on:click={() => footerClick(policy.key)} class="btn btn-link">{policy.label}</button>
+							</div>
+						{/each}
+					{/if}
+				</slot>
+			</div>
+			<div class="row">
+				<slot name="footerbottom">
+					{#if company?.siteName}
+						<div class="col" style="max-height:20px;text-align:center;font-size:0.8rem;margin:10px auto 5px auto">
+							<!-- {#if company.logoUri}
 						<span><img style="height: 100%;" alt="" src={company.logoUri} /></span>
 					{/if} -->
 
-						{company?.registration?.text ||
-							(company.since ? `${company.since?.toString()} - ` : "") +
-								new Date().getFullYear().toString() +
-								" " +
-								(company?.siteName || "") +
-								(company?.companyName ? " - " + (company?.companyName || "") : "")}
-					</div>
-				{/if}
-			</slot>
+							{company?.registration?.text ||
+								(company.since ? `${company.since?.toString()} - ` : "") +
+									new Date().getFullYear().toString() +
+									" " +
+									(company?.siteName || "") +
+									(company?.companyName ? " - " + (company?.companyName || "") : "")}
+						</div>
+					{/if}
+				</slot>
+			</div>
 		</div>
-	</div>
+	{:else if type === "large"}
+		large
+	{/if}
 </footer>
 
 <style lang="scss">
