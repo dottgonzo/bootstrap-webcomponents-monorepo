@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-layout-desktop",
 	"displayName": "Svelte Bootstrap Layout Desktop WebComponent",
 	"description": "Svelte Bootstrap 5 WebComponent",
-	"version": "0.11.8",
+	"version": "0.11.9",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -77,12 +77,12 @@
 	"contributors": [],
 	"gitHead": "b92d722830fa75b5ce5abd303cd6515699b61635",
 	"dependencies": {
-		"@htmlbricks/hb-cookie-law-banner": "^0.11.8",
-		"@htmlbricks/hb-footer": "^0.11.8",
-		"@htmlbricks/hb-jsutils": "^0.11.8",
-		"@htmlbricks/hb-navbar": "^0.11.8",
-		"@htmlbricks/hb-offcanvas": "^0.11.8",
-		"@htmlbricks/hb-sidebar-desktop": "^0.11.8",
+		"@htmlbricks/hb-cookie-law-banner": "^0.11.9",
+		"@htmlbricks/hb-footer": "^0.11.9",
+		"@htmlbricks/hb-jsutils": "^0.11.9",
+		"@htmlbricks/hb-navbar": "^0.11.9",
+		"@htmlbricks/hb-offcanvas": "^0.11.9",
+		"@htmlbricks/hb-sidebar-desktop": "^0.11.9",
 		"debounce": "^1.2.1",
 		"style-to-object": "^0.3.0"
 	}
