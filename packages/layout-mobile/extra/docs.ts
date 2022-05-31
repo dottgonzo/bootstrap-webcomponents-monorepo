@@ -5,6 +5,7 @@ export const storybookArgs = {
 	ooterClick: { action: "footerClick" },
 	userClick: { action: "userClick" },
 	pageChange: { action: "pageChange" },
+	footer: { control: { type: "object" } },
 	offcanvasswitch: { action: "offcanvasswitchEvent" },
 	layoutStatus: { action: "layoutStatus" },
 	contacts: { control: { type: "object" } },

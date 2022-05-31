@@ -59,8 +59,10 @@
 	export let userpattern: string;
 	export let usertype: "email" | "username";
 	export let disableregister: boolean = null;
+	export let footer: { type?: "auto" | "small" | "regular" | "large" };
 
 	$: {
+		if (!footer) footer = undefined;
 		if (!id) id = "";
 		if (style) {
 			parsedStyle = parseStyle(style);
@@ -163,6 +165,7 @@
 	contacts={contacts || ""}
 	company={company || ""}
 	style="display:block;{layoutStyleToSet}"
+	footer={$$props.footer}
 >
 	<span slot="nav-right-slot"><slot name="nav-right-slot" /></span>
 	<span slot="nav-left-slot"><slot name="nav-left-slot" /></span>

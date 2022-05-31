@@ -11,6 +11,7 @@ export type Component = {
 	style?: string;
 	socials?: ISocials;
 	contacts?: IContacts;
+	footer?: { type?: "auto" | "small" | "regular" | "large" };
 
 	company: ICompany;
 	page?: IPage;

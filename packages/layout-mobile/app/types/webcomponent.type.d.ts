@@ -13,11 +13,12 @@ export type Component = {
 	usermenu?: IUserMenu;
 	cookielaw?: string;
 	columns?: IColumn[];
-	onescreen?: boolean
+	onescreen?: boolean;
 	cookielawuri4more?: string;
 	cookielawallowdecline?: boolean;
 	cookielawlanguage?: string;
 	sidebar?: { title?: string; logo?: string; type?: string };
+	footer?: { type?: "auto" | "small" | "regular" | "large" };
 };
 
 export type Events = {

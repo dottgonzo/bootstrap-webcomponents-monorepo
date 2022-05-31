@@ -16,6 +16,7 @@ export const storybookArgs = {
 	company: { control: { type: "object" } },
 	socials: { control: { type: "object" } },
 	oauth2providers: { control: { type: "array" } },
+	footer: { control: { type: "object" } },
 
 	appendbodyparams: { control: { type: "text" } },
 	appendqueryparams: { control: { type: "text" } },

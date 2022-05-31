@@ -7,6 +7,7 @@ export const storybookArgs = {
 	layoutStatus: { action: "layoutStatus" },
 	footerClick: { action: "footerClick" },
 	userClick: { action: "userClick" },
+	footer: { control: { type: "object" } },
 	contacts: { control: { type: "object" } },
 	columns: { control: { type: "object" } },
 	sidebar: { control: { type: "object" } },

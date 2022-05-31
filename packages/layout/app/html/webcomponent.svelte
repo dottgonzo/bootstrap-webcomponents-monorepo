@@ -45,6 +45,7 @@
 	export let style: string;
 	export let size: "small" | "large";
 	export let i18nlang: string;
+	export let footer: { type?: "auto" | "small" | "regular" | "large" };
 
 	// let translator: LanguageTranslator;
 
@@ -58,6 +59,7 @@
 
 	let layoutType: "small" | "large";
 	$: {
+		if (!footer) footer = undefined;
 		if (style) {
 			parsedStyle = parseStyle(style);
 			layoutDesktopStyleSetupToSet = getChildStyleToPass(parsedStyle, layoutDesktopStyleSetup?.vars);
@@ -167,6 +169,7 @@
 		cookielawallowdecline={$$props.cookielawallowdecline}
 		cookielawuri4more={$$props.cookielawuri4more}
 		cookielaw={$$props.cookielaw}
+		footer={$$props.footer}
 		on:userClick={(l) => dispatch("userClick", l.detail)}
 		on:footerClick={(l) => dispatch("footerClick", l.detail)}
 		on:pageChange={(l) => dispatch("pageChange", l.detail)}
@@ -199,6 +202,7 @@
 		cookielawallowdecline={$$props.cookielawallowdecline}
 		cookielawuri4more={$$props.cookielawuri4more}
 		cookielaw={$$props.cookielaw}
+		footer={$$props.footer}
 		on:userClick={(l) => dispatch("userClick", l.detail)}
 		on:footerClick={(l) => dispatch("footerClick", l.detail)}
 		on:pageChange={(l) => dispatch("pageChange", l.detail)}

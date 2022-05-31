@@ -22,7 +22,6 @@
 	import type { Component } from "../types/webcomponent.type";
 	import parseStyle from "style-to-object";
 
-	import { styleSetup as offcanvasStyleSetup } from "../../node_modules/@htmlbricks/hb-offcanvas/release/docs";
 	import { styleSetup as footerStyleSetup } from "../../node_modules/@htmlbricks/hb-footer/release/docs";
 	import { styleSetup as navbarStyleSetup } from "../../node_modules/@htmlbricks/hb-navbar/release/docs";
 	import { styleSetup as cookieLawBannerStyleSetup } from "../../node_modules/@htmlbricks/hb-cookie-law-banner/release/docs";
@@ -47,12 +46,12 @@
 	export let style: string;
 	export let size: "small" | "large";
 	export let i18nlang: string;
+	export let footer: { type?: "auto" | "small" | "regular" | "large" };
 
 	// let translator: LanguageTranslator;
 
 	let parsedStyle: { [x: string]: string };
 
-	let offcanvasStyleToSet: string = "";
 	let footerStyleToSet: string = "";
 	let navbarStyleToSet: string = "";
 	let cookieLawBannerStyleToSet: string = "";
@@ -67,12 +66,14 @@
 		if (navopen !== true && navopen !== false) navopen = true;
 		if (style) {
 			parsedStyle = parseStyle(style);
-			offcanvasStyleToSet = getChildStyleToPass(parsedStyle, offcanvasStyleSetup?.vars);
 			footerStyleToSet = getChildStyleToPass(parsedStyle, footerStyleSetup?.vars);
 			navbarStyleToSet = getChildStyleToPass(parsedStyle, navbarStyleSetup?.vars);
 			cookieLawBannerStyleToSet = getChildStyleToPass(parsedStyle, cookieLawBannerStyleSetup?.vars);
 			sidebarDesktopStyleToSet = sidebarDesktopStyleToSet + getChildStyleToPass(parsedStyle, sidebarDesktopStyleSetup?.vars);
 		}
+		if (!footer) footer = { type: "auto" };
+		if (typeof footer === "string") footer = JSON.parse(footer);
+		if (!footer.type) footer.type = "auto";
 		if (!size) size = undefined;
 		if (!id) id = "";
 		if (!cookielawuri4more) cookielawuri4more = "";
@@ -240,6 +241,7 @@
 					/>
 				{/if}
 				<hb-footer
+					type={footer.type}
 					part="footer"
 					socials={socials ? JSON.stringify(socials) : ""}
 					contacts={contacts ? JSON.stringify(contacts) : ""}
