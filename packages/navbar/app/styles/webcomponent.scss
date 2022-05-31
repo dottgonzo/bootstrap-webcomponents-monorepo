@@ -18,15 +18,21 @@
 }
 #left_side {
 	text-align: left;
-	z-index: 1;
 }
 #center_side {
 	text-align: center;
-	z-index: 1;
 }
 #rigth_side {
 	text-align: right;
+}
+#rigth_side_conntent {
+	display: inline-block;
+	padding-right: 10px;
+}
+.side {
+	position: relative;
 	z-index: 1;
+	max-width: 33%;
 }
 .navitem {
 	position: absolute;
