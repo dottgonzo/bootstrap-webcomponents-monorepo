@@ -45,7 +45,7 @@
 	export let style: string;
 	export let size: "small" | "large";
 	export let i18nlang: string;
-	export let footer: { type?: "auto" | "small" | "regular" | "large" };
+	export let footer: Component["footer"];
 
 	// let translator: LanguageTranslator;
 

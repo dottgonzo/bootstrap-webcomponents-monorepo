@@ -18,7 +18,7 @@
 	import type { IContacts, ISocials, ICompany, IColumn } from "../../../footer/app/types/webcomponent.type";
 	import type { IUserMenu } from "../../../navbar/app/types/webcomponent.type";
 	import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
-	import type { IPage } from "@app/types/webcomponent.type";
+	import type { IPage, Component } from "@app/types/webcomponent.type";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
@@ -59,7 +59,7 @@
 	export let userpattern: string;
 	export let usertype: "email" | "username";
 	export let disableregister: boolean = null;
-	export let footer: { type?: "auto" | "small" | "regular" | "large" };
+	export let footer: Component["footer"];
 
 	$: {
 		if (!footer) footer = undefined;
@@ -167,34 +167,34 @@
 	style="display:block;{layoutStyleToSet}"
 	footer={$$props.footer}
 >
-	<span slot="nav-right-slot"><slot name="nav-right-slot" /></span>
-	<span slot="nav-left-slot"><slot name="nav-left-slot" /></span>
-	<span slot="nav-center-slot"><slot name="nav-center-slot" /></span>
-
-	<hb-auth
-		style={authStyleToSet}
-		sessionkey={sessionkey || ""}
-		loginuri={loginuri || ""}
-		part="loginbox"
-		disableregister={disableregister || "no"}
-		on:login={(l) => {
-			dispatch("login", l.detail);
-		}}
-		on:register={(l) => {
-			dispatch("register", l.detail);
-		}}
-		on:recoverOrActivate={(l) => {
-			dispatch("recoverOrActivate", l.detail);
-		}}
-		slot="page"
-	/>
+	<div slot="nav-right-slot"><slot name="nav-right-slot" /></div>
+	<div slot="nav-left-slot"><slot name="nav-left-slot" /></div>
+	<div slot="nav-center-slot"><slot name="nav-center-slot" /></div>
+	<div slot="page" style="position: absolute;height: 100%;top: 0px;width: 100%;">
+		<hb-auth
+			style="height:100%;{authStyleToSet}"
+			sessionkey={sessionkey || ""}
+			loginuri={loginuri || ""}
+			part="loginbox"
+			disableregister={disableregister || "no"}
+			on:login={(l) => {
+				dispatch("login", l.detail);
+			}}
+			on:register={(l) => {
+				dispatch("register", l.detail);
+			}}
+			on:recoverOrActivate={(l) => {
+				dispatch("recoverOrActivate", l.detail);
+			}}
+		/>
+	</div>
 </hb-layout>
 
 <style lang="scss">
-	hb-layout::part(footer) {
-		background-color: rgba(0, 0, 0, 0.03);
-		margin-top: 70px;
-	}
+	// hb-layout::part(footer) {
+	// 	background-color: rgba(0, 0, 0, 0.03);
+	// 	margin-top: 70px;
+	// }
 	// @import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
 </style>

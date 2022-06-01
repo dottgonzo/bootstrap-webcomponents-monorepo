@@ -46,7 +46,7 @@
 	export let style: string;
 	export let size: "small" | "large";
 	export let i18nlang: string;
-	export let footer: { type?: "auto" | "small" | "regular" | "large" };
+	export let footer: Component["footer"];
 
 	// let translator: LanguageTranslator;
 
@@ -71,8 +71,8 @@
 			cookieLawBannerStyleToSet = getChildStyleToPass(parsedStyle, cookieLawBannerStyleSetup?.vars);
 			sidebarDesktopStyleToSet = sidebarDesktopStyleToSet + getChildStyleToPass(parsedStyle, sidebarDesktopStyleSetup?.vars);
 		}
-		if (!footer) footer = { type: "auto" };
-		if (typeof footer === "string") footer = JSON.parse(footer);
+		if (!footer) footer = { type: "auto", disable_expanding_small: false };
+		else if (typeof footer === "string") footer = JSON.parse(footer);
 		if (!footer.type) footer.type = "auto";
 		if (!size) size = undefined;
 		if (!id) id = "";
@@ -241,7 +241,8 @@
 					/>
 				{/if}
 				<hb-footer
-					type={footer.type}
+					type={footer.type === "auto" ? (onescreen ? "small" : "regular") : footer.type}
+					disable_expanding_small={footer.disable_expanding_small ? "yes" : "no"}
 					part="footer"
 					socials={socials ? JSON.stringify(socials) : ""}
 					contacts={contacts ? JSON.stringify(contacts) : ""}

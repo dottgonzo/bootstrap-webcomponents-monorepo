@@ -47,7 +47,7 @@
 	export let style: string;
 	export let size: "small" | "large";
 	export let i18nlang: string;
-	export let footer: { type?: "auto" | "small" | "regular" | "large" };
+	export let footer: Component["footer"];
 
 	// let translator: LanguageTranslator;
 
@@ -81,8 +81,8 @@
 		if (!cookielaw) {
 			cookielaw = null;
 		}
-		if (!footer) footer = { type: "auto" };
-		if (typeof footer === "string") footer = JSON.parse(footer);
+		if (!footer) footer = { type: "auto", disable_expanding_small: false };
+		else if (typeof footer === "string") footer = JSON.parse(footer);
 		if (!footer.type) footer.type = "auto";
 		if (!usermenu) {
 			usermenu = null;
@@ -191,13 +191,14 @@
 		/>
 	{/if}
 	<hb-footer
-		type={footer.type}
+		type={footer.type === "auto" ? (onescreen ? "small" : "regular") : footer.type}
 		part="footer"
 		socials={socials ? JSON.stringify(socials) : ""}
 		contacts={contacts ? JSON.stringify(contacts) : ""}
 		style="display:block;{footerStyleToSet}"
 		company={company ? JSON.stringify(company) : ""}
 		columns={columns || ""}
+		disable_expanding_small={footer.disable_expanding_small ? "yes" : "no"}
 		on:footerClick={(el) => dispatch("footerClick", el.detail)}
 	/>
 </div>
