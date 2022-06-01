@@ -153,12 +153,12 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	addComponent({ repoName: "@htmlbricks/hb-footer", version: pkg.version, local: "http://localhost:6006/footer/release/release.js" });
-	addComponent({ repoName: "@htmlbricks/hb-offcanvas", version: pkg.version, local: "http://localhost:6006/offcanvas/release/release.js" });
-	addComponent({ repoName: "@htmlbricks/hb-navbar", version: pkg.version, local: "http://localhost:6006/navbar/release/release.js" });
-	addComponent({ repoName: "@htmlbricks/hb-cookie-law-banner", version: pkg.version, local: "http://localhost:6006/cookie-law-banner/release/release.js" });
-	addComponent({ repoName: "@htmlbricks/hb-sidebar-desktop", version: pkg.version, local: "http://localhost:6006/sidebar-desktop/release/release.js" });
-	// addComponent({ repoName: "@htmlbricks/hb-sidebar-desktop", version: pkg.version, local: "http://localhost:6006/sidebar-desktop/dist/release.js" });
+	addComponent({ repoName: "@htmlbricks/hb-footer", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-offcanvas", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-navbar", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-cookie-law-banner", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-sidebar-desktop", version: pkg.version });
+	// addComponent({ repoName: "@htmlbricks/hb-sidebar-desktop", version: pkg.version });
 
 	function openmenu(o) {
 		console.log("burgerclick", o);
