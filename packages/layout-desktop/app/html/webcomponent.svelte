@@ -185,52 +185,52 @@
 	// });
 </script>
 
-<div id="desktop">
-	<hb-navbar
-		id="navbar"
-		part="navbar"
-		noburger={navlinks?.length ? "" : "no"}
-		style={navbarStyleToSet}
-		companybrandname={page_title || company?.siteName || ""}
-		usermenu={usermenu || ""}
-		switchopen={navopen ? "yes" : "no"}
-		on:navmenuswitch={(el) => openmenu(el.detail)}
-		on:userClick={(el) => dispatch("userClick", el.detail)}
-	>
-		<span slot="left-slot">
-			<!-- <span
+{#if navlinks?.length}
+	<div id="desktop">
+		<hb-navbar
+			id="navbar"
+			part="navbar"
+			noburger={navlinks?.length ? "" : "no"}
+			style={navbarStyleToSet}
+			companybrandname={page_title || company?.siteName || ""}
+			usermenu={usermenu || ""}
+			switchopen={navopen ? "yes" : "no"}
+			on:navmenuswitch={(el) => openmenu(el.detail)}
+			on:userClick={(el) => dispatch("userClick", el.detail)}
+		>
+			<span slot="left-slot">
+				<!-- <span
 			on:click={() => {
 				navopen = !navopen;
 			}}>burger</span
 		> -->
-			{#if company?.logoUri}
-				<img alt="" style="max-height: 31px;vertical-align: middle;" src={company.logoUri} />
-			{/if}
-			{#if sidebar?.title}
-				{sidebar.title}
-			{/if}
-		</span>
-
-		<span slot="center-slot"><slot name="nav-center-slot" /></span>
-		<span slot="right-slot"><slot name="nav-right-slot" /></span>
-	</hb-navbar>
-
-	<div id="layout_container" style={navlinks?.length && navopen === true ? "grid-template-columns: 240px auto;" : ""}>
-		<div id="layout_sidebar">
-			<div id="inner_sidebar">
-				{#if navlinks?.length && navopen === true}
-					<hb-sidebar-desktop
-						id="sidebarcontainer"
-						on:pageChange={(e) => dispatch("pageChange", e.detail)}
-						style={sidebarDesktopStyleToSet}
-						navlinks={navlinks || "[]"}
-						navpage={pagename || ""}
-					/>
+				{#if company?.logoUri}
+					<img alt="" style="max-height: 31px;vertical-align: middle;" src={company.logoUri} />
 				{/if}
+				{#if sidebar?.title}
+					{sidebar.title}
+				{/if}
+			</span>
+
+			<span slot="center-slot"><slot name="nav-center-slot" /></span>
+			<span slot="right-slot"><slot name="nav-right-slot" /></span>
+		</hb-navbar>
+
+		<div id="layout_container" style={navlinks?.length && navopen === true ? "grid-template-columns: 240px auto;" : ""}>
+			<div id="layout_sidebar">
+				<div id="inner_sidebar">
+					{#if navlinks?.length && navopen === true}
+						<hb-sidebar-desktop
+							id="sidebarcontainer"
+							on:pageChange={(e) => dispatch("pageChange", e.detail)}
+							style={sidebarDesktopStyleToSet}
+							navlinks={navlinks || "[]"}
+							navpage={pagename || ""}
+						/>
+					{/if}
+				</div>
 			</div>
-		</div>
-		<div id="layout_page">
-			<div id="container" style={screensize} part="container">
+			<div style={screensize} part="container">
 				<div style={onescreen ? "flex: 2" : ""} part="page" id="page">
 					<slot name="page">page</slot>
 				</div>
@@ -256,11 +256,71 @@
 			</div>
 		</div>
 	</div>
-</div>
+{:else}
+	<div id="desktop_without_sidebar">
+		<hb-navbar
+			id="navbar"
+			part="navbar"
+			noburger={navlinks?.length ? "" : "no"}
+			style={navbarStyleToSet}
+			companybrandname={page_title || company?.siteName || ""}
+			usermenu={usermenu || ""}
+			switchopen={navopen ? "yes" : "no"}
+			on:navmenuswitch={(el) => openmenu(el.detail)}
+			on:userClick={(el) => dispatch("userClick", el.detail)}
+		>
+			<span slot="left-slot">
+				<!-- <span
+			on:click={() => {
+				navopen = !navopen;
+			}}>burger</span
+		> -->
+				{#if company?.logoUri}
+					<img alt="" style="max-height: 31px;vertical-align: middle;" src={company.logoUri} />
+				{/if}
+				{#if sidebar?.title}
+					{sidebar.title}
+				{/if}
+			</span>
+
+			<span slot="center-slot"><slot name="nav-center-slot" /></span>
+			<span slot="right-slot"><slot name="nav-right-slot" /></span>
+		</hb-navbar>
+		<div>
+			<div style={screensize} part="container">
+				<div style={onescreen ? "flex: 2" : ""} part="page" id="page">
+					<slot name="page">page</slot>
+				</div>
+				{#if cookielaw || cookielawallowdecline || cookielawlanguage || cookielawuri4more}
+					<hb-cookie-law-banner
+						style={cookieLawBannerStyleToSet}
+						language={cookielawlanguage || i18nlang}
+						allowdecline={cookielawallowdecline}
+						{cookielawuri4more}
+					/>
+				{/if}
+				<hb-footer
+					type={footer.type === "auto" ? (onescreen ? "small" : "regular") : footer.type}
+					disable_expanding_small={footer.disable_expanding_small ? "yes" : "no"}
+					part="footer"
+					socials={socials ? JSON.stringify(socials) : ""}
+					contacts={contacts ? JSON.stringify(contacts) : ""}
+					style="display:block;{footerStyleToSet}"
+					company={company ? JSON.stringify(company) : ""}
+					columns={columns || ""}
+					on:footerClick={(el) => dispatch("footerClick", el.detail)}
+				/>
+			</div>
+		</div>
+	</div>
+{/if}
 
 <style lang="scss">
 	// @import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
+	#desktop_without_sidebar {
+		min-height: 100vh;
+	}
 	#desktop {
 		min-height: 100vh;
 		display: grid;
@@ -269,10 +329,7 @@
 	#layout_container {
 		display: grid;
 	}
-	// #layout_page {
-	// 	min-height: calc(100vh - 50px);
-	// 	// height: max-content;
-	// }
+
 	#layout_sidebar {
 		width: 240px;
 		grid-row-start: 1;
