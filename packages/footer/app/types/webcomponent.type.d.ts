@@ -75,11 +75,12 @@ export type Component = {
 	id?: string;
 	style?: string;
 	company: ICompany;
-	brandandcontacts: IBrandAndContacts;
-	columns: IColumn[];
-	socials: ISocials;
-	contacts: IContacts;
-	policies: IPolicies[];
+	brandandcontacts?: IBrandAndContacts;
+	columns?: IColumn[];
+	socials?: ISocials;
+	contacts?: IContacts;
+	policies?: IPolicies[];
+	enable_expanding_small?: boolean;
 	type?: "small" | "regular" | "large";
 };
 

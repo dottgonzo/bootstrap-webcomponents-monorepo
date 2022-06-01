@@ -18,7 +18,7 @@ export type Component = {
 	cookielawallowdecline?: boolean;
 	cookielawlanguage?: string;
 	sidebar?: { title?: string; logo?: string; type?: string };
-	footer?: { type?: "auto" | "small" | "regular" | "large" };
+	footer?: { type?: "auto" | "small" | "regular" | "large"; enable_expanding_small?: boolean };
 };
 
 export type Events = {

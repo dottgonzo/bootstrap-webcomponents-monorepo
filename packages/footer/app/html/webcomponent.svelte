@@ -27,6 +27,7 @@
 	export let company: ICompany;
 	export let brandandcontacts: IBrandAndContacts;
 	export let columns: IColumn[];
+	export let enable_expanding_small: boolean;
 
 	export let socials: ISocials;
 	export let contacts: IContacts;
@@ -38,6 +39,11 @@
 			parsedStyle = parseStyle(style);
 			contactItemStyleToSet = getChildStyleToPass(parsedStyle, contactItemStyleSetup?.vars);
 		}
+		if (typeof enable_expanding_small === "string") {
+			if (enable_expanding_small === "false" || enable_expanding_small === "no") enable_expanding_small = false;
+			else enable_expanding_small = true;
+		}
+		if (!enable_expanding_small && enable_expanding_small !== false) enable_expanding_small = true;
 
 		if (!company) {
 			company = null;
@@ -110,6 +116,7 @@
 			} catch (err) {}
 		}
 	}
+
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 
@@ -125,14 +132,67 @@
 	}
 
 	addComponent({ repoName: "@htmlbricks/hb-contact-item", version: pkg.version });
+	let expand_small_footer = false;
+	// function expand_small(){
+
+	// }
 </script>
 
+<svelte:head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
+</svelte:head>
 <footer>
-	{#if type === "small"}
-		<div class="container-fluid" style="background-color:red">
-			<div class="container" style="background-color:blue">small</div>
+	{#if type === "small" && !expand_small_footer}
+		<!-- SMALL LAYOUT -->
+		<div class="container-fluid">
+			<div class="container" style="position:relative">
+				{#if enable_expanding_small}
+					<div
+						class="expand_from_small_footer"
+						on:click={() => {
+							expand_small_footer = true;
+						}}
+					>
+						<i class="bi bi-arrow-up-square-fill" />
+					</div>
+				{/if}
+				<div id="footer_small_content">
+					<slot name="footer_small">
+						{#if company?.siteName}
+							<div style="max-height:40px;height:40px;margin:10px auto 5px auto">
+								{#if company.logoUri}
+									<span><img style="height: 100%;" alt="" src={company.logoUri} /></span>
+								{/if}
+
+								{company?.registration?.text ||
+									(company.since ? `${company.since?.toString()} - ` : "") +
+										new Date().getFullYear().toString() +
+										" " +
+										(company?.siteName || "") +
+										(company?.companyName ? " - " + (company?.companyName || "") : "")}
+							</div>
+						{/if}
+					</slot>
+				</div>
+			</div>
 		</div>
-	{:else if type === "regular"}
+	{:else if type === "regular" || (type === "small" && expand_small_footer)}
+		<!-- REGULAR LAYOUT -->
+		{#if expand_small_footer}
+			<div class="container-fluid">
+				<div class="container" style="position:relative">
+					<div
+						style="margin-top:10px;"
+						class="expand_from_small_footer"
+						on:click={() => {
+							expand_small_footer = false;
+						}}
+					>
+						<i class="bi bi-arrow-down-square-fill" />
+					</div>
+				</div>
+			</div>
+		{/if}
 		<div class="container">
 			<slot name="footerheader" class="row">
 				<!-- <div class="row">
@@ -338,6 +398,7 @@
 			</div>
 		</div>
 	{:else if type === "large"}
+		<!-- LARGE LAYOUT -->
 		large
 	{/if}
 </footer>

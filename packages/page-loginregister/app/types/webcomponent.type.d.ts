@@ -11,7 +11,7 @@ export type Component = {
 	style?: string;
 	socials?: ISocials;
 	contacts?: IContacts;
-	footer?: { type?: "auto" | "small" | "regular" | "large" };
+	footer?: { type?: "auto" | "small" | "regular" | "large"; enable_expanding_small?: boolean };
 
 	company: ICompany;
 	page?: IPage;
