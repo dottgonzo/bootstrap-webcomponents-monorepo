@@ -80,7 +80,7 @@ export type Component = {
 	socials?: ISocials;
 	contacts?: IContacts;
 	policies?: IPolicies[];
-	enable_expanding_small?: boolean;
+	disable_expanding_small?: boolean;
 	type?: "small" | "regular" | "large";
 };
 

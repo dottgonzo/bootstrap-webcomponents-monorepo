@@ -5,7 +5,7 @@ export const storybookArgs = {
 	columns: { control: { type: "array" } },
 	policies: { control: { type: "array" } },
 	brandandcontacts: { control: { type: "object" } },
-	enable_expanding_small: { control: { type: "boolean" } },
+	disable_expanding_small: { control: { type: "boolean" } },
 	socials: { control: { type: "object" } },
 	contacts: { control: { type: "object" } },
 	company: { control: { type: "object" } },

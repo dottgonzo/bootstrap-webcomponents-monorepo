@@ -27,7 +27,7 @@
 	export let company: ICompany;
 	export let brandandcontacts: IBrandAndContacts;
 	export let columns: IColumn[];
-	export let enable_expanding_small: boolean;
+	export let disable_expanding_small: boolean;
 
 	export let socials: ISocials;
 	export let contacts: IContacts;
@@ -39,11 +39,12 @@
 			parsedStyle = parseStyle(style);
 			contactItemStyleToSet = getChildStyleToPass(parsedStyle, contactItemStyleSetup?.vars);
 		}
-		if (typeof enable_expanding_small === "string") {
-			if (enable_expanding_small === "false" || enable_expanding_small === "no") enable_expanding_small = false;
-			else enable_expanding_small = true;
+		if (!disable_expanding_small) {
+			disable_expanding_small = false;
+		} else if (typeof disable_expanding_small === "string") {
+			if (disable_expanding_small === "yes" || disable_expanding_small === "true") disable_expanding_small = true;
+			else disable_expanding_small = false;
 		}
-		if (!enable_expanding_small && enable_expanding_small !== false) enable_expanding_small = true;
 
 		if (!company) {
 			company = null;
@@ -146,7 +147,7 @@
 		<!-- SMALL LAYOUT -->
 		<div class="container-fluid">
 			<div class="container" style="position:relative">
-				{#if enable_expanding_small}
+				{#if !disable_expanding_small}
 					<div
 						class="expand_from_small_footer"
 						on:click={() => {
