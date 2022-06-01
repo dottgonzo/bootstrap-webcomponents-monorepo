@@ -16,6 +16,7 @@ export const storybookArgs = {
 	company: { control: { type: "object" } },
 	navlinks: { control: { type: "array" } },
 	pagename: { control: { type: "string" } },
+	page_title: { control: { type: "string" } },
 	cookielawuri4more: { control: { type: "string" } },
 	cookielawallowdecline: { control: { type: "boolean" } },
 	cookielawlanguage: { control: { type: "string" } },

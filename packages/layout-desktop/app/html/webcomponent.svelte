@@ -35,6 +35,7 @@
 	export let company: ICompany;
 	export let navlinks: INavLink[];
 	export let pagename: string;
+	export let page_title: string;
 	export let usermenu: IUserMenu;
 	export let cookielaw: string;
 	export let columns: IColumn[];
@@ -80,6 +81,7 @@
 		if (!cookielawallowdecline) cookielawallowdecline = "";
 		if (!cookielawlanguage) cookielawlanguage = "";
 		if (!pagename) pagename = null;
+		if (!page_title) page_title = null;
 		if (!cookielaw) {
 			cookielaw = null;
 		}
@@ -189,7 +191,7 @@
 		part="navbar"
 		noburger={navlinks?.length ? "" : "no"}
 		style={navbarStyleToSet}
-		companybrandname={company?.siteName || ""}
+		companybrandname={page_title || company?.siteName || ""}
 		usermenu={usermenu || ""}
 		switchopen={navopen ? "yes" : "no"}
 		on:navmenuswitch={(el) => openmenu(el.detail)}

@@ -12,6 +12,7 @@ export type Component = {
 	socials?: ISocials;
 	contacts?: IContacts;
 	footer?: { type?: "auto" | "small" | "regular" | "large"; disable_expanding_small?: boolean };
+	page_title?: string;
 
 	company: ICompany;
 	page?: IPage;

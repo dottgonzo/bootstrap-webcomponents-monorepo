@@ -5,6 +5,7 @@ import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type
 export type Component = {
 	id?: string;
 	style?: string;
+	page_title?: string;
 	socials?: ISocials;
 	contacts?: IContacts;
 	company?: ICompany;

@@ -10,6 +10,7 @@ export type Component = {
 	company?: ICompany;
 	navlinks?: INavLink[];
 	pagename?: string;
+	page_title?: string;
 	usermenu?: IUserMenu;
 	cookielaw?: string;
 	columns?: IColumn[];

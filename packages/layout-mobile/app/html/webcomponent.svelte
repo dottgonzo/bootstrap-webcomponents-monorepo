@@ -36,6 +36,7 @@
 	export let company: ICompany;
 	export let navlinks: INavLink[];
 	export let pagename: string;
+	export let page_title: string;
 	export let usermenu: IUserMenu;
 	export let cookielaw: string;
 	export let columns: IColumn[];
@@ -99,6 +100,7 @@
 		if (!i18nlang) {
 			i18nlang = null;
 		}
+		if (!page_title) page_title = null;
 
 		if (!sidebar) sidebar = {};
 		else if (typeof sidebar === "string") {
@@ -168,7 +170,7 @@
 		style={navbarStyleToSet}
 		noburger={navlinks ? "" : "yes"}
 		companylogouri={company?.logoUri || ""}
-		companybrandname={company?.siteName || ""}
+		companybrandname={page_title || company?.siteName || ""}
 		usermenu={usermenu || ""}
 		switchopen={navopen ? "yes" : "no"}
 		on:navmenuswitch={(el) => openmenu(el.detail)}

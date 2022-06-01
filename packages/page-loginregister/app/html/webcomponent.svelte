@@ -60,6 +60,7 @@
 	export let usertype: "email" | "username";
 	export let disableregister: boolean = null;
 	export let footer: Component["footer"];
+	export let page_title: string;
 
 	$: {
 		if (!footer) footer = undefined;
@@ -146,6 +147,7 @@
 		if (!columns) {
 			columns = null;
 		}
+		if (!page_title) page_title = null;
 	}
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -166,6 +168,7 @@
 	company={company || ""}
 	style="display:block;{layoutStyleToSet}"
 	footer={$$props.footer}
+	page_title={$$props.page_title}
 >
 	<div slot="nav-right-slot"><slot name="nav-right-slot" /></div>
 	<div slot="nav-left-slot"><slot name="nav-left-slot" /></div>

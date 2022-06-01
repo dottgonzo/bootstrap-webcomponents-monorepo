@@ -46,6 +46,7 @@
 	export let size: "small" | "large";
 	export let i18nlang: string;
 	export let footer: Component["footer"];
+	export let page_title: string;
 
 	// let translator: LanguageTranslator;
 
@@ -102,6 +103,7 @@
 		if (!contacts) {
 			contacts = null;
 		}
+		if (!page_title) page_title = null;
 
 		// 		if (!translator) {
 		// 	translator = new LanguageTranslator({ dictionary, lang: i18nlang });
@@ -155,6 +157,7 @@
 {#if layoutType === "small"}
 	<hb-layout-mobile
 		style={layoutMobileStyleSetupToSet}
+		page_title={$$props.page_title}
 		company={$$props.company}
 		sidebar={$$props.sidebar}
 		pagename={$$props.pagename}
@@ -188,6 +191,7 @@
 {:else}
 	<hb-layout-desktop
 		style={layoutDesktopStyleSetupToSet}
+		page_title={$$props.page_title}
 		company={$$props.company}
 		sidebar={$$props.sidebar}
 		pagename={$$props.pagename}
