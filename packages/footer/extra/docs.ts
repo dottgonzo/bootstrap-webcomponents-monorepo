@@ -32,7 +32,6 @@ const company: Component["company"] = {
 	logoUri: "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg",
 	siteName: "testsite",
 	companyName: "testcompany S.R.L.",
-	registration: { text: "copyright" },
 	description: `testo e descrizione di esempio dell applicazione`,
 	vatNumber: "aa - ffffff",
 	fiscalCode: "f4f5f6fff",
