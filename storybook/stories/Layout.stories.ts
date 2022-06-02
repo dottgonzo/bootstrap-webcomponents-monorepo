@@ -3,7 +3,10 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
-import { storybookArgs } from "../../packages/layout/extra/docs";
+import {
+  storybookArgs,
+  componentSetup,
+} from "../../packages/layout/extra/docs";
 
 const copy1 = Object.assign({}, argTypesExtraUtils);
 const copy2 = Object.assign({}, storybookArgs);
@@ -11,7 +14,7 @@ const copy2 = Object.assign({}, storybookArgs);
 const assigned = Object.assign({}, copy1, copy2);
 
 const meta: Meta = {
-  title: "Layout/MainLayout",
+  title: componentSetup.category + "/MainLayout",
   argTypes: assigned,
   parameters: {
     layout: "fullscreen",

@@ -3,14 +3,17 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
-import { storybookArgs } from "../../packages/downloader/extra/docs";
+import {
+  storybookArgs,
+  componentSetup,
+} from "../../packages/downloader/extra/docs";
 
 const copy1 = Object.assign({}, argTypesExtraUtils);
 const copy2 = Object.assign({}, storybookArgs);
 
 const assigned = Object.assign({}, copy1, copy2);
 const meta: Meta = {
-  title: "Components/Downloader",
+  title: componentSetup.category + "/Downloader",
   argTypes: assigned,
 };
 

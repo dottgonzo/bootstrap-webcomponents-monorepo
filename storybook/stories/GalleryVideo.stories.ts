@@ -3,7 +3,10 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
-import { storybookArgs } from "../../packages/gallery-video/extra/docs";
+import {
+  storybookArgs,
+  componentSetup,
+} from "../../packages/gallery-video/extra/docs";
 
 const cards = [
   {
@@ -73,7 +76,7 @@ const copy2 = Object.assign({}, storybookArgs);
 
 const assigned = Object.assign({}, copy1, copy2);
 const meta: Meta = {
-  title: "Contents/VideoGallery",
+  title: componentSetup.category + "/VideoGallery",
   argTypes: assigned,
 };
 

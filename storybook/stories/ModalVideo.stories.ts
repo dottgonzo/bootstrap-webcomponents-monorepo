@@ -3,14 +3,17 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
-import { storybookArgs } from "../../packages/modal-video/extra/docs";
+import {
+  storybookArgs,
+  componentSetup,
+} from "../../packages/modal-video/extra/docs";
 
 const copy1 = Object.assign({}, argTypesExtraUtils);
 const copy2 = Object.assign({}, storybookArgs);
 
 const assigned = Object.assign({}, copy1, copy2);
 const meta: Meta = {
-  title: "Components/VideoModal",
+  title: componentSetup.category + "/VideoModal",
   argTypes: assigned,
 };
 

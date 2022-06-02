@@ -34,7 +34,7 @@ export const webComponentBind = (
   }
   if (options?.style) {
     for (const s of Object.keys(options.style)) {
-      c.style[s] = options.style[s];
+      if (c?.style?.[s]) c.style[s] = options.style[s];
     }
   }
   if (args._testInnerHtml) c.innerHTML = args._testInnerHtml;

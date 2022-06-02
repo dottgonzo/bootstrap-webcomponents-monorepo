@@ -3,14 +3,17 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
-import { storybookArgs } from "../../packages/calendar-events/extra/docs";
+import {
+  storybookArgs,
+  componentSetup,
+} from "../../packages/calendar-events/extra/docs";
 import dayjs from "dayjs";
 const copy1 = Object.assign({}, argTypesExtraUtils);
 const copy2 = Object.assign({}, storybookArgs);
 
 const assigned = Object.assign({}, copy1, copy2);
 const meta: Meta = {
-  title: "Contents/Calendar",
+  title: componentSetup.category + "/Calendar",
   argTypes: assigned,
 };
 export default meta;

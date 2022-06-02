@@ -3,14 +3,17 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
-import { storybookArgs } from "../../packages/dashboard-card1/extra/docs";
+import {
+  storybookArgs,
+  componentSetup,
+} from "../../packages/dashboard-card1/extra/docs";
 
 const copy1 = Object.assign({}, argTypesExtraUtils);
 const copy2 = Object.assign({}, storybookArgs);
 
 const assigned = Object.assign({}, copy1, copy2);
 const meta: Meta = {
-  title: "Dashboard/Card1",
+  title: componentSetup.category + "/Card1",
   argTypes: assigned,
 };
 

@@ -3,7 +3,7 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
-import { storybookArgs } from "../../packages/table/extra/docs";
+import { storybookArgs, componentSetup } from "../../packages/table/extra/docs";
 
 const rows = [
   {
@@ -374,7 +374,7 @@ const copy2 = Object.assign({}, storybookArgs);
 
 const assigned = Object.assign({}, copy1, copy2);
 const meta: Meta = {
-  title: "Contents/Table",
+  title: componentSetup.category + "/Table",
   argTypes: assigned,
 };
 

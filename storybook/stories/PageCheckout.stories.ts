@@ -3,14 +3,17 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
-import { storybookArgs } from "../../packages/page-checkout/extra/docs";
+import {
+  storybookArgs,
+  componentSetup,
+} from "../../packages/page-checkout/extra/docs";
 
 const copy1 = Object.assign({}, argTypesExtraUtils);
 const copy2 = Object.assign({}, storybookArgs);
 
 const assigned = Object.assign({}, copy1, copy2);
 const meta: Meta = {
-  title: "Pages/PageCheckout",
+  title: componentSetup.category + "/PageCheckout",
   argTypes: assigned,
 };
 

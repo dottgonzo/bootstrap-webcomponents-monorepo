@@ -3,14 +3,17 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
-import { storybookArgs } from "../../packages/sidebar-desktop/extra/docs";
+import {
+  storybookArgs,
+  componentSetup,
+} from "../../packages/sidebar-desktop/extra/docs";
 
 const copy1 = Object.assign({}, argTypesExtraUtils);
 const copy2 = Object.assign({}, storybookArgs);
 
 const assigned = Object.assign({}, copy1, copy2);
 const meta: Meta = {
-  title: "Layout/SidebarDesktop",
+  title: componentSetup.category + "/SidebarDesktop",
   argTypes: assigned,
   parameters: {
     layout: "fullscreen",

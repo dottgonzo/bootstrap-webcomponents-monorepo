@@ -4,7 +4,10 @@ import {
   webComponentBind,
   argTypesExtraUtils,
 } from "./utils/webComponentUtils";
-import { storybookArgs } from "../../packages/footer/extra/docs";
+import {
+  storybookArgs,
+  componentSetup,
+} from "../../packages/footer/extra/docs";
 import { IColumn } from "../../packages/footer/release/webcomponent.type";
 
 const copy1 = Object.assign({}, argTypesExtraUtils);
@@ -12,7 +15,7 @@ const copy2 = Object.assign({}, storybookArgs);
 
 const assigned = Object.assign({}, copy1, copy2);
 const meta: Meta = {
-  title: "Layout/Footer",
+  title: componentSetup.category + "/Footer",
   argTypes: assigned,
   parameters: {
     //👇 The viewports object from the Essentials addon
