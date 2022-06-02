@@ -56,6 +56,8 @@
 <div part="testpart" on:click={() => dispatchCustomEvent()} id="skeletontest">{string}</div>
 {#if json}<div>{json}</div>{/if}
 <div part="testpart">{boolean}</div>
+slot: <slot name="skelcontent" /> /endslot<br />
+slot debug: {Object.keys($$slots)[0]}/endslot
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";

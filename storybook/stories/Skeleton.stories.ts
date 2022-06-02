@@ -23,4 +23,6 @@ Skel.args = {
   json: { a: 1 },
   string: "ciao",
   boolean: false,
+  _testInnerHtml:
+    '<span style="background-color:blue" slot="skelcontent">cooontent</span>',
 };
