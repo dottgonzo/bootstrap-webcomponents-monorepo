@@ -10,7 +10,7 @@ export const storybookArgs = {
 
 const cssVars: CssVar[] = [];
 export const cssParts: CssPart[] = [{ name: "testpart", description: "test css part on 2 div tag" }];
-export const htmlSlots: HtmlSlot[] = [];
+export const htmlSlots: HtmlSlot[] = [{ name: "skelcontent", description: "test slot" }];
 export const i18nLanguages: i18nLang[] = [];
 
 export const styleSetup: StyleSetup = {
