@@ -3,6 +3,7 @@ import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import {
   webComponentBind,
   argTypesExtraUtils,
+  toPascalCase,
 } from "./utils/webComponentUtils";
 import {
   storybookArgs,
@@ -15,7 +16,10 @@ const copy2 = Object.assign({}, storybookArgs);
 
 const assigned = Object.assign({}, copy1, copy2);
 const meta: Meta = {
-  title: componentSetup.category + "/Footer",
+  title:
+    componentSetup.category +
+    "/" +
+    toPascalCase(componentSetup.name.replace("hb-", "")),
   argTypes: assigned,
   parameters: {
     //👇 The viewports object from the Essentials addon

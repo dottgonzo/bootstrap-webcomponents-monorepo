@@ -2,6 +2,7 @@ import { Story, Meta } from "@storybook/html";
 import {
   webComponentBind,
   argTypesExtraUtils,
+  toPascalCase,
 } from "./utils/webComponentUtils";
 import {
   storybookArgs,
@@ -13,7 +14,10 @@ const copy2 = Object.assign({}, storybookArgs);
 
 const assigned = Object.assign({}, copy1, copy2);
 const meta: Meta = {
-  title: componentSetup.category + "/Card1",
+  title:
+    componentSetup.category +
+    "/" +
+    toPascalCase(componentSetup.name.replace("hb-", "")),
   argTypes: assigned,
 };
 
