@@ -29,7 +29,7 @@ const inputEntry1 = {
 };
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "input-file");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const FormFileInputTemplate = Template.bind({});
 FormFileInputTemplate.args = {

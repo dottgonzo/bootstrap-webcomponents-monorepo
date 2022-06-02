@@ -20,7 +20,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "form-contact");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const FormContact1 = Template.bind({});
 FormContact1.args = {

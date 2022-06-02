@@ -17,7 +17,9 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "map", { style: { height: "400px" } });
+  webComponentBind(args, meta.argTypes, componentSetup.name, {
+    style: { height: "400px" },
+  });
 
 export const MapTemplate = Template.bind({});
 MapTemplate.args = {

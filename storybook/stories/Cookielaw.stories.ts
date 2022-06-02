@@ -24,7 +24,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "cookie-law-banner");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const CookielawSimple = Template.bind({});
 CookielawSimple.args = {

@@ -20,7 +20,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "product-comparison");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 const products = [
   {

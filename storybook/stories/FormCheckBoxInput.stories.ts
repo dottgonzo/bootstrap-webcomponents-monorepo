@@ -29,7 +29,7 @@ const inputEntry1 = {
 };
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "input-checkbox");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const FormCheckboxInputTemplate = Template.bind({});
 FormCheckboxInputTemplate.args = {

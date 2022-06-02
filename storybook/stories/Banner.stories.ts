@@ -20,7 +20,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "banner");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const PageBanner = Template.bind({});
 

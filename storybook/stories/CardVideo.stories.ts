@@ -26,7 +26,7 @@ const description = "6";
 const datetest = "2021-08-15T18:55:22.135Z";
 const youtubevideosrc = "https://www.youtube.com/embed/tgbNymZ7vqY";
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "card-video");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const BasicVideoCard = Template.bind({});
 BasicVideoCard.args = {

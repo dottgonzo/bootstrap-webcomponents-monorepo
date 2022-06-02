@@ -279,7 +279,7 @@ const socials1 = {
   youtube: "yttttttt",
 };
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "layout-desktop");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const LayoutA = Template.bind({});
 LayoutA.args = {

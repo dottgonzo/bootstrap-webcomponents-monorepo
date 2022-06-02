@@ -20,7 +20,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "shop-item-cell");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const ShopItemCell1 = Template.bind({});
 ShopItemCell1.args = {

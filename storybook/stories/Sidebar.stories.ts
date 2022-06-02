@@ -23,7 +23,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args: any) =>
-  webComponentBind(args, meta.argTypes, "sidebar-desktop");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 const navlinks1b = [
   {

@@ -49,7 +49,7 @@ const usermenu1 = {
 };
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "navbar");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const BasicNavbar = Template.bind({});
 BasicNavbar.args = {

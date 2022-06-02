@@ -92,7 +92,7 @@ const form = [
   },
 ];
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "editor-video");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const BasicVideoeditor = Template.bind({});
 BasicVideoeditor.args = {

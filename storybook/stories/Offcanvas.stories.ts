@@ -25,7 +25,7 @@ export default meta;
 const innerHTML = `<button slot="test" onclick="document.getElementsByTagName('hb-offcanvas')[0].setAttribute('opened', 'yes')">test</button>`;
 
 const Template: Story = (args: any) =>
-  webComponentBind(args, meta.argTypes, "offcanvas", { innerHTML });
+  webComponentBind(args, meta.argTypes, componentSetup.name, { innerHTML });
 
 const navlinks1b = [
   {

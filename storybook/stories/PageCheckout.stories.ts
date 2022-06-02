@@ -20,7 +20,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "page-checkout");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 const defaultgw = {
   id: "paypal",
   label: "bbbb",

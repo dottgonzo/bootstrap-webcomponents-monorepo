@@ -20,7 +20,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "searchbar");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const Searchbar1 = Template.bind({});
 Searchbar1.args = {

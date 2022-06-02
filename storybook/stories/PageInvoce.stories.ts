@@ -20,7 +20,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "page-invoice");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const InvoceTemplate = Template.bind({});
 InvoceTemplate.args = {

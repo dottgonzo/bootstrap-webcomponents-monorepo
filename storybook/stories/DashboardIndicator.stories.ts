@@ -18,7 +18,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "dashboard-indicator");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const DashboardIndicator = Template.bind({});
 DashboardIndicator.args = {

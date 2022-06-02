@@ -20,7 +20,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "range-slider");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const BasicRangeslider = Template.bind({});
 BasicRangeslider.args = {

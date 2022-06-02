@@ -17,7 +17,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "toast");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const BasicIMG = Template.bind({});
 BasicIMG.args = {

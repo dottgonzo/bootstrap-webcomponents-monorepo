@@ -32,7 +32,7 @@ const events = [
 ];
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "calendar-events");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const BasicCalendar = Template.bind({});
 BasicCalendar.args = {

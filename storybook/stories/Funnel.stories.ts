@@ -103,7 +103,7 @@ const preferences4 = [
   },
 ];
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "funnel");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const BasicFunnelTemplate = Template.bind({});
 BasicFunnelTemplate.args = {

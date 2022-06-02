@@ -20,7 +20,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "editor-tinymce");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const TinyEditorTemplate = Template.bind({});
 TinyEditorTemplate.args = {

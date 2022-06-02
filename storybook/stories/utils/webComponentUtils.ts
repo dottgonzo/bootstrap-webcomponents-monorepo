@@ -7,24 +7,27 @@ export const webComponentBind = (
   componentName: string,
   options?: { innerHTML?: string; style?: any }
 ) => {
-  if (!args.id) args.id = componentName + "key";
+  if (!args.id) args.id = componentName.replace("hb-", "") + "key";
   const attributes = Object.keys(argTypes).filter(
     (f) => argTypes[f].control && !argTypes[f].control.disable
   );
   const actions = Object.keys(argTypes).filter((f) => argTypes[f].action);
-  if (!document.getElementById("hb-" + componentName + "-script")) {
+  if (!document.getElementById(componentName + "-script")) {
     const script = document.createElement("script");
-    script.id = "hb-" + componentName + "-script";
+    script.id = componentName + "-script";
     script.src = !window.location.href.includes("localhost")
       ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${version}/release/release.js`
-      : `http://localhost:6006/${componentName}/dist/release.js`;
+      : `http://localhost:6006/${componentName.replace(
+          "hb-",
+          ""
+        )}/dist/release.js`;
     document.body.appendChild(script);
   }
   let c: HTMLElement;
   if (document.getElementById(args.id)) {
     c = document.getElementById(args.id);
   } else {
-    c = document.createElement("hb-" + componentName);
+    c = document.createElement(componentName);
     c.id = args.id;
     if (options?.innerHTML) c.innerHTML = options.innerHTML;
 

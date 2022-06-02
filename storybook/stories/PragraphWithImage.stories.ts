@@ -20,7 +20,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "site-paragraph-with-image", {
+  webComponentBind(args, meta.argTypes, componentSetup.name, {
     style: { margin: "20px auto 20px auto" },
   });
 

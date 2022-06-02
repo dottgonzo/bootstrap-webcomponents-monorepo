@@ -20,7 +20,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "modal-video");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const VideoModalTemplateFill = Template.bind({});
 VideoModalTemplateFill.args = {

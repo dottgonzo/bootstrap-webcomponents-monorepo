@@ -18,7 +18,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "area-code");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const AreaCode = Template.bind({});
 AreaCode.args = {

@@ -83,7 +83,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, "gallery-video");
+  webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const BasicVideoGallery = Template.bind({});
 BasicVideoGallery.args = {
