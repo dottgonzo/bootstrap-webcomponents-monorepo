@@ -1,0 +1,54 @@
+import { Story, Meta } from "@storybook/html";
+import {
+  webComponentBind,
+  argTypesExtraUtils,
+} from "./utils/webComponentUtils";
+import { storybookArgs } from "../../packages/dashboard-card1/extra/docs";
+
+const copy1 = Object.assign({}, argTypesExtraUtils);
+const copy2 = Object.assign({}, storybookArgs);
+
+const assigned = Object.assign({}, copy1, copy2);
+const meta: Meta = {
+  title: "Dashboard/Card1",
+  argTypes: assigned,
+};
+
+export default meta;
+
+const Template: Story = (args) =>
+  webComponentBind(args, meta.argTypes, "dashboard-card1");
+
+export const DashboardCard1Template = Template.bind({});
+DashboardCard1Template.args = {
+  id: "DashboardCard1Template",
+  header: {
+    label: "label",
+    icon: "window",
+    badge: "badge",
+  },
+  _testInnerHtml:
+    '<div style="background-color:red" slot="content">cooontent</div>',
+};
+export const DashboardCard1TemplateNoBorder = Template.bind({});
+DashboardCard1TemplateNoBorder.args = {
+  id: "DashboardCard1TemplateNoBorder",
+  header: {
+    label: "no border",
+    icon: "window",
+    badge: "badge2",
+  },
+  body: { noborder: true },
+  _testInnerHtml:
+    '<div style="background-color:red" slot="content">cooontent</div>',
+};
+// export const DashboardCard1TemplateWithPlaceholder = Template.bind({});
+// DashboardCard1TemplateWithPlaceholder.args = {
+//   id: "DashboardCard1TemplateWithPlaceholder",
+//   header: {
+//     label: "label",
+//     icon: "window",
+//     badge: "badge",
+//   },
+//   placeholder: { type: "text", content: "placeholder" },
+// };
