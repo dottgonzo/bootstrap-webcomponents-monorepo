@@ -98,6 +98,9 @@
 		-webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
 		box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
 	}
+	.panel-green {
+		border-color: var(--hb--dashboard-indicator-background);
+	}
 	.panel-green > .panel-heading {
 		border-color: var(--hb--dashboard-indicator-background);
 		color: #fff;
