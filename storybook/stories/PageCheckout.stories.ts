@@ -1,26 +1,11 @@
-import { Story, Meta } from "@storybook/html";
-import {
-  webComponentBind,
-  argTypesExtraUtils,
-  toPascalCase,
-} from "./utils/webComponentUtils";
+import type { Story } from "@storybook/html";
+import { webComponentBind, getStorybookMeta } from "./utils/webComponentUtils";
 import {
   storybookArgs,
   componentSetup,
 } from "../../packages/page-checkout/extra/docs";
 
-const copy1 = Object.assign({}, argTypesExtraUtils);
-const copy2 = Object.assign({}, storybookArgs);
-
-const assigned = Object.assign({}, copy1, copy2);
-const meta: Meta = {
-  title:
-    componentSetup.category +
-    "/" +
-    toPascalCase(componentSetup.name.replace("hb-", "")),
-  argTypes: assigned,
-};
-
+const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
 
 const Template: Story = (args) =>

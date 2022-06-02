@@ -1,38 +1,22 @@
-import { Story, Meta } from "@storybook/html";
+import type { Story } from "@storybook/html";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import {
-  webComponentBind,
-  argTypesExtraUtils,
-  toPascalCase,
-} from "./utils/webComponentUtils";
+import { webComponentBind, getStorybookMeta } from "./utils/webComponentUtils";
 import {
   storybookArgs,
   componentSetup,
 } from "../../packages/footer/extra/docs";
 import { IColumn } from "../../packages/footer/release/webcomponent.type";
 
-const copy1 = Object.assign({}, argTypesExtraUtils);
-const copy2 = Object.assign({}, storybookArgs);
-
-const assigned = Object.assign({}, copy1, copy2);
-const meta: Meta = {
-  title:
-    componentSetup.category +
-    "/" +
-    toPascalCase(componentSetup.name.replace("hb-", "")),
-  argTypes: assigned,
-  parameters: {
-    //👇 The viewports object from the Essentials addon
-    viewport: {
-      //👇 The viewports you want to use
-      viewports: INITIAL_VIEWPORTS,
-      //👇 Your own default viewport
-      // defaultViewport: "desktop",
-    },
-    layout: "fullscreen",
+const meta = getStorybookMeta(storybookArgs, componentSetup, {
+  //👇 The viewports object from the Essentials addon
+  viewport: {
+    //👇 The viewports you want to use
+    viewports: INITIAL_VIEWPORTS,
+    //👇 Your own default viewport
+    // defaultViewport: "desktop",
   },
-};
-
+  layout: "fullscreen",
+});
 export default meta;
 
 const Template: Story = (args) =>

@@ -1,5 +1,7 @@
+import type { Meta } from "@storybook/html";
 import { version } from "../../../lerna.json";
 import { ArgTypes } from "@storybook/html";
+import type { ComponentSetup } from "@htmlbricks/hb-jsutils/main";
 
 function capitalize(string) {
   // take first character, uppercase it
@@ -14,6 +16,28 @@ export function toPascalCase(str) {
   const capitalized = words.map((word) => capitalize(word));
   // glue up words with .join()
   return capitalized.join("");
+}
+
+export function getStorybookMeta(
+  storybookArgs: any,
+  componentSetup: ComponentSetup,
+  parameters?: Meta["parameters"]
+) {
+  const copy1 = Object.assign({}, argTypesExtraUtils);
+  const copy2 = Object.assign({}, storybookArgs);
+
+  const assigned = Object.assign({}, copy1, copy2);
+  const meta: Meta = {
+    title:
+      componentSetup.category +
+      "/" +
+      toPascalCase(componentSetup.name.replace("hb-", "")),
+    argTypes: assigned,
+  };
+  if (parameters) {
+    meta.parameters = parameters;
+  }
+  return meta;
 }
 
 export const webComponentBind = (
