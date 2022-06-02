@@ -102,7 +102,6 @@
 		border-color: var(--hb--dashboard-indicator-background);
 	}
 	.panel-green > .panel-heading {
-		border-color: var(--hb--dashboard-indicator-background);
 		color: #fff;
 		background-color: var(--hb--dashboard-indicator-background);
 	}
