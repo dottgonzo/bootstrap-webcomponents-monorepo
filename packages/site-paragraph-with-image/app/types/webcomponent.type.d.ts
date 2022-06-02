@@ -2,7 +2,7 @@ export type Component = {
 	id?: string;
 	style?: string;
 	img: { src: string; alt?: string };
-	text: { title?: string; body?: string; link?: { label: string; src?: string; key?: string } };
+	text: { title?: string; body?: string; link?: { label: string; src?: string; key?: string; bgColor?: string; textColor?: string } };
 };
 
 export type Events = {

@@ -45,11 +45,43 @@
 	}
 </script>
 
+<div id="mobile_container">
+	<div id="mobile_text_container">
+		{#if text?.body || text?.title}
+			<div part="mobile_text_content" id="mobile_text_content">
+				<h1 id="mobile_title" part="mobile_title">{text.title}</h1>
+				<p part="mobile_text_body">{text.body}</p>
+				{#if text.link?.label}
+					<p>
+						<button
+							part="mobile_link_button"
+							class="btn btn-primary"
+							style={(text.link.bgColor ? "background-color:" + text.link.bgColor + ";border-color:" + text.link.bgColor + ";" : "") +
+								(text.link.textColor ? "color:" + text.link.textColor + ";" : "")}
+							on:click={dispatchClick}>{text.link.label}</button
+						>
+					</p>
+				{/if}
+			</div>
+		{:else}
+			no title or body
+		{/if}
+	</div>
+	<div id="mobile_image_container">
+		{#if img?.src}
+			<div part="mobile_image_content" id="mobile_image_content">
+				<img id="mobile_img" alt={img.alt} src={img.src} />
+			</div>
+		{:else}
+			no img
+		{/if}
+	</div>
+</div>
 <div id="row_container">
 	<div id="image_container">
 		{#if img?.src}
-			<div id="image_content">
-				<img alt={img.alt} src={img.src} />
+			<div part="image_content" id="image_content">
+				<img id="desktop_img" alt={img.alt} src={img.src} />
 			</div>
 		{:else}
 			no img
@@ -57,12 +89,18 @@
 	</div>
 	<div id="text_container">
 		{#if text?.body || text?.title}
-			<div id="text_content">
-				<h1>{text.title}</h1>
-				<p>{text.body}</p>
-				{#if text.link}
+			<div part="text_content" id="text_content">
+				<h1 id="title" part="title">{text.title}</h1>
+				<p part="text_body">{text.body}</p>
+				{#if text.link?.label}
 					<p>
-						<button class="" on:click={dispatchClick} />
+						<button
+							part="link_button"
+							class="btn btn-primary"
+							style={(text.link.bgColor ? "background-color:" + text.link.bgColor + ";border-color:" + text.link.bgColor + ";" : "") +
+								(text.link.textColor ? "color:" + text.link.textColor + ";" : "")}
+							on:click={dispatchClick}>{text.link.label}</button
+						>
 					</p>
 				{/if}
 			</div>
@@ -75,4 +113,14 @@
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
 	@import "../styles/bootstrap.scss";
+	@media only screen and (max-width: 600px) {
+		#row_container {
+			display: none;
+		}
+	}
+	@media (min-width: 600px) {
+		#mobile_container {
+			display: none;
+		}
+	}
 </style>

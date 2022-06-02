@@ -56,9 +56,9 @@
 	let layoutMobileStyleSetupToSet: string = "";
 
 	let navopen: boolean;
-	let wSize: number;
+	// let wSize: number;
 
-	let layoutType: "small" | "large";
+	// let layoutType: "small" | "large";
 	$: {
 		if (!footer) footer = undefined;
 		if (style) {
@@ -118,105 +118,117 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	const recheckSize = debounce(detectSize, 500);
-	onMount(() => {
-		detectSize();
-		window.addEventListener("resize", recheckSize);
-		return () => {
-			window.removeEventListener("resize", recheckSize);
-		};
-	});
+	// const recheckSize = debounce(detectSize, 500);
+	// onMount(() => {
+	// 	detectSize();
+	// 	window.addEventListener("resize", recheckSize);
+	// 	return () => {
+	// 		window.removeEventListener("resize", recheckSize);
+	// 	};
+	// });
 
-	function detectSize() {
-		console.log("checkSize");
-		if (!window?.innerWidth) {
-			if (wSize) return wSize;
+	// function detectSize() {
+	// 	console.log("checkSize");
+	// 	if (!window?.innerWidth) {
+	// 		if (wSize) return wSize;
 
-			return 0;
-		}
+	// 		return 0;
+	// 	}
 
-		wSize = window.innerWidth;
-		if (size) {
-			layoutType = size;
-			return;
-		}
-		if (wSize < 992) {
-			layoutType = "small";
-		} else {
-			layoutType = "large";
-		}
-		dispatch("layoutStatus", { width: wSize, size: layoutType });
+	// 	wSize = window.innerWidth;
+	// 	if (size) {
+	// 		layoutType = size;
+	// 		return;
+	// 	}
+	// 	if (wSize < 992) {
+	// 		layoutType = "small";
+	// 	} else {
+	// 		layoutType = "large";
+	// 	}
+	// 	dispatch("layoutStatus", { width: wSize, size: layoutType });
 
-		console.log("size:", wSize);
-	}
+	// 	console.log("size:", wSize);
+	// }
 
 	addComponent({ repoName: "@htmlbricks/hb-layout-desktop", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-layout-mobile", version: pkg.version });
 </script>
 
-{#if layoutType === "small"}
-	<hb-layout-mobile
-		style={layoutMobileStyleSetupToSet}
-		page_title={$$props.page_title}
-		company={$$props.company}
-		sidebar={$$props.sidebar}
-		pagename={$$props.pagename}
-		socials={$$props.socials}
-		navlinks={$$props.navlinks}
-		contacts={$$props.contacts}
-		i18nlang={$$props.i18nlang}
-		columns={$$props.columns}
-		onescreen={$$props.onescreen}
-		usermenu={$$props.usermenu}
-		cookielawlanguage={$$props.cookielawlanguage}
-		cookielawallowdecline={$$props.cookielawallowdecline}
-		cookielawuri4more={$$props.cookielawuri4more}
-		cookielaw={$$props.cookielaw}
-		footer={$$props.footer}
-		on:userClick={(l) => dispatch("userClick", l.detail)}
-		on:footerClick={(l) => dispatch("footerClick", l.detail)}
-		on:pageChange={(l) => dispatch("pageChange", l.detail)}
-		on:offcanvasswitch={(l) => dispatch("offcanvasswitch", l.detail)}
-		on:layoutStatus={(l) => dispatch("layoutStatus", l.detail)}
-	>
-		<div slot="page">
-			<slot name="page">page</slot>
-		</div>
-		<span slot="nav-header-slot"><slot name="nav-header-slot" /></span>
+<hb-layout-mobile
+	id="layout_mobile"
+	style={layoutMobileStyleSetupToSet}
+	page_title={$$props.page_title}
+	company={$$props.company}
+	sidebar={$$props.sidebar}
+	pagename={$$props.pagename}
+	socials={$$props.socials}
+	navlinks={$$props.navlinks}
+	contacts={$$props.contacts}
+	i18nlang={$$props.i18nlang}
+	columns={$$props.columns}
+	onescreen={$$props.onescreen}
+	usermenu={$$props.usermenu}
+	cookielawlanguage={$$props.cookielawlanguage}
+	cookielawallowdecline={$$props.cookielawallowdecline}
+	cookielawuri4more={$$props.cookielawuri4more}
+	cookielaw={$$props.cookielaw}
+	footer={$$props.footer}
+	on:userClick={(l) => dispatch("userClick", l.detail)}
+	on:footerClick={(l) => dispatch("footerClick", l.detail)}
+	on:pageChange={(l) => dispatch("pageChange", l.detail)}
+	on:offcanvasswitch={(l) => dispatch("offcanvasswitch", l.detail)}
+	on:layoutStatus={(l) => dispatch("layoutStatus", l.detail)}
+>
+	<div slot="page">
+		<slot name="page">page</slot>
+	</div>
+	<span slot="nav-header-slot"><slot name="nav-header-slot" /></span>
 
-		<span slot="nav-left-slot"><slot name="nav-left-slot" /></span>
-		<span slot="nav-center-slot"><slot name="nav-center-slot" /></span>
-		<span slot="nav-right-slot"><slot name="nav-right-slot" /></span>
-	</hb-layout-mobile>
-{:else}
-	<hb-layout-desktop
-		style={layoutDesktopStyleSetupToSet}
-		page_title={$$props.page_title}
-		company={$$props.company}
-		sidebar={$$props.sidebar}
-		pagename={$$props.pagename}
-		socials={$$props.socials}
-		navlinks={$$props.navlinks}
-		contacts={$$props.contacts}
-		i18nlang={$$props.i18nlang}
-		columns={$$props.columns}
-		onescreen={$$props.onescreen}
-		usermenu={$$props.usermenu}
-		cookielawlanguage={$$props.cookielawlanguage}
-		cookielawallowdecline={$$props.cookielawallowdecline}
-		cookielawuri4more={$$props.cookielawuri4more}
-		cookielaw={$$props.cookielaw}
-		footer={$$props.footer}
-		on:userClick={(l) => dispatch("userClick", l.detail)}
-		on:footerClick={(l) => dispatch("footerClick", l.detail)}
-		on:pageChange={(l) => dispatch("pageChange", l.detail)}
-		on:offcanvasswitch={(l) => dispatch("offcanvasswitch", l.detail)}
-		on:layoutStatus={(l) => dispatch("layoutStatus", l.detail)}
-	>
-		<div slot="page">
-			<slot name="page">page</slot>
-		</div>
-		<div slot="nav-center-slot"><slot name="nav-center-slot" /></div>
-		<div slot="nav-right-slot"><slot name="nav-right-slot" /></div>
-	</hb-layout-desktop>
-{/if}
+	<span slot="nav-left-slot"><slot name="nav-left-slot" /></span>
+	<span slot="nav-center-slot"><slot name="nav-center-slot" /></span>
+	<span slot="nav-right-slot"><slot name="nav-right-slot" /></span>
+</hb-layout-mobile>
+<hb-layout-desktop
+	id="layout_desktop"
+	style={layoutDesktopStyleSetupToSet}
+	page_title={$$props.page_title}
+	company={$$props.company}
+	sidebar={$$props.sidebar}
+	pagename={$$props.pagename}
+	socials={$$props.socials}
+	navlinks={$$props.navlinks}
+	contacts={$$props.contacts}
+	i18nlang={$$props.i18nlang}
+	columns={$$props.columns}
+	onescreen={$$props.onescreen}
+	usermenu={$$props.usermenu}
+	cookielawlanguage={$$props.cookielawlanguage}
+	cookielawallowdecline={$$props.cookielawallowdecline}
+	cookielawuri4more={$$props.cookielawuri4more}
+	cookielaw={$$props.cookielaw}
+	footer={$$props.footer}
+	on:userClick={(l) => dispatch("userClick", l.detail)}
+	on:footerClick={(l) => dispatch("footerClick", l.detail)}
+	on:pageChange={(l) => dispatch("pageChange", l.detail)}
+	on:offcanvasswitch={(l) => dispatch("offcanvasswitch", l.detail)}
+	on:layoutStatus={(l) => dispatch("layoutStatus", l.detail)}
+>
+	<div slot="page">
+		<slot name="page">page</slot>
+	</div>
+	<div slot="nav-center-slot"><slot name="nav-center-slot" /></div>
+	<div slot="nav-right-slot"><slot name="nav-right-slot" /></div>
+</hb-layout-desktop>
+
+<style type="scss">
+	@media only screen and (max-width: 600px) {
+		#layout_desktop {
+			display: none;
+		}
+	}
+	@media (min-width: 600px) {
+		#layout_mobile {
+			display: none;
+		}
+	}
+</style>

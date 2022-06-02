@@ -8,8 +8,14 @@ export const storybookArgs = {
 };
 
 const cssVars: CssVar[] = [];
-export const cssParts: CssPart[] = [{ name: "testpart", description: "test css part on 2 div tag" }];
-export const htmlSlots: HtmlSlot[] = [{ name: "skelcontent", description: "test slot" }];
+export const cssParts: CssPart[] = [
+	{ name: "image_content", description: "image content" },
+	{ name: "text_content", description: "text content" },
+	{ name: "link_button", description: "link button" },
+	{ name: "title", description: "title" },
+	{ name: "text_body", description: "text body" },
+];
+export const htmlSlots: HtmlSlot[] = [];
 export const i18nLanguages: i18nLang[] = [];
 
 export const styleSetup: StyleSetup = {
