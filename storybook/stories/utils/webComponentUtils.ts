@@ -55,7 +55,7 @@ export const webComponentBind = (
     const script = document.createElement("script");
     script.id = componentName + "-script";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/hb-${componentName}@${version}/release/release.js`
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/${componentName}@${version}/release/release.js`
       : `http://localhost:6006/${componentName.replace(
           "hb-",
           ""
