@@ -4,6 +4,10 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	img: { control: { type: "object" } },
 	text: { control: { type: "object" } },
+	text_side: {
+		options: ["left", "right", ""],
+		control: { type: "select" }, // Automatically inferred when 'options' is defined
+	},
 	elClick: { action: "elClick" },
 };
 

@@ -24,6 +24,7 @@
 
 	export let img: Component["img"];
 	export let text: Component["text"];
+	export let text_side: Component["text_side"];
 	let innerWidth: number = 0;
 
 	let parsedStyle: { [x: string]: string };
@@ -35,6 +36,7 @@
 			parsedStyle = parseStyle(style);
 			// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
 		}
+		if (!text_side || (text_side !== "left" && text_side !== "right")) text_side = "right";
 		if (!img) img = null;
 		else if (typeof img === "string") img = JSON.parse(img);
 		if (!text) text = null;
@@ -83,15 +85,17 @@
 	</div>
 {:else}
 	<div id="row_container">
-		<div id="image_container">
-			{#if img?.src}
-				<div part="image_content" id="image_content">
-					<img id="desktop_img" alt={img.alt} src={img.src} />
-				</div>
-			{:else}
-				no img
-			{/if}
-		</div>
+		{#if text_side !== "left"}
+			<div id="image_container">
+				{#if img?.src}
+					<div part="image_content" id="image_content">
+						<img id="desktop_img" alt={img.alt} src={img.src} />
+					</div>
+				{:else}
+					no img
+				{/if}
+			</div>
+		{/if}
 		<div id="text_container">
 			{#if text?.body || text?.title}
 				<div part="text_content" id="text_content">
@@ -113,6 +117,17 @@
 				no title or body
 			{/if}
 		</div>
+		{#if text_side === "left"}
+			<div id="image_container">
+				{#if img?.src}
+					<div part="image_content" id="image_content">
+						<img id="desktop_img" alt={img.alt} src={img.src} />
+					</div>
+				{:else}
+					no img
+				{/if}
+			</div>
+		{/if}
 	</div>
 {/if}
 
