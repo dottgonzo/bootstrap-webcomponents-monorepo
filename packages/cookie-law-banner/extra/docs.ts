@@ -45,7 +45,7 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	name: "hb-cookie-law-banner",
 	category: "layout",
 	tags: ["layout"],
-	size: { fullScreen: true },
+	size: { layout: "fullscreen" },
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-cookie-law-banner",
 	version: null,
