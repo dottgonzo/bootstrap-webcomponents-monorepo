@@ -221,12 +221,12 @@
 </hb-layout-desktop>
 
 <style type="scss">
-	@media only screen and (max-width: 600px) {
+	@media only screen and (max-width: 700px) {
 		#layout_desktop {
 			display: none;
 		}
 	}
-	@media (min-width: 600px) {
+	@media (min-width: 700px) {
 		#layout_mobile {
 			display: none;
 		}
