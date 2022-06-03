@@ -56,8 +56,8 @@
 	let layoutMobileStyleSetupToSet: string = "";
 
 	let navopen: boolean;
-	let wSize: number;
-
+	// let wSize: number;
+	let innerWidth: number = 0;
 	// let layoutType: "small" | "large";
 	$: {
 		if (!footer) footer = undefined;
@@ -110,7 +110,7 @@
 		// } else if (translator && i18nlang && translator.lang && translator.lang !== i18nlang) {
 		// 	translator = new LanguageTranslator({ dictionary, lang: i18nlang });
 		// }
-		detectSize();
+		// detectSize();
 	}
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -119,43 +119,44 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	const recheckSize = debounce(detectSize, 500);
-	onMount(() => {
-		detectSize();
-		window.addEventListener("resize", recheckSize);
-		return () => {
-			window.removeEventListener("resize", recheckSize);
-		};
-	});
+	// const recheckSize = debounce(detectSize, 500);
+	// onMount(() => {
+	// 	detectSize();
+	// 	window.addEventListener("resize", recheckSize);
+	// 	return () => {
+	// 		window.removeEventListener("resize", recheckSize);
+	// 	};
+	// });
 
-	function detectSize() {
-		console.log("checkSize");
-		if (!window?.innerWidth) {
-			if (wSize) return wSize;
+	// function detectSize() {
+	// 	console.log("checkSize");
+	// 	if (!window?.innerWidth) {
+	// 		if (wSize) return wSize;
 
-			return 0;
-		}
+	// 		return 0;
+	// 	}
 
-		wSize = window.innerWidth;
-		// if (size) {
-		// 	layoutType = size;
-		// 	return;
-		// }
-		// if (wSize < 800) {
-		// 	layoutType = "small";
-		// } else {
-		// 	layoutType = "large";
-		// }
-		// dispatch("layoutStatus", { width: wSize, size: layoutType });
+	// 	wSize = window.innerWidth;
+	// 	// if (size) {
+	// 	// 	layoutType = size;
+	// 	// 	return;
+	// 	// }
+	// 	// if (wSize < 800) {
+	// 	// 	layoutType = "small";
+	// 	// } else {
+	// 	// 	layoutType = "large";
+	// 	// }
+	// 	// dispatch("layoutStatus", { width: wSize, size: layoutType });
 
-		console.log("size:", wSize);
-	}
+	// 	console.log("size:", wSize);
+	// }
 
 	addComponent({ repoName: "@htmlbricks/hb-layout-desktop", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-layout-mobile", version: pkg.version });
 </script>
 
-{#if wSize < 800}
+<svelte:window bind:innerWidth />
+{#if innerWidth < 800}
 	<hb-layout-mobile
 		id="layout_mobile"
 		style={layoutMobileStyleSetupToSet}
