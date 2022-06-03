@@ -2,9 +2,7 @@ import type { Story } from "@storybook/html";
 import { webComponentBind, getStorybookMeta } from "./utils/webComponentUtils";
 import { storybookArgs, componentSetup } from "../../packages/auth/extra/docs";
 
-const meta = getStorybookMeta(storybookArgs, componentSetup, {
-  layout: "fullscreen",
-});
+const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
 
 const Template: Story = (args) =>

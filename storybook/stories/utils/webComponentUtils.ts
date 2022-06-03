@@ -34,8 +34,8 @@ export function getStorybookMeta(
       toPascalCase(componentSetup.name.replace("hb-", "")),
     argTypes: assigned,
   };
-  if (parameters) {
-    meta.parameters = parameters;
+  if (componentSetup.size) {
+    meta.parameters = componentSetup.size;
   }
   return meta;
 }

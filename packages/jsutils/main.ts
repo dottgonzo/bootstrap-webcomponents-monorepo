@@ -46,7 +46,7 @@ export interface ComponentShortSetup {
   name: string;
   category: string;
   tags: string[];
-  size: {};
+  size: { fullScreen?: boolean };
   iifePath: string;
   repoName: string;
   version: string;

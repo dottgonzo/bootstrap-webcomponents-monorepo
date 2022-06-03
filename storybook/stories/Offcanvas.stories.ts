@@ -5,9 +5,7 @@ import {
   componentSetup,
 } from "../../packages/offcanvas/extra/docs";
 
-const meta = getStorybookMeta(storybookArgs, componentSetup, {
-  layout: "fullscreen",
-});
+const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
 
 const innerHTML = `<button slot="test" onclick="document.getElementsByTagName('hb-offcanvas')[0].setAttribute('opened', 'yes')">test</button>`;

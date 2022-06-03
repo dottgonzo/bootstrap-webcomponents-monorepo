@@ -5,9 +5,7 @@ import {
   componentSetup,
 } from "../../packages/navbar/extra/docs";
 
-const meta = getStorybookMeta(storybookArgs, componentSetup, {
-  layout: "fullscreen",
-});
+const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
 
 const usermenu1 = {

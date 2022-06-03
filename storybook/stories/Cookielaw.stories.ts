@@ -5,9 +5,7 @@ import {
   componentSetup,
 } from "../../packages/cookie-law-banner/extra/docs";
 
-const meta = getStorybookMeta(storybookArgs, componentSetup, {
-  layout: "fullscreen",
-});
+const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
 
 const Template: Story = (args) =>

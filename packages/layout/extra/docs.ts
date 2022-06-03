@@ -178,7 +178,7 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	name: "hb-layout",
 	category: "layout",
 	tags: ["layout"],
-	size: {},
+	size: { fullScreen: true },
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-layout",
 	version: null,

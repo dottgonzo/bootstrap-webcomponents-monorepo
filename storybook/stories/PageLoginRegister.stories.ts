@@ -5,9 +5,7 @@ import {
   componentSetup,
 } from "../../packages/page-loginregister/extra/docs";
 
-const meta = getStorybookMeta(storybookArgs, componentSetup, {
-  layout: "fullscreen",
-});
+const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
 
 const company1 = {

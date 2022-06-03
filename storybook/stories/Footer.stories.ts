@@ -8,13 +8,6 @@ import {
 import { IColumn } from "../../packages/footer/release/webcomponent.type";
 
 const meta = getStorybookMeta(storybookArgs, componentSetup, {
-  //👇 The viewports object from the Essentials addon
-  viewport: {
-    //👇 The viewports you want to use
-    viewports: INITIAL_VIEWPORTS,
-    //👇 Your own default viewport
-    // defaultViewport: "desktop",
-  },
   layout: "fullscreen",
 });
 export default meta;

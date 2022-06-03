@@ -71,7 +71,7 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	name: "hb-auth",
 	category: "components",
 	tags: ["components"],
-	size: {},
+	size: { fullScreen: true },
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-auth",
 	version: null,

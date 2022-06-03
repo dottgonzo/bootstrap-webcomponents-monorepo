@@ -53,7 +53,7 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	name: "hb-navbar",
 	category: "layout",
 	tags: ["layout"],
-	size: {},
+	size: { fullScreen: true },
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-navbar",
 	version: null,

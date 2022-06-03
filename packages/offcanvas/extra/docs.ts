@@ -93,7 +93,7 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	name: "hb-offcanvas",
 	category: "layout",
 	tags: ["layout"],
-	size: {},
+	size: { fullScreen: true },
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-offcanvas",
 	version: null,

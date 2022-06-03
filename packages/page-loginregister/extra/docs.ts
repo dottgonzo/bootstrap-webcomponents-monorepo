@@ -81,7 +81,7 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	name: "hb-page-loginregister",
 	category: "page",
 	tags: ["page"],
-	size: {},
+	size: { fullScreen: true },
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-page-loginregister",
 	version: null,
