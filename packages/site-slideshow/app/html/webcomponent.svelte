@@ -38,7 +38,7 @@
 
 		if (typeof data === "string") data = JSON.parse(data);
 		if (data?.length) {
-			data = data.filter((f) => f.href);
+			data = data.filter((f) => f?.href);
 			data.forEach((item, index) => {
 				if (!item.index) item.index = index;
 			});
