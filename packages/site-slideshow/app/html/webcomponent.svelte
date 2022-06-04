@@ -1,7 +1,7 @@
 <svelte:options tag="hb-site-slideshow" />
 
 <script lang="ts">
-	import { get_current_component, onDestroy, onMount } from "svelte/internal";
+	import { afterUpdate, beforeUpdate, get_current_component, onDestroy, onMount } from "svelte/internal";
 
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
@@ -29,13 +29,15 @@
 	//  let componentStyleToSet: string = "";
 	let lastTimer: number;
 	let mouseentered: boolean;
+	let overlayed = $$slots.overlay ? true : false;
 	$: {
 		if (!id) id = "";
 		if (style) {
 			parsedStyle = parseStyle(style);
 			// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
 		}
-
+		overlayed = $$slots.overlay ? true : false;
+		console.log(overlayed, "overlayed");
 		if (typeof data === "string") data = JSON.parse(data);
 		if (data?.length) {
 			data = data.filter((f) => f?.href);
@@ -91,7 +93,14 @@
 		mouseentered = false;
 	}
 	let timerActive: number;
+	// beforeUpdate(() => {
+	// 	console.log($$slots.overlay, "beforeUpdate");
+	// 	overlayed = $$slots.overlay ? true : false;
+	// });
 	onMount(() => {
+		// overlayed = $$slots.overlay ? true : false;
+		// console.log($$slots.overlay, "after");
+
 		if (timer && !timerActive) {
 			console.log("activate timer", timer);
 			timerActive = setInterval(() => {
@@ -144,44 +153,63 @@
 
 <!-- Slideshow container -->
 {#if data?.length}
-	<div
-		class="slideshow-container"
-		on:mouseenter={() => {
-			mouseentered = true;
-			dispatch("onHover", { index, hover: mouseentered });
-		}}
-		on:mouseleave={() => {
-			mouseentered = false;
+	{#if !overlayed || !mouseentered}
+		<div
+			class="slideshow-container"
+			on:mouseenter={() => {
+				mouseentered = true;
+				dispatch("onHover", { index, hover: mouseentered });
+			}}
+			on:mouseleave={() => {
+				mouseentered = false;
 
-			dispatch("onHover", { index, hover: mouseentered });
-		}}
-	>
-		<!-- Full-width images with number and caption text -->
-		{#each data as slide (slide.index + slide.href)}
-			<div class="mySlides fade" style={slide.index === index ? "display:block;" : "display:none;"}>
-				<!-- <div part="number" class="numbertext">{slide.index + 1} / {data.length}</div> -->
-				<img alt="" src={slide.href} />
-				<!-- {#if slide.caption}<div part="caption" class="text">{slide.caption}</div>{/if} -->
+				dispatch("onHover", { index, hover: mouseentered });
+			}}
+		>
+			<div id="content">
+				<!-- Full-width images with number and caption text -->
+				{#each data as slide (slide.index + slide.href)}
+					<div class="mySlides fade" style={slide.index === index ? "display:block;" : "display:none;"}>
+						<!-- <div part="number" class="numbertext">{slide.index + 1} / {data.length}</div> -->
+						<img alt="" src={slide.href} />
+						<!-- {#if slide.caption}<div part="caption" class="text">{slide.caption}</div>{/if} -->
+					</div>
+				{/each}
+
+				<!-- Next and previous buttons -->
+				<span class="prev" on:click={() => plusSlides(-1)}>&#10094;</span>
+				<span class="next" on:click={() => plusSlides(1)}>&#10095;</span>
 			</div>
-		{/each}
-
-		<!-- Next and previous buttons -->
-		<span class="prev" on:click={() => plusSlides(-1)}>&#10094;</span>
-		<span class="next" on:click={() => plusSlides(1)}>&#10095;</span>
-	</div>
-	<!-- The dots/circles -->
-	<div id="footer">
-		<div id="dots">
-			{#each data as slide, i}
-				<span part="dot" style={i === index ? "background-color: #717171;" : ""} class="dot" on:click={() => currentSlide(i)} />
-			{/each}
 		</div>
-	</div>
-	{#if data?.[index]?.caption}
-		<div id="caption">
-			<div part="caption" class="text">
-				{data[index].caption}
+		<!-- The dots/circles -->
+		<div id="footer">
+			<div id="dots">
+				{#each data as slide, i}
+					<span part="dot" style={i === index ? "background-color: #717171;" : ""} class="dot" on:click={() => currentSlide(i)} />
+				{/each}
 			</div>
+		</div>
+		{#if data?.[index]?.caption}
+			<div id="caption">
+				<div part="caption" class="text">
+					{data[index].caption}
+				</div>
+			</div>
+		{/if}
+	{:else}
+		<div
+			id="overlay"
+			on:mouseenter={() => {
+				mouseentered = true;
+				// dispatch("onHover", { index, hover: mouseentered });
+			}}
+			on:mouseleave={() => {
+				mouseentered = false;
+
+				dispatch("onHover", { index, hover: mouseentered });
+			}}
+		>
+			<slot name="overlay">overlay</slot>
 		</div>
 	{/if}
 {:else}
