@@ -25,6 +25,7 @@
 	export let img: Component["img"];
 	export let text: Component["text"];
 	export let text_side: Component["text_side"];
+	export let half_space: Component["half_space"];
 	let innerWidth: number = 0;
 
 	let parsedStyle: { [x: string]: string };
@@ -36,7 +37,9 @@
 			parsedStyle = parseStyle(style);
 			// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
 		}
-		if (!text_side || (text_side !== "left" && text_side !== "right")) text_side = "right";
+		if (text_side !== "left") text_side = "right";
+		if ((half_space as unknown as string) === "yes" || (half_space as unknown as string) === "true" || half_space === true) half_space = true;
+		else half_space = false;
 		if (!img) img = null;
 		else if (typeof img === "string") img = JSON.parse(img);
 		if (!text) text = null;
@@ -86,7 +89,7 @@
 {:else}
 	<div id="row_container">
 		{#if text_side !== "left"}
-			<div id="image_container">
+			<div style={half_space ? "flex-grow: 5;" : "flex-grow: 2;"} id="image_container">
 				{#if img?.src}
 					<div part="image_content" id="image_content">
 						<img id="desktop_img" alt={img.alt} src={img.src} />
@@ -118,7 +121,7 @@
 			{/if}
 		</div>
 		{#if text_side === "left"}
-			<div id="image_container">
+			<div style={half_space ? "flex-grow: 5;" : "flex-grow: 2;"} id="image_container">
 				{#if img?.src}
 					<div part="image_content" id="image_content">
 						<img id="desktop_img" alt={img.alt} src={img.src} />
