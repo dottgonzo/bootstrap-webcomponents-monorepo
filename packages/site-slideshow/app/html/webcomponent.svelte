@@ -37,10 +37,12 @@
 		}
 
 		if (typeof data === "string") data = JSON.parse(data);
-		if (data?.length)
+		if (data?.length) {
+			data = data.filter((f) => f.href);
 			data.forEach((item, index) => {
 				if (!item.index) item.index = index;
 			});
+		}
 		if (typeof index === "string") index = Number(index);
 		if (!index || index < 0 || index > data.length - 1) index = 0;
 		if (typeof timer === "string") {
