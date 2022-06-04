@@ -154,6 +154,7 @@
 <!-- Slideshow container -->
 {#if data?.length}
 	{#if !overlayed || !mouseentered}
+		<div id="cover_on_images" part="cover_on_images"><slot name="cover_on_images" /></div>
 		<div
 			class="slideshow-container"
 			on:mouseenter={() => {

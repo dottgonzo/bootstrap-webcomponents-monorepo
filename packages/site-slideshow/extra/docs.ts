@@ -14,11 +14,13 @@ export const cssParts: CssPart[] = [
 	{ name: "dot", description: "dots" },
 	{ name: "caption_container", description: "caption content" },
 	{ name: "caption_content", description: "caption content" },
+	{ name: "cover_on_images", description: "cover_on_images" },
 ];
 export const htmlSlots: HtmlSlot[] = [
 	{ name: "overlay", description: "overlay" },
 	{ name: "prev", description: "previous" },
 	{ name: "next", description: "next" },
+	{ name: "cover_on_images", description: "cover_on_images" },
 ];
 export const i18nLanguages: i18nLang[] = [];
 
