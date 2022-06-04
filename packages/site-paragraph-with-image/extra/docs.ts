@@ -14,6 +14,11 @@ export const storybookArgs = {
 
 const cssVars: CssVar[] = [];
 export const cssParts: CssPart[] = [
+	{ name: "mobile_text_content", description: "mobile_text_content" },
+	{ name: "mobile_title", description: "mobile_title" },
+	{ name: "mobile_text_body", description: "mobile_text_body" },
+	{ name: "mobile_link_button", description: "mobile_link_button" },
+	{ name: "mobile_image_content", description: "mobile_image_content" },
 	{ name: "image_content", description: "image content" },
 	{ name: "text_content", description: "text content" },
 	{ name: "link_button", description: "link button" },
@@ -31,9 +36,15 @@ export const styleSetup: StyleSetup = {
 const examples: Component[] = [
 	{
 		img: {
-			src: "..",
+			src: "https://upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/446px-Commons-logo.svg.png",
 		},
-		text: {},
+		text: {
+			title: "PragraphWithImage Regular",
+			body: "lore ipsum dolor sit ame1t, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+			link: {
+				label: "linkato",
+			},
+		},
 	},
 ];
 export const componentSetup: ComponentSetup & { examples: Component[] } = {

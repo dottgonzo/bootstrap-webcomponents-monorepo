@@ -177,21 +177,21 @@
 				{/each}
 
 				<!-- Next and previous buttons -->
-				<span class="prev" on:click={() => plusSlides(-1)}>&#10094;</span>
-				<span class="next" on:click={() => plusSlides(1)}>&#10095;</span>
+				<span class="prev" on:click={() => plusSlides(-1)}><slot name="prev">&#10094;</slot></span>
+				<span class="next" on:click={() => plusSlides(1)}><slot name="next">&#10095;</slot></span>
 			</div>
 		</div>
 		<!-- The dots/circles -->
-		<div id="footer">
-			<div id="dots">
+		<div id="dots" part="dots">
+			<slot name="dots">
 				{#each data as slide, i}
 					<span part="dot" style={i === index ? "background-color: #717171;" : ""} class="dot" on:click={() => currentSlide(i)} />
 				{/each}
-			</div>
+			</slot>
 		</div>
 		{#if data?.[index]?.caption}
-			<div id="caption">
-				<div part="caption" class="text">
+			<div part="caption_container" id="caption">
+				<div part="caption_content" class="text">
 					{data[index].caption}
 				</div>
 			</div>

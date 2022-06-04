@@ -28,6 +28,7 @@ PragraphWithImageRegular.args = {
     },
   },
 };
+
 export const PragraphWithImageBigText = Template.bind({});
 
 PragraphWithImageBigText.args = {

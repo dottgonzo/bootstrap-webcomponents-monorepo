@@ -10,8 +10,16 @@ export const storybookArgs = {
 };
 
 const cssVars: CssVar[] = [];
-export const cssParts: CssPart[] = [{ name: "testpart", description: "test css part on 2 div tag" }];
-export const htmlSlots: HtmlSlot[] = [{ name: "skelcontent", description: "test slot" }];
+export const cssParts: CssPart[] = [
+	{ name: "dot", description: "dots" },
+	{ name: "caption_container", description: "caption content" },
+	{ name: "caption_content", description: "caption content" },
+];
+export const htmlSlots: HtmlSlot[] = [
+	{ name: "overlay", description: "overlay" },
+	{ name: "prev", description: "previous" },
+	{ name: "next", description: "next" },
+];
 export const i18nLanguages: i18nLang[] = [];
 
 export const styleSetup: StyleSetup = {

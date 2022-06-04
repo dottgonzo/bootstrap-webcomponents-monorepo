@@ -30,6 +30,23 @@ SiteSlideshow1.args = {
   ],
   index: 0,
 };
+
+export const SiteSlideshowWithoutCaptions = Template.bind({});
+SiteSlideshowWithoutCaptions.args = {
+  id: "SiteSlideshowWithoutCaptions",
+  data: [
+    {
+      href: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Free_high-resolution_pictures_you_can_use_on_your_personal_and_commercial_projects._%2814355732205%29.jpg/800px-Free_high-resolution_pictures_you_can_use_on_your_personal_and_commercial_projects._%2814355732205%29.jpg",
+    },
+    {
+      href: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Relief_World_Map_by_maps-for-free.jpg/783px-Relief_World_Map_by_maps-for-free.jpg",
+    },
+    {
+      href: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Thomisus_onustus_with_Apis_mellifera.jpg/800px-Thomisus_onustus_with_Apis_mellifera.jpg",
+    },
+  ],
+  index: 0,
+};
 export const SiteSlideshowWithTimer = Template.bind({});
 SiteSlideshowWithTimer.args = {
   id: "SiteSlideshowWithTimer",
