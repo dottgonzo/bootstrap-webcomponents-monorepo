@@ -182,7 +182,7 @@
 			</div>
 		</div>
 		<!-- The dots/circles -->
-		<div id="dots" part="dots">
+		<div id="dots" part="dots" style={data.find((f) => f.caption) ? "bottom: 100px;" : ""}>
 			<slot name="dots">
 				{#each data as slide, i}
 					<span part="dot" style={i === index ? "background-color: #717171;" : ""} class="dot" on:click={() => currentSlide(i)} />
