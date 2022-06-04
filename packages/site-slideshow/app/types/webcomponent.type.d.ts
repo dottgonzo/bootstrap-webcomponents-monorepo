@@ -1,11 +1,8 @@
 export type Component = {
-	id?: string;
-	style?: string;
-	json?: { a: number };
-	string: string;
-	boolean?: boolean;
+	data: { href: string; caption?: string; index?: number }[];
+	index?: number;
 };
 
 export type Events = {
-	event: { test: boolean };
+	changeSlide: { index: number };
 };

@@ -2,10 +2,9 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	json: { control: { type: "object" } },
-	string: { control: { type: "text" } },
-	boolean: { control: { type: "object" } },
-	event: { action: "eventEvent" },
+	data: { control: { type: "object" } },
+	index: { control: { type: "number" } },
+	changeSlide: { action: "changeSlide" },
 };
 
 const cssVars: CssVar[] = [];
@@ -20,11 +19,21 @@ export const styleSetup: StyleSetup = {
 
 const examples: Component[] = [
 	{
-		json: {
-			a: 0,
-		},
-		string: "test",
-		boolean: false,
+		data: [
+			{
+				href: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Free_high-resolution_pictures_you_can_use_on_your_personal_and_commercial_projects._%2814355732205%29.jpg/800px-Free_high-resolution_pictures_you_can_use_on_your_personal_and_commercial_projects._%2814355732205%29.jpg",
+				caption: "Street",
+			},
+			{
+				href: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Relief_World_Map_by_maps-for-free.jpg/783px-Relief_World_Map_by_maps-for-free.jpg",
+				caption: "Earth",
+			},
+			{
+				href: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Thomisus_onustus_with_Apis_mellifera.jpg/800px-Thomisus_onustus_with_Apis_mellifera.jpg",
+				caption: "Bee",
+			},
+		],
+		index: 0,
 	},
 ];
 export const componentSetup: ComponentSetup & { examples: Component[] } = {

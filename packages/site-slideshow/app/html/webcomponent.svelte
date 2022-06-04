@@ -6,6 +6,8 @@
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import type { Component } from "../types/webcomponent.type";
+	import { slide } from "svelte/types/runtime/transition";
 
 	// import { styleSetup as componentStyleSetup } from "../../node_modules/@htmlbricks/hb-skel-component/release/docs";
 
@@ -20,9 +22,8 @@
 	export let id: string;
 	export let style: string;
 
-	export let string: string;
-	export let json: { a: 0 };
-	export let boolean: boolean;
+	export let data: Component["data"];
+	export let index: number;
 
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
@@ -33,34 +34,65 @@
 			parsedStyle = parseStyle(style);
 			// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
 		}
-		if (!string) string = "";
 
-		// json
-		if (typeof json === "string") JSON.parse(json);
-
-		// bolean
-		if (boolean === ("" as unknown)) boolean = true;
-		if (typeof boolean === "string") boolean = boolean === "no" || boolean === "false" ? false : true;
-		if (!boolean) boolean = false;
+		if (typeof data === "string") data = JSON.parse(data);
+		data.forEach((item, index) => {
+			if (!item.index) item.index = index;
+		});
+		if (typeof index === "string") index = Number(index);
+		if (!index || index < 0 || index > data.length - 1) index = 0;
 	}
 
-	onMount(() => {
-		console.log(component.shadowRoot.getElementById("skeletontest"));
-	});
+	// Next/previous controls
+	function plusSlides(n) {
+		if (index + n > data.length - 1 || index + n < 0) {
+			if (index + n > data.length - 1) {
+				index = 0;
+			} else {
+				index = data.length - 1;
+			}
+		} else {
+			index = index + n;
+		}
+		dispatch("changeSlide", { index });
+	}
 
-	function dispatchCustomEvent() {
-		dispatch("event", { test: true });
+	// Thumbnail image controls
+	function currentSlide(n) {
+		if (!(index + n > data.length || index + n < 0)) {
+			index = n;
+			dispatch("changeSlide", { index });
+		} else {
+			console.warn("Slide index out of range");
+		}
 	}
 </script>
 
-<div part="testpart" on:click={() => dispatchCustomEvent()} id="skeletontest">{string}</div>
-{#if json}<div>{json}</div>{/if}
-<div part="testpart">{boolean}</div>
-slot: <slot name="skelcontent" /> /endslot<br />
-slot debug: {Object.keys($$slots)[0]}/endslot
-<div id="slideshow_container">
-	<div />
-</div>
+<!-- Slideshow container -->
+{#if data?.length}
+	<div class="slideshow-container">
+		<!-- Full-width images with number and caption text -->
+		{#each data as slide (slide.index + slide.href)}
+			<div class="mySlides fade" style={slide.index === index ? "display:block;" : "display:none;"}>
+				<div class="numbertext">{slide.index + 1} / {data.length}</div>
+				<img alt="" src={slide.href} style="width:100%" />
+				{#if slide.caption}<div class="text">{slide.caption}</div>{/if}
+			</div>
+		{/each}
+
+		<!-- Next and previous buttons -->
+		<span class="prev" on:click={() => plusSlides(-1)}>&#10094;</span>
+		<span class="next" on:click={() => plusSlides(1)}>&#10095;</span>
+	</div>
+	<br />
+
+	<!-- The dots/circles -->
+	<div style="text-align:center">
+		{#each data as slide, i}
+			<span style={i === index ? "background-color: #717171;" : ""} class="dot" on:click={() => currentSlide(i)} />
+		{/each}
+	</div>
+{/if}
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
