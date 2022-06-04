@@ -76,7 +76,7 @@
 		"html5-webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "6191209f5830503e62b6af030c6075655135d86c",
+	"gitHead": "ebb71549b654a6e3f920ea60e8a39ae9d5b37d8f",
 	"dependencies": {
 		"@htmlbricks/hb-sidebar-desktop": "^0.11.31",
 		"@htmlbricks/hb-sidenav-link": "^0.11.31",

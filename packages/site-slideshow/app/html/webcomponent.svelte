@@ -184,8 +184,8 @@
 		<!-- The dots/circles -->
 		<div id="dots" part="dots" style={data.find((f) => f.caption) ? "bottom: 100px;" : ""}>
 			<slot name="dots">
-				{#each data as slide, i}
-					<span part="dot" style={i === index ? "background-color: #717171;" : ""} class="dot" on:click={() => currentSlide(i)} />
+				{#each data as slide (slide.index)}
+					<span part="dot" style={slide.index === index ? "background-color: #717171;" : ""} class="dot" on:click={() => currentSlide(slide.index)} />
 				{/each}
 			</slot>
 		</div>
