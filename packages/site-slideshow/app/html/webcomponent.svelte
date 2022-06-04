@@ -6,7 +6,7 @@
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
-	import type { Component } from "../types/webcomponent.type";
+	import type { Component, IData } from "../types/webcomponent.type";
 
 	// import { styleSetup as componentStyleSetup } from "../../node_modules/@htmlbricks/hb-skel-component/release/docs";
 
@@ -21,7 +21,7 @@
 	export let id: string;
 	export let style: string;
 
-	export let data: Component["data"];
+	export let data: Array<IData & { index: number }>;
 	export let index: number;
 	export let timer: number;
 

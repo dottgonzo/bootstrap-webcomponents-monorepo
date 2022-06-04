@@ -1,5 +1,9 @@
+export interface IData {
+	href: string;
+	caption?: string;
+}
 export type Component = {
-	data: { href: string; caption?: string; index?: number }[];
+	data: IData[];
 	index?: number;
 	timer?: number;
 };
