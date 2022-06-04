@@ -6,4 +6,5 @@ export type Component = {
 
 export type Events = {
 	changeSlide: { index: number };
+	onHover: { index: number; hover: boolean };
 };

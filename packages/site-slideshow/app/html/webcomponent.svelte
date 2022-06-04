@@ -28,6 +28,7 @@
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
 	let lastTimer: number;
+	let mouseentered: boolean;
 	$: {
 		if (!id) id = "";
 		if (style) {
@@ -50,6 +51,8 @@
 
 				clearInterval(timerActive);
 				timerActive = setInterval(() => {
+					if (mouseentered) return;
+
 					console.log("debug timer");
 
 					if (index + 1 > data.length - 1) {
@@ -57,6 +60,7 @@
 					} else {
 						index++;
 					}
+					dispatch("changeSlide", { index });
 				}, timer);
 			}
 		} else if (timer) {
@@ -66,6 +70,8 @@
 
 				clearInterval(timerActive);
 				timerActive = setInterval(() => {
+					if (mouseentered) return;
+
 					console.log("debug timer");
 
 					if (index + 1 > data.length - 1) {
@@ -73,22 +79,28 @@
 					} else {
 						index++;
 					}
+					dispatch("changeSlide", { index });
 				}, timer);
 			}
 		}
 		lastTimer = timer;
+	}
+	if (!mouseentered) {
+		mouseentered = false;
 	}
 	let timerActive: number;
 	onMount(() => {
 		if (timer && !timerActive) {
 			console.log("activate timer", timer);
 			timerActive = setInterval(() => {
+				if (mouseentered) return;
 				console.log("debug timer");
 				if (index + 1 > data.length - 1) {
 					index = 0;
 				} else {
 					index++;
 				}
+				dispatch("changeSlide", { index });
 			}, timer);
 		}
 		return () => {
@@ -130,12 +142,23 @@
 
 <!-- Slideshow container -->
 {#if data?.length}
-	<div class="slideshow-container">
+	<div
+		class="slideshow-container"
+		on:mouseenter={() => {
+			mouseentered = true;
+			dispatch("onHover", { index, hover: mouseentered });
+		}}
+		on:mouseleave={() => {
+			mouseentered = false;
+
+			dispatch("onHover", { index, hover: mouseentered });
+		}}
+	>
 		<!-- Full-width images with number and caption text -->
 		{#each data as slide (slide.index + slide.href)}
 			<div class="mySlides fade" style={slide.index === index ? "display:block;" : "display:none;"}>
 				<!-- <div part="number" class="numbertext">{slide.index + 1} / {data.length}</div> -->
-				<img alt="" src={slide.href} style="width:100%" />
+				<img alt="" src={slide.href} />
 				<!-- {#if slide.caption}<div part="caption" class="text">{slide.caption}</div>{/if} -->
 			</div>
 		{/each}
@@ -146,17 +169,19 @@
 	</div>
 	<!-- The dots/circles -->
 	<div id="footer">
-		{#if data?.[index]?.caption}
-			<div part="caption" class="text">
-				{data[index].caption}
-			</div>
-		{/if}
 		<div id="dots">
 			{#each data as slide, i}
 				<span part="dot" style={i === index ? "background-color: #717171;" : ""} class="dot" on:click={() => currentSlide(i)} />
 			{/each}
 		</div>
 	</div>
+	{#if data?.[index]?.caption}
+		<div id="caption">
+			<div part="caption" class="text">
+				{data[index].caption}
+			</div>
+		</div>
+	{/if}
 {:else}
 	no image provided as data
 {/if}

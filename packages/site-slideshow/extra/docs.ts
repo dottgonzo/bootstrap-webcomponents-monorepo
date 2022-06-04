@@ -6,6 +6,7 @@ export const storybookArgs = {
 	index: { control: { type: "number" } },
 	timer: { control: { type: "number" } },
 	changeSlide: { action: "changeSlide" },
+	onHover: { action: "onHover" },
 };
 
 const cssVars: CssVar[] = [];
@@ -53,7 +54,7 @@ export const componentSetup: ComponentSetup & { examples: Component[] } = {
 	name: "hb-site-slideshow",
 	category: "site",
 	tags: ["site"],
-	size: {},
+	size: { layout: "fullscreen" },
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-site-slideshow",
 	version: null,
