@@ -4,6 +4,7 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	data: { control: { type: "object" } },
 	index: { control: { type: "number" } },
+	timer: { control: { type: "number" } },
 	changeSlide: { action: "changeSlide" },
 };
 

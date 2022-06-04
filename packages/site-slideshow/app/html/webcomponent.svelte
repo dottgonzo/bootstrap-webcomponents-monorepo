@@ -7,7 +7,6 @@
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
 	import type { Component } from "../types/webcomponent.type";
-	import { slide } from "svelte/types/runtime/transition";
 
 	// import { styleSetup as componentStyleSetup } from "../../node_modules/@htmlbricks/hb-skel-component/release/docs";
 
@@ -24,10 +23,11 @@
 
 	export let data: Component["data"];
 	export let index: number;
+	export let timer: number;
 
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
-
+	let lastTimer: number;
 	$: {
 		if (!id) id = "";
 		if (style) {
@@ -36,12 +36,72 @@
 		}
 
 		if (typeof data === "string") data = JSON.parse(data);
-		data.forEach((item, index) => {
-			if (!item.index) item.index = index;
-		});
+		if (data?.length)
+			data.forEach((item, index) => {
+				if (!item.index) item.index = index;
+			});
 		if (typeof index === "string") index = Number(index);
 		if (!index || index < 0 || index > data.length - 1) index = 0;
+		if (typeof timer === "string") {
+			timer = Number(timer) < 100 ? 100 : Number(timer);
+
+			if (timerActive && lastTimer && lastTimer !== timer) {
+				console.log("activate timer2", timer);
+
+				clearInterval(timerActive);
+				timerActive = setInterval(() => {
+					console.log("debug timer");
+
+					if (index + 1 > data.length - 1) {
+						index = 0;
+					} else {
+						index++;
+					}
+				}, timer);
+			}
+		} else if (timer) {
+			if (timer < 100) timer = 100;
+			if (timerActive && lastTimer && lastTimer !== timer) {
+				console.log("activate timer3", timer);
+
+				clearInterval(timerActive);
+				timerActive = setInterval(() => {
+					console.log("debug timer");
+
+					if (index + 1 > data.length - 1) {
+						index = 0;
+					} else {
+						index++;
+					}
+				}, timer);
+			}
+		}
+		lastTimer = timer;
 	}
+	let timerActive: number;
+	onMount(() => {
+		if (timer && !timerActive) {
+			console.log("activate timer", timer);
+			timerActive = setInterval(() => {
+				console.log("debug timer");
+				if (index + 1 > data.length - 1) {
+					index = 0;
+				} else {
+					index++;
+				}
+			}, timer);
+		}
+		return () => {
+			if (timerActive) {
+				clearInterval(timerActive);
+				timerActive = undefined;
+			}
+		};
+	});
+	// onDestroy(() => {
+	// 	console.log("DESTROYYYY");
+	// 	clearInterval(timerActive);
+	// });
 
 	// Next/previous controls
 	function plusSlides(n) {
@@ -74,9 +134,9 @@
 		<!-- Full-width images with number and caption text -->
 		{#each data as slide (slide.index + slide.href)}
 			<div class="mySlides fade" style={slide.index === index ? "display:block;" : "display:none;"}>
-				<div class="numbertext">{slide.index + 1} / {data.length}</div>
+				<div part="number" class="numbertext">{slide.index + 1} / {data.length}</div>
 				<img alt="" src={slide.href} style="width:100%" />
-				{#if slide.caption}<div class="text">{slide.caption}</div>{/if}
+				{#if slide.caption}<div part="caption" class="text">{slide.caption}</div>{/if}
 			</div>
 		{/each}
 
@@ -84,14 +144,14 @@
 		<span class="prev" on:click={() => plusSlides(-1)}>&#10094;</span>
 		<span class="next" on:click={() => plusSlides(1)}>&#10095;</span>
 	</div>
-	<br />
-
 	<!-- The dots/circles -->
 	<div style="text-align:center">
 		{#each data as slide, i}
-			<span style={i === index ? "background-color: #717171;" : ""} class="dot" on:click={() => currentSlide(i)} />
+			<span part="dot" style={i === index ? "background-color: #717171;" : ""} class="dot" on:click={() => currentSlide(i)} />
 		{/each}
 	</div>
+{:else}
+	no image provided as data
 {/if}
 
 <style lang="scss">
