@@ -134,9 +134,9 @@
 		<!-- Full-width images with number and caption text -->
 		{#each data as slide (slide.index + slide.href)}
 			<div class="mySlides fade" style={slide.index === index ? "display:block;" : "display:none;"}>
-				<div part="number" class="numbertext">{slide.index + 1} / {data.length}</div>
+				<!-- <div part="number" class="numbertext">{slide.index + 1} / {data.length}</div> -->
 				<img alt="" src={slide.href} style="width:100%" />
-				{#if slide.caption}<div part="caption" class="text">{slide.caption}</div>{/if}
+				<!-- {#if slide.caption}<div part="caption" class="text">{slide.caption}</div>{/if} -->
 			</div>
 		{/each}
 
@@ -145,10 +145,17 @@
 		<span class="next" on:click={() => plusSlides(1)}>&#10095;</span>
 	</div>
 	<!-- The dots/circles -->
-	<div style="text-align:center">
-		{#each data as slide, i}
-			<span part="dot" style={i === index ? "background-color: #717171;" : ""} class="dot" on:click={() => currentSlide(i)} />
-		{/each}
+	<div id="footer">
+		{#if data?.[index]?.caption}
+			<div part="caption" class="text">
+				{data[index].caption}
+			</div>
+		{/if}
+		<div id="dots">
+			{#each data as slide, i}
+				<span part="dot" style={i === index ? "background-color: #717171;" : ""} class="dot" on:click={() => currentSlide(i)} />
+			{/each}
+		</div>
 	</div>
 {:else}
 	no image provided as data
