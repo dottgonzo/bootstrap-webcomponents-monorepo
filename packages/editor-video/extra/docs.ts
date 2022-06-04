@@ -26,17 +26,20 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		id: "BasicVideoeditorWithTrack",
-		track: {
-			maxValue: 2,
-			minValue: 0,
+		name: "default",
+		data: {
+			id: "BasicVideoeditorWithTrack",
+			track: {
+				maxValue: 2,
+				minValue: 0,
+			},
+			src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
 		},
-		src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

@@ -17,14 +17,17 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		title: "ciao",
-		description: "desc",
-		logouri: "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg",
+		name: "default",
+		data: {
+			title: "ciao",
+			description: "desc",
+			logouri: "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg",
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

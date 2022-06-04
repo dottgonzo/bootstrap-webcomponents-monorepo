@@ -25,12 +25,15 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		uri: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+		name: "default",
+		data: {
+			uri: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

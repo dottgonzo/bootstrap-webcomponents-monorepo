@@ -18,16 +18,19 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		json: {
-			a: 0,
+		name: "default",
+		data: {
+			json: {
+				a: 0,
+			},
+			string: "test",
+			boolean: false,
 		},
-		string: "test",
-		boolean: false,
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

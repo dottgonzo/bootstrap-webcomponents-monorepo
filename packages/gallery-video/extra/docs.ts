@@ -48,12 +48,15 @@ const cards: Component["cards"] = [
 		videoSrc: "https://comapi.be-on.tv/v1/public/records/61043eedb50af916a6429fdc/video",
 	},
 ];
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		cards,
+		name: "default",
+		data: {
+			cards,
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

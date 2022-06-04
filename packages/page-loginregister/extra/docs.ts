@@ -59,13 +59,16 @@ const company1: Component["company"] = {
 	vatNumber: "aa - ffffff",
 	fiscalCode: "f4f5f6fff",
 };
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		type: "login",
-		company: company1,
+		name: "default",
+		data: {
+			type: "login",
+			company: company1,
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

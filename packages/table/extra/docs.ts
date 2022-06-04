@@ -41,125 +41,128 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		headers: [
-			{
-				label: "title",
-				key: "title",
-				search: true,
-			},
-			{
-				label: "description",
-				key: "description",
-			},
-			{
-				label: "nested",
-				key: "testnested.nested",
-			},
-			{
-				label: "data",
-				key: "time",
-				type: "datetime",
-				format: "DD MMMM YYYY",
-			},
-		],
-		rows: [
-			{
-				title: "bau",
-				videoSrc: "https://comapi.be-on.tv/v1/public/records/61043eedb50af916a6429fdc/video",
-				time: "2021-08-06T22:46:30.565Z",
-				_id: "bau",
-				status: "closed",
-			},
-			{
-				title: "bb1",
-				videoSrc: "https://comapi.be-on.tv/v1/public/records/61043eedb50af916a6429fdc/video",
-				time: "2021-08-06T22:46:31.565Z",
-				description: "ffff2",
-				_id: "bb1",
-				status: "closed",
-			},
-			{
-				title: "bb2",
-				time: "2021-08-02T22:46:32.565Z",
-				_id: "bb2",
-				status: "active",
-			},
-			{
-				title: "ss",
-				time: "2021-08-06T22:46:34.565Z",
-				description: "fffffff",
-				testnested: { nested: "dddd" },
-				_id: "ss",
-				status: "active",
-			},
-			{
-				title: "bb4",
-				time: "2021-08-06T22:46:34.565Z",
-				_id: "bb4",
-				status: "active",
-			},
-			{
-				title: "aa5",
-				time: "2021-08-06T22:46:34.565Z",
-				_id: "aa5",
-				status: "active",
-			},
-			{
-				title: "bb6",
-				time: "2021-08-06T22:46:34.565Z",
-				_id: "bb6",
-				status: "active",
-			},
-			{
-				title: "bb7",
-				time: "2021-08-06T22:46:34.565Z",
-				_id: "bb7",
-				status: "active",
-			},
-			{
-				title: "bb8",
-				time: "2021-08-06T22:46:34.565Z",
-				_id: "bb8",
-				status: "active",
-			},
-			{
-				title: "bb9",
-				time: "2021-08-06T22:46:33.565Z",
-				_id: "bb9",
-				status: "active",
-			},
+		name: "default",
+		data: {
+			headers: [
+				{
+					label: "title",
+					key: "title",
+					search: true,
+				},
+				{
+					label: "description",
+					key: "description",
+				},
+				{
+					label: "nested",
+					key: "testnested.nested",
+				},
+				{
+					label: "data",
+					key: "time",
+					type: "datetime",
+					format: "DD MMMM YYYY",
+				},
+			],
+			rows: [
+				{
+					title: "bau",
+					videoSrc: "https://comapi.be-on.tv/v1/public/records/61043eedb50af916a6429fdc/video",
+					time: "2021-08-06T22:46:30.565Z",
+					_id: "bau",
+					status: "closed",
+				},
+				{
+					title: "bb1",
+					videoSrc: "https://comapi.be-on.tv/v1/public/records/61043eedb50af916a6429fdc/video",
+					time: "2021-08-06T22:46:31.565Z",
+					description: "ffff2",
+					_id: "bb1",
+					status: "closed",
+				},
+				{
+					title: "bb2",
+					time: "2021-08-02T22:46:32.565Z",
+					_id: "bb2",
+					status: "active",
+				},
+				{
+					title: "ss",
+					time: "2021-08-06T22:46:34.565Z",
+					description: "fffffff",
+					testnested: { nested: "dddd" },
+					_id: "ss",
+					status: "active",
+				},
+				{
+					title: "bb4",
+					time: "2021-08-06T22:46:34.565Z",
+					_id: "bb4",
+					status: "active",
+				},
+				{
+					title: "aa5",
+					time: "2021-08-06T22:46:34.565Z",
+					_id: "aa5",
+					status: "active",
+				},
+				{
+					title: "bb6",
+					time: "2021-08-06T22:46:34.565Z",
+					_id: "bb6",
+					status: "active",
+				},
+				{
+					title: "bb7",
+					time: "2021-08-06T22:46:34.565Z",
+					_id: "bb7",
+					status: "active",
+				},
+				{
+					title: "bb8",
+					time: "2021-08-06T22:46:34.565Z",
+					_id: "bb8",
+					status: "active",
+				},
+				{
+					title: "bb9",
+					time: "2021-08-06T22:46:33.565Z",
+					_id: "bb9",
+					status: "active",
+				},
 
-			{
-				title: "bb10",
-				time: "2021-08-06T22:46:34.565Z",
-				_id: "bb10",
-				status: "active",
-			},
-			{
-				title: "bb11",
-				time: "2021-08-06T22:46:34.565Z",
-				_id: "bb11",
-				status: "active",
-			},
-			{
-				title: "bb12",
-				time: "2021-08-06T22:46:34.565Z",
-				videoSrc: "https://comapi.be-on.tv/v1/public/records/61043eedb50af916a6429fdc/video",
-				_id: "bb12",
-				status: "active",
-			},
-			{
-				title: "bb13",
-				time: "2021-08-07T22:46:39.565Z",
-				_id: "bb13",
-				status: "active",
-			},
-		],
+				{
+					title: "bb10",
+					time: "2021-08-06T22:46:34.565Z",
+					_id: "bb10",
+					status: "active",
+				},
+				{
+					title: "bb11",
+					time: "2021-08-06T22:46:34.565Z",
+					_id: "bb11",
+					status: "active",
+				},
+				{
+					title: "bb12",
+					time: "2021-08-06T22:46:34.565Z",
+					videoSrc: "https://comapi.be-on.tv/v1/public/records/61043eedb50af916a6429fdc/video",
+					_id: "bb12",
+					status: "active",
+				},
+				{
+					title: "bb13",
+					time: "2021-08-07T22:46:39.565Z",
+					_id: "bb13",
+					status: "active",
+				},
+			],
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

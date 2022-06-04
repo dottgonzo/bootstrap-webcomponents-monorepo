@@ -22,15 +22,18 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		videosrc: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-		title: "aa",
-		description: "desc6",
-		time: new Date("2021-08-15T18:55:22.135Z"),
+		name: "default",
+		data: {
+			videosrc: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+			title: "aa",
+			description: "desc6",
+			time: new Date("2021-08-15T18:55:22.135Z"),
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

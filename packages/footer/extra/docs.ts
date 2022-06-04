@@ -92,17 +92,20 @@ const policies: Component["policies"] = [
 		key: "cookiepolicy",
 	},
 ];
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		company,
-		brandandcontacts,
-		columns,
-		policies,
-		contacts,
-		socials,
+		name: "default",
+		data: {
+			company,
+			brandandcontacts,
+			columns,
+			policies,
+			contacts,
+			socials,
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

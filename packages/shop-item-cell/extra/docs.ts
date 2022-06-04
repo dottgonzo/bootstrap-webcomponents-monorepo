@@ -9,11 +9,11 @@ export const storybookArgs = {
 	subtitle: { control: { type: "text" } },
 	text: { control: { type: "text" } },
 	rating: { control: { type: "number" } },
-	"ratingscale": { control: { type: "number" } },
+	ratingscale: { control: { type: "number" } },
 	reviews: { control: { type: "text" } },
-	"reviewsurl": { control: { type: "text" } },
+	reviewsurl: { control: { type: "text" } },
 	price: { control: { type: "text" } },
-	"regularprice": { control: { type: "text" } },
+	regularprice: { control: { type: "text" } },
 	footer: { control: { type: "text" } },
 };
 
@@ -36,24 +36,27 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		img: "",
-		url: "",
-		badge: "",
-		title: "",
-		subtitle: "",
-		text: "",
-		rating: 0,
-		"ratingscale": 0,
-		reviews: "",
-		"reviewsurl": "",
-		price: "",
-		"regularprice": "",
-		footer: "",
+		name: "default",
+		data: {
+			img: "",
+			url: "",
+			badge: "",
+			title: "",
+			subtitle: "",
+			text: "",
+			rating: 0,
+			ratingscale: 0,
+			reviews: "",
+			reviewsurl: "",
+			price: "",
+			regularprice: "",
+			footer: "",
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

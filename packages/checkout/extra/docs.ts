@@ -82,33 +82,36 @@ const defaultPayment: Component["payment"] = {
 	total: 45,
 	type: "buy",
 };
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		shipments: [
-			{
-				price: 10,
-				currency: "€",
+		name: "default",
+		data: {
+			shipments: [
+				{
+					price: 10,
+					currency: "€",
 
-				arriveDate: new Date("2022-01-20T08:03:57.562Z"),
-				available: true,
-				label: "zio barca",
-				id: "ziobarca",
-			},
-			{
-				price: 20,
-				currency: "€",
+					arriveDate: new Date("2022-01-20T08:03:57.562Z"),
+					available: true,
+					label: "zio barca",
+					id: "ziobarca",
+				},
+				{
+					price: 20,
+					currency: "€",
 
-				arriveDate: new Date("2022-01-21T02:22:57.562Z"),
-				available: true,
-				label: "zio barca2",
-				id: "ziobarca2",
-			},
-		],
-		gateways: [paypal],
-		payment: defaultPayment,
+					arriveDate: new Date("2022-01-21T02:22:57.562Z"),
+					available: true,
+					label: "zio barca2",
+					id: "ziobarca2",
+				},
+			],
+			gateways: [paypal],
+			payment: defaultPayment,
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

@@ -24,42 +24,45 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		headers: {
-			serial: "seriale1",
-			from: {
-				piva: "piva",
-				name: "companyfrom",
-				address: "address",
-				email: "email",
-				phone: "phone",
-				logo: "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
-				shortName: "Acme SpA",
+		name: "default",
+		data: {
+			headers: {
+				serial: "seriale1",
+				from: {
+					piva: "piva",
+					name: "companyfrom",
+					address: "address",
+					email: "email",
+					phone: "phone",
+					logo: "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
+					shortName: "Acme SpA",
+				},
+				to: {
+					piva: "to iva",
+					name: "to name",
+					address: "to address",
+					email: "to@email.com",
+					phone: "tototo",
+				},
 			},
-			to: {
-				piva: "to iva",
-				name: "to name",
-				address: "to address",
-				email: "to@email.com",
-				phone: "tototo",
-			},
+			items: [
+				{
+					unitaryPrice: 2,
+					taxPercentage: 3,
+					desc: "testitem",
+				},
+				{
+					unitaryPrice: 5,
+					taxPercentage: 7,
+					desc: "testitem2",
+				},
+			],
 		},
-		items: [
-			{
-				unitaryPrice: 2,
-				taxPercentage: 3,
-				desc: "testitem",
-			},
-			{
-				unitaryPrice: 5,
-				taxPercentage: 7,
-				desc: "testitem2",
-			},
-		],
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

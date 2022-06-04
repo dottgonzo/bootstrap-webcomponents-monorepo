@@ -24,28 +24,31 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		payment: {
-			items: [
-				{
-					id: "efewf",
-					unitaryPrice: 2,
-					taxPercentage: 3,
-					name: "testitem",
-				},
-				{
-					id: "efewf4",
-					unitaryPrice: 5,
-					taxPercentage: 7,
-					name: "testitem2",
-				},
-			],
-			countryCode: "IT",
+		name: "default",
+		data: {
+			payment: {
+				items: [
+					{
+						id: "efewf",
+						unitaryPrice: 2,
+						taxPercentage: 3,
+						name: "testitem",
+					},
+					{
+						id: "efewf4",
+						unitaryPrice: 5,
+						taxPercentage: 7,
+						name: "testitem2",
+					},
+				],
+				countryCode: "IT",
+			},
 		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

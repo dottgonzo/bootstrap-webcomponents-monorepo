@@ -40,41 +40,44 @@ const googlepay: Component["gateways"][0] = {
 	gatewayId: "example",
 	gatewayMerchantId: "exampleGatewayMerchantId",
 };
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		shipments: [],
-		user: {
-			fullName: "fdfff fffff",
-			addressWithNumber: "addreess 43",
-			city: "ff",
-			nationality: "effe",
-			zip: "3434",
-			fixed: true,
-		},
-		gateways: [defaultgw, googlepay],
-		payment: {
-			countryCode: "IT",
-			merchantName: "tizio",
-			currencyCode: "EU",
-			total: 100,
-			items: [
-				{
-					unitaryPrice: 2,
-					taxPercentage: 3,
-					name: "testitem",
-					id: "testitem",
-				},
-				{
-					unitaryPrice: 5,
-					taxPercentage: 7,
-					name: "testitem2",
-					id: "testitem2",
-				},
-			],
+		name: "default",
+		data: {
+			shipments: [],
+			user: {
+				fullName: "fdfff fffff",
+				addressWithNumber: "addreess 43",
+				city: "ff",
+				nationality: "effe",
+				zip: "3434",
+				fixed: true,
+			},
+			gateways: [defaultgw, googlepay],
+			payment: {
+				countryCode: "IT",
+				merchantName: "tizio",
+				currencyCode: "EU",
+				total: 100,
+				items: [
+					{
+						unitaryPrice: 2,
+						taxPercentage: 3,
+						name: "testitem",
+						id: "testitem",
+					},
+					{
+						unitaryPrice: 5,
+						taxPercentage: 7,
+						name: "testitem2",
+						id: "testitem2",
+					},
+				],
+			},
 		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

@@ -82,12 +82,15 @@ const preferences2: Component["schemes"][0] = [
 		validationTip: "Min 8, Max 120",
 	},
 ];
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		schemes: [preferences, preferences2],
+		name: "default",
+		data: {
+			schemes: [preferences, preferences2],
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

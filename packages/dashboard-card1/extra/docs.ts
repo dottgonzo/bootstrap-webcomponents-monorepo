@@ -26,16 +26,19 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		header: {
-			label: "label",
-			icon: "window",
-			badge: "badge",
+		name: "default",
+		data: {
+			header: {
+				label: "label",
+				icon: "window",
+				badge: "badge",
+			},
 		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

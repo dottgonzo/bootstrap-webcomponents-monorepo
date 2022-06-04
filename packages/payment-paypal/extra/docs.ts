@@ -25,14 +25,17 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		currency: "EUR",
-		total: 40,
-		paypalid: "test",
+		name: "default",
+		data: {
+			currency: "EUR",
+			total: 40,
+			paypalid: "test",
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

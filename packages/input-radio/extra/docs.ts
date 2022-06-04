@@ -27,24 +27,27 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		schemaentry: {
-			placeholder: "Choose here...",
-			id: "check0",
-			required: true,
-			label: "Check 0",
-			validationTip: "Check 1",
-			params: {
-				options: [
-					{ label: "777", value: "555" },
-					{ label: "testlabel", value: "testvalue" },
-				],
+		name: "default",
+		data: {
+			schemaentry: {
+				placeholder: "Choose here...",
+				id: "check0",
+				required: true,
+				label: "Check 0",
+				validationTip: "Check 1",
+				params: {
+					options: [
+						{ label: "777", value: "555" },
+						{ label: "testlabel", value: "testvalue" },
+					],
+				},
 			},
 		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

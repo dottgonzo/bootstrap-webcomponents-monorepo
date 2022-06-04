@@ -16,20 +16,23 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		navpage: "home",
-		navlink: {
-			label: "Home",
-			key: "home",
-			icon: "house-door",
-			badge: {
-				text: "bbb",
+		name: "default",
+		data: {
+			navpage: "home",
+			navlink: {
+				label: "Home",
+				key: "home",
+				icon: "house-door",
+				badge: {
+					text: "bbb",
+				},
 			},
 		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

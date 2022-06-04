@@ -37,24 +37,27 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		img: "",
-		url: "",
-		badge: "",
-		title: "",
-		subtitle: "",
-		text: "",
-		rating: 0,
-		ratingscale: 0,
-		reviews: "",
-		reviewsurl: "",
-		price: "",
-		regularprice: "",
-		footer: "",
+		name: "default",
+		data: {
+			img: "",
+			url: "",
+			badge: "",
+			title: "",
+			subtitle: "",
+			text: "",
+			rating: 0,
+			ratingscale: 0,
+			reviews: "",
+			reviewsurl: "",
+			price: "",
+			regularprice: "",
+			footer: "",
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

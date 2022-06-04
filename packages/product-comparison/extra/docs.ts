@@ -22,81 +22,84 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		headers: [
-			{
-				id: "char1",
-				label: "labello",
-			},
-			{
-				id: "char2",
-				label: "labello2",
-			},
-			{
-				id: "char3",
-				label: "labello3",
-			},
-		],
-		products: [
-			{
-				id: "prrr",
-				price: 19,
-				model: "starter",
-				description: "weekly",
-				note: "rotto",
-				characteristics: {
-					char1: "valid",
-					char2: "disabled",
-					char3: "blocked",
-					char4: "valid",
+		name: "default",
+		data: {
+			headers: [
+				{
+					id: "char1",
+					label: "labello",
 				},
-			},
-			{
-				id: "prrr2",
-				price: 49,
-				model: "professional",
-				description: "weekly",
-				note: "rotto",
-				characteristics: {
-					char1: "valid",
-					char2: "disabled",
-					char3: "blocked",
-					char4: "valid",
+				{
+					id: "char2",
+					label: "labello2",
 				},
-			},
-			{
-				id: "prrr3",
-				price: 99,
-				model: "advanced",
-				description: "weekly",
-				note: "rotto",
-				characteristics: {
-					char1: "valid",
-					char2: "disabled",
-					char3: "blocked",
-					char4: "valid",
+				{
+					id: "char3",
+					label: "labello3",
 				},
-			},
-			{
-				id: "prrr4",
-				price: 199,
-				model: "custom",
-				description: "weekly",
-				note: "rotto",
+			],
+			products: [
+				{
+					id: "prrr",
+					price: 19,
+					model: "starter",
+					description: "weekly",
+					note: "rotto",
+					characteristics: {
+						char1: "valid",
+						char2: "disabled",
+						char3: "blocked",
+						char4: "valid",
+					},
+				},
+				{
+					id: "prrr2",
+					price: 49,
+					model: "professional",
+					description: "weekly",
+					note: "rotto",
+					characteristics: {
+						char1: "valid",
+						char2: "disabled",
+						char3: "blocked",
+						char4: "valid",
+					},
+				},
+				{
+					id: "prrr3",
+					price: 99,
+					model: "advanced",
+					description: "weekly",
+					note: "rotto",
+					characteristics: {
+						char1: "valid",
+						char2: "disabled",
+						char3: "blocked",
+						char4: "valid",
+					},
+				},
+				{
+					id: "prrr4",
+					price: 199,
+					model: "custom",
+					description: "weekly",
+					note: "rotto",
 
-				characteristics: {
-					char1: "valid",
-					char2: "disabled",
-					char3: "blocked",
-					char4: "valid",
+					characteristics: {
+						char1: "valid",
+						char2: "disabled",
+						char3: "blocked",
+						char4: "valid",
+					},
 				},
-			},
-		],
-		options: { currency: "€" },
+			],
+			options: { currency: "€" },
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

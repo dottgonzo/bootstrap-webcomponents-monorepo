@@ -22,26 +22,29 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		list: [
-			{
-				key: "ciao",
-				label: "bao",
-			},
-			{
-				key: "ciao2",
-				label: "bao2",
-			},
-			{
-				key: "ciao3",
-				label: "bao3",
-				linkHref: "fefeef",
-			},
-		],
+		name: "default",
+		data: {
+			list: [
+				{
+					key: "ciao",
+					label: "bao",
+				},
+				{
+					key: "ciao2",
+					label: "bao2",
+				},
+				{
+					key: "ciao3",
+					label: "bao3",
+					linkHref: "fefeef",
+				},
+			],
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

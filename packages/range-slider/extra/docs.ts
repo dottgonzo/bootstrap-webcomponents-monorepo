@@ -25,14 +25,17 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		withbubbles: true,
-		minval: 20,
-		maxval: 60,
+		name: "default",
+		data: {
+			withbubbles: true,
+			minval: 20,
+			maxval: 60,
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

@@ -72,7 +72,7 @@ export interface ComponentSetup extends ComponentShortSetup {
   storybookArgs: any;
   styleSetup: StyleSetup;
   htmlSlots: HtmlSlot[];
-  examples: any[];
+  examples: { name: string; data: any; description?: string }[];
   contributors: {
     name: string;
     email: string;

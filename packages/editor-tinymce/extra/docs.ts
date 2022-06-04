@@ -19,7 +19,7 @@ export const styleSetup: StyleSetup = {
 };
 
 const examples: Component[] = [{}];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

@@ -22,12 +22,15 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		mediauri: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+		name: "default",
+		data: {
+			mediauri: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

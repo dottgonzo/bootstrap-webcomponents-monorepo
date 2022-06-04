@@ -150,17 +150,20 @@ const socials: Component["socials"] = {
 };
 const sidebar: Component["sidebar"] = { title: "ciao" };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		company,
-		contacts,
-		socials,
-		navlinks,
-		usermenu,
-		sidebar,
+		name: "default",
+		data: {
+			company,
+			contacts,
+			socials,
+			navlinks,
+			usermenu,
+			sidebar,
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

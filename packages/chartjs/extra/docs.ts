@@ -16,26 +16,29 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
+		name: "default",
 		data: {
-			type: "line",
 			data: {
-				labels: ["January", "February", "March", "April", "May", "June"],
-				datasets: [
-					{
-						label: "My First dataset",
-						backgroundColor: "rgb(255, 99, 132)",
-						borderColor: "rgb(255, 99, 132)",
-						data: [0, 10, 5, 2, 20, 30, 45],
-					},
-				],
+				type: "line",
+				data: {
+					labels: ["January", "February", "March", "April", "May", "June"],
+					datasets: [
+						{
+							label: "My First dataset",
+							backgroundColor: "rgb(255, 99, 132)",
+							borderColor: "rgb(255, 99, 132)",
+							data: [0, 10, 5, 2, 20, 30, 45],
+						},
+					],
+				},
+				options: {},
 			},
-			options: {},
 		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

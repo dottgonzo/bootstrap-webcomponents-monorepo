@@ -43,41 +43,44 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		opened: true,
-		navlinks: [
-			{
-				label: "Home",
-				key: "home",
-				icon: "house-door",
-			},
-			{
-				label: "Dashboard",
-				key: "dashboard",
-				icon: "speedometer",
-			},
-			{
-				label: "Settings",
-				key: "settings",
-				icon: "gear",
-			},
-			{
-				label: "Users",
-				key: "users",
-				icon: "people-fill",
-			},
-			{
-				label: "Stats",
-				key: "stats",
-				icon: "graph-up",
-			},
-		],
-		navpage: "settings",
-		companytitle: "acme corp",
+		name: "default",
+		data: {
+			opened: true,
+			navlinks: [
+				{
+					label: "Home",
+					key: "home",
+					icon: "house-door",
+				},
+				{
+					label: "Dashboard",
+					key: "dashboard",
+					icon: "speedometer",
+				},
+				{
+					label: "Settings",
+					key: "settings",
+					icon: "gear",
+				},
+				{
+					label: "Users",
+					key: "users",
+					icon: "people-fill",
+				},
+				{
+					label: "Stats",
+					key: "stats",
+					icon: "graph-up",
+				},
+			],
+			navpage: "settings",
+			companytitle: "acme corp",
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

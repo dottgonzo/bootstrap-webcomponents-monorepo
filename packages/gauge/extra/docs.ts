@@ -15,16 +15,19 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		options: {
-			value: 50,
-			min: 0,
-			max: 100,
+		name: "default",
+		data: {
+			options: {
+				value: 50,
+				min: 0,
+				max: 100,
+			},
 		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

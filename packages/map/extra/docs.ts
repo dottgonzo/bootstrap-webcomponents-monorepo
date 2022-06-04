@@ -21,39 +21,42 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		center: [10, 10],
-		zoom: 9,
-		source: { type: "osm" },
-		options: { centerFromGeometries: true },
-		data: [
-			{
-				marker: {
-					lngLat: [10.1, 10],
-					icon: {
-						uri: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Visual_Studio_Code_Insiders_1.36_icon.svg",
-						scale: 0.15,
-						anchor: [0.5, 0.1],
+		name: "default",
+		data: {
+			center: [10, 10],
+			zoom: 9,
+			source: { type: "osm" },
+			options: { centerFromGeometries: true },
+			data: [
+				{
+					marker: {
+						lngLat: [10.1, 10],
+						icon: {
+							uri: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Visual_Studio_Code_Insiders_1.36_icon.svg",
+							scale: 0.15,
+							anchor: [0.5, 0.1],
+						},
+						popupHtml: "<p>You clicked here:</p><code>ciao</code>",
 					},
-					popupHtml: "<p>You clicked here:</p><code>ciao</code>",
 				},
-			},
-			{
-				marker: {
-					lngLat: [10, 10],
-					popupHtml: "<p>You clicked here:</p><code>ciao</code>",
+				{
+					marker: {
+						lngLat: [10, 10],
+						popupHtml: "<p>You clicked here:</p><code>ciao</code>",
+					},
 				},
-			},
-			{
-				marker: {
-					lngLat: [10.3, 10],
+				{
+					marker: {
+						lngLat: [10.3, 10],
+					},
 				},
-			},
-		],
+			],
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

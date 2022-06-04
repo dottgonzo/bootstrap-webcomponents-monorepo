@@ -15,32 +15,35 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		payment: {
-			orderNumber: "ssss",
-			countryCode: "EU",
+		name: "default",
+		data: {
+			payment: {
+				orderNumber: "ssss",
+				countryCode: "EU",
 
-			items: [
-				{
-					id: "sss",
-					unitaryPrice: 2,
-					taxPercentage: 3,
-					name: "testitem",
-					image: "https://upload.wikimedia.org/wikipedia/commons/6/66/Walgreens_Obama_Merchandise.jpg",
-				},
-				{
-					id: "aaa",
-					unitaryPrice: 5,
-					taxPercentage: 7,
-					name: "testitem2",
-					image: "https://upload.wikimedia.org/wikipedia/commons/4/49/Fredmeyer_edit_1.jpg",
-				},
-			] as unknown as any,
+				items: [
+					{
+						id: "sss",
+						unitaryPrice: 2,
+						taxPercentage: 3,
+						name: "testitem",
+						image: "https://upload.wikimedia.org/wikipedia/commons/6/66/Walgreens_Obama_Merchandise.jpg",
+					},
+					{
+						id: "aaa",
+						unitaryPrice: 5,
+						taxPercentage: 7,
+						name: "testitem2",
+						image: "https://upload.wikimedia.org/wikipedia/commons/4/49/Fredmeyer_edit_1.jpg",
+					},
+				] as unknown as any,
+			},
 		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,

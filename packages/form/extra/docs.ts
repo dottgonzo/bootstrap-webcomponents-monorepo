@@ -116,12 +116,15 @@ const schema: Component["schema"] = [
 		validationTip: "This field cannot be empty2.",
 	},
 ];
-const examples: Component[] = [
+const examples: ComponentSetup["examples"] = [
 	{
-		schema,
+		name: "default",
+		data: {
+			schema,
+		},
 	},
 ];
-export const componentSetup: ComponentSetup & { examples: Component[] } = {
+export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
 	styleSetup,
