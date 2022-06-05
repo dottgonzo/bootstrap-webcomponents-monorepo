@@ -1,5 +1,9 @@
 import type { Story } from "@storybook/html";
-import { webComponentBind, getStorybookMeta } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  getStorybookMeta,
+  setStorybookData,
+} from "./utils/webComponentUtils";
 import {
   storybookArgs,
   componentSetup,
@@ -27,18 +31,8 @@ const Template: Story = (args) =>
 
 export const BasicCalendar = Template.bind({});
 
-BasicCalendar.args = Object.assign(
-  {
-    id: "BasicCalendar",
-  },
-  componentSetup.examples[0].data
-);
+BasicCalendar.args = setStorybookData(componentSetup, 0);
 
 export const CalendarWithEvents = Template.bind({});
 
-CalendarWithEvents.args = Object.assign(
-  {
-    id: "CalendarWithEvents",
-  },
-  componentSetup.examples[1].data
-);
+CalendarWithEvents.args = setStorybookData(componentSetup, 1);

@@ -1,5 +1,9 @@
 import type { Story } from "@storybook/html";
-import { webComponentBind, getStorybookMeta } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  getStorybookMeta,
+  setStorybookData,
+} from "./utils/webComponentUtils";
 import { storybookArgs, componentSetup } from "../../packages/form/extra/docs";
 
 const meta = getStorybookMeta(storybookArgs, componentSetup);

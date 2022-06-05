@@ -20,8 +20,7 @@ export function toPascalCase(str) {
 
 export function getStorybookMeta(
   storybookArgs: any,
-  componentSetup: ComponentSetup,
-  parameters?: Meta["parameters"]
+  componentSetup: ComponentSetup
 ) {
   const copy1 = Object.assign({}, argTypesExtraUtils);
   const copy2 = Object.assign({}, storybookArgs);
@@ -38,6 +37,21 @@ export function getStorybookMeta(
     meta.parameters = componentSetup.size;
   }
   return meta;
+}
+
+export function setStorybookData(
+  componentSetup: ComponentSetup,
+  index: number,
+  extra?: { _testInnerHtml?: string }
+) {
+  if (!extra) extra = {};
+  return Object.assign(
+    {
+      id: componentSetup.name + "-" + index,
+    },
+    extra,
+    componentSetup.examples[index].data
+  );
 }
 
 export const webComponentBind = (

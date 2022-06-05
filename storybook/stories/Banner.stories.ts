@@ -1,5 +1,9 @@
 import type { Story } from "@storybook/html";
-import { webComponentBind, getStorybookMeta } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  getStorybookMeta,
+  setStorybookData,
+} from "./utils/webComponentUtils";
 import {
   storybookArgs,
   componentSetup,
@@ -13,9 +17,4 @@ const Template: Story = (args) =>
 
 export const PageBanner = Template.bind({});
 
-PageBanner.args = Object.assign(
-  {
-    id: "PageBanner",
-  },
-  componentSetup.examples[0].data
-);
+PageBanner.args = setStorybookData(componentSetup, 0);

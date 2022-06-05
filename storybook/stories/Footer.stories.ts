@@ -1,6 +1,10 @@
 import type { Story } from "@storybook/html";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { webComponentBind, getStorybookMeta } from "./utils/webComponentUtils";
+import {
+  webComponentBind,
+  getStorybookMeta,
+  setStorybookData,
+} from "./utils/webComponentUtils";
 import {
   storybookArgs,
   componentSetup,
