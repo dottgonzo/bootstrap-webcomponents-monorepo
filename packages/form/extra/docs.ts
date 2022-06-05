@@ -19,8 +19,15 @@ const cssVars: CssVar[] = [
 	{ name: "--bs-warning", valueType: "color", theme: "bootstrap", defaultValue: "#ffc107" },
 	{ name: "--bs-danger", valueType: "color", theme: "bootstrap", defaultValue: "#f67280" },
 ];
-export const cssParts: CssPart[] = [{ name: "invalid-feedback", description: "" }];
-export const htmlSlots: HtmlSlot[] = [];
+export const cssParts: CssPart[] = [
+	{ name: "invalid-feedback", description: "" },
+	{ name: "main_button", description: "" },
+	{ name: "button_container", description: "" },
+];
+export const htmlSlots: HtmlSlot[] = [
+	{ name: "submit_button", description: "" },
+	{ name: "submit_label", description: "" },
+];
 export const i18nLanguages: i18nLang[] = [];
 
 export const styleSetup: StyleSetup = {

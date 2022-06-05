@@ -631,9 +631,13 @@
 		{/if}
 	{/each}
 	{#if !hide_submit}
-		<button type="button" class="btn btn-primary" on:click|preventDefault={() => onSubmit()}>
-			<slot name="submit-label">Submit</slot>
-		</button>
+		<div part="button_container" on:click|preventDefault={() => onSubmit()}>
+			<slot name="submit_button">
+				<button part="main_button" type="button" class="btn btn-primary">
+					<slot name="submit_label">Submit</slot>
+				</button>
+			</slot>
+		</div>
 	{/if}
 {/if}
 
