@@ -21,7 +21,9 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: Component[] = [{ action: "", method: "GET", actionquerykey: "", resultitemspath: "", resultitemtitlekey: "", resultitemlinkkey: "" }];
+const examples: ComponentSetup["examples"] = [
+	{ name: "default", data: { action: "", method: "GET", actionquerykey: "", resultitemspath: "", resultitemtitlekey: "", resultitemlinkkey: "" } },
+];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,
