@@ -26,12 +26,19 @@ const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const BasicCalendar = Template.bind({});
-BasicCalendar.args = {
-  id: "BasicCalendar",
-};
+
+BasicCalendar.args = Object.assign(
+  {
+    id: "BasicCalendar",
+  },
+  componentSetup.examples[0].data
+);
 
 export const CalendarWithEvents = Template.bind({});
-CalendarWithEvents.args = {
-  id: "CalendarWithEvents",
-  events,
-};
+
+CalendarWithEvents.args = Object.assign(
+  {
+    id: "CalendarWithEvents",
+  },
+  componentSetup.examples[1].data
+);

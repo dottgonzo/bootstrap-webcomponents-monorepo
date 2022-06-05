@@ -45,7 +45,10 @@ const events: Component["events"] = [
 		label: "thetest start",
 	},
 ];
-const examples: { name: string; description?: string; data: Component }[] = [{ name: "default", data: { events } }];
+const examples: { name: string; description?: string; data: Component }[] = [
+	{ name: "BasicCalendar", data: {} },
+	{ name: "CalendarWithEvents", data: { events } },
+];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,

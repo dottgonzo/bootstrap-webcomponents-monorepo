@@ -51,10 +51,74 @@ export const styleSetup: StyleSetup = {
 
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
-		name: "default",
+		name: "login",
 		data: {
 			type: "login",
 			logouri: "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
+		},
+	},
+	{
+		name: "register",
+		data: {
+			type: "register",
+			logouri: "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
+		},
+	},
+	{
+		name: "activate",
+		data: {
+			type: "activate",
+			recoverycode: "testcode",
+			logouri: "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
+		},
+	},
+	{
+		name: "recover",
+		data: {
+			type: "recover",
+			logouri: "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
+		},
+	},
+	{
+		name: "LoginEn",
+		data: {
+			type: "login",
+			language: "en",
+			disableregister: true,
+		},
+	},
+	{
+		name: "LoginOnly",
+		data: {
+			type: "login",
+			language: "it",
+			disableregister: true,
+		},
+	},
+	{
+		name: "LoginEnWithFetch",
+		data: {
+			type: "login",
+			language: "en",
+			loginuri: "https://kernel.free.beeceptor.com/login",
+			registeruri: "https://kernel.free.beeceptor.com/register",
+		},
+	},
+	{
+		name: "LoginEnWithOauth",
+		data: {
+			type: "login",
+			language: "en",
+			loginuri: "https://kernel.free.beeceptor.com/login",
+			registeruri: "https://kernel.free.beeceptor.com/register",
+			oauth2providers: [
+				{
+					provider: "google",
+					uri: "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=https%3A//oauth2.example.com/code&client_id=client_id",
+				},
+				{ provider: "facebook", uri: "" },
+				{ provider: "twitter", uri: "" },
+			],
 		},
 	},
 ];

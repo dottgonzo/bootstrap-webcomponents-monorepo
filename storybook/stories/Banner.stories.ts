@@ -13,10 +13,9 @@ const Template: Story = (args) =>
 
 export const PageBanner = Template.bind({});
 
-PageBanner.args = {
-  id: "PageBanner",
-  title: "test",
-  description: "desc",
-  logouri:
-    "https://s3-eu-west-1.amazonaws.com/kernelpublic/selargius/logo_selargius.jpg",
-};
+PageBanner.args = Object.assign(
+  {
+    id: "PageBanner",
+  },
+  componentSetup.examples[0].data
+);

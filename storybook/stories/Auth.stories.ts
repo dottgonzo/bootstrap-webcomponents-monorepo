@@ -9,71 +9,67 @@ const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const Login = Template.bind({});
-Login.args = {
-  type: "login",
-  logouri:
-    "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
-  id: "login",
-};
 
+Login.args = Object.assign(
+  {
+    id: "login",
+  },
+  componentSetup.examples[0].data
+);
 export const Register = Template.bind({});
-Register.args = {
-  type: "register",
-  logouri:
-    "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
-  id: "Register",
-};
 
+Register.args = Object.assign(
+  {
+    id: "register",
+  },
+  componentSetup.examples[1].data
+);
 export const LoginWithActivation = Template.bind({});
-LoginWithActivation.args = {
-  type: "activate",
-  recoverycode: "testcode",
-  logouri:
-    "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
-  id: "LoginWithActivation",
-};
-export const LoginWithRecover = Template.bind({});
-LoginWithRecover.args = {
-  type: "recover",
-  logouri:
-    "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
-  id: "LoginWithRecover",
-};
 
+LoginWithActivation.args = Object.assign(
+  {
+    id: "LoginWithActivation",
+  },
+  componentSetup.examples[2].data
+);
+
+export const LoginWithRecover = Template.bind({});
+
+LoginWithRecover.args = Object.assign(
+  {
+    id: "LoginWithRecover",
+  },
+  componentSetup.examples[3].data
+);
 export const LoginEn = Template.bind({});
-LoginEn.args = {
-  type: "login",
-  language: "en",
-  id: "LoginEn",
-};
+
+LoginEn.args = Object.assign(
+  {
+    id: "LoginEn",
+  },
+  componentSetup.examples[4].data
+);
 export const LoginOnly = Template.bind({});
-LoginOnly.args = {
-  type: "login",
-  language: "en",
-  id: "LoginOnly",
-  disableregister: true,
-};
+
+LoginOnly.args = Object.assign(
+  {
+    id: "LoginOnly",
+  },
+  componentSetup.examples[5].data
+);
 export const LoginEnWithFetch = Template.bind({});
-LoginEnWithFetch.args = {
-  type: "login",
-  language: "en",
-  loginuri: "https://kernel.free.beeceptor.com/login",
-  registeruri: "https://kernel.free.beeceptor.com/register",
-  id: "LoginEnWithFetch",
-};
+
+LoginEnWithFetch.args = Object.assign(
+  {
+    id: "LoginEnWithFetch",
+  },
+  componentSetup.examples[6].data
+);
 export const LoginEnWithOauth = Template.bind({});
-LoginEnWithOauth.args = {
-  type: "login",
-  language: "en",
-  loginuri: "https://kernel.free.beeceptor.com/login",
-  registeruri: "https://kernel.free.beeceptor.com/register",
-  oauth2providers: [
-    {
-      provider: "google",
-      uri: "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=https%3A//oauth2.example.com/code&client_id=client_id",
-    },
-    { provider: "facebook" },
-    { provider: "twitter" },
-  ],
-  id: "LoginEnWithOauth",
-};
+
+LoginEnWithOauth.args = Object.assign(
+  {
+    id: "LoginEnWithOauth",
+  },
+  componentSetup.examples[7].data
+);

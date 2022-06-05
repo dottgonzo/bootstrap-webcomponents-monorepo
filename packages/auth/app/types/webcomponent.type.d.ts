@@ -17,7 +17,10 @@ export type Component = {
 	appendqueryparams?: string;
 	appendbodyparams?: string;
 	logouri?: string;
-	oauth2providers?: string;
+	oauth2providers?: {
+		provider: string;
+		uri: string;
+	}[];
 	disableregister?: boolean;
 
 	passwordpattern?: string;
