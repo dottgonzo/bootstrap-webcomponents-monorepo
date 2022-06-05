@@ -3,7 +3,7 @@ export type Component = {
 	style?: string;
 
 	action: string;
-	method: "POST";
+	method: "GET" | "POST";
 	formkey: string;
 	subjectkey: string;
 	contentkey: string;

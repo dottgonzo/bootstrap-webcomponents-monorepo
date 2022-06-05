@@ -67,6 +67,9 @@
 		"typescript": "^4.2.4",
 		"typescript-transform-paths": "^2.2.3"
 	},
+	"dependencies": {
+		"@htmlbricks/hb-form": "^0.12.4"
+	},
 	"keywords": [
 		"svelte",
 		"svelte-webcomponents",

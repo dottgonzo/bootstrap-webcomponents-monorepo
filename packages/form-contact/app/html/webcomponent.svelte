@@ -4,10 +4,16 @@
 	import { createEventDispatcher, onMount, beforeUpdate, afterUpdate } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	import { fly, fade } from "svelte/transition";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import pkg from "../../package.json";
+	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
+	import parseStyle from "style-to-object";
 
 	interface keyable {
 		[key: string]: any;
 	}
+	let formStyleToSet: string = "";
+	let parsedStyle: { [x: string]: string };
 
 	export let id: string;
 	export let style: string;
@@ -22,10 +28,10 @@
 	let hasError = false;
 	let isSuccessVisible = false;
 	let disabled = false;
-	let name="";
+	let name = "";
 	let email;
-	let subject="";
-	let content="";
+	let subject = "";
+	let content = "";
 	let errMessage = "Something went wrong!";
 	let State = {
 		idle: "idle",
@@ -37,10 +43,13 @@
 
 	$: {
 		if (!id) id = "";
-		if (!style) style = "";
-
+		if (style) {
+			parsedStyle = parseStyle(style);
+			formStyleToSet = getChildStyleToPass(parsedStyle, formStyleSetup?.vars);
+		}
 		method = method.toUpperCase();
 	}
+	addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
 
 	function submitAfterVerification() {
 		state = State.requesting;
