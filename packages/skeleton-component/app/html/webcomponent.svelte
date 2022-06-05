@@ -7,8 +7,6 @@
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
 
-	// import { styleSetup as componentStyleSetup } from "../../node_modules/@htmlbricks/hb-skel-component/release/docs";
-
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 

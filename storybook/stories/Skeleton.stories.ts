@@ -3,7 +3,7 @@ import { webComponentBind, getStorybookMeta } from "./utils/webComponentUtils";
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/area-code/extra/docs";
+} from "../../packages/skeleton-component/extra/docs";
 
 const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;

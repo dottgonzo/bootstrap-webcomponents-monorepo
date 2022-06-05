@@ -8,8 +8,6 @@
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
 	import type { Component, IData } from "../types/webcomponent.type";
 
-	// import { styleSetup as componentStyleSetup } from "../../node_modules/@htmlbricks/hb-skel-component/release/docs";
-
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 

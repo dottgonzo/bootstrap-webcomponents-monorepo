@@ -7,8 +7,6 @@
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
 
-	// import { styleSetup as componentStyleSetup } from "../../node_modules/@htmlbricks/hb-skel-component/release/docs";
-
 	import type { Component } from "../types/webcomponent.type";
 
 	const component = get_current_component();
