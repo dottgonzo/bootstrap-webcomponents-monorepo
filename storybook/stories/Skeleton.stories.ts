@@ -16,11 +16,7 @@ const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const Skel = Template.bind({});
-Skel.args = Object.assign(
-  {
-    id: "Skel",
-    _testInnerHtml:
-      '<span style="background-color:blue" slot="skelcontent">cooontent</span>',
-  },
-  componentSetup.examples[0].data
-);
+Skel.args = setStorybookData(componentSetup.name, componentSetup.examples[0], {
+  _testInnerHtml:
+    '<span style="background-color:blue" slot="skelcontent">cooontent</span>',
+});

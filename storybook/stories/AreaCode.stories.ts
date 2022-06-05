@@ -16,7 +16,13 @@ const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const AreaCode = Template.bind({});
-AreaCode.args = setStorybookData(componentSetup, 0);
+AreaCode.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[0]
+);
 
 export const AreaCodeLongText = Template.bind({});
-AreaCodeLongText.args = setStorybookData(componentSetup, 1);
+AreaCodeLongText.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[1]
+);

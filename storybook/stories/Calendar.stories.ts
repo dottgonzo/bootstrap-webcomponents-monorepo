@@ -31,8 +31,14 @@ const Template: Story = (args) =>
 
 export const BasicCalendar = Template.bind({});
 
-BasicCalendar.args = setStorybookData(componentSetup, 0);
+BasicCalendar.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[0]
+);
 
 export const CalendarWithEvents = Template.bind({});
 
-CalendarWithEvents.args = setStorybookData(componentSetup, 1);
+CalendarWithEvents.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[1]
+);

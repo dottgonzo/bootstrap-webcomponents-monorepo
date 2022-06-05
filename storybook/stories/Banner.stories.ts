@@ -17,4 +17,7 @@ const Template: Story = (args) =>
 
 export const PageBanner = Template.bind({});
 
-PageBanner.args = setStorybookData(componentSetup, 0);
+PageBanner.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[0]
+);

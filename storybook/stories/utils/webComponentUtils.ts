@@ -40,17 +40,17 @@ export function getStorybookMeta(
 }
 
 export function setStorybookData(
-  componentSetup: ComponentSetup,
-  index: number,
+  componentName: string,
+  example: ComponentSetup["examples"][0],
   extra?: { _testInnerHtml?: string }
 ) {
   if (!extra) extra = {};
   return Object.assign(
     {
-      id: componentSetup.name + "-" + index,
+      id: componentName + "-" + example.name,
     },
     extra,
-    componentSetup.examples[index].data
+    example.data
   );
 }
 

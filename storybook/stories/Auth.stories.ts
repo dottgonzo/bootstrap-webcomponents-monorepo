@@ -14,28 +14,49 @@ const Template: Story = (args) =>
 
 export const Login = Template.bind({});
 
-Login.args = setStorybookData(componentSetup, 0);
+Login.args = setStorybookData(componentSetup.name, componentSetup.examples[0]);
 
 export const Register = Template.bind({});
 
-Register.args = setStorybookData(componentSetup, 1);
+Register.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[1]
+);
 export const LoginWithActivation = Template.bind({});
 
-LoginWithActivation.args = setStorybookData(componentSetup, 2);
+LoginWithActivation.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[2]
+);
 
 export const LoginWithRecover = Template.bind({});
 
-LoginWithRecover.args = setStorybookData(componentSetup, 3);
+LoginWithRecover.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[3]
+);
 
 export const LoginEn = Template.bind({});
 
-LoginEn.args = setStorybookData(componentSetup, 4);
+LoginEn.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[4]
+);
 export const LoginOnly = Template.bind({});
 
-LoginOnly.args = setStorybookData(componentSetup, 5);
+LoginOnly.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[5]
+);
 export const LoginEnWithFetch = Template.bind({});
 
-LoginEnWithFetch.args = setStorybookData(componentSetup, 6);
+LoginEnWithFetch.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[6]
+);
 export const LoginEnWithOauth = Template.bind({});
 
-LoginEnWithOauth.args = setStorybookData(componentSetup, 7);
+LoginEnWithOauth.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[7]
+);
