@@ -152,7 +152,7 @@ const socials: Component["socials"] = {
 };
 const sidebar: Component["sidebar"] = { title: "ciao" };
 
-const examples: ComponentSetup["examples"] = [
+const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {

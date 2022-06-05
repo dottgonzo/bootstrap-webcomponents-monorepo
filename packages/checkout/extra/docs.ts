@@ -82,7 +82,7 @@ const defaultPayment: Component["payment"] = {
 	total: 45,
 	type: "buy",
 };
-const examples: ComponentSetup["examples"] = [
+const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {

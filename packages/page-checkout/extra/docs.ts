@@ -40,7 +40,7 @@ const googlepay: Component["gateways"][0] = {
 	gatewayId: "example",
 	gatewayMerchantId: "exampleGatewayMerchantId",
 };
-const examples: ComponentSetup["examples"] = [
+const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {

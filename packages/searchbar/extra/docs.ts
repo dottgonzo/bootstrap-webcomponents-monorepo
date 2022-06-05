@@ -21,7 +21,7 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: ComponentSetup["examples"] = [
+const examples: { name: string; description?: string; data: Component }[] = [
 	{ name: "default", data: { action: "", method: "GET", actionquerykey: "", resultitemspath: "", resultitemtitlekey: "", resultitemlinkkey: "" } },
 ];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {

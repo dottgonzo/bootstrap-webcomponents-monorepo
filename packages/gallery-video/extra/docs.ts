@@ -48,7 +48,7 @@ const cards: Component["cards"] = [
 		videoSrc: "https://comapi.be-on.tv/v1/public/records/61043eedb50af916a6429fdc/video",
 	},
 ];
-const examples: ComponentSetup["examples"] = [
+const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {

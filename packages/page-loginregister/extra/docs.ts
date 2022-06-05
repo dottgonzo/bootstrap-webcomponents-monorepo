@@ -59,7 +59,7 @@ const company1: Component["company"] = {
 	vatNumber: "aa - ffffff",
 	fiscalCode: "f4f5f6fff",
 };
-const examples: ComponentSetup["examples"] = [
+const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {

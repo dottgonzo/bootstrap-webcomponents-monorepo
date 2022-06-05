@@ -116,7 +116,7 @@ const schema: Component["schema"] = [
 		validationTip: "This field cannot be empty2.",
 	},
 ];
-const examples: ComponentSetup["examples"] = [
+const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {

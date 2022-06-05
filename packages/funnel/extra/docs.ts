@@ -82,7 +82,7 @@ const preferences2: Component["schemes"][0] = [
 		validationTip: "Min 8, Max 120",
 	},
 ];
-const examples: ComponentSetup["examples"] = [
+const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {

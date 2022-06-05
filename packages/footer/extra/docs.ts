@@ -92,7 +92,7 @@ const policies: Component["policies"] = [
 		key: "cookiepolicy",
 	},
 ];
-const examples: ComponentSetup["examples"] = [
+const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {

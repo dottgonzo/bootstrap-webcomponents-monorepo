@@ -18,7 +18,7 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: ComponentSetup["examples"] = [{ name: "default", data: {} }];
+const examples: { name: string; description?: string; data: Component }[] = [{ name: "default", data: {} }];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null,
 	storybookArgs,

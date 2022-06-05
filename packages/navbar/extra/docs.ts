@@ -31,7 +31,7 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const examples: ComponentSetup["examples"] = [
+const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {
