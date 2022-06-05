@@ -8,6 +8,7 @@ export const storybookArgs = {
 	showvalidation: { control: { type: "boolean" } },
 	setvalid: { control: { type: "boolean" } },
 	setvalue: { control: { type: "boolean" } },
+	hide_submit: { control: { type: "boolean" } },
 };
 
 const cssVars: CssVar[] = [
@@ -26,7 +27,8 @@ export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
 };
-const schema: Component["schema"] = [
+
+const schema1 = [
 	{
 		id: "name-row",
 		type: "row",
@@ -116,11 +118,112 @@ const schema: Component["schema"] = [
 		validationTip: "This field cannot be empty2.",
 	},
 ];
+const preferences = [
+	{
+		type: "text",
+		placeholder: "Inserisci titolo di default",
+		id: "defaultTitle",
+		required: true,
+
+		label: "Titolo di default",
+		value: "titolotest",
+		params: {
+			minlength: 8,
+			maxlength: 120,
+		},
+	},
+	{
+		type: "number",
+		id: "age",
+		required: true,
+		label: "Age",
+		value: 9,
+		params: {
+			min: 8,
+			max: 120,
+		},
+		validationTip: "Min 8, Max 120",
+	},
+];
+const schemaFile = [
+	{
+		type: "file",
+		placeholder: "Inserisci file",
+		id: "filetest",
+		required: true,
+		label: "File di default",
+	},
+	{
+		type: "number",
+		id: "age",
+		required: true,
+		label: "Age",
+		value: 9,
+		params: {
+			min: 8,
+			max: 120,
+		},
+		validationTip: "Min 8, Max 120",
+	},
+];
+const conditionalSchema = [
+	{
+		type: "text",
+		placeholder: "Inserisci titolo di default",
+		id: "defaultTitleCond",
+		required: true,
+
+		label: "Titolo di default",
+		value: "titolotest",
+		params: {
+			minlength: 8,
+			maxlength: 120,
+		},
+	},
+	{
+		type: "number",
+		id: "CondAge",
+		required: true,
+		dependencies: [
+			{
+				id: "defaultTitleCond",
+				values: ["00000000"],
+			},
+		],
+
+		label: "Age",
+		value: 9,
+		params: {
+			min: 8,
+			max: 120,
+		},
+		validationTip: "Min 8, Max 120",
+	},
+];
+
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
-		name: "default",
+		name: "BasicFormHost",
 		data: {
-			schema,
+			schema: schema1,
+		},
+	},
+	{
+		name: "FormHostWithFileTemplate",
+		data: {
+			schema: schemaFile,
+		},
+	},
+	{
+		name: "FormHostTemplateCompiled",
+		data: {
+			schema: preferences,
+		},
+	},
+	{
+		name: "FormHostTemplateConditional",
+		data: {
+			schema: conditionalSchema,
 		},
 	},
 ];

@@ -67,6 +67,7 @@
 	export let submitted: "yes" | "no" | null;
 	export let getvals: "yes" | "no" | null;
 	export let showvalidation: "yes" | "no";
+	export let hide_submit: boolean;
 	let controls: IControl[];
 	let visibility: Record<string, boolean>;
 	let valids: Record<string, boolean> = {};
@@ -75,6 +76,11 @@
 	let dependencyMap: Record<string, FormSchemaEntry[]>;
 	let getControls: (schema: FormSchema) => IControl[];
 	$: {
+		if (hide_submit === true || (hide_submit as unknown as string) === "yes" || (hide_submit as unknown as string) === "true") {
+			hide_submit = true;
+		} else {
+			hide_submit = false;
+		}
 		if (style) {
 			parsedStyle = parseStyle(style);
 
@@ -624,7 +630,7 @@
 			</div>
 		{/if}
 	{/each}
-	{#if !submitted}
+	{#if !hide_submit}
 		<button type="button" class="btn btn-primary" on:click|preventDefault={() => onSubmit()}>
 			<slot name="submit-label">Submit</slot>
 		</button>

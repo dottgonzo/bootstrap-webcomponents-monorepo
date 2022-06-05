@@ -102,6 +102,7 @@
 		on:change={(e) => schemeUpdate(e.detail)}
 		schema={JSON.stringify(schemes[step - 1].schema)}
 		submitted={submitstep}
+		hide_submit="yes"
 	/>
 
 	<div>

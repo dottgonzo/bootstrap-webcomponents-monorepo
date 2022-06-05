@@ -28,7 +28,7 @@ export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
 };
-const preferences: Component["schemes"][0] = [
+const preferences = [
 	{
 		type: "text",
 		placeholder: "Inserisci titolo di default",
@@ -55,7 +55,7 @@ const preferences: Component["schemes"][0] = [
 		validationTip: "Min 8, Max 120",
 	},
 ];
-const preferences2: Component["schemes"][0] = [
+const preferences2 = [
 	{
 		type: "text",
 		placeholder: "Inserisci titolo di default2",
@@ -82,11 +82,59 @@ const preferences2: Component["schemes"][0] = [
 		validationTip: "Min 8, Max 120",
 	},
 ];
+const preferences3 = [
+	{
+		type: "text",
+		placeholder: "Inserisci titolo di default3",
+		id: "defaultTitle3",
+		required: true,
+
+		label: "Titolo di default3",
+		value: "ntest3",
+		params: {
+			minlength: 8,
+			maxlength: 120,
+		},
+	},
+];
+const preferences4 = [
+	{
+		type: "text",
+		placeholder: "Inserisci titolo di default4",
+		id: "defaultTitle4",
+		required: true,
+
+		label: "Titolo di default4",
+		value: "ntest36666666",
+		params: {
+			minlength: 8,
+			maxlength: 120,
+		},
+	},
+];
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
-		name: "default",
+		name: "BasicFunnelTemplate",
+		data: {
+			schemes: [preferences],
+		},
+	},
+	{
+		name: "BasicFunnelTemplateWith2StepsSchema",
 		data: {
 			schemes: [preferences, preferences2],
+		},
+	},
+	{
+		name: "BasicFunnelTemplateWith3StepsSchema",
+		data: {
+			schemes: [preferences3, preferences2, preferences],
+		},
+	},
+	{
+		name: "BasicFunnelTemplateWith4StepsSchema",
+		data: {
+			schemes: [preferences3, preferences4, preferences2, preferences],
 		},
 	},
 ];

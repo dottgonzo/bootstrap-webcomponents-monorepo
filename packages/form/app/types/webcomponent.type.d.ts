@@ -104,6 +104,8 @@ export type Component = {
 	submitted?: "yes" | "no" | null;
 	getvals?: "yes" | "no" | null;
 	showvalidation?: "yes" | "no";
+
+	hide_submit?: boolean;
 };
 
 export type Events = {};

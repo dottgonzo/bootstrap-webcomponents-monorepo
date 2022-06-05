@@ -2,14 +2,7 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	action: { control: { type: "text" } },
-	method: { control: { type: "select" }, options: ["POST", "GET"] },
-	formkey: { control: { type: "text" } },
-	subjectkey: { control: { type: "text" } },
-	contentkey: { control: { type: "text" } },
-	recaptchasitekey: { control: { type: "text" } },
-	"sent-mail": { action: "sent-mail" },
-	"sent-mail-error": { action: "sent-mail-error" },
+	informations: { control: { type: "object" } },
 };
 
 const cssVars: CssVar[] = [
@@ -34,34 +27,19 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "FormContact1",
 		data: {
-			action: "",
-			method: "POST",
-			formkey: "",
-			subjectkey: "",
-			contentkey: "",
-			recaptchasitekey: "",
+			informations: { name: {} },
 		},
 	},
 	{
 		name: "FormContact2",
 		data: {
-			action: "",
-			method: "POST",
-			formkey: "",
-			subjectkey: "",
-			contentkey: "",
-			recaptchasitekey: "",
+			informations: { message: {} },
 		},
 	},
 	{
 		name: "FormContact3",
 		data: {
-			action: "",
-			method: "POST",
-			formkey: "",
-			subjectkey: "",
-			contentkey: "",
-			recaptchasitekey: "",
+			informations: { name: {}, message: {} },
 		},
 	},
 ];

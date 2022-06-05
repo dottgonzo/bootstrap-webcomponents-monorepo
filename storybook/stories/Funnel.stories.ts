@@ -99,22 +99,31 @@ const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const BasicFunnelTemplate = Template.bind({});
-BasicFunnelTemplate.args = {
-  id: "BasicFunnelTemplate",
-  schemes: [preferences],
-};
+BasicFunnelTemplate.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "BasicFunnelTemplate")
+);
 export const BasicFunnelTemplateWith2StepsSchema = Template.bind({});
-BasicFunnelTemplateWith2StepsSchema.args = {
-  id: "BasicFunnelTemplateWith2StepsSchema",
-  schemes: [preferences, preferences2],
-};
+
+BasicFunnelTemplateWith2StepsSchema.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find(
+    (f) => f.name === "BasicFunnelTemplateWith2StepsSchema"
+  )
+);
 export const BasicFunnelTemplateWith3StepsSchema = Template.bind({});
-BasicFunnelTemplateWith3StepsSchema.args = {
-  id: "BasicFunnelTemplateWith3StepsSchema",
-  schemes: [preferences3, preferences2, preferences],
-};
+
+BasicFunnelTemplateWith3StepsSchema.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find(
+    (f) => f.name === "BasicFunnelTemplateWith3StepsSchema"
+  )
+);
 export const BasicFunnelTemplateWith4StepsSchema = Template.bind({});
-BasicFunnelTemplateWith4StepsSchema.args = {
-  id: "BasicFunnelTemplateWith4StepsSchema",
-  schemes: [preferences3, preferences4, preferences2, preferences],
-};
+
+BasicFunnelTemplateWith4StepsSchema.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find(
+    (f) => f.name === "BasicFunnelTemplateWith4StepsSchema"
+  )
+);
