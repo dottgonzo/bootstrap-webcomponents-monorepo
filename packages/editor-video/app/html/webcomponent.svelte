@@ -246,13 +246,16 @@
 				/>
 			</div>
 		{/if}
-		{#if form}<hb-form
+		{#if form}
+			<hb-form
+				hide_submit="yes"
 				style={formStyleToSet + "margin:40px auto 20px auto; display:block"}
 				on:submit={(e) => formSubmit(e.detail)}
 				on:change={(e) => formCheck(e.detail)}
 				submitted={sendform}
 				schema={form}
-			/>{/if}
+			/>
+		{/if}
 	</div>
 	<div class="card-footer">
 		<span style="float:left;height:30px;line-height:30px"

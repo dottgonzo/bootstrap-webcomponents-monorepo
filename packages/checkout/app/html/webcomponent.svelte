@@ -234,6 +234,7 @@
 
 			<div>
 				<hb-form
+					hide_submit="yes"
 					style={formStyleToSet}
 					schema={JSON.stringify(formUserSchema)}
 					submitted={formUserSchemaSubmitted}
@@ -282,6 +283,7 @@
 					<h4 class="subtitle" part="subtitle" style="margin-top:20px"><i class="bi bi-truck" /> Shipment Service</h4>
 					<div>
 						<hb-form
+							hide_submit="yes"
 							style={formStyleToSet}
 							schema={JSON.stringify(formShipmentSchema)}
 							submitted={formShipmentSchemaSubmitted}
