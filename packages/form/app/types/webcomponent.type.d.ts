@@ -67,7 +67,8 @@ export type IComponentName =
 	| "hb-input-area"
 	| "hb-input-checkbox"
 	| "hb-input-color"
-	| "hb-input-radio";
+	| "hb-input-radio"
+	| "hb-input-captcha-google-v2";
 
 export interface ISchemaOption {
 	labelIsHandledByComponent?: boolean;

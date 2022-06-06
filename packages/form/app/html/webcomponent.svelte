@@ -223,6 +223,7 @@
 	addComponent({ repoName: "@htmlbricks/hb-input-select", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-input-file", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-input-color", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-captcha-google-v2", version: pkg.version });
 
 	const component = get_current_component();
 
@@ -360,6 +361,23 @@
 										/>
 									{:else if component === "hb-input-checkbox"}
 										<hb-input-checkbox
+											style={inputCheckboxStyleToSet}
+											on:setValid={(d) => setValidByMessage(d.detail)}
+											on:setValue={(d) => setValueByMessage(d.detail)}
+											schemaentry={JSON.stringify(
+												{
+													...entry,
+													value: allValues[entry.id] ?? entry.value,
+												},
+												null,
+												0,
+											)}
+											setvalue
+											setvalid
+											{showvalidation}
+										/>
+									{:else if component === "hb-input-captcha-google-v2"}
+										<hb-input-captcha-google-v2
 											style={inputCheckboxStyleToSet}
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
@@ -527,6 +545,23 @@
 				{:else if component === "hb-input-date"}
 					<hb-input-date
 						style={inputDateStyleToSet}
+						on:setValid={(d) => setValidByMessage(d.detail)}
+						on:setValue={(d) => setValueByMessage(d.detail)}
+						schemaentry={JSON.stringify(
+							{
+								...entry,
+								value: allValues[entry.id] ?? entry.value,
+							},
+							null,
+							0,
+						)}
+						setvalue
+						setvalid
+						{showvalidation}
+					/>
+				{:else if component === "hb-input-captcha-google-v2"}
+					<hb-input-captcha-google-v2
+						style={inputCheckboxStyleToSet}
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(

@@ -1,7 +1,7 @@
 {
-	"name": "@htmlbricks/hb-form",
-	"displayName": "Svelte-Bootstrap Text Input WebComponent",
-	"description": "Svelte-Bootstrap Text Input WebComponent",
+	"name": "@htmlbricks/hb-input-captcha-google-v2",
+	"displayName": "Svelte-Bootstrap Checkbox Input WebComponent",
+	"description": "Svelte-Bootstrap Checkbox Input WebComponent",
 	"version": "0.12.7",
 	"main": "release/release.js",
 	"publishConfig": {
@@ -68,19 +68,6 @@
 		"ttypescript": "^1.5.12",
 		"typescript": "^4.2.4",
 		"typescript-transform-paths": "^2.2.3"
-	},
-	"dependencies": {
-		"@htmlbricks/hb-input-area": "^0.12.7",
-		"@htmlbricks/hb-input-checkbox": "^0.12.7",
-		"@htmlbricks/hb-input-color": "^0.12.7",
-		"@htmlbricks/hb-input-date": "^0.12.7",
-		"@htmlbricks/hb-input-email": "^0.12.7",
-		"@htmlbricks/hb-input-file": "^0.12.7",
-		"@htmlbricks/hb-input-number": "^0.12.7",
-		"@htmlbricks/hb-input-radio": "^0.12.7",
-		"@htmlbricks/hb-input-select": "^0.12.7",
-		"@htmlbricks/hb-input-text": "^0.12.7",
-		"@htmlbricks/hb-input-captcha-google-v2": "^0.12.7"
 	},
 	"keywords": [
 		"svelte",
