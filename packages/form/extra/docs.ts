@@ -3,12 +3,14 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	schema: { control: { type: "array" } },
-	submit: { action: "submit" },
 	submitted: { control: { type: "boolean" } },
 	showvalidation: { control: { type: "boolean" } },
 	setvalid: { control: { type: "boolean" } },
 	setvalue: { control: { type: "boolean" } },
 	hide_submit: { control: { type: "boolean" } },
+	submit: { action: "submit" },
+	getValues: { action: "getValues" },
+	change: { action: "change" },
 };
 
 const cssVars: CssVar[] = [

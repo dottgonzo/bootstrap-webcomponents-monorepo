@@ -109,4 +109,8 @@ export type Component = {
 	hide_submit?: boolean;
 };
 
-export type Events = {};
+export type Events = {
+	submit: { _valid: !isInvalid; values: Record<string, string | number | boolean> };
+	getValues: { _valid: !isInvalid; values: Record<string, string | number | boolean> };
+	change: { _valid: !isInvalid; _id: string; values: Record<string, string | number | boolean> };
+};
