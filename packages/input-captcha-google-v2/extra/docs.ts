@@ -38,7 +38,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				label: "Last Name",
 				validationTip: "This field cannot be empty.",
 				params: {
-					apiKey: "your_site_key",
+					apiKey: "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI",
 				},
 			},
 		},

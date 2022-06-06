@@ -69,6 +69,9 @@
 							console.info("using api key:", apiKey);
 							grecaptcha.render(recaptchaElement, {
 								sitekey: apiKey,
+								callback: (response) => {
+									console.log(response);
+								},
 							});
 						} catch (err) {
 							console.log("grecaptcha error", err);
@@ -86,18 +89,9 @@
 	});
 </script>
 
-<div class="form-check">
-	<div id="recaptchav2" class="g-recaptcha form-check-input" />
-
-	<label for={schemaentry?.id} class="form-check-label">{schemaentry?.label}</label>
-</div>
-{#if schemaentry?.validationTip && showvalidation === "yes"}
-	<div part="invalid-feedback" class="invalid-feedback mb-1">
-		{schemaentry.validationTip}
-	</div>
-{/if}
+<div id="recaptchav2" class="g-recaptcha" />
 
 <style lang="scss">
-	@import "../styles/bootstrap.scss";
+	// @import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
 </style>
