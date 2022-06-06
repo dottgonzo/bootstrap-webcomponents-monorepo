@@ -110,7 +110,7 @@ export type Component = {
 };
 
 export type Events = {
-	submit: { _valid: !isInvalid; values: Record<string, string | number | boolean> };
-	getValues: { _valid: !isInvalid; values: Record<string, string | number | boolean> };
-	change: { _valid: !isInvalid; _id: string; values: Record<string, string | number | boolean> };
+	submit: { _valid: boolean; values: Record<string, string | number | boolean> };
+	getValues: { _valid: boolean; values: Record<string, string | number | boolean> };
+	change: { _valid: boolean; _id: string; values: Record<string, string | number | boolean> };
 };
