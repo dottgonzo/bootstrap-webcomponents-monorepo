@@ -32,11 +32,9 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "default",
 		data: {
 			schemaentry: {
-				placeholder: "Insert your last name here...",
-				id: "lastName",
+				id: "captcha",
 				required: true,
-				label: "Last Name",
-				validationTip: "This field cannot be empty.",
+				label: "captcha",
 				params: {
 					apiKey: "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI",
 				},

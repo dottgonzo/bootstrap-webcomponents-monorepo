@@ -67,12 +67,17 @@
 						try {
 							const apiKey = schemaentry?.params?.apiKey || "your_site_key";
 							console.info("using api key:", apiKey);
-							grecaptcha.render(recaptchaElement, {
+							const capth = grecaptcha.render(recaptchaElement, {
 								sitekey: apiKey,
-								callback: (response) => {
-									console.log(response);
-								},
 							});
+							console.log(capth);
+							setTimeout(() => {
+								if (grecaptcha.getResponse().length == 0) {
+									alert("Please click the reCAPTCHA checkbox");
+									parent.postMessage("captcha failed", location.origin);
+									return false;
+								}
+							}, 15000);
 						} catch (err) {
 							console.log("grecaptcha error", err);
 						}
@@ -89,7 +94,7 @@
 	});
 </script>
 
-<div id="recaptchav2" class="g-recaptcha" />
+<div id="recaptchav2" class="g-recaptcha" data-callback={() => console.log("cbbbbbbb")} />
 
 <style lang="scss">
 	// @import "../styles/bootstrap.scss";
