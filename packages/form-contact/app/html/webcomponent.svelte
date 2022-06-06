@@ -28,12 +28,11 @@
 	// export let recaptchasitekey: string;
 
 	export let informations: Component["informations"];
-	export let submitted: string | undefined;
+	export let privacy_policy: Component["privacy_policy"];
 
 	let schema: FormComponent["schema"];
 
 	$: {
-		if (!submitted) submitted = undefined;
 		if (!id) id = "";
 		if (style) {
 			parsedStyle = parseStyle(style);
@@ -42,6 +41,9 @@
 
 		if (typeof informations === "string") {
 			informations = JSON.parse(informations);
+		}
+		if (typeof privacy_policy === "string") {
+			privacy_policy = JSON.parse(privacy_policy);
 		}
 		schema = [];
 
@@ -153,6 +155,21 @@
 
 			schema.push(messageInfo);
 		}
+		if (privacy_policy?.input) {
+			const policyInfo = {
+				id: "policy",
+				name: "policy",
+				label: privacy_policy.input,
+				type: "checkbox",
+				required: privacy_policy.required,
+				// placeholder: privacy_policy.input,
+				value: false,
+				valid: false,
+				error: "",
+			};
+
+			schema.push(policyInfo);
+		}
 	}
 
 	addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
@@ -171,7 +188,7 @@
 	}
 </script>
 
-<hb-form style={formStyleToSet} on:submit={(e) => submitContactForm()} on:change={(e) => schemeUpdate(e.detail)} schema={JSON.stringify(schema)} {submitted} />
+<hb-form style={formStyleToSet} on:submit={(e) => submitContactForm()} on:change={(e) => schemeUpdate(e.detail)} schema={JSON.stringify(schema)} />
 
 <style lang="scss">
 	// @import "../styles/bootstrap.scss";

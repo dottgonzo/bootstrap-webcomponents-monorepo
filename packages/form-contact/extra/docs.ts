@@ -3,6 +3,7 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	informations: { control: { type: "object" } },
+	privacy_policy: { control: { type: "object" } },
 };
 
 const cssVars: CssVar[] = [
@@ -27,7 +28,8 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "FormContact1",
 		data: {
-			informations: { name: {} },
+			informations: { email: { required: true }, message: {} },
+			privacy_policy: { input: "accettalo" },
 		},
 	},
 	{
