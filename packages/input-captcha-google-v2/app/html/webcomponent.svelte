@@ -58,7 +58,7 @@
 			let grecaptcha;
 			let attempts = 0;
 			function recheck(timer: number) {
-				if (attempts > 3 || grecaptcha) return;
+				if (attempts > 10 || grecaptcha) return;
 				attempts++;
 
 				setTimeout(() => {
