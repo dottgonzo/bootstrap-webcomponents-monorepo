@@ -77,6 +77,7 @@
 
 	async function loadLive() {
 		function relo() {
+			console.log("reloading", isLive, mediauri);
 			if (!isLive || !mediauri)
 				loadLive().catch((err) => {
 					console.error("reload uri", err);

@@ -5,6 +5,9 @@ export const storybookArgs = {
 	width: { control: { type: "range", min: 100, max: 2000, step: 25 } },
 	height: { control: { type: "range", min: 100, max: 2000, step: 25 } },
 	mediatype: { control: { type: "text" } },
+	mediauri: { control: { type: "text" } },
+	forcecover: { control: { type: "text" } },
+	replacewithtext: { control: { type: "object" } },
 	liveStatus: { action: "liveStatusEvent" },
 };
 
