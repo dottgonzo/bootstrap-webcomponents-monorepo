@@ -2,12 +2,9 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	schemaentry: { control: { type: "object" } },
-	showvalidation: { control: { type: "boolean" } },
-	setvalid: { control: { type: "boolean" } },
-	setvalue: { control: { type: "boolean" } },
-	setValid: { action: "setValid" },
-	setValue: { action: "setValue" },
+	api_key: { control: { type: "string" } },
+
+	googleRecaptchaV2Response: { action: "googleRecaptchaV2Response" },
 };
 
 const cssVars: CssVar[] = [
@@ -31,14 +28,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {
-			schemaentry: {
-				id: "captcha",
-				required: true,
-				label: "captcha",
-				params: {
-					apiKey: "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI",
-				},
-			},
+			api_key: "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI",
 		},
 	},
 ];
@@ -55,11 +45,11 @@ export const componentSetup: ComponentSetup & { examples: { name: string; descri
 	screenshots: [],
 	licenses: [{ type: "Apache-2.0", path: "LICENSE.md", cost: 0, currency: "EUR" }],
 	readmePath: "README.md",
-	name: "hb-input-captcha-google-v2",
-	category: "input",
-	tags: ["input"],
+	name: "hb-captcha-google-recaptcha-v2-invisible",
+	category: "utils",
+	tags: ["utils"],
 	size: {},
 	iifePath: "release/release.js",
-	repoName: "@htmlbricks/hb-input-captcha-google-v2",
+	repoName: "@htmlbricks/hb-captcha-google-recaptcha-v2-invisible",
 	version: null,
 };

@@ -7,7 +7,7 @@ import {
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/input-captcha-google-v2/extra/docs";
+} from "../../packages/captcha-google-recaptcha-v2-invisible/extra/docs";
 
 const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;

@@ -71,7 +71,6 @@
 	},
 	"dependencies": {
 		"@htmlbricks/hb-input-area": "^0.12.10",
-		"@htmlbricks/hb-input-captcha-google-v2": "^0.12.10",
 		"@htmlbricks/hb-input-checkbox": "^0.12.10",
 		"@htmlbricks/hb-input-color": "^0.12.10",
 		"@htmlbricks/hb-input-date": "^0.12.10",
