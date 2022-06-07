@@ -30,15 +30,22 @@
 	export let informations: Component["informations"];
 	export let privacy_policy: Component["privacy_policy"];
 
-	let schema: FormComponent["schema"];
+	export let captcha: Component["captcha"];
 
+	let form_submitted: { _valid: boolean; values: Record<string, string | number | boolean> };
+
+	let schema: FormComponent["schema"];
+	let attach_captcha: boolean = false;
 	$: {
 		if (!id) id = "";
+		if (!attach_captcha) attach_captcha = false;
 		if (style) {
 			parsedStyle = parseStyle(style);
 			formStyleToSet = getChildStyleToPass(parsedStyle, formStyleSetup?.vars);
 		}
-
+		if (typeof captcha === "string") {
+			captcha = JSON.parse(captcha);
+		}
 		if (typeof informations === "string") {
 			informations = JSON.parse(informations);
 		}
@@ -173,6 +180,7 @@
 	}
 
 	addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-captcha-google-recaptcha-v2-invisible", version: pkg.version });
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -180,15 +188,29 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	function submitContactForm() {
-		console.log("submit");
+	function submitContactForm(f: { _valid: boolean; values: Record<string, string | number | boolean> }) {
+		if (!f._valid) return console.error("is not yet valid!", f);
+		console.log("submit", captcha);
+
+		if (captcha?.siteKey) {
+			attach_captcha = true;
+			form_submitted = f;
+		} else {
+			dispatch("formContactSubmit", f);
+		}
 	}
 	function schemeUpdate(data: any) {
 		console.log(data);
 	}
+	function submitAfterVerification(verification: { response: string }) {
+		dispatch("formContactSubmitWithCaptcha", Object.assign({ response: verification.response, type: "recaptcha-v2-invisible" }, form_submitted));
+	}
 </script>
 
-<hb-form style={formStyleToSet} on:submit={(e) => submitContactForm()} on:change={(e) => schemeUpdate(e.detail)} schema={JSON.stringify(schema)} />
+{#if captcha?.siteKey && attach_captcha}
+	<hb-captcha-google-recaptcha-v2-invisible api_key={captcha.siteKey} on:googleRecaptchaV2Response={(e) => submitAfterVerification(e.detail)} />
+{/if}
+<hb-form style={formStyleToSet} on:submit={(e) => submitContactForm(e.detail)} on:change={(e) => schemeUpdate(e.detail)} schema={JSON.stringify(schema)} />
 
 <style lang="scss">
 	// @import "../styles/bootstrap.scss";

@@ -4,6 +4,9 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	informations: { control: { type: "object" } },
 	privacy_policy: { control: { type: "object" } },
+	captcha: { control: { type: "object" } },
+	formContactSubmit: { action: "formContactSubmit" },
+	formContactSubmitWithCaptcha: { action: "formContactSubmitWithCaptcha" },
 };
 
 const cssVars: CssVar[] = [
@@ -42,6 +45,17 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "FormContact3",
 		data: {
 			informations: { name: {}, message: {} },
+		},
+	},
+	{
+		name: "FormContactWithCaptcha",
+		data: {
+			informations: { email: { required: true }, message: {} },
+			privacy_policy: { input: "accettalo" },
+			captcha: {
+				type: "googlev_recaptchav2_invisible",
+				siteKey: "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI",
+			},
 		},
 	},
 ];

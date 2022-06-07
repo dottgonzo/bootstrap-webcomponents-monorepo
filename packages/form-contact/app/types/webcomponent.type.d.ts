@@ -2,7 +2,8 @@ export type Component = {
 	id?: string;
 	style?: string;
 	captcha?: {
-		type: "googlev_recaptchav2" | "googlev_recaptchav3";
+		type: "googlev_recaptchav2_invisible" | "googlev_recaptchav3";
+		siteKey: string;
 	};
 	privacy_policy?: {
 		input: string;
@@ -19,4 +20,7 @@ export type Component = {
 	};
 };
 
-export type Events = {};
+export type Events = {
+	formContactSubmit: { _valid: boolean; values: Record<string, string | number | boolean> };
+	formContactSubmitWithCaptcha: { _valid: boolean; values: Record<string, string | number | boolean>; response: string };
+};

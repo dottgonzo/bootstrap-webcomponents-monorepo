@@ -33,3 +33,9 @@ FormContact3.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples[2]
 );
+export const FormContactWithCaptcha = Template.bind({});
+
+FormContactWithCaptcha.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[3]
+);
