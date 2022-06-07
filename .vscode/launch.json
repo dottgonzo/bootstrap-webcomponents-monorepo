@@ -7,7 +7,7 @@
     {
       "type": "node",
       "request": "launch",
-      "runtimeVersion": "16.15.0",
+      "runtimeVersion": "16.15.1",
       "name": "dev streamingtable",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
@@ -17,7 +17,7 @@
     {
       "type": "node",
       "request": "launch",
-      "runtimeVersion": "16.15.0",
+      "runtimeVersion": "16.15.1",
       "name": "write readme",
       "runtimeArgs": ["-r", "ts-node/register/transpile-only", "."],
       "skipFiles": ["<node_internals>/**"],
@@ -26,7 +26,7 @@
     {
       "name": "Launch Storybook",
       "request": "launch",
-      "runtimeVersion": "16.15.0",
+      "runtimeVersion": "16.15.1",
       "runtimeArgs": ["run", "storybook"],
       "runtimeExecutable": "npm",
       "skipFiles": ["<node_internals>/**"],
