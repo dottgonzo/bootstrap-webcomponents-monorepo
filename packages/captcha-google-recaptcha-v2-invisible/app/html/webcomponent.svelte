@@ -9,6 +9,7 @@
 	const elementLabel = "recaptchav2";
 	const scriptSdk = elementLabel + "-sdk";
 	const elementId = elementLabel + "-element";
+	let grecaptcha: any;
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 	function dispatch(name, detail) {
@@ -16,7 +17,28 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 	$: {
-		if (!api_key) api_key = undefined;
+		// if (!api_key) api_key = undefined;
+		// if (api_key && grecaptcha) {
+		// 	if (status.rendered) {
+		// 		if (status.immediate) {
+		// 			grecaptcha.execute(api_key);
+		// 		}
+		// 	} else if (status.immediate || status.visible) {
+		// 		grecaptcha.render(elementId, {
+		// 			sitekey: api_key,
+		// 			callback: (response) => {
+		// 				console.log("googleRecaptchaV2Response", response);
+		// 				dispatch("googleRecaptchaV2Response", { response });
+		// 			},
+		// 		});
+		// 	}
+		// }
+		// 	grecaptcha.execute().then(()=>{
+		// 	}).catch(()=>{
+		// 	})
+		// } else if(api_key&&grecaptcha&&status.immediate){
+		// } else if(api_key&&grecaptcha&&status.visible){
+		// }
 	}
 	onMount(() => {
 		if (!document.getElementById(elementId)) {
@@ -43,7 +65,6 @@
 		}
 		// recaptchaElement = component.shadowRoot.getElementById("recaptchav2");
 		// if (recaptchaElement) {
-		let grecaptcha;
 		let rechecker: number;
 		function recheck(timer: number) {
 			if (grecaptcha) return;
@@ -53,6 +74,7 @@
 					grecaptcha = window["grecaptcha"];
 
 					if (grecaptcha) {
+						// if render
 						try {
 							console.info("using recaptcha api key:", api_key);
 							grecaptcha.render(elementId, {
@@ -62,6 +84,9 @@
 									dispatch("googleRecaptchaV2Response", { response });
 								},
 							});
+							dispatch("googleRecaptchaRendered", { render: true });
+							// if execute
+
 							setTimeout(() => grecaptcha.execute(), 1000); // seems that this is a promise and return the response as the callback does
 						} catch (err) {
 							console.log("grecaptcha error", err);
