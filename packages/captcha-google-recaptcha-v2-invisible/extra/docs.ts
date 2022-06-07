@@ -5,6 +5,8 @@ export const storybookArgs = {
 	api_key: { control: { type: "string" } },
 
 	googleRecaptchaV2Response: { action: "googleRecaptchaV2Response" },
+	googleRecaptchaRendered: { action: "googleRecaptchaRendered" },
+	get: { control: { type: "boolean" } },
 };
 
 const cssVars: CssVar[] = [

@@ -5,7 +5,7 @@
 	import { createEventDispatcher } from "svelte";
 
 	export let api_key: string;
-
+	export let get: any;
 	const elementLabel = "recaptchav2";
 	const scriptSdk = elementLabel + "-sdk";
 	const elementId = elementLabel + "-element";
@@ -16,7 +16,41 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
+	let isJustRendered = false;
+	let isJustRenderedRightNow = false;
+	let isJustExecuted = false;
+
+	function renderCaptcha() {
+		if (!grecaptcha) return console.error("no captcha util loaded");
+
+		grecaptcha.render(elementId, {
+			sitekey: api_key,
+			callback: (response) => {
+				console.log("googleRecaptchaV2Response", response);
+				isJustExecuted = true;
+				dispatch("googleRecaptchaV2Response", { response });
+			},
+		});
+		dispatch("googleRecaptchaRendered", { render: true });
+		isJustRendered = true;
+	}
+	function execCaptcha() {
+		if (!grecaptcha) return console.error("no captcha util loaded");
+		if (!isJustExecuted) return grecaptcha.execute();
+		console.info("resetting captcha");
+		grecaptcha.reset();
+		grecaptcha.execute();
+	}
+	let i = 0;
 	$: {
+		console.log("render " + i, get);
+		i++;
+		if (isJustRendered && isJustRenderedRightNow && get !== null) {
+			console.info("executing recaptcha another time");
+			execCaptcha();
+		} else if (isJustRendered) {
+			isJustRenderedRightNow = true;
+		}
 		// if (!api_key) api_key = undefined;
 		// if (api_key && grecaptcha) {
 		// 	if (status.rendered) {
@@ -41,7 +75,7 @@
 		// }
 	}
 	onMount(() => {
-		if (!document.getElementById(elementId)) {
+		if (!document.getElementById(elementId) && !grecaptcha) {
 			const div = document.createElement("div");
 			div.id = elementId;
 			// div.className = "g-recaptcha";
@@ -55,7 +89,7 @@
 
 		// 	document.head.appendChild(script);
 		// }
-		if (!document.getElementById(scriptSdk)) {
+		if (!document.getElementById(scriptSdk) && !grecaptcha) {
 			const script = document.createElement("script");
 			script.id = scriptSdk;
 			script.async = true;
@@ -77,17 +111,8 @@
 						// if render
 						try {
 							console.info("using recaptcha api key:", api_key);
-							grecaptcha.render(elementId, {
-								sitekey: api_key,
-								callback: (response) => {
-									console.log("googleRecaptchaV2Response", response);
-									dispatch("googleRecaptchaV2Response", { response });
-								},
-							});
-							dispatch("googleRecaptchaRendered", { render: true });
-							// if execute
-
-							setTimeout(() => grecaptcha.execute(), 1000); // seems that this is a promise and return the response as the callback does
+							renderCaptcha();
+							execCaptcha();
 						} catch (err) {
 							console.log("grecaptcha error", err);
 						}
@@ -115,12 +140,11 @@
 				const element = document.getElementById(elementId);
 				element.remove();
 			}
+			window["grecaptcha"] = undefined;
 			// window.removeEventListener("resize", recheckSize);
 		};
 	});
 </script>
-
-cap
 
 <style lang="scss">
 	// @import "../styles/bootstrap.scss";
