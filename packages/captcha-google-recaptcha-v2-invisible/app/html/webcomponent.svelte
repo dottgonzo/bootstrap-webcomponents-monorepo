@@ -62,7 +62,7 @@
 									dispatch("googleRecaptchaV2Response", { response });
 								},
 							});
-							setTimeout(() => grecaptcha.execute(), 1000);
+							setTimeout(() => grecaptcha.execute(), 1000); // seems that this is a promise and return the response as the callback does
 						} catch (err) {
 							console.log("grecaptcha error", err);
 						}
