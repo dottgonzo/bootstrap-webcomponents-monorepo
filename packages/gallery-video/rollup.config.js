@@ -63,6 +63,7 @@ export default {
 			},
 		}),
 		replace({
+			preventAssignment: true,
 			values: {
 				':#0d6efd': ':var(--bs-primary,#07689f)',
 				':#6c757d': ':var(--bs-secondary,#c9d6df)',
