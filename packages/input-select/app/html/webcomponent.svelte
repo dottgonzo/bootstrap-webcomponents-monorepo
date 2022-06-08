@@ -4,11 +4,11 @@
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 	import type { FormSchemaEntry } from "@app/types/webcomponent.type";
-	export let setvalue: boolean;
-	export let setvalid: boolean;
+	export let set_value: boolean;
+	export let set_valid: boolean;
 
 	export let schemaentry: FormSchemaEntry;
-	export let showvalidation: "yes" | "no";
+	export let show_validation: "yes" | "no";
 
 	let value: string;
 	let options: { value: string; label?: string }[] = [];
@@ -21,35 +21,35 @@
 	}
 
 	$: {
-		if (!showvalidation) showvalidation = "no";
+		if (!show_validation) show_validation = "no";
 
 		if (schemaentry && typeof schemaentry === "string") {
 			schemaentry = JSON.parse(schemaentry as unknown as string);
 		}
-		if (!setvalue && (setvalue as unknown as string) === "no") {
-			setvalue = false;
+		if (!set_value && (set_value as unknown as string) === "no") {
+			set_value = false;
 		} else {
-			setvalue = true;
+			set_value = true;
 		}
-		if (!setvalid && (setvalid as unknown as string) === "no") {
-			setvalid = false;
+		if (!set_valid && (set_valid as unknown as string) === "no") {
+			set_valid = false;
 		} else {
-			setvalid = true;
+			set_valid = true;
 		}
 
 		options = schemaentry?.params?.options ?? [];
 		value = value != null ? value : (schemaentry?.value as string);
 		valid = !schemaentry?.required || value ? true : false;
 		setTimeout(() => {
-			if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
-			if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
+			if (set_value) dispatch("setValue", { value, id: schemaentry?.id });
+			if (set_valid) dispatch("setValid", { valid, id: schemaentry?.id });
 		}, 0);
 	}
 </script>
 
 <select
 	bind:value
-	class="form-control {showvalidation === 'yes' && schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
+	class="form-control {show_validation === 'yes' && schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
 	id={schemaentry?.id}
 	required={schemaentry?.required}
 	readonly={schemaentry?.readonly}
@@ -58,7 +58,7 @@
 		<option value={option.value} selected={value === option.value}>{option.label ?? option.value}</option>
 	{/each}
 </select>
-{#if schemaentry?.validationTip && showvalidation === "yes"}
+{#if schemaentry?.validationTip && show_validation === "yes"}
 	<div part="invalid-feedback" class="invalid-feedback mb-1">
 		{schemaentry.validationTip}
 	</div>

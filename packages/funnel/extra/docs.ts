@@ -38,8 +38,8 @@ const preferences = [
 		label: "Titolo di default",
 		value: "numtest",
 		params: {
-			minlength: 8,
-			maxlength: 120,
+			minLength: 8,
+			maxLength: 120,
 		},
 	},
 	{
@@ -65,8 +65,8 @@ const preferences2 = [
 		label: "Titolo di default2",
 		value: "ntest2",
 		params: {
-			minlength: 8,
-			maxlength: 120,
+			minLength: 8,
+			maxLength: 120,
 		},
 	},
 	{
@@ -92,8 +92,8 @@ const preferences3 = [
 		label: "Titolo di default3",
 		value: "ntest3",
 		params: {
-			minlength: 8,
-			maxlength: 120,
+			minLength: 8,
+			maxLength: 120,
 		},
 	},
 ];
@@ -107,8 +107,8 @@ const preferences4 = [
 		label: "Titolo di default4",
 		value: "ntest36666666",
 		params: {
-			minlength: 8,
-			maxlength: 120,
+			minLength: 8,
+			maxLength: 120,
 		},
 	},
 ];

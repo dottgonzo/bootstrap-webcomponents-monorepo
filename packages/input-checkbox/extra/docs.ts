@@ -3,9 +3,9 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	schemaentry: { control: { type: "object" } },
-	showvalidation: { control: { type: "boolean" } },
-	setvalid: { control: { type: "boolean" } },
-	setvalue: { control: { type: "boolean" } },
+	show_validation: { control: { type: "boolean" } },
+	set_valid: { control: { type: "boolean" } },
+	set_value: { control: { type: "boolean" } },
 	setValid: { action: "setValid" },
 	setValue: { action: "setValue" },
 };

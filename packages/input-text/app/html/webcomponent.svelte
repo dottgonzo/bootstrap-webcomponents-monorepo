@@ -4,9 +4,9 @@
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 	import type { TextSchemaEntry } from "@app/types/webcomponent.type";
-	export let setvalue: boolean;
-	export let setvalid: boolean;
-	export let showvalidation: "yes" | "no";
+	export let set_value: boolean;
+	export let set_valid: boolean;
+	export let show_validation: "yes" | "no";
 
 	export let schemaentry: FormSchemaEntry;
 
@@ -22,22 +22,22 @@
 	}
 
 	$: {
-		if (!showvalidation) showvalidation = "no";
+		if (!show_validation) show_validation = "no";
 
 		if (schemaentry && typeof schemaentry === "string") {
 			schemaentry = JSON.parse(schemaentry as unknown as string);
 		} else if (!schemaentry) {
 			schemaentry = null;
 		}
-		if (!setvalue && (setvalue as unknown as string) === "no") {
-			setvalue = false;
+		if (!set_value && (set_value as unknown as string) === "no") {
+			set_value = false;
 		} else {
-			setvalue = true;
+			set_value = true;
 		}
-		if (!setvalid && (setvalid as unknown as string) === "no") {
-			setvalid = false;
+		if (!set_valid && (set_valid as unknown as string) === "no") {
+			set_valid = false;
 		} else {
-			setvalid = true;
+			set_valid = true;
 		}
 
 		value = value != null ? value : (schemaentry?.value as string);
@@ -49,9 +49,9 @@
 				if (value) {
 					if (regex && !regex.test(value)) {
 						valid = false;
-					} else if (schemaentry.params?.minlength && !(value.length >= schemaentry.params.minlength)) {
+					} else if (schemaentry.params?.minLength && !(value.length >= schemaentry.params.minLength)) {
 						valid = false;
-					} else if (schemaentry.params?.maxlength && !(value.length <= schemaentry.params.maxlength)) {
+					} else if (schemaentry.params?.maxLength && !(value.length <= schemaentry.params.maxLength)) {
 						valid = false;
 					} else {
 						valid = true;
@@ -73,20 +73,20 @@
 		// 		  value != null &&
 		// 		  (regex ? regex.test(value) : true) &&
 		// 		  (!schemaentry?.params ||
-		// 				(value.length >= (schemaentry.params?.minlength ?? 1) && value.length <= (schemaentry.params?.maxlength ?? Infinity)));
+		// 				(value.length >= (schemaentry.params?.minLength ?? 1) && value.length <= (schemaentry.params?.maxLength ?? Infinity)));
 
 		// valid = schemaentry
 		// 	? !schemaentry?.required ||
 		// 	  (value &&
-		// 			value.length >= (schemaentry.params?.minlength ?? 0) &&
-		// 			value.length <= (schemaentry.params?.maxlength ?? Infinity) &&
+		// 			value.length >= (schemaentry.params?.minLength ?? 0) &&
+		// 			value.length <= (schemaentry.params?.maxLength ?? Infinity) &&
 		// 			(regex ? regex.test(value) : true))
 		// 	: false;
 
 		console.log(valid, value, "validinput");
 		setTimeout(() => {
-			if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
-			if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
+			if (set_value) dispatch("setValue", { value, id: schemaentry?.id });
+			if (set_valid) dispatch("setValid", { valid, id: schemaentry?.id });
 		}, 0);
 	}
 </script>
@@ -94,13 +94,13 @@
 <input
 	bind:value
 	type="text"
-	class="form-control {showvalidation === 'yes' && schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
+	class="form-control {show_validation === 'yes' && schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
 	id={schemaentry?.id}
 	required={schemaentry?.required}
 	placeholder={schemaentry?.placeholder}
 	readonly={schemaentry?.readonly}
 />
-{#if schemaentry?.validationTip && showvalidation === "yes"}
+{#if schemaentry?.validationTip && show_validation === "yes"}
 	<div part="invalid-feedback" class="invalid-feedback mb-1">
 		{schemaentry.validationTip}
 	</div>

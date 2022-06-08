@@ -3,9 +3,9 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	schemaentry: { control: { type: "object" } },
-	showvalidation: { control: { type: "boolean" } },
-	setvalid: { control: { type: "boolean" } },
-	setvalue: { control: { type: "boolean" } },
+	show_validation: { control: { type: "boolean" } },
+	set_valid: { control: { type: "boolean" } },
+	set_value: { control: { type: "boolean" } },
 	setValid: { action: "setValid" },
 	setValue: { action: "setValue" },
 };
@@ -58,7 +58,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				required: true,
 				validationTip: "This field cannot be empty.",
 				params: {
-					minlength: 2,
+					minLength: 2,
 				},
 			},
 		},
@@ -72,7 +72,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				required: true,
 				validationTip: "This field cannot be empty.",
 				params: {
-					maxlength: 2,
+					maxLength: 2,
 				},
 			},
 		},
@@ -86,8 +86,8 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				required: true,
 				validationTip: "This field cannot be empty.",
 				params: {
-					minlength: 2,
-					maxlength: 6,
+					minLength: 2,
+					maxLength: 6,
 				},
 			},
 		},
@@ -101,7 +101,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				required: true,
 				validationTip: "This field cannot be empty.",
 				params: {
-					minlength: 2,
+					minLength: 2,
 				},
 			},
 		},

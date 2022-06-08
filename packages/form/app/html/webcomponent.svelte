@@ -66,7 +66,7 @@
 	export let isInvalid: boolean;
 	export let submitted: "yes" | "no" | null;
 	export let getvals: "yes" | "no" | null;
-	export let showvalidation: "yes" | "no";
+	export let show_validation: "yes" | "no";
 	export let hide_submit: boolean;
 	let controls: IControl[];
 	let visibility: Record<string, boolean>;
@@ -95,7 +95,7 @@
 			inputCheckboxStyleToSet = getChildStyleToPass(parsedStyle, inputCheckboxStyleSetup?.vars);
 			inputRadioStyleToSet = getChildStyleToPass(parsedStyle, inputRadioStyleSetup?.vars);
 		}
-		if (!showvalidation) showvalidation = "no";
+		if (!show_validation) show_validation = "no";
 		if (!visibility) visibility = {};
 		if (submitted && submitted === "yes" && schema && typeof schema !== "string") {
 			onSubmit();
@@ -233,7 +233,7 @@
 	}
 	const onSubmit = () => {
 		console.log("subb");
-		showvalidation = "yes";
+		show_validation = "yes";
 		submitted = "no";
 		if (isInvalid) return;
 		const cc = Object.assign({ _valid: !isInvalid }, values);
@@ -286,9 +286,9 @@
 												null,
 												0,
 											)}
-											setvalue
-											setvalid
-											{showvalidation}
+											set_value
+											set_valid
+											{show_validation}
 										/>
 									{:else if component === "hb-input-color"}
 										<hb-input-color
@@ -303,9 +303,9 @@
 												null,
 												0,
 											)}
-											setvalue
-											setvalid
-											{showvalidation}
+											set_value
+											set_valid
+											{show_validation}
 										/>
 									{:else if component === "hb-input-file"}
 										<hb-input-file
@@ -320,9 +320,9 @@
 												null,
 												0,
 											)}
-											setvalue
-											setvalid
-											{showvalidation}
+											set_value
+											set_valid
+											{show_validation}
 										/>
 									{:else if component === "hb-input-email"}
 										<hb-input-email
@@ -337,9 +337,9 @@
 												null,
 												0,
 											)}
-											setvalue
-											setvalid
-											{showvalidation}
+											set_value
+											set_valid
+											{show_validation}
 										/>
 									{:else if component === "hb-input-date"}
 										<hb-input-date
@@ -354,9 +354,9 @@
 												null,
 												0,
 											)}
-											setvalue
-											setvalid
-											{showvalidation}
+											set_value
+											set_valid
+											{show_validation}
 										/>
 									{:else if component === "hb-input-checkbox"}
 										<hb-input-checkbox
@@ -371,9 +371,9 @@
 												null,
 												0,
 											)}
-											setvalue
-											setvalid
-											{showvalidation}
+											set_value
+											set_valid
+											{show_validation}
 										/>
 									{:else if component === "hb-input-number"}
 										<hb-input-number
@@ -388,9 +388,9 @@
 												null,
 												0,
 											)}
-											setvalue
-											setvalid
-											{showvalidation}
+											set_value
+											set_valid
+											{show_validation}
 										/>
 									{:else if component === "hb-input-area"}
 										<hb-input-area
@@ -405,9 +405,9 @@
 												null,
 												0,
 											)}
-											setvalue
-											setvalid
-											{showvalidation}
+											set_value
+											set_valid
+											{show_validation}
 										/>
 									{:else if component === "hb-input-radio"}
 										<hb-input-radio
@@ -422,9 +422,9 @@
 												null,
 												0,
 											)}
-											setvalue
-											setvalid
-											{showvalidation}
+											set_value
+											set_valid
+											{show_validation}
 										/>
 									{:else if component === "hb-input-select"}
 										<hb-input-select
@@ -439,9 +439,9 @@
 												null,
 												0,
 											)}
-											setvalue
-											setvalid
-											{showvalidation}
+											set_value
+											set_valid
+											{show_validation}
 										/>
 									{/if}
 								</div>
@@ -469,9 +469,9 @@
 							null,
 							0,
 						)}
-						setvalue
-						setvalid
-						{showvalidation}
+						set_value
+						set_valid
+						{show_validation}
 					/>
 				{:else if component === "hb-input-color"}
 					<hb-input-text
@@ -486,9 +486,9 @@
 							null,
 							0,
 						)}
-						setvalue
-						setvalid
-						{showvalidation}
+						set_value
+						set_valid
+						{show_validation}
 					/>
 				{:else if component === "hb-input-file"}
 					<hb-input-file
@@ -503,9 +503,9 @@
 							null,
 							0,
 						)}
-						setvalue
-						setvalid
-						{showvalidation}
+						set_value
+						set_valid
+						{show_validation}
 					/>
 				{:else if component === "hb-input-email"}
 					<hb-input-email
@@ -520,9 +520,9 @@
 							null,
 							0,
 						)}
-						setvalue
-						setvalid
-						{showvalidation}
+						set_value
+						set_valid
+						{show_validation}
 					/>
 				{:else if component === "hb-input-date"}
 					<hb-input-date
@@ -537,9 +537,9 @@
 							null,
 							0,
 						)}
-						setvalue
-						setvalid
-						{showvalidation}
+						set_value
+						set_valid
+						{show_validation}
 					/>
 				{:else if component === "hb-input-checkbox"}
 					<hb-input-checkbox
@@ -554,9 +554,9 @@
 							null,
 							0,
 						)}
-						setvalue
-						setvalid
-						{showvalidation}
+						set_value
+						set_valid
+						{show_validation}
 					/>
 				{:else if component === "hb-input-number"}
 					<hb-input-number
@@ -571,9 +571,9 @@
 							null,
 							0,
 						)}
-						setvalue
-						setvalid
-						{showvalidation}
+						set_value
+						set_valid
+						{show_validation}
 					/>
 				{:else if component === "hb-input-area"}
 					<hb-input-area
@@ -588,9 +588,9 @@
 							null,
 							0,
 						)}
-						setvalue
-						setvalid
-						{showvalidation}
+						set_value
+						set_valid
+						{show_validation}
 					/>
 				{:else if component === "hb-input-radio"}
 					<hb-input-radio
@@ -605,9 +605,9 @@
 							null,
 							0,
 						)}
-						setvalue
-						setvalid
-						{showvalidation}
+						set_value
+						set_valid
+						{show_validation}
 					/>
 				{:else if component === "hb-input-select"}
 					<hb-input-select
@@ -622,9 +622,9 @@
 							null,
 							0,
 						)}
-						setvalue
-						setvalid
-						{showvalidation}
+						set_value
+						set_valid
+						{show_validation}
 					/>
 				{/if}
 			</div>

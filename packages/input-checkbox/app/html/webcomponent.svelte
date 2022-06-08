@@ -4,9 +4,9 @@
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 	import type { FormSchemaEntry } from "@app/types/webcomponent.type";
-	export let setvalue: boolean;
-	export let setvalid: boolean;
-	export let showvalidation: "yes" | "no";
+	export let set_value: boolean;
+	export let set_valid: boolean;
+	export let show_validation: "yes" | "no";
 
 	export let schemaentry: FormSchemaEntry;
 
@@ -21,20 +21,20 @@
 	}
 
 	$: {
-		if (!showvalidation) showvalidation = "no";
+		if (!show_validation) show_validation = "no";
 
 		if (schemaentry && typeof schemaentry === "string") {
 			schemaentry = JSON.parse(schemaentry as unknown as string);
 		}
-		if (!setvalue && (setvalue as unknown as string) === "no") {
-			setvalue = false;
+		if (!set_value && (set_value as unknown as string) === "no") {
+			set_value = false;
 		} else {
-			setvalue = true;
+			set_value = true;
 		}
-		if (!setvalid && (setvalid as unknown as string) === "no") {
-			setvalid = false;
+		if (!set_valid && (set_valid as unknown as string) === "no") {
+			set_valid = false;
 		} else {
-			setvalid = true;
+			set_valid = true;
 		}
 		if (typeof value === "string") {
 			if (value === "false" || value === "no") {
@@ -57,8 +57,8 @@
 			valid = false;
 		}
 		setTimeout(() => {
-			if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
-			if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
+			if (set_value) dispatch("setValue", { value, id: schemaentry?.id });
+			if (set_valid) dispatch("setValid", { valid, id: schemaentry?.id });
 		}, 0);
 	}
 </script>
@@ -74,7 +74,7 @@
 	/>
 	<label for={schemaentry?.id} class="form-check-label">{schemaentry?.label}{schemaentry?.required ? "*" : ""}</label>
 </div>
-{#if schemaentry?.validationTip && showvalidation === "yes"}
+{#if schemaentry?.validationTip && show_validation === "yes"}
 	<div part="invalid-feedback" class="invalid-feedback mb-1">
 		{schemaentry.validationTip}
 	</div>

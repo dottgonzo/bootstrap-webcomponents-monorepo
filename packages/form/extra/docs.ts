@@ -4,9 +4,9 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	schema: { control: { type: "array" } },
 	submitted: { control: { type: "boolean" } },
-	showvalidation: { control: { type: "boolean" } },
-	setvalid: { control: { type: "boolean" } },
-	setvalue: { control: { type: "boolean" } },
+	show_validation: { control: { type: "boolean" } },
+	set_valid: { control: { type: "boolean" } },
+	set_value: { control: { type: "boolean" } },
 	hide_submit: { control: { type: "boolean" } },
 	submit: { action: "submit" },
 	getValues: { action: "getValues" },
@@ -137,8 +137,8 @@ const preferences = [
 		label: "Titolo di default",
 		value: "titolotest",
 		params: {
-			minlength: 8,
-			maxlength: 120,
+			minLength: 8,
+			maxLength: 120,
 		},
 	},
 	{
@@ -185,8 +185,8 @@ const conditionalSchema = [
 		label: "Titolo di default",
 		value: "titolotest",
 		params: {
-			minlength: 8,
-			maxlength: 120,
+			minLength: 8,
+			maxLength: 120,
 		},
 	},
 	{
