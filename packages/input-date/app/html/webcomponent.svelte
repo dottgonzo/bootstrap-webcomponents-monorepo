@@ -45,9 +45,9 @@
 		if (schemaentry) {
 			if (schemaentry.required) {
 				if (value) {
-					if (schemaentry.params.minlength && !(value.length >= schemaentry.params.minlength)) {
+					if (schemaentry.params?.minlength && !(value.length >= schemaentry.params?.minlength)) {
 						valid = false;
-					} else if (schemaentry.params.maxlength && !(value.length <= schemaentry.params.maxlength)) {
+					} else if (schemaentry.params?.maxlength && !(value.length <= schemaentry.params.maxlength)) {
 						valid = false;
 					} else {
 						valid = true;

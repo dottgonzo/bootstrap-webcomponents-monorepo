@@ -46,9 +46,9 @@
 				if (value) {
 					if (regex && !regex.test(value)) {
 						valid = false;
-					} else if (schemaentry.params.minlength && !(value.length >= schemaentry.params.minlength)) {
+					} else if (schemaentry.params?.minlength && !(value.length >= schemaentry.params.minlength)) {
 						valid = false;
-					} else if (schemaentry.params.maxlength && !(value.length <= schemaentry.params.maxlength)) {
+					} else if (schemaentry.params?.maxlength && !(value.length <= schemaentry.params.maxlength)) {
 						valid = false;
 					} else {
 						valid = true;
