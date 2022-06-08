@@ -67,7 +67,7 @@
 		required={schemaentry?.required}
 		readonly={schemaentry?.readonly}
 	/>
-	<label for={schemaentry?.id} class="form-check-label">{schemaentry?.label}</label>
+	<label for={schemaentry?.id} class="form-check-label">{schemaentry?.label}{schemaentry?.required ? "*" : ""}</label>
 </div>
 {#if schemaentry?.validationTip && showvalidation === "yes"}
 	<div part="invalid-feedback" class="invalid-feedback mb-1">
