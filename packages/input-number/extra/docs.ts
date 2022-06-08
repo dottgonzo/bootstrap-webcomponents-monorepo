@@ -29,7 +29,7 @@ export const styleSetup: StyleSetup = {
 
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
-		name: "default",
+		name: "required",
 		data: {
 			schemaentry: {
 				placeholder: "Insert your last name here...",
@@ -37,6 +37,45 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				required: true,
 				label: "Last Name",
 				validationTip: "This field cannot be empty.",
+			},
+		},
+	},
+	{
+		name: "withmax",
+		data: {
+			schemaentry: {
+				placeholder: "Insert your last name here...",
+				id: "lastName",
+				required: true,
+				label: "Last Name",
+				validationTip: "This field cannot be empty.",
+				params: { min: 3 },
+			},
+		},
+	},
+	{
+		name: "withmin",
+		data: {
+			schemaentry: {
+				placeholder: "Insert your last name here...",
+				id: "lastName",
+				required: true,
+				label: "Last Name",
+				validationTip: "This field cannot be empty.",
+				params: { max: 3 },
+			},
+		},
+	},
+	{
+		name: "withminmax",
+		data: {
+			schemaentry: {
+				placeholder: "Insert your last name here...",
+				id: "lastName",
+				required: true,
+				label: "Last Name",
+				validationTip: "This field cannot be empty.",
+				params: { min: 3, max: 10 },
 			},
 		},
 	},

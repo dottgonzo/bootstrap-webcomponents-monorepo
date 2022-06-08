@@ -38,7 +38,7 @@
 			setvalid = true;
 		}
 
-		value = value != null ? value : (schemaentry?.value as number);
+		value = value || value === 0 ? Number(value) : null;
 
 		regex = schemaentry?.validationRegex && new RegExp(schemaentry.validationRegex);
 
@@ -47,9 +47,9 @@
 				if (value || value === 0) {
 					if (regex && !regex.test(value)) {
 						valid = false;
-					} else if (schemaentry.params?.min && !(value.length >= schemaentry.params.min)) {
+					} else if (schemaentry.params?.min && !(value >= schemaentry.params.min)) {
 						valid = false;
-					} else if (schemaentry.params?.max && !(value.length <= schemaentry.params.max)) {
+					} else if (schemaentry.params?.max && !(value <= schemaentry.params.max)) {
 						valid = false;
 					} else {
 						valid = true;
