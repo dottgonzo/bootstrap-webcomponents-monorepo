@@ -11,7 +11,7 @@
 	export let schemaentry: FormSchemaEntry;
 
 	let value: string;
-	let regex: RegExp | undefined;
+	// let regex: RegExp | undefined;
 	let valid = false;
 
 	const component = get_current_component();
@@ -40,12 +40,28 @@
 
 		value = value != null ? value : (schemaentry?.value as string);
 
-		regex = schemaentry?.validationRegex && new RegExp(schemaentry.validationRegex);
-		valid = schemaentry
-			? (!schemaentry?.required || value != null) &&
-			  (regex ? regex.test(value) : true) &&
-			  (value == null || (value.length >= (schemaentry.params?.minlength ?? 0) && value.length <= (schemaentry.params?.maxlength ?? Infinity)))
-			: false;
+		// regex = schemaentry?.validationRegex && new RegExp(schemaentry.validationRegex);
+
+		if (schemaentry) {
+			if (schemaentry.required) {
+				if (value) {
+					if (schemaentry.params.minlength && !(value.length >= schemaentry.params.minlength)) {
+						valid = false;
+					} else if (schemaentry.params.maxlength && !(value.length <= schemaentry.params.maxlength)) {
+						valid = false;
+					} else {
+						valid = true;
+					}
+				} else {
+					valid = true;
+				}
+			} else {
+				valid = false;
+			}
+		} else {
+			valid = false;
+		}
+
 		setTimeout(() => {
 			if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
 			if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });

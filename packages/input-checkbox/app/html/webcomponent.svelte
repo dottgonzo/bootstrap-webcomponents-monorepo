@@ -11,6 +11,7 @@
 	export let schemaentry: FormSchemaEntry;
 
 	let value: boolean;
+	let valid: boolean;
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -35,7 +36,19 @@
 		} else {
 			setvalid = true;
 		}
-
+		if (schemaentry) {
+			if (schemaentry.required) {
+				if (value) {
+					valid = true;
+				} else {
+					valid = false;
+				}
+			} else {
+				valid = true;
+			}
+		} else {
+			valid = false;
+		}
 		value = value != null ? value : !!schemaentry?.value;
 		setTimeout(() => {
 			if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
