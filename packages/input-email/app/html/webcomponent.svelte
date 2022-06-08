@@ -43,7 +43,18 @@
 		regex = schemaentry?.validationRegex && new RegExp(schemaentry.validationRegex);
 		if (schemaentry) {
 			if (schemaentry.required) {
-				if (value && value.includes("@") && value.includes(".")) {
+				if (
+					value &&
+					value.includes("@") &&
+					value.includes(".") &&
+					!value.includes(".@") &&
+					!value.includes("@.") &&
+					!value.includes(" ") &&
+					!value.endsWith(".") &&
+					!value.endsWith("@") &&
+					!value.startsWith(".") &&
+					!value.startsWith("@")
+				) {
 					if (regex && !regex.test(value)) {
 						valid = false;
 					} else if (schemaentry.params?.minlength && !(value.length >= schemaentry.params.minlength)) {

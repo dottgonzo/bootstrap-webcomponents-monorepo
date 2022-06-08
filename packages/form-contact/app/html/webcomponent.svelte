@@ -80,7 +80,7 @@
 				id: "email",
 				name: "email",
 				label: informations.email.label || "email",
-				type: "text",
+				type: "email",
 				required: informations.email.required ? true : false,
 				placeholder: informations.email.placeholder || "Your email",
 				value: informations.email.value || "",

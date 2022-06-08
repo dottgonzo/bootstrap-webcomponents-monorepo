@@ -32,7 +32,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "FormContact1",
 		data: {
 			informations: { email: { required: true }, message: {} },
-			privacy_policy: { input: "accettalo" },
+			privacy_policy: { input: "accettalo", required: true },
 		},
 	},
 	{
@@ -51,7 +51,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "FormContactWithCaptcha",
 		data: {
 			informations: { email: { required: true }, message: {} },
-			privacy_policy: { input: "accettalo" },
+			privacy_policy: { input: "accettalo", required: true },
 			captcha: {
 				type: "googlev_recaptchav2_invisible",
 				siteKey: "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI",

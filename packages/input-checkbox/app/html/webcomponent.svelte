@@ -36,6 +36,8 @@
 		} else {
 			setvalid = true;
 		}
+
+		value = value != null ? value : !!schemaentry?.value;
 		if (schemaentry) {
 			if (schemaentry.required) {
 				if (value) {
@@ -49,7 +51,6 @@
 		} else {
 			valid = false;
 		}
-		value = value != null ? value : !!schemaentry?.value;
 		setTimeout(() => {
 			if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
 			if (setvalid) dispatch("setValid", true);
