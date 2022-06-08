@@ -60,11 +60,10 @@
 				name: "name",
 				label: informations.name.label || "Name",
 				type: "text",
-				required: informations.name.required,
+				required: informations.name.required ? true : false,
 				placeholder: informations.name.placeholder || "Your name",
 				value: informations.name.value || "",
-				valid: false,
-				error: "",
+
 				validation: {
 					minLength: {
 						value: 3,
@@ -82,11 +81,10 @@
 				name: "email",
 				label: informations.email.label || "email",
 				type: "text",
-				required: informations.email.required,
+				required: informations.email.required ? true : false,
 				placeholder: informations.email.placeholder || "Your email",
 				value: informations.email.value || "",
-				valid: false,
-				error: "",
+
 				validation: {
 					minLength: {
 						value: 3,
@@ -104,11 +102,10 @@
 				name: "phone",
 				label: informations.phone.label || "phone",
 				type: "text",
-				required: informations.phone.required,
+				required: informations.phone.required ? true : false,
 				placeholder: informations.phone.placeholder || "Your phone",
 				value: informations.phone.value || "",
-				valid: false,
-				error: "",
+
 				validation: {
 					minLength: {
 						value: 3,
@@ -125,11 +122,10 @@
 				name: "subject",
 				label: informations.subject.label || "Subject",
 				type: "text",
-				required: informations.subject.required,
+				required: informations.subject.required ? true : false,
 				placeholder: informations.subject.placeholder || "Email Subject",
 				value: informations.subject.value || "",
-				valid: false,
-				error: "",
+
 				validation: {
 					minLength: {
 						value: 3,
@@ -147,11 +143,9 @@
 				name: "message",
 				label: informations.message.label || "Message",
 				type: "textarea",
-				required: informations.message.required,
+				required: informations.message.required ? true : false,
 				placeholder: informations.message.placeholder || "Your message here...",
 				value: informations.message.value || "",
-				valid: false,
-				error: "",
 				validation: {
 					minLength: {
 						value: 3,

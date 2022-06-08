@@ -12,20 +12,42 @@ import {
 const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
 
-const inputEntry1 = {
-  type: "text",
-  placeholder: "Insert your last name here...",
-  id: "lastName",
-  required: true,
-  label: "Last Name",
-  validationTip: "This field cannot be empty.",
-};
-
 const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes, componentSetup.name);
 
 export const FormTextInputTemplate = Template.bind({});
-FormTextInputTemplate.args = {
-  id: "BasicFormTextInput",
-  schemaentry: inputEntry1,
-};
+
+FormTextInputTemplate.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[0]
+);
+export const FormTextInputTemplateRequired = Template.bind({});
+
+FormTextInputTemplateRequired.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[1]
+);
+export const FormTextInputTemplateRequiredWithMin = Template.bind({});
+
+FormTextInputTemplateRequiredWithMin.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[2]
+);
+export const FormTextInputTemplateRequiredWithMax = Template.bind({});
+
+FormTextInputTemplateRequiredWithMax.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[3]
+);
+export const FormTextInputTemplateRequiredWithMaxMin = Template.bind({});
+
+FormTextInputTemplateRequiredWithMaxMin.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[4]
+);
+export const FormTextInputTemplateRequiredWithRegex = Template.bind({});
+
+FormTextInputTemplateRequiredWithRegex.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[5]
+);

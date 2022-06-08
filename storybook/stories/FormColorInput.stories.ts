@@ -7,7 +7,7 @@ import {
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/input-text/extra/docs";
+} from "../../packages/input-color/extra/docs";
 
 const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;

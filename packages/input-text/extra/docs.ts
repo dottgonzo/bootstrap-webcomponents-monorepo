@@ -34,8 +34,75 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			schemaentry: {
 				placeholder: "Insert your last name here...",
 				id: "lastName",
+				validationTip: "This field cannot be empty.",
+			},
+		},
+	},
+	{
+		name: "defaultRequired",
+		data: {
+			schemaentry: {
+				placeholder: "Insert your last name here...",
+				id: "lastName",
 				required: true,
 				validationTip: "This field cannot be empty.",
+			},
+		},
+	},
+	{
+		name: "requiredwithmin",
+		data: {
+			schemaentry: {
+				placeholder: "Insert your last name here...",
+				id: "lastName",
+				required: true,
+				validationTip: "This field cannot be empty.",
+				params: {
+					minlength: 2,
+				},
+			},
+		},
+	},
+	{
+		name: "requiredwithmax",
+		data: {
+			schemaentry: {
+				placeholder: "Insert your last name here...",
+				id: "lastName",
+				required: true,
+				validationTip: "This field cannot be empty.",
+				params: {
+					maxlength: 2,
+				},
+			},
+		},
+	},
+	{
+		name: "requiredwithminmax",
+		data: {
+			schemaentry: {
+				placeholder: "Insert your last name here...",
+				id: "lastName",
+				required: true,
+				validationTip: "This field cannot be empty.",
+				params: {
+					minlength: 2,
+					maxlength: 6,
+				},
+			},
+		},
+	},
+	{
+		name: "requiredwithregex",
+		data: {
+			schemaentry: {
+				placeholder: "Insert your last name here...",
+				id: "lastName",
+				required: true,
+				validationTip: "This field cannot be empty.",
+				params: {
+					minlength: 2,
+				},
 			},
 		},
 	},

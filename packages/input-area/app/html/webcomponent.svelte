@@ -41,11 +41,15 @@
 		value = value != null ? value : (schemaentry?.value as string);
 
 		regex = schemaentry?.validationRegex && new RegExp(schemaentry.validationRegex);
-		valid = schemaentry
-			? (!schemaentry?.required || value != null) &&
-			  (regex ? regex.test(value) : true) &&
-			  (value == null || (value.length >= (schemaentry.params?.minlength ?? 1) && value.length <= (schemaentry.params?.maxlength ?? Infinity)))
-			: false;
+		valid =
+			schemaentry && !schemaentry?.required
+				? true
+				: schemaentry &&
+				  value != null &&
+				  (regex ? regex.test(value) : true) &&
+				  (!schemaentry?.params ||
+						(value.length >= (schemaentry.params?.minlength ?? 1) && value.length <= (schemaentry.params?.maxlength ?? Infinity)));
+
 		setTimeout(() => {
 			if (setvalue) dispatch("setValue", { value, id: schemaentry?.id });
 			if (setvalid) dispatch("setValid", { valid, id: schemaentry?.id });
