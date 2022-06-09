@@ -43,12 +43,12 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	},
 ];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
-	definitions: null,
+	definitions: null as any,
 	storybookArgs,
 	styleSetup,
-	author: null,
+	author: null as any,
 	contributors: [],
-	owner: null,
+	owner: null as any,
 	htmlSlots,
 	i18n: i18nLanguages,
 	examples,
@@ -61,5 +61,5 @@ export const componentSetup: ComponentSetup & { examples: { name: string; descri
 	size: {},
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-dialog",
-	version: null,
+	version: null as any,
 };
