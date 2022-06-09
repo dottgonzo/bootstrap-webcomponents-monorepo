@@ -44,7 +44,7 @@ const inputEntry2 = {
   value: "testvalue",
 };
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, componentSetup.name);
+  webComponentBind(args, meta.argTypes as any, componentSetup.name);
 
 export const FormRadioInputTemplate = Template.bind({});
 FormRadioInputTemplate.args = {

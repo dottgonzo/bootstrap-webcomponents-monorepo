@@ -23,7 +23,7 @@
 	export let i18nlang: string;
 	export let capabilities: ICapabilities;
 	export let cookielawuri4more: string;
-	let localDictionary = dictionary["en"];
+	// let localDictionary = dictionary["en"];
 	// let translator.translateWord: (e: string) => string;
 
 	let isSet: boolean;

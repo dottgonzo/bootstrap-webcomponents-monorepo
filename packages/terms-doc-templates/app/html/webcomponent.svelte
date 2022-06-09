@@ -5,8 +5,10 @@
 
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
-
+	import { addComponent, getChildStyleToPass, LanguageTranslator } from "@htmlbricks/hb-jsutils/main";
+	import Term1 from "./term1.svelte";
+	import type { Component } from "@app/types/webcomponent.type";
+	import { dictionary } from "@app/functions/i18n";
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 
@@ -17,13 +19,13 @@
 
 	export let id: string;
 	export let style: string;
+	export let i18nlang: string;
 
-	export let string: string;
-	export let json: { a: 0 };
-	export let boolean: boolean;
+	export let config: Component["config"];
 
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
+	let translator: LanguageTranslator;
 
 	$: {
 		if (!id) id = "";
@@ -31,33 +33,18 @@
 			parsedStyle = parseStyle(style);
 			// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
 		}
-		if (!string) string = "";
-
-		// json
-		if (typeof json === "string") JSON.parse(json);
-
-		// bolean
-		if (boolean === ("" as unknown)) boolean = true;
-		if (typeof boolean === "string") boolean = boolean === "no" || boolean === "false" ? false : true;
-		if (!boolean) boolean = false;
-	}
-
-	onMount(() => {
-		console.log(component.shadowRoot.getElementById("skeletontest"));
-	});
-
-	function dispatchCustomEvent() {
-		dispatch("event", { test: true });
+		if (typeof config === "string") config = JSON.parse(config);
+		if (!translator) {
+			translator = new LanguageTranslator({ dictionary, lang: i18nlang });
+		} else if (translator && i18nlang && translator.lang && translator.lang !== i18nlang) {
+			translator = new LanguageTranslator({ dictionary, lang: i18nlang });
+		}
 	}
 </script>
 
-<div part="testpart" on:click={() => dispatchCustomEvent()} id="skeletontest">{string}</div>
-{#if json}<div>{json}</div>{/if}
-<div part="testpart">{boolean}</div>
-slot: <slot name="skelcontent" /> /endslot<br />
-slot debug: {Object.keys($$slots)[0]}/endslot
+<Term1 site_name={config.site.name} site_url={config.site.url} company_name={config.company.name} />
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
-	@import "../styles/bootstrap.scss";
+	// @import "../styles/bootstrap.scss";
 </style>

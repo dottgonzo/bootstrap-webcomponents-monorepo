@@ -13,7 +13,7 @@ const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes, componentSetup.name);
+  webComponentBind(args, meta.argTypes as any, componentSetup.name);
 
 export const ChartTemplate = Template.bind({});
 ChartTemplate.args = {

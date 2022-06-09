@@ -7,25 +7,16 @@ import {
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/input-color/extra/docs";
+} from "../../packages/terms-doc-templates/extra/docs";
 
 const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
 
-const inputEntry1 = {
-  placeholder: "Insert color...",
-  id: "color1",
-  required: true,
-  label: "Last color",
-  validationTip: "This field cannot be empty.",
-  value: "#ffffff",
-};
-
 const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes as any, componentSetup.name);
 
-export const FormColorInputTemplate = Template.bind({});
-FormColorInputTemplate.args = {
-  id: "BasicFormColorInput",
-  schemaentry: inputEntry1,
-};
+export const TermDoc1 = Template.bind({});
+TermDoc1.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[0]
+);

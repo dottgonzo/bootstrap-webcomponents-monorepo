@@ -1,9 +1,9 @@
 export type Component = {
 	id?: string;
 	style?: string;
-	json?: { a: number };
-	string: string;
-	boolean?: boolean;
+	i18nlang?: string;
+
+	config: { site: { name: string; url: string }; company: { name: string } };
 };
 
 export type Events = {

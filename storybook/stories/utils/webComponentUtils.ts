@@ -78,7 +78,7 @@ export const webComponentBind = (
   }
   let c: HTMLElement;
   if (document.getElementById(args.id)) {
-    c = document.getElementById(args.id);
+    c = document.getElementById(args.id) as HTMLElement;
   } else {
     c = document.createElement(componentName);
     c.id = args.id;
