@@ -22,7 +22,7 @@ export const styleSetup: StyleSetup = {
 
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
-		name: "default",
+		name: "gdpr",
 		data: {
 			config: {
 				site: {
@@ -32,6 +32,21 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				company: {
 					name: "FWC Inc.",
 				},
+			},
+		},
+	},
+	{
+		name: "italian",
+		data: {
+			config: {
+				site: {
+					name: "demo.freewebcomponents.com",
+					url: "https://demo.freewebcomponents.com",
+				},
+				company: {
+					name: "FWC Inc.",
+				},
+				law: "italian",
 			},
 		},
 	},

@@ -3,7 +3,15 @@ export type Component = {
 	style?: string;
 	i18nlang?: string;
 
-	config: { site: { name: string; url: string }; company: { name: string } };
+	config: {
+		law?: "italian" | "GDPR";
+		site: { name: string; url: string; privacyPolicyUri?: string; cookiePolicyUri?: string };
+		company: { name: string; address?: string };
+		privacyAdmin?: { name: string; email: string };
+		collectedData?: string[];
+		withPayments?: {};
+		date?: string;
+	};
 };
 
 export type Events = {

@@ -20,3 +20,8 @@ TermDoc1.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples[0]
 );
+export const TermDocItalian = Template.bind({});
+TermDocItalian.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[1]
+);
