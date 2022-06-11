@@ -13,7 +13,7 @@
 	<p style="text-align: left;">
 		1. In questa sezione sono contenute le informazioni relative alle modalità di gestione di <span id="span_id_sito">{config.site.name}</span>, di
 		proprietà di
-		<span id="span_id_proprietario_sito">INGECO</span>, in riferimento al trattamento dei dati degli utenti del sito stesso.
+		<span id="span_id_proprietario_sito">{config.company.name}</span>, in riferimento al trattamento dei dati degli utenti del sito stesso.
 	</p>
 	<p>
 		2. La presente informativa ha valore anche ai fini dell'articolo 13 del Regolamento (UE) n. 2016/679, relativo alla protezione delle persone fisiche con
@@ -64,7 +64,7 @@
 	</p>
 	<p style="text-align: left;">
 		2. Il consenso è facoltativo e può essere revocato in qualsiasi momento mediante richiesta inviata a mezzo email a <span
-			id="span_id_mailtitolaretrattamento">dev@ciccio.pasticcio</span
+			id="span_id_mailtitolaretrattamento">{config.privacyAdmin.email}</span
 		> precisando che, in tal caso, in assenza di consenso non potranno essere erogati alcuni servizi e la navigazione sul sito web potrebbe essere compromessa.
 	</p>
 	<p style="text-align: center;"><strong><br />5</strong><em><strong> - </strong></em><strong>Cookies</strong></p>
@@ -76,7 +76,7 @@
 	</p>
 	<p style="text-align: left;">
 		2. Per avere informazioni complete riguardo ai cookies visitare la nostra cookie policy: <span id="span_id_cookie_policy"
-			>https://priv.com/uriterms</span
+			>{config.site.cookiePolicyUri}</span
 		>.
 	</p>
 	<p style="text-align: center;"><strong><br />6 - Tipologia di trattamento dati</strong></p>
@@ -153,36 +153,43 @@
 		criterio utilizzato per determinare il periodo di conservazione è improntato al rispetto dei termini consentiti dalle leggi applicabili e dai principi
 		di minimizzazione del trattamento e limitazione della conservazione.
 	</p>
-	<p>3. Nello specifico, i dati verranno conservati per i seguenti periodi:</p>
-	<p style="padding-left: 30px;"><span id="span_id_periodo_trattamento1">500000 gggg</span></p>
-
+	{#if config.storage}
+		<p>3. Nello specifico, i dati verranno conservati per i seguenti periodi:</p>
+		<p style="padding-left: 30px;"><span id="span_id_periodo_trattamento1">{config.storage.durate}</span></p>
+	{/if}
 	<p>
 		4. I dati utilizzati a fini di sicurezza (blocco tentativi di danneggiamento del sito) sono conservati per il tempo strettamente necessario al
 		raggiungimento del fine anteriormente indicato.
 	</p>
-	<p style="text-align: center;"><strong><br />11 - Pagamenti</strong></p>
-	<p>
-		1. <span id="span_id_sito">{config.site.name}</span> utilizza servizi di pagamento per eseguire pagamenti con carta di credito, bonifico bancario o
-		altri strumenti. <span id="span_id_sito">{config.site.name}</span> non raccoglie o acquisisce i dati usati per il pagamento.
-	</p>
-	<p>
-		2. I dati per il pagamento sono raccolti e acquisiti direttamente dal gestore del servizio di pagamento, come l'ente carta di credito, Paypal, Stripe o
-		simili. Questi servizi possono effettuare invio di messaggi verso l'utente, per esempio email o sms di notifiche del pagamento.
-	</p>
-	<p>
-		3. I dati acquisiti e l'utilizzo degli stessi da parte di servizi terzi sono regolamentati dalle rispettive Privacy Policy alle quali si prega di fare
-		riferimento.
-	</p>
-	<p style="padding-left: 30px;">
-		PayPal, Fornitore del servizio: PayPal, Inc. Finalità del servizio: effettuare pagamenti online Dati personali raccolti: tipologie di dati secondo
-		quanto specificato dalla privacy policy del servizio Luogo del trattamento: secondo quanto specificato dalla privacy policy del servizio Privacy Policy
-		(https://www.paypal.com/it/webapps/mpp/ua/privacy-full)
-	</p>
-	<p style="padding-left: 30px;">
-		Stripe, Fornitore del servizio: Stripe, Inc. Finalità del servizio: effettuare pagamenti online Dati personali raccolti: tipologie di dati secondo
-		quanto specificato dalla privacy policy del servizio. Luogo del trattamento: secondo quanto specificato dalla privacy policy del servizio Privacy Policy
-		(https://stripe.com/it/privacy)
-	</p>
+	{#if config.payments}
+		<p style="text-align: center;"><strong><br />11 - Pagamenti</strong></p>
+		<p>
+			1. <span id="span_id_sito">{config.site.name}</span> utilizza servizi di pagamento per eseguire pagamenti con carta di credito, bonifico bancario o
+			altri strumenti. <span id="span_id_sito">{config.site.name}</span> non raccoglie o acquisisce i dati usati per il pagamento.
+		</p>
+		<p>
+			2. I dati per il pagamento sono raccolti e acquisiti direttamente dal gestore del servizio di pagamento, come l'ente carta di credito, Paypal,
+			Stripe o simili. Questi servizi possono effettuare invio di messaggi verso l'utente, per esempio email o sms di notifiche del pagamento.
+		</p>
+		<p>
+			3. I dati acquisiti e l'utilizzo degli stessi da parte di servizi terzi sono regolamentati dalle rispettive Privacy Policy alle quali si prega di
+			fare riferimento.
+		</p>
+		{#if config.payments.companies.find((f) => f.company.toLowerCase() === "paypal")}
+			<p style="padding-left: 30px;">
+				PayPal, Fornitore del servizio: PayPal, Inc. Finalità del servizio: effettuare pagamenti online Dati personali raccolti: tipologie di dati
+				secondo quanto specificato dalla privacy policy del servizio Luogo del trattamento: secondo quanto specificato dalla privacy policy del servizio
+				Privacy Policy (https://www.paypal.com/it/webapps/mpp/ua/privacy-full)
+			</p>
+		{/if}
+		{#if config.payments.companies.find((f) => f.company.toLowerCase() === "stripe")}
+			<p style="padding-left: 30px;">
+				Stripe, Fornitore del servizio: Stripe, Inc. Finalità del servizio: effettuare pagamenti online Dati personali raccolti: tipologie di dati
+				secondo quanto specificato dalla privacy policy del servizio. Luogo del trattamento: secondo quanto specificato dalla privacy policy del
+				servizio Privacy Policy (https://stripe.com/it/privacy)
+			</p>
+		{/if}
+	{/if}
 	<p style="text-align: center;"><strong><br />12 - Moduli di contatto</strong></p>
 	<p>
 		1. L'utente può compilare il/i moduli di contatto/richiesta informazioni, inserendo i propri dati e acconsentendo al loro uso per rispondere alle
@@ -203,41 +210,55 @@
 			id="span_id_sito">{config.site.name}</span
 		>.
 	</p>
-	<p>
-		3. Le interazioni e le informazioni acquisite da <span id="span_id_sito">{config.site.name}</span> sono in ogni caso soggette alle impostazioni privacy dell'Utente
-		relative ad ogni social network. Nel caso in cui sia installato un servizio di interazione con i social network, è possibile che, anche nel caso gli Utenti
-		non utilizzino il servizio, lo stesso raccolga dati di traffico relativi alle pagine in cui è installato.
-	</p>
-	<p style="padding-left: 30px;">
-		Pulsante e widget sociali di Linkedin (LinkedIn Corporation). Il pulsante e i widget sociali di LinkedIn sono servizi di interazione con il social
-		network Linkedin, forniti da LinkedIn Corporation. Dati Personali raccolti: Cookie e Dati di utilizzo. Luogo del trattamento: Stati Uniti – Privacy
-		Policy: https://www.linkedin.com/legal/privacy-policy
-	</p>
-	<p style="padding-left: 30px;">
-		Pulsante Mi Piace e widget sociali di Facebook (Facebook, Inc.) Il pulsante "Mi Piace" e i widget sociali di Facebook sono servizi di interazione con il
-		social network Facebook, forniti da Facebook, Inc. Dati Personali raccolti: Cookie e Dati di utilizzo. Luogo del trattamento: Stati Uniti – Privacy
-		Policy: https://www.facebook.com/privacy/explanation.
-	</p>
-	<p style="padding-left: 30px;">
-		Pulsante Tweet e widget sociali di Twitter (Twitter, Inc.) Il pulsante Tweet e i widget sociali di Twitter sono servizi di interazione con il social
-		network Twitter, forniti da Twitter, Inc. Dati Personali raccolti: Cookie e Dati di utilizzo. Luogo del trattamento: Stati Uniti – Privacy Policy:
-		https://twitter.com/en/privacy.
-	</p>
-	<p style="padding-left: 30px;">
-		Pulsante +1 e widget sociali di Google+ (Google Inc.) Il pulsante +1 e i widget sociali di Google+ sono servizi di interazione con il social network
-		Google+, forniti da Google Inc. Dati Personali raccolti: Cookie e Dati di utilizzo. Luogo del trattamento: Stati Uniti – Privacy Policy:
-		https://policies.google.com/privacy?hl=it.
-	</p>
-	<p style="padding-left: 30px;">
-		Pulsante Pin It e widget sociali di Pinterest (Pinterest Inc.)<br />Pulsante Pin It e i widget sociali di Pinterest sono servizi di interazione con il
-		social network Pinterest, fornito da Pinterest Inc.Dati Personali raccolti: Cookie e Dati di utilizzo. Luogo del trattamento: USA – Privacy Policy:
-		https://policy.pinterest.com/it/privacy-policy
-	</p>
-	<p style="padding-left: 30px;">
-		Pulsante e widget sociali di Instagram (Instagram, Inc.)<br />Il pulsante e i widget sociali di Instagram sono servizi di interazione con il social
-		network Instagram, fornito da Instagram, Inc. Dati Personali raccolti: Cookie e Dati di utilizzo Luogo del trattamento: USA – Privacy Policy:
-		https://help.instagram.com/196883487377501
-	</p>
+	{#if config.socialNetworks}
+		<p>
+			3. Le interazioni e le informazioni acquisite da <span id="span_id_sito">{config.site.name}</span> sono in ogni caso soggette alle impostazioni privacy
+			dell'Utente relative ad ogni social network. Nel caso in cui sia installato un servizio di interazione con i social network, è possibile che, anche nel
+			caso gli Utenti non utilizzino il servizio, lo stesso raccolga dati di traffico relativi alle pagine in cui è installato.
+		</p>
+		{#if config.socialNetworks.find((f) => f.company.toLowerCase() === "linkedin")}
+			<p style="padding-left: 30px;">
+				Pulsante e widget sociali di Linkedin (LinkedIn Corporation). Il pulsante e i widget sociali di LinkedIn sono servizi di interazione con il
+				social network Linkedin, forniti da LinkedIn Corporation. Dati Personali raccolti: Cookie e Dati di utilizzo. Luogo del trattamento: Stati Uniti
+				– Privacy Policy: https://www.linkedin.com/legal/privacy-policy
+			</p>
+		{/if}
+		{#if config.socialNetworks.find((f) => f.company.toLowerCase() === "facebook")}
+			<p style="padding-left: 30px;">
+				Pulsante Mi Piace e widget sociali di Facebook (Facebook, Inc.) Il pulsante "Mi Piace" e i widget sociali di Facebook sono servizi di
+				interazione con il social network Facebook, forniti da Facebook, Inc. Dati Personali raccolti: Cookie e Dati di utilizzo. Luogo del trattamento:
+				Stati Uniti – Privacy Policy: https://www.facebook.com/privacy/explanation.
+			</p>
+		{/if}
+		{#if config.socialNetworks.find((f) => f.company.toLowerCase() === "twitter")}
+			<p style="padding-left: 30px;">
+				Pulsante Tweet e widget sociali di Twitter (Twitter, Inc.) Il pulsante Tweet e i widget sociali di Twitter sono servizi di interazione con il
+				social network Twitter, forniti da Twitter, Inc. Dati Personali raccolti: Cookie e Dati di utilizzo. Luogo del trattamento: Stati Uniti –
+				Privacy Policy: https://twitter.com/en/privacy.
+			</p>
+		{/if}
+		{#if config.socialNetworks.find((f) => f.company.toLowerCase() === "google")}
+			<p style="padding-left: 30px;">
+				Pulsante +1 e widget sociali di Google+ (Google Inc.) Il pulsante +1 e i widget sociali di Google+ sono servizi di interazione con il social
+				network Google+, forniti da Google Inc. Dati Personali raccolti: Cookie e Dati di utilizzo. Luogo del trattamento: Stati Uniti – Privacy Policy:
+				https://policies.google.com/privacy?hl=it.
+			</p>
+		{/if}
+		{#if config.socialNetworks.find((f) => f.company.toLowerCase() === "pinterest")}
+			<p style="padding-left: 30px;">
+				Pulsante Pin It e widget sociali di Pinterest (Pinterest Inc.)<br />Pulsante Pin It e i widget sociali di Pinterest sono servizi di interazione
+				con il social network Pinterest, fornito da Pinterest Inc.Dati Personali raccolti: Cookie e Dati di utilizzo. Luogo del trattamento: USA –
+				Privacy Policy: https://policy.pinterest.com/it/privacy-policy
+			</p>
+		{/if}
+		{#if config.socialNetworks.find((f) => f.company.toLowerCase() === "instagram")}
+			<p style="padding-left: 30px;">
+				Pulsante e widget sociali di Instagram (Instagram, Inc.)<br />Il pulsante e i widget sociali di Instagram sono servizi di interazione con il
+				social network Instagram, fornito da Instagram, Inc. Dati Personali raccolti: Cookie e Dati di utilizzo Luogo del trattamento: USA – Privacy
+				Policy: https://help.instagram.com/196883487377501
+			</p>
+		{/if}
+	{/if}
 	<p style="padding-left: 30px; text-align: center;"><strong><br />14 - Diritti dell'utente</strong></p>
 	<p>
 		1. Viene garantito all'utente il rispetto dei suoi diritti nell'ambito della protezione dei dati personali. In linea con quanto ripreso e affermato dal
@@ -273,7 +294,7 @@
 	</p>
 	<p>
 		2. In qualsiasi momento l'utente può chiedere di esercitare i suddetti diritti a <span id="span_id_sito">{config.site.name}</span> rivolgendosi
-		all'indirizzo mail: <span id="span_id_mailtitolaretrattamento">dev@ciccio.pasticcio</span>.
+		all'indirizzo mail: <span id="span_id_mailtitolaretrattamento">{config.privacyAdmin.email}</span>.
 	</p>
 	<p>
 		3. Inoltre, l'utente ha diritto di proporre reclamo nei confronti dell'Autorità di controllo italiana: "Garante per la Protezione dei Dati Personali"
@@ -287,7 +308,7 @@
 		regolato dall'articolo 45, comma 1 del Regolamento (UE) 2016/679, per cui non occorre ulteriore consenso.
 	</p>
 	<p>2. Non verranno mai trasferiti dati a Paesi terzi che non rispettino le condizioni previste dall'articolo 45 e ss, del Regolamento (UE).</p>
-	<p style="text-align: center;"><strong><br />16. <span class="flou">588552225 5528 2252828</span></strong></p>
+	<!--<p style="text-align: center;"><strong><br />16. <span class="flou">588552225 5528 2252828</span></strong></p>
 	<p style="text-align: left;">
 		<span class="flou"
 			>2. 58 25282222 8822 255225 8 5528 52288 522228 82 2528255 828825 2 82552225, 552225252 82 222252522 288552 58 888552225 82822 55 82225852 5882888
@@ -301,17 +322,18 @@
 			52282882552882, 82222588582, 255222822, 822588, 52282882552258 58 8882225) 288252 82222228 2822528 (8222 225282258 58 8258828 2282888 22528,
 			82558258 2282588, 5282822 25288525, 8288225 822252528852, 5222282 58 8225288528222).</span
 		>
-	</p>
-	<p style="text-align: center;"><strong><br />17. Modifiche al presente documento</strong></p>
+	</p>-->
+	<p style="text-align: center;"><strong><br />16. Modifiche al presente documento</strong></p>
 	<p>1. Il presente documento, che costituisce la privacy policy di questo sito, è pubblicato all'indirizzo:</p>
-	<p style="padding-left: 30px;"><span id="span_id_altrourl" class="encours">cicciopasto</span></p>
+	<p style="padding-left: 30px;"><span id="span_id_altrourl" class="encours">{config.site.privacyPolicyUri}</span></p>
 	<p>
 		2. Esso può essere soggetto a modifiche o aggiornamenti. Qualora si tratti di modifiche ed aggiornamenti rilevanti questi saranno segnalati con apposite
 		notifiche agli utenti.
 	</p>
 	<p>3. Le versioni precedenti del documento saranno comunque consultabili a questa pagina.</p>
 	<p>
-		4. Il documento è stato aggiornato in data <span id="span_id_data" class="encours"><span class="variable_vide">________</span></span> per essere conforme
-		alle disposizioni normative in materia, ed in particolare in conformità al Regolamento (UE) 2016/679.
+		4. Il documento è stato aggiornato in data <span id="span_id_data" class="encours"
+			><span class="variable_vide">{new Date(config.date).toLocaleDateString("it-IT")}</span></span
+		> per essere conforme alle disposizioni normative in materia, ed in particolare in conformità al Regolamento (UE) 2016/679.
 	</p>
 {/if}

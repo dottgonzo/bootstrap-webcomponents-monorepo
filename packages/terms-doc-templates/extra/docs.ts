@@ -42,11 +42,17 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				site: {
 					name: "demo.freewebcomponents.com",
 					url: "https://demo.freewebcomponents.com",
+					privacyPolicyUri: "https://demo.freewebcomponents.com/privacy_policy",
+					cookiePolicyUri: "https://demo.freewebcomponents.com/cookie_law",
 				},
 				company: {
 					name: "FWC Inc.",
+					address: "Acacia Avenue, 666",
 				},
+				privacyAdmin: { name: "testownerprivacy", email: "ownprivacy.own" },
 				law: "italian",
+
+				date: new Date("2020-01-01"),
 			},
 		},
 	},

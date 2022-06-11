@@ -9,8 +9,11 @@ export type Component = {
 		company: { name: string; address?: string };
 		privacyAdmin?: { name: string; email: string };
 		collectedData?: string[];
-		withPayments?: {};
-		date?: string;
+		payments?: { companies: { company: string }[] };
+		date?: Date;
+		socialNetworks?: { company: string }[];
+		storage?: { durate?: number };
+		analytics?: { companies: { company: string }[] };
 	};
 };
 
