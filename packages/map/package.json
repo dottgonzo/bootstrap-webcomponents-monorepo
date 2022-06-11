@@ -75,7 +75,7 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "93428a7cad10df1427cbe07aa447e0a6db0f2252",
+	"gitHead": "23b03d73bcb6e8e92a3143681f3126666178010c",
 	"dependencies": {
 		"debounce": "^1.2.1",
 		"ol": "^6.12.0"
