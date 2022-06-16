@@ -43,10 +43,17 @@
 		} else if (translator && i18nlang && translator.lang && translator.lang !== i18nlang) {
 			translator = new LanguageTranslator({ dictionary, lang: i18nlang });
 		}
+
 		if (data && typeof data === "string") {
-			const json = JSON.parse(data);
-			if (json.id === "italian-terms-privacy") {
-				doc = itPrivacyContent(json);
+			try {
+				const json: Component["data"] = JSON.parse(data);
+				switch (json.id) {
+					case "italian-terms-privacy":
+						doc = itPrivacyContent(json);
+						break;
+				}
+			} catch (err) {
+				console.error("parsing data", err);
 			}
 		}
 	}
