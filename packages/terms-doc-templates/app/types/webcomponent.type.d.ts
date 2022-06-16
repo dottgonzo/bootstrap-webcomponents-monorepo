@@ -1,6 +1,6 @@
-export type IParagraphList = { key: string; content: string };
+export type IParagraphList = { key: string; content: string; index?: number };
 
-export type IParagraph = { key: string; content: string; list?: IParagraphList[] };
+export type IParagraph = { key: string; content: string; list?: IParagraphList[]; index: number };
 
 export type IDoc = {
 	title: string;
@@ -11,7 +11,7 @@ export type IDoc = {
 export type IChapter = {
 	title: string;
 	key: string;
-	index?: number;
+	index: number;
 	paragraphs: IParagraph[];
 };
 

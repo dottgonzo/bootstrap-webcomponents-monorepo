@@ -8,8 +8,9 @@
 	import { addComponent, getChildStyleToPass, LanguageTranslator } from "@htmlbricks/hb-jsutils/main";
 	import GDPR from "@app/html/GDPR.svelte";
 	import ItPolicy from "@app/html/ItPolicy.svelte";
+	import itPrivacyContent from "@app/functions/privacyItContent";
 
-	import type { Component } from "@app/types/webcomponent.type";
+	import type { Component, IDoc, ITPrivacy } from "@app/types/webcomponent.type";
 	import { dictionary } from "@app/functions/i18n";
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -28,6 +29,8 @@
 	//  let componentStyleToSet: string = "";
 	let translator: LanguageTranslator;
 
+	let doc: IDoc;
+
 	$: {
 		if (!id) id = "";
 		if (style) {
@@ -42,15 +45,33 @@
 		} else if (translator && i18nlang && translator.lang && translator.lang !== i18nlang) {
 			translator = new LanguageTranslator({ dictionary, lang: i18nlang });
 		}
+		switch (config.law) {
+			case "italian":
+				doc = itPrivacyContent(config as ITPrivacy);
+				break;
+		}
 	}
 </script>
 
-{#if config?.site?.name && config.company?.name}
-	{#if config.law === "GDPR"}
-		<GDPR {config} />
-	{:else}
-		<ItPolicy {config} />
-	{/if}
+{#if config?.site?.name && config.company?.name && doc.chapters?.length}
+	<h1>{doc.title}</h1>
+	{#each doc.chapters.filter((f) => f.key) as chapter (chapter.key)}
+		{#if chapter.paragraphs?.length}
+			<h2>{chapter.index}. {chapter.title}</h2>
+			{#each chapter.paragraphs.filter((f) => f.key) as paragraph (paragraph.key)}
+				<p>
+					{paragraph.content}
+					{#if paragraph.list?.length}
+						<ul>
+							{#each paragraph.list.filter((f) => f.key) as listItem (listItem.key)}
+								<li>{listItem.content}</li>
+							{/each}
+						</ul>
+					{/if}
+				</p>
+			{/each}
+		{/if}
+	{/each}
 {/if}
 
 <style lang="scss">
