@@ -60,17 +60,17 @@
 </script>
 
 {#if doc?.title && doc.chapters?.length}
-	<h1>{doc.title}</h1>
+	<h1 part="h1">{doc.title}</h1>
 	{#each doc.chapters.filter((f) => f.key) as chapter (chapter.key)}
 		{#if chapter.paragraphs?.length}
-			<h2>{chapter.index}. {chapter.title}</h2>
+			<h2 part="h2">{chapter.index}. {chapter.title}</h2>
 			{#each chapter.paragraphs.filter((f) => f.key) as paragraph (paragraph.key)}
-				<p>
+				<p part="p">
 					{paragraph.content}
 					{#if paragraph.list?.length}
-						<ul>
+						<ul part="ul">
 							{#each paragraph.list.filter((f) => f.key) as listItem (listItem.key)}
-								<li>{listItem.content}</li>
+								<li part="li">{listItem.content}</li>
 							{/each}
 						</ul>
 					{/if}
