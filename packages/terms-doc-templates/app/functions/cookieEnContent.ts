@@ -13,11 +13,11 @@ const cookieHeaders: ITableHeader[] = [
 export default function (config: CookieContent) {
 	const content: IDoc = {
 		id: config.id,
-		title: `Cookie Policy di ${config.site.name}`,
-		int: { key: "it", flag: "" },
+		title: `Cookie Policy of ${config.site.name}`,
+		int: { key: "en", flag: "" },
 		chapters: [
 			{
-				title: "Informazioni generali",
+				title: "General Informations",
 				index: 0,
 				paragraphs: [
 					{

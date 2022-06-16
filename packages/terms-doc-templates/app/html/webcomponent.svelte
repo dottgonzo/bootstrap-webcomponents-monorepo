@@ -2,6 +2,7 @@
 
 <script lang="ts">
 	import { get_current_component, onDestroy, onMount } from "svelte/internal";
+	import pkg from "../../package.json";
 
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
@@ -9,6 +10,9 @@
 	// import GDPR from "@app/html/GDPR.svelte";
 	// import ItPolicy from "@app/html/ItPolicy.svelte.bk";
 	import itPrivacyContent from "@app/functions/privacyItContent";
+	import itCookieContent from "@app/functions/cookieItContent";
+	import enCookieContent from "@app/functions/cookieEnContent";
+	import { styleSetup as tableStyleSetup } from "../../node_modules/@htmlbricks/hb-table/release/docs";
 
 	import type { Component, IDoc, ITPrivacy } from "@app/types/webcomponent.type";
 	import { dictionary } from "@app/functions/i18n";
@@ -26,7 +30,7 @@
 	export let data: Component["data"];
 
 	let parsedStyle: { [x: string]: string };
-	//  let componentStyleToSet: string = "";
+	let tableStyleToSet: string = "";
 	let translator: LanguageTranslator;
 
 	let doc: IDoc;
@@ -35,7 +39,7 @@
 		if (!id) id = "";
 		if (style) {
 			parsedStyle = parseStyle(style);
-			// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
+			tableStyleToSet = getChildStyleToPass(parsedStyle, tableStyleSetup?.vars);
 		}
 
 		if (!translator) {
@@ -48,8 +52,17 @@
 			try {
 				const json: Component["data"] = JSON.parse(data);
 				switch (json.id) {
-					case "italian-terms-privacy":
+					case "privacy-doc-italian":
 						doc = itPrivacyContent(json);
+						break;
+					case "cookie-doc-italian":
+						doc = itCookieContent(json);
+						break;
+					case "cookie-doc-english":
+						doc = enCookieContent(json);
+						break;
+					case "cookie-doc":
+						doc = itCookieContent(json);
 						break;
 				}
 			} catch (err) {
@@ -57,6 +70,7 @@
 			}
 		}
 	}
+	addComponent({ repoName: "@htmlbricks/hb-table", version: pkg.version });
 </script>
 
 {#if doc?.title && doc.chapters?.length}
@@ -65,16 +79,24 @@
 		{#if chapter.paragraphs?.length}
 			<h2 part="h2">{chapter.index}. {chapter.title}</h2>
 			{#each chapter.paragraphs.filter((f) => f.key) as paragraph (paragraph.key)}
-				<p part="p">
-					{paragraph.content}
-					{#if paragraph.list?.length}
-						<ul part="ul">
-							{#each paragraph.list.filter((f) => f.key) as listItem (listItem.key)}
-								<li part="li">{listItem.content}</li>
-							{/each}
-						</ul>
-					{/if}
-				</p>
+				{#if paragraph.title}
+					<h3>{paragraph.title}</h3>
+				{/if}
+				{#if paragraph.content}
+					<p part="p">
+						{paragraph.content}
+					</p>
+				{/if}
+				{#if paragraph.list?.length}
+					<ul part="ul">
+						{#each paragraph.list.filter((f) => f.key) as listItem (listItem.key)}
+							<li part="li">{listItem.content}</li>
+						{/each}
+					</ul>
+				{/if}
+				{#if paragraph.table?.headers && paragraph.table.rows?.length}
+					<hb-table style={tableStyleToSet} headers={JSON.stringify(paragraph.table.headers)} rows={JSON.stringify(paragraph.table.rows)} />
+				{/if}
 			{/each}
 		{/if}
 	{/each}

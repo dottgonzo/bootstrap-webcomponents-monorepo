@@ -3,7 +3,7 @@ import { sortFinalDoc } from "./utils";
 
 export default function (config: ITPrivacy) {
 	const content: IDoc = {
-		id: "italian-terms-privacy",
+		id: config.id,
 		title: "INFORMATIVA PRIVACY",
 		int: { key: "it", flag: "" },
 		chapters: [

@@ -40,7 +40,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		data: {
 			data: {
 				collectedData: { dataTypes: [], scopes: [] },
-				id: "italian-terms-privacy",
+				id: "privacy-doc-italian",
 				site: {
 					name: "demo.freewebcomponents.com",
 					url: "https://demo.freewebcomponents.com",
@@ -52,6 +52,46 @@ const examples: { name: string; description?: string; data: Component }[] = [
 					address: "Acacia Avenue, 666",
 				},
 				privacyAdmin: { name: "testownerprivacy", email: "ownprivacy.own" },
+
+				date: new Date("2020-01-01"),
+			},
+		},
+	},
+	{
+		name: "cookieit",
+		data: {
+			data: {
+				id: "cookie-doc-italian",
+				site: {
+					name: "demo.freewebcomponents.com",
+					url: "https://demo.freewebcomponents.com",
+					privacyPolicyUri: "https://demo.freewebcomponents.com/privacy_policy",
+					cookiePolicyUri: "https://demo.freewebcomponents.com/cookie_law",
+				},
+				company: {
+					name: "FWC Inc.",
+					address: "Acacia Avenue, 666",
+				},
+
+				date: new Date("2020-01-01"),
+			},
+		},
+	},
+	{
+		name: "cookieen",
+		data: {
+			data: {
+				id: "cookie-doc-english",
+				site: {
+					name: "demo.freewebcomponents.com",
+					url: "https://demo.freewebcomponents.com",
+					privacyPolicyUri: "https://demo.freewebcomponents.com/privacy_policy",
+					cookiePolicyUri: "https://demo.freewebcomponents.com/cookie_law",
+				},
+				company: {
+					name: "FWC Inc.",
+					address: "Acacia Avenue, 666",
+				},
 
 				date: new Date("2020-01-01"),
 			},
