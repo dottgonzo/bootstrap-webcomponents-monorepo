@@ -6,8 +6,8 @@
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass, LanguageTranslator } from "@htmlbricks/hb-jsutils/main";
-	import GDPR from "@app/html/GDPR.svelte";
-	import ItPolicy from "@app/html/ItPolicy.svelte";
+	// import GDPR from "@app/html/GDPR.svelte";
+	// import ItPolicy from "@app/html/ItPolicy.svelte.bk";
 	import itPrivacyContent from "@app/functions/privacyItContent";
 
 	import type { Component, IDoc, ITPrivacy } from "@app/types/webcomponent.type";
@@ -23,7 +23,7 @@
 	export let id: string;
 	export let style: string;
 	export let i18nlang: string;
-	export let config: Component["config"];
+	export let italian_privacy_policy: Component["italian_privacy_policy"];
 
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
@@ -37,23 +37,19 @@
 			parsedStyle = parseStyle(style);
 			// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
 		}
-		if (typeof config === "string") config = JSON.parse(config);
-		if (!config?.law && config) config.law = "GDPR";
 
 		if (!translator) {
 			translator = new LanguageTranslator({ dictionary, lang: i18nlang });
 		} else if (translator && i18nlang && translator.lang && translator.lang !== i18nlang) {
 			translator = new LanguageTranslator({ dictionary, lang: i18nlang });
 		}
-		switch (config.law) {
-			case "italian":
-				doc = itPrivacyContent(config as ITPrivacy);
-				break;
+		if (italian_privacy_policy && typeof italian_privacy_policy === "string") {
+			doc = itPrivacyContent(JSON.parse(italian_privacy_policy));
 		}
 	}
 </script>
 
-{#if config?.site?.name && config.company?.name && doc.chapters?.length}
+{#if doc?.title && doc.chapters?.length}
 	<h1>{doc.title}</h1>
 	{#each doc.chapters.filter((f) => f.key) as chapter (chapter.key)}
 		{#if chapter.paragraphs?.length}
@@ -72,6 +68,8 @@
 			{/each}
 		{/if}
 	{/each}
+{:else}
+	invalid doc params
 {/if}
 
 <style lang="scss">

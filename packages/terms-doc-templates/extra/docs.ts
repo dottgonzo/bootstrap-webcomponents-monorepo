@@ -2,7 +2,7 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	config: { control: { type: "object" } },
+	italian_privacy_policy: { control: { type: "object" } },
 	i18nlang: { control: { type: "text" } },
 
 	event: { action: "eventEvent" },
@@ -21,24 +21,24 @@ export const styleSetup: StyleSetup = {
 };
 
 const examples: { name: string; description?: string; data: Component }[] = [
-	{
-		name: "gdpr",
-		data: {
-			config: {
-				site: {
-					name: "demo.freewebcomponents.com",
-					url: "https://demo.freewebcomponents.com",
-				},
-				company: {
-					name: "FWC Inc.",
-				},
-			},
-		},
-	},
+	// {
+	// 	name: "gdpr",
+	// 	data: {
+	// 		config: {
+	// 			site: {
+	// 				name: "demo.freewebcomponents.com",
+	// 				url: "https://demo.freewebcomponents.com",
+	// 			},
+	// 			company: {
+	// 				name: "FWC Inc.",
+	// 			},
+	// 		},
+	// 	},
+	// },
 	{
 		name: "italian",
 		data: {
-			config: {
+			italian_privacy_policy: {
 				site: {
 					name: "demo.freewebcomponents.com",
 					url: "https://demo.freewebcomponents.com",
@@ -50,7 +50,6 @@ const examples: { name: string; description?: string; data: Component }[] = [
 					address: "Acacia Avenue, 666",
 				},
 				privacyAdmin: { name: "testownerprivacy", email: "ownprivacy.own" },
-				law: "italian",
 
 				date: new Date("2020-01-01"),
 			},

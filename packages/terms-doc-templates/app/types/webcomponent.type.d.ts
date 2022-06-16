@@ -15,31 +15,22 @@ export type IChapter = {
 	paragraphs: IParagraph[];
 };
 
-export interface IData {
-	law?: "italian" | "GDPR";
-	site: { name: string; url: string; privacyPolicyUri?: string; cookiePolicyUri?: string };
-	company: { name: string; address?: string };
-	privacyAdmin?: { name: string; email: string };
-	collectedData?: { scopes: { label: "string" }[]; dataTypes: { label: "string" }[]; contactModule?: { data: { label: "string" }[] } };
+export interface ITPrivacy {
+	site: { name: string; url: string; privacyPolicyUri: string; cookiePolicyUri: string };
+	company: { name: string; address: string };
+	privacyAdmin: { name: string; email: string };
+	collectedData: { scopes: { label: "string" }[]; dataTypes: { label: "string" }[]; contactModule?: { data: { label: "string" }[] } };
 	payments?: { companies: { company: string }[] };
 	date?: Date;
 	socialNetworks?: { company: string }[];
 	storage?: { durate?: string };
 	analytics?: { companies: { company: string }[] };
 }
-
-export interface ITPrivacy extends IData {
-	site: { name: string; url: string; privacyPolicyUri: string; cookiePolicyUri: string };
-	company: { name: string; address: string };
-	privacyAdmin: { name: string; email: string };
-	collectedData: { scopes: { label: "string" }[]; dataTypes: { label: "string" }[]; contactModule?: { data: { label: "string" }[] } };
-}
 export type Component = {
 	id?: string;
 	style?: string;
 	i18nlang?: string;
-
-	config: IData;
+	italian_privacy_policy: IData;
 };
 
 export type Events = {
