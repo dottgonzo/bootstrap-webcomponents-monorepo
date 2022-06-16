@@ -14,7 +14,21 @@ export type IChapter = {
 	index?: number;
 	paragraphs: IParagraph[];
 };
-export interface ITPrivacy extends Component["config"] {
+
+export interface IData {
+	law?: "italian" | "GDPR";
+	site: { name: string; url: string; privacyPolicyUri?: string; cookiePolicyUri?: string };
+	company: { name: string; address?: string };
+	privacyAdmin?: { name: string; email: string };
+	collectedData?: string[];
+	payments?: { companies: { company: string }[] };
+	date?: Date;
+	socialNetworks?: { company: string }[];
+	storage?: { durate?: string };
+	analytics?: { companies: { company: string }[] };
+}
+
+export interface ITPrivacy extends IData {
 	site: { name: string; url: string; privacyPolicyUri: string; cookiePolicyUri: string };
 	company: { name: string; address: string };
 	privacyAdmin: { name: string; email: string };
@@ -24,18 +38,7 @@ export type Component = {
 	style?: string;
 	i18nlang?: string;
 
-	config: {
-		law?: "italian" | "GDPR";
-		site: { name: string; url: string; privacyPolicyUri?: string; cookiePolicyUri?: string };
-		company: { name: string; address?: string };
-		privacyAdmin?: { name: string; email: string };
-		collectedData?: string[];
-		payments?: { companies: { company: string }[] };
-		date?: Date;
-		socialNetworks?: { company: string }[];
-		storage?: { durate?: number };
-		analytics?: { companies: { company: string }[] };
-	};
+	config: IData;
 };
 
 export type Events = {
