@@ -2,8 +2,14 @@
 
 <script type="ts">
 	import type { Component } from "@app/types/webcomponent.type";
+	import privacyContent from "@app/functions/privacyItContent";
 
 	export let config: Component["config"];
+
+	// const orderedChapters = privacyContent
+	// 	.filter((f) => f.sort)
+	// 	.sort((a, b) => a.sort - b.sort)
+	// 	.concat(privacyContent.filter((f) => !f.sort));
 </script>
 
 {#if config}
