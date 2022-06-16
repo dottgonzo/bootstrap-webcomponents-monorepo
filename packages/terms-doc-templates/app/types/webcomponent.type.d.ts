@@ -20,7 +20,7 @@ export interface IData {
 	site: { name: string; url: string; privacyPolicyUri?: string; cookiePolicyUri?: string };
 	company: { name: string; address?: string };
 	privacyAdmin?: { name: string; email: string };
-	collectedData?: string[];
+	collectedData?: { scopes: { label: "string" }[]; dataTypes: { label: "string" }[]; contactModule?: { data: { label: "string" }[] } };
 	payments?: { companies: { company: string }[] };
 	date?: Date;
 	socialNetworks?: { company: string }[];
@@ -32,6 +32,7 @@ export interface ITPrivacy extends IData {
 	site: { name: string; url: string; privacyPolicyUri: string; cookiePolicyUri: string };
 	company: { name: string; address: string };
 	privacyAdmin: { name: string; email: string };
+	collectedData: { scopes: { label: "string" }[]; dataTypes: { label: "string" }[]; contactModule?: { data: { label: "string" }[] } };
 }
 export type Component = {
 	id?: string;

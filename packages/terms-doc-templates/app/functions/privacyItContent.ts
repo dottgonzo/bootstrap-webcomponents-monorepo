@@ -216,72 +216,7 @@ export default function (config: ITPrivacy) {
 				],
 				key: "dataFunctions",
 			},
-			{
-				title: "Finalità del trattamento dati",
-				index: 8,
-				paragraphs: [
-					{
-						content: `I dati raccolti dal sito durante il suo funzionamento sono utilizzati per finalità sopra indicate e per le seguenti finalità:`,
-						list: [], // fill list
-						key: "ftd1",
-						index: 0,
-					},
-				],
-				key: "dataScopes",
-			},
 
-			{
-				title: "Pagamenti",
-				index: 10,
-				paragraphs: [
-					{
-						content: `${config.site.name} utilizza servizi di pagamento per eseguire pagamenti con carta di credito, bonifico bancario o
-			altri strumenti. ${config.site.name} non raccoglie o acquisisce i dati usati per il pagamento.`,
-						key: "py1",
-						index: 0,
-					},
-					{
-						content: `I dati per il pagamento sono raccolti e acquisiti direttamente dal gestore del servizio di pagamento, come l'ente carta di credito, Paypal,
-			Stripe o simili. Questi servizi possono effettuare invio di messaggi verso l'utente, per esempio email o sms di notifiche del pagamento.`,
-						key: "py2",
-						index: 1,
-					},
-					{
-						content: `I dati acquisiti e l'utilizzo degli stessi da parte di servizi terzi sono regolamentati dalle rispettive Privacy Policy alle quali si prega di
-			fare riferimento.`,
-						key: "py3",
-						index: 2,
-					},
-					,
-					{
-						content: ``, // fill content
-						key: "py4",
-						list: [], // fill list
-						index: 3,
-					},
-				],
-				key: "payments",
-			},
-			{
-				title: "Moduli di contatto",
-				index: 11,
-				paragraphs: [
-					{
-						content: `L'utente può compilare il/i moduli di contatto/richiesta informazioni, inserendo i propri dati e acconsentendo al loro uso per rispondere alle
-		richieste di natura indicata nella intestazione del modulo.`,
-						key: "mc1",
-						index: 0,
-					},
-
-					{
-						content: `Dati personali che potrebbero essere raccolti:`,
-						list: [], // fill list
-						key: "mc2",
-						index: 1,
-					},
-				],
-				key: "contacts",
-			},
 			{
 				title: "Interazione social network",
 				index: 12,
@@ -489,17 +424,97 @@ export default function (config: ITPrivacy) {
 		};
 		content.chapters.find((f) => f.key === "socials").paragraphs.push(socialParagraph);
 	}
-	if (config.collectedData?.length) {
+	if (config.collectedData?.dataTypes?.length) {
 		content.chapters
 			.find((f) => f.key === "dataTypes")
 			.paragraphs.push({
 				content: `I dati raccolti sono da ${config.site.name} sono:`,
-				list: config.collectedData.map((m) => {
-					return { content: m, key: m.replace(/ /g, "") };
+				list: config.collectedData.dataTypes.map((m) => {
+					return { content: m.label, key: m.label.replace(/ /g, "") };
 				}),
 				key: "tda2",
 				index: 1,
 			});
+	}
+	if (config.collectedData?.scopes?.length) {
+		content.chapters.push({
+			title: "Finalità del trattamento dati",
+			index: 8,
+			paragraphs: [
+				{
+					content: `I dati raccolti dal sito durante il suo funzionamento sono utilizzati per finalità sopra indicate e per le seguenti finalità:`,
+					list: config.collectedData.scopes.map((m) => {
+						return { content: m.label, key: m.label.replace(/ /g, "") };
+					}),
+					key: "ftd1",
+					index: 0,
+				},
+			],
+			key: "dataScopes",
+		});
+	}
+	if (config.collectedData?.contactModule?.data?.length) {
+		content.chapters.push({
+			title: "Moduli di contatto",
+			index: 11,
+			paragraphs: [
+				{
+					content: `L'utente può compilare il/i moduli di contatto/richiesta informazioni, inserendo i propri dati e acconsentendo al loro uso per rispondere alle
+		richieste di natura indicata nella intestazione del modulo.`,
+					key: "mc1",
+					index: 0,
+				},
+				{
+					content: `Dati personali che potrebbero essere raccolti:`,
+					list: config.collectedData.contactModule.data.map((m) => {
+						return { content: m.label, key: m.label.replace(/ /g, "") };
+					}),
+					key: "mc2",
+					index: 1,
+				},
+			],
+			key: "contacts",
+		});
+	}
+	if (config.payments?.companies?.length) {
+		const stripe = `Pulsante di pagamento Stripe (Stripe Inc.). Pulsante di pagamento Stripe è un servizio di pagamento fornito da Stripe, Inc. Dati Personali raccolti: Cookie e Dati di utilizzo. Luogo del trattamento: USA – Privacy Policy: https://stripe.com/it/privacy`;
+		const paypal = `Pulsante di pagamento Paypal (PayPal Inc.). Pulsante di pagamento Paypal è un servizio di pagamento fornito da PayPal, Inc. Dati Personali raccolti: Cookie e Dati di utilizzo. Luogo del trattamento: USA – Privacy Policy: https://www.paypal.com/it/webapps/mpp/ua/privacy-full`;
+		const paymentCompanies: IParagraphList[] = [];
+		if (config.payments.companies.find((f) => f.company.toLowerCase() === "stripe")) paymentCompanies.push({ content: stripe, key: "stripe" });
+		if (config.payments.companies.find((f) => f.company.toLowerCase() === "paypal")) paymentCompanies.push({ content: paypal, key: "paypal" });
+
+		content.chapters.push({
+			title: "Pagamenti",
+			index: 10,
+			paragraphs: [
+				{
+					content: `${config.site.name} utilizza servizi di pagamento per eseguire pagamenti con carta di credito, bonifico bancario o
+			altri strumenti. ${config.site.name} non raccoglie o acquisisce i dati usati per il pagamento.`,
+					key: "py1",
+					index: 0,
+				},
+				{
+					content: `I dati per il pagamento sono raccolti e acquisiti direttamente dal gestore del servizio di pagamento, come l'ente carta di credito, Paypal,
+			Stripe o simili. Questi servizi possono effettuare invio di messaggi verso l'utente, per esempio email o sms di notifiche del pagamento.`,
+					key: "py2",
+					index: 1,
+				},
+				{
+					content: `I dati acquisiti e l'utilizzo degli stessi da parte di servizi terzi sono regolamentati dalle rispettive Privacy Policy alle quali si prega di
+			fare riferimento.`,
+					key: "py3",
+					index: 2,
+				},
+
+				{
+					content: `Lista dei principalii servizi di terze parti utilizzati per le finalità relative ai pagamenti:`,
+					key: "py4",
+					list: paymentCompanies,
+					index: 3,
+				},
+			],
+			key: "payments",
+		});
 	}
 	return sortFinalDoc(content);
 }
