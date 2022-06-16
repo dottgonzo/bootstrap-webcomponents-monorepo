@@ -28,6 +28,12 @@ export interface ITPrivacy {
 	storage?: { durate?: string };
 	analytics?: { companies: { company: string }[] };
 }
+export type CookieItContent = {
+	id: "italian-terms-cookies";
+	site: { name: string; url: string; privacyPolicyUri: string; cookiePolicyUri: string };
+	company: { name: string; address: string };
+};
+
 export type Component = {
 	id?: string;
 	style?: string;
