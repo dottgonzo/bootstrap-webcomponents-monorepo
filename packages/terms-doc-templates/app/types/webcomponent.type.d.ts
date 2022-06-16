@@ -3,9 +3,10 @@ export type IParagraphList = { key: string; content: string; index?: number };
 export type IParagraph = { key: string; content: string; list?: IParagraphList[]; index: number };
 
 export type IDoc = {
+	id: string;
 	title: string;
 	chapters: IChapter[];
-	language: string;
+	int: { key: string; flag: string };
 };
 
 export type IChapter = {
@@ -16,6 +17,7 @@ export type IChapter = {
 };
 
 export interface ITPrivacy {
+	id: "italian-terms-privacy";
 	site: { name: string; url: string; privacyPolicyUri: string; cookiePolicyUri: string };
 	company: { name: string; address: string };
 	privacyAdmin: { name: string; email: string };
@@ -30,7 +32,7 @@ export type Component = {
 	id?: string;
 	style?: string;
 	i18nlang?: string;
-	italian_privacy_policy: IData;
+	data: ITPrivacy;
 };
 
 export type Events = {

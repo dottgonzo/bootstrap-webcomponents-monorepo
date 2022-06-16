@@ -23,7 +23,7 @@
 	export let id: string;
 	export let style: string;
 	export let i18nlang: string;
-	export let italian_privacy_policy: Component["italian_privacy_policy"];
+	export let data: Component["data"];
 
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
@@ -43,8 +43,11 @@
 		} else if (translator && i18nlang && translator.lang && translator.lang !== i18nlang) {
 			translator = new LanguageTranslator({ dictionary, lang: i18nlang });
 		}
-		if (italian_privacy_policy && typeof italian_privacy_policy === "string") {
-			doc = itPrivacyContent(JSON.parse(italian_privacy_policy));
+		if (data && typeof data === "string") {
+			const json = JSON.parse(data);
+			if (json.id === "italian-terms-privacy") {
+				doc = itPrivacyContent(json);
+			}
 		}
 	}
 </script>

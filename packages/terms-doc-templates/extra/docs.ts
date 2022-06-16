@@ -2,7 +2,7 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	italian_privacy_policy: { control: { type: "object" } },
+	data: { control: { type: "object" } },
 	i18nlang: { control: { type: "text" } },
 
 	event: { action: "eventEvent" },
@@ -38,7 +38,9 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "italian",
 		data: {
-			italian_privacy_policy: {
+			data: {
+				collectedData: { dataTypes: [], scopes: [] },
+				id: "italian-terms-privacy",
 				site: {
 					name: "demo.freewebcomponents.com",
 					url: "https://demo.freewebcomponents.com",
