@@ -77,7 +77,7 @@ export default function (config: CookieContent) {
 				paragraphs: [
 					{
 						key: "auth0",
-						content: `These are stored when you log in to a ${config.site.name} site, using our authentication service (EU Login). When you do this, you accept the associated privacy policy.`,
+						content: `These are stored when you log in to a ${config.site.name} site, using our authentication service. When you do this, you accept the associated privacy policy.`,
 						index: 0,
 						// table: { headers: cookieHeaders, rows: [] },
 					},
@@ -148,7 +148,7 @@ export default function (config: CookieContent) {
 					{
 						key: "mng4",
 						title: `Managing our analytics cookies`,
-						content: `You can manage your preferences concerning cookies from Europa Analytics on the dedicated Europa Analytics page.`,
+						content: `You can manage your preferences concerning cookies from ${config.site.name} on the dedicated website page.`,
 						index: 3,
 					},
 				],

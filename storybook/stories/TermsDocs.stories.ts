@@ -30,3 +30,8 @@ CookieDocEn1.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples[2]
 );
+export const CookieDocEnEmpty = Template.bind({});
+CookieDocEnEmpty.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[3]
+);

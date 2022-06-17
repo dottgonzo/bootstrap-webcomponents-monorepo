@@ -77,7 +77,7 @@ export default function (config: CookieContent) {
 				paragraphs: [
 					{
 						key: "auth0",
-						content: `These are stored when you log in to a ${config.site.name} site, using our authentication service (EU Login). When you do this, you accept the associated privacy policy.`,
+						content: `Questi vengono memorizzati quando accedi al sito ${config.site.name}, utilizzando il nostro servizio di autenticazione. Quando lo fai, accetti l'informativa sulla privacy associata.`,
 						index: 0,
 						// table: { headers: cookieHeaders, rows: [] },
 					},
@@ -96,28 +96,28 @@ export default function (config: CookieContent) {
 				paragraphs: [
 					{
 						key: "thr1",
-						content: `Some of our pages display content from external providers, e.g. YouTube, Facebook and Twitter.`,
+						content: `Alcune delle nostre pagine mostrano contenuti di fornitori esterni, ad es. YouTube, Facebook e Twitter.`,
 						index: 0,
 					},
 					{
 						key: "thr2",
-						content: `To view this third-party content, you first have to accept their specific terms and conditions. This includes their cookie policies, which we have no control over.`,
+						content: `Per visualizzare questo contenuto di terze parti, devi prima accettare i loro termini e condizioni specifici. Ciò include le loro politiche sui cookie, su cui non abbiamo alcun controllo.`,
 						index: 1,
 					},
 					{
 						key: "thr3",
-						content: `If you do not view this content, no third-party cookies are installed on your device.`,
+						content: `Se non visualizzi questo contenuto, sul tuo dispositivo non vengono installati cookie di terze parti.`,
 						index: 2,
 					},
 					{
 						key: "thr4",
-						content: `Third-party providers on ${config.site.name} websites`,
+						content: `Provider dei sistemi di tracking di terze parti`,
 						list: [],
 						index: 3,
 					},
 					{
 						key: "thr5",
-						content: `These third-party services are outside of the control of ${config.company.name}. Providers may, at any time, change their terms of service, purpose and use of cookies, etc.`,
+						content: `Questi servizi di terze parti sono al di fuori del controllo di ${config.company.name}. I fornitori possono, in qualsiasi momento, modificare i propri termini di servizio, finalità e utilizzo dei cookie, ecc.`,
 						index: 4,
 					},
 				],
@@ -130,25 +130,25 @@ export default function (config: CookieContent) {
 					{
 						key: "mng1",
 						title: `Cancellazione dei cookie dal tuo dispositivo`,
-						content: `You can delete all cookies that are already on your device by clearing the browsing history of your browser. This will remove all cookies from all websites you have visited. Be aware though that you may also lose some saved information (e.g. saved login details, site preferences).`,
+						content: `Puoi eliminare tutti i cookie già presenti sul tuo dispositivo cancellando la cronologia di navigazione del tuo browser. Questo rimuoverà tutti i cookie da tutti i siti web che hai visitato. Tieni presente, tuttavia, che potresti anche perdere alcune informazioni salvate (ad es. dettagli di accesso salvati, preferenze del sito).`,
 						index: 0,
 					},
 					{
 						key: "mng2",
 						title: `Gestione di specifici cookie`,
-						content: `For more detailed control over site-specific cookies, check the privacy and cookie settings in your preferred browser.`,
+						content: `Per un controllo più dettagliato sui cookie specifici del sito, controlla le impostazioni sulla privacy e sui cookie nel tuo browser preferito.`,
 						index: 1,
 					},
 					{
 						key: "mng3",
 						title: `Blocco dei cookie`,
-						content: `You can set most modern browsers to prevent any cookies being placed on your device, but you may then have to manually adjust some preferences every time you visit a site/page. And some services and functionalities may not work properly at all (e.g. profile logging-in).`,
+						content: `Puoi impostare i browser più moderni in modo da impedire che qualsiasi cookie venga inserito sul tuo dispositivo, ma potresti dover modificare manualmente alcune preferenze ogni volta che visiti un sito/una pagina. Inoltre, alcuni servizi e funzionalità potrebbero non funzionare correttamente (ad es. accesso al profilo).`,
 						index: 2,
 					},
 					{
 						key: "mng4",
 						title: `Gestione dei cookie per analitici`,
-						content: `You can manage your preferences concerning cookies from Europa Analytics on the dedicated Europa Analytics page.`,
+						content: `Puoi gestire le tue preferenze relative ai cookie da ${config.site.name} nella pagina dedicata del sito.`,
 						index: 3,
 					},
 				],
@@ -165,7 +165,7 @@ export default function (config: CookieContent) {
 				content.chapters
 					.find((f) => f.key === "technicals")
 					?.paragraphs.push({
-						content: `I dati raccolti dagli strumenti di tracking di ${config.site.name} sono:`,
+						content: `I dati tecnici raccolti dagli strumenti di tracking di ${config.site.name} sono:`,
 						table: { headers: cookieHeaders, rows: technicalFirst },
 						key: "tda2",
 						index: 1,
@@ -175,7 +175,7 @@ export default function (config: CookieContent) {
 				content.chapters
 					.find((f) => f.key === "technicals")
 					?.paragraphs.push({
-						content: `I dati raccolti dai cookie di terze parti sono:`,
+						content: `I dati tecnici raccolti dai cookie di terze parti sono:`,
 						table: { headers: cookieHeaders, rows: technicalThird },
 						key: "tda3",
 						index: 2,
@@ -191,7 +191,7 @@ export default function (config: CookieContent) {
 				content.chapters
 					.find((f) => f.key === "analytics")
 					?.paragraphs.push({
-						content: `I dati raccolti dagli strumenti di tracking di ${config.site.name} sono:`,
+						content: `I dati raccolti dagli strumenti di tracking di ${config.site.name} come strumento di analisi sono:`,
 						table: { headers: cookieHeaders, rows: analyticsFirst },
 						key: "ana1",
 						index: 0,
@@ -201,7 +201,7 @@ export default function (config: CookieContent) {
 				content.chapters
 					.find((f) => f.key === "analytics")
 					?.paragraphs.push({
-						content: `I dati raccolti dai cookie di terze parti sono:`,
+						content: `I dati analitici raccolti dai cookie di terze parti sono:`,
 						table: { headers: cookieHeaders, rows: analyticsThird },
 						key: "ana2",
 						index: 1,
@@ -217,7 +217,7 @@ export default function (config: CookieContent) {
 				content.chapters
 					.find((f) => f.key === "authentication")
 					?.paragraphs.push({
-						content: `I dati raccolti dagli strumenti di tracking di ${config.site.name} sono:`,
+						content: `I dati raccolti dagli strumenti di tracking di ${config.site.name} per l'autenticazione sono:`,
 						table: { headers: cookieHeaders, rows: authenticationsFirst },
 						key: "auth1",
 						index: 0,
@@ -227,7 +227,7 @@ export default function (config: CookieContent) {
 				content.chapters
 					.find((f) => f.key === "authentication")
 					?.paragraphs.push({
-						content: `I dati raccolti dai cookie di terze parti sono:`,
+						content: `I dati raccolti dai cookie di terze parti per l'autenticazione sono:`,
 						table: { headers: cookieHeaders, rows: authenticationsThird },
 						key: "auth2",
 						index: 1,
@@ -254,7 +254,7 @@ export default function (config: CookieContent) {
 			content.chapters
 				.find((f) => f.key === "advertising")
 				?.paragraphs.push({
-					content: `I dati raccolti dai cookie di terze parti sono:`,
+					content: `I dati raccolti dai cookie pubblicitari di terze parti sono:`,
 					table: { headers: cookieHeaders, rows: advertising },
 					key: "adv1",
 					index: 0,
