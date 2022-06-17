@@ -30,10 +30,10 @@ export function sortFinalDoc(doc: IDoc) {
 	return doc;
 }
 export const cookieHeaders: ITableHeaders = [
-	{ key: "name", label: "Nome" },
-	{ key: "service", label: "Servizio" },
-	{ key: "porpose", label: "Scope" },
-	{ key: "details", label: "Tipologie e Durata" },
+	{ key: "name", label: "Nome", nosort: true },
+	{ key: "service", label: "Servizio", nosort: true },
+	{ key: "porpose", label: "Scope", nosort: true },
+	{ key: "details", label: "Tipologie e Durata", nosort: true },
 ];
 
 export function mapCookie(cookie: CookieRow): IRow {

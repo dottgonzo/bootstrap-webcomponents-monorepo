@@ -1,8 +1,8 @@
 export type ITableHeaders = [
-	{ key: "name"; label: string },
-	{ key: "service"; label: string },
-	{ key: "porpose"; label: string },
-	{ key: "details"; label: string },
+	{ key: "name"; label: string; nosort: true },
+	{ key: "service"; label: string; nosort: true },
+	{ key: "porpose"; label: string; nosort: true },
+	{ key: "details"; label: string; nosort: true },
 ];
 
 export interface IRow {
