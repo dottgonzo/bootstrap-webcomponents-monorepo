@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-layout",
 	"displayName": "Svelte Bootstrap Layout WebComponent",
 	"description": "Svelte Bootstrap 5 WebComponent",
-	"version": "0.13.17",
+	"version": "0.13.18",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.13.17",
+		"@htmlbricks/hb-jsutils": "^0.13.18",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
@@ -78,8 +78,8 @@
 	"contributors": [],
 	"gitHead": "21f199b2c9cfe8b77c515f115bf0f4eae3fefb79",
 	"dependencies": {
-		"@htmlbricks/hb-layout-desktop": "^0.13.17",
-		"@htmlbricks/hb-layout-mobile": "^0.13.17",
+		"@htmlbricks/hb-layout-desktop": "^0.13.18",
+		"@htmlbricks/hb-layout-mobile": "^0.13.18",
 		"debounce": "^1.2.1",
 		"style-to-object": "^0.3.0"
 	}
