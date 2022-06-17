@@ -377,11 +377,11 @@ const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes as any, componentSetup.name);
 
 export const BasicTable = Template.bind({});
-BasicTable.args = {
-  headers: basicHeaders,
-  rows,
-  id: "BasicTable",
-};
+
+BasicTable.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[0]
+);
 export const BasicTableWithClick = Template.bind({});
 BasicTableWithClick.args = {
   headers: basicHeaders,

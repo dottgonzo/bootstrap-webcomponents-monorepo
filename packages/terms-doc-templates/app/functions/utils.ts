@@ -1,4 +1,4 @@
-import type { IDoc } from "@app/types/webcomponent.type";
+import type { CookieRow, IDoc, IRow, ITableHeaders } from "@app/types/webcomponent.type";
 
 export function sortFinalDoc(doc: IDoc) {
 	let ci = 1;
@@ -28,4 +28,21 @@ export function sortFinalDoc(doc: IDoc) {
 	}
 	doc.chapters = chapters;
 	return doc;
+}
+export const cookieHeaders: ITableHeaders = [
+	{ key: "name", label: "Nome" },
+	{ key: "service", label: "Servizio" },
+	{ key: "porpose", label: "Scope" },
+	{ key: "details", label: "Tipologie e Durata" },
+];
+
+export function mapCookie(cookie: CookieRow): IRow {
+	const row: IRow = {
+		_id: cookie.name,
+		name: cookie.name,
+		service: cookie.service,
+		porpose: cookie.purpose,
+		details: (cookie.storage === "persistent" ? "" : "") + cookie.durate,
+	};
+	return row;
 }

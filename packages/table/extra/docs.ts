@@ -52,6 +52,12 @@ const examples: { name: string; description?: string; data: Component }[] = [
 					search: true,
 				},
 				{
+					label: "index",
+					key: "index",
+					type: "number",
+					search: true,
+				},
+				{
 					label: "description",
 					key: "description",
 				},
@@ -73,6 +79,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 					time: "2021-08-06T22:46:30.565Z",
 					_id: "bau",
 					status: "closed",
+					index: 0,
 				},
 				{
 					title: "bb1",
@@ -81,12 +88,15 @@ const examples: { name: string; description?: string; data: Component }[] = [
 					description: "ffff2",
 					_id: "bb1",
 					status: "closed",
+					index: 10000,
 				},
 				{
 					title: "bb2",
 					time: "2021-08-02T22:46:32.565Z",
 					_id: "bb2",
 					status: "active",
+
+					index: 33,
 				},
 				{
 					title: "ss",
@@ -95,42 +105,51 @@ const examples: { name: string; description?: string; data: Component }[] = [
 					testnested: { nested: "dddd" },
 					_id: "ss",
 					status: "active",
+
+					index: 100.3,
 				},
 				{
 					title: "bb4",
 					time: "2021-08-06T22:46:34.565Z",
 					_id: "bb4",
 					status: "active",
+
+					index: 2,
 				},
 				{
 					title: "aa5",
 					time: "2021-08-06T22:46:34.565Z",
 					_id: "aa5",
 					status: "active",
+					index: 4,
 				},
 				{
 					title: "bb6",
 					time: "2021-08-06T22:46:34.565Z",
 					_id: "bb6",
 					status: "active",
+					index: 4,
 				},
 				{
 					title: "bb7",
 					time: "2021-08-06T22:46:34.565Z",
 					_id: "bb7",
 					status: "active",
+					index: 4,
 				},
 				{
 					title: "bb8",
 					time: "2021-08-06T22:46:34.565Z",
 					_id: "bb8",
 					status: "active",
+					index: 4,
 				},
 				{
 					title: "bb9",
 					time: "2021-08-06T22:46:33.565Z",
 					_id: "bb9",
 					status: "active",
+					index: 4,
 				},
 
 				{
@@ -138,12 +157,14 @@ const examples: { name: string; description?: string; data: Component }[] = [
 					time: "2021-08-06T22:46:34.565Z",
 					_id: "bb10",
 					status: "active",
+					index: 4,
 				},
 				{
 					title: "bb11",
 					time: "2021-08-06T22:46:34.565Z",
 					_id: "bb11",
 					status: "active",
+					index: 4,
 				},
 				{
 					title: "bb12",
@@ -151,12 +172,14 @@ const examples: { name: string; description?: string; data: Component }[] = [
 					videoSrc: "https://comapi.be-on.tv/v1/public/records/61043eedb50af916a6429fdc/video",
 					_id: "bb12",
 					status: "active",
+					index: 4,
 				},
 				{
 					title: "bb13",
 					time: "2021-08-07T22:46:39.565Z",
 					_id: "bb13",
 					status: "active",
+					index: 4,
 				},
 			],
 		},

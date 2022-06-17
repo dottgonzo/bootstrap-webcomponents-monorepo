@@ -1,14 +1,7 @@
 import type { CookieContent, IDoc, IParagraphList, ITableHeaders } from "@app/types/webcomponent.type";
-import { sortFinalDoc } from "./utils";
+import { cookieHeaders, mapCookie, sortFinalDoc } from "./utils";
 
 // https://www.iubenda.com/privacy-policy/54363417/cookie-policy?an=no&s_ck=false&newmarkup=yes
-
-const cookieHeaders: ITableHeaders = [
-	{ key: "name", label: "Nome" },
-	{ key: "service", label: "Servizio" },
-	{ key: "porpose", label: "Scope" },
-	{ key: "details", label: "Tipologie e Durata" },
-];
 
 export default function (config: CookieContent) {
 	const content: IDoc = {
@@ -63,12 +56,18 @@ export default function (config: CookieContent) {
 						content: `Questo Sito Web utilizza Cookie comunemente detti “tecnici” o altri Strumenti di Tracciamento analoghi per svolgere attività strettamente necessarie a garantire il funzionamento o la fornitura del Servizio.`,
 						index: 0,
 					},
-					{
-						key: "act2",
-						content: `Strumenti di Tracciamento di terza parte`,
-						index: 1,
-						// table: { headers: cookieHeaders, rows: [] },
-					},
+					// {
+					// 	key: "act2",
+					// 	content: `Technical Tracking Tools from ${config.company.name}`,
+					// 	index: 1,
+					// 	table: { headers: cookieHeaders, rows: config.cookies.filter((f) => f.type === "technical" && !f.third).map(mapCookie) },
+					// },
+					// {
+					// 	key: "act2",
+					// 	content: `Third party technical Tracking Tools`,
+					// 	index: 2,
+					// 	table: { headers: cookieHeaders, rows: config.cookies.filter((f) => f.type === "technical" && f.third).map(mapCookie) },
+					// },
 				],
 				key: "technicals",
 			},
@@ -77,13 +76,13 @@ export default function (config: CookieContent) {
 				index: 2,
 				paragraphs: [
 					{
-						key: "auth1",
+						key: "auth0",
 						content: `These are stored when you log in to a ${config.site.name} site, using our authentication service (EU Login). When you do this, you accept the associated privacy policy.`,
 						index: 0,
 						// table: { headers: cookieHeaders, rows: [] },
 					},
 				],
-				key: "authentications",
+				key: "authentication",
 			},
 			{
 				title: "Attività di anlisi dell'utilizzo del Sito Web",
@@ -92,7 +91,7 @@ export default function (config: CookieContent) {
 				key: "analytics",
 			},
 			{
-				title: "Third-party cookies",
+				title: "Cookies di terze parti",
 				index: 4,
 				paragraphs: [
 					{
@@ -122,10 +121,10 @@ export default function (config: CookieContent) {
 						index: 4,
 					},
 				],
-				key: "thirds",
+				key: "third-party",
 			},
 			{
-				title: "How can you manage cookies?",
+				title: "Come posso gestire i cookies?",
 				index: 5,
 				paragraphs: [
 					{
@@ -158,5 +157,109 @@ export default function (config: CookieContent) {
 		],
 	};
 
+	if (config.cookies?.length) {
+		const technicalFirst = config.cookies.filter((f) => f.type === "technical" && !f.third).map((m) => mapCookie(m));
+		const technicalThird = config.cookies.filter((f) => f.type === "technical" && f.third).map((m) => mapCookie(m));
+		if (technicalFirst.length || technicalThird.length) {
+			if (technicalFirst.length) {
+				content.chapters
+					.find((f) => f.key === "technicals")
+					?.paragraphs.push({
+						content: `I dati raccolti dagli strumenti di tracking di ${config.site.name} sono:`,
+						table: { headers: cookieHeaders, rows: technicalFirst },
+						key: "tda2",
+						index: 1,
+					});
+			}
+			if (technicalThird.length) {
+				content.chapters
+					.find((f) => f.key === "technicals")
+					?.paragraphs.push({
+						content: `I dati raccolti dai cookie di terze parti sono:`,
+						table: { headers: cookieHeaders, rows: technicalThird },
+						key: "tda3",
+						index: 2,
+					});
+			}
+		}
+
+		const analyticsFirst = config.cookies.filter((f) => f.type === "analytics" && !f.third).map((m) => mapCookie(m));
+		const analyticsThird = config.cookies.filter((f) => f.type === "analytics" && f.third).map((m) => mapCookie(m));
+
+		if (analyticsFirst.length || analyticsThird.length) {
+			if (analyticsFirst.length) {
+				content.chapters
+					.find((f) => f.key === "analytics")
+					?.paragraphs.push({
+						content: `I dati raccolti dagli strumenti di tracking di ${config.site.name} sono:`,
+						table: { headers: cookieHeaders, rows: analyticsFirst },
+						key: "ana1",
+						index: 0,
+					});
+			}
+			if (analyticsThird.length) {
+				content.chapters
+					.find((f) => f.key === "analytics")
+					?.paragraphs.push({
+						content: `I dati raccolti dai cookie di terze parti sono:`,
+						table: { headers: cookieHeaders, rows: analyticsThird },
+						key: "ana2",
+						index: 1,
+					});
+			}
+		}
+
+		const authenticationsFirst = config.cookies.filter((f) => f.type === "authentication" && !f.third).map((m) => mapCookie(m));
+		const authenticationsThird = config.cookies.filter((f) => f.type === "authentication" && f.third).map((m) => mapCookie(m));
+
+		if (authenticationsFirst.length || authenticationsThird.length) {
+			if (authenticationsFirst.length) {
+				content.chapters
+					.find((f) => f.key === "authentication")
+					?.paragraphs.push({
+						content: `I dati raccolti dagli strumenti di tracking di ${config.site.name} sono:`,
+						table: { headers: cookieHeaders, rows: authenticationsFirst },
+						key: "auth1",
+						index: 0,
+					});
+			}
+			if (authenticationsThird.length) {
+				content.chapters
+					.find((f) => f.key === "authentication")
+					?.paragraphs.push({
+						content: `I dati raccolti dai cookie di terze parti sono:`,
+						table: { headers: cookieHeaders, rows: authenticationsThird },
+						key: "auth2",
+						index: 1,
+					});
+			}
+		}
+
+		const thirds = config.cookies.filter((f) => f.type === "third-party").map((m) => mapCookie(m));
+
+		if (thirds.length) {
+			content.chapters
+				.find((f) => f.key === "third-party")
+				?.paragraphs.push({
+					content: `I dati raccolti dai cookie di terze parti sono:`,
+					table: { headers: cookieHeaders, rows: thirds },
+					key: "th1",
+					index: 0,
+				});
+		}
+
+		const advertising = config.cookies.filter((f) => f.type === "advertising").map((m) => mapCookie(m));
+
+		if (advertising.length) {
+			content.chapters
+				.find((f) => f.key === "advertising")
+				?.paragraphs.push({
+					content: `I dati raccolti dai cookie di terze parti sono:`,
+					table: { headers: cookieHeaders, rows: advertising },
+					key: "adv1",
+					index: 0,
+				});
+		}
+	}
 	return sortFinalDoc(content);
 }

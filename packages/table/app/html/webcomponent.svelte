@@ -156,7 +156,7 @@
 							rows = rows.filter((f) => dayjs(getObjVal(f, filter)).valueOf() <= dayjs(filter.end).valueOf());
 						}
 					} else {
-						rows = rows.filter((f) => getObjVal(f, filter).includes(filter.value));
+						rows = rows.filter((f) => getObjVal(f, filter).toString().includes(filter.value));
 					}
 				}
 			}
@@ -165,6 +165,14 @@
 				console.log("resort");
 				if (sortedDirection === "asc")
 					rows = rows.sort((a, b) => {
+						if (
+							(a[sortedBy] || a[sortedBy] === 0) &&
+							(b[sortedBy] || b[sortedBy] === 0) &&
+							typeof a[sortedBy] === "number" &&
+							typeof b[sortedBy] === "number"
+						) {
+							return b[sortedBy] - a[sortedBy];
+						}
 						if (a === b) return 0;
 						if (!a[sortedBy]) return 1;
 						if (!b[sortedBy]) return -1;
@@ -176,6 +184,9 @@
 					});
 				if (sortedDirection === "desc")
 					rows = rows.sort((a, b) => {
+						if ((a[sortedBy] || a[sortedBy] === 0) && (b[sortedBy] || b[sortedBy] === 0) && typeof b[sortedBy] === "number") {
+							return a[sortedBy] - b[sortedBy];
+						}
 						if (a === b) return 0;
 						if (!a[sortedBy]) return -1;
 						if (!b[sortedBy]) return 1;
@@ -244,7 +255,7 @@
 	// 	return app();
 	// }
 
-	function getObjVal(obj: IRow, opts: { key: string; type?: string; format?: string }): string {
+	function getObjVal(obj: IRow, opts: { key: string; type?: string; format?: string }): string | number {
 		if (!opts) {
 			return "";
 		}
@@ -268,6 +279,8 @@
 			return "";
 		} else if (!opts.type || opts.type === "string" || opts.type === "enum") {
 			return value;
+		} else if (opts.type === "number") {
+			return Number(value);
 		} else if (opts.type === "datetime") {
 			return opts.format ? dayjs(value).format(opts.format) : dayjs(value).format();
 		} else {

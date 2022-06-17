@@ -1,14 +1,14 @@
 export interface IFilter {
 	key: string;
 	value?: string;
-	type?: "datetime" | "string" | "enum";
+	type?: "datetime" | "string" | "enum" | "number";
 	start?: Date;
 	end?: Date;
 }
 export interface ITableHeader {
 	label: string;
 	key: string;
-	type?: "datetime" | "string" | "enum" | "actions";
+	type?: "datetime" | "string" | "enum" | "actions" | "number";
 	format?: string;
 	search?: boolean;
 	click?: boolean;

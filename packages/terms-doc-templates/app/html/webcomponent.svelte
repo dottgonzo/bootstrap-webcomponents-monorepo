@@ -95,7 +95,13 @@
 					</ul>
 				{/if}
 				{#if paragraph.table?.headers && paragraph.table.rows?.length}
-					<hb-table style={tableStyleToSet} headers={JSON.stringify(paragraph.table.headers)} rows={JSON.stringify(paragraph.table.rows)} />
+					<hb-table
+						disablepagination="yes"
+						size="1000"
+						style={tableStyleToSet}
+						headers={JSON.stringify(paragraph.table.headers)}
+						rows={JSON.stringify(paragraph.table.rows)}
+					/>
 				{/if}
 			{/each}
 		{/if}
