@@ -7,7 +7,7 @@
   "scripts": {
     "install-packages": "npx lerna bootstrap --hoist",
     "build:release": "npx lerna run build:release",
-    "publish:all": "npx lerna publish patch --ignore-scripts --yes",
+    "publish:all": "npx lerna publish patch --force-publish --ignore-scripts --yes",
     "release:patch": "npx lerna publish patch --force-publish --yes",
     "release:minor": "npx lerna publish minor --force-publish --yes",
     "release:major": "npx lerna publish major --force-publish --yes"
