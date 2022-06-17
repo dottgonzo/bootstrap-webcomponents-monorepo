@@ -271,16 +271,10 @@ const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes as any, componentSetup.name);
 
 export const LayoutA = Template.bind({});
-LayoutA.args = {
-  id: "LayoutA",
-  company: company1,
-  contacts: contacts1,
-  socials: socials1,
-  navlinks: navlinks2,
-  usermenu: usermenu1,
-  sidebar: { title: "brand" },
-};
-
+LayoutA.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[0]
+);
 export const LayoutWithBigSidebar = Template.bind({});
 LayoutWithBigSidebar.args = {
   id: "LayoutWithBigSidebar",

@@ -150,7 +150,16 @@ const socials: Component["socials"] = {
 	youtube: "yttttttt",
 };
 const sidebar: Component["sidebar"] = { title: "ciao" };
-
+const policies: Component["policies"] = [
+	{
+		label: "Privacy Policy",
+		key: "privacypolicy",
+	},
+	{
+		label: "Cookie Policy",
+		key: "cookiepolicy",
+	},
+];
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
@@ -161,6 +170,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			navlinks,
 			usermenu,
 			sidebar,
+			policies,
 		},
 	},
 ];
