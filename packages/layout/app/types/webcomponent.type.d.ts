@@ -1,4 +1,4 @@
-import type { IContacts, ISocials, ICompany, IColumn } from "../../../footer/app/types/webcomponent.type";
+import type { IContacts, ISocials, ICompany, IColumn, IPolicies } from "../../../footer/app/types/webcomponent.type";
 import type { IUserMenu } from "../../../navbar/app/types/webcomponent.type";
 import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
 
@@ -20,6 +20,7 @@ export type Component = {
 	cookielawlanguage?: string;
 	sidebar?: { title?: string; logo?: string; type?: string };
 	footer?: { type?: "auto" | "small" | "regular" | "large"; disable_expanding_small?: boolean };
+	policies?: IPolicies[];
 };
 
 export type Events = {

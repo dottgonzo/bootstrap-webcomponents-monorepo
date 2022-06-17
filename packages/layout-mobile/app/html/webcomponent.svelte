@@ -49,6 +49,7 @@
 	export let size: "small" | "large";
 	export let i18nlang: string;
 	export let footer: Component["footer"];
+	export let policies: Component["policies"];
 
 	// let translator: LanguageTranslator;
 
@@ -81,6 +82,9 @@
 		if (!pagename) pagename = null;
 		if (!cookielaw) {
 			cookielaw = null;
+		}
+		if (!policies) {
+			policies = null;
 		}
 		if (!footer) footer = { type: "auto", disable_expanding_small: false };
 		else if (typeof footer === "string") footer = JSON.parse(footer);
@@ -193,6 +197,7 @@
 		/>
 	{/if}
 	<hb-footer
+		{policies}
 		type={footer.type === "auto" ? (onescreen ? "small" : "regular") : footer.type}
 		part="footer"
 		socials={socials ? JSON.stringify(socials) : ""}

@@ -47,6 +47,7 @@
 	export let i18nlang: string;
 	export let footer: Component["footer"];
 	export let page_title: string;
+	export let policies: Component["policies"];
 
 	// let translator: LanguageTranslator;
 
@@ -84,7 +85,9 @@
 		if (!onescreen) {
 			onescreen = null;
 		}
-
+		if (!policies) {
+			policies = null;
+		}
 		if (!i18nlang) {
 			i18nlang = null;
 		}
@@ -176,6 +179,7 @@
 		cookielawuri4more={$$props.cookielawuri4more}
 		cookielaw={$$props.cookielaw}
 		footer={$$props.footer}
+		policies={$$props.policies}
 		on:userClick={(l) => dispatch("userClick", l.detail)}
 		on:footerClick={(l) => dispatch("footerClick", l.detail)}
 		on:pageChange={(l) => dispatch("pageChange", l.detail)}
@@ -211,6 +215,7 @@
 		cookielawuri4more={$$props.cookielawuri4more}
 		cookielaw={$$props.cookielaw}
 		footer={$$props.footer}
+		policies={$$props.policies}
 		on:userClick={(l) => dispatch("userClick", l.detail)}
 		on:footerClick={(l) => dispatch("footerClick", l.detail)}
 		on:pageChange={(l) => dispatch("pageChange", l.detail)}

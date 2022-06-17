@@ -61,6 +61,7 @@
 	export let disableregister: boolean = null;
 	export let footer: Component["footer"];
 	export let page_title: string;
+	export let policies: Component["policies"];
 
 	$: {
 		if (!footer) footer = undefined;
@@ -72,6 +73,9 @@
 		}
 		if (!oauth2providers) {
 			oauth2providers = null;
+		}
+		if (!policies) {
+			policies = null;
 		}
 		if (!passwordpattern) {
 			passwordpattern = null;
@@ -169,6 +173,7 @@
 	style="display:block;{layoutStyleToSet}"
 	footer={$$props.footer}
 	page_title={$$props.page_title}
+	policies={$$props.policies}
 >
 	<div slot="nav-right-slot"><slot name="nav-right-slot" /></div>
 	<div slot="nav-left-slot"><slot name="nav-left-slot" /></div>

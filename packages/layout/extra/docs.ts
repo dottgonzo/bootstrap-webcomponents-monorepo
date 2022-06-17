@@ -22,6 +22,7 @@ export const storybookArgs = {
 	cookielaw: { control: { type: "boolean" } },
 	onescreen: { control: { type: "boolean" } },
 	footer: { control: { type: "object" } },
+	policies: { control: { type: "object" } },
 };
 const cssVars: CssVar[] = [
 	{ name: "--bs-primary", valueType: "color", theme: "bootstrap", defaultValue: "#07689f" },

@@ -48,6 +48,7 @@
 	export let size: "small" | "large";
 	export let i18nlang: string;
 	export let footer: Component["footer"];
+	export let policies: Component["policies"];
 
 	// let translator: LanguageTranslator;
 
@@ -87,6 +88,9 @@
 		}
 		if (!usermenu) {
 			usermenu = null;
+		}
+		if (!policies) {
+			policies = null;
 		}
 		if (!columns) {
 			columns = null;
@@ -241,6 +245,7 @@
 					/>
 				{/if}
 				<hb-footer
+					{policies}
 					type={footer.type === "auto" ? (onescreen ? "small" : "regular") : footer.type}
 					disable_expanding_small={footer.disable_expanding_small ? "yes" : "no"}
 					part="footer"
@@ -298,6 +303,7 @@
 					/>
 				{/if}
 				<hb-footer
+					{policies}
 					type={footer.type === "auto" ? (onescreen ? "small" : "regular") : footer.type}
 					disable_expanding_small={footer.disable_expanding_small ? "yes" : "no"}
 					part="footer"
