@@ -74,6 +74,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				},
 
 				date: new Date("2020-01-01"),
+				cookies: [],
 			},
 		},
 	},
@@ -94,6 +95,16 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				},
 
 				date: new Date("2020-01-01"),
+				cookies: [
+					{
+						name: "testcookie",
+						purpose: "test purpose",
+						durate: 3600,
+						service: "test service",
+						storage: "persistent",
+						type: "technical",
+					},
+				],
 			},
 		},
 	},

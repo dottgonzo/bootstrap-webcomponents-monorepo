@@ -1,9 +1,9 @@
-import type { CookieContent, IDoc, IParagraphList, ITableHeader } from "@app/types/webcomponent.type";
+import type { CookieContent, IDoc, IParagraphList, ITableHeaders } from "@app/types/webcomponent.type";
 import { sortFinalDoc } from "./utils";
 
 // https://www.iubenda.com/privacy-policy/54363417/cookie-policy?an=no&s_ck=false&newmarkup=yes
 
-const cookieHeaders: ITableHeader[] = [
+const cookieHeaders: ITableHeaders = [
 	{ key: "name", label: "Nome" },
 	{ key: "service", label: "Servizio" },
 	{ key: "porpose", label: "Scope" },
@@ -67,26 +67,26 @@ export default function (config: CookieContent) {
 						key: "act2",
 						content: `Strumenti di Tracciamento di terza parte`,
 						index: 1,
-						table: { headers: cookieHeaders, rows: [] },
+						// table: { headers: cookieHeaders, rows: [] },
 					},
 				],
 				key: "technicals",
 			},
 			{
-				title: "Attività strettamente necessarie a garantire il funzionamento di questo Sito Web e la fornitura del Servizio",
+				title: "Attività connesse all'autenticazione degli utenti e alla gestione dei rispettivi dati",
 				index: 2,
 				paragraphs: [
 					{
 						key: "auth1",
-						content: `These are stored when you log in to a Commission site, using our authentication service (EU Login). When you do this, you accept the associated privacy policy.`,
+						content: `These are stored when you log in to a ${config.site.name} site, using our authentication service (EU Login). When you do this, you accept the associated privacy policy.`,
 						index: 0,
-						table: { headers: cookieHeaders, rows: [] },
+						// table: { headers: cookieHeaders, rows: [] },
 					},
 				],
 				key: "authentications",
 			},
 			{
-				title: "Attività strettamente necessarie a garantire il funzionamento di questo Sito Web e la fornitura del Servizio",
+				title: "Attività di anlisi dell'utilizzo del Sito Web",
 				index: 3,
 				paragraphs: [],
 				key: "analytics",
@@ -112,13 +112,13 @@ export default function (config: CookieContent) {
 					},
 					{
 						key: "thr4",
-						content: `Third-party providers on Commission websites`,
+						content: `Third-party providers on ${config.site.name} websites`,
 						list: [],
 						index: 3,
 					},
 					{
 						key: "thr5",
-						content: `These third-party services are outside of the control of the Commission. Providers may, at any time, change their terms of service, purpose and use of cookies, etc.`,
+						content: `These third-party services are outside of the control of ${config.company.name}. Providers may, at any time, change their terms of service, purpose and use of cookies, etc.`,
 						index: 4,
 					},
 				],
@@ -130,25 +130,25 @@ export default function (config: CookieContent) {
 				paragraphs: [
 					{
 						key: "mng1",
-						title: `Removing cookies from your device`,
+						title: `Cancellazione dei cookie dal tuo dispositivo`,
 						content: `You can delete all cookies that are already on your device by clearing the browsing history of your browser. This will remove all cookies from all websites you have visited. Be aware though that you may also lose some saved information (e.g. saved login details, site preferences).`,
 						index: 0,
 					},
 					{
 						key: "mng2",
-						title: `Managing site-specific cookies`,
-						content: `You can delete all cookies that are already on your device by clearing the browsing history of your browser. This will remove all cookies from all websites you have visited. Be aware though that you may also lose some saved information (e.g. saved login details, site preferences).`,
+						title: `Gestione di specifici cookie`,
+						content: `For more detailed control over site-specific cookies, check the privacy and cookie settings in your preferred browser.`,
 						index: 1,
 					},
 					{
 						key: "mng3",
-						title: `Managing site-specific cookies`,
-						content: `You can delete all cookies that are already on your device by clearing the browsing history of your browser. This will remove all cookies from all websites you have visited. Be aware though that you may also lose some saved information (e.g. saved login details, site preferences).`,
+						title: `Blocco dei cookie`,
+						content: `You can set most modern browsers to prevent any cookies being placed on your device, but you may then have to manually adjust some preferences every time you visit a site/page. And some services and functionalities may not work properly at all (e.g. profile logging-in).`,
 						index: 2,
 					},
 					{
 						key: "mng4",
-						title: `Managing our analytics cookies`,
+						title: `Gestione dei cookie per analitici`,
 						content: `You can manage your preferences concerning cookies from Europa Analytics on the dedicated Europa Analytics page.`,
 						index: 3,
 					},

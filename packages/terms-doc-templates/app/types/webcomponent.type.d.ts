@@ -1,16 +1,21 @@
-export interface ITableHeader {
-	label: string;
-	key: string;
-}
+export type ITableHeaders = [
+	{ key: "name"; label: string },
+	{ key: "service"; label: string },
+	{ key: "porpose"; label: string },
+	{ key: "details"; label: string },
+];
 
 export interface IRow {
 	_id: string;
-	[k: string]: string | IActionButton[] | any;
+	name: string;
+	service: string;
+	porpose: string;
+	details: string;
 }
 
 export type IParagraphList = { key: string; content: string; index?: number };
 export type IParagraphTable = {
-	headers: ITableHeader[];
+	headers: ITableHeaders;
 	rows: IRow[];
 };
 export type IParagraph = { key: string; content: string; list?: IParagraphList[]; index: number; table?: IParagraphTable; title?: string };
@@ -28,7 +33,15 @@ export type IChapter = {
 	index: number;
 	paragraphs: IParagraph[];
 };
-
+export type CookieRow = {
+	third?: { company: string; termUri?: string };
+	name: string;
+	purpose: string;
+	service: string;
+	storage: "persistent" | "session";
+	durate: number;
+	type: "technical" | "authentication" | "preferences" | "statistics" | "advertising" | "analytics" | "third-party";
+};
 export interface ITPrivacy {
 	id: "privacy-doc-italian";
 	site: { name: string; url: string; privacyPolicyUri: string; cookiePolicyUri: string };
@@ -47,6 +60,7 @@ export type CookieContent = {
 	company: { name: string; address: string };
 	date?: Date;
 	language?: string;
+	cookies: CookieRow[];
 };
 
 export type Component = {

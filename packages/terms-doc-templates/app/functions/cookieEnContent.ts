@@ -1,14 +1,25 @@
-import type { CookieContent, IDoc, IParagraphList, ITableHeader } from "@app/types/webcomponent.type";
+import type { CookieContent, CookieRow, IDoc, IParagraphList, IRow, ITableHeaders } from "@app/types/webcomponent.type";
 import { sortFinalDoc } from "./utils";
 
 // https://www.iubenda.com/privacy-policy/54363417/cookie-policy?an=no&s_ck=false&newmarkup=yes
 
-const cookieHeaders: ITableHeader[] = [
+const cookieHeaders: ITableHeaders = [
 	{ key: "name", label: "Nome" },
 	{ key: "service", label: "Servizio" },
 	{ key: "porpose", label: "Scope" },
 	{ key: "details", label: "Tipologie e Durata" },
 ];
+
+function mapCookie(cookie: CookieRow): IRow {
+	const row: IRow = {
+		_id: cookie.name,
+		name: cookie.name,
+		service: cookie.service,
+		porpose: cookie.purpose,
+		details: (cookie.storage === "persistent" ? "" : "") + cookie.durate,
+	};
+	return row;
+}
 
 export default function (config: CookieContent) {
 	const content: IDoc = {
@@ -22,33 +33,33 @@ export default function (config: CookieContent) {
 				paragraphs: [
 					{
 						key: "i1",
-						content: `Questo documento contiene informazioni in merito alle tecnologie che consentono a questo Sito Web di raggiungere gli scopi descritti di seguito. Tali tecnologie permettono al Titolare di raccogliere e salvare informazioni (per esempio tramite l’utilizzo di Cookie) o di utilizzare risorse (per esempio eseguendo uno script) sul dispositivo dell’Utente quando quest’ultimo interagisce con questo Sito Web.`,
+						content: `This document contains information about the technologies that allow this Website to achieve the purposes described below. These technologies allow the Owner to collect and save information (for example through the use of Cookies) or to use resources (for example by running a script) on the User's device when the latter interacts with this Website.`,
 						index: 0,
 					},
 					{
 						key: "i2",
-						content: `Per semplicità, in questo documento tali tecnologie sono sinteticamente definite “Strumenti di Tracciamento”, salvo vi sia ragione di differenziare. Per esempio, sebbene i Cookie possano essere usati in browser sia web sia mobili, sarebbe fuori luogo parlare di Cookie nel contesto di applicazioni per dispositivi mobili, dal momento che si tratta di Strumenti di Tracciamento che richiedono la presenza di un browser. Per questo motivo, all’interno di questo documento il temine Cookie è utilizzato solo per indicare in modo specifico quel particolare tipo di Strumento di Tracciamento.`,
+						content: `For the sake of simplicity, these technologies are briefly referred to in this document as "Tracking Tools", unless there is reason to differentiate. For example, although Cookies can be used in both web and mobile browsers, it would be out of place to speak of Cookies in the context of applications for mobile devices, since they are Tracking Tools that require the presence of a browser. For this reason, within this document the term Cookie is used only to specifically indicate that particular type of Tracking Tool.`,
 						index: 1,
 					},
 					{
 						key: "i3",
-						content: `Alcune delle finalità per le quali vengono impiegati Strumenti di Tracciamento potrebbero, inoltre, a seconda della legge applicabile richiedere il consenso dell’Utente. Se viene prestato il consenso, esso può essere revocato liberamente in qualsiasi momento seguendo le istruzioni contenute in questo documento.`,
+						content: `Some of the purposes for which Tracking Tools are used may also require the User's consent, depending on the applicable law. If consent is given, it can be freely revoked at any time by following the instructions contained in this document.`,
 						index: 2,
 					},
 					{
 						key: "i4",
-						content: `Questo Sito Web utilizza Strumenti di Tracciamento gestiti direttamente dal Titolare (comunemente detti Strumenti di Tracciamento “di prima parte”) e Strumenti di Tracciamento che abilitano servizi forniti da terzi (comunemente detti Strumenti di Tracciamento “di terza parte”). Se non diversamente specificato all’interno di questo documento, tali terzi hanno accesso ai rispettivi Strumenti di Tracciamento.`,
+						content: `This Website uses Tracking Tools managed directly by the Owner (commonly called "first party" Tracking Tools) and Tracking Tools that enable services provided by third parties (commonly called "third party" Tracking Tools). Unless otherwise specified in this document, these third parties have access to the respective Tracking Tools.`,
 						index: 3,
 					},
 
 					{
 						key: "i5",
-						content: `Durata e scadenza dei Cookie e degli altri Strumenti di Tracciamento simili possono variare a seconda di quanto impostato dal Titolare o da ciascun fornitore terzo. Alcuni di essi scadono al termine della sessione di navigazione dell’Utente.`,
+						content: `Duration and expiration of Cookies and other similar Tracking Tools may vary depending on what is set by the Owner or by each third party provider. Some of them expire at the end of the User's browsing session.`,
 						index: 4,
 					},
 					{
 						key: "i6",
-						content: `In aggiunta a quanto specificato nella descrizione di ciascuna delle categorie di seguito riportate, gli Utenti possono ottenere informazioni più dettagliate ed aggiornate sulla durata, così come qualsiasi altra informazione rilevante - quale la presenza di altri Strumenti di Tracciamento - nelle privacy policy dei rispettivi fornitori terzi (tramite i link messi a disposizione) o contattando il Titolare.`,
+						content: `In addition to what is specified in the description of each of the categories listed below, Users can obtain more detailed and updated information on the duration, as well as any other relevant information - such as the presence of other Tracking Tools - in the privacy policies of their respective third party suppliers. (through the links made available) or by contacting the Data Controller.`,
 						index: 5,
 					},
 				],
@@ -63,12 +74,18 @@ export default function (config: CookieContent) {
 						content: `Questo Sito Web utilizza Cookie comunemente detti “tecnici” o altri Strumenti di Tracciamento analoghi per svolgere attività strettamente necessarie a garantire il funzionamento o la fornitura del Servizio.`,
 						index: 0,
 					},
-					{
-						key: "act2",
-						content: `Strumenti di Tracciamento di terza parte`,
-						index: 1,
-						table: { headers: cookieHeaders, rows: [] },
-					},
+					// {
+					// 	key: "act2",
+					// 	content: `Technical Tracking Tools from ${config.company.name}`,
+					// 	index: 1,
+					// 	table: { headers: cookieHeaders, rows: config.cookies.filter((f) => f.type === "technical" && !f.third).map(mapCookie) },
+					// },
+					// {
+					// 	key: "act2",
+					// 	content: `Third party technical Tracking Tools`,
+					// 	index: 2,
+					// 	table: { headers: cookieHeaders, rows: config.cookies.filter((f) => f.type === "technical" && f.third).map(mapCookie) },
+					// },
 				],
 				key: "technicals",
 			},
@@ -78,9 +95,9 @@ export default function (config: CookieContent) {
 				paragraphs: [
 					{
 						key: "auth1",
-						content: `These are stored when you log in to a Commission site, using our authentication service (EU Login). When you do this, you accept the associated privacy policy.`,
+						content: `These are stored when you log in to a ${config.site.name} site, using our authentication service (EU Login). When you do this, you accept the associated privacy policy.`,
 						index: 0,
-						table: { headers: cookieHeaders, rows: [] },
+						// table: { headers: cookieHeaders, rows: [] },
 					},
 				],
 				key: "authentications",
@@ -112,13 +129,13 @@ export default function (config: CookieContent) {
 					},
 					{
 						key: "thr4",
-						content: `Third-party providers on Commission websites`,
+						content: `Third-party providers on ${config.site.name} websites`,
 						list: [],
 						index: 3,
 					},
 					{
 						key: "thr5",
-						content: `These third-party services are outside of the control of the Commission. Providers may, at any time, change their terms of service, purpose and use of cookies, etc.`,
+						content: `These third-party services are outside of the control of ${config.company.name}. Providers may, at any time, change their terms of service, purpose and use of cookies, etc.`,
 						index: 4,
 					},
 				],
@@ -137,13 +154,13 @@ export default function (config: CookieContent) {
 					{
 						key: "mng2",
 						title: `Managing site-specific cookies`,
-						content: `You can delete all cookies that are already on your device by clearing the browsing history of your browser. This will remove all cookies from all websites you have visited. Be aware though that you may also lose some saved information (e.g. saved login details, site preferences).`,
+						content: `For more detailed control over site-specific cookies, check the privacy and cookie settings in your preferred browser.`,
 						index: 1,
 					},
 					{
 						key: "mng3",
-						title: `Managing site-specific cookies`,
-						content: `You can delete all cookies that are already on your device by clearing the browsing history of your browser. This will remove all cookies from all websites you have visited. Be aware though that you may also lose some saved information (e.g. saved login details, site preferences).`,
+						title: `Blocking cookies`,
+						content: `You can set most modern browsers to prevent any cookies being placed on your device, but you may then have to manually adjust some preferences every time you visit a site/page. And some services and functionalities may not work properly at all (e.g. profile logging-in).`,
 						index: 2,
 					},
 					{
@@ -157,6 +174,33 @@ export default function (config: CookieContent) {
 			},
 		],
 	};
+
+	if (config.cookies?.length) {
+		const technicalFirst = config.cookies.filter((f) => f.type === "technical" && !f.third).map((m) => mapCookie(m));
+		const technicalThird = config.cookies.filter((f) => f.type === "technical" && f.third).map((m) => mapCookie(m));
+		if (technicalFirst.length || technicalThird.length) {
+			if (technicalFirst.length) {
+				content.chapters
+					.find((f) => f.key === "technicals")
+					?.paragraphs.push({
+						content: `I dati raccolti dagli strumenti di tracking di ${config.site.name} sono:`,
+						table: { headers: cookieHeaders, rows: technicalFirst },
+						key: "tda2",
+						index: 1,
+					});
+			}
+			if (technicalThird.length) {
+				content.chapters
+					.find((f) => f.key === "technicals")
+					?.paragraphs.push({
+						content: `I dati raccolti dai cookie di terze parti sono:`,
+						table: { headers: cookieHeaders, rows: technicalThird },
+						key: "tda3",
+						index: 2,
+					});
+			}
+		}
+	}
 
 	return sortFinalDoc(content);
 }
