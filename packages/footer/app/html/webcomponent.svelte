@@ -373,7 +373,11 @@
 					{#if policies?.length}
 						{#each policies as policy (policy.key)}
 							<div class="col" style="margin:20px auto 20px auto;max-height:20px;text-align:center;font-size:0.9rem;">
-								<button on:click={() => footerClick(policy.key)} class="btn btn-link">{policy.label}</button>
+								{#if policy.link}
+									<a href={policy.link} target="_blank" class="btn btn-link">{policy.label}</a>
+								{:else}
+									<button on:click={() => footerClick(policy.key)} class="btn btn-link">{policy.label}</button>
+								{/if}
 							</div>
 						{/each}
 					{/if}

@@ -41,6 +41,7 @@ export interface IBrandAndContacts {
 export interface IPolicies {
 	label: string;
 	key: string;
+	link?: string;
 }
 
 export interface ISocials {
