@@ -42,4 +42,11 @@ export type Component = {
 	policies?: IPolicies[];
 };
 
-export type Events = {};
+export type Events = {
+	navbarSlotClick: { side: "left" | "right" | "center" };
+
+	navbarDropDownClick: { key: string };
+	login: { token?: string; email?: string; password?: string; rememberMe?: boolean };
+	register: any & { requestSent: { email: string; password: string }; email: string; password: string };
+	recoverOrActivate: { password: string; recoverycode: string; email: string }; // only one good..
+};

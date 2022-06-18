@@ -6,7 +6,7 @@ export const storybookArgs = {
 	offcanvasswitch: { action: "offcanvasswitchEvent" },
 	layoutStatus: { action: "layoutStatus" },
 	footerClick: { action: "footerClick" },
-	userClick: { action: "userClick" },
+	navbarDropDownClick: { action: "navbarDropDownClick" },
 	footer: { control: { type: "object" } },
 	contacts: { control: { type: "object" } },
 	columns: { control: { type: "object" } },
@@ -23,6 +23,7 @@ export const storybookArgs = {
 	cookielaw: { control: { type: "boolean" } },
 	onescreen: { control: { type: "boolean" } },
 	policies: { control: { type: "object" } },
+	navbarSlotClick: { action: "navbarSlotClick" },
 };
 const cssVars: CssVar[] = [
 	{ name: "--bs-primary", valueType: "color", theme: "bootstrap", defaultValue: "#07689f" },

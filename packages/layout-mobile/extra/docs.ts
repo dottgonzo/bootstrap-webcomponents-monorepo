@@ -3,7 +3,7 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	ooterClick: { action: "footerClick" },
-	userClick: { action: "userClick" },
+	navbarDropDownClick: { action: "navbarDropDownClick" },
 	pageChange: { action: "pageChange" },
 	footer: { control: { type: "object" } },
 	offcanvasswitch: { action: "offcanvasswitchEvent" },
@@ -23,6 +23,7 @@ export const storybookArgs = {
 	cookielaw: { control: { type: "boolean" } },
 	onescreen: { control: { type: "boolean" } },
 	policies: { control: { type: "object" } },
+	navbarSlotClick: { action: "navbarSlotClick" },
 };
 const cssVars: CssVar[] = [
 	{ name: "--bs-primary", valueType: "color", theme: "bootstrap", defaultValue: "#07689f" },

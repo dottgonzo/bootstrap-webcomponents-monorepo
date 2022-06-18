@@ -185,6 +185,7 @@
 		on:pageChange={(l) => dispatch("pageChange", l.detail)}
 		on:offcanvasswitch={(l) => dispatch("offcanvasswitch", l.detail)}
 		on:layoutStatus={(l) => dispatch("layoutStatus", l.detail)}
+		on:navbarSlotClick={(l) => dispatch("navbarSlotClick", l.detail)}
 	>
 		<div slot="page">
 			<slot name="page">page</slot>
@@ -216,11 +217,12 @@
 		cookielaw={$$props.cookielaw}
 		footer={$$props.footer}
 		policies={$$props.policies}
-		on:userClick={(l) => dispatch("userClick", l.detail)}
+		on:navbarDropDownClick={(l) => dispatch("navbarDropDownClick", l.detail)}
 		on:footerClick={(l) => dispatch("footerClick", l.detail)}
 		on:pageChange={(l) => dispatch("pageChange", l.detail)}
 		on:offcanvasswitch={(l) => dispatch("offcanvasswitch", l.detail)}
 		on:layoutStatus={(l) => dispatch("layoutStatus", l.detail)}
+		on:navbarSlotClick={(l) => dispatch("navbarSlotClick", l.detail)}
 	>
 		<div slot="page">
 			<slot name="page">page</slot>

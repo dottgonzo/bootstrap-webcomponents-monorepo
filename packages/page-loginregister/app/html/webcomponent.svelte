@@ -174,6 +174,8 @@
 	footer={$$props.footer}
 	page_title={$$props.page_title}
 	policies={$$props.policies}
+	on:navbarDropDownClick={(el) => dispatch("navbarDropDownClick", el.detail)}
+	on:navbarSlotClick={(l) => dispatch("navbarSlotClick", l.detail)}
 >
 	<div slot="nav-right-slot"><slot name="nav-right-slot" /></div>
 	<div slot="nav-left-slot"><slot name="nav-left-slot" /></div>

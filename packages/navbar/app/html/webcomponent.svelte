@@ -87,16 +87,18 @@
 				{#if !noburger}
 					<button style="font-size:20px;border:none" on:click={() => switchMenu()}>☰</button>
 				{/if}
-				<slot name="left-slot" />
+				<span on:click={() => dispatch("navbarSlotClick", { side: "left" })}><slot name="left-slot" /></span>
 			</div>
 		</div>
 	</div>
 	<div id="center_side" part="center-slot" class="navitem">
 		<div class="side" style="margin:auto">
-			<slot name="brand">
-				{#if companylogouri}<img style="height: 30px;vertical-align: middle;" alt="" src={companylogouri} />{/if}
-				{companybrandname}
-			</slot>
+			<span on:click={() => dispatch("navbarSlotClick", { side: "center" })}>
+				<slot name="brand">
+					{#if companylogouri}<img style="height: 30px;vertical-align: middle;" alt="" src={companylogouri} />{/if}
+					{companybrandname}
+				</slot>
+			</span>
 			<slot name="center-slot" />
 		</div>
 	</div>
@@ -104,13 +106,15 @@
 	<div id="rigth_side" part="right-slot" class="navitem">
 		<div id="rigth_side_conntent">
 			<div class="side">
-				<slot name="right-slot">
-					<!-- <div style="text-align:right;margin-right:10px">{pagetitle}</div> -->
-				</slot>
+				<span on:click={() => dispatch("navbarSlotClick", { side: "right" })}>
+					<slot name="right-slot">
+						<!-- <div style="text-align:right;margin-right:10px">{pagetitle}</div> -->
+					</slot>
+				</span>
 				{#if usermenu}
 					<hb-dropdown-simple
 						style={dropdownSimpleStyleToSet}
-						on:dropDownClick={(e) => dispatch("userClick", e.detail.key)}
+						on:dropDownClick={(e) => dispatch("navbarDropDownClick", e.detail.key)}
 						list={JSON.stringify(usermenu.list)}
 						position="right"
 						><span slot="dropdownbutton"><img style="height: 30px;vertical-align: middle;" alt="" src={usermenu.imgUri} /></span

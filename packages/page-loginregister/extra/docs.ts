@@ -12,6 +12,9 @@ export const storybookArgs = {
 	registeruri: { control: { type: "text" } },
 	login: { action: "loginEvent" },
 	register: { action: "registerEvent" },
+	navbarDropDownClick: { action: "navbarDropDownClickEvent" },
+	navbarSlotClick: { action: "navbarSlotClick" },
+
 	contacts: { control: { type: "object" } },
 	company: { control: { type: "object" } },
 	socials: { control: { type: "object" } },

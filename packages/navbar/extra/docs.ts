@@ -8,8 +8,9 @@ export const storybookArgs = {
 	companylogouri: { control: { type: "text" } },
 	noburger: { control: { type: "boolean" } },
 	navmenuswitch: { action: "navmenuswitchEvent" },
-	userClick: { action: "userClickEvent" },
+	navbarDropDownClick: { action: "navbarDropDownClickEvent" },
 	usermenu: { control: { type: "object" } },
+	navbarSlotClick: { action: "navbarSlotClickEvent" },
 };
 
 const cssVars: CssVar[] = [];

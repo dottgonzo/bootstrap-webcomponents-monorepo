@@ -20,6 +20,7 @@ export type Component = {
 };
 
 export type Events = {
-	userClick: { key: string };
+	navbarDropDownClick: { key: string };
 	navmenuswitch: { isOpen: boolean };
+	navbarSlotClick: { side: "left" | "right" | "center" };
 };

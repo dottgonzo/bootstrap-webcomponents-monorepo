@@ -178,7 +178,8 @@
 		usermenu={usermenu || ""}
 		switchopen={navopen ? "yes" : "no"}
 		on:navmenuswitch={(el) => openmenu(el.detail)}
-		on:userClick={(el) => dispatch("userClick", el.detail)}
+		on:navbarDropDownClick={(el) => dispatch("navbarDropDownClick", el.detail)}
+		on:navbarSlotClick={(l) => dispatch("navbarSlotClick", l.detail)}
 	>
 		<span slot="left-slot"><slot name="nav-left-slot" /></span>
 		<span slot="center-slot"><slot name="nav-center-slot" /></span>

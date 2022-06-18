@@ -26,7 +26,9 @@ export type Component = {
 export type Events = {
 	offcanvasswitch: { isOpen: boolean };
 	pageChange: { page: string };
-	userClick: { key: string };
+	navbarDropDownClick: { key: string };
 	footerClick: { elClick: string };
+	navbarSlotClick: { side: "left" | "right" | "center" };
+
 	// layoutStatus: { width: number; size: "large" | "small" };
 };
