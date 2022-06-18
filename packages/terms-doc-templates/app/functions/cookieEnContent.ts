@@ -53,7 +53,7 @@ export default function (config: CookieContent) {
 				paragraphs: [
 					{
 						key: "act1",
-						content: `Questo Sito Web utilizza Cookie comunemente detti “tecnici” o altri Strumenti di Tracciamento analoghi per svolgere attività strettamente necessarie a garantire il funzionamento o la fornitura del Servizio.`,
+						content: `This Website uses Cookies commonly called "technical" or other similar Tracking Tools to carry out activities strictly necessary to ensure the functioning or provision of the Service.`,
 						index: 0,
 					},
 					// {
@@ -72,7 +72,7 @@ export default function (config: CookieContent) {
 				key: "technicals",
 			},
 			{
-				title: "Attività strettamente necessarie a garantire il funzionamento di questo Sito Web e la fornitura del Servizio",
+				title: "Activities related to user authentication and management of their data",
 				index: 2,
 				paragraphs: [
 					{
@@ -191,7 +191,7 @@ export default function (config: CookieContent) {
 				content.chapters
 					.find((f) => f.key === "analytics")
 					?.paragraphs.push({
-						content: `I dati raccolti dagli strumenti di tracking di ${config.site.name} sono:`,
+						content: `Cookies collected from ${config.site.name} for analytics purpose are:`,
 						table: { headers: cookieHeaders, rows: analyticsFirst },
 						key: "ana1",
 						index: 0,
@@ -201,7 +201,7 @@ export default function (config: CookieContent) {
 				content.chapters
 					.find((f) => f.key === "analytics")
 					?.paragraphs.push({
-						content: `I dati raccolti dai cookie di terze parti sono:`,
+						content: `Analytics data collected from third party cookies are:`,
 						table: { headers: cookieHeaders, rows: analyticsThird },
 						key: "ana2",
 						index: 1,
@@ -217,7 +217,7 @@ export default function (config: CookieContent) {
 				content.chapters
 					.find((f) => f.key === "authentication")
 					?.paragraphs.push({
-						content: `I dati raccolti dagli strumenti di tracking di ${config.site.name} sono:`,
+						content: `Cookies collected from ${config.site.name} for authentication functionality are:`,
 						table: { headers: cookieHeaders, rows: authenticationsFirst },
 						key: "auth1",
 						index: 0,
@@ -227,25 +227,12 @@ export default function (config: CookieContent) {
 				content.chapters
 					.find((f) => f.key === "authentication")
 					?.paragraphs.push({
-						content: `I dati raccolti dai cookie di terze parti sono:`,
+						content: `Cookies collected from third party for authentication purpose are:`,
 						table: { headers: cookieHeaders, rows: authenticationsThird },
 						key: "auth2",
 						index: 1,
 					});
 			}
-		}
-
-		const thirds = config.cookies.filter((f) => f.type === "third-party").map((m) => mapCookie(m));
-
-		if (thirds.length) {
-			content.chapters
-				.find((f) => f.key === "third-party")
-				?.paragraphs.push({
-					content: `I dati raccolti dai cookie di terze parti sono:`,
-					table: { headers: cookieHeaders, rows: thirds },
-					key: "th1",
-					index: 0,
-				});
 		}
 
 		const advertising = config.cookies.filter((f) => f.type === "advertising").map((m) => mapCookie(m));
@@ -254,12 +241,25 @@ export default function (config: CookieContent) {
 			content.chapters
 				.find((f) => f.key === "advertising")
 				?.paragraphs.push({
-					content: `I dati raccolti dai cookie di terze parti sono:`,
+					content: `Third Parties Cookie data for ${config.site.name} advertising are:`,
 					table: { headers: cookieHeaders, rows: advertising },
 					key: "adv1",
 					index: 0,
 				});
 		}
+		const thirds = config.cookies.filter((f) => f.type === "third-party").map((m) => mapCookie(m));
+
+		if (thirds.length) {
+			content.chapters
+				.find((f) => f.key === "third-party")
+				?.paragraphs.push({
+					content: `Third Parties Cookie data for ${config.site.name} are:`,
+					table: { headers: cookieHeaders, rows: thirds },
+					key: "th1",
+					index: 0,
+				});
+		}
+
 	}
 
 	return sortFinalDoc(content);

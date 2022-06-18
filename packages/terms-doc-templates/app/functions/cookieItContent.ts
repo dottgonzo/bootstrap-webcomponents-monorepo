@@ -85,7 +85,7 @@ export default function (config: CookieContent) {
 				key: "authentication",
 			},
 			{
-				title: "Attività di anlisi dell'utilizzo del Sito Web",
+				title: "Attività di analisi dell'utilizzo del Sito Web",
 				index: 3,
 				paragraphs: [],
 				key: "analytics",
@@ -235,19 +235,6 @@ export default function (config: CookieContent) {
 			}
 		}
 
-		const thirds = config.cookies.filter((f) => f.type === "third-party").map((m) => mapCookie(m));
-
-		if (thirds.length) {
-			content.chapters
-				.find((f) => f.key === "third-party")
-				?.paragraphs.push({
-					content: `I dati raccolti dai cookie di terze parti sono:`,
-					table: { headers: cookieHeaders, rows: thirds },
-					key: "th1",
-					index: 0,
-				});
-		}
-
 		const advertising = config.cookies.filter((f) => f.type === "advertising").map((m) => mapCookie(m));
 
 		if (advertising.length) {
@@ -257,6 +244,18 @@ export default function (config: CookieContent) {
 					content: `I dati raccolti dai cookie pubblicitari di terze parti sono:`,
 					table: { headers: cookieHeaders, rows: advertising },
 					key: "adv1",
+					index: 0,
+				});
+		}
+		const thirds = config.cookies.filter((f) => f.type === "third-party").map((m) => mapCookie(m));
+
+		if (thirds.length) {
+			content.chapters
+				.find((f) => f.key === "third-party")
+				?.paragraphs.push({
+					content: `I dati raccolti dai cookie di terze parti sono:`,
+					table: { headers: cookieHeaders, rows: thirds },
+					key: "th1",
 					index: 0,
 				});
 		}
