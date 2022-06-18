@@ -36,7 +36,7 @@
 		// json
 		if (typeof json === "string") JSON.parse(json);
 
-		// bolean
+		// boolean
 		if (boolean === ("" as unknown)) boolean = true;
 		if (typeof boolean === "string") boolean = boolean === "no" || boolean === "false" ? false : true;
 		if (!boolean) boolean = false;
