@@ -87,13 +87,13 @@
 				{#if !noburger}
 					<button style="font-size:20px;border:none" on:click={() => switchMenu()}>☰</button>
 				{/if}
-				<span on:click={() => dispatch("navbarSlotClick", { side: "left" })}><slot name="left-slot" /></span>
+				<span style="cursor:pointer" on:click={() => dispatch("navbarSlotClick", { side: "left" })}><slot name="left-slot" /></span>
 			</div>
 		</div>
 	</div>
 	<div id="center_side" part="center-slot" class="navitem">
 		<div class="side" style="margin:auto">
-			<span on:click={() => dispatch("navbarSlotClick", { side: "center" })}>
+			<span style="cursor:pointer" on:click={() => dispatch("navbarSlotClick", { side: "center" })}>
 				<slot name="brand">
 					{#if companylogouri}<img style="height: 30px;vertical-align: middle;" alt="" src={companylogouri} />{/if}
 					{companybrandname}
@@ -106,11 +106,11 @@
 	<div id="rigth_side" part="right-slot" class="navitem">
 		<div id="rigth_side_conntent">
 			<div class="side">
-				<span on:click={() => dispatch("navbarSlotClick", { side: "right" })}>
-					<slot name="right-slot">
-						<!-- <div style="text-align:right;margin-right:10px">{pagetitle}</div> -->
-					</slot>
-				</span>
+				<!-- <span on:click={() => dispatch("navbarSlotClick", { side: "right" })}> -->
+				<slot name="right-slot">
+					<!-- <div style="text-align:right;margin-right:10px">{pagetitle}</div> -->
+				</slot>
+				<!-- </span> -->
 				{#if usermenu}
 					<hb-dropdown-simple
 						style={dropdownSimpleStyleToSet}
