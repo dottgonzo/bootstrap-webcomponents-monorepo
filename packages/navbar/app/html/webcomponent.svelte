@@ -73,7 +73,6 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 	function switchMenu() {
-		console.log("nswitch");
 		isOpen = !isOpen;
 		dispatch("navmenuswitch", {
 			isOpen,
