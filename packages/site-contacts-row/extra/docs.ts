@@ -6,6 +6,8 @@ export const storybookArgs = {
 	phones: { control: { type: "object" } },
 	emails: { control: { type: "object" } },
 	websites: { control: { type: "object" } },
+	model: { control: { type: "text" } },
+	availability: { control: { type: "object" } },
 };
 
 const cssVars: CssVar[] = [];
@@ -18,10 +20,114 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
+const exampleData = {
+	addresses: { addresses: [{ address: "Acacia Avenue 666, London UK", latLng: [0, 0], name: "office" }] },
+	emails: { emails: [{ label: "email 1", address: "dev@dariocaruso.info", name: "dev" }] },
+	phones: { phones: [{ number: "+666 666 666 666", name: "main" }] },
+	websites: { websites: [{ label: "website 1 1", url: "https://demo.freewebcomponents.com", name: "webcomponents" }] },
+	availability: { times: ["8 - 20"], appointment: true },
+};
+
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
-		name: "default",
-		data: {},
+		name: "big",
+		data: {
+			model: "big",
+			addresses: exampleData.addresses,
+			emails: exampleData.emails,
+			phones: exampleData.phones,
+			websites: exampleData.websites,
+			availability: exampleData.availability,
+		},
+	},
+	{
+		name: "small",
+		data: {
+			model: "small",
+			addresses: exampleData.addresses,
+			emails: exampleData.emails,
+			phones: exampleData.phones,
+			websites: exampleData.websites,
+			availability: exampleData.availability,
+		},
+	},
+	{
+		name: "auto",
+		data: {
+			addresses: exampleData.addresses,
+			emails: exampleData.emails,
+			phones: exampleData.phones,
+			websites: exampleData.websites,
+			availability: exampleData.availability,
+		},
+	},
+	{
+		name: "auto2",
+		data: {
+			addresses: exampleData.addresses,
+			emails: exampleData.emails,
+		},
+	},
+	{
+		name: "auto3",
+		data: {
+			addresses: exampleData.addresses,
+			emails: exampleData.emails,
+			phones: exampleData.phones,
+		},
+	},
+	{
+		name: "auto4",
+		data: {
+			addresses: exampleData.addresses,
+			emails: exampleData.emails,
+			phones: exampleData.phones,
+			websites: exampleData.websites,
+		},
+	},
+	{
+		name: "auto1",
+		data: {
+			addresses: exampleData.addresses,
+		},
+	},
+	{
+		name: "big2",
+		data: {
+			model: "big",
+
+			addresses: exampleData.addresses,
+			emails: exampleData.emails,
+		},
+	},
+	{
+		name: "big3",
+		data: {
+			model: "big",
+
+			addresses: exampleData.addresses,
+			emails: exampleData.emails,
+			phones: exampleData.phones,
+		},
+	},
+	{
+		name: "big4",
+		data: {
+			model: "big",
+
+			addresses: exampleData.addresses,
+			emails: exampleData.emails,
+			phones: exampleData.phones,
+			websites: exampleData.websites,
+		},
+	},
+	{
+		name: "big1",
+		data: {
+			model: "big",
+
+			addresses: exampleData.addresses,
+		},
 	},
 ];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {

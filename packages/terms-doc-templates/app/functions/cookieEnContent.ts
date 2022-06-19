@@ -1,8 +1,6 @@
 import type { CookieContent, CookieRow, IDoc, IParagraphList, IRow, ITableHeaders } from "@app/types/webcomponent.type";
 import { cookieHeaders, mapCookie, sortFinalDoc } from "./utils";
 
-// https://www.iubenda.com/privacy-policy/54363417/cookie-policy?an=no&s_ck=false&newmarkup=yes
-
 export default function (config: CookieContent) {
 	const content: IDoc = {
 		id: config.id,
@@ -259,7 +257,6 @@ export default function (config: CookieContent) {
 					index: 0,
 				});
 		}
-
 	}
 
 	return sortFinalDoc(content);
