@@ -1,9 +1,9 @@
 export type Paragraphs = {
-	index: number;
 	title?: string;
 	text: string;
 	icon?: string;
 	link?: string;
+	key?: string;
 };
 
 export type Component = {
@@ -14,5 +14,5 @@ export type Component = {
 };
 
 export type Events = {
-	event: { test: boolean };
+	paragraphPressed: { key: string };
 };

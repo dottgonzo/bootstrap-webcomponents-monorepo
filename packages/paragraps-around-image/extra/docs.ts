@@ -5,6 +5,7 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	paragraphs: { control: { type: "object" } },
 	img: { control: { type: "text" } },
+	paragraphPressed: { action: "paragraphPressed" },
 };
 
 const cssVars: CssVar[] = [];
@@ -24,14 +25,12 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			img: "https://via.placeholder.com/300x200",
 			paragraphs: [
 				{
-					index: 0,
 					text: baseTxt,
 					title: "Title",
 					icon: "globe",
 					link: "https://www.google.com",
 				},
 				{
-					index: 1,
 					text: baseTxt,
 					title: "Title2",
 					icon: "globe",
@@ -46,28 +45,24 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			img: "https://via.placeholder.com/300x200",
 			paragraphs: [
 				{
-					index: 0,
 					text: baseTxt,
 					title: "Title",
 					icon: "globe",
 					link: "https://www.google.com",
 				},
 				{
-					index: 1,
 					text: baseTxt,
 					title: "Title2",
 					icon: "globe",
 					link: "https://www.google.com",
 				},
 				{
-					index: 2,
 					text: baseTxt,
 					title: "Title",
 					icon: "globe",
 					link: "https://www.google.com",
 				},
 				{
-					index: 3,
 					text: baseTxt,
 					title: "Title2",
 					icon: "globe",
@@ -82,46 +77,40 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			img: "https://via.placeholder.com/300x500",
 			paragraphs: [
 				{
-					index: 0,
 					text: baseTxt,
 					title: "Title",
 					icon: "globe",
-					link: "https://www.google.com",
+					key: "aaaaa",
 				},
 				{
-					index: 1,
 					text: baseTxt,
 					title: "Title2",
 					icon: "globe",
-					link: "https://www.google.com",
+					key: "aaaaa",
 				},
 				{
-					index: 2,
 					text: baseTxt,
 					title: "Title",
 					icon: "globe",
-					link: "https://www.google.com",
+					key: "aaaaa",
 				},
 				{
-					index: 3,
 					text: baseTxt,
 					title: "Title2",
 					icon: "globe",
-					link: "https://www.google.com",
+					key: "aaaaa",
 				},
 				{
-					index: 4,
 					text: baseTxt,
 					title: "Title",
 					icon: "globe",
-					link: "https://www.google.com",
+					key: "aaaaa",
 				},
 				{
-					index: 5,
 					text: baseTxt,
 					title: "Title2",
 					icon: "globe",
-					link: "https://www.google.com",
+					key: "aaaaa",
 				},
 			],
 		},

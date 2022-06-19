@@ -30,21 +30,46 @@
 
 {#if paragraph}
 	<div
-		style="	
-		  --lh: 1.4rem;
-line-height: var(--lh);
-		  --max-lines: {max_lines};
-  position: relative;
-  max-height: calc(var(--lh) * var(--max-lines));
-  overflow: hidden;
-"
+		style="		
+		margin: 30px auto 40px auto;
+		display: flex;
+		flex-direction: row;"
 	>
-		{#if paragraph.title}
-			<div>
-				{paragraph.title}
+		<div><i style="font-size:1.8rem;padding:25px" class="bi bi-{paragraph.icon}" /></div>
+		<div>
+			{#if paragraph.title}
+				<div style="margin:5px 0px 20px 0px;font-weight:bold">
+					{#if paragraph.link}
+						<a style="color:inherit" target="_blank" href={paragraph.link}
+							>{paragraph.title}<i style="margin-left:10px;" class="bi bi-box-arrow-up-right" /></a
+						>
+					{:else if paragraph.key}
+						<div
+							style="text-decoration:underline;cursor:pointer"
+							on:click={() => {
+								dispatch("paragraphPressed", { key: paragraph.key });
+							}}
+						>
+							{paragraph.title}<i style="margin-left:10px;" class="bi bi-box-arrow-up-right" />
+						</div>
+					{:else}
+						{paragraph.title}
+					{/if}
+				</div>
+			{/if}
+			<div
+				style="	
+		    --lh: 1.5rem;
+            line-height: var(--lh);
+		    --max-lines: {max_lines};
+			position: relative;
+			max-height: calc(var(--lh) * var(--max-lines));
+			overflow: hidden;
+			"
+			>
+				{paragraph.text}
 			</div>
-		{/if}
-		<div>{paragraph.text}</div>
+		</div>
 	</div>
 {/if}
 

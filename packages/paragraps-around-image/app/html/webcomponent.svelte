@@ -41,6 +41,9 @@
 			}
 		}
 	}
+	function paragraphClick(el) {
+		dispatch("paragraphPressed", el.detail);
+	}
 </script>
 
 <svelte:head>
@@ -50,25 +53,27 @@
 	<div id="container">
 		<div class="col" id="left">
 			{#if paragraphs[0]}
-				<Cell paragraph={paragraphs[0]} max_lines="8" />
+				<Cell on:paragraphPressed={(el) => paragraphClick(el)} paragraph={paragraphs[0]} max_lines="8" />
 			{/if}
 			{#if paragraphs[2]}
-				<Cell paragraph={paragraphs[2]} max_lines="8" />
+				<Cell on:paragraphPressed={(el) => paragraphClick(el)} paragraph={paragraphs[2]} max_lines="8" />
 			{/if}
 			{#if paragraphs[4]}
-				<Cell paragraph={paragraphs[4]} max_lines="8" />
+				<Cell on:paragraphPressed={(el) => paragraphClick(el)} paragraph={paragraphs[4]} max_lines="8" />
 			{/if}
 		</div>
-		<div class="col" id="center"><img src={img} alt="" /></div>
+		<div class="col" id="center">
+			<img id="center_image" src={img} alt="" />
+		</div>
 		<div class="col" id="right">
 			{#if paragraphs[1]}
-				<Cell paragraph={paragraphs[1]} max_lines="8" />
+				<Cell on:paragraphPressed={(el) => paragraphClick(el)} paragraph={paragraphs[1]} max_lines="8" />
 			{/if}
 			{#if paragraphs[3]}
-				<Cell paragraph={paragraphs[3]} max_lines="8" />
+				<Cell on:paragraphPressed={(el) => paragraphClick(el)} paragraph={paragraphs[3]} max_lines="8" />
 			{/if}
 			{#if paragraphs[5]}
-				<Cell paragraph={paragraphs[5]} max_lines="8" />
+				<Cell on:paragraphPressed={(el) => paragraphClick(el)} paragraph={paragraphs[5]} max_lines="8" />
 			{/if}
 		</div>
 	</div>

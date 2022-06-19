@@ -18,4 +18,12 @@
 }
 .col {
 	flex: 1;
+	padding: 20px;
+}
+#center {
+	display: flex;
+	justify-content: center;
+}
+#center_image {
+	margin: auto;
 }
