@@ -92,7 +92,7 @@
 		</div>
 	</div>
 	<div id="center_side" part="center-slot" class="navitem">
-		<div class="side" style="margin:auto">
+		<div class="side" style="margin:auto;max-width: 100%;">
 			<span style="cursor:pointer" on:click={() => dispatch("navbarSlotClick", { side: "center" })}>
 				<slot name="brand">
 					{#if companylogouri}<img style="height: 30px;vertical-align: middle;" alt="" src={companylogouri} />{/if}
