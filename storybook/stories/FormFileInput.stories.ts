@@ -25,7 +25,7 @@ const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes as any, componentSetup.name);
 
 export const FormFileInputTemplate = Template.bind({});
-FormFileInputTemplate.args = {
-  id: "BasicFormFileInput",
-  schemaentry: inputEntry1,
-};
+FormFileInputTemplate.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[0]
+);
