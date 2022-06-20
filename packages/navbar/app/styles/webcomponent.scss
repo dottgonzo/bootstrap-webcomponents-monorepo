@@ -18,12 +18,14 @@
 }
 #left_side {
 	text-align: left;
+	z-index: 3;
 }
 #center_side {
 	text-align: center;
 }
 #rigth_side {
 	text-align: right;
+	z-index: 3;
 }
 #rigth_side_conntent {
 	display: inline-block;
