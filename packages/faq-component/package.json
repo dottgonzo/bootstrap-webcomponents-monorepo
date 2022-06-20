@@ -1,7 +1,7 @@
 {
-	"name": "@htmlbricks/hb-site-faq",
-	"displayName": "Svelte-Bootstrap site-faq",
-	"description": "Svelte-Bootstrap site-faq",
+	"name": "@htmlbricks/hb-faq-component",
+	"displayName": "Svelte-Bootstrap faq-component",
+	"description": "Svelte-Bootstrap faq-component",
 	"version": "0.14.0",
 	"main": "release/release.js",
 	"publishConfig": {

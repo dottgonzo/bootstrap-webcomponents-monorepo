@@ -7,7 +7,7 @@ import {
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/site-faq/extra/docs";
+} from "../../packages/faq-component/extra/docs";
 
 const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;

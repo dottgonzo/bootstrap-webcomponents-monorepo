@@ -2,9 +2,10 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	json: { control: { type: "object" } },
-	string: { control: { type: "text" } },
-	boolean: { control: { type: "object" } },
+	info: { control: { type: "object" } },
+	topics: { control: { type: "object" } },
+	filter: { control: { type: "text" } },
+
 	event: { action: "eventEvent" },
 };
 
@@ -22,11 +23,47 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {
-			json: {
-				a: 0,
-			},
-			string: "test",
-			boolean: false,
+			info: [
+				{
+					topic: "test",
+					title: "test title",
+					text: 'text <a href="ss">ddd</a>text',
+				},
+				{
+					topic: "test2",
+					title: "test title2",
+					text: 'text <a href="ss">ddd</a>text',
+				},
+				{
+					topic: "test3",
+					title: "test title3",
+					text: 'text <a href="ss">ddd</a>text',
+				},
+			],
+			topics: [
+				{
+					key: "test",
+					label: "test label",
+					icon: "globe",
+				},
+				{
+					key: "test2",
+					label: "test2 label",
+					icon: "asterisk",
+				},
+				{
+					key: "test3",
+					label: "test3 label",
+					icon: "globe",
+				},
+
+				{
+					key: "test4",
+					label: "test4 label",
+					icon: "globe",
+					catchAll: true,
+				},
+			],
 		},
 	},
 ];
@@ -43,11 +80,11 @@ export const componentSetup: ComponentSetup & { examples: { name: string; descri
 	screenshots: [],
 	licenses: [{ type: "Apache-2.0", path: "LICENSE.md", cost: 0, currency: "EUR" }],
 	readmePath: "README.md",
-	name: "hb-site-faq",
-	category: "site",
-	tags: ["site"],
+	name: "hb-faq-component",
+	category: "components",
+	tags: ["components"],
 	size: {},
 	iifePath: "release/release.js",
-	repoName: "@htmlbricks/hb-site-faq",
+	repoName: "@htmlbricks/hb-faq-component",
 	version: null as any,
 };
