@@ -49,9 +49,13 @@
 	}
 </script>
 
+<svelte:head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
+</svelte:head>
 {#if topics?.length}
 	{#each topics as t (t.key)}
 		<div
+			class="topic"
 			on:click={() => {
 				if (t.catchAll) filter = null;
 				else filter = t.key;
