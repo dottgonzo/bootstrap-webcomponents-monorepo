@@ -21,32 +21,32 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	function readFile(file: File) {
-		loadedFile = { name: file.name, size: file.size, loaded: false };
-		percentage = 0;
-		try {
-			console.log("reading file", file);
-			const reader = new FileReader();
-			reader.addEventListener("load", (event) => {
-				const result = event.target.result;
-				loadedFile = { percentage: 100, name: file.name, size: 0, loaded: true, content: result };
-				console.log("reading file", "loaded", result);
+	// function readFile(file: File) {
+	// 	loadedFile = { name: file.name, size: file.size, loaded: false };
+	// 	percentage = 0;
+	// 	try {
+	// 		console.log("reading file", file);
+	// 		const reader = new FileReader();
+	// 		reader.addEventListener("load", (event) => {
+	// 			const result = event.target.result;
+	// 			loadedFile = { percentage: 100, name: file.name, size: 0, loaded: true, content: result };
+	// 			console.log("reading file", "loaded", result);
 
-				// Do something with result
-			});
+	// 			// Do something with result
+	// 		});
 
-			reader.addEventListener("progress", (event) => {
-				if (event.loaded && event.total) {
-					const percent = (event.loaded / event.total) * 100;
-					console.log(`Progress: ${Math.round(percent)}`);
-					percentage = percent;
-				}
-			});
-			reader.readAsDataURL(file);
-		} catch (err) {
-			console.error(err);
-		}
-	}
+	// 		reader.addEventListener("progress", (event) => {
+	// 			if (event.loaded && event.total) {
+	// 				const percent = (event.loaded / event.total) * 100;
+	// 				console.log(`Progress: ${Math.round(percent)}`);
+	// 				percentage = percent;
+	// 			}
+	// 		});
+	// 		reader.readAsDataURL(file);
+	// 	} catch (err) {
+	// 		console.error(err);
+	// 	}
+	// }
 	$: {
 		if (!show_validation) show_validation = "no";
 
@@ -68,13 +68,13 @@
 
 		value = value != null ? value : (schemaentry?.value as string);
 
-		valid = schemaentry ? !schemaentry?.required || (value != null && loadedFile?.loaded) : false;
+		valid = schemaentry ? !schemaentry?.required || (value != null && typeof files?.[0]?.name === "string") : false;
 
-		if (files && files[0]?.name) {
-			if (!loadedFile || files[0].name !== loadedFile.name) {
-				readFile(files[0]);
-			}
-		}
+		// if (files && files[0]?.name) {
+		// 	if (!loadedFile || files[0].name !== loadedFile.name) {
+		// 		readFile(files[0]);
+		// 	}
+		// }
 
 		// valid = schemaentry
 		// 	? !schemaentry?.required ||
@@ -86,7 +86,7 @@
 
 		console.log(valid, value, "validinput");
 		setTimeout(() => {
-			if (set_value) dispatch("setValue", { value: Object.assign({}, { content: loadedFile?.content }, { file: files?.[0] }), id: schemaentry?.id });
+			if (set_value) dispatch("setValue", { value: files?.[0] || {}, id: schemaentry?.id });
 			if (set_valid) dispatch("setValid", { valid, id: schemaentry?.id });
 		}, 0);
 	}
