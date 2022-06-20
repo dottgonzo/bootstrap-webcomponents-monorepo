@@ -46,6 +46,13 @@
 				console.error("error parsing topics", err);
 			}
 		}
+		let i = 0;
+		if (topics?.length)
+			topics = topics.map((m) => {
+				m.index = i;
+				i++;
+				return m;
+			});
 	}
 </script>
 
@@ -53,18 +60,23 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
 </svelte:head>
 {#if topics?.length}
-	{#each topics as t (t.key)}
-		<div
-			class="topic"
-			on:click={() => {
-				if (t.catchAll) filter = null;
-				else filter = t.key;
-			}}
-		>
-			<div>{t.label}</div>
-			<div><i class="bi bi-{t.icon}" /></div>
-		</div>
-	{/each}
+	<div id="topics">
+		{#each topics as t (t.index)}
+			{#if t.index % 5 === 0}
+				<div class="break" />
+				<!-- break -->
+			{/if}
+			<div
+				class="topic"
+				on:click={() => {
+					if (t.catchAll) filter = null;
+					else filter = t.key;
+				}}
+			>
+				<div class="topic_content"><i class="bi bi-{t.icon}" /> {t.label}</div>
+			</div>
+		{/each}
+	</div>
 {/if}
 {#if info?.length}
 	<div class="faq-content">

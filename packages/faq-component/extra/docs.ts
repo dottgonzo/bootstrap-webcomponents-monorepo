@@ -5,13 +5,11 @@ export const storybookArgs = {
 	info: { control: { type: "object" } },
 	topics: { control: { type: "object" } },
 	filter: { control: { type: "text" } },
-
-	event: { action: "eventEvent" },
 };
 
 const cssVars: CssVar[] = [];
-export const cssParts: CssPart[] = [{ name: "testpart", description: "test css part on 2 div tag" }];
-export const htmlSlots: HtmlSlot[] = [{ name: "skelcontent", description: "test slot" }];
+export const cssParts: CssPart[] = [];
+export const htmlSlots: HtmlSlot[] = [];
 export const i18nLanguages: i18nLang[] = [];
 
 export const styleSetup: StyleSetup = {

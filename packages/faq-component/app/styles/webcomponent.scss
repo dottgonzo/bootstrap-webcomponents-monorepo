@@ -8,10 +8,40 @@
 	// background-color: red;
 	// width: fit-content;
 }
+@media screen and (min-width: 800px) {
+	#topics {
+		display: flex;
+		flex-wrap: wrap;
 
-.topic {
+		// background-color: blue;
+		// width: fit-content;
+	}
+	.topic {
+		flex: 1;
+		padding: 20px;
+	}
+	.topic_content {
+		padding: 30px;
+	}
+}
+@media screen and (max-width: 800px) {
+	.topic {
+		padding: 10px;
+	}
+	.topic_content {
+		padding: 10px;
+	}
+}
+.break {
+	flex-basis: 100%;
+	height: 0;
+	width: 0;
+}
+
+.topic_content {
 	border: 1px solid black;
-	display: inline-block;
+	text-align: center;
+	cursor: pointer;
 }
 .faq-header {
 	font-size: 42px;
@@ -87,4 +117,9 @@
 
 .panel {
 	display: none;
+}
+i {
+	font-size: 1.8rem;
+	vertical-align: middle;
+	margin-right: 5px;
 }
