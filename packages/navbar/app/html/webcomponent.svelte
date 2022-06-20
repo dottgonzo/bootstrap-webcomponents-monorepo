@@ -83,7 +83,7 @@
 <nav id="navbar">
 	<div id="left_side" class="navitem" part="left-slot">
 		<div style="padding-left: 10px;">
-			<div class="side">
+			<div id="left_side_content" class="side">
 				{#if !noburger}
 					<button style="font-size:20px;border:none" on:click={() => switchMenu()}>☰</button>
 				{/if}
@@ -104,7 +104,7 @@
 	</div>
 
 	<div id="rigth_side" part="right-slot" class="navitem">
-		<div id="rigth_side_conntent">
+		<div id="rigth_side_content">
 			<div class="side">
 				<!-- <span on:click={() => dispatch("navbarSlotClick", { side: "right" })}> -->
 				<slot name="right-slot">

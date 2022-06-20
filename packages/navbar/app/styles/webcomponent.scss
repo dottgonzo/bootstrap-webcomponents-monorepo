@@ -23,20 +23,22 @@
 }
 #left_side {
 	text-align: left;
-	z-index: 3;
 }
 #center_side {
 	text-align: center;
 }
 #rigth_side {
 	text-align: right;
-	z-index: 3;
 }
-#rigth_side_conntent {
+#rigth_side_content {
 	display: inline-block;
 	padding-right: 10px;
+	z-index: 3;
 }
-
+#left_side_content {
+	z-index: 3;
+	position: relative;
+}
 .navitem {
 	position: absolute;
 	width: 100%;
