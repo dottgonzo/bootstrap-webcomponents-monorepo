@@ -3,12 +3,10 @@
 
 :host {
 	font-family: "Roboto", sans-serif;
-	display: block;
 	// display: flex;
 	// align-items: center;
 	// background-color: red;
 	// width: fit-content;
-	overflow-x: hidden;
 }
 
 .topic {
@@ -28,6 +26,7 @@
 .faq-question {
 	padding: 20px 0;
 	border-bottom: 1px dotted #ccc;
+	overflow-x: hidden;
 }
 
 .panel-title {
