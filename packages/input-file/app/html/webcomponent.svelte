@@ -101,6 +101,7 @@
 	required={schemaentry?.required}
 	placeholder={schemaentry?.placeholder}
 	readonly={schemaentry?.readonly}
+	accept={schemaentry?.params?.accept || "*"}
 />
 {#if schemaentry?.validationTip && show_validation === "yes"}
 	<div part="invalid-feedback" class="invalid-feedback mb-1">
