@@ -5,6 +5,11 @@
 	width: 100%;
 	display: block;
 }
+.side {
+	position: relative;
+	z-index: 1;
+	max-width: 33%;
+}
 #navbar {
 	// display: flex;
 	// justify-content: space-between;
@@ -31,11 +36,7 @@
 	display: inline-block;
 	padding-right: 10px;
 }
-.side {
-	position: relative;
-	z-index: 1;
-	max-width: 33%;
-}
+
 .navitem {
 	position: absolute;
 	width: 100%;
