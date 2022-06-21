@@ -2,6 +2,10 @@ export type Data = {
 	href: string;
 	caption?: string;
 	index?: number;
+	externalLink?: string;
+	link?: string;
+	key?: string;
+	isVideo?: boolean;
 };
 
 export type Component = {
@@ -11,5 +15,5 @@ export type Component = {
 };
 
 export type Events = {
-	// event: { test: boolean };
+	slideClick: { key: string };
 };

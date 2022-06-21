@@ -24,15 +24,7 @@
 	//  let componentStyleToSet: string = "";
 	let slide: number;
 	let chunks: Component["data"];
-	function chunkData(array: Component["data"], chunkSize: number) {
-		const chunks: Component["data"][] = [];
-		for (let i = 0; i < array.length; i += chunkSize) {
-			const chunk = array.slice(i, i + chunkSize);
-			chunks.push(chunk);
-			// do whatever
-		}
-		return chunks;
-	}
+
 	$: {
 		if (!slide) slide = 0;
 		if (!id) id = "";
@@ -63,10 +55,7 @@
 			} else if (slide < 0) {
 				if (slide > -5) {
 					chunks = data.slice(slide);
-					console.log(slide, chunks);
-
 					chunks = chunks.concat(data.slice(0, slide + 5));
-					console.log(slide, chunks, slide);
 				} else if (slide > data.length * -1) {
 					chunks = data.slice(slide).slice(0, 5);
 				} else {
@@ -93,9 +82,23 @@
 				class="arrow__btn">‹</a
 			>
 			{#each chunks as item (item.index)}
-				<div class="item">
-					<img src={item.href} alt={item.caption} />
-				</div>
+				{#if item.externalLink}
+					<div on:click={() => window.open(item.externalLink, "_blank")} class="item">
+						<img src={item.href} alt={item.caption} />
+					</div>
+				{:else if item.link}
+					<div on:click={() => (window.location.href = item.link)} class="item">
+						<img src={item.href} alt={item.caption} />
+					</div>
+				{:else if item.key}
+					<div on:click={() => dispatch("slideClick", { key: item.key })} class="item">
+						<img src={item.href} alt={item.caption} />
+					</div>
+				{:else}
+					<div class="item">
+						<img src={item.href} alt={item.caption} />
+					</div>
+				{/if}
 			{/each}
 			<!-- svelte-ignore a11y-invalid-attribute -->
 

@@ -5,7 +5,7 @@ export const storybookArgs = {
 	data: { control: { type: "object" } },
 	// string: { control: { type: "text" } },
 	// boolean: { control: { type: "object" } },
-	// event: { action: "eventEvent" },
+	slideClick: { action: "slideClickEvent" },
 };
 
 const cssVars: CssVar[] = [];
@@ -24,9 +24,9 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		data: {
 			data: [
 				{ href: "https://via.placeholder.com/300x200/FFFFFF", caption: "HTMLbricks" },
-				{ href: "https://via.placeholder.com/300x200/0000FF", caption: "HTMLbricks2" },
-				{ href: "https://via.placeholder.com/300x200/00FFFF", caption: "HTMLbricks3" },
-				{ href: "https://via.placeholder.com/300x200/a94949", caption: "HTMLbricks4" },
+				{ href: "https://via.placeholder.com/300x200/0000FF", caption: "HTMLbricks2", externalLink: "https://demo.freewebcomponents.com" },
+				{ href: "https://via.placeholder.com/300x200/00FFFF", caption: "HTMLbricks3", link: "https://demo.freewebcomponents.com" },
+				{ href: "https://via.placeholder.com/300x200/a94949", caption: "HTMLbricks4", key: "htmlbricks" },
 				{ href: "https://via.placeholder.com/300x200/49a962", caption: "HTMLbricks5" },
 				{ href: "https://via.placeholder.com/300x200/49a9a0", caption: "HTMLbricks6" },
 				{ href: "https://via.placeholder.com/300x200/49a94c", caption: "HTMLbricks7" },
