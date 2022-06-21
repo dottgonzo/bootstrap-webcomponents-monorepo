@@ -82,7 +82,7 @@
 					setSlides(slide - 1);
 				}}
 				href={null}
-				class="arrow__btn">‹</a
+				class="arrow__btn"><div>‹</div></a
 			>
 			{#each chunks as item (item.index)}
 				{#if item.externalLink}
@@ -154,7 +154,7 @@
 					setSlides(slide + 1);
 				}}
 				href={null}
-				class="arrow__btn">›</a
+				class="arrow__btn"><div>›</div></a
 			>
 		</section>
 	</div>

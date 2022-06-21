@@ -48,127 +48,141 @@ body {
 		}
 
 		a {
+			padding: 0 20px;
 			position: absolute;
-			color: #fff;
+			display: flex;
+			color: white;
 			text-decoration: none;
 			font-size: 6em;
-			width: 80px;
-			padding: 20px;
-			text-align: center;
 			z-index: 3;
+			align-items: center;
+			justify-content: center;
+			background: linear-gradient(-90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
 
 			&:nth-of-type(1) {
 				top: 0;
 				bottom: 0;
 				left: 0;
-				background: linear-gradient(-90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+				&:hover {
+					background: linear-gradient(-90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%) !important;
+				}
 			}
 			&:nth-of-type(2) {
 				top: 0;
 				bottom: 0;
 				right: 0;
-				background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+				&:hover {
+					background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%) !important;
+				}
 			}
 		}
 	}
-}
+	.arrow__btn {
+	}
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	a {
+		cursor: pointer;
+		&:hover {
+			color: white !important;
+		}
+	}
+	.play {
+		position: absolute;
+		z-index: 10;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		vertical-align: middle;
+		line-height: 100%;
+		text-align: center;
+		display: flex;
+		&:hover {
+			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
 
-// Remove the arrow for Mobile
-@media only screen and (max-width: 600px) {
-	a.arrow__btn {
+			.play_container {
+				display: flex;
+			}
+		}
+		align-items: center;
+		justify-content: center;
+	}
+	.play_container {
+		display: none;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		border: 6px solid white;
+		border-radius: 50%;
+		width: 4rem;
+		height: 4rem;
+		text-align: center;
+	}
+
+	.play_symbol {
+		text-align: center;
+		font-size: 2rem;
+
+		font-weight: bold;
+		margin: 0px 0px 3px 3px;
+	}
+	.caption {
+		position: absolute;
+		z-index: 10;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		vertical-align: middle;
+		line-height: 100%;
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&:hover {
+			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+
+			.caption_content {
+				display: block;
+			}
+		}
+	}
+	.caption_content {
+		color: white;
+		font-weight: bold;
 		display: none;
 	}
-}
-.arrow__btn {
-}
-img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-a {
-	cursor: pointer;
-}
-.play {
-	position: absolute;
-	z-index: 10;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	vertical-align: middle;
-	line-height: 100%;
-	text-align: center;
-	display: flex;
-	&:hover {
-		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
-
-		.play_container {
-			display: flex;
+	.video_sub {
+		display: none;
+		position: absolute;
+		z-index: 10;
+		bottom: 0;
+		width: 100%;
+		div {
+			display: inline-block;
+			color: white;
 		}
 	}
-	align-items: center;
-	justify-content: center;
-}
-.play_container {
-	display: none;
-	align-items: center;
-	justify-content: center;
-	color: white;
-	border: 6px solid white;
-	border-radius: 50%;
-	width: 4rem;
-	height: 4rem;
-	text-align: center;
-}
-
-.play_symbol {
-	text-align: center;
-	font-size: 2rem;
-
-	font-weight: bold;
-	margin: 0px 0px 3px 3px;
-}
-.caption {
-	position: absolute;
-	z-index: 10;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	vertical-align: middle;
-	line-height: 100%;
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
+	.video_sub_time {
+		float: right;
+		margin-right: 10px;
+	}
+	.video_sub_title {
+		margin-left: 10px;
+	}
 	&:hover {
-		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
-
-		.caption_content {
-			display: block;
+		a {
+			color: transparent;
+			background: transparent;
 		}
 	}
 }
-.caption_content {
-	color: white;
-	font-weight: bold;
-	display: none;
-}
-.video_sub {
-	display: none;
-	position: absolute;
-	z-index: 10;
-	bottom: 0;
-	width: 100%;
-	div {
-		display: inline-block;
-		color: white;
+// Remove the arrow for Mobile
+@media only screen and (max-width: 600px) {
+	.wrapper {
+		display: none;
 	}
-}
-.video_sub_time {
-	float: right;
-	margin-right: 10px;
-}
-.video_sub_title {
-	margin-left: 10px;
 }
