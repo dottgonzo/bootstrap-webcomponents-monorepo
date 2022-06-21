@@ -31,9 +31,7 @@
 		if (!id) {
 			id = "";
 		}
-		if (!style) {
-			style = "";
-		}
+		if (!style) console.log("using default colors");
 		if (!label) label = "";
 		if (!link_label) link_label = "";
 		if (!icon) icon = "hypnotize";
