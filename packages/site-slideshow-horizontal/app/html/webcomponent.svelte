@@ -89,36 +89,60 @@
 					<div on:click={() => window.open(item.externalLink, "_blank")} class="item">
 						<img src={item.href} alt={item.caption} />
 						{#if type === "videos"}
-							<div class="play"><div class="play_container"><div class="play_symbol">▶</div></div></div>
+							<div class="play">
+								<div class="play_container"><div class="play_symbol">▶</div></div>
+							</div>
+							<div class="video_sub">
+								<div class="video_sub_title" part="video_sub_title">{item.caption}</div>
+								{#if item.duration}<div class="video_sub_time" part="video_sub_time">{item.duration}</div>{/if}
+							</div>
 						{:else if item.caption}
-							<div class="caption">{item.caption}</div>
+							<div class="caption"><div class="caption_content" part="caption_content">{item.caption}</div></div>
 						{/if}
 					</div>
 				{:else if item.link}
 					<div on:click={() => (window.location.href = item.link)} class="item">
 						<img src={item.href} alt={item.caption} />
 						{#if type === "videos"}
-							<div class="play"><div class="play_container"><div class="play_symbol">▶</div></div></div>
+							<div class="play">
+								<div class="play_container"><div class="play_symbol">▶</div></div>
+							</div>
+							<div class="video_sub">
+								<div class="video_sub_title" part="video_sub_title">{item.caption}</div>
+								{#if item.duration}<div class="video_sub_time" part="video_sub_time">{item.duration}</div>{/if}
+							</div>
 						{:else if item.caption}
-							<div class="caption">{item.caption}</div>
+							<div class="caption"><div class="caption_content" part="caption_content">{item.caption}</div></div>
 						{/if}
 					</div>
 				{:else if item.key}
 					<div on:click={() => dispatch("slideClick", { key: item.key })} class="item">
 						<img src={item.href} alt={item.caption} />
 						{#if type === "videos"}
-							<div class="play"><div class="play_container"><div class="play_symbol">▶</div></div></div>
+							<div class="play">
+								<div class="play_container"><div class="play_symbol">▶</div></div>
+							</div>
+							<div class="video_sub">
+								<div class="video_sub_title" part="video_sub_title">{item.caption}</div>
+								{#if item.duration}<div class="video_sub_time" part="video_sub_time">{item.duration}</div>{/if}
+							</div>
 						{:else if item.caption}
-							<div class="caption">{item.caption}</div>
+							<div class="caption"><div class="caption_content" part="caption_content">{item.caption}</div></div>
 						{/if}
 					</div>
 				{:else}
 					<div class="item">
 						<img src={item.href} alt={item.caption} />
 						{#if type === "videos"}
-							<div class="play"><div class="play_container"><div class="play_symbol">▶</div></div></div>
+							<div class="play">
+								<div class="play_container"><div class="play_symbol">▶</div></div>
+							</div>
+							<div class="video_sub">
+								<div class="video_sub_title" part="video_sub_title">{item.caption}</div>
+								{#if item.duration}<div class="video_sub_time" part="video_sub_time">{item.duration}</div>{/if}
+							</div>
 						{:else if item.caption}
-							<div class="caption">{item.caption}</div>
+							<div class="caption"><div class="caption_content" part="caption_content">{item.caption}</div></div>
 						{/if}
 					</div>
 				{/if}

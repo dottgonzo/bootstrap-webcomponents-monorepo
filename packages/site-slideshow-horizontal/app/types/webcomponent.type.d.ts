@@ -5,7 +5,7 @@ export type Data = {
 	externalLink?: string;
 	link?: string;
 	key?: string;
-	isVideo?: boolean;
+	duration?: number;
 };
 
 export type Component = {
