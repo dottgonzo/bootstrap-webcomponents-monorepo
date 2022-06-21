@@ -21,12 +21,17 @@
 	export let data: Component["data"];
 	export let slide: number;
 	export let type: Component["type"];
+	export let size: number;
 
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
 	let chunks: Component["data"];
-
+	let innerWidth: number;
+	let vsize: number;
 	$: {
+		if (!innerWidth) innerWidth = 0;
+		if (size) vsize = size;
+		else vsize = Math.round(innerWidth / 250);
 		if (!slide) slide = 0;
 		if (typeof slide === "string") slide = Number(slide);
 		if (type !== "videos") type = "images";
@@ -51,19 +56,19 @@
 			if (slide >= 0) {
 				if (slide === data.length) slide = 0;
 
-				chunks = data.slice(slide, slide + 5);
-				if (chunks.length < 5 && data.length > 5) {
-					chunks = chunks.concat(data.slice(0, 5 - chunks.length));
+				chunks = data.slice(slide, slide + vsize);
+				if (chunks.length < vsize && data.length > vsize) {
+					chunks = chunks.concat(data.slice(0, vsize - chunks.length));
 				}
 			} else if (slide < 0) {
-				if (slide > -5) {
+				if (slide > -vsize) {
 					chunks = data.slice(slide);
-					chunks = chunks.concat(data.slice(0, slide + 5));
+					chunks = chunks.concat(data.slice(0, slide + vsize));
 				} else if (slide > data.length * -1) {
-					chunks = data.slice(slide).slice(0, 5);
+					chunks = data.slice(slide).slice(0, vsize);
 				} else {
 					slide = 0;
-					chunks = data.slice(0, 5);
+					chunks = data.slice(0, vsize);
 				}
 			}
 		}
@@ -73,9 +78,10 @@
 	}
 </script>
 
+<svelte:window bind:innerWidth />
 {#if chunks?.length}
 	<div class="wrapper">
-		<section id="section1">
+		<section style="grid-template-columns: repeat({vsize}, auto);">
 			<!-- svelte-ignore a11y-invalid-attribute -->
 			<a
 				on:click={() => {
@@ -158,12 +164,7 @@
 			>
 		</section>
 	</div>
-
-	<!-- <div id="container">
-		{#each data as item (item.index)}
-			<img src={item.href} alt={item.caption} />
-		{/each}
-	</div> -->
+	<!-- <div class="mobile_wrapper">mob</div> -->
 {/if}
 
 <style lang="scss">

@@ -14,6 +14,7 @@ export type Component = {
 	data: Data[];
 	slide?: number;
 	type?: "images" | "videos";
+	size?: number;
 };
 
 export type Events = {

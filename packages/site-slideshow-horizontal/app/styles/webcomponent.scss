@@ -7,17 +7,6 @@
 	// background-color: red;
 	// width: fit-content;
 }
-$itemGrow: 1.2;
-$duration: 250ms;
-
-html {
-	scroll-behavior: smooth;
-}
-
-body {
-	margin: 0;
-	background-color: #000;
-}
 
 .wrapper {
 	display: grid;
@@ -29,13 +18,13 @@ body {
 		width: 100%;
 		position: relative;
 		display: grid;
-		grid-template-columns: repeat(5, auto);
+
 		margin: 20px 0;
 
 		.item {
 			position: relative;
 			padding: 0 0px;
-			transition: $duration all;
+			transition: 250ms all;
 			z-index: 1;
 			&:hover {
 				margin: 0 40px;
@@ -184,8 +173,8 @@ body {
 	}
 }
 // Remove the arrow for Mobile
-@media only screen and (max-width: 600px) {
-	.wrapper {
-		display: none;
-	}
-}
+// @media only screen and (max-width: 600px) {
+// 	.wrapper {
+// 		display: none;
+// 	}
+// }
