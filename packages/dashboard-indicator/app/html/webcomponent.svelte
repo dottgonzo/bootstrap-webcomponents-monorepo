@@ -15,7 +15,6 @@
 	import { createEventDispatcher } from "svelte";
 
 	export let id: string;
-	export let style: string;
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 
@@ -31,7 +30,6 @@
 		if (!id) {
 			id = "";
 		}
-		if (!style) console.log("using default colors");
 		if (!label) label = "";
 		if (!link_label) link_label = "";
 		if (!icon) icon = "hypnotize";
