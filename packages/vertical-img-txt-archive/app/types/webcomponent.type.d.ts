@@ -11,6 +11,7 @@ export type Component = {
 	id?: string;
 	style?: string;
 	collection: Item[];
+	size?: number;
 };
 
 export type Events = {

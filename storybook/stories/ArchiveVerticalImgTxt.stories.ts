@@ -25,3 +25,8 @@ ArchiveVerticalImgTxt2.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples[1]
 );
+export const ArchiveVerticalImgTxtFixed = Template.bind({});
+ArchiveVerticalImgTxtFixed.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[2]
+);

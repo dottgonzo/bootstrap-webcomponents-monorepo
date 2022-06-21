@@ -3,7 +3,7 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	collection: { control: { type: "object" } },
-
+	size: { control: { type: "number" } },
 	collectionItemClick: { collectionItemClick: "eventEvent" },
 };
 
@@ -77,6 +77,51 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default2",
 		data: {
+			collection: [
+				{
+					title: "Title 1",
+					text: "Text 1",
+					link: { type: "tab", uri: "https://www.google.com" },
+					image: "https://via.placeholder.com/300x200",
+				},
+				{
+					title: "Title 2",
+					text: "Text 2",
+					link: { type: "tab", uri: "https://www.google.com" },
+					image: "https://via.placeholder.com/300x200",
+				},
+
+				{
+					title: "Title 3",
+					text: "Text 3",
+					link: { type: "tab", uri: "https://www.google.com" },
+					image: "https://via.placeholder.com/300x200",
+				},
+				{
+					title: "Title 4",
+					text: "Text 4",
+					link: { type: "tab", uri: "https://www.google.com" },
+					image: "https://via.placeholder.com/300x200",
+				},
+				{
+					title: "Title 5",
+					text: "Text 5",
+					link: { type: "tab", uri: "https://www.google.com" },
+					image: "https://via.placeholder.com/300x200",
+				},
+				{
+					title: "Title 6",
+					text: "Text 6",
+					link: { type: "tab", uri: "https://www.google.com" },
+					image: "https://via.placeholder.com/300x200",
+				},
+			],
+		},
+	},
+	{
+		name: "default2",
+		data: {
+			size: 4,
 			collection: [
 				{
 					title: "Title 1",
