@@ -21,3 +21,9 @@ SiteSlideshowH1.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples[0]
 );
+export const SiteSlideshowHVideos = Template.bind({});
+
+SiteSlideshowHVideos.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[1]
+);

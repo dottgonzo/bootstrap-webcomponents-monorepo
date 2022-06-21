@@ -12,6 +12,8 @@ export type Component = {
 	id?: string;
 	style?: string;
 	data: Data[];
+	slide?: number;
+	type?: "images" | "videos";
 };
 
 export type Events = {

@@ -19,14 +19,17 @@
 	export let id: string;
 	export let style: string;
 	export let data: Component["data"];
+	export let slide: number;
+	export let type: Component["type"];
 
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
-	let slide: number;
 	let chunks: Component["data"];
 
 	$: {
 		if (!slide) slide = 0;
+		if (typeof slide === "string") slide = Number(slide);
+		if (type !== "videos") type = "images";
 		if (!id) id = "";
 		if (style) {
 			parsedStyle = parseStyle(style);
@@ -85,18 +88,38 @@
 				{#if item.externalLink}
 					<div on:click={() => window.open(item.externalLink, "_blank")} class="item">
 						<img src={item.href} alt={item.caption} />
+						{#if type === "videos"}
+							<div class="play"><div class="play_container"><div class="play_symbol">▶</div></div></div>
+						{:else if item.caption}
+							<div class="caption">{item.caption}</div>
+						{/if}
 					</div>
 				{:else if item.link}
 					<div on:click={() => (window.location.href = item.link)} class="item">
 						<img src={item.href} alt={item.caption} />
+						{#if type === "videos"}
+							<div class="play"><div class="play_container"><div class="play_symbol">▶</div></div></div>
+						{:else if item.caption}
+							<div class="caption">{item.caption}</div>
+						{/if}
 					</div>
 				{:else if item.key}
 					<div on:click={() => dispatch("slideClick", { key: item.key })} class="item">
 						<img src={item.href} alt={item.caption} />
+						{#if type === "videos"}
+							<div class="play"><div class="play_container"><div class="play_symbol">▶</div></div></div>
+						{:else if item.caption}
+							<div class="caption">{item.caption}</div>
+						{/if}
 					</div>
 				{:else}
 					<div class="item">
 						<img src={item.href} alt={item.caption} />
+						{#if type === "videos"}
+							<div class="play"><div class="play_container"><div class="play_symbol">▶</div></div></div>
+						{:else if item.caption}
+							<div class="caption">{item.caption}</div>
+						{/if}
 					</div>
 				{/if}
 			{/each}

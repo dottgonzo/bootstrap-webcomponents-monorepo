@@ -33,6 +33,7 @@ body {
 		margin: 20px 0;
 
 		.item {
+			position: relative;
 			padding: 0 0px;
 			transition: $duration all;
 
@@ -84,4 +85,54 @@ img {
 }
 a {
 	cursor: pointer;
+}
+.play {
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	vertical-align: middle;
+	line-height: 100%;
+	text-align: center;
+	display: flex;
+	&:hover {
+		.play_container {
+			display: flex;
+		}
+	}
+	align-items: center;
+	justify-content: center;
+}
+.play_container {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	border: 6px solid white;
+	border-radius: 50%;
+	width: 4rem;
+	height: 4rem;
+	text-align: center;
+}
+
+.play_symbol {
+	text-align: center;
+	font-size: 2rem;
+
+	font-weight: bold;
+	margin: 0px 0px 3px 3px;
+}
+.caption {
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	vertical-align: middle;
+	line-height: 100%;
+	text-align: center;
+
+	align-items: center;
+	justify-content: center;
 }
