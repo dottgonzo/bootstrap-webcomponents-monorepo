@@ -6,6 +6,7 @@
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import type { Component } from "@app/types/webcomponent.type";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -19,7 +20,7 @@
 	export let style: string;
 
 	export let string: string;
-	export let json: { a: 0 };
+	export let json: Component["json"];
 	export let boolean: boolean;
 
 	let parsedStyle: { [x: string]: string };
@@ -34,8 +35,13 @@
 		if (!string) string = "";
 
 		// json
-		if (typeof json === "string") JSON.parse(json);
-
+		if (typeof json === "string") {
+			try {
+				json = JSON.parse(json);
+			} catch (err) {
+				console.error("error parsing json", err);
+			}
+		}
 		// boolean
 		if (boolean === ("" as unknown)) boolean = true;
 		if (typeof boolean === "string") boolean = boolean === "no" || boolean === "false" ? false : true;
