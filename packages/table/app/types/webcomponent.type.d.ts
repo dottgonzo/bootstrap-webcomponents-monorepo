@@ -36,6 +36,14 @@ export interface IActionButton {
 		denyLabel?: string;
 		content: string;
 	};
+	edit?: {
+		title: string;
+		text?: string;
+		confirmLabel: string;
+		denyLabel?: string;
+		description?: string;
+		schema: any;
+	};
 }
 
 export type Component = {
