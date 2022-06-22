@@ -31,6 +31,7 @@
 	export let content = "";
 	export let closelabel = "";
 	export let confirmlabel = "";
+	export let disable_confirm;
 
 	let ignoreBackdrop = false;
 
@@ -80,6 +81,8 @@
 	}
 	// Watching changes for Open vairable
 	$: {
+		if (!disable_confirm) disable_confirm = false;
+		else if (typeof disable_confirm === "string") disable_confirm = disable_confirm.toLowerCase() === "true" || disable_confirm.toLowerCase() === "yes";
 		if (show === "yes") {
 			modalOpen();
 		} else {

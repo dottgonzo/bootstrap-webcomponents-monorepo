@@ -2,9 +2,9 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	disable_confirm: { control: { type: "boolean" } },
+	schema: { control: { type: "object" } },
 	show: { control: { type: "boolean" } },
-	dialogclasses: { control: { type: "text" } },
+	dialogformclasses: { control: { type: "text" } },
 	title: { control: { type: "text" } },
 	backdrop: { control: { type: "boolean" } },
 	ignoreBackdrop: { control: { type: "text" } },
@@ -34,12 +34,44 @@ export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
 };
+const preferences = [
+	{
+		type: "text",
+		placeholder: "Inserisci titolo di default",
+		id: "defaultTitle",
+		required: true,
 
+		label: "Titolo di default",
+		value: "titolotest",
+		params: {
+			minLength: 8,
+			maxLength: 120,
+		},
+	},
+	{
+		type: "number",
+		id: "age",
+		required: true,
+		label: "Age",
+		value: 9,
+		params: {
+			min: 8,
+			max: 120,
+		},
+		validationTip: "Min 8, Max 120",
+	},
+];
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {
-			show: "yes",
+			schema: preferences,
+		},
+	},
+	{
+		name: "default2",
+		data: {
+			schema: preferences,
 		},
 	},
 ];
@@ -56,11 +88,11 @@ export const componentSetup: ComponentSetup & { examples: { name: string; descri
 	screenshots: [],
 	licenses: [{ type: "Apache-2.0", path: "LICENSE.md", cost: 0, currency: "EUR" }],
 	readmePath: "README.md",
-	name: "hb-dialog",
-	category: "basic",
-	tags: ["basic"],
+	name: "hb-dialogform",
+	category: "form",
+	tags: ["form"],
 	size: {},
 	iifePath: "release/release.js",
-	repoName: "@htmlbricks/hb-dialog",
+	repoName: "@htmlbricks/hb-dialogform",
 	version: null as any,
 };

@@ -1,3 +1,5 @@
+import type { Component as FormComponent } from "../../node_modules/@htmlbricks/hb-form/release/webcomponent.type";
+
 export type Component = {
 	id?: string;
 	style?: string;
@@ -12,7 +14,7 @@ export type Component = {
 	content?: string;
 	closelabel?: string;
 	confirmlabel?: string;
-	disable_confirm?: boolean;
+	schema: FormComponent["schema"];
 };
 
 export type Events = {
