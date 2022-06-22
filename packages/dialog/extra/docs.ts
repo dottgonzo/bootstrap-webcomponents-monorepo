@@ -5,6 +5,7 @@ export const storybookArgs = {
 	disable_confirm: { control: { type: "boolean" } },
 	show: { control: { type: "boolean" } },
 	confirm_btn_class: { control: { type: "text" } },
+	close_btn_class: { control: { type: "text" } },
 	title: { control: { type: "text" } },
 	backdrop: { control: { type: "boolean" } },
 	ignoreBackdrop: { control: { type: "text" } },

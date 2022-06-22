@@ -32,6 +32,7 @@
 	export let confirmlabel = "";
 	export let disable_confirm: boolean;
 	export let confirm_btn_class: string;
+	export let close_btn_class: string;
 
 	let ignoreBackdrop = false;
 
@@ -130,10 +131,10 @@
 				<slot name="modal-footer" class="modal-footer">
 					<div>
 						<slot name="footer">
-							<button type="button" class="btn btn-secondary" on:click={() => handleCancel()}
+							<button type="button" class="btn btn-{close_btn_class}" on:click={() => handleCancel()}
 								><slot name="close-button-label">{closelabel || "Close"}</slot></button
 							>
-							<button disabled={disable_confirm ? true : false} type="button" class="btn btn-primary" on:click={() => handleConfirm()}
+							<button disabled={disable_confirm ? true : false} type="button" class="btn btn-{confirm_btn_class}" on:click={() => handleConfirm()}
 								><slot name="confirm-button-label">{confirmlabel || "Save changes"}</slot></button
 							>
 						</slot>

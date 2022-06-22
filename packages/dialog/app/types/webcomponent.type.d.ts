@@ -13,6 +13,7 @@ export type Component = {
 	closelabel?: string;
 	confirmlabel?: string;
 	disable_confirm?: boolean;
+	close_btn_class?: boolean;
 };
 
 export type Events = {
