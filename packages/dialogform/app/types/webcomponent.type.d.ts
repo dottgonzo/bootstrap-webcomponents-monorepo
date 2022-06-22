@@ -18,6 +18,6 @@ export type Component = {
 };
 
 export type Events = {
-	modalConfirm: { id: string; confirm: boolean };
+	modalFormConfirm: { [key: string]: string; _valid: true };
 	modalShow: { id: string; show: true };
 };

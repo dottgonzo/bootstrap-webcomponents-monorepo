@@ -10,6 +10,7 @@
 	import parseStyle from "style-to-object";
 	import type { Component } from "@app/types/webcomponent.type";
 	import type { Events as FormEvents } from "../../node_modules/@htmlbricks/hb-form/release/webcomponent.type";
+	import type { Events as DialogEvents } from "../../node_modules/@htmlbricks/hb-dialog/release/webcomponent.type";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -65,24 +66,47 @@
 	}
 	addComponent({ repoName: "@htmlbricks/hb-dialog", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
+	let formValues: any;
+	function modalShow(detail: DialogEvents["modalShow"]) {
+		show = detail.show ? "yes" : "no";
+		dispatch("modalShow", detail);
+	}
 	function changeForm(detail: FormEvents["change"]) {
-		console.log("formchange", detail);
+		if (detail._valid) formIsValid = true;
+		else formIsValid = false;
+		formValues = detail;
 	}
-	function formSubmit(detail: FormEvents["submit"]) {
-		console.log("formsubmit", detail);
+	function formSubmit(detail: DialogEvents["modalConfirm"]) {
+		if (detail.confirm && formValues && formValues._valid) {
+			dispatch("modalFormConfirm", formValues);
+		} else if (!detail.confirm) {
+			console.warn("form submit cancelled");
+		} else {
+			console.error("form submit invalid");
+		}
 	}
+	let formIsValid: boolean = false;
 </script>
 
 <span>
-	<hb-dialog id={(id || "modalform") + "_dialog" + Date.now()} {show} {title} {confirmlabel} {content} {closelabel}>
+	<hb-dialog
+		style={dialogStyleToSet}
+		disable_confirm={formIsValid ? "no" : "yes"}
+		id={(id || "modalform") + "_dialog" + Date.now()}
+		{show}
+		{title}
+		{confirmlabel}
+		{content}
+		{closelabel}
+		on:modalConfirm={(e) => {
+			formSubmit(e.detail);
+		}}
+		on:modalShow={(e) => {
+			modalShow(e.detail);
+		}}
+	>
 		<div slot="body-content">
-			<hb-form
-				{schema}
-				on:change={(e) => changeForm(e.detail)}
-				on:submit={(e) => {
-					formSubmit(e.detail);
-				}}
-			/>
+			<hb-form style={formStyleToSet} {schema} on:change={(e) => changeForm(e.detail)} hide_submit="yes" />
 		</div>
 	</hb-dialog>
 </span>
