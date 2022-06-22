@@ -1,7 +1,7 @@
 <svelte:options tag="hb-dialogform" />
 
 <script lang="ts">
-	import { get_current_component } from "svelte/internal";
+	import { get_current_component, now } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
 	import pkg from "../../package.json";
@@ -92,7 +92,7 @@
 	<hb-dialog
 		style={dialogStyleToSet}
 		disable_confirm={formIsValid ? "no" : "yes"}
-		id={(id || "modalform") + "_dialog" + Date.now()}
+		id={id + "_modalform" || "modalform" + Date.now()}
 		{show}
 		{title}
 		{confirmlabel}
