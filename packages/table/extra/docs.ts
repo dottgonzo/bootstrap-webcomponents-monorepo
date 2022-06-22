@@ -19,7 +19,9 @@ export const storybookArgs = {
 	actiononselected: { action: "actiononselectedEvent" },
 	clickonrow: { action: "clickonrowEvent" },
 	confirmActionModal: { action: "confirmActionModalEvent" },
+	confirmActionModalForm: { action: "confirmActionModalFormEvent" },
 	showConfirmModal: { action: "showConfirmModal" },
+	showConfirmModalForm: { action: "showConfirmModalForm" },
 	externalfilter: { control: { type: "boolean" } },
 	pages: { control: { type: "number" } },
 };
@@ -156,6 +158,16 @@ const rowsWithActions: Component["rows"] = [
 					confirmLabel: "conferma",
 					title: "confermi?",
 					content: "contenuto dialog2",
+				},
+			},
+			{
+				name: "activate3",
+				type: "icon",
+				iconOrText: "ticket-fill",
+				edit: {
+					confirmLabel: "conferma",
+					title: "confermi?",
+					schema: "",
 				},
 			},
 		],

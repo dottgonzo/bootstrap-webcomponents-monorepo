@@ -58,6 +58,7 @@
 	let sortedBy: string;
 	let sortedDirection: string;
 	let modalConfirm: ModalComponent & { itemId: string; action: string };
+	let modalConfirmForm: ModalComponent & { itemId: string; action: string; schema?: any };
 	$: {
 		if (style) {
 			parsedStyle = parseStyle(style);
@@ -66,6 +67,17 @@
 		}
 		if (!modalConfirm) {
 			modalConfirm = {
+				show: "no",
+				itemId: null,
+				action: null,
+				confirmlabel: null,
+				title: null,
+				content: null,
+				closelabel: null,
+			};
+		}
+		if (!modalConfirmForm) {
+			modalConfirmForm = {
 				show: "no",
 				itemId: null,
 				action: null,
@@ -377,6 +389,15 @@
 				content: action.confirm.content,
 			};
 			// show modal
+		} else if (action.edit) {
+			modalConfirmForm = {
+				show: "yes",
+				itemId: item._id,
+				action: action.name,
+				confirmlabel: action.edit.confirmLabel,
+				title: action.edit.title,
+				schema: action.edit.schema,
+			};
 		}
 	}
 	function handleClickOnAction(itemId: string, action: string) {
@@ -469,14 +490,42 @@
 				closelabel: null,
 			};
 	}
+	function dialogShowConfirmForm(detail, action: string) {
+		dispatch("showConfirmModalForm", Object.assign({ action }, detail));
+
+		if (!detail.show)
+			modalConfirmForm = {
+				show: "no",
+				itemId: null,
+				action: null,
+				confirmlabel: null,
+				title: null,
+				content: null,
+				closelabel: null,
+			};
+	}
 	function modalConfirmation(detail, action: string) {
 		dispatch("confirmActionModal", Object.assign({ action }, detail));
+	}
+	function modalFormConfirmation(detail, action: string) {
+		dispatch("confirmActionModalForm", Object.assign({ action }, detail));
 	}
 </script>
 
 <svelte:head>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
 </svelte:head>
+<hb-dialog
+	style={dialogStyleToSet}
+	id={modalConfirmForm.itemId || "confirmationModalForm"}
+	show={modalConfirmForm.show}
+	title={modalConfirmForm.title}
+	confirmlabel={modalConfirmForm.confirmlabel || "Conferma"}
+	content={modalConfirmForm.content}
+	closelabel={modalConfirmForm.closelabel || "Close"}
+	on:modalConfirm={(e) => modalFormConfirmation(e.detail, modalConfirm.action)}
+	on:modalShow={(d) => dialogShowConfirmForm(d.detail, modalConfirm.action)}><div slot="body-content">ssssssssssss</div></hb-dialog
+>
 <hb-dialog
 	style={dialogStyleToSet}
 	id={modalConfirm.itemId || "confirmationModal"}
