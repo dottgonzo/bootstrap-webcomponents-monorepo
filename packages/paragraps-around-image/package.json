@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-paragraps-around-image",
 	"displayName": "Svelte-Bootstrap paragraps-around-image",
 	"description": "Svelte-Bootstrap paragraps-around-image",
-	"version": "0.14.9",
+	"version": "0.14.10",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.14.9",
+		"@htmlbricks/hb-jsutils": "^0.14.10",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
