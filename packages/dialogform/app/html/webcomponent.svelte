@@ -106,7 +106,24 @@
 		}}
 	>
 		<div slot="body-content">
-			<hb-form style={formStyleToSet} {schema} on:change={(e) => changeForm(e.detail)} hide_submit="yes" />
+			<div><slot name="form-header" /></div>
+			<div><hb-form style={formStyleToSet} {schema} on:change={(e) => changeForm(e.detail)} hide_submit="yes" /></div>
+			<div><slot name="form-footer" /></div>
+		</div>
+		<div slot="header">
+			<slot name="header" />
+		</div>
+		<div slot="modal-footer">
+			<slot name="modal-footer" />
+		</div>
+		<div slot="footer">
+			<slot name="footer" />
+		</div>
+		<div slot="close-button-label">
+			<slot name="close-button-label" />
+		</div>
+		<div slot="confirm-button-label">
+			<slot name="confirm-button-label" />
 		</div>
 	</hb-dialog>
 </span>

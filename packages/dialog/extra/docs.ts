@@ -28,7 +28,14 @@ const cssVars: CssVar[] = [
 	{ name: "--bs-danger", valueType: "color", theme: "bootstrap", defaultValue: "#f67280" },
 ];
 export const cssParts: CssPart[] = [];
-export const htmlSlots: HtmlSlot[] = [];
+export const htmlSlots: HtmlSlot[] = [
+	{ name: "header" },
+	{ name: "modal-footer" },
+	{ name: "body-content" },
+	{ name: "footer" },
+	{ name: "close-button-label" },
+	{ name: "confirm-button-label" },
+];
 export const i18nLanguages: i18nLang[] = [];
 
 export const styleSetup: StyleSetup = {
