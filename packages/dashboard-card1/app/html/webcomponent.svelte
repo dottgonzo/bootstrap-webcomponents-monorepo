@@ -62,7 +62,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
 </svelte:head>
 
-<div class="card">
+<div part="card" class="card">
 	<div class="card-header">
 		<slot name="header_content">
 			{#if header?.label}

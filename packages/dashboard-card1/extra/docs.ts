@@ -17,6 +17,7 @@ const cssVars: CssVar[] = [
 export const cssParts: CssPart[] = [
 	{ name: "text_placeholder", description: "Text placeholder css div element part" },
 	{ name: "badge", description: "badge" },
+	{ name: "card", description: "main container" },
 ];
 export const htmlSlots: HtmlSlot[] = [{ name: "content", description: "" }];
 export const i18nLanguages: i18nLang[] = [];
