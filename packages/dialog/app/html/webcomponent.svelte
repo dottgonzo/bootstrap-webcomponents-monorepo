@@ -22,7 +22,6 @@
 		else show = "no";
 	}
 
-	export let dialogclasses = "";
 	export let title = "";
 	export let backdrop = true;
 	export let keyboard = true;
@@ -31,7 +30,8 @@
 	export let content = "";
 	export let closelabel = "";
 	export let confirmlabel = "";
-	export let disable_confirm;
+	export let disable_confirm: boolean;
+	export let confirm_btn_class: string;
 
 	let ignoreBackdrop = false;
 
@@ -82,7 +82,9 @@
 	// Watching changes for Open vairable
 	$: {
 		if (!disable_confirm) disable_confirm = false;
-		else if (typeof disable_confirm === "string") disable_confirm = disable_confirm.toLowerCase() === "true" || disable_confirm.toLowerCase() === "yes";
+		if (!confirm_btn_class) confirm_btn_class = "primary";
+		else if (typeof disable_confirm === "string")
+			disable_confirm = (disable_confirm as string).toLowerCase() === "true" || (disable_confirm as string).toLowerCase() === "yes";
 		if (show === "yes") {
 			modalOpen();
 		} else {
@@ -114,7 +116,7 @@
 		on:outroend={onModalClosed}
 		transition:fade
 	>
-		<div class="modal-dialog {dialogclasses}" role="document" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300, easing: quintOut }}>
+		<div class="modal-dialog" role="document" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300, easing: quintOut }}>
 			<div class="modal-content">
 				<slot name="header" class="modal-header">
 					<h5 class="modal-title"><slot name="title">{title || "title"}</slot></h5>
@@ -131,7 +133,7 @@
 							<button type="button" class="btn btn-secondary" on:click={() => handleCancel()}
 								><slot name="close-button-label">{closelabel || "Close"}</slot></button
 							>
-							<button type="button" class="btn btn-primary" on:click={() => handleConfirm()}
+							<button disabled={disable_confirm ? true : false} type="button" class="btn btn-primary" on:click={() => handleConfirm()}
 								><slot name="confirm-button-label">{confirmlabel || "Save changes"}</slot></button
 							>
 						</slot>

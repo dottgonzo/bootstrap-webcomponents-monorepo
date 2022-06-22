@@ -4,7 +4,7 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	disable_confirm: { control: { type: "boolean" } },
 	show: { control: { type: "boolean" } },
-	dialogclasses: { control: { type: "text" } },
+	confirm_btn_class: { control: { type: "text" } },
 	title: { control: { type: "text" } },
 	backdrop: { control: { type: "boolean" } },
 	ignoreBackdrop: { control: { type: "text" } },
