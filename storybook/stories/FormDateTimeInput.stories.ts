@@ -15,9 +15,21 @@ export default meta;
 const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes as any, componentSetup.name);
 
-export const FormTextDateTimeTemplate = Template.bind({});
+export const FormTextDateTimeTemplate_empty = Template.bind({});
 
-FormTextDateTimeTemplate.args = setStorybookData(
+FormTextDateTimeTemplate_empty.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples[0]
+  componentSetup.examples.find((f) => f.name === "empty")
+);
+export const FormTextDateTimeTemplate_emptyRequired = Template.bind({});
+
+FormTextDateTimeTemplate_emptyRequired.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "emptyRequired")
+);
+export const FormTextDateTimeTemplate_withValue = Template.bind({});
+
+FormTextDateTimeTemplate_withValue.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "withValue")
 );

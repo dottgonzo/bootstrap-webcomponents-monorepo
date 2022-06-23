@@ -95,6 +95,10 @@
 						type: "date",
 						required: true,
 					},
+					params: {
+						min: 0,
+						max: 23,
+					},
 				};
 				schemaMinutes = {
 					type: "number",
@@ -103,6 +107,10 @@
 					validation: {
 						type: "date",
 						required: true,
+					},
+					params: {
+						min: 0,
+						max: 59,
 					},
 				};
 			} else {
@@ -129,6 +137,10 @@
 					type: "date",
 					required: true,
 				},
+				params: {
+					min: 0,
+					max: 23,
+				},
 			};
 			schemaMinutes = {
 				type: "number",
@@ -136,6 +148,10 @@
 				validation: {
 					type: "date",
 					required: true,
+				},
+				params: {
+					min: 0,
+					max: 59,
 				},
 			};
 		}
@@ -184,21 +200,21 @@
 			on:setValue={(e) => {
 				if (e.detail?.value || e.detail.value === 0) changeDate(e.detail.value);
 			}}
-			schema={schemaDate}
+			schemaentry={JSON.stringify(schemaDate)}
 			style={inputDateStyleToSet}
 		/>
 		<hb-input-number
 			on:setValue={(e) => {
 				if (e.detail?.value || e.detail.value === 0) changeHour(e.detail.value);
 			}}
-			schema={schemaHours}
+			schemaentry={JSON.stringify(schemaHours)}
 			style={inputNumberStyleToSet}
 		/>
 		<hb-input-number
 			on:setValue={(e) => {
 				if (e.detail?.value) changeMinutes(e.detail.value);
 			}}
-			schema={schemaMinutes}
+			schemaentry={JSON.stringify(schemaMinutes)}
 			style={inputNumberStyleToSet}
 		/>
 	{/if}
