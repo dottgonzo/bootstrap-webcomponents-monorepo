@@ -29,8 +29,6 @@
 			} catch (err) {
 				console.error("error parsing JSON for schemaentry hb-input-number", err);
 			}
-		} else {
-			schemaentry = null;
 		}
 		if ((schemaentry?.value || schemaentry?.value === 0) && (!old_schemaentry_value || old_schemaentry_value !== schemaentry?.value)) {
 			old_schemaentry_value = schemaentry.value;
