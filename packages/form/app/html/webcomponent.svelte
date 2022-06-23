@@ -130,6 +130,8 @@
 				schema = [];
 			}
 		} else if (!schema) {
+			console.warn("no schema provided");
+
 			schema = [];
 		}
 		dependencyMap = schema
