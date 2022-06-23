@@ -1,3 +1,5 @@
+import type { Component as FormComponent } from "../../node_modules/@htmlbricks/hb-form/release/webcomponent.type";
+
 export interface IFilter {
 	key: string;
 	value?: string;
@@ -42,7 +44,7 @@ export interface IActionButton {
 		confirmLabel: string;
 		denyLabel?: string;
 		description?: string;
-		schema: any;
+		schema: FormComponent["schema"];
 	};
 }
 

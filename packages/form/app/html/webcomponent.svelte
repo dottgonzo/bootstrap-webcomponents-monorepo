@@ -103,20 +103,24 @@
 			submitted = "no";
 		}
 		if (typeof schema === "string") {
-			schema = JSON.parse(schema as unknown as string);
-			if (!controls?.length || !controls.find((f) => f.entry.id === schema[0].id)) {
-				valids = {};
-				allValues = {};
-				dependencyMap = {};
-				visibility = {};
-				controls = [];
-				values = {};
-			}
-
-			for (const s of schema) {
-				if (s.type !== "row") {
-					values[s.id] = s.value;
+			try {
+				schema = JSON.parse(schema as unknown as string);
+				if (!controls?.length || !schema[0] || !controls.find((f) => f.entry.id === schema[0].id)) {
+					valids = {};
+					allValues = {};
+					dependencyMap = {};
+					visibility = {};
+					controls = [];
+					values = {};
 				}
+
+				for (const s of schema) {
+					if (s.type !== "row") {
+						values[s.id] = s.value;
+					}
+				}
+			} catch (error) {
+				schema = null;
 			}
 		} else if (!schema) {
 			schema = null;

@@ -27,8 +27,10 @@
 
 	import { styleSetup as paginateStyleSetup } from "../../node_modules/@htmlbricks/hb-paginate/release/docs";
 	import { styleSetup as dialogStyleSetup } from "../../node_modules/@htmlbricks/hb-dialog/release/docs";
+	import { styleSetup as dialogformStyleSetup } from "../../node_modules/@htmlbricks/hb-dialogform/release/docs";
 	let paginateStyleToSet: string = "";
 	let dialogStyleToSet: string = "";
+	let dialogformStyleToSet: string = "";
 
 	// import dispatch from "@app/functions/webcomponent";
 
@@ -64,6 +66,7 @@
 			parsedStyle = parseStyle(style);
 			paginateStyleToSet = getChildStyleToPass(parsedStyle, paginateStyleSetup?.vars);
 			dialogStyleToSet = getChildStyleToPass(parsedStyle, dialogStyleSetup?.vars);
+			dialogformStyleToSet = getChildStyleToPass(parsedStyle, dialogformStyleSetup?.vars);
 		}
 		if (!modalConfirm) {
 			modalConfirm = {
@@ -378,7 +381,7 @@
 			itemId: item._id,
 			action: action.name,
 		});
-		console.log("tttttttt", action.confirm, modalConfirm);
+		console.log("tttttttt", action, modalConfirm);
 		if (action.confirm) {
 			modalConfirm = {
 				show: "yes",
@@ -458,6 +461,7 @@
 
 	addComponent({ repoName: "@htmlbricks/hb-paginate", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-dialog", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-dialogform", version: pkg.version });
 
 	function changeSort(key: string) {
 		console.log(sortedBy, sortedDirection);
@@ -507,25 +511,26 @@
 	function modalConfirmation(detail, action: string) {
 		dispatch("confirmActionModal", Object.assign({ action }, detail));
 	}
-	function modalFormConfirmation(detail, action: string) {
-		dispatch("confirmActionModalForm", Object.assign({ action }, detail));
+	function modalFormConfirmation(detail) {
+		dispatch("confirmActionModalForm", detail);
 	}
 </script>
 
 <svelte:head>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
 </svelte:head>
-<hb-dialog
-	style={dialogStyleToSet}
+<hb-dialogform
+	style={dialogformStyleToSet}
 	id={modalConfirmForm.itemId || "confirmationModalForm"}
 	show={modalConfirmForm.show}
 	title={modalConfirmForm.title}
 	confirmlabel={modalConfirmForm.confirmlabel || "Conferma"}
 	content={modalConfirmForm.content}
 	closelabel={modalConfirmForm.closelabel || "Close"}
-	on:modalConfirm={(e) => modalFormConfirmation(e.detail, modalConfirm.action)}
-	on:modalShow={(d) => dialogShowConfirmForm(d.detail, modalConfirm.action)}><div slot="body-content">ssssssssssss</div></hb-dialog
->
+	schema={modalConfirmForm.schema ? JSON.stringify(modalConfirmForm.schema) : "[]"}
+	on:modalFormConfirm={(e) => modalFormConfirmation(e.detail)}
+	on:modalShow={(d) => dialogShowConfirmForm(d.detail, modalConfirm.action)}
+/>
 <hb-dialog
 	style={dialogStyleToSet}
 	id={modalConfirm.itemId || "confirmationModal"}

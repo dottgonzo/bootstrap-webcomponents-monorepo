@@ -1,5 +1,5 @@
 import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
-import type { Component } from "../app/types/webcomponent.type";
+import type { Component, IActionButton } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	size: { control: { type: "range", min: 1, max: 100 } },
@@ -135,7 +135,33 @@ const rows: Component["rows"] = [
 		status: "active",
 	},
 ];
+const preferences = [
+	{
+		type: "text",
+		placeholder: "Inserisci titolo di default",
+		id: "defaultTitle",
+		required: true,
 
+		label: "Titolo di default",
+		value: "titolotest",
+		params: {
+			minLength: 8,
+			maxLength: 120,
+		},
+	},
+	{
+		type: "number",
+		id: "age",
+		required: true,
+		label: "Age",
+		value: 9,
+		params: {
+			min: 8,
+			max: 120,
+		},
+		validationTip: "Min 8, Max 120",
+	},
+];
 const rowsWithActions: Component["rows"] = [
 	{
 		title: "bau",
@@ -167,7 +193,7 @@ const rowsWithActions: Component["rows"] = [
 				edit: {
 					confirmLabel: "conferma",
 					title: "confermi?",
-					schema: "",
+					schema: preferences,
 				},
 			},
 		],
