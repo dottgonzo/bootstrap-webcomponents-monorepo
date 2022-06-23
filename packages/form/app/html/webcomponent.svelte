@@ -120,7 +120,14 @@
 					}
 				}
 			} catch (error) {
-				schema = null;
+				console.error("error with schema", schema, error);
+				valids = {};
+				allValues = {};
+				dependencyMap = {};
+				visibility = {};
+				controls = [];
+				values = {};
+				schema = [];
 			}
 		} else if (!schema) {
 			schema = [];
