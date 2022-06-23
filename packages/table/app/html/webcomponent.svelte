@@ -521,7 +521,7 @@
 </svelte:head>
 <hb-dialogform
 	style={dialogformStyleToSet}
-	id={modalConfirmForm.itemId || "confirmationModalForm"}
+	id={modalConfirmForm.action + "_" + (modalConfirmForm.itemId || "confirmationModalForm")}
 	show={modalConfirmForm.show}
 	title={modalConfirmForm.title}
 	confirmlabel={modalConfirmForm.confirmlabel || "Conferma"}
