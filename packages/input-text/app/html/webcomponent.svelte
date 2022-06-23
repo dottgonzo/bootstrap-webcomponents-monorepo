@@ -21,14 +21,25 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
+	let old_schemaentry_value: any;
 	$: {
-		if (!show_validation) show_validation = "no";
-
-		if (schemaentry && typeof schemaentry === "string") {
-			schemaentry = JSON.parse(schemaentry as unknown as string);
-		} else if (!schemaentry) {
+		if (typeof schemaentry === "string") {
+			try {
+				schemaentry = JSON.parse(schemaentry);
+			} catch (err) {
+				console.error("error parsing JSON for schemaentry hb-input-number", err);
+			}
+		} else {
 			schemaentry = null;
 		}
+		if ((schemaentry?.value || schemaentry?.value === 0) && (!old_schemaentry_value || old_schemaentry_value !== schemaentry?.value)) {
+			old_schemaentry_value = schemaentry.value;
+			value = schemaentry.value;
+		} else if (!value && value !== 0) {
+			value = null;
+		}
+		if (!show_validation) show_validation = "no";
+
 		if (!set_value && (set_value as unknown as string) === "no") {
 			set_value = false;
 		} else {
