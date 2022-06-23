@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-gauge",
 	"displayName": "Svelte-Bootstrap gauge",
 	"description": "Svelte-Bootstrap gauge",
-	"version": "0.14.19",
+	"version": "0.14.20",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.14.19",
+		"@htmlbricks/hb-jsutils": "^0.14.20",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
@@ -75,7 +75,7 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "aba1d6108ec4de7da439dc9898fcf90188dff817",
+	"gitHead": "83e70dec3e2992ed0c1302a39966ace123f08ec1",
 	"dependencies": {
 		"raphael": "^2.3.0"
 	}
