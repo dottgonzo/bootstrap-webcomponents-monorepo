@@ -512,7 +512,8 @@
 		dispatch("confirmActionModal", Object.assign({ action }, detail));
 	}
 	function modalFormConfirmation(detail, action: string) {
-		dispatch("confirmActionModalForm", Object.assign({},detail,{_action:action}));
+		console.log(action, "action");
+		dispatch("confirmActionModalForm", Object.assign({}, detail, { _action: action }));
 	}
 </script>
 
@@ -528,7 +529,7 @@
 	content={modalConfirmForm.content}
 	closelabel={modalConfirmForm.closelabel || "Close"}
 	schema={modalConfirmForm.schema ? JSON.stringify(modalConfirmForm.schema) : "[]"}
-	on:modalFormConfirm={(e) => modalFormConfirmation(e.detail, modalConfirm.action)}
+	on:modalFormConfirm={(e) => modalFormConfirmation(e.detail, modalConfirmForm.action)}
 	on:modalShow={(d) => dialogShowConfirmForm(d.detail, modalConfirm.action)}
 />
 <hb-dialog
