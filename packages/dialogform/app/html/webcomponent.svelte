@@ -92,7 +92,7 @@
 	<hb-dialog
 		style={dialogStyleToSet}
 		disable_confirm={formIsValid ? "no" : "yes"}
-		id={id + "_modalform" || "modalform" + Date.now()}
+		id={id ? id + "_modalform" : "modalform" + Date.now()}
 		{show}
 		{title}
 		{confirmlabel}
