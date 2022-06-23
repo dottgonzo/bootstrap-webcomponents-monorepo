@@ -60,6 +60,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				params: {
 					minLength: 2,
 				},
+				value: "a",
 			},
 		},
 	},
