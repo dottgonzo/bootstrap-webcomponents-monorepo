@@ -74,6 +74,7 @@
 	function changeForm(detail: FormEvents["change"]) {
 		if (detail._valid) formIsValid = true;
 		else formIsValid = false;
+		delete detail._id;
 		formValues = detail;
 	}
 	function formSubmit(detail: DialogEvents["modalConfirm"]) {
