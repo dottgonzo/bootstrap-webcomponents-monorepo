@@ -26,18 +26,25 @@ export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
 };
-
+const selectSchema = {
+  type: "select",
+  placeholder: "Select something here...",
+  id: "selectsomething",
+  required: true,
+  label: "Selection of something",
+  validationTip: "This field cannot be empty.",
+  params: {
+    options: [
+      { label: "", value: "" },
+      { label: "testlabel", value: "testvalue" },
+    ],
+  },
+};
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {
-			schemaentry: {
-				placeholder: "Insert your last name here...",
-				id: "lastName",
-				required: true,
-				label: "Last Name",
-				validationTip: "This field cannot be empty.",
-			},
+			schemaentry: selectSchema,
 		},
 	},
 ];
