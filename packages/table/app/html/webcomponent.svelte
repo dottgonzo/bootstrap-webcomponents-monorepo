@@ -530,7 +530,7 @@
 	closelabel={modalConfirmForm.closelabel || "Close"}
 	schema={modalConfirmForm.schema ? JSON.stringify(modalConfirmForm.schema) : "[]"}
 	on:modalFormConfirm={(e) => modalFormConfirmation(e.detail, modalConfirmForm.action)}
-	on:modalShow={(d) => dialogShowConfirmForm(d.detail, modalConfirm.action)}
+	on:modalShow={(d) => dialogShowConfirmForm(d.detail, modalConfirmForm.action)}
 />
 <hb-dialog
 	style={dialogStyleToSet}

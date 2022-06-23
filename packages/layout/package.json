@@ -76,7 +76,7 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "a2f6b3883f39bd8ced957cc824e883551ceb109b",
+	"gitHead": "696b29c7f099a5d947318694972c1bcd0e63ca50",
 	"dependencies": {
 		"@htmlbricks/hb-layout-desktop": "^0.14.25",
 		"@htmlbricks/hb-layout-mobile": "^0.14.25",
