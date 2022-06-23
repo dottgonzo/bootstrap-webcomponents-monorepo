@@ -75,7 +75,7 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "91fb4bea33252a3a32a7c3f30994060349586e25",
+	"gitHead": "a2f6b3883f39bd8ced957cc824e883551ceb109b",
 	"dependencies": {
 		"@htmlbricks/hb-table": "^0.14.23",
 		"style-to-object": "^0.3.0"
