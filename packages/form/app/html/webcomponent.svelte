@@ -105,7 +105,7 @@
 		if (typeof schema === "string") {
 			try {
 				schema = JSON.parse(schema as unknown as string);
-				if (!controls?.length || !schema[0] || !controls.find((f) => f.entry.id === schema[0].id)) {
+				if (!controls?.length || !schema.length || !controls.find((f) => f.entry.id === schema[0].id)) {
 					valids = {};
 					allValues = {};
 					dependencyMap = {};
@@ -123,7 +123,7 @@
 				schema = null;
 			}
 		} else if (!schema) {
-			schema = null;
+			schema = [];
 		}
 		dependencyMap = schema
 			? groupMultipleBy(
@@ -135,21 +135,23 @@
 		if (!isInvalid && isInvalid !== false) isInvalid = true;
 
 		getControls = (schema: FormSchema): IControl[] => {
-			return schema.map((entry) => {
-				const component = registeredComponents[entry.type];
+			return (
+				schema?.map?.((entry) => {
+					const component = registeredComponents[entry.type];
 
-				if (!component) {
-					throw new Error(`FormRenderer: Tried to render an unknown component type ${entry.type}!`);
-				}
+					if (!component) {
+						throw new Error(`FormRenderer: Tried to render an unknown component type ${entry.type}!`);
+					}
 
-				if (component.options?.row) {
-					return { entry, columns: getControls(entry.params?.columns ?? []), options: component.options };
-				} else {
-					visibility[entry.id] = visibility[entry.id] || !entry.dependencies?.length;
-				}
+					if (component.options?.row) {
+						return { entry, columns: getControls(entry.params?.columns ?? []), options: component.options };
+					} else {
+						visibility[entry.id] = visibility[entry.id] || !entry.dependencies?.length;
+					}
 
-				return { entry, component: component.component, options: component.options || {} };
-			});
+					return { entry, component: component.component, options: component.options || {} };
+				}) || []
+			);
 		};
 
 		controls = schema ? getControls(schema) : [];
@@ -264,7 +266,7 @@
 	}
 </script>
 
-{#if schema}
+{#if schema?.length}
 	{#each controls as { entry, component, options, columns } (entry.id)}
 		{#if options.row}
 			{#if (visibility[entry.id] || visibility[entry.id] !== false) && columns?.length ? columns.some((c) => visibility[c.entry.id]) : false}
