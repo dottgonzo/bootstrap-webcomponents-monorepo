@@ -113,6 +113,31 @@
 			value = `${value_date}T${value_hours}:${value_minutes}`;
 		} else {
 			value = null;
+
+			schemaDate = {
+				type: "date",
+				required: true,
+				validation: {
+					type: "date",
+					required: true,
+				},
+			};
+			schemaHours = {
+				type: "number",
+				required: true,
+				validation: {
+					type: "date",
+					required: true,
+				},
+			};
+			schemaMinutes = {
+				type: "number",
+				required: true,
+				validation: {
+					type: "date",
+					required: true,
+				},
+			};
 		}
 
 		old_schemaentry_value = schemaentry?.value;
@@ -139,13 +164,43 @@
 			if (set_valid) dispatch("setValid", { valid, id: schemaentry?.id });
 		}, 0);
 	}
+	function changeDate(e) {
+		console.log("changeDate", e);
+		// value_date=null
+	}
+	function changeHour(e) {
+		console.log("changeHour", e);
+		value_hours = e;
+	}
+	function changeMinutes(e) {
+		console.log("changeMinutes", e);
+		value_minutes = e;
+	}
 </script>
 
 <span>
 	{#if schemaDate && schemaHours && schemaMinutes}
-		<hb-input-date schema={schemaDate} style={inputDateStyleToSet} />
-		<hb-input-number schema={schemaHours} style={inputNumberStyleToSet} />
-		<hb-input-number schema={schemaMinutes} style={inputNumberStyleToSet} />
+		<hb-input-date
+			on:setValue={(e) => {
+				if (e.detail?.value || e.detail.value === 0) changeDate(e.detail.value);
+			}}
+			schema={schemaDate}
+			style={inputDateStyleToSet}
+		/>
+		<hb-input-number
+			on:setValue={(e) => {
+				if (e.detail?.value || e.detail.value === 0) changeHour(e.detail.value);
+			}}
+			schema={schemaHours}
+			style={inputNumberStyleToSet}
+		/>
+		<hb-input-number
+			on:setValue={(e) => {
+				if (e.detail?.value) changeMinutes(e.detail.value);
+			}}
+			schema={schemaMinutes}
+			style={inputNumberStyleToSet}
+		/>
 	{/if}
 </span>
 {#if schemaentry?.validationTip && show_validation === "yes"}
