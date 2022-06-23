@@ -61,9 +61,6 @@
 		} else {
 			set_valid = true;
 		}
-		// if (!value) {
-		// 	value = schemaentry?.value as any;
-		// }
 
 		if (schemaentry?.value && (old_schemaentry_value !== schemaentry?.value || first_access)) {
 			console.info("computing values");
@@ -117,45 +114,41 @@
 				console.error("invalid data value on input-datetime", value);
 			}
 		}
-		if (value_date && value_hours && value_minutes) {
-			value = `${value_date}T${value_hours}:${value_minutes}`;
+		if (value_date && (value_hours || value_hours === 0) && (value_minutes || value_minutes === 0)) {
+			value = new Date(`${value_date} ${value_hours}:${value_minutes}`).toISOString();
+			console.log("NOW", value_date, value_hours, value_minutes);
 		} else {
 			value = null;
+			if (!schemaDate) {
+				schemaDate = {
+					type: "date",
+					required: true,
+				};
+			}
+			if (!schemaHours) {
+				schemaHours = {
+					type: "number",
+					required: true,
+					params: {
+						min: 0,
+						max: 23,
+					},
+					value: 0,
+				};
+			}
 
-			schemaDate = {
-				type: "date",
-				required: true,
-				validation: {
-					type: "date",
+			if (!schemaMinutes) {
+				schemaMinutes = {
+					type: "number",
 					required: true,
-				},
-			};
-			schemaHours = {
-				type: "number",
-				required: true,
-				validation: {
-					type: "date",
-					required: true,
-				},
-				params: {
-					min: 0,
-					max: 23,
-				},
-			};
-			schemaMinutes = {
-				type: "number",
-				required: true,
-				validation: {
-					type: "date",
-					required: true,
-				},
-				params: {
-					min: 0,
-					max: 59,
-				},
-			};
+					params: {
+						min: 0,
+						max: 59,
+					},
+					value: 0,
+				};
+			}
 		}
-
 		old_schemaentry_value = schemaentry?.value;
 		// regex = schemaentry?.validationRegex && new RegExp(schemaentry.validationRegex);
 
@@ -164,14 +157,15 @@
 				if (value) {
 					valid = true;
 				} else {
-					valid = true;
+					valid = false;
 				}
 			} else {
-				valid = false;
+				valid = true;
 			}
 		} else {
 			valid = false;
 		}
+
 		addComponent({ repoName: "@htmlbricks/hb-input-number", version: pkg.version });
 		addComponent({ repoName: "@htmlbricks/hb-input-date", version: pkg.version });
 
@@ -182,7 +176,7 @@
 	}
 	function changeDate(e) {
 		console.log("changeDate", e);
-		// value_date=null
+		value_date = e;
 	}
 	function changeHour(e) {
 		console.log("changeHour", e);
@@ -194,7 +188,7 @@
 	}
 </script>
 
-<span>
+<div class="form-control">
 	{#if schemaDate && schemaHours && schemaMinutes}
 		<hb-input-date
 			on:setValue={(e) => {
@@ -218,7 +212,7 @@
 			style={inputNumberStyleToSet}
 		/>
 	{/if}
-</span>
+</div>
 {#if schemaentry?.validationTip && show_validation === "yes"}
 	<div part="invalid-feedback" class="invalid-feedback mb-1">
 		{schemaentry.validationTip}
@@ -228,4 +222,14 @@
 <style lang="scss">
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
+
+	.form-control {
+		display: flex;
+	}
+	hb-input-date {
+		flex: 10;
+	}
+	hb-input-number {
+		flex: 2;
+	}
 </style>
