@@ -75,12 +75,11 @@
 		if (detail._valid) formIsValid = true;
 		else formIsValid = false;
 		delete detail._id;
-		formValues = detail;
+		formValues = Object.assign({}, detail, { _id: id });
 	}
 	function formSubmit(detail: DialogEvents["modalConfirm"]) {
 		if (detail.confirm && formValues && formValues._valid) {
-			const newValues = Object.assign({}, formValues, { _id: id });
-			dispatch("modalFormConfirm", newValues);
+			dispatch("modalFormConfirm", formValues);
 		} else if (!detail.confirm) {
 			console.warn("form submit cancelled");
 		} else {
