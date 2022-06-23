@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-checkout",
 	"displayName": "Svelte Payment WebComponent",
 	"description": "Svelte Payment WebComponent",
-	"version": "0.14.27",
+	"version": "0.14.28",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.14.27",
+		"@htmlbricks/hb-jsutils": "^0.14.28",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
@@ -71,8 +71,8 @@
 	},
 	"dependencies": {
 		"@google-pay/button-element": "^3.0.0",
-		"@htmlbricks/hb-form": "^0.14.27",
-		"@htmlbricks/hb-payment-paypal": "^0.14.27",
+		"@htmlbricks/hb-form": "^0.14.28",
+		"@htmlbricks/hb-payment-paypal": "^0.14.28",
 		"dayjs": "^1.10.7",
 		"debounce": "^1.2.1"
 	},
