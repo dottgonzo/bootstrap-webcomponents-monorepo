@@ -74,6 +74,7 @@
 		"@htmlbricks/hb-input-checkbox": "^0.14.34",
 		"@htmlbricks/hb-input-color": "^0.14.34",
 		"@htmlbricks/hb-input-date": "^0.14.34",
+		"@htmlbricks/hb-input-datetime": "^0.14.34",
 		"@htmlbricks/hb-input-email": "^0.14.34",
 		"@htmlbricks/hb-input-file": "^0.14.34",
 		"@htmlbricks/hb-input-number": "^0.14.34",

@@ -60,6 +60,7 @@ export type FormSchemaEntry = {
 export type IComponentName =
 	| "hb-input-select"
 	| "hb-input-date"
+	| "hb-input-datetime"
 	| "hb-input-text"
 	| "hb-input-file"
 	| "hb-input-number"

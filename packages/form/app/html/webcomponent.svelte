@@ -25,6 +25,7 @@
 
 	import { styleSetup as inputSelectStyleSetup } from "../../node_modules/@htmlbricks/hb-input-select/release/docs";
 	import { styleSetup as inputDateStyleSetup } from "../../node_modules/@htmlbricks/hb-input-date/release/docs";
+	import { styleSetup as inputDateTimeStyleSetup } from "../../node_modules/@htmlbricks/hb-input-datetime/release/docs";
 	import { styleSetup as inputAreaStyleSetup } from "../../node_modules/@htmlbricks/hb-input-area/release/docs";
 	import { styleSetup as inputTextStyleSetup } from "../../node_modules/@htmlbricks/hb-input-text/release/docs";
 	import { styleSetup as inputNumberStyleSetup } from "../../node_modules/@htmlbricks/hb-input-number/release/docs";
@@ -36,6 +37,7 @@
 
 	let inputSelectStyleToSet: string = "";
 	let inputDateStyleToSet: string = "";
+	let inputDateTimeStyleToSet: string = "";
 	let inputAreaStyleToSet: string = "";
 	let inputTextStyleToSet: string = "";
 	let inputNumberStyleToSet: string = "";
@@ -94,6 +96,7 @@
 			inputFileStyleToSet = getChildStyleToPass(parsedStyle, inputFileStyleSetup?.vars);
 			inputCheckboxStyleToSet = getChildStyleToPass(parsedStyle, inputCheckboxStyleSetup?.vars);
 			inputRadioStyleToSet = getChildStyleToPass(parsedStyle, inputRadioStyleSetup?.vars);
+			inputDateTimeStyleToSet = getChildStyleToPass(parsedStyle, inputDateTimeStyleSetup?.vars);
 		}
 		if (!show_validation) show_validation = "no";
 		if (!visibility) visibility = {};
@@ -238,6 +241,7 @@
 	addComponent({ repoName: "@htmlbricks/hb-input-select", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-input-file", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-input-color", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-datetime", version: pkg.version });
 
 	const component = get_current_component();
 
@@ -358,6 +362,23 @@
 										/>
 									{:else if component === "hb-input-date"}
 										<hb-input-date
+											style={inputDateStyleToSet}
+											on:setValid={(d) => setValidByMessage(d.detail)}
+											on:setValue={(d) => setValueByMessage(d.detail)}
+											schemaentry={JSON.stringify(
+												{
+													...entry,
+													value: allValues[entry.id] ?? entry.value,
+												},
+												null,
+												0,
+											)}
+											set_value
+											set_valid
+											{show_validation}
+										/>
+									{:else if component === "hb-input-datetime"}
+										<hb-input-datetime
 											style={inputDateStyleToSet}
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
@@ -541,6 +562,23 @@
 					/>
 				{:else if component === "hb-input-date"}
 					<hb-input-date
+						style={inputDateStyleToSet}
+						on:setValid={(d) => setValidByMessage(d.detail)}
+						on:setValue={(d) => setValueByMessage(d.detail)}
+						schemaentry={JSON.stringify(
+							{
+								...entry,
+								value: allValues[entry.id] ?? entry.value,
+							},
+							null,
+							0,
+						)}
+						set_value
+						set_valid
+						{show_validation}
+					/>
+				{:else if component === "hb-input-datetime"}
+					<hb-input-datetime
 						style={inputDateStyleToSet}
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
