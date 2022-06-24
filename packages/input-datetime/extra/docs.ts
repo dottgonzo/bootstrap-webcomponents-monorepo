@@ -36,6 +36,9 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				id: "lastName",
 				label: "Last Name",
 				validationTip: "This field cannot be empty.",
+				params: {
+					removeSeconds: true,
+				},
 			},
 		},
 	},

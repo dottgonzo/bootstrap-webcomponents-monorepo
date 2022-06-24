@@ -27,10 +27,12 @@
 	let value_date: string;
 	let value_hours: number;
 	let value_minutes: number;
+	let value_seconds: number;
 
 	let schemaDate: FormSchemaEntry;
 	let schemaHours: FormSchemaEntry;
 	let schemaMinutes: FormSchemaEntry;
+	let schemaSeconds: FormSchemaEntry;
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -76,12 +78,15 @@
 				value_date = date.toISOString().split("T")[0];
 				value_hours = date.toISOString().split("T")[0];
 				value_minutes = date.toISOString().split("T")[0];
+				value_seconds = date.toISOString().split("T")[0];
 				schemaDate = {
+					id: "date",
 					type: "date",
 					value: value_date,
 					required: true,
 				};
 				schemaHours = {
+					id: "hours",
 					type: "number",
 					value: value_hours,
 					required: true,
@@ -92,8 +97,20 @@
 					},
 				};
 				schemaMinutes = {
+					id: "minutes",
 					type: "number",
 					value: value_minutes,
+					required: true,
+
+					params: {
+						min: 0,
+						max: 59,
+					},
+				};
+				schemaSeconds = {
+					id: "seconds",
+					type: "number",
+					value: value_seconds,
 					required: true,
 
 					params: {
@@ -106,38 +123,57 @@
 			}
 		}
 		if (value_date && (value_hours || value_hours === 0) && (value_minutes || value_minutes === 0)) {
-			value = new Date(`${value_date} ${value_hours}:${value_minutes}`).toISOString();
+			value = new Date(`${value_date} ${value_hours}:${value_minutes}:${value_seconds || 0}`).toISOString();
 			console.log("NOW", value_date, value_hours, value_minutes);
 		} else {
 			console.log("reset to 0 datetime");
 			value = null;
 			if (!schemaDate) {
 				schemaDate = {
+					id: "date",
+
 					type: "date",
 					required: true,
 				};
 			}
 			if (!schemaHours) {
 				schemaHours = {
+					id: "hours",
+
 					type: "number",
 					required: true,
 					params: {
 						min: 0,
 						max: 23,
 					},
-					value: 3,
+					placeholder: "hours",
 				};
 			}
 
 			if (!schemaMinutes) {
 				schemaMinutes = {
+					id: "minutes",
+
 					type: "number",
 					required: true,
 					params: {
-						min: -1,
+						min: 0,
 						max: 59,
 					},
-					value: 0,
+					placeholder: "minutes",
+				};
+			}
+			if (!schemaSeconds) {
+				schemaSeconds = {
+					id: "seconds",
+
+					type: "number",
+					required: true,
+					params: {
+						min: 0,
+						max: 59,
+					},
+					placeholder: "seconds",
 				};
 			}
 		}
@@ -169,12 +205,35 @@
 	function changeDate(e) {
 		console.log("changeDate", e);
 		value_date = e;
+		// if (!value_hours) {
+		// 	schemaHours.value = 0;
+		// }
+
+		// if (!value_minutes) {
+		// 	schemaMinutes.value = 0;
+		// }
+		// if (!value_seconds) {
+		// 	schemaSeconds.value = 0;
+		// }
 	}
 	function changeHour(e) {
 		console.log("changeHour", e);
 		value_hours = e;
+		if (!value_minutes) {
+			schemaMinutes.value = 0;
+		}
+		if (!value_seconds) {
+			schemaSeconds.value = 0;
+		}
 	}
 	function changeMinutes(e) {
+		console.log("changeMinutes", e);
+		value_minutes = e;
+		if (!value_seconds) {
+			schemaSeconds.value = 0;
+		}
+	}
+	function changeSeconds(e) {
 		console.log("changeMinutes", e);
 		value_minutes = e;
 	}
@@ -182,27 +241,57 @@
 
 <div class="form-control {show_validation === 'yes' && schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}">
 	{#if schemaDate && schemaHours && schemaMinutes}
-		<hb-input-date
-			on:setValue={(e) => {
-				if (e.detail?.value) changeDate(e.detail.value);
-			}}
-			schemaentry={JSON.stringify(schemaDate)}
-			style={inputDateStyleToSet}
-		/>
-		<hb-input-number
-			on:setValue={(e) => {
-				if (e.detail?.value || e.detail.value === 0) changeHour(e.detail.value);
-			}}
-			schemaentry={JSON.stringify(schemaHours)}
-			style={inputNumberStyleToSet}
-		/>
-		<hb-input-number
-			on:setValue={(e) => {
-				if (e.detail?.value || e.detail.value === 0) changeMinutes(e.detail.value);
-			}}
-			schemaentry={JSON.stringify(schemaMinutes)}
-			style={inputNumberStyleToSet}
-		/>
+		<div style="margin-right:20px" class="input">
+			<hb-input-date
+				on:setValue={(e) => {
+					if (e.detail?.value) changeDate(e.detail.value);
+				}}
+				schemaentry={JSON.stringify(schemaDate)}
+				style={inputDateStyleToSet}
+			/>
+		</div>
+		<!-- {#if !schemaentry?.params?.removeSeconds}
+			<span class="timelabel">h</span>
+		{/if} -->
+		<div class="input">
+			<hb-input-number
+				on:setValue={(e) => {
+					if (e.detail?.value || e.detail.value === 0) changeHour(e.detail.value);
+				}}
+				schemaentry={JSON.stringify(schemaHours)}
+				style={inputNumberStyleToSet}
+			/>
+		</div>
+		<!-- 
+		{#if !schemaentry?.params?.removeSeconds}
+			<span class="timelabel">m</span>
+		{:else}
+			:
+		{/if} -->
+		:
+		<div class="input">
+			<hb-input-number
+				on:setValue={(e) => {
+					if (e.detail?.value || e.detail.value === 0) changeMinutes(e.detail.value);
+				}}
+				schemaentry={JSON.stringify(schemaMinutes)}
+				style={inputNumberStyleToSet}
+			/>
+		</div>
+
+		{#if !schemaentry?.params?.removeSeconds}
+			<!-- <span class="timelabel">s</span> -->
+			:
+			<div class="input">
+				<hb-input-number
+					on:setValue={(e) => {
+						if (e.detail?.value || e.detail.value === 0) changeSeconds(e.detail.value);
+					}}
+					schemaentry={JSON.stringify(schemaSeconds)}
+					style={inputNumberStyleToSet}
+				/>
+			</div>
+		{/if}
 	{/if}
 </div>
 {#if schemaentry?.validationTip && show_validation === "yes"}
@@ -214,14 +303,20 @@
 <style lang="scss">
 	@import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
-
-	.form-control {
-		display: flex;
+	.timelabel {
+		margin: auto 0px auto 5px;
 	}
+
+	.input {
+		display: inline-block;
+	}
+
 	hb-input-date {
-		flex: 10;
+		max-width: 140px;
+		display: inline-block;
 	}
 	hb-input-number {
-		flex: 2;
+		width: 100px;
+		display: inline-block;
 	}
 </style>
