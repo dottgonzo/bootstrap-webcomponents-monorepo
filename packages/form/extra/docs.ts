@@ -153,6 +153,15 @@ const preferences = [
 		},
 		validationTip: "Min 8, Max 120",
 	},
+	{
+		type: "datetime",
+		label: "data",
+		placeholder: "Insert your last name here...",
+		id: "lastName66",
+		required: true,
+		validationTip: "This field cannot be empty.",
+		value: "2022-06-23T13:41:10.107Z",
+	},
 ];
 const schemaFile = [
 	{

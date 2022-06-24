@@ -51,6 +51,7 @@
 		row: { component: null, options: { row: true } },
 		select: { component: "hb-input-select" },
 		date: { component: "hb-input-date" },
+		datetime: { component: "hb-input-datetime" },
 		text: { component: "hb-input-text" },
 		number: { component: "hb-input-number" },
 		email: { component: "hb-input-email" },
