@@ -30,7 +30,10 @@
 				console.error("error parsing JSON for schemaentry hb-input-number", err);
 			}
 		}
-		if ((schemaentry?.value || schemaentry?.value === 0) && (!old_schemaentry_value || old_schemaentry_value !== schemaentry?.value)) {
+		if (
+			(schemaentry?.value || schemaentry?.value === 0 || schemaentry?.value === "") &&
+			((!old_schemaentry_value && old_schemaentry_value !== 0 && old_schemaentry_value !== "") || old_schemaentry_value !== schemaentry?.value)
+		) {
 			old_schemaentry_value = schemaentry.value;
 			value = schemaentry.value;
 		} else if (!value && value !== 0) {

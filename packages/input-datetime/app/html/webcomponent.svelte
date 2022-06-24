@@ -72,6 +72,7 @@
 				console.error("invalid input value on input-datetime", schemaentry.value);
 			}
 			if (date.valueOf() > 10000 && date.valueOf() < 10000000000) {
+				console.info("converting date");
 				value_date = date.toISOString().split("T")[0];
 				value_hours = date.toISOString().split("T")[0];
 				value_minutes = date.toISOString().split("T")[0];
@@ -79,19 +80,12 @@
 					type: "date",
 					value: value_date,
 					required: true,
-					validation: {
-						type: "date",
-						required: true,
-					},
 				};
 				schemaHours = {
 					type: "number",
 					value: value_hours,
 					required: true,
-					validation: {
-						type: "date",
-						required: true,
-					},
+
 					params: {
 						min: 0,
 						max: 23,
@@ -101,10 +95,7 @@
 					type: "number",
 					value: value_minutes,
 					required: true,
-					validation: {
-						type: "date",
-						required: true,
-					},
+
 					params: {
 						min: 0,
 						max: 59,
@@ -118,6 +109,7 @@
 			value = new Date(`${value_date} ${value_hours}:${value_minutes}`).toISOString();
 			console.log("NOW", value_date, value_hours, value_minutes);
 		} else {
+			console.log("reset to 0 datetime");
 			value = null;
 			if (!schemaDate) {
 				schemaDate = {
@@ -133,7 +125,7 @@
 						min: 0,
 						max: 23,
 					},
-					value: 0,
+					value: 3,
 				};
 			}
 
@@ -142,7 +134,7 @@
 					type: "number",
 					required: true,
 					params: {
-						min: 0,
+						min: -1,
 						max: 59,
 					},
 					value: 0,
@@ -188,11 +180,11 @@
 	}
 </script>
 
-<div class="form-control">
+<div class="form-control {show_validation === 'yes' && schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}">
 	{#if schemaDate && schemaHours && schemaMinutes}
 		<hb-input-date
 			on:setValue={(e) => {
-				if (e.detail?.value || e.detail.value === 0) changeDate(e.detail.value);
+				if (e.detail?.value) changeDate(e.detail.value);
 			}}
 			schemaentry={JSON.stringify(schemaDate)}
 			style={inputDateStyleToSet}
@@ -206,7 +198,7 @@
 		/>
 		<hb-input-number
 			on:setValue={(e) => {
-				if (e.detail?.value) changeMinutes(e.detail.value);
+				if (e.detail?.value || e.detail.value === 0) changeMinutes(e.detail.value);
 			}}
 			schemaentry={JSON.stringify(schemaMinutes)}
 			style={inputNumberStyleToSet}

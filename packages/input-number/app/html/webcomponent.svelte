@@ -22,13 +22,19 @@
 	let old_schemaentry_value: any;
 	$: {
 		if (typeof schemaentry === "string") {
+			console.info("rendering schemaentry as string for hb-input-number");
 			try {
 				schemaentry = JSON.parse(schemaentry);
 			} catch (err) {
 				console.error("error parsing JSON for schemaentry hb-input-number", err);
 			}
 		}
-		if ((schemaentry?.value || schemaentry?.value === 0) && (!old_schemaentry_value || old_schemaentry_value !== schemaentry?.value)) {
+		if (
+			(schemaentry?.value || schemaentry?.value === 0 || schemaentry?.value === "") &&
+			((!old_schemaentry_value && old_schemaentry_value !== 0 && old_schemaentry_value !== "") || old_schemaentry_value !== schemaentry?.value)
+		) {
+			console.info("insert new value");
+
 			old_schemaentry_value = schemaentry.value;
 			value = schemaentry.value;
 		} else if (!value && value !== 0) {
