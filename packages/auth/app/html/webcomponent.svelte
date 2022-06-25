@@ -368,7 +368,6 @@
 	const svelteDispatch = createEventDispatcher();
 
 	function dispatch(name, detail) {
-		forgotpassword;
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
@@ -406,9 +405,10 @@
 				case "login":
 					return login();
 				case "activate":
-				case "forgotpassword":
 				case "recover":
 					return recoverOrActivate();
+									case "forgotpassword":
+return recoverPassword()
 				case "register":
 					return register();
 			}
@@ -553,7 +553,7 @@
 					{getWord("rememberMe")}
 				</label>
 			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={login}>{getWord("loginButton").toUpperCase()}</button>
+			<button class="w-100 btn btn-lg btn-primary" on:click={()=>login()}>{getWord("loginButton").toUpperCase()}</button>
 			{#if enable_recover_password || !disableregister}
 				<p style="margin-bottom:0px">
 					{#if enable_recover_password}
@@ -569,7 +569,7 @@
 			<div class="checkbox mb-3">
 				<label />
 			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={register}>{getWord("registerButton").toUpperCase()}</button>
+			<button class="w-100 btn btn-lg btn-primary" on:click={()=>register()}>{getWord("registerButton").toUpperCase()}</button>
 			<p style="margin-bottom:0px">
 				<button class="btn btn-link" on:click={() => switchType("login")}>{getWord("loginSwitch")}</button>
 			</p>
@@ -577,13 +577,13 @@
 			<div class="checkbox mb-3">
 				<label />
 			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={recoverPassword}>Recupera</button>
+			<button class="w-100 btn btn-lg btn-primary" on:click={()=>recoverPassword()}>Recupera</button>
 			<button class="btn btn-link" on:click={() => switchType("login")}>{getWord("loginSwitch")}</button>
 		{:else if type === "activate" || type === "recover"}
 			<div class="checkbox mb-3">
 				<label />
 			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={recoverOrActivate}>Memorizza</button>
+			<button class="w-100 btn btn-lg btn-primary" on:click={()=>recoverOrActivate}>Memorizza</button>
 		{/if}
 
 		<!-- <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p> -->
