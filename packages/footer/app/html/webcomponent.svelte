@@ -393,7 +393,6 @@
 								(company.since ? `${company.since?.toString()} - ` : "") +
 									new Date().getFullYear().toString() +
 									" " +
-									(company?.siteName || "") +
 									(company?.companyName ? " - " + (company?.companyName || "") : "")}
 						</div>
 					{/if}
