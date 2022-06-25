@@ -100,7 +100,7 @@
 </script>
 
 <div id="calendar-header" part="calendar-header">
-	<span part="calendar-current-time-header" style="text-transform:capitalize">
+	<span part="calendar-current-time-header" style="text-transform:capitalize;font-weight:bold">
 		{monthDateFormat.format(dayjs(date))}
 		{dayjs(date).format("YYYY")}
 	</span>
@@ -310,9 +310,13 @@
 </table>
 
 <style lang="scss">
-	@import "../styles/webcomponent.scss";
 	@import "../styles/bootstrap.scss";
+	@import "../styles/webcomponent.scss";
 
+	table {
+		caption-side: bottom;
+		border-collapse: collapse;
+	}
 	.cell-selected {
 		background-color: var(--bs-primary);
 	}

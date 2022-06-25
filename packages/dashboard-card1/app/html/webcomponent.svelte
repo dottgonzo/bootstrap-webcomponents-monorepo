@@ -93,6 +93,6 @@
 </div>
 
 <style lang="scss">
-	@import "../styles/webcomponent.scss";
 	@import "../styles/bootstrap.scss";
+	@import "../styles/webcomponent.scss";
 </style>
