@@ -390,16 +390,10 @@
 			console.error("wrong params", recoverycode, password, passwordRepeated);
 		}
 	}
-	function forgotpassword() {
-		checkValidity = true;
 
-		if (recoverycode && checkValidityFn("email") && checkValidityFn("password") && checkValidityFn("passwordRepeated")) {
-			dispatch("recoverOrActivate", { password, recoverycode, email });
-		} else {
-			console.error("wrong params", recoverycode, password, passwordRepeated);
-		}
-	}
 	function recoverPassword() {
+				checkValidity = true;
+
 		if (checkValidityFn("email")) {
 			dispatch("recoverPassword", { email });
 		} else {
@@ -583,13 +577,13 @@
 			<div class="checkbox mb-3">
 				<label />
 			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={forgotpassword}>Recupera</button>
+			<button class="w-100 btn btn-lg btn-primary" on:click={recoverPassword}>Recupera</button>
 			<button class="btn btn-link" on:click={() => switchType("login")}>{getWord("loginSwitch")}</button>
 		{:else if type === "activate" || type === "recover"}
 			<div class="checkbox mb-3">
 				<label />
 			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={recoverPassword}>Memorizza</button>
+			<button class="w-100 btn btn-lg btn-primary" on:click={recoverOrActivate}>Memorizza</button>
 		{/if}
 
 		<!-- <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p> -->
