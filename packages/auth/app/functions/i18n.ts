@@ -7,6 +7,8 @@ export const dictionary = {
 		registerButton: "register",
 		rememberMe: "Remember me",
 		forgotPasswordButton: "Forget password?",
+		ForgotTitle: "Recupera la password",
+		recoverTitle: "Aggiorna la password",
 	},
 	it: {
 		registerTitle: "Crea un account",
@@ -16,5 +18,7 @@ export const dictionary = {
 		registerButton: "Registrati",
 		rememberMe: "Ricordami",
 		forgotPasswordButton: "Password dimenticata?",
+		ForgotTitle: "Recover password",
+		recoverTitle: "Update password",
 	},
 };

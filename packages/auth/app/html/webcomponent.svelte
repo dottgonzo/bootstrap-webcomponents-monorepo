@@ -430,8 +430,12 @@
 
 		{#if type === "login"}
 			<h1 class="h3 mb-3 fw-normal">{getWord("loginTitle")}</h1>
+		{:else if type === "forgotpassword"}
+			<h1 class="h3 mb-3 fw-normal">{getWord("ForgotTitle")}</h1>
 		{:else if type === "register"}
 			<h1 class="h3 mb-3 fw-normal">{getWord("registerTitle")}</h1>
+		{:else if type === "activate" || type === "recover"}
+			<h1 class="h3 mb-3 fw-normal">{getWord("recoverTitle")}</h1>
 		{/if}
 		{#if oauth2ProvidersObj?.length}
 			<div class="d-flex justify-content-center mt-1">
