@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-footer",
 	"displayName": "Svelte Bootstrap Footer WebComponent",
 	"description": "Svelte Bootstrap Footer WebComponent",
-	"version": "0.14.44",
+	"version": "0.14.45",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.14.44",
+		"@htmlbricks/hb-jsutils": "^0.14.45",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
@@ -70,7 +70,7 @@
 		"typescript-transform-paths": "^2.2.3"
 	},
 	"dependencies": {
-		"@htmlbricks/hb-contact-item": "^0.14.44"
+		"@htmlbricks/hb-contact-item": "^0.14.45"
 	},
 	"keywords": [
 		"svelte",
