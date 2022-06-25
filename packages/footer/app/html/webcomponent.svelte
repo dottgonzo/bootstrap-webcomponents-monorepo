@@ -165,10 +165,7 @@
 									<span><img style="height: 100%;" alt="" src={company.logoUri} /></span>
 								{/if}
 
-								{new Date().getFullYear().toString() +
-									" " +
-									(company?.siteName || "") +
-									(company?.companyName ? " - " + (company?.companyName || "") : "")}
+								{new Date().getFullYear().toString() + " " + (company?.companyName ? " - " + (company?.companyName || "") : "")}
 							</div>
 						{/if}
 					</slot>
