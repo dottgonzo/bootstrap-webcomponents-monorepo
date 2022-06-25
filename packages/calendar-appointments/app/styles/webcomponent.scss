@@ -15,14 +15,25 @@
 	vertical-align: top;
 }
 .event_label {
-	font-weight: bold;
+	text-transform: capitalize;
+}
+.event_row_time {
+	color: grey;
+}
+.event_icon::before {
+	line-height: unset;
 }
 .event_row {
-	line-height: 50px;
+	line-height: 35px;
+	cursor: pointer;
+	&:hover {
+		font-weight: bold;
+		border: 1px solid black;
+	}
 }
 .events_day_fullname {
 	text-transform: capitalize;
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 }
 .events_day {
 	margin: 20px auto 10px auto;

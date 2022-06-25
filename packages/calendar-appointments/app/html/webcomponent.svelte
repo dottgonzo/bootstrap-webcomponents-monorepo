@@ -126,7 +126,7 @@
 {#if !disable_header}
 	<div id="calendar-header" part="calendar-header">
 		<slot name="header">
-			<span part="calendar-current-time-header" style="text-transform:capitalize;font-weight:bold;font-size:1.5rem">
+			<span part="calendar-current-time-header" style="text-transform:capitalize;font-weight:bold;font-size:1.6rem">
 				<slot name="calendar_month"
 					>{monthDateFormat.format(dayjs(date).toDate())}
 					{dayjs(date).format("YYYY")}</slot
