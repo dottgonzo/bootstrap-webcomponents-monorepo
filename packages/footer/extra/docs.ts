@@ -20,6 +20,7 @@ export const htmlSlots: HtmlSlot[] = [
 	{ description: "", name: "footerheader" },
 	{ description: "", name: "footercontent" },
 	{ description: "", name: "footerbottom" },
+	{ name: "footer_small" },
 ];
 
 export const i18nLanguages: i18nLang[] = [];
