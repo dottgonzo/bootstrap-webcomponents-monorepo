@@ -44,6 +44,7 @@
 	export let language: string;
 
 	export let sessionkey: string;
+	export let enable_recover_password: string;
 
 	export let redirectonlogin: string;
 	export let redirectoncreate: string;
@@ -64,6 +65,7 @@
 	export let policies: Component["policies"];
 
 	$: {
+		if (!enable_recover_password) enable_recover_password = null;
 		if (!footer) footer = undefined;
 		if (!id) id = "";
 		if (style) {
@@ -188,6 +190,7 @@
 			logouri={logouri || ""}
 			part="loginbox"
 			disableregister={disableregister || "no"}
+			{enable_recover_password}
 			on:login={(l) => {
 				dispatch("login", l.detail);
 			}}

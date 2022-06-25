@@ -18,7 +18,7 @@ export type Component = {
 	page?: IPage;
 	usermenu?: IUserMenu;
 	cookielaw?: string;
-	type?: "login" | "register";
+	type?: "login" | "register" | "activate" | "recover" | "forgotpassword";
 	columns?: IColumn[];
 
 	language?: string;
@@ -40,6 +40,7 @@ export type Component = {
 	usertype?: "email" | "username";
 	disableregister?: boolean;
 	policies?: IPolicies[];
+	enable_recover_password?: boolean;
 };
 
 export type Events = {

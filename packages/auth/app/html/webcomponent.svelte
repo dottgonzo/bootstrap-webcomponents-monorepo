@@ -423,7 +423,7 @@
 		<slot name="header">
 			{#if logouri}
 				<div class="mb-4 text-center">
-					<img src={logouri} alt="" width="90" />
+					<img id="logoimg" src={logouri} alt="" />
 				</div>
 			{/if}
 		</slot>
@@ -554,7 +554,7 @@
 					{#if enable_recover_password}
 						<button class="btn btn-link" on:click={() => switchType("forgotpassword")}>{getWord("forgotPasswordButton")}</button>
 					{/if}
-					/
+					{#if enable_recover_password && !disableregister}/{/if}
 					{#if !disableregister}
 						<button class="btn btn-link" on:click={() => switchType("register")}>{getWord("registerButton")}</button>
 					{/if}

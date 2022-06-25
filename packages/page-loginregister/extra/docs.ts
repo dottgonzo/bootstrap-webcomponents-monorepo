@@ -3,9 +3,10 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	type: {
-		options: ["login", "register"],
+		options: ["login", "register", "activate", "recover", "forgotpassword"],
 		control: { type: "select" }, // Automatically inferred when 'options' is defined
 	},
+	enable_recover_password: { control: { type: "boolean" } },
 	language: { control: { type: "text" } },
 	logouri: { control: { type: "text" } },
 	loginuri: { control: { type: "text" } },
@@ -20,7 +21,7 @@ export const storybookArgs = {
 	socials: { control: { type: "object" } },
 	oauth2providers: { control: { type: "array" } },
 	footer: { control: { type: "object" } },
-	page_title: { control: { type: "string" } },
+	page_title: { control: { type: "text" } },
 	appendbodyparams: { control: { type: "text" } },
 	appendqueryparams: { control: { type: "text" } },
 	cookielaw: { control: { type: "text" } },

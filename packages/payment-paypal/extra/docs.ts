@@ -4,8 +4,8 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	// payByCard: { action: "payByCard" },
 	paymentCompleted: { action: "paymentCompleted" },
-	paypalid: { control: { type: "string" } },
-	currency: { control: { type: "string" } },
+	paypalid: { control: { type: "text" } },
+	currency: { control: { type: "text" } },
 };
 
 const cssVars: CssVar[] = [

@@ -2,7 +2,7 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	api_key: { control: { type: "string" } },
+	api_key: { control: { type: "text" } },
 
 	googleRecaptchaV2Response: { action: "googleRecaptchaV2Response" },
 	googleRecaptchaRendered: { action: "googleRecaptchaRendered" },
