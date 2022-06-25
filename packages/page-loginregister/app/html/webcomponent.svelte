@@ -185,6 +185,7 @@
 			style="height:100%;{authStyleToSet}"
 			sessionkey={sessionkey || ""}
 			loginuri={loginuri || ""}
+			logouri={logouri || ""}
 			part="loginbox"
 			disableregister={disableregister || "no"}
 			on:login={(l) => {
