@@ -24,6 +24,7 @@
 	export let date: Date;
 	export let events: IEvent[];
 	export let selected: Date;
+	export let disable_header: boolean;
 
 	let rows: number;
 	let previousMonthOfTargetDate: Date;
@@ -39,6 +40,14 @@
 	$: {
 		if (!id) {
 			id = "";
+		}
+		if (
+			typeof disable_header === "string" &&
+			((disable_header as string).toLowerCase() === "true" || (disable_header as string).toLowerCase() === "yes" || (disable_header as string) === "")
+		) {
+			disable_header = true;
+		} else {
+			disable_header = false;
 		}
 
 		// if (!options) {
@@ -99,16 +108,22 @@
 	}
 </script>
 
-<div id="calendar-header" part="calendar-header">
-	<span part="calendar-current-time-header" style="text-transform:capitalize;font-weight:bold">
-		{monthDateFormat.format(dayjs(date))}
-		{dayjs(date).format("YYYY")}
-	</span>
-	<span style="float:right">
-		<button class="btn btn-primary" on:click={() => changeMonth(-1)}>˂</button>
-		<button class="btn btn-primary" on:click={() => changeMonth(1)}>˃</button>
-	</span>
-</div>
+{#if !disable_header}
+	<div id="calendar-header" part="calendar-header">
+		<slot name="header">
+			<span part="calendar-current-time-header" style="text-transform:capitalize;font-weight:bold">
+				<slot name="calendar_month"
+					>{monthDateFormat.format(dayjs(date).toDate())}
+					{dayjs(date).format("YYYY")}</slot
+				>
+			</span>
+			<span style="float:right">
+				<span on:click={() => changeMonth(-1)}><slot name="header_month_icon_prev"><button>˂</button></slot></span>
+				<span on:click={() => changeMonth(1)}><slot name="header_month_icon_next"><button>˃</button></slot></span>
+			</span>
+		</slot>
+	</div>
+{/if}
 <table>
 	<tr>
 		<th>{dayDateFormat.format(dayjs().startOf("week").add(1, "days").toDate())}</th>
@@ -135,7 +150,7 @@
 								: ''}"
 							id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
 							style="height:{100 / rows}%;"
-							on:click={() => selectDay(dayjs(year + "-" + month + "-" + (d - dayjs(date).day() + 2 + i * 7).toString()))}
+							on:click={() => selectDay(dayjs(year + "-" + month + "-" + (d - dayjs(date).day() + 2 + i * 7)).toDate())}
 						>
 							<div
 								class="cell-date {Number(dayjs().format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
@@ -149,8 +164,10 @@
 
 							{#if monthsEvent?.length}
 								{#each monthsEvent.filter((f) => Number(dayjs(f.date).format("DD")) === d - dayjs(date).day() + 2 + i * 7) as event (event.id)}
-									<button class="cell-event btn btn-sm btn-secondary" on:click={() => calendarEventClick({ eventId: event.id })}
-										>{event.label}</button
+									<button
+										class="cell-event"
+										style={event.color ? "background-color:" + event.color + ";" : ""}
+										on:click={() => calendarEventClick({ eventId: event.id })}>{event.label}</button
 									>
 								{/each}
 							{/if}
@@ -174,7 +191,7 @@
 											dayjs(previousMonthOfTargetDate).format("MM") +
 											"-" +
 											(dayjs(previousMonthOfTargetDate).daysInMonth() + d - dayjs(date).day() + 2 + i * 7).toString(),
-									),
+									).toDate(),
 								)}
 						>
 							<div
@@ -190,8 +207,10 @@
 							</div>
 							{#if previousMonthEvents?.length}
 								{#each previousMonthEvents.filter((f) => Number(dayjs(f.date).format("DD")) === dayjs(previousMonthOfTargetDate).daysInMonth() + d - dayjs(date).day() + 2 + i * 7) as event (event.id)}
-									<button class="cell-event btn btn-sm btn-secondary" on:click={() => calendarEventClick({ eventId: event.id })}
-										>{event.label}</button
+									<button
+										class="cell-event"
+										style={event.color ? "background-color:" + event.color + ";" : ""}
+										on:click={() => calendarEventClick({ eventId: event.id })}>{event.label}</button
 									>
 								{/each}
 							{/if}
@@ -211,7 +230,7 @@
 								: ''}"
 							id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
 							style="height:{100 / rows}%;"
-							on:click={() => selectDay(dayjs(year + "-" + month + "-" + (d - dayjs(date).day() + 2 + i * 7).toString()))}
+							on:click={() => selectDay(dayjs(year + "-" + month + "-" + (d - dayjs(date).day() + 2 + i * 7).toString()).toDate())}
 						>
 							<div
 								class="cell-date {Number(dayjs().format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
@@ -224,8 +243,10 @@
 							</div>
 							{#if monthsEvent?.length}
 								{#each monthsEvent.filter((f) => Number(dayjs(f.date).format("DD")) === d - dayjs(date).day() + 2 + i * 7) as event (event.id)}
-									<button class="cell-event btn btn-sm btn-secondary" on:click={() => calendarEventClick({ eventId: event.id })}
-										>{event.label}</button
+									<button
+										class="cell-event"
+										style={event.color ? "background-color:" + event.color + ";" : ""}
+										on:click={() => calendarEventClick({ eventId: event.id })}>{event.label}</button
 									>
 								{/each}
 							{/if}
@@ -249,7 +270,7 @@
 											dayjs(nextMonthOfTargetDate).format("MM") +
 											"-" +
 											(d - dayjs(date).day() + 2 + i * 7 - dayjs(date).daysInMonth()).toString(),
-									),
+									).toDate(),
 								)}
 						>
 							<div
@@ -264,8 +285,10 @@
 							</div>
 							{#if nextMonthEvents?.length}
 								{#each nextMonthEvents.filter((f) => Number(dayjs(f.date).format("DD")) === d - dayjs(date).day() + 2 + i * 7 - dayjs(date).daysInMonth()) as event (event.id)}
-									<button class="cell-event btn btn-sm btn-secondary" on:click={() => calendarEventClick({ eventId: event.id })}
-										>{event.label}</button
+									<button
+										class="cell-event"
+										style={event.color ? "background-color:" + event.color + ";" : ""}
+										on:click={() => calendarEventClick({ eventId: event.id })}>{event.label}</button
 									>
 								{/each}
 							{/if}
@@ -284,7 +307,7 @@
 							: ''}"
 						id="cal-{d - dayjs(date).day() + 2 + i * 7}-{month}-{year}"
 						style="height:{100 / rows}%;"
-						on:click={() => selectDay(dayjs(year + "-" + month + "-" + (d - dayjs(date).day() + 2 + i * 7).toString()))}
+						on:click={() => selectDay(dayjs(year + "-" + month + "-" + (d - dayjs(date).day() + 2 + i * 7).toString()).toDate())}
 					>
 						<div
 							class="cell-date {Number(dayjs().format('DD')) === d - dayjs(date).day() + 2 + i * 7 &&
@@ -297,8 +320,10 @@
 						</div>
 						{#if monthsEvent?.length}
 							{#each monthsEvent.filter((f) => Number(dayjs(f.date).format("DD")) === d - dayjs(date).day() + 2 + i * 7) as event (event.id)}
-								<button class="cell-event btn btn-sm btn-secondary" on:click={() => calendarEventClick({ eventId: event.id })}
-									>{event.label}</button
+								<button
+									class="cell-event"
+									style={event.color ? "background-color:" + event.color + ";" : ""}
+									on:click={() => calendarEventClick({ eventId: event.id })}>{event.label}</button
 								>
 							{/each}
 						{/if}
@@ -310,7 +335,7 @@
 </table>
 
 <style lang="scss">
-	@import "../styles/bootstrap.scss";
+	// @import "../styles/bootstrap.scss";
 	@import "../styles/webcomponent.scss";
 
 	table {
@@ -318,7 +343,7 @@
 		border-collapse: collapse;
 	}
 	.cell-selected {
-		background-color: var(--bs-primary);
+		background-color: var(--hb-calendar-selected);
 	}
 
 	table {
@@ -334,7 +359,7 @@
 	}
 
 	td:hover {
-		background-color: var(--bs-secondary);
+		background-color: var(--hb-calendar-hover);
 	}
 	th {
 		width: auto;
@@ -345,6 +370,10 @@
 		display: block;
 		width: 100%;
 		text-align: center;
+		border: 0px;
+		background-color: var(--hb-calendar-event-button-color);
+		padding: 2px;
+		cursor: pointer;
 	}
 	#calendar-header {
 		line-height: 50px;
@@ -352,7 +381,7 @@
 		vertical-align: middle;
 	}
 	.cell-today {
-		color: var(--bs-success);
+		color: var(--hb-calendar-today);
 		font-weight: bold;
 	}
 </style>

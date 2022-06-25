@@ -20,6 +20,7 @@ export type Component = {
 	date?: Date;
 	events?: IEvent[];
 	selected?: Date;
+	disable_header?: boolean;
 };
 
 export type Events = {
