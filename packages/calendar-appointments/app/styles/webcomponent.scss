@@ -8,3 +8,27 @@
 	--hb-calendar-hover: #c9d6df;
 	--hb-calendar-event-button-color: #9b18e7;
 }
+.event_icon {
+	color: var(--hb-calendar-event-button-color);
+	font-weight: bold;
+	font-size: 3em;
+	vertical-align: top;
+}
+.event_label {
+	font-weight: bold;
+}
+.event_row {
+	line-height: 50px;
+}
+.events_day_fullname {
+	text-transform: capitalize;
+	font-size: 1.2rem;
+}
+.events_day {
+	margin: 20px auto 10px auto;
+	font-weight: bold;
+}
+#appointments_container {
+	margin-top: 40px;
+	display: block;
+}
