@@ -17,7 +17,7 @@
 	import { get_current_component } from "svelte/internal";
 	export let id: string;
 
-	export let type: "login" | "register" | "activate" | "recover" | "forgetpassword";
+	export let type: "login" | "register" | "activate" | "recover" | "forgotpassword";
 
 	export let language: string;
 
@@ -39,6 +39,8 @@
 	export let passwordpattern: string;
 	export let recoverycode: string;
 
+	export let enable_recover_password: boolean;
+
 	// export let expectmailconfirm: string;
 	let oauth2ProvidersObj: {
 		provider: string;
@@ -56,6 +58,14 @@
 	$: {
 		if (!id) {
 			id = null;
+		}
+		if (
+			typeof enable_recover_password === "string" &&
+			(enable_recover_password === "yes" || enable_recover_password === "true" || enable_recover_password === "")
+		) {
+			enable_recover_password = true;
+		} else if (!enable_recover_password) {
+			enable_recover_password = false;
 		}
 		if (!passwordpattern) {
 			passwordpattern = null;
@@ -98,7 +108,7 @@
 			recoverycode = location.href.split("recoverycode=")[1].split("&")[0];
 			recoveryCodeExists = true;
 			if (location?.href && location.href.split("recoverytype=").length > 1) {
-				type = location.href.split("recoverytype=")[1].split("&")[0] as unknown as "activate" | "recover" | "forgetpassword";
+				type = location.href.split("recoverytype=")[1].split("&")[0] as unknown as "activate" | "recover" | "forgotpassword";
 			}
 			if (location?.href && location.href.split("recoveryemail=").length > 1) {
 				email = location.href.split("recoveryemail=")[1].split("&")[0];
@@ -358,11 +368,12 @@
 	const svelteDispatch = createEventDispatcher();
 
 	function dispatch(name, detail) {
+		forgotpassword;
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	function switchType(t: "login" | "register") {
+	function switchType(t: "login" | "register" | "forgotpassword") {
 		email = "";
 		password = "";
 		rememberMe = false;
@@ -379,13 +390,22 @@
 			console.error("wrong params", recoverycode, password, passwordRepeated);
 		}
 	}
+	function forgotpassword() {
+		checkValidity = true;
+
+		if (recoverycode && checkValidityFn("email") && checkValidityFn("password") && checkValidityFn("passwordRepeated")) {
+			dispatch("recoverOrActivate", { password, recoverycode, email });
+		} else {
+			console.error("wrong params", recoverycode, password, passwordRepeated);
+		}
+	}
 	function keyupkboard(k) {
 		if (k.keyCode === 13) {
 			switch (type) {
 				case "login":
 					return login();
 				case "activate":
-				case "forgetpassword":
+				case "forgotpassword":
 				case "recover":
 					return recoverOrActivate();
 				case "register":
@@ -455,6 +475,18 @@
 				/>
 				<label for="floatingPassword">Password</label>
 			</div>
+		{:else if type === "forgotpassword"}
+			<div class="form-floating">
+				<input
+					type="text"
+					class="form-control {checkValidity ? (checkValidityFn('email') ? 'is-valid' : 'is-invalid') : ''}"
+					bind:value={email}
+					placeholder="name@example.com"
+					required
+				/>
+
+				<label for="floatingInput">Email</label>
+			</div>
 		{:else if type === "activate" || type === "recover"}
 			<div class="form-floating">
 				{#if !recoveryCodeExists}
@@ -517,9 +549,15 @@
 				</label>
 			</div>
 			<button class="w-100 btn btn-lg btn-primary" on:click={login}>{getWord("loginButton").toUpperCase()}</button>
-			{#if !disableregister}
+			{#if enable_recover_password || !disableregister}
 				<p style="margin-bottom:0px">
-					<button class="btn btn-link" on:click={() => switchType("register")}>{getWord("registerSwitch")}</button>
+					{#if enable_recover_password}
+						<button class="btn btn-link" on:click={() => switchType("forgotpassword")}>{getWord("forgotPasswordButton")}</button>
+					{/if}
+					/
+					{#if !disableregister}
+						<button class="btn btn-link" on:click={() => switchType("register")}>{getWord("registerButton")}</button>
+					{/if}
 				</p>
 			{/if}
 		{:else if type === "register"}
@@ -530,6 +568,12 @@
 			<p style="margin-bottom:0px">
 				<button class="btn btn-link" on:click={() => switchType("login")}>{getWord("loginSwitch")}</button>
 			</p>
+		{:else if type === "forgotpassword"}
+			<div class="checkbox mb-3">
+				<label />
+			</div>
+			<button class="w-100 btn btn-lg btn-primary" on:click={forgotpassword}>Invia</button>
+			<button class="btn btn-link" on:click={() => switchType("login")}>{getWord("loginSwitch")}</button>
 		{:else if type === "activate" || type === "recover"}
 			<div class="checkbox mb-3">
 				<label />

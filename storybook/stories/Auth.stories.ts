@@ -60,3 +60,9 @@ LoginEnWithOauth.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples[7]
 );
+export const ForgetPassword = Template.bind({});
+
+ForgetPassword.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[8]
+);

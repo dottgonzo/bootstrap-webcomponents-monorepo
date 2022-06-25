@@ -1,7 +1,7 @@
 export type Component = {
 	id?: string;
 	style?: string;
-	type?: "login" | "register" | "activate" | "recover" | "forgetpassword";
+	type?: "login" | "register" | "activate" | "recover" | "forgotpassword";
 
 	language?: string;
 
@@ -22,7 +22,7 @@ export type Component = {
 		uri: string;
 	}[];
 	disableregister?: boolean;
-
+	enable_recover_password?: boolean;
 	passwordpattern?: string;
 	recoverycode?: string;
 };

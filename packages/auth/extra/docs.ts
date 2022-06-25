@@ -6,6 +6,7 @@ export const storybookArgs = {
 		options: ["login", "register", "activate", "recover"],
 		control: { type: "select" }, // Automatically inferred when 'options' is defined
 	},
+	enable_recover_password: { control: { type: "boolean" } },
 	language: { control: { type: "string" } },
 	disableregister: { control: { type: "boolean" } },
 	logouri: { control: { type: "string" } },
@@ -79,6 +80,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			logouri: "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
 		},
 	},
+
 	{
 		name: "LoginEn",
 		data: {
@@ -119,6 +121,14 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				{ provider: "facebook", uri: "" },
 				{ provider: "twitter", uri: "" },
 			],
+		},
+	},
+	{
+		name: "forgotpassword",
+		data: {
+			enable_recover_password: true,
+			type: "forgotpassword",
+			logouri: "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
 		},
 	},
 ];
