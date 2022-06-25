@@ -15,6 +15,8 @@ export const storybookArgs = {
 	register: { action: "registerEvent" },
 	navbarDropDownClick: { action: "navbarDropDownClickEvent" },
 	navbarSlotClick: { action: "navbarSlotClick" },
+	recoverPassword: { action: "recoverPasswordClick" },
+	recoverOrActivate: { action: "recoverOrActivateClick" },
 
 	contacts: { control: { type: "object" } },
 	company: { control: { type: "object" } },

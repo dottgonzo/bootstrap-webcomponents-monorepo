@@ -399,6 +399,13 @@
 			console.error("wrong params", recoverycode, password, passwordRepeated);
 		}
 	}
+	function recoverPassword() {
+		if (checkValidityFn("email")) {
+			dispatch("recoverPassword", { email });
+		} else {
+			console.error("wrong params", email);
+		}
+	}
 	function keyupkboard(k) {
 		if (k.keyCode === 13) {
 			switch (type) {
@@ -582,7 +589,7 @@
 			<div class="checkbox mb-3">
 				<label />
 			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={recoverOrActivate}>Memorizza</button>
+			<button class="w-100 btn btn-lg btn-primary" on:click={recoverPassword}>Memorizza</button>
 		{/if}
 
 		<!-- <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p> -->

@@ -31,4 +31,5 @@ export type Events = {
 	login: { token?: string; email?: string; password?: string; rememberMe?: boolean };
 	register: any & { requestSent: { email: string; password: string }; email: string; password: string };
 	recoverOrActivate: { password: string; recoverycode: string; email: string }; // only one good..
+	recoverPassword: { email: string };
 };

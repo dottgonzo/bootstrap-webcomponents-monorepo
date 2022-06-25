@@ -200,6 +200,9 @@
 			on:recoverOrActivate={(l) => {
 				dispatch("recoverOrActivate", l.detail);
 			}}
+			on:recoverPassword={(l) => {
+				dispatch("recoverPassword", l.detail);
+			}}
 		/>
 	</div>
 </hb-layout>
