@@ -576,7 +576,7 @@
 			<div class="checkbox mb-3">
 				<label />
 			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={forgotpassword}>Invia</button>
+			<button class="w-100 btn btn-lg btn-primary" on:click={forgotpassword}>Recupera</button>
 			<button class="btn btn-link" on:click={() => switchType("login")}>{getWord("loginSwitch")}</button>
 		{:else if type === "activate" || type === "recover"}
 			<div class="checkbox mb-3">
