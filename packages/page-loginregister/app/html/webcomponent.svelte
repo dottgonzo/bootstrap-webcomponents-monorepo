@@ -184,6 +184,7 @@
 	<div slot="nav-center-slot"><slot name="nav-center-slot" /></div>
 	<div slot="page" style="position: absolute;height: 100%;top: 0px;width: 100%;">
 		<hb-auth
+		   {type}
 			style="height:100%;{authStyleToSet}"
 			sessionkey={sessionkey || ""}
 			loginuri={loginuri || ""}
