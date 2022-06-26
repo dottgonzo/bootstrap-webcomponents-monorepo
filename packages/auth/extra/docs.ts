@@ -3,11 +3,11 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	type: {
-		options: ["login", "register", "activate", "recover"],
+		options: ["login", "register", "activate", "recover", "mailrecoverinfo", "forgotpassword"],
 		control: { type: "select" }, // Automatically inferred when 'options' is defined
 	},
 	enable_recover_password: { control: { type: "boolean" } },
-	language: { control: { type: "text" } },
+	i18nlang: { control: { type: "text" } },
 	disableregister: { control: { type: "boolean" } },
 	logouri: { control: { type: "text" } },
 	loginuri: { control: { type: "text" } },
@@ -44,7 +44,10 @@ export const htmlSlots: HtmlSlot[] = [
 		description: "",
 	},
 ];
-export const i18nLanguages: i18nLang[] = [];
+export const i18nLanguages: i18nLang[] = [
+	{ lang: "it", language: "italian" },
+	{ lang: "en", language: "english" },
+];
 
 export const styleSetup: StyleSetup = {
 	vars: cssVars,
@@ -86,15 +89,15 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "LoginEn",
 		data: {
 			type: "login",
-			language: "en",
+			i18nlang: "en",
 			disableregister: true,
 		},
 	},
 	{
-		name: "LoginOnly",
+		name: "LoginItOnly",
 		data: {
 			type: "login",
-			language: "it",
+			i18nlang: "it",
 			disableregister: true,
 		},
 	},
@@ -102,7 +105,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "LoginEnWithFetch",
 		data: {
 			type: "login",
-			language: "en",
+			i18nlang: "en",
 			loginuri: "https://kernel.free.beeceptor.com/login",
 			registeruri: "https://kernel.free.beeceptor.com/register",
 		},
@@ -111,7 +114,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "LoginEnWithOauth",
 		data: {
 			type: "login",
-			language: "en",
+			i18nlang: "en",
 			loginuri: "https://kernel.free.beeceptor.com/login",
 			registeruri: "https://kernel.free.beeceptor.com/register",
 			oauth2providers: [
@@ -129,6 +132,13 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		data: {
 			enable_recover_password: true,
 			type: "forgotpassword",
+			logouri: "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
+		},
+	},
+	{
+		name: "mailrecoverinfo",
+		data: {
+			type: "mailrecoverinfo",
 			logouri: "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
 		},
 	},

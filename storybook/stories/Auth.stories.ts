@@ -42,9 +42,9 @@ LoginEn.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples[4]
 );
-export const LoginOnly = Template.bind({});
+export const LoginOnlyItalian = Template.bind({});
 
-LoginOnly.args = setStorybookData(
+LoginOnlyItalian.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples[5]
 );
@@ -65,4 +65,10 @@ export const ForgetPassword = Template.bind({});
 ForgetPassword.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples[8]
+);
+export const EmailInstructionSide = Template.bind({});
+
+EmailInstructionSide.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[9]
 );

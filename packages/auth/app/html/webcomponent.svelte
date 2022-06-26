@@ -12,14 +12,16 @@
 	 */
 
 	import { dictionary } from "@app/functions/i18n";
+	import type { Component } from "@app/types/webcomponent.type";
+	import { LanguageTranslator } from "@htmlbricks/hb-jsutils";
 
 	import { createEventDispatcher } from "svelte";
-	import { get_current_component } from "svelte/internal";
+	import { get_current_component, onMount } from "svelte/internal";
 	export let id: string;
 
-	export let type: "login" | "register" | "activate" | "recover" | "forgotpassword";
+	export let type: Component["type"];
 
-	export let language: string;
+	export let i18nlang: string;
 
 	export let sessionkey: string;
 
@@ -52,10 +54,18 @@
 	let rememberMe: boolean;
 	let passwordRepeated: string;
 	let password: string;
-	let getWord: (e: string) => string;
-	let localDictionary = dictionary["en"];
+
 	let recoveryCodeExists = false;
+	let translator: LanguageTranslator;
+	// onMount(() => {
+	// 	translator = new LanguageTranslator({ dictionary, lang: i18nlang });
+	// });
 	$: {
+		if (!translator) {
+			translator = new LanguageTranslator({ dictionary, lang: i18nlang });
+		} else if (translator && i18nlang && translator.lang && translator.lang !== i18nlang) {
+			translator = new LanguageTranslator({ dictionary, lang: i18nlang });
+		}
 		if (!id) {
 			id = null;
 		}
@@ -77,7 +87,6 @@
 		if (!redirectoncreate) {
 			redirectoncreate = null;
 		}
-
 
 		if (!sessionkey) {
 			sessionkey = "_lg";
@@ -102,18 +111,18 @@
 		if (!passwordRepeated) {
 			passwordRepeated = "";
 		}
-		if (!recoverycode&&location?.href && location.href.split("recoverycode=").length > 1) {
+		if (!recoverycode && location?.href && location.href.split("recoverycode=").length > 1) {
 			recoverycode = location.href.split("recoverycode=")[1].split("&")[0];
 			recoveryCodeExists = true;
 		} else if (!recoverycode) {
 			recoverycode = "";
 		}
-		if (!email&&location?.href && location.href.split("recoveryemail=").length > 1) {
-		    email = location.href.split("recoveryemail=")[1].split("&")[0];
+		if (!email && location?.href && location.href.split("recoveryemail=").length > 1) {
+			email = location.href.split("recoveryemail=")[1].split("&")[0];
 		}
-		if (!type&&location?.href && location.href.split("recoverytype=").length > 1) {
-			type = location.href.split("recoverytype=")[1].split("&")[0] as unknown as "activate" | "recover" | "forgotpassword";
-		} else if(!type){
+		if (!type && location?.href && location.href.split("recoverytype=").length > 1) {
+			type = location.href.split("recoverytype=")[1].split("&")[0] as unknown as Component["type"];
+		} else if (!type) {
 			type = "login";
 		}
 		if (!logouri) {
@@ -163,20 +172,18 @@
 			requestmethod = requestmethod.toUpperCase();
 		}
 		// i18n
-		if (!language || !dictionary[language]) {
-			const autolang = navigator?.languages ? navigator.languages[0]?.split("-")[0]?.toLowerCase() : null;
-			if (autolang && dictionary[autolang]) {
-				language = autolang;
-			} else {
-				language = "en";
-			}
-			localDictionary = dictionary[language];
-		} else {
-			localDictionary = dictionary[language];
-		}
-		getWord = (w) => {
-			return localDictionary[w] || dictionary["en"][w] || "";
-		};
+		// if (!language || !dictionary[language]) {
+		// 	const autolang = navigator?.languages ? navigator.languages[0]?.split("-")[0]?.toLowerCase() : null;
+		// 	if (autolang && dictionary[autolang]) {
+		// 		language = autolang;
+		// 	} else {
+		// 		language = "en";
+		// 	}
+		// 	localDictionary = dictionary[language];
+		// } else {
+		// 	localDictionary = dictionary[language];
+		// }
+
 		console.log(disableregister);
 	}
 	// function getCookie(cname: string) {
@@ -371,7 +378,7 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	function switchType(t: "login" | "register" | "forgotpassword") {
+	function switchType(t: Component["type"]) {
 		email = "";
 		password = "";
 		passwordRepeated = "";
@@ -391,7 +398,7 @@
 	}
 
 	function recoverPassword() {
-				checkValidity = true;
+		checkValidity = true;
 
 		if (checkValidityFn("email")) {
 			dispatch("recoverPassword", { email });
@@ -407,8 +414,8 @@
 				case "activate":
 				case "recover":
 					return recoverOrActivate();
-									case "forgotpassword":
-return recoverPassword()
+				case "forgotpassword":
+					return recoverPassword();
 				case "register":
 					return register();
 			}
@@ -430,13 +437,13 @@ return recoverPassword()
 		</slot>
 
 		{#if type === "login"}
-			<h1 class="h3 mb-3 fw-normal">{getWord("loginTitle")}</h1>
+			<h1 class="h3 mb-3 fw-normal">{translator?.translateWord("loginTitle")}</h1>
 		{:else if type === "forgotpassword"}
-			<h1 class="h3 mb-3 fw-normal">{getWord("ForgotTitle")}</h1>
+			<h1 class="h3 mb-3 fw-normal">{translator?.translateWord("ForgotTitle")}</h1>
 		{:else if type === "register"}
-			<h1 class="h3 mb-3 fw-normal">{getWord("registerTitle")}</h1>
+			<h1 class="h3 mb-3 fw-normal">{translator?.translateWord("registerTitle")}</h1>
 		{:else if type === "activate" || type === "recover"}
-			<h1 class="h3 mb-3 fw-normal">{getWord("recoverTitle")}</h1>
+			<h1 class="h3 mb-3 fw-normal">{translator?.translateWord("recoverTitle")}</h1>
 		{/if}
 		{#if oauth2ProvidersObj?.length}
 			<div class="d-flex justify-content-center mt-1">
@@ -492,6 +499,10 @@ return recoverPassword()
 
 				<label for="floatingInput">Email</label>
 			</div>
+		{:else if type === "mailrecoverinfo"}
+			<div class="form-floating">
+				<div>{translator?.translateWord("recoverEmailText")}</div>
+			</div>
 		{:else if type === "activate" || type === "recover"}
 			<div class="form-floating">
 				{#if !recoveryCodeExists}
@@ -499,7 +510,7 @@ return recoverPassword()
 				{:else}
 					<input type="text" class="form-control" placeholder="Codice temporaneo" bind:value={recoverycode} disabled />
 				{/if}
-				<label for="floatingCode">Codice temporaneo</label>
+				<label for="floatingCode">{translator?.translateWord("temporaryCode")}</label>
 			</div>
 			<div class="form-floating">
 				{#if !recoveryCodeExists || !email}
@@ -531,7 +542,7 @@ return recoverPassword()
 					required
 					pattern={passwordpattern ? passwordpattern : ""}
 				/>
-				<label for="floatingPassword">Nuova Password</label>
+				<label for="floatingPassword">{translator?.translateWord("newPassword")}</label>
 			</div>
 			<div class="form-floating">
 				<input
@@ -542,7 +553,7 @@ return recoverPassword()
 					required
 					pattern={passwordpattern ? passwordpattern : ""}
 				/>
-				<label for="floatingPassword2">Ripeti Password</label>
+				<label for="floatingPassword2">{translator?.translateWord("repeatPassword")}</label>
 			</div>
 		{/if}
 
@@ -550,18 +561,18 @@ return recoverPassword()
 			<div class="checkbox mb-3">
 				<label>
 					<input type="checkbox" bind:checked={rememberMe} />
-					{getWord("rememberMe")}
+					{translator?.translateWord("rememberMe")}
 				</label>
 			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={()=>login()}>{getWord("loginButton").toUpperCase()}</button>
+			<button class="w-100 btn btn-lg btn-primary" on:click={() => login()}>{translator?.translateWord("loginButton").toUpperCase()}</button>
 			{#if enable_recover_password || !disableregister}
 				<p style="margin-bottom:0px">
 					{#if enable_recover_password}
-						<button class="btn btn-link" on:click={() => switchType("forgotpassword")}>{getWord("forgotPasswordButton")}</button>
+						<button class="btn btn-link" on:click={() => switchType("forgotpassword")}>{translator?.translateWord("forgotPasswordButton")}</button>
 					{/if}
 					{#if enable_recover_password && !disableregister}/{/if}
 					{#if !disableregister}
-						<button class="btn btn-link" on:click={() => switchType("register")}>{getWord("registerButton")}</button>
+						<button class="btn btn-link" on:click={() => switchType("register")}>{translator?.translateWord("registerButton")}</button>
 					{/if}
 				</p>
 			{/if}
@@ -569,21 +580,25 @@ return recoverPassword()
 			<div class="checkbox mb-3">
 				<label />
 			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={()=>register()}>{getWord("registerButton").toUpperCase()}</button>
+			<button class="w-100 btn btn-lg btn-primary" on:click={() => register()}>{translator?.translateWord("registerButton").toUpperCase()}</button>
 			<p style="margin-bottom:0px">
-				<button class="btn btn-link" on:click={() => switchType("login")}>{getWord("loginSwitch")}</button>
+				<button class="btn btn-link" on:click={() => switchType("login")}>{translator?.translateWord("loginSwitch")}</button>
+			</p>
+		{:else if type === "mailrecoverinfo"}
+			<p style="margin-bottom:0px">
+				<button class="btn btn-link" on:click={() => switchType("login")}>{translator?.translateWord("loginSwitch")}</button>
 			</p>
 		{:else if type === "forgotpassword"}
 			<div class="checkbox mb-3">
 				<label />
 			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={()=>recoverPassword()}>Recupera</button>
-			<button class="btn btn-link" on:click={() => switchType("login")}>{getWord("loginSwitch")}</button>
+			<button class="w-100 btn btn-lg btn-primary" on:click={() => recoverPassword()}>{translator?.translateWord("recoverWord")}</button>
+			<button class="btn btn-link" on:click={() => switchType("login")}>{translator?.translateWord("loginSwitch")}</button>
 		{:else if type === "activate" || type === "recover"}
 			<div class="checkbox mb-3">
 				<label />
 			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={()=>recoverOrActivate()}>Memorizza</button>
+			<button class="w-100 btn btn-lg btn-primary" on:click={() => recoverOrActivate()}>{translator?.translateWord("memo")}</button>
 		{/if}
 
 		<!-- <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p> -->

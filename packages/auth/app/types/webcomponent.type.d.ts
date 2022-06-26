@@ -1,9 +1,9 @@
 export type Component = {
 	id?: string;
 	style?: string;
-	type?: "login" | "register" | "activate" | "recover" | "forgotpassword";
+	type?: "login" | "register" | "activate" | "recover" | "forgotpassword" | "mailrecoverinfo";
 	email?: string;
-	language?: string;
+	i18nlang?: string;
 
 	sessionkey?: string;
 
