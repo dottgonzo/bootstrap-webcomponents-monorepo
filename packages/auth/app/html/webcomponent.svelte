@@ -77,9 +77,7 @@
 		if (!redirectoncreate) {
 			redirectoncreate = null;
 		}
-		if (!type) {
-			type = "login";
-		}
+
 
 		if (!sessionkey) {
 			sessionkey = "_lg";
@@ -107,16 +105,16 @@
 		if (!recoverycode&&location?.href && location.href.split("recoverycode=").length > 1) {
 			recoverycode = location.href.split("recoverycode=")[1].split("&")[0];
 			recoveryCodeExists = true;
-
-
 		} else if (!recoverycode) {
 			recoverycode = "";
 		}
 		if (!email&&location?.href && location.href.split("recoveryemail=").length > 1) {
 		    email = location.href.split("recoveryemail=")[1].split("&")[0];
 		}
-		if (location?.href && location.href.split("recoverytype=").length > 1) {
+		if (!type&&location?.href && location.href.split("recoverytype=").length > 1) {
 			type = location.href.split("recoverytype=")[1].split("&")[0] as unknown as "activate" | "recover" | "forgotpassword";
+		} else if(!type){
+			type = "login";
 		}
 		if (!logouri) {
 			logouri = "";
