@@ -374,6 +374,7 @@
 	function switchType(t: "login" | "register" | "forgotpassword") {
 		email = "";
 		password = "";
+		passwordRepeated = "";
 		rememberMe = false;
 		checkValidity = false;
 		type = t;
