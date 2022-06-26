@@ -26,6 +26,7 @@ export const storybookArgs = {
 	appendbodyparams: { control: { type: "text" } },
 	passwordpattern: { control: { type: "text" } },
 	recoverycode: { control: { type: "text" } },
+	email: { control: { type: "text" } },
 };
 
 const cssVars: CssVar[] = [

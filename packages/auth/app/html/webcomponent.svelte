@@ -40,6 +40,7 @@
 	export let recoverycode: string;
 
 	export let enable_recover_password: boolean;
+	export let email: string;
 
 	// export let expectmailconfirm: string;
 	let oauth2ProvidersObj: {
@@ -47,7 +48,6 @@
 		uri: string;
 	}[];
 
-	let email: string;
 	let checkValidity: boolean;
 	let rememberMe: boolean;
 	let passwordRepeated: string;
@@ -107,16 +107,17 @@
 		if (!recoverycode&&location?.href && location.href.split("recoverycode=").length > 1) {
 			recoverycode = location.href.split("recoverycode=")[1].split("&")[0];
 			recoveryCodeExists = true;
-			if (location?.href && location.href.split("recoverytype=").length > 1) {
-				type = location.href.split("recoverytype=")[1].split("&")[0] as unknown as "activate" | "recover" | "forgotpassword";
-			}
-			if (location?.href && location.href.split("recoveryemail=").length > 1) {
-				email = location.href.split("recoveryemail=")[1].split("&")[0];
-			}
+
+
 		} else if (!recoverycode) {
 			recoverycode = "";
 		}
-
+			if (!email&&location?.href && location.href.split("recoveryemail=").length > 1) {
+				 email = location.href.split("recoveryemail=")[1].split("&")[0];
+			}
+						if (location?.href && location.href.split("recoverytype=").length > 1) {
+				type = location.href.split("recoverytype=")[1].split("&")[0] as unknown as "activate" | "recover" | "forgotpassword";
+			}
 		if (!logouri) {
 			logouri = "";
 		}

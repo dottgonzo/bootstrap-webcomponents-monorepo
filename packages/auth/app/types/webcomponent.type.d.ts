@@ -2,7 +2,7 @@ export type Component = {
 	id?: string;
 	style?: string;
 	type?: "login" | "register" | "activate" | "recover" | "forgotpassword";
-
+	email?: string;
 	language?: string;
 
 	sessionkey?: string;
