@@ -104,7 +104,7 @@
 		if (!passwordRepeated) {
 			passwordRepeated = "";
 		}
-		if (location?.href && location.href.split("recoverycode=").length > 1) {
+		if (!recoverycode&&location?.href && location.href.split("recoverycode=").length > 1) {
 			recoverycode = location.href.split("recoverycode=")[1].split("&")[0];
 			recoveryCodeExists = true;
 			if (location?.href && location.href.split("recoverytype=").length > 1) {
@@ -583,7 +583,7 @@ return recoverPassword()
 			<div class="checkbox mb-3">
 				<label />
 			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={()=>recoverOrActivate}>Memorizza</button>
+			<button class="w-100 btn btn-lg btn-primary" on:click={()=>recoverOrActivate()}>Memorizza</button>
 		{/if}
 
 		<!-- <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p> -->
