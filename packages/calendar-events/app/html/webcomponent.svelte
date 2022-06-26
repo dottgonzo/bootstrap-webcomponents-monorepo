@@ -118,8 +118,8 @@
 				>
 			</span>
 			<span style="float:right">
-				<span on:click={() => changeMonth(-1)}><slot name="header_month_icon_prev"><button>˂</button></slot></span>
-				<span on:click={() => changeMonth(1)}><slot name="header_month_icon_next"><button>˃</button></slot></span>
+				<span style="cursor:pointer" on:click={() => changeMonth(-1)}><slot name="header_month_icon_prev"><button>˂</button></slot></span>
+				<span style="cursor:pointer" on:click={() => changeMonth(1)}><slot name="header_month_icon_next"><button>˃</button></slot></span>
 			</span>
 		</slot>
 	</div>
