@@ -33,6 +33,7 @@
 	export let disable_confirm: boolean;
 	export let confirm_btn_class: string;
 	export let close_btn_class: string;
+	export let hide_close: boolean;
 
 	let ignoreBackdrop = false;
 
@@ -91,6 +92,9 @@
 		} else {
 			modalClose();
 		}
+		if (typeof hide_close === "string" && ((hide_close as string).toLowerCase() === "true" || (hide_close as string).toLowerCase() === "yes")) {
+			hide_close = true;
+		}
 	}
 	function handleConfirm() {
 		dispatch("modalConfirm", { id, confirm: true });
@@ -131,12 +135,12 @@
 				<slot name="modal-footer" class="modal-footer">
 					<div>
 						<slot name="footer">
-							<button type="button" class="btn btn-{close_btn_class}" on:click={() => handleCancel()}
-								><slot name="close-button-label">{closelabel || "Close"}</slot></button
-							>
+							{#if !hide_close}<button type="button" class="btn btn-{close_btn_class}" on:click={() => handleCancel()}
+									><slot name="close-button-label">{closelabel || "Close"}</slot></button
+								>{/if}
 							<button disabled={disable_confirm ? true : false} type="button" class="btn btn-{confirm_btn_class}" on:click={() => handleConfirm()}
-								><slot name="confirm-button-label">{confirmlabel || "Save changes"}</slot></button
-							>
+								><slot name="confirm-button-label">{confirmlabel || "Save changes"}</slot>
+							</button>
 						</slot>
 					</div>
 				</slot>

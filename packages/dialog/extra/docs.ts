@@ -10,6 +10,7 @@ export const storybookArgs = {
 	backdrop: { control: { type: "boolean" } },
 	ignoreBackdrop: { control: { type: "text" } },
 	keyboard: { control: { type: "boolean" } },
+	hide_close: { control: { type: "boolean" } },
 	describedby: { control: { type: "text" } },
 	labelledby: { control: { type: "text" } },
 	content: { control: { type: "text" } },
