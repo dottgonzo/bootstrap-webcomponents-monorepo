@@ -125,9 +125,7 @@
 			<div class="modal-content">
 				<slot name="header" class="modal-header">
 					<h5 class="modal-title"><slot name="title">{title || "title"}</slot></h5>
-					<button type="button" class="btn-close" on:click={() => (show = "no")}>
-						<span aria-hidden="true">&times;</span>
-					</button>
+					<button type="button" class="btn-close" on:click={() => (show = "no")} />
 				</slot>
 				<div class="modal-body" style="word-break: break-all;">
 					<slot name="body-content">{content || "Woohoo, you're reading this text in a modal!"}</slot>
