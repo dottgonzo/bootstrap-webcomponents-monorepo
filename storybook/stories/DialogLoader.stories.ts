@@ -7,7 +7,7 @@ import {
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/uploader/extra/docs";
+} from "../../packages/dialog-loader/extra/docs";
 
 const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
@@ -19,4 +19,9 @@ export const UploaderTemplate = Template.bind({});
 UploaderTemplate.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples[0]
+);
+export const UploaderEmpty = Template.bind({});
+UploaderEmpty.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[1]
 );

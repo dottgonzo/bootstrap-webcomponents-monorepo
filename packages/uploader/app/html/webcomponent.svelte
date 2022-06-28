@@ -24,19 +24,13 @@
 	export let id: string;
 	export let style: string;
 	export let fetch_data: Component["fetch_data"];
-	export let total: number;
-	export let loaded: number = 0;
+	let total: number;
+	let loaded: number;
 	export let upload_id: string;
 
-	let xhr: XMLHttpRequest;
 	let completed: boolean;
 	let errorMessage: string;
 	$: {
-		if (!loaded) loaded = 0;
-		else if (typeof loaded === "string") loaded = parseInt(loaded);
-		if (!total) total = 0;
-		else if (typeof total === "string") total = parseInt(total);
-
 		if (!id) id = null;
 		if (!upload_id) upload_id = id + "_dialog";
 		if (style) {

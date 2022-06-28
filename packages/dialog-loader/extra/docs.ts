@@ -2,12 +2,8 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	fetch_data: { control: { type: "object" } },
-	upload_id: { control: { type: "text" } },
-	total: { control: { type: "number" } },
-	loaded: { control: { type: "number" } },
-	downloadError: { action: "downloadError" },
-	downloadComplete: { action: "downloadComplete" },
+	percentage: { control: { type: "number" } },
+
 	modalShow: { action: "modalShow" },
 };
 
@@ -32,10 +28,13 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {
-			fetch_data: {
-				url: "",
-				data: "",
-			},
+			percentage: 10,
+		},
+	},
+	{
+		name: "empty",
+		data: {
+			percentage: 0,
 		},
 	},
 ];
@@ -52,11 +51,11 @@ export const componentSetup: ComponentSetup & { examples: { name: string; descri
 	screenshots: [],
 	licenses: [{ type: "Apache-2.0", path: "LICENSE.md", cost: 0, currency: "EUR" }],
 	readmePath: "README.md",
-	name: "hb-uploader",
+	name: "hb-dialog-loader",
 	category: "basic",
 	tags: ["basic"],
 	size: {},
 	iifePath: "release/release.js",
-	repoName: "@htmlbricks/hb-uploader",
+	repoName: "@htmlbricks/hb-dialog-loader",
 	version: null as any,
 };
