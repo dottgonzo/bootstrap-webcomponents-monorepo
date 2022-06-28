@@ -78,14 +78,11 @@
 		}
 	}
 
-	function dialogShowEvent(d) {
+	function dialogShowEvent(d: { id: string; show: true }) {
 		errorMessage = null;
 
 		if (d.show) {
-			upload_id = d.id;
 			onModalOpened().catch(console.error);
-		} else {
-			upload_id = "";
 		}
 		dispatch("modalShow", d);
 	}

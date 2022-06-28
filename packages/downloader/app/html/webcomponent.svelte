@@ -113,7 +113,7 @@
 		}
 	}
 
-	function dialogShowEvent(d) {
+	function dialogShowEvent(d: { id: string; show: true }) {
 		if (d.show) {
 			downloadid = d.id;
 			onModalOpened();

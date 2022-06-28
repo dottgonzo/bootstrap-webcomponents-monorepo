@@ -75,7 +75,7 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "580ed57cbdd9c0eacc3f47412f6a399e37a49ea7",
+	"gitHead": "87c629ea444340649312126503e2baf729b65836",
 	"dependencies": {
 		"@htmlbricks/hb-input-date": "^0.15.2",
 		"@htmlbricks/hb-input-number": "^0.15.2"
