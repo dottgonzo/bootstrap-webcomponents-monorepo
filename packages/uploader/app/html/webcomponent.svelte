@@ -24,14 +24,16 @@
 	export let id: string;
 	export let style: string;
 	export let fetch_data: Component["fetch_data"];
-	let total: number;
-	let loaded: number = 0;
+	export let total: number;
+	export let loaded: number = 0;
 	export let upload_id: string;
 
 	let xhr: XMLHttpRequest;
 	let completed: boolean;
 	let errorMessage: string;
 	$: {
+		if (!loaded) loaded = 0;
+		if (!total) total = 0;
 		if (!id) id = null;
 		if (!upload_id) upload_id = id + "_dialog";
 		if (style) {
@@ -81,13 +83,13 @@
 		errorMessage = null;
 
 		if (d.show) {
-			onModalOpened().catch(console.error);
+			if (fetch_data?.url) onModalOpened().catch(console.error);
 		}
 		dispatch("modalShow", d);
 	}
 </script>
 
-<hb-dialog style={dialogStyleToSet} id={upload_id} show={fetch_data?.url ? "yes" : "no"} on:modalShow={(d) => dialogShowEvent(d.detail)}>
+<hb-dialog style={dialogStyleToSet} id={upload_id} show={fetch_data?.url || (loaded && total) ? "yes" : "no"} on:modalShow={(d) => dialogShowEvent(d.detail)}>
 	<span slot="title">
 		<slot name="title">Uploading</slot>
 	</span>

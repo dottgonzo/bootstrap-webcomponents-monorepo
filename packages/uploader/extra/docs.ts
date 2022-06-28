@@ -4,6 +4,8 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	fetch_data: { control: { type: "object" } },
 	upload_id: { control: { type: "text" } },
+	total: { control: { type: "number" } },
+	loaded: { control: { type: "number" } },
 	downloadError: { action: "downloadError" },
 	downloadComplete: { action: "downloadComplete" },
 	modalShow: { action: "modalShow" },
@@ -30,12 +32,13 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {
-			fetch_data: {
-				url: "",
-				data: "",
-				headers: { "Content-Type": "multipart/form-data", origin: "transfer.sh" },
-			},
+			total: 10,
+			loaded: 1,
 		},
+	},
+	{
+		name: "empty",
+		data: {},
 	},
 ];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {

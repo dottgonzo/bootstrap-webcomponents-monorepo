@@ -9,7 +9,9 @@ export type Component = {
 	id?: string;
 	style?: string;
 	upload_id?: string;
-	fetch_data: Fetch;
+	fetch_data?: Fetch;
+	total?: number;
+	loaded?: number;
 };
 
 export type Events = {
