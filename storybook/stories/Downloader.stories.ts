@@ -16,6 +16,8 @@ const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes as any, componentSetup.name);
 
 export const DownloaderTemplate = Template.bind({});
-DownloaderTemplate.args = {
-  id: "BasicDownloader",
-};
+
+DownloaderTemplate.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[0]
+);
