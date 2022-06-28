@@ -4,7 +4,7 @@
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
-	import axios from "axios";
+	import axios, { type AxiosRequestConfig } from "axios";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
@@ -56,8 +56,7 @@
 		}
 		loaded = 0;
 		try {
-			const axiosConfig = {
-				routes: { cors: true },
+			const axiosConfig: AxiosRequestConfig = {
 				url: fetch_data.url,
 				data: fetch_data.data,
 				method: fetch_data.method || "POST",
