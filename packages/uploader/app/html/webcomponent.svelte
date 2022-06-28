@@ -33,7 +33,10 @@
 	let errorMessage: string;
 	$: {
 		if (!loaded) loaded = 0;
+		else if (typeof loaded === "string") loaded = parseInt(loaded);
 		if (!total) total = 0;
+		else if (typeof total === "string") total = parseInt(total);
+
 		if (!id) id = null;
 		if (!upload_id) upload_id = id + "_dialog";
 		if (style) {
