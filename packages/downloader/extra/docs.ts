@@ -8,6 +8,7 @@ export const storybookArgs = {
 	downloadid: { control: { type: "text" } },
 	downloadError: { action: "downloadError" },
 	downloadComplete: { action: "downloadComplete" },
+	modalShow: { action: "modalShow" },
 };
 
 const cssVars: CssVar[] = [

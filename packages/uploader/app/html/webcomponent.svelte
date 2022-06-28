@@ -52,7 +52,7 @@
 			console.error(err);
 			errorMessage = err?.message || "upload error";
 
-			dispatch("downloadError", { completed, id, error: err });
+			dispatch("uploadError", { completed, id: upload_id, error: err });
 		}
 		loaded = 0;
 		try {
@@ -70,8 +70,9 @@
 			};
 
 			await axios.request(axiosConfig);
+			return dispatch("uploadComplete", { completed, id: upload_id });
 		} catch (error) {
-			console.error("download err ", error);
+			console.error("upload error ", error);
 
 			return onRequestError(error);
 		}
@@ -86,6 +87,7 @@
 		} else {
 			upload_id = "";
 		}
+		dispatch("modalShow", d);
 	}
 </script>
 

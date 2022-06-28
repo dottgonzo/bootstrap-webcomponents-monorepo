@@ -126,6 +126,7 @@
 			}
 			xhr = null;
 		}
+		dispatch("modalShow", d);
 	}
 </script>
 

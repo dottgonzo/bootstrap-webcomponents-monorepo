@@ -6,6 +6,7 @@ export const storybookArgs = {
 	upload_id: { control: { type: "text" } },
 	downloadError: { action: "downloadError" },
 	downloadComplete: { action: "downloadComplete" },
+	modalShow: { action: "modalShow" },
 };
 
 const cssVars: CssVar[] = [

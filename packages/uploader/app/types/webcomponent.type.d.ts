@@ -13,6 +13,7 @@ export type Component = {
 };
 
 export type Events = {
-	downloadError: { downloaded: boolean; id: string; error: Error };
-	downloadComplete: { downloaded: boolean; id: string };
+	uploadError: { downloaded: boolean; id: string; error: Error };
+	uploadComplete: { downloaded: boolean; id: string };
+	modalShow: { id: string; show: true };
 };
