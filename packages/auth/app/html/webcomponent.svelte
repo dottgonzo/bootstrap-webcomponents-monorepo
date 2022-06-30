@@ -114,7 +114,7 @@
 		} else if (!recoverycode) {
 			recoverycode = "";
 		}
-		if (location?.href && location.href.split("access_token=").length > 1 && location.href.split("googleapis=").length > 1) {
+		if (location?.href && location.href.split("access_token=").length > 1 && location.href.includes("googleapis")) {
 			const provider = "google";
 			const token = location.href.split("access_token=")[1].split("&")[0];
 			dispatch("getProviderToken", { provider, token });
