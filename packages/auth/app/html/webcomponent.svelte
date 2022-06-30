@@ -45,10 +45,7 @@
 	export let email: string;
 
 	// export let expectmailconfirm: string;
-	let oauth2ProvidersObj: {
-		provider: string;
-		uri: string;
-	}[];
+	let oauth2ProvidersObj: Component["oauth2providers"];
 
 	let checkValidity: boolean;
 	let rememberMe: boolean;
@@ -116,6 +113,11 @@
 			recoveryCodeExists = true;
 		} else if (!recoverycode) {
 			recoverycode = "";
+		}
+		if (location?.href && location.href.split("access_token=").length > 1 && location.href.split("googleapis=").length > 1) {
+			const provider = "google";
+			const token = location.href.split("access_token=")[1].split("&")[0];
+			dispatch("getProviderToken", { provider, token });
 		}
 		if (!email && location?.href && location.href.split("recoveryemail=").length > 1) {
 			email = location.href.split("recoveryemail=")[1].split("&")[0];
@@ -217,7 +219,27 @@
 
 	async function socialLogin(providerName: string) {
 		const provider = oauth2ProvidersObj.find((f) => f.provider === providerName);
-		location.href = provider.uri;
+		if (provider.uri) {
+			location.href = provider.uri;
+		} else if (provider.params) {
+			if (!provider.params.client_id || !provider.params.redirect_url) return console.error("Missing client_id or redirect_url in oauth2ProvidersObj");
+			let url: string;
+			switch (providerName) {
+				case "google":
+					const googleScope = provider.params.scope || "https%3A//www.googleapis.com/auth/userinfo.email";
+					url = `https://accounts.google.com/o/oauth2/v2/auth?scope=${googleScope}&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=${provider.params.redirect_url}/login&client_id=${provider.params.client_id}`;
+					break;
+				default:
+					return console.error("no provider uri composed for " + providerName);
+			}
+			if (url) {
+				location.href = url;
+			} else {
+				return console.error("no provider url obtained!?", provider);
+			}
+		} else {
+			console.error("no provider uri or params defined for " + providerName);
+		}
 	}
 
 	async function login() {

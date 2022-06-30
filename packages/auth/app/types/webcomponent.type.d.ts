@@ -19,7 +19,12 @@ export type Component = {
 	logouri?: string;
 	oauth2providers?: {
 		provider: string;
-		uri: string;
+		uri?: string;
+		params?: {
+			scope?: string
+			client_id: string
+			redirect_url: string
+		}
 	}[];
 	disableregister?: boolean;
 	enable_recover_password?: boolean;
@@ -32,4 +37,5 @@ export type Events = {
 	register: any & { requestSent: { email: string; password: string }; email: string; password: string };
 	recoverOrActivate: { password: string; recoverycode: string; email: string }; // only one good..
 	recoverPassword: { email: string };
+	getProviderToken: { token?: string; provider: string }
 };
