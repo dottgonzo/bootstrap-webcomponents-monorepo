@@ -450,184 +450,183 @@
 <svelte:head>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
 </svelte:head>
-<div id="webcomponent" class="text-center">
-	<main class="form-signin" on:keyup={(k) => keyupkboard(k)}>
-		<slot name="header">
-			{#if logouri}
-				<div class="mb-4 text-center">
-					<img id="logoimg" src={logouri} alt="" />
-				</div>
-			{/if}
-		</slot>
-
-		{#if type === "login"}
-			<h1 class="h3 mb-3 fw-normal">{translator?.translateWord("loginTitle")}</h1>
-		{:else if type === "forgotpassword"}
-			<h1 class="h3 mb-3 fw-normal">{translator?.translateWord("ForgotTitle")}</h1>
-		{:else if type === "register"}
-			<h1 class="h3 mb-3 fw-normal">{translator?.translateWord("registerTitle")}</h1>
-		{:else if type === "activate" || type === "recover"}
-			<h1 class="h3 mb-3 fw-normal">{translator?.translateWord("recoverTitle")}</h1>
-		{/if}
-		{#if oauth2ProvidersObj?.length}
-			<div class="d-flex justify-content-center mt-1">
-				<ul class="social-icons">
-					{#each oauth2ProvidersObj as p (p.provider)}
-						<li>
-							<button
-								on:click={() => {
-									socialLogin(p.provider);
-								}}
-								class="btn btn-primary dot"><i class="bi-{p.provider}" /></button
-							>
-						</li>
-					{/each}
-				</ul>
+<main class="form-signin" on:keyup={(k) => keyupkboard(k)}>
+	<slot name="header">
+		{#if logouri}
+			<div class="mb-4 text-center">
+				<img id="logoimg" src={logouri} alt="" />
 			</div>
+		{/if}
+	</slot>
 
+	{#if type === "login"}
+		<h1 class="h3 mb-3 fw-normal">{translator?.translateWord("loginTitle")}</h1>
+	{:else if type === "forgotpassword"}
+		<h1 class="h3 mb-3 fw-normal">{translator?.translateWord("ForgotTitle")}</h1>
+	{:else if type === "register"}
+		<h1 class="h3 mb-3 fw-normal">{translator?.translateWord("registerTitle")}</h1>
+	{:else if type === "activate" || type === "recover"}
+		<h1 class="h3 mb-3 fw-normal">{translator?.translateWord("recoverTitle")}</h1>
+	{/if}
+	{#if oauth2ProvidersObj?.length}
+		<div class="d-flex justify-content-center mt-1">
+			<ul class="social-icons">
+				{#each oauth2ProvidersObj as p (p.provider)}
+					<li>
+						<button
+							on:click={() => {
+								socialLogin(p.provider);
+							}}
+							class="btn btn-primary dot"><i class="bi-{p.provider}" /></button
+						>
+					</li>
+				{/each}
+			</ul>
+		</div>
+		{#if !disablelocal}
 			<h1 class="h3 mb-3 fw-normal">Credenziali</h1>
 		{/if}
+	{/if}
 
-		{#if !disablelocal && (type === "login" || type === "register")}
-			<div class="form-floating">
-				<input
-					type="text"
-					class="form-control {checkValidity ? (checkValidityFn('email') ? 'is-valid' : 'is-invalid') : ''}"
-					bind:value={email}
-					placeholder="name@example.com"
-					required
-				/>
+	{#if !disablelocal && (type === "login" || type === "register")}
+		<div class="form-floating">
+			<input
+				type="text"
+				class="form-control {checkValidity ? (checkValidityFn('email') ? 'is-valid' : 'is-invalid') : ''}"
+				bind:value={email}
+				placeholder="name@example.com"
+				required
+			/>
 
-				<label for="floatingInput">Email</label>
-			</div>
-			<div class="form-floating">
-				<input
-					type="password"
-					class="form-control {checkValidity ? (checkValidityFn('password') ? 'is-valid' : 'is-invalid') : ''}"
-					placeholder="Password"
-					bind:value={password}
-					required
-					pattern={passwordpattern ? passwordpattern : ""}
-				/>
-				<label for="floatingPassword">Password</label>
-			</div>
-		{:else if type === "forgotpassword"}
-			<div class="form-floating">
-				<input
-					type="text"
-					class="form-control {checkValidity ? (checkValidityFn('email') ? 'is-valid' : 'is-invalid') : ''}"
-					bind:value={email}
-					placeholder="name@example.com"
-					required
-				/>
+			<label for="floatingInput">Email</label>
+		</div>
+		<div class="form-floating">
+			<input
+				type="password"
+				class="form-control {checkValidity ? (checkValidityFn('password') ? 'is-valid' : 'is-invalid') : ''}"
+				placeholder="Password"
+				bind:value={password}
+				required
+				pattern={passwordpattern ? passwordpattern : ""}
+			/>
+			<label for="floatingPassword">Password</label>
+		</div>
+	{:else if type === "forgotpassword"}
+		<div class="form-floating">
+			<input
+				type="text"
+				class="form-control {checkValidity ? (checkValidityFn('email') ? 'is-valid' : 'is-invalid') : ''}"
+				bind:value={email}
+				placeholder="name@example.com"
+				required
+			/>
 
-				<label for="floatingInput">Email</label>
-			</div>
-		{:else if type === "mailrecoverinfo"}
-			<div class="form-floating">
-				<div>{translator?.translateWord("recoverEmailText")}</div>
-			</div>
-		{:else if type === "activate" || type === "recover"}
-			<div class="form-floating">
-				{#if !recoveryCodeExists}
-					<input type="text" class="form-control" placeholder="Codice temporaneo" bind:value={recoverycode} required />
-				{:else}
-					<input type="text" class="form-control" placeholder="Codice temporaneo" bind:value={recoverycode} disabled />
-				{/if}
-				<label for="floatingCode">{translator?.translateWord("temporaryCode")}</label>
-			</div>
-			<div class="form-floating">
-				{#if !recoveryCodeExists || !email}
-					<input
-						type="text"
-						class="form-control {checkValidity ? (checkValidityFn('email') ? 'is-valid' : 'is-invalid') : ''}"
-						bind:value={email}
-						placeholder="name@example.com"
-						required
-					/>
-				{:else}
-					<input
-						type="text"
-						class="form-control {checkValidity ? (checkValidityFn('email') ? 'is-valid' : 'is-invalid') : ''}"
-						bind:value={email}
-						placeholder="name@example.com"
-						disabled
-					/>
-				{/if}
-
-				<label for="floatingEmail">Email</label>
-			</div>
-			<div class="form-floating">
-				<input
-					type="password"
-					class="form-control {checkValidity ? (checkValidityFn('password') ? 'is-valid' : 'is-invalid') : ''}"
-					placeholder="Password"
-					bind:value={password}
-					required
-					pattern={passwordpattern ? passwordpattern : ""}
-				/>
-				<label for="floatingPassword">{translator?.translateWord("newPassword")}</label>
-			</div>
-			<div class="form-floating">
-				<input
-					type="password"
-					class="form-control {checkValidity ? (checkValidityFn('passwordRepeated') ? 'is-valid' : 'is-invalid') : ''}"
-					placeholder="Ripteti Password"
-					bind:value={passwordRepeated}
-					required
-					pattern={passwordpattern ? passwordpattern : ""}
-				/>
-				<label for="floatingPassword2">{translator?.translateWord("repeatPassword")}</label>
-			</div>
-		{/if}
-
-		{#if type === "login" && !disablelocal}
-			<div class="checkbox mb-3">
-				<label>
-					<input type="checkbox" bind:checked={rememberMe} />
-					{translator?.translateWord("rememberMe")}
-				</label>
-			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={() => login()}>{translator?.translateWord("loginButton").toUpperCase()}</button>
-			{#if enable_recover_password || !disableregister}
-				<p style="margin-bottom:0px">
-					{#if enable_recover_password}
-						<button class="btn btn-link" on:click={() => switchType("forgotpassword")}>{translator?.translateWord("forgotPasswordButton")}</button>
-					{/if}
-					{#if enable_recover_password && !disableregister}/{/if}
-					{#if !disableregister}
-						<button class="btn btn-link" on:click={() => switchType("register")}>{translator?.translateWord("registerButton")}</button>
-					{/if}
-				</p>
+			<label for="floatingInput">Email</label>
+		</div>
+	{:else if type === "mailrecoverinfo"}
+		<div class="form-floating">
+			<div>{translator?.translateWord("recoverEmailText")}</div>
+		</div>
+	{:else if type === "activate" || type === "recover"}
+		<div class="form-floating">
+			{#if !recoveryCodeExists}
+				<input type="text" class="form-control" placeholder="Codice temporaneo" bind:value={recoverycode} required />
+			{:else}
+				<input type="text" class="form-control" placeholder="Codice temporaneo" bind:value={recoverycode} disabled />
 			{/if}
-		{:else if type === "register" && !disablelocal}
-			<div class="checkbox mb-3">
-				<label />
-			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={() => register()}>{translator?.translateWord("registerButton").toUpperCase()}</button>
-			<p style="margin-bottom:0px">
-				<button class="btn btn-link" on:click={() => switchType("login")}>{translator?.translateWord("loginSwitch")}</button>
-			</p>
-		{:else if type === "mailrecoverinfo"}
-			<p style="margin-bottom:0px">
-				<button class="btn btn-link" on:click={() => switchType("login")}>{translator?.translateWord("loginSwitch")}</button>
-			</p>
-		{:else if type === "forgotpassword"}
-			<div class="checkbox mb-3">
-				<label />
-			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={() => recoverPassword()}>{translator?.translateWord("recoverWord")}</button>
-			<button class="btn btn-link" on:click={() => switchType("login")}>{translator?.translateWord("loginSwitch")}</button>
-		{:else if type === "activate" || type === "recover"}
-			<div class="checkbox mb-3">
-				<label />
-			</div>
-			<button class="w-100 btn btn-lg btn-primary" on:click={() => recoverOrActivate()}>{translator?.translateWord("memo")}</button>
-		{/if}
+			<label for="floatingCode">{translator?.translateWord("temporaryCode")}</label>
+		</div>
+		<div class="form-floating">
+			{#if !recoveryCodeExists || !email}
+				<input
+					type="text"
+					class="form-control {checkValidity ? (checkValidityFn('email') ? 'is-valid' : 'is-invalid') : ''}"
+					bind:value={email}
+					placeholder="name@example.com"
+					required
+				/>
+			{:else}
+				<input
+					type="text"
+					class="form-control {checkValidity ? (checkValidityFn('email') ? 'is-valid' : 'is-invalid') : ''}"
+					bind:value={email}
+					placeholder="name@example.com"
+					disabled
+				/>
+			{/if}
 
-		<!-- <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p> -->
-	</main>
-</div>
+			<label for="floatingEmail">Email</label>
+		</div>
+		<div class="form-floating">
+			<input
+				type="password"
+				class="form-control {checkValidity ? (checkValidityFn('password') ? 'is-valid' : 'is-invalid') : ''}"
+				placeholder="Password"
+				bind:value={password}
+				required
+				pattern={passwordpattern ? passwordpattern : ""}
+			/>
+			<label for="floatingPassword">{translator?.translateWord("newPassword")}</label>
+		</div>
+		<div class="form-floating">
+			<input
+				type="password"
+				class="form-control {checkValidity ? (checkValidityFn('passwordRepeated') ? 'is-valid' : 'is-invalid') : ''}"
+				placeholder="Ripteti Password"
+				bind:value={passwordRepeated}
+				required
+				pattern={passwordpattern ? passwordpattern : ""}
+			/>
+			<label for="floatingPassword2">{translator?.translateWord("repeatPassword")}</label>
+		</div>
+	{/if}
+
+	{#if type === "login" && !disablelocal}
+		<div class="checkbox mb-3">
+			<label>
+				<input type="checkbox" bind:checked={rememberMe} />
+				{translator?.translateWord("rememberMe")}
+			</label>
+		</div>
+		<button class="w-100 btn btn-lg btn-primary" on:click={() => login()}>{translator?.translateWord("loginButton").toUpperCase()}</button>
+		{#if enable_recover_password || !disableregister}
+			<p style="margin-bottom:0px">
+				{#if enable_recover_password}
+					<button class="btn btn-link" on:click={() => switchType("forgotpassword")}>{translator?.translateWord("forgotPasswordButton")}</button>
+				{/if}
+				{#if enable_recover_password && !disableregister}/{/if}
+				{#if !disableregister}
+					<button class="btn btn-link" on:click={() => switchType("register")}>{translator?.translateWord("registerButton")}</button>
+				{/if}
+			</p>
+		{/if}
+	{:else if type === "register" && !disablelocal}
+		<div class="checkbox mb-3">
+			<label />
+		</div>
+		<button class="w-100 btn btn-lg btn-primary" on:click={() => register()}>{translator?.translateWord("registerButton").toUpperCase()}</button>
+		<p style="margin-bottom:0px">
+			<button class="btn btn-link" on:click={() => switchType("login")}>{translator?.translateWord("loginSwitch")}</button>
+		</p>
+	{:else if type === "mailrecoverinfo"}
+		<p style="margin-bottom:0px">
+			<button class="btn btn-link" on:click={() => switchType("login")}>{translator?.translateWord("loginSwitch")}</button>
+		</p>
+	{:else if type === "forgotpassword"}
+		<div class="checkbox mb-3">
+			<label />
+		</div>
+		<button class="w-100 btn btn-lg btn-primary" on:click={() => recoverPassword()}>{translator?.translateWord("recoverWord")}</button>
+		<button class="btn btn-link" on:click={() => switchType("login")}>{translator?.translateWord("loginSwitch")}</button>
+	{:else if type === "activate" || type === "recover"}
+		<div class="checkbox mb-3">
+			<label />
+		</div>
+		<button class="w-100 btn btn-lg btn-primary" on:click={() => recoverOrActivate()}>{translator?.translateWord("memo")}</button>
+	{/if}
+
+	<!-- <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p> -->
+</main>
 
 <style lang="scss">
 	@import "../styles/bootstrap.scss";

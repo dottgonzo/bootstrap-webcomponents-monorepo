@@ -106,6 +106,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "LoginEnWithFetch",
 		data: {
+
 			type: "login",
 			i18nlang: "en",
 			loginuri: "https://kernel.free.beeceptor.com/login",
@@ -115,6 +116,8 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "LoginEnWithOauth",
 		data: {
+			logouri: "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
+
 			type: "login",
 			i18nlang: "en",
 			loginuri: "https://kernel.free.beeceptor.com/login",
@@ -130,9 +133,10 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		},
 	},
 	{
-		name: "LoginEnWithOauth",
+		name: "LoginEnWithOauthOnly",
 		data: {
 			type: "login",
+			logouri: "https://upload.wikimedia.org/wikipedia/commons/a/af/Free_Content_Logo.svg",
 
 			disablelocal: true,
 			oauth2providers: [

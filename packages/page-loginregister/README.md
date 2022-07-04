@@ -1,2 +1,0 @@
-# page-loginregister web component
-
