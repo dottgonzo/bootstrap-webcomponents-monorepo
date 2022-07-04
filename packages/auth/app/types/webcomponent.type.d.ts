@@ -1,7 +1,7 @@
 export type Component = {
 	id?: string;
 	style?: string;
-	type?: "login" | "register" | "activate" | "recover" | "forgotpassword" | "mailrecoverinfo";
+	type?: "login" | "register" | "activate" | "recover" | "forgotpassword" | "mailrecoverinfo"| "otp"| "2fa_code"| "2fa_config";
 	email?: string;
 	i18nlang?: string;
 
@@ -30,6 +30,7 @@ export type Component = {
 	enable_recover_password?: boolean;
 	passwordpattern?: string;
 	recoverycode?: string;
+	disablelocal?:boolean
 };
 
 export type Events = {

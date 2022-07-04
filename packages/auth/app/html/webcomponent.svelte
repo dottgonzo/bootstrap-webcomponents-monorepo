@@ -37,6 +37,7 @@
 	export let logouri: string;
 	export let oauth2providers: string;
 	export let disableregister: boolean = null;
+	export let disablelocal: boolean;
 
 	export let passwordpattern: string;
 	export let recoverycode: string;
@@ -58,6 +59,7 @@
 	// 	translator = new LanguageTranslator({ dictionary, lang: i18nlang });
 	// });
 	$: {
+		if (!disablelocal) disablelocal = false;
 		if (!translator) {
 			translator = new LanguageTranslator({ dictionary, lang: i18nlang });
 		} else if (translator && i18nlang && translator.lang && translator.lang !== i18nlang) {
@@ -486,7 +488,7 @@
 			<h1 class="h3 mb-3 fw-normal">Credenziali</h1>
 		{/if}
 
-		{#if type === "login" || type === "register"}
+		{#if !disablelocal && (type === "login" || type === "register")}
 			<div class="form-floating">
 				<input
 					type="text"
@@ -579,7 +581,7 @@
 			</div>
 		{/if}
 
-		{#if type === "login"}
+		{#if type === "login" && !disablelocal}
 			<div class="checkbox mb-3">
 				<label>
 					<input type="checkbox" bind:checked={rememberMe} />
@@ -598,7 +600,7 @@
 					{/if}
 				</p>
 			{/if}
-		{:else if type === "register"}
+		{:else if type === "register" && !disablelocal}
 			<div class="checkbox mb-3">
 				<label />
 			</div>

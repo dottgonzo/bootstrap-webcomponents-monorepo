@@ -60,15 +60,22 @@ LoginEnWithOauth.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples[7]
 );
+export const LoginEnWithOauthOnly = Template.bind({});
+
+LoginEnWithOauthOnly.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[8]
+);
+
 export const ForgetPassword = Template.bind({});
 
 ForgetPassword.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples[8]
+  componentSetup.examples[9]
 );
 export const EmailInstructionSide = Template.bind({});
 
 EmailInstructionSide.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples[9]
+  componentSetup.examples[10]
 );

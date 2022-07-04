@@ -3,12 +3,13 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	type: {
-		options: ["login", "register", "activate", "recover", "mailrecoverinfo", "forgotpassword"],
+		options: ["login", "register", "activate", "recover", "mailrecoverinfo", "forgotpassword", "otp", "2fa_code", "2fa_config"],
 		control: { type: "select" }, // Automatically inferred when 'options' is defined
 	},
 	enable_recover_password: { control: { type: "boolean" } },
 	i18nlang: { control: { type: "text" } },
 	disableregister: { control: { type: "boolean" } },
+	disablelocal: { control: { type: "boolean" } },
 	logouri: { control: { type: "text" } },
 	loginuri: { control: { type: "text" } },
 	registeruri: { control: { type: "text" } },
@@ -118,6 +119,22 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			i18nlang: "en",
 			loginuri: "https://kernel.free.beeceptor.com/login",
 			registeruri: "https://kernel.free.beeceptor.com/register",
+			oauth2providers: [
+				{
+					provider: "google",
+					uri: "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=https%3A//oauth2.example.com/code&client_id=client_id",
+				},
+				{ provider: "facebook", uri: "" },
+				{ provider: "twitter", uri: "" },
+			],
+		},
+	},
+	{
+		name: "LoginEnWithOauth",
+		data: {
+			type: "login",
+
+			disablelocal: true,
 			oauth2providers: [
 				{
 					provider: "google",
