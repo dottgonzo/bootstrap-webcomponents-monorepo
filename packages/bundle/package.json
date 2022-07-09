@@ -67,7 +67,6 @@
     "@htmlbricks/hb-order-list": "^0.15.13",
     "@htmlbricks/hb-page-checkout": "^0.15.13",
     "@htmlbricks/hb-page-invoice": "^0.15.13",
-    "@htmlbricks/hb-page-loginregister": "^0.15.10",
     "@htmlbricks/hb-paginate": "^0.15.13",
     "@htmlbricks/hb-payment-paypal": "^0.15.13",
     "@htmlbricks/hb-player-live": "^0.15.13",
