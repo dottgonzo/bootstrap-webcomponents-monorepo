@@ -121,6 +121,12 @@
 			const token = location.href.split("access_token=")[1].split("&")[0];
 			dispatch("getProviderToken", { provider, token });
 		}
+		if (location?.href && location.href.includes("provider=") && location.href.split("provider=")[1].split("&")[0] === "github") {
+			const provider = "github";
+			const token = location.href.split("code=")[1].split("&")[0];
+			// TODO: try to fetch token
+			dispatch("getProviderToken", { provider, token, tmpCode: token });
+		}
 		if (!email && location?.href && location.href.split("recoveryemail=").length > 1) {
 			email = location.href.split("recoveryemail=")[1].split("&")[0];
 		}
@@ -230,6 +236,10 @@
 				case "google":
 					const googleScope = provider.params.scope || "https%3A//www.googleapis.com/auth/userinfo.email";
 					url = `https://accounts.google.com/o/oauth2/v2/auth?scope=${googleScope}&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=${provider.params.redirect_url}/login&client_id=${provider.params.client_id}`;
+					break;
+				case "github":
+					const githubScope = provider.params.scope || "user";
+					url = `https://github.com/login/oauth/authorize?scope=${githubScope}&client_id=${provider.params.client_id}&redirect_uri=${provider.params.redirect_url}/login?provider=github`;
 					break;
 				default:
 					return console.error("no provider uri composed for " + providerName);
