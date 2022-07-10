@@ -241,6 +241,12 @@
 					const githubScope = provider.params.scope || "user";
 					url = `https://github.com/login/oauth/authorize?scope=${githubScope}&client_id=${provider.params.client_id}&redirect_uri=${provider.params.redirect_url}/login?provider=github`;
 					break;
+				case "gitlab":
+					const gitlabScope = provider.params.scope || "user";
+					url = `https://gitlab.com/oauth/authorize?scope=${gitlabScope}&response_type=code&state=${new Date().valueOf()}&client_id=${
+						provider.params.client_id
+					}&redirect_uri=${provider.params.redirect_url}/login?provider=gitlab`;
+					break;
 				default:
 					return console.error("no provider uri composed for " + providerName);
 			}
