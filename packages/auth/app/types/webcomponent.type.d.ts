@@ -38,5 +38,5 @@ export type Events = {
 	register: any & { requestSent: { email: string; password: string }; email: string; password: string };
 	recoverOrActivate: { password: string; recoverycode: string; email: string }; // only one good..
 	recoverPassword: { email: string };
-	getProviderToken: { token?: string; provider: string, tmpCode?: string };
+	getProviderToken: { token?: string; provider: string, tmpCode?: string, redirect_uri?: string };
 };
