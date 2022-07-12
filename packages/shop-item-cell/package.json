@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-shop-item-cell",
 	"displayName": "Svelte Shop Item Cell WebComponent",
 	"description": "Svelte Shop Item Cell WebComponent",
-	"version": "0.15.17",
+	"version": "0.15.18",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.15.17",
+		"@htmlbricks/hb-jsutils": "^0.15.18",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
