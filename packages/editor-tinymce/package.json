@@ -76,7 +76,7 @@
 		"html5-webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "67d4184df6409f521d8e4c43cbe5d1b77392a1c9",
+	"gitHead": "89f2ead2c9c70fe3e2a8fa947bd75713862f6a0b",
 	"dependencies": {
 		"@tinymce/tinymce-webcomponent": "^1.2.0"
 	}
