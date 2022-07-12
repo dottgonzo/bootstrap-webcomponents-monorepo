@@ -145,6 +145,24 @@
 					.replace(state, ""),
 			});
 		}
+		if (location?.href && location.href.includes("provider=") && location.href.split("provider=")[1].split("&")[0] === "twitter") {
+			const provider = "twitter";
+			const token = location.href.split("code=")[1].split("&")[0];
+			const state = location.href.split("state=")[1].split("&")[0];
+			// TODO: try to fetch token
+			dispatch("getProviderToken", {
+				provider,
+				token,
+				tmpCode: token,
+				redirect_uri: location.href
+					.replace("&state=", "")
+					.replace("?state=", "")
+					.replace("&code=", "")
+					.replace("?code=", "")
+					.replace(token, "")
+					.replace(state, ""),
+			});
+		}
 		if (location?.href && location.href.includes("provider=") && location.href.split("provider=")[1].split("&")[0] === "gitlab") {
 			const provider = "gitlab";
 			const token = location.href.split("code=")[1].split("&")[0];
