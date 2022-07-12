@@ -127,6 +127,12 @@
 			// TODO: try to fetch token
 			dispatch("getProviderToken", { provider, token, tmpCode: token });
 		}
+		if (location?.href && location.href.includes("provider=") && location.href.split("provider=")[1].split("&")[0] === "facebook") {
+			const provider = "facebook";
+			const token = location.href.split("code=")[1].split("&")[0];
+			// TODO: try to fetch token
+			dispatch("getProviderToken", { provider, token, tmpCode: token });
+		}
 		if (location?.href && location.href.includes("provider=") && location.href.split("provider=")[1].split("&")[0] === "gitlab") {
 			const provider = "gitlab";
 			const token = location.href.split("code=")[1].split("&")[0];
