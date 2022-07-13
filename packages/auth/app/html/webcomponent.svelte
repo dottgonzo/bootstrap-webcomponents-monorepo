@@ -124,14 +124,12 @@
 		if (location?.href && location.href.includes("provider=") && location.href.split("provider=")[1].split("&")[0] === "github") {
 			const provider = "github";
 			const token = location.href.split("code=")[1].split("&")[0];
-			// TODO: try to fetch token
 			dispatch("getProviderToken", { provider, token, tmpCode: token });
 		}
 		if (location?.href && location.href.includes("provider=") && location.href.split("provider=")[1].split("&")[0] === "facebook") {
 			const provider = "facebook";
 			const token = location.href.split("code=")[1].split("&")[0];
 			const state = location.href.split("state=")[1].split("&")[0];
-			// TODO: try to fetch token
 			dispatch("getProviderToken", {
 				provider,
 				token,
@@ -149,7 +147,7 @@
 			const provider = "twitter";
 			const token = location.href.split("code=")[1].split("&")[0];
 			const state = location.href.split("state=")[1].split("&")[0];
-			// TODO: try to fetch token
+			// TODO: to be completed
 			dispatch("getProviderToken", {
 				provider,
 				token,
@@ -167,7 +165,6 @@
 			const provider = "gitlab";
 			const token = location.href.split("code=")[1].split("&")[0];
 			const state = location.href.split("state=")[1].split("&")[0];
-			// TODO: try to fetch token
 			dispatch("getProviderToken", {
 				provider,
 				token,

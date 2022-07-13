@@ -234,8 +234,8 @@
 				</div>
 			</div>
 			<div style={screensize} part="container">
-				<div style={onescreen ? "flex: 2" : ""} part="page" id="page">
-					<slot name="page">page</slot>
+				<div style={onescreen ? "flex: 2" : ""}>
+					<div part="page" id="page"><slot name="page">page</slot></div>
 				</div>
 				{#if cookielaw || cookielawallowdecline || cookielawlanguage || cookielawuri4more}
 					<hb-cookie-law-banner
