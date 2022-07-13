@@ -301,10 +301,39 @@
 						provider.params.client_id
 					}&redirect_uri=${provider.params.redirect_url}/login?provider=gitlab`;
 					break;
+				case "facebook":
+					const facebookScope = provider.params.scope || "user";
+					url = `https://gitlab.com/oauth/authorize?scope=${facebookScope}&response_type=code&state=${new Date().valueOf()}&client_id=${
+						provider.params.client_id
+					}&redirect_uri=${provider.params.redirect_url}/login?provider=gitlab`;
+					break;
+				case "twitter":
+					const twitterScope = provider.params.scope || "user";
+					url = `https://gitlab.com/oauth/authorize?scope=${twitterScope}&response_type=code&state=${new Date().valueOf()}&client_id=${
+						provider.params.client_id
+					}&redirect_uri=${provider.params.redirect_url}/login?provider=gitlab`;
+					break;
 				default:
 					return console.error("no provider uri composed for " + providerName);
 			}
 			if (url) {
+				if (providerName === "twitter") {
+					try {
+						const getAuth = await fetch("https://api.twitter.com/oauth/request_token ", {
+							method: "POST",
+							headers: { "Content-Type": "application/json" },
+						});
+						if (getAuth.ok) {
+							const authToken = await getAuth.json();
+
+							throw new Error("todo");
+						} else {
+							throw new Error("Error getting auth token");
+						}
+					} catch (e) {
+						console.error(e);
+					}
+				}
 				location.href = url;
 			} else {
 				return console.error("no provider url obtained!?", provider);
