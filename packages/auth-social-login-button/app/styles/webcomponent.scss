@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css");
+:host {
+	font-family: "Roboto", sans-serif;
+}
+.dot {
+	width: 80px;
+}
+
+.social-icons {
+	list-style: none;
+	display: inline-flex;
+	right: 16px;
+	position: relative;
+}
+
+.social-icons li {
+	padding: 10px;
+}
+
+.social-icons li i {
+	line-height: 50px;
+	position: relative;
+	font-size: 20px;
+	color: #fff;
+}
+
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+@media (min-width: 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+
+#webcomponent {
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+	// padding-top: 40px;
+	// padding-bottom: 40px;
+}
+
+.form-signin {
+	width: 100%;
+	max-width: 330px;
+	padding: 15px;
+	margin: auto;
+	text-align: center;
+}
+
+.form-signin .checkbox {
+	font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+	z-index: 2;
+}
+
+.form-signin input[type="email"] {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+#logoimg {
+	max-height: 100px;
+	max-width: 300px;
+	margin-bottom: 20px;
+}
