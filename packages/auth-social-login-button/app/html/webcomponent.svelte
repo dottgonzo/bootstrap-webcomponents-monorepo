@@ -29,99 +29,101 @@
 				console.error(error);
 			}
 		}
-
-		if (provider.name === "google" && location?.href && location.href.split("access_token=").length > 1 && location.href.includes("google")) {
-			const provider = "google";
-			const token = location.href.split("access_token=")[1].split("&")[0];
-			dispatch("oauthFlowInit", { provider, token });
-		}
-		if (
-			provider.name === "github" &&
-			location?.href &&
-			location.href.includes("code=") &&
-			location.href.includes("provider=") &&
-			location.href.split("provider=")[1].split("&")[0] === "github"
-		) {
-			const provider = "github";
-			const token = location.href.split("code=")[1].split("&")[0];
-			dispatch("oauthFlowInit", { provider, token, tmpCode: token });
-		}
-		if (
-			provider.name === "facebook" &&
-			location?.href &&
-			location.href.includes("code=") &&
-			location.href.includes("provider=") &&
-			location.href.split("provider=")[1].split("&")[0] === "facebook"
-		) {
-			const provider = "facebook";
-			const token = location.href.split("code=")[1].split("&")[0];
-			const state = location.href.split("state=")[1].split("&")[0];
-			dispatch("oauthFlowInit", {
-				provider,
-				token,
-				tmpCode: token,
-				redirect_uri: location.href
-					.replace("&state=", "")
-					.replace("?state=", "")
-					.replace("&code=", "")
-					.replace("?code=", "")
-					.replace(token, "")
-					.replace(state, ""),
-			});
-		}
-		if (
-			provider.name === "twitter" &&
-			location?.href &&
-			location.href.includes("code=") &&
-			location.href.includes("provider=") &&
-			location.href.split("provider=")[1].split("&")[0] === "twitter"
-		) {
-			const provider = "twitter";
-			const token = location.href.split("code=")[1].split("&")[0];
-			const state = location.href.split("state=")[1].split("&")[0];
-			// TODO: to be completed
-			dispatch("oauthFlowInit", {
-				provider,
-				token,
-				tmpCode: token,
-				redirect_uri: location.href
-					.replace("&state=", "")
-					.replace("?state=", "")
-					.replace("&code=", "")
-					.replace("?code=", "")
-					.replace(token, "")
-					.replace(state, ""),
-			});
-		}
-		if (
-			provider.name === "gitlab" &&
-			location?.href &&
-			location.href.includes("provider=") &&
-			location.href.includes("code=") &&
-			location.href.split("provider=")[1].split("&")[0] === "gitlab"
-		) {
-			const provider = "gitlab";
-			const token = location.href.split("code=")[1].split("&")[0];
-			const state = location.href.split("state=")[1].split("&")[0];
-			dispatch("oauthFlowInit", {
-				provider,
-				token,
-				tmpCode: token,
-				redirect_uri: location.href
-					.replace("&state=", "")
-					.replace("?state=", "")
-					.replace("&code=", "")
-					.replace("?code=", "")
-					.replace(token, "")
-					.replace(state, ""),
-			});
+		if (provider) {
+			if (provider.name === "google" && location?.href && location.href.split("access_token=").length > 1 && location.href.includes("google")) {
+				const provider = "google";
+				const token = location.href.split("access_token=")[1].split("&")[0];
+				dispatch("oauthFlowInit", { provider, token });
+			}
+			if (
+				provider.name === "github" &&
+				location?.href &&
+				location.href.includes("code=") &&
+				location.href.includes("provider=") &&
+				location.href.split("provider=")[1].split("&")[0] === "github"
+			) {
+				const provider = "github";
+				const token = location.href.split("code=")[1].split("&")[0];
+				dispatch("oauthFlowInit", { provider, token, tmpCode: token });
+			}
+			if (
+				provider.name === "facebook" &&
+				location?.href &&
+				location.href.includes("code=") &&
+				location.href.includes("provider=") &&
+				location.href.split("provider=")[1].split("&")[0] === "facebook"
+			) {
+				const provider = "facebook";
+				const token = location.href.split("code=")[1].split("&")[0];
+				const state = location.href.split("state=")[1].split("&")[0];
+				dispatch("oauthFlowInit", {
+					provider,
+					token,
+					tmpCode: token,
+					redirect_uri: location.href
+						.replace("&state=", "")
+						.replace("?state=", "")
+						.replace("&code=", "")
+						.replace("?code=", "")
+						.replace(token, "")
+						.replace(state, ""),
+				});
+			}
+			if (
+				provider.name === "twitter" &&
+				location?.href &&
+				location.href.includes("code=") &&
+				location.href.includes("provider=") &&
+				location.href.split("provider=")[1].split("&")[0] === "twitter"
+			) {
+				const provider = "twitter";
+				const token = location.href.split("code=")[1].split("&")[0];
+				const state = location.href.split("state=")[1].split("&")[0];
+				// TODO: to be completed
+				dispatch("oauthFlowInit", {
+					provider,
+					token,
+					tmpCode: token,
+					redirect_uri: location.href
+						.replace("&state=", "")
+						.replace("?state=", "")
+						.replace("&code=", "")
+						.replace("?code=", "")
+						.replace(token, "")
+						.replace(state, ""),
+				});
+			}
+			if (
+				provider.name === "gitlab" &&
+				location?.href &&
+				location.href.includes("provider=") &&
+				location.href.includes("code=") &&
+				location.href.split("provider=")[1].split("&")[0] === "gitlab"
+			) {
+				const provider = "gitlab";
+				const token = location.href.split("code=")[1].split("&")[0];
+				const state = location.href.split("state=")[1].split("&")[0];
+				dispatch("oauthFlowInit", {
+					provider,
+					token,
+					tmpCode: token,
+					redirect_uri: location.href
+						.replace("&state=", "")
+						.replace("?state=", "")
+						.replace("&code=", "")
+						.replace("?code=", "")
+						.replace(token, "")
+						.replace(state, ""),
+				});
+			}
 		}
 	}
 
 	async function socialLogin() {
+		if (!provider?.name || (!provider.uri && !provider.params)) return console.error("Provider not defined");
 		if (provider.uri) {
 			location.href = provider.uri;
-		} else if (provider.params.client_id && provider.params.redirect_url) {
+		} else if (provider.params?.client_id && provider.params.redirect_url) {
 			if (!provider.params.client_id || !provider.params.redirect_url) return console.error("Missing client_id or redirect_url in oauth2ProvidersObj");
 			let url: string;
 			switch (provider.name) {

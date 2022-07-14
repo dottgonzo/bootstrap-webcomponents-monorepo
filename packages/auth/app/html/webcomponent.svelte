@@ -14,6 +14,8 @@
 	import { dictionary } from "@app/functions/i18n";
 	import type { Component } from "@app/types/webcomponent.type";
 	import { LanguageTranslator } from "@htmlbricks/hb-jsutils";
+	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import pkg from "../../package.json";
 
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component, onMount } from "svelte/internal";
@@ -116,68 +118,7 @@
 		} else if (!recoverycode) {
 			recoverycode = "";
 		}
-		if (location?.href && location.href.split("access_token=").length > 1 && location.href.includes("googleapis")) {
-			const provider = "google";
-			const token = location.href.split("access_token=")[1].split("&")[0];
-			dispatch("getProviderToken", { provider, token });
-		}
-		if (location?.href && location.href.includes("provider=") && location.href.split("provider=")[1].split("&")[0] === "github") {
-			const provider = "github";
-			const token = location.href.split("code=")[1].split("&")[0];
-			dispatch("getProviderToken", { provider, token, tmpCode: token });
-		}
-		if (location?.href && location.href.includes("provider=") && location.href.split("provider=")[1].split("&")[0] === "facebook") {
-			const provider = "facebook";
-			const token = location.href.split("code=")[1].split("&")[0];
-			const state = location.href.split("state=")[1].split("&")[0];
-			dispatch("getProviderToken", {
-				provider,
-				token,
-				tmpCode: token,
-				redirect_uri: location.href
-					.replace("&state=", "")
-					.replace("?state=", "")
-					.replace("&code=", "")
-					.replace("?code=", "")
-					.replace(token, "")
-					.replace(state, ""),
-			});
-		}
-		if (location?.href && location.href.includes("provider=") && location.href.split("provider=")[1].split("&")[0] === "twitter") {
-			const provider = "twitter";
-			const token = location.href.split("code=")[1].split("&")[0];
-			const state = location.href.split("state=")[1].split("&")[0];
-			// TODO: to be completed
-			dispatch("getProviderToken", {
-				provider,
-				token,
-				tmpCode: token,
-				redirect_uri: location.href
-					.replace("&state=", "")
-					.replace("?state=", "")
-					.replace("&code=", "")
-					.replace("?code=", "")
-					.replace(token, "")
-					.replace(state, ""),
-			});
-		}
-		if (location?.href && location.href.includes("provider=") && location.href.split("provider=")[1].split("&")[0] === "gitlab") {
-			const provider = "gitlab";
-			const token = location.href.split("code=")[1].split("&")[0];
-			const state = location.href.split("state=")[1].split("&")[0];
-			dispatch("getProviderToken", {
-				provider,
-				token,
-				tmpCode: token,
-				redirect_uri: location.href
-					.replace("&state=", "")
-					.replace("?state=", "")
-					.replace("&code=", "")
-					.replace("?code=", "")
-					.replace(token, "")
-					.replace(state, ""),
-			});
-		}
+
 		if (!email && location?.href && location.href.split("recoveryemail=").length > 1) {
 			email = location.href.split("recoveryemail=")[1].split("&")[0];
 		}
@@ -274,70 +215,6 @@
 			if (password.length && password.length > 3) return true;
 		}
 		return false;
-	}
-
-	async function socialLogin(providerName: string) {
-		const provider = oauth2ProvidersObj.find((f) => f.provider === providerName);
-		if (provider.uri) {
-			location.href = provider.uri;
-		} else if (provider.params) {
-			if (!provider.params.client_id || !provider.params.redirect_url) return console.error("Missing client_id or redirect_url in oauth2ProvidersObj");
-			let url: string;
-			switch (providerName) {
-				case "google":
-					const googleScope = provider.params.scope || "https%3A//www.googleapis.com/auth/userinfo.email";
-					url = `https://accounts.google.com/o/oauth2/v2/auth?scope=${googleScope}&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=${provider.params.redirect_url}/login&client_id=${provider.params.client_id}`;
-					break;
-				case "github":
-					const githubScope = provider.params.scope || "user";
-					url = `https://github.com/login/oauth/authorize?scope=${githubScope}&client_id=${provider.params.client_id}&redirect_uri=${provider.params.redirect_url}/login?provider=github`;
-					break;
-				case "gitlab":
-					const gitlabScope = provider.params.scope || "user";
-					url = `https://gitlab.com/oauth/authorize?scope=${gitlabScope}&response_type=code&state=${new Date().valueOf()}&client_id=${
-						provider.params.client_id
-					}&redirect_uri=${provider.params.redirect_url}/login?provider=gitlab`;
-					break;
-				case "facebook":
-					const facebookScope = provider.params.scope || "user";
-					url = `https://gitlab.com/oauth/authorize?scope=${facebookScope}&response_type=code&state=${new Date().valueOf()}&client_id=${
-						provider.params.client_id
-					}&redirect_uri=${provider.params.redirect_url}/login?provider=gitlab`;
-					break;
-				case "twitter":
-					const twitterScope = provider.params.scope || "user";
-					url = `https://gitlab.com/oauth/authorize?scope=${twitterScope}&response_type=code&state=${new Date().valueOf()}&client_id=${
-						provider.params.client_id
-					}&redirect_uri=${provider.params.redirect_url}/login?provider=gitlab`;
-					break;
-				default:
-					return console.error("no provider uri composed for " + providerName);
-			}
-			if (url) {
-				if (providerName === "twitter") {
-					try {
-						const getAuth = await fetch("https://api.twitter.com/oauth/request_token ", {
-							method: "POST",
-							headers: { "Content-Type": "application/json" },
-						});
-						if (getAuth.ok) {
-							const authToken = await getAuth.json();
-
-							throw new Error("todo");
-						} else {
-							throw new Error("Error getting auth token");
-						}
-					} catch (e) {
-						console.error(e);
-					}
-				}
-				location.href = url;
-			} else {
-				return console.error("no provider url obtained!?", provider);
-			}
-		} else {
-			console.error("no provider uri or params defined for " + providerName);
-		}
 	}
 
 	async function login() {
@@ -541,6 +418,7 @@
 			}
 		}
 	}
+	addComponent({ repoName: "@htmlbricks/hb-auth-social-login-button", version: pkg.version });
 </script>
 
 <svelte:head>
@@ -569,12 +447,14 @@
 			<ul class="social-icons">
 				{#each oauth2ProvidersObj as p (p.provider)}
 					<li>
-						<button
-							on:click={() => {
-								socialLogin(p.provider);
+						<hb-auth-social-login-button
+							provider={JSON.stringify({ name: p.provider, url: p.uri, params: p.params })}
+							on:oauthFlowInit={(e) => {
+								dispatch("getProviderToken", e.detail);
 							}}
-							class="btn btn-primary dot"><i class="bi-{p.provider}" /></button
 						>
+							<button class="btn btn-primary dot"><i class="bi-{p.provider}" /></button>
+						</hb-auth-social-login-button>
 					</li>
 				{/each}
 			</ul>
