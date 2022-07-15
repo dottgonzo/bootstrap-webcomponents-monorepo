@@ -12,7 +12,7 @@
 	 */
 
 	import type { Component } from "@app/types/webcomponent.type";
-	import "@fortawesome/fontawesome-free";
+	// import "@fortawesome/fontawesome-free";
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component, onMount } from "svelte/internal";
 	export let id: string;

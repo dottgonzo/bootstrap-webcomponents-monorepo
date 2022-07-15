@@ -69,9 +69,7 @@
 		"typescript": "^4.2.4",
 		"typescript-transform-paths": "^2.2.3"
 	},
-	"dependencies": {
-		"@fortawesome/fontawesome-free": "*"
-	},
+	"dependencies": {},
 	"keywords": [
 		"svelte",
 		"svelte-webcomponents",
@@ -79,5 +77,5 @@
 		"html5-webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "15326b22cc956619b94eef13d7760a9a278e79f8"
+	"gitHead": "6f85532e8c0da9ff15035ea9fc418e4ad9786be4"
 }
