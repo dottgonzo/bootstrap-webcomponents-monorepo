@@ -450,9 +450,7 @@
 							on:oauthFlowInit={(e) => {
 								dispatch("oauthFlowInit", e.detail);
 							}}
-						>
-							<button class="btn btn-primary dot"><i class="bi-{p.provider}" /></button>
-						</hb-auth-social-login-button>
+						/>
 					</li>
 				{/each}
 			</ul>
