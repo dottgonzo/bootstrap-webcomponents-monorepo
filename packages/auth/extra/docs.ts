@@ -16,7 +16,7 @@ export const storybookArgs = {
 	login: { action: "loginEvent" },
 	register: { action: "registerEvent" },
 	recoverOrActivate: { action: "recoverOrActivateEvent" },
-	getProviderToken: { action: "recoverOrActivateEvent" },
+	oauthFlowInit: { action: "recoverOrActivateEvent" },
 	oauth2providers: { control: { type: "array" } },
 	sessionkey: { control: { type: "text" } },
 	redirectonlogin: { control: { type: "text" } },
@@ -125,10 +125,10 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			oauth2providers: [
 				{
 					provider: "google",
-					uri: "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=https%3A//oauth2.example.com/code&client_id=client_id",
+					url: "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=https%3A//oauth2.example.com/code&client_id=client_id",
 				},
-				{ provider: "facebook", uri: "" },
-				{ provider: "twitter", uri: "" },
+				{ provider: "facebook", url: "" },
+				{ provider: "twitter", url: "" },
 			],
 		},
 	},
@@ -142,10 +142,10 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			oauth2providers: [
 				{
 					provider: "google",
-					uri: "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=https%3A//oauth2.example.com/code&client_id=client_id",
+					url: "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=https%3A//oauth2.example.com/code&client_id=client_id",
 				},
-				{ provider: "facebook", uri: "" },
-				{ provider: "twitter", uri: "" },
+				{ provider: "facebook", url: "" },
+				{ provider: "twitter", url: "" },
 			],
 		},
 	},

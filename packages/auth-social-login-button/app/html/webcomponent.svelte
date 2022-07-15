@@ -12,7 +12,7 @@
 	 */
 
 	import type { Component } from "@app/types/webcomponent.type";
-
+	import "@fortawesome/fontawesome-free";
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component, onMount } from "svelte/internal";
 	export let id: string;
@@ -187,6 +187,11 @@
 	}
 </script>
 
+<svelte:head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+</svelte:head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+
 <div
 	on:click={() => {
 		socialLogin();
@@ -196,4 +201,5 @@
 </div>
 
 <style lang="scss">
+	@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css");
 </style>

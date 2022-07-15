@@ -93,7 +93,7 @@
 		}
 		if (!oauth2providers) {
 			oauth2providers = null;
-		} else if(typeof oauth2providers === 'string') {
+		} else if (typeof oauth2providers === "string") {
 			try {
 				oauth2providers = JSON.parse(oauth2providers);
 			} catch (err) {
@@ -446,9 +446,9 @@
 				{#each oauth2providers as p (p.provider)}
 					<li>
 						<hb-auth-social-login-button
-							provider={JSON.stringify({ name: p.provider, url: p.uri, params: p.params })}
+							provider={JSON.stringify({ name: p.provider, url: p.url, params: p.params })}
 							on:oauthFlowInit={(e) => {
-								dispatch("getProviderToken", e.detail);
+								dispatch("oauthFlowInit", e.detail);
 							}}
 						>
 							<button class="btn btn-primary dot"><i class="bi-{p.provider}" /></button>
