@@ -1,3 +1,6 @@
+type IProvider = 'facebook' | 'google' | 'gitlab' | 'github'
+
+
 export type Component = {
 	id?: string;
 	style?: string;
@@ -18,7 +21,7 @@ export type Component = {
 	appendbodyparams?: string;
 	logouri?: string;
 	oauth2providers?: {
-		provider: string;
+		provider: IProvider;
 		url?: string;
 		params?: {
 			scope?: string
@@ -38,6 +41,6 @@ export type Events = {
 	register: any & { requestSent: { email: string; password: string }; email: string; password: string };
 	recoverOrActivate: { password: string; recoverycode: string; email: string }; // only one good..
 	recoverPassword: { email: string };
-	oauthFlowInit: { token?: string; provider: string, tmpCode?: string, redirect_uri?: string };
-	oauthFlowCustom: {provider:string}
+	oauthFlowInit: { token?: string; provider: IProvider, tmpCode?: string, redirect_uri?: string };
+	oauthFlowCustom: { provider: IProvider }
 };

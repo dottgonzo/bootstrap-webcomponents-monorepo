@@ -91,15 +91,48 @@
 		if (!sessionkey) {
 			sessionkey = "_lg";
 		}
-		if (!oauth2providers) {
-			oauth2providers = null;
-		} else if (typeof oauth2providers === "string") {
+		if (typeof oauth2providers === "string") {
 			try {
 				oauth2providers = JSON.parse(oauth2providers);
 			} catch (err) {
 				console.error("wrong oauth provider params");
 				oauth2providers = null;
 			}
+		}
+		if (oauth2providers) {
+			for (const prov of oauth2providers) {
+				if (!prov.url) {
+					if (prov.params && !prov.params.scope) {
+						switch (prov.provider) {
+							case "facebook":
+								prov.params.scope = "email";
+								break;
+							case "google":
+								prov.params.scope = "https%3A//www.googleapis.com/auth/userinfo.email";
+								break;
+							case "gitlab":
+								prov.params.scope = "read_user";
+								break;
+							case "github":
+								prov.params.scope = "user";
+								break;
+
+							default:
+								break;
+						}
+					}
+				}
+
+				if (prov.params?.redirect_url && !prov.params.redirect_url.includes(prov.provider + "=")) {
+					if (prov.params.redirect_url.includes("?")) {
+						prov.params.redirect_url += "&provider=" + prov.provider;
+					} else {
+						prov.params.redirect_url += "?provider=" + prov.provider;
+					}
+				}
+			}
+		} else {
+			oauth2providers = null;
 		}
 		if (!email) {
 			email = "";
@@ -450,7 +483,7 @@
 							on:oauthFlowInit={(e) => {
 								dispatch("oauthFlowInit", e.detail);
 							}}
-												on:oauthFlowCustom={(e) => {
+							on:oauthFlowCustom={(e) => {
 								dispatch("oauthFlowCustom", e.detail);
 							}}
 						/>

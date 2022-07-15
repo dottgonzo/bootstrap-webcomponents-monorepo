@@ -1,9 +1,11 @@
+type IProvider='facebook'|'google'|'gitlab'|'github'
+
 export type Component = {
 	id?: string;
 	style?: string;
 	provider: {
 		uri?: string;
-		name: string
+		name: IProvider
 		params?: {
 			redirect_url: string
 			client_id: string
@@ -14,6 +16,6 @@ export type Component = {
 
 export type Events = {
 
-	oauthFlowInit: { token?: string; provider: string, tmpCode?: string, redirect_uri?: string };
-	oauthFlowCustom: { provider: string };
+	oauthFlowInit: { token?: string; provider: IProvider, tmpCode?: string, redirect_uri?: string };
+	oauthFlowCustom: { provider: IProvider };
 };
