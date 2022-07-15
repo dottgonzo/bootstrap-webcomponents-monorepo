@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-dialog-loader",
 	"displayName": "Svelte-Bootstrap Downloader WebComponent",
 	"description": "Svelte-Bootstrap Downloader WebComponent",
-	"version": "0.15.33",
+	"version": "0.15.34",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.15.33",
+		"@htmlbricks/hb-jsutils": "^0.15.34",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
@@ -70,7 +70,7 @@
 		"typescript-transform-paths": "^2.2.3"
 	},
 	"dependencies": {
-		"@htmlbricks/hb-dialog": "^0.15.33"
+		"@htmlbricks/hb-dialog": "^0.15.34"
 	},
 	"keywords": [
 		"svelte",
