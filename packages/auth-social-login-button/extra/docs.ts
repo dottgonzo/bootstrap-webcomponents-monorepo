@@ -5,6 +5,8 @@ export const storybookArgs = {
 
 	provider: { control: { type: "object" } },
 	oauthFlowInit: { action: "oauthFlowInitEvent" },
+		oauthFlowCustom: { action: "oauthFlowCustomEvent" },
+
 
 };
 

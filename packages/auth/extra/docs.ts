@@ -17,6 +17,7 @@ export const storybookArgs = {
 	register: { action: "registerEvent" },
 	recoverOrActivate: { action: "recoverOrActivateEvent" },
 	oauthFlowInit: { action: "recoverOrActivateEvent" },
+	oauthFlowCustom: { action: "oauthFlowCustomEvent" },
 	oauth2providers: { control: { type: "array" } },
 	sessionkey: { control: { type: "text" } },
 	redirectonlogin: { control: { type: "text" } },
