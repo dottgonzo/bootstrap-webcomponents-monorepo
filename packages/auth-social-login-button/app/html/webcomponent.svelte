@@ -69,30 +69,30 @@
 						.replace(state, ""),
 				});
 			}
-			if (
-				provider.name === "twitter" &&
-				location?.href &&
-				location.href.includes("code=") &&
-				location.href.includes("provider=") &&
-				location.href.split("provider=")[1].split("&")[0] === "twitter"
-			) {
-				const provider = "twitter";
-				const token = location.href.split("code=")[1].split("&")[0];
-				const state = location.href.split("state=")[1].split("&")[0];
-				// TODO: to be completed
-				dispatch("oauthFlowInit", {
-					provider,
-					token,
-					tmpCode: token,
-					redirect_uri: location.href
-						.replace("&state=", "")
-						.replace("?state=", "")
-						.replace("&code=", "")
-						.replace("?code=", "")
-						.replace(token, "")
-						.replace(state, ""),
-				});
-			}
+			// if (
+			// 	provider.name === "twitter" &&
+			// 	location?.href &&
+			// 	location.href.includes("code=") &&
+			// 	location.href.includes("provider=") &&
+			// 	location.href.split("provider=")[1].split("&")[0] === "twitter"
+			// ) {
+			// 	const provider = "twitter";
+			// 	const token = location.href.split("code=")[1].split("&")[0];
+			// 	const state = location.href.split("state=")[1].split("&")[0];
+			// 	// TODO: to be completed
+			// 	dispatch("oauthFlowInit", {
+			// 		provider,
+			// 		token,
+			// 		tmpCode: token,
+			// 		redirect_uri: location.href
+			// 			.replace("&state=", "")
+			// 			.replace("?state=", "")
+			// 			.replace("&code=", "")
+			// 			.replace("?code=", "")
+			// 			.replace(token, "")
+			// 			.replace(state, ""),
+			// 	});
+			// }
 			if (
 				provider.name === "gitlab" &&
 				location?.href &&
@@ -143,32 +143,32 @@
 						provider.params.client_id
 					}&redirect_uri=${provider.params.redirect_url}/login?provider=gitlab`;
 					break;
-				case "twitter":
-					url = `https://gitlab.com/oauth/authorize?scope=${provider.params.scope}&response_type=code&state=${new Date().valueOf()}&client_id=${
-						provider.params.client_id
-					}&redirect_uri=${provider.params.redirect_url}/login?provider=gitlab`;
-					break;
+				// case "twitter":
+				// 	url = `https://gitlab.com/oauth/authorize?scope=${provider.params.scope}&response_type=code&state=${new Date().valueOf()}&client_id=${
+				// 		provider.params.client_id
+				// 	}&redirect_uri=${provider.params.redirect_url}/login?provider=gitlab`;
+				// 	break;
 				default:
 					return console.error("no provider uri composed for " + provider.name);
 			}
 			if (url) {
-				if (provider.name === "twitter") {
-					try {
-						const getAuth = await fetch("https://api.twitter.com/oauth/request_token ", {
-							method: "POST",
-							headers: { "Content-Type": "application/json" },
-						});
-						if (getAuth.ok) {
-							const authToken = await getAuth.json();
+				// if (provider.name === "twitter") {
+				// 	try {
+				// 		const getAuth = await fetch("https://api.twitter.com/oauth/request_token ", {
+				// 			method: "POST",
+				// 			headers: { "Content-Type": "application/json" },
+				// 		});
+				// 		if (getAuth.ok) {
+				// 			const authToken = await getAuth.json();
 
-							throw new Error("todo");
-						} else {
-							throw new Error("Error getting auth token");
-						}
-					} catch (e) {
-						console.error(e);
-					}
-				}
+				// 			throw new Error("todo");
+				// 		} else {
+				// 			throw new Error("Error getting auth token");
+				// 		}
+				// 	} catch (e) {
+				// 		console.error(e);
+				// 	}
+				// }
 				location.href = url;
 			} else {
 				return console.error("no provider url obtained!?", provider);
