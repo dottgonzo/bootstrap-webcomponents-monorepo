@@ -123,7 +123,7 @@
 					}
 				}
 
-				if (prov.params?.redirect_url && !prov.params.redirect_url.includes(prov.name + "=")) {
+				if (prov.params?.redirect_url && !prov.params.redirect_url.includes("provider=" + prov.name)) {
 					if (prov.params.redirect_url.includes("?")) {
 						prov.params.redirect_url += "&provider=" + prov.name;
 					} else {
