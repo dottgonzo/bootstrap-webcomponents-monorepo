@@ -37,7 +37,7 @@
 	export let appendqueryparams: string;
 	export let appendbodyparams: string;
 	export let logouri: string;
-	export let oauth2providers: string;
+	export let oauth2providers: Component["oauth2providers"];
 	export let disableregister: boolean = null;
 	export let disablelocal: boolean;
 
@@ -48,7 +48,6 @@
 	export let email: string;
 
 	// export let expectmailconfirm: string;
-	let oauth2ProvidersObj: Component["oauth2providers"];
 
 	let checkValidity: boolean;
 	let rememberMe: boolean;
@@ -93,14 +92,13 @@
 			sessionkey = "_lg";
 		}
 		if (!oauth2providers) {
-			oauth2ProvidersObj = null;
 			oauth2providers = null;
-		} else {
+		} else if(typeof oauth2providers === 'string') {
 			try {
-				oauth2ProvidersObj = JSON.parse(oauth2providers);
+				oauth2providers = JSON.parse(oauth2providers);
 			} catch (err) {
 				console.error("wrong oauth provider params");
-				oauth2ProvidersObj = null;
+				oauth2providers = null;
 			}
 		}
 		if (!email) {
@@ -442,10 +440,10 @@
 	{:else if type === "activate" || type === "recover"}
 		<h1 class="h3 mb-3 fw-normal">{translator?.translateWord("recoverTitle")}</h1>
 	{/if}
-	{#if oauth2ProvidersObj?.length}
+	{#if oauth2providers?.length}
 		<div class="d-flex justify-content-center mt-1">
 			<ul class="social-icons">
-				{#each oauth2ProvidersObj as p (p.provider)}
+				{#each oauth2providers as p (p.provider)}
 					<li>
 						<hb-auth-social-login-button
 							provider={JSON.stringify({ name: p.provider, url: p.uri, params: p.params })}
