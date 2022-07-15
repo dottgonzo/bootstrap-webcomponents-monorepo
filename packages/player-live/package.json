@@ -76,7 +76,7 @@
 		"html5-webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "46710e9d039bf74921e558da1634f9d882418124",
+	"gitHead": "3052883be494f5a906aed444f9b9c3c14c855f10",
 	"dependencies": {
 		"hls.js": "^1.0.10"
 	}

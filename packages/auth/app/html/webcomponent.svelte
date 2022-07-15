@@ -103,7 +103,7 @@
 			for (const prov of oauth2providers) {
 				if (!prov.url) {
 					if (prov.params && !prov.params.scope) {
-						switch (prov.provider) {
+						switch (prov.name) {
 							case "facebook":
 								prov.params.scope = "email";
 								break;
@@ -123,11 +123,11 @@
 					}
 				}
 
-				if (prov.params?.redirect_url && !prov.params.redirect_url.includes(prov.provider + "=")) {
+				if (prov.params?.redirect_url && !prov.params.redirect_url.includes(prov.name + "=")) {
 					if (prov.params.redirect_url.includes("?")) {
-						prov.params.redirect_url += "&provider=" + prov.provider;
+						prov.params.redirect_url += "&provider=" + prov.name;
 					} else {
-						prov.params.redirect_url += "?provider=" + prov.provider;
+						prov.params.redirect_url += "?provider=" + prov.name;
 					}
 				}
 			}
@@ -476,10 +476,10 @@
 	{#if oauth2providers?.length}
 		<div class="d-flex justify-content-center mt-1">
 			<ul class="social-icons">
-				{#each oauth2providers as p (p.provider)}
+				{#each oauth2providers as p (p.name)}
 					<li>
 						<hb-auth-social-login-button
-							provider={JSON.stringify({ name: p.provider, url: p.url, params: p.params })}
+							provider={JSON.stringify({ name: p.name, url: p.url, params: p.params })}
 							on:oauthFlowInit={(e) => {
 								dispatch("oauthFlowInit", e.detail);
 							}}

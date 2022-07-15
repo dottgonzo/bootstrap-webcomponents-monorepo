@@ -21,7 +21,7 @@ export type Component = {
 	appendbodyparams?: string;
 	logouri?: string;
 	oauth2providers?: {
-		provider: IProvider;
+		name: IProvider;
 		url?: string;
 		params?: {
 			scope?: string
