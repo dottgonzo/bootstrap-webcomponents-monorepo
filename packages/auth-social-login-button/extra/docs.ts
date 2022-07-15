@@ -35,10 +35,34 @@ export const styleSetup: StyleSetup = {
 
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
-		name: "login",
+		name: "facebook",
 		data: {
 			provider: {
 				name: 'facebook',
+			}
+		},
+	},
+	{
+		name: "gitlab",
+		data: {
+			provider: {
+				name: 'gitlab',
+			}
+		},
+	},
+	{
+		name: "github",
+		data: {
+			provider: {
+				name: 'github',
+			}
+		},
+	},
+	{
+		name: "google",
+		data: {
+			provider: {
+				name: 'google',
 			}
 		},
 	}
