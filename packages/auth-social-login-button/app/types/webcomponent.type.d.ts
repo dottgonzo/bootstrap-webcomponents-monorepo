@@ -15,4 +15,5 @@ export type Component = {
 export type Events = {
 
 	oauthFlowInit: { token?: string; provider: string, tmpCode?: string, redirect_uri?: string };
+	oauthFlowCustom: { provider: string };
 };

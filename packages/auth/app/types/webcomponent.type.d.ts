@@ -39,4 +39,5 @@ export type Events = {
 	recoverOrActivate: { password: string; recoverycode: string; email: string }; // only one good..
 	recoverPassword: { email: string };
 	oauthFlowInit: { token?: string; provider: string, tmpCode?: string, redirect_uri?: string };
+	oauthFlowCustom: {provider:string}
 };

@@ -450,6 +450,9 @@
 							on:oauthFlowInit={(e) => {
 								dispatch("oauthFlowInit", e.detail);
 							}}
+												on:oauthFlowCustom={(e) => {
+								dispatch("oauthFlowCustom", e.detail);
+							}}
 						/>
 					</li>
 				{/each}

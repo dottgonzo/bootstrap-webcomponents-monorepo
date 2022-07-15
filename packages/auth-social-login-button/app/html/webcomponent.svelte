@@ -174,7 +174,10 @@
 				return console.error("no provider url obtained!?", provider);
 			}
 		} else {
-			console.error("no provider uri or params defined for " + provider.name);
+			console.warn("no provider uri or params defined for " + provider.name);
+			dispatch("oauthFlowCustom", {
+				provider: provider.name,
+			});
 		}
 	}
 
