@@ -41,25 +41,25 @@
 			let url: string;
 			switch (provider.name) {
 				case "google":
-					url = `https://accounts.google.com/o/oauth2/v2/auth?scope=${provider.params.scope}&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=${provider.params.redirect_url}/login&client_id=${provider.params.client_id}`;
+					url = `https://accounts.google.com/o/oauth2/v2/auth?scope=${provider.params.scope}&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&client_id=${provider.params.client_id}&redirect_uri=${provider.params.redirect_url}`;
 					break;
 				case "github":
-					url = `https://github.com/login/oauth/authorize?scope=${provider.params.scope}&client_id=${provider.params.client_id}&redirect_uri=${provider.params.redirect_url}/login?provider=github`;
+					url = `https://github.com/login/oauth/authorize?scope=${provider.params.scope}&client_id=${provider.params.client_id}&redirect_uri=${provider.params.redirect_url}`;
 					break;
 				case "gitlab":
 					url = `https://gitlab.com/oauth/authorize?scope=${provider.params.scope}&response_type=code&state=${new Date().valueOf()}&client_id=${
 						provider.params.client_id
-					}&redirect_uri=${provider.params.redirect_url}/login?provider=gitlab`;
+					}&redirect_uri=${provider.params.redirect_url}`;
 					break;
 				case "facebook":
 					url = `https://gitlab.com/oauth/authorize?scope=${provider.params.scope}&response_type=code&state=${new Date().valueOf()}&client_id=${
 						provider.params.client_id
-					}&redirect_uri=${provider.params.redirect_url}/login?provider=gitlab`;
+					}&redirect_uri=${provider.params.redirect_url}`;
 					break;
 				// case "twitter":
 				// 	url = `https://gitlab.com/oauth/authorize?scope=${provider.params.scope}&response_type=code&state=${new Date().valueOf()}&client_id=${
 				// 		provider.params.client_id
-				// 	}&redirect_uri=${provider.params.redirect_url}/login?provider=gitlab`;
+				// 	}&redirect_uri=${provider.params.redirect_url}`;
 				// 	break;
 				default:
 					return console.error("no provider uri composed for " + provider.name);
