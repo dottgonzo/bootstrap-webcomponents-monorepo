@@ -102,10 +102,8 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	onMount(() => {
+	function detectByUri() {
 		if (provider?.name) {
-			console.log("load2");
-
 			if (provider.name === "google" && location?.href && location.href.split("access_token=").length > 1 && location.href.includes("google")) {
 				const token = location.href.split("access_token=")[1].split("&")[0];
 				dispatch("oauthFlowInit", { provider: provider.name, token });
@@ -189,6 +187,9 @@
 				});
 			}
 		}
+	}
+	onMount(() => {
+		detectByUri();
 	});
 </script>
 
