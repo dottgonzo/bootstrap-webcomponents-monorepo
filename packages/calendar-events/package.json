@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-calendar-events",
 	"displayName": "Svelte Calendar WebComponent",
 	"description": "Svelte Calendar WebComponent",
-	"version": "0.16.0",
+	"version": "0.16.1",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -34,7 +34,7 @@
 		"dayjs": "^1.10.7"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.16.0",
+		"@htmlbricks/hb-jsutils": "^0.16.1",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
