@@ -120,9 +120,9 @@
 	}
 
 	async function socialLogin() {
-		if (!provider?.name || (!provider.uri && !provider.params)) return console.error("Provider not defined");
-		if (provider.uri) {
-			location.href = provider.uri;
+		if (!provider?.name || (!provider.url && !provider.params)) return console.error("Provider not defined");
+		if (provider.url) {
+			location.href = provider.url;
 		} else if (provider.params?.client_id && provider.params.redirect_url) {
 			if (!provider.params.client_id || !provider.params.redirect_url) return console.error("Missing client_id or redirect_url in oauth2ProvidersObj");
 			let url: string;

@@ -1,10 +1,10 @@
-type IProvider='facebook'|'google'|'gitlab'|'github'
+type IProvider = 'facebook' | 'google' | 'gitlab' | 'github'
 
 export type Component = {
 	id?: string;
 	style?: string;
 	provider: {
-		uri?: string;
+		url?: string;
 		name: IProvider
 		params?: {
 			redirect_url: string

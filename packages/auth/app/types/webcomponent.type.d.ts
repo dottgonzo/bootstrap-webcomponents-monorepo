@@ -1,5 +1,4 @@
-type IProvider = 'facebook' | 'google' | 'gitlab' | 'github'
-
+import type { Component as SocialLoginButtonComponent } from "../../node_modules/@htmlbricks/hb-auth-social-login-button/release/webcomponent.type";
 
 export type Component = {
 	id?: string;
@@ -20,15 +19,7 @@ export type Component = {
 	appendqueryparams?: string;
 	appendbodyparams?: string;
 	logouri?: string;
-	oauth2providers?: {
-		name: IProvider;
-		url?: string;
-		params?: {
-			scope?: string
-			client_id: string
-			redirect_url: string
-		}
-	}[];
+	oauth2providers?: SocialLoginButtonComponent['provider'][];
 	disableregister?: boolean;
 	enable_recover_password?: boolean;
 	passwordpattern?: string;
@@ -41,6 +32,6 @@ export type Events = {
 	register: any & { requestSent: { email: string; password: string }; email: string; password: string };
 	recoverOrActivate: { password: string; recoverycode: string; email: string }; // only one good..
 	recoverPassword: { email: string };
-	oauthFlowInit: { token?: string; provider: IProvider, tmpCode?: string, redirect_uri?: string };
-	oauthFlowCustom: { provider: IProvider }
+	oauthFlowInit: { token?: string; provider: SocialLoginButtonComponent['provider']['name'], tmpCode?: string, redirect_uri?: string };
+	oauthFlowCustom: { provider: SocialLoginButtonComponent['provider']['name'] }
 };
