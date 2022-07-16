@@ -125,12 +125,12 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			registeruri: "https://kernel.free.beeceptor.com/register",
 			oauth2providers: [
 				{
-					provider: "google",
+					name: "google",
 					url: "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=https%3A//oauth2.example.com/code&client_id=client_id",
 				},
-				{ provider: "facebook", url: "" },
-				{ provider: "gitlab", url: "" },
-				{ provider: "github", url: "" },
+				{ name: "facebook", url: "" },
+				{ name: "gitlab", url: "" },
+				{ name: "github", url: "" },
 
 			],
 		},
@@ -144,12 +144,12 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			disablelocal: true,
 			oauth2providers: [
 				{
-					provider: "google",
+					name: "google",
 					url: "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=https%3A//oauth2.example.com/code&client_id=client_id",
 				},
-				{ provider: "facebook", url: "" },
-				{ provider: "gitlab", url: "" },
-				{ provider: "github", url: "" },
+				{ name: "facebook", url: "" },
+				{ name: "gitlab", url: "" },
+				{ name: "github", url: "" },
 			],
 		},
 	},

@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-player-live",
 	"displayName": "Svelte Boostrap Pagination WebComponent",
 	"description": "Svelte Boostrap Pagination WebComponent",
-	"version": "0.15.33",
+	"version": "0.15.34",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.15.33",
+		"@htmlbricks/hb-jsutils": "^0.15.34",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
@@ -76,7 +76,7 @@
 		"html5-webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "14b54740b8054aaa9c170d18a2f8d8fc789fd64b",
+	"gitHead": "c086e59038899a4d9dc68f5797b843a139aabdc6",
 	"dependencies": {
 		"hls.js": "^1.0.10"
 	}
