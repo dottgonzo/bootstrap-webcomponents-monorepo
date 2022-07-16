@@ -22,99 +22,13 @@
 		if (!id) {
 			id = null;
 		}
+		console.log("load1");
+
 		if (typeof provider === "string") {
 			try {
 				provider = JSON.parse(provider);
 			} catch (error) {
 				console.error(error);
-			}
-		}
-		if (provider) {
-			if (provider.name === "google" && location?.href && location.href.split("access_token=").length > 1 && location.href.includes("google")) {
-				const provider = "google";
-				const token = location.href.split("access_token=")[1].split("&")[0];
-				dispatch("oauthFlowInit", { provider, token });
-			}
-			if (
-				provider.name === "github" &&
-				location?.href &&
-				location.href.includes("code=") &&
-				location.href.includes("provider=") &&
-				location.href.split("provider=")[1].split("&")[0] === "github"
-			) {
-				const provider = "github";
-				const token = location.href.split("code=")[1].split("&")[0];
-				dispatch("oauthFlowInit", { provider, token, tmpCode: token });
-			}
-			if (
-				provider.name === "facebook" &&
-				location?.href &&
-				location.href.includes("code=") &&
-				location.href.includes("provider=") &&
-				location.href.split("provider=")[1].split("&")[0] === "facebook"
-			) {
-				const provider = "facebook";
-				const token = location.href.split("code=")[1].split("&")[0];
-				const state = location.href.split("state=")[1].split("&")[0];
-				dispatch("oauthFlowInit", {
-					provider,
-					token,
-					tmpCode: token,
-					redirect_uri: location.href
-						.replace("&state=", "")
-						.replace("?state=", "")
-						.replace("&code=", "")
-						.replace("?code=", "")
-						.replace(token, "")
-						.replace(state, ""),
-				});
-			}
-			// if (
-			// 	provider.name === "twitter" &&
-			// 	location?.href &&
-			// 	location.href.includes("code=") &&
-			// 	location.href.includes("provider=") &&
-			// 	location.href.split("provider=")[1].split("&")[0] === "twitter"
-			// ) {
-			// 	const provider = "twitter";
-			// 	const token = location.href.split("code=")[1].split("&")[0];
-			// 	const state = location.href.split("state=")[1].split("&")[0];
-			// 	// TODO: to be completed
-			// 	dispatch("oauthFlowInit", {
-			// 		provider,
-			// 		token,
-			// 		tmpCode: token,
-			// 		redirect_uri: location.href
-			// 			.replace("&state=", "")
-			// 			.replace("?state=", "")
-			// 			.replace("&code=", "")
-			// 			.replace("?code=", "")
-			// 			.replace(token, "")
-			// 			.replace(state, ""),
-			// 	});
-			// }
-			if (
-				provider.name === "gitlab" &&
-				location?.href &&
-				location.href.includes("provider=") &&
-				location.href.includes("code=") &&
-				location.href.split("provider=")[1].split("&")[0] === "gitlab"
-			) {
-				const provider = "gitlab";
-				const token = location.href.split("code=")[1].split("&")[0];
-				const state = location.href.split("state=")[1].split("&")[0];
-				dispatch("oauthFlowInit", {
-					provider,
-					token,
-					tmpCode: token,
-					redirect_uri: location.href
-						.replace("&state=", "")
-						.replace("?state=", "")
-						.replace("&code=", "")
-						.replace("?code=", "")
-						.replace(token, "")
-						.replace(state, ""),
-				});
 			}
 		}
 	}
@@ -188,6 +102,94 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
+	onMount(() => {
+		if (provider?.name) {
+			console.log("load2");
+
+			if (provider.name === "google" && location?.href && location.href.split("access_token=").length > 1 && location.href.includes("google")) {
+				const token = location.href.split("access_token=")[1].split("&")[0];
+				dispatch("oauthFlowInit", { provider: provider.name, token });
+			}
+			if (
+				provider.name === "github" &&
+				location?.href &&
+				location.href.includes("code=") &&
+				location.href.includes("provider=") &&
+				location.href.split("provider=")[1].split("&")[0] === "github"
+			) {
+				const token = location.href.split("code=")[1].split("&")[0];
+				dispatch("oauthFlowInit", { provider: provider.name, token, tmpCode: token });
+			}
+			if (
+				provider.name === "facebook" &&
+				location?.href &&
+				location.href.includes("code=") &&
+				location.href.includes("provider=") &&
+				location.href.split("provider=")[1].split("&")[0] === "facebook"
+			) {
+				const token = location.href.split("code=")[1].split("&")[0];
+				const state = location.href.split("state=")[1].split("&")[0];
+				dispatch("oauthFlowInit", {
+					provider: provider.name,
+					token,
+					tmpCode: token,
+					redirect_uri: location.href
+						.replace("&state=", "")
+						.replace("?state=", "")
+						.replace("&code=", "")
+						.replace("?code=", "")
+						.replace(token, "")
+						.replace(state, ""),
+				});
+			}
+			// if (
+			// 	provider.name === "twitter" &&
+			// 	location?.href &&
+			// 	location.href.includes("code=") &&
+			// 	location.href.includes("provider=") &&
+			// 	location.href.split("provider=")[1].split("&")[0] === "twitter"
+			// ) {
+			// 	const provider = "twitter";
+			// 	const token = location.href.split("code=")[1].split("&")[0];
+			// 	const state = location.href.split("state=")[1].split("&")[0];
+			// 	// TODO: to be completed
+			// 	dispatch("oauthFlowInit", {
+			// 		provider,
+			// 		token,
+			// 		tmpCode: token,
+			// 		redirect_uri: location.href
+			// 			.replace("&state=", "")
+			// 			.replace("?state=", "")
+			// 			.replace("&code=", "")
+			// 			.replace("?code=", "")
+			// 			.replace(token, "")
+			// 			.replace(state, ""),
+			// 	});
+			// }
+			if (
+				provider.name === "gitlab" &&
+				location?.href &&
+				location.href.includes("provider=") &&
+				location.href.includes("code=") &&
+				location.href.split("provider=")[1].split("&")[0] === "gitlab"
+			) {
+				const token = location.href.split("code=")[1].split("&")[0];
+				const state = location.href.split("state=")[1].split("&")[0];
+				dispatch("oauthFlowInit", {
+					provider: provider.name,
+					token,
+					tmpCode: token,
+					redirect_uri: location.href
+						.replace("&state=", "")
+						.replace("?state=", "")
+						.replace("&code=", "")
+						.replace("?code=", "")
+						.replace(token, "")
+						.replace(state, ""),
+				});
+			}
+		}
+	});
 </script>
 
 <svelte:head>
@@ -195,13 +197,13 @@
 </svelte:head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
 
-<div
-	id="icon"
-	on:click={() => {
-		socialLogin();
-	}}
->
-	<div id="icon-content">
+<div id="icon">
+	<div
+		id="icon-content"
+		on:click={() => {
+			socialLogin();
+		}}
+	>
 		<slot>
 			{#if provider?.name === "gitlab"}
 				<svg viewBox="-.1 .5 960.2 923.9" width="100%" xmlns="http://www.w3.org/2000/svg"
