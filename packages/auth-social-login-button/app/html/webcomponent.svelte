@@ -22,7 +22,6 @@
 		if (!id) {
 			id = null;
 		}
-		console.log("load1");
 
 		if (typeof provider === "string") {
 			try {
