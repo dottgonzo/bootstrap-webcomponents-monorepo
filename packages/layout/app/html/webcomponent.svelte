@@ -160,6 +160,8 @@
 
 <svelte:head>
 	<meta name="test" content="pagelayout" />
+	<meta property="og:url" content={location?.href} />
+
 </svelte:head>
 
 <svelte:window bind:innerWidth />
