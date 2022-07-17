@@ -9,6 +9,7 @@ export const storybookArgs = {
 	navbarDropDownClick: { action: "navbarDropDownClick" },
 	page_title: { control: { type: "text" } },
 	contacts: { control: { type: "object" } },
+	heders: { control: { type: "object" } },
 	columns: { control: { type: "object" } },
 	sidebar: { control: { type: "object" } },
 	socials: { control: { type: "object" } },

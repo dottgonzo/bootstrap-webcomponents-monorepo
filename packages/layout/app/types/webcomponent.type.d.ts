@@ -21,6 +21,11 @@ export type Component = {
 	sidebar?: { title?: string; logo?: string; type?: string };
 	footer?: { type?: "auto" | "small" | "regular" | "large"; disable_expanding_small?: boolean };
 	policies?: IPolicies[];
+	heders?: {
+		name?: string;
+		content: string
+		property?: string;
+	}[]
 };
 
 export type Events = {

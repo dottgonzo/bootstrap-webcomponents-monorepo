@@ -48,6 +48,7 @@
 	export let footer: Component["footer"];
 	export let page_title: string;
 	export let policies: Component["policies"];
+	export let heders: Component["heders"];
 
 	// let translator: LanguageTranslator;
 
@@ -61,6 +62,7 @@
 	let innerWidth: number = 0;
 	// let layoutType: "small" | "large";
 	$: {
+		if (!heders) heders = undefined;
 		if (!footer) footer = undefined;
 		if (style) {
 			parsedStyle = parseStyle(style);
@@ -159,9 +161,15 @@
 </script>
 
 <svelte:head>
-	<meta name="test" content="pagelayout" />
-	<meta property="og:title" content={page_title} />
-	<meta property="og:url" content={location?.href} />
+	{#if heders}
+		{#each heders as header (header.content + "" + header.property + header.name)}
+			{#if header.name}
+				<meta name={header.name} content={header.content} />
+			{:else if header.property}
+				<meta property={header.property} content={header.content} />
+			{/if}
+		{/each}
+	{/if}
 </svelte:head>
 
 <svelte:window bind:innerWidth />
