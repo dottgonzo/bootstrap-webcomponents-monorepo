@@ -158,6 +158,10 @@
 	addComponent({ repoName: "@htmlbricks/hb-layout-mobile", version: pkg.version });
 </script>
 
+<svelte:head>
+	<meta name="test" content="pagelayout" />
+</svelte:head>
+
 <svelte:window bind:innerWidth />
 {#if innerWidth < 800}
 	<hb-layout-mobile
