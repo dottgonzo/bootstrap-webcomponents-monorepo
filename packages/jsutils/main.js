@@ -30,7 +30,7 @@ function addComponent(opts) {
     if (!(opts === null || opts === void 0 ? void 0 : opts.version))
         throw new Error("wrong version " + (opts === null || opts === void 0 ? void 0 : opts.version));
     var iifePath = (opts === null || opts === void 0 ? void 0 : opts.iifePath) || "release/release.js";
-    if (window && !window.customElements.get(componentName) || (!window && !document.getElementById(componentName + "-script"))) {
+    if (!document.getElementById(componentName + "-script")) {
         try {
             var script = document.createElement("script");
             script.id = componentName + "-script";
