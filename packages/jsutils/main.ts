@@ -113,7 +113,7 @@ export function addComponent(opts?: {
   if (!componentName) throw new Error("wrong componentPath " + opts?.repoName);
   if (!opts?.version) throw new Error("wrong version " + opts?.version);
   const iifePath = opts?.iifePath || "release/release.js";
-  if (window && !window.customElements.get(componentName) || (!window && !document.getElementById(componentName + "-script"))) {
+  if (!document.getElementById(componentName + "-script")) {
     try {
       const script = document.createElement("script");
       script.id = componentName + "-script";
