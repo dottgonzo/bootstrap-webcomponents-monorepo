@@ -30,14 +30,19 @@ function addComponent(opts) {
     if (!(opts === null || opts === void 0 ? void 0 : opts.version))
         throw new Error("wrong version " + (opts === null || opts === void 0 ? void 0 : opts.version));
     var iifePath = (opts === null || opts === void 0 ? void 0 : opts.iifePath) || "release/release.js";
-    if (!customElements.get(componentName)) {
-        var script = document.createElement("script");
-        script.id = componentName + "-script";
-        script.src = "https://cdn.jsdelivr.net/npm/".concat(opts.repoName, "@").concat(opts.version, "/").concat(iifePath);
-        if ((opts === null || opts === void 0 ? void 0 : opts.local) && location.href.includes("localhost")) {
-            script.src = "".concat(opts.local);
+    if (window && !window.customElements.get(componentName) || (!window && !document.getElementById(componentName + "-script"))) {
+        try {
+            var script = document.createElement("script");
+            script.id = componentName + "-script";
+            script.src = "https://cdn.jsdelivr.net/npm/".concat(opts.repoName, "@").concat(opts.version, "/").concat(iifePath);
+            if ((opts === null || opts === void 0 ? void 0 : opts.local) && location.href.includes("localhost")) {
+                script.src = "".concat(opts.local);
+            }
+            document.head.appendChild(script);
         }
-        document.head.appendChild(script);
+        catch (err) {
+            console.warn(err);
+        }
     }
 }
 exports.addComponent = addComponent;

@@ -113,14 +113,19 @@ export function addComponent(opts?: {
   if (!componentName) throw new Error("wrong componentPath " + opts?.repoName);
   if (!opts?.version) throw new Error("wrong version " + opts?.version);
   const iifePath = opts?.iifePath || "release/release.js";
-  if (!customElements.get(componentName)) {
-    const script = document.createElement("script");
-    script.id = componentName + "-script";
-    script.src = `https://cdn.jsdelivr.net/npm/${opts.repoName}@${opts.version}/${iifePath}`;
-    if (opts?.local && location.href.includes("localhost")) {
-      script.src = `${opts.local}`;
+  if (window && !window.customElements.get(componentName) || (!window && !document.getElementById(componentName + "-script"))) {
+    try {
+      const script = document.createElement("script");
+      script.id = componentName + "-script";
+      script.src = `https://cdn.jsdelivr.net/npm/${opts.repoName}@${opts.version}/${iifePath}`;
+      if (opts?.local && location.href.includes("localhost")) {
+        script.src = `${opts.local}`;
+      }
+      document.head.appendChild(script);
+    } catch (err) {
+      console.warn(err)
     }
-    document.head.appendChild(script);
+
   }
 }
 
