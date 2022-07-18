@@ -113,7 +113,7 @@ export function addComponent(opts?: {
   if (!componentName) throw new Error("wrong componentPath " + opts?.repoName);
   if (!opts?.version) throw new Error("wrong version " + opts?.version);
   const iifePath = opts?.iifePath || "release/release.js";
-  if (!document.getElementById(componentName + "-script")) {
+  if (!customElements.get(componentName)) {
     const script = document.createElement("script");
     script.id = componentName + "-script";
     script.src = `https://cdn.jsdelivr.net/npm/${opts.repoName}@${opts.version}/${iifePath}`;

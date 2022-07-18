@@ -30,7 +30,7 @@ function addComponent(opts) {
     if (!(opts === null || opts === void 0 ? void 0 : opts.version))
         throw new Error("wrong version " + (opts === null || opts === void 0 ? void 0 : opts.version));
     var iifePath = (opts === null || opts === void 0 ? void 0 : opts.iifePath) || "release/release.js";
-    if (!document.getElementById(componentName + "-script")) {
+    if (!customElements.get(componentName)) {
         var script = document.createElement("script");
         script.id = componentName + "-script";
         script.src = "https://cdn.jsdelivr.net/npm/".concat(opts.repoName, "@").concat(opts.version, "/").concat(iifePath);
