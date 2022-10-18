@@ -105,6 +105,8 @@
 		console.info("detecting by uri", location.href);
 		if (provider?.name) {
 			if (provider.name === "google" && location?.href && location.href.split("access_token=").length > 1 && location.href.includes("google")) {
+				console.info("google auth login detected");
+
 				const token = location.href.split("access_token=")[1].split("&")[0];
 				dispatch("oauthFlowInit", { provider: provider.name, token });
 			}
@@ -115,6 +117,7 @@
 				location.href.includes("provider=") &&
 				location.href.split("provider=")[1].split("&")[0] === "github"
 			) {
+				console.info("github auth login detected");
 				const token = location.href.split("code=")[1].split("&")[0];
 				dispatch("oauthFlowInit", { provider: provider.name, token, tmpCode: token });
 			}
@@ -125,6 +128,8 @@
 				location.href.includes("provider=") &&
 				location.href.split("provider=")[1].split("&")[0] === "facebook"
 			) {
+				console.info("facebook auth login detected");
+
 				const token = location.href.split("code=")[1].split("&")[0];
 				const state = location.href.split("state=")[1].split("&")[0];
 				dispatch("oauthFlowInit", {
