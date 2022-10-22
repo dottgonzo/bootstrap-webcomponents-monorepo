@@ -102,6 +102,7 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 	function detectByUri() {
+		console.info("detecting by uri", location.href);
 		if (provider?.name) {
 			if (provider.name === "google" && location?.href && location.href.split("access_token=").length > 1 && location.href.includes("google")) {
 				const token = location.href.split("access_token=")[1].split("&")[0];
