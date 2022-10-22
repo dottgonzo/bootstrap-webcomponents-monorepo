@@ -4,7 +4,7 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	json: { control: { type: "object" } },
 	string: { control: { type: "text" } },
-	boolean: { control: { type: "object" } },
+	boolean: { control: { type: "boolean" } },
 	event: { action: "eventEvent" },
 };
 
