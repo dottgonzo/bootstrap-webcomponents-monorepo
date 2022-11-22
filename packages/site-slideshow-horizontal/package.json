@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-site-slideshow-horizontal",
 	"displayName": "Svelte-Bootstrap site-slideshow-horizontal",
 	"description": "Svelte-Bootstrap site-slideshow-horizontal",
-	"version": "0.16.15",
+	"version": "0.16.16",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.16.15",
+		"@htmlbricks/hb-jsutils": "^0.16.16",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
