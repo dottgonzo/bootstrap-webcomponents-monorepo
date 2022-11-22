@@ -105,7 +105,7 @@
 			cardItems = JSON.parse(cards);
 			let cc = 0;
 			for (const c of cardItems) {
-				c._id = `${cc.toString() + (c.title.replace(/ /g, "-") || c.description.replace(/ /g, "-"))}`;
+				c._id = `${cc.toString() + (c.title ? c.title.replace(/ /g, "-") : c.description ? c.description.replace(/ /g, "-") : Date.now().toString())}`;
 				if (!c.time) {
 					enableDate = false;
 					console.warn("UNABLE TO ACTIVATE SEARCH FILTER!");

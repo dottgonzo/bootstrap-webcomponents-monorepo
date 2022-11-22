@@ -76,7 +76,7 @@
 		"html5-webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "b3c5d4ee326d5d1e0fdbd823b2c7235b6499939f",
+	"gitHead": "2c5444b6494db20afc18be5ed5073ea4af3e2f81",
 	"dependencies": {
 		"@htmlbricks/hb-sidenav-link": "^0.16.15",
 		"style-to-object": "^0.3.0"
