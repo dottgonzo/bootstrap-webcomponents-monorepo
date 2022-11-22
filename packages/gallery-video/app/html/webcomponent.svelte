@@ -105,7 +105,7 @@
 			cardItems = JSON.parse(cards);
 			let cc = 0;
 			for (const c of cardItems) {
-				c._id = `${cc.toString() + c.title}`;
+				c._id = `${cc.toString() + (c.title.replace(/ /g, "-") || c.description.replace(/ /g, "-"))}`;
 				if (!c.time) {
 					enableDate = false;
 					console.warn("UNABLE TO ACTIVATE SEARCH FILTER!");
@@ -313,6 +313,7 @@
 				{#each !externalfilter ? cardItems.slice(page * size, (page + 1) * size) : cardItems as item (item._id)}
 					<div class="col-12 col-xxl-3 col-xl-4 col-md-6" style="padding:12px">
 						<hb-card-video
+							key={item._id}
 							style={cardVideoStyleToSet}
 							title={item.title || ""}
 							description={item.description || ""}
