@@ -90,12 +90,12 @@
 		});
 		signaturePad.addEventListener("beforeUpdateStroke", (e: any) => {
 			console.log("beforeUpdateStroke", signaturePad.dotSize, "pressure" + e.detail.pressure);
-			signaturePad.dotSize = e.detail.pressure;
+			signaturePad.minWidth = e.detail.pressure;
 			pressure = e.detail.pressure;
 		});
 		signaturePad.addEventListener("afterUpdateStroke", (e: any) => {
 			console.log("afterUpdateStroke", signaturePad.dotSize, "pressure" + e.detail.pressure);
-			signaturePad.dotSize = e.detail.pressure;
+			signaturePad.minWidth = e.detail.pressure;
 			pressure = e.detail.pressure;
 		});
 	}
