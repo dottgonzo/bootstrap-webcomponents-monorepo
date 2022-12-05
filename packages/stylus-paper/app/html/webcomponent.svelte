@@ -29,7 +29,7 @@
 
 	let stroke_id: string;
 	let stroke_start: Date;
-	let pressure: number;
+	let pressure: any;
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
 	let signaturePad: SignaturePad;
@@ -89,12 +89,12 @@
 			stroke_id = undefined;
 		});
 		signaturePad.addEventListener("beforeUpdateStroke", (e: any) => {
-			console.log("beforeUpdateStroke", signaturePad.dotSize, e.detail.pressure);
+			console.log("beforeUpdateStroke", signaturePad.dotSize, "pressure" + e.detail.pressure);
 			signaturePad.dotSize = e.detail.pressure;
 			pressure = e.detail.pressure;
 		});
 		signaturePad.addEventListener("afterUpdateStroke", (e: any) => {
-			console.log("afterUpdateStroke", signaturePad.dotSize, e.detail.pressure);
+			console.log("afterUpdateStroke", signaturePad.dotSize, "pressure" + e.detail.pressure);
 			signaturePad.dotSize = e.detail.pressure;
 			pressure = e.detail.pressure;
 		});
@@ -134,7 +134,7 @@
 </script>
 
 <canvas id="stylus-canvas" part="stylus-canvas" />
-{{ pressure }}
+{pressure}
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
