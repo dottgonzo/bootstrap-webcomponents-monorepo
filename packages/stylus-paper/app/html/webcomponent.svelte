@@ -90,6 +90,7 @@
 				easing: (t) => t,
 				cap: true,
 			},
+			simulatePressure: false,
 		};
 
 		stroke = getStroke(points, options);
