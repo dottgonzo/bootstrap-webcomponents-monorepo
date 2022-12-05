@@ -75,8 +75,8 @@
 		// if (cv) configureSign();
 
 		const options = {
-			size: 32,
-			thinning: 0.5,
+			size: 6,
+			thinning: 0.7,
 			smoothing: 0.5,
 			streamline: 0.5,
 			easing: (t) => t,
