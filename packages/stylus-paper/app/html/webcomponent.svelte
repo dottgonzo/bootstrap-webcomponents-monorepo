@@ -88,6 +88,14 @@
 			stroke_start = undefined;
 			stroke_id = undefined;
 		});
+		signaturePad.addEventListener("beforeUpdateStroke", (e: any) => {
+			console.log("beforeUpdateStroke", signaturePad.dotSize, e.detail.pressure);
+			signaturePad.dotSize = e.detail.pressure;
+		});
+		signaturePad.addEventListener("afterUpdateStroke", (e: any) => {
+			console.log("afterUpdateStroke", signaturePad.dotSize, e.detail.pressure);
+			signaturePad.dotSize = e.detail.pressure;
+		});
 	}
 
 	onMount(() => {
