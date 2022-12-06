@@ -27,6 +27,8 @@
 	export let pen_color: Component["pen_color"];
 	export let options: Component["options"];
 
+	let pointerType: string;
+
 	const defaultOptions: Component["options"] = {
 		size: 6,
 		thinning: 0.7,
@@ -34,7 +36,7 @@
 		streamline: 0.5,
 	};
 
-	let cv: HTMLCanvasElement;
+	// let cv: HTMLCanvasElement;
 	let start_drawing_date: Date;
 
 	let stroke_id: string;
@@ -85,8 +87,6 @@
 		stroke = getStroke(points, options);
 		pathData = getSvgPathFromStroke(stroke);
 
-		drawLength = draw.length;
-		if (draw.length) console.log("drawLength", drawLength, draw.length, draw);
 		// json
 		if (typeof options === "string" && (options as string)?.length) {
 			try {
@@ -109,27 +109,13 @@
 		// if (!boolean) boolean = false;
 	}
 
-	function configureFreeHand() {
-		// const fHand=new FreeHand({
-		//   canvas: cv,
-		//   width: cv.width,
-		//   height: cv.height,
-		//   lineWidth: 2,
-		//   lineColor: pen_color,
-		//   lineCap: 'round',
-		//   lineJoin: 'round',
-		//   undo: 90,
-		//   throttle: 16,
-		//   smoothing: 0.2,
-		//   minDistance: 5,
-		//   useWacom: true
-		// 	}
-	}
-
 	let points: TPath = [];
 
-	function handlePointerDown(e: any) {
+	function handlePointerDown(e: PointerEvent) {
 		console.log("down");
+
+		pointerType = e.pointerType;
+
 		stroke_start = new Date();
 		stroke_id = Date.now().toString();
 		strokeMinX = e.pageX;
@@ -140,7 +126,7 @@
 			start_drawing_date = stroke_start;
 			dispatch("startStroke", { date: start_drawing_date });
 		}
-		e.target.setPointerCapture(e.pointerId);
+		(e.target as unknown as any).setPointerCapture(e.pointerId);
 		if (points?.length) {
 			console.info("pushing draw");
 			draw = [
@@ -161,7 +147,7 @@
 		points = [[e.pageX, e.pageY, e.pressure]];
 		dispatch("startStroke", { start: stroke_start, id: stroke_id });
 	}
-	function handlePointerMove(e: any) {
+	function handlePointerMove(e: PointerEvent) {
 		if (e.buttons !== 1) return;
 		points = [...points, [e.pageX, e.pageY, e.pressure]];
 
@@ -169,12 +155,11 @@
 		if (e.pageY < strokeMinY) strokeMinY = e.pageY;
 		if (e.pageX > strokeMaxX) strokeMaxX = e.pageX;
 		if (e.pageY > strokeMaxY) strokeMaxY = e.pageY;
-
-		console.log("move");
 	}
 
-	function handlePointerUp(e: any) {
+	function handlePointerUp(e: PointerEvent) {
 		const stroke_end = new Date();
+		(e.target as unknown as any).releasePointerCapture(e.pointerId);
 
 		dispatch("endStroke", {
 			end: stroke_end,
@@ -185,82 +170,30 @@
 			pathData: pathData,
 			color: pen_color,
 		});
-
-		// points = [];
 	}
-
-	// function configureSign() {
-	// 	if (background_color) cv.style.backgroundColor = background_color;
-	// 	if (signaturePad) {
-	// 		signaturePad.penColor = pen_color;
-	// 		// signaturePad.backgroundColor = background_color;
-	// 		return console.warn("signaturePad already configured");
-	// 	}
-
-	// 	const signOpts = {
-	// 		penColor: pen_color,
-	// 		// backgroundColor: background_color, // necessary for saving image as JPEG; can be removed is only saving as PNG or SVG
-	// 	};
-	// 	signaturePad = new SignaturePad(cv, signOpts);
-	// 	signaturePad.addEventListener("beginStroke", () => {
-	// 		stroke_start = new Date();
-	// 		stroke_id = Date.now() + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-	// 		if (!start_drawinpointsg_date) {
-	// 			start_drawing_date = stroke_start;
-	// 			stroke_id = Date.now().toString();
-	// 			dispatch("startStroke", { date: start_drawing_date });
-	// 		}
-	// 		dispatch("beginStroke", { stroke_start, stroke_id });
-	// 	});
-	// 	signaturePad.addEventListener("endStroke", () => {
-	// 		const stroke_end = new Date();
-	// 		dispatch("endStroke", { stroke_end, stroke_id, stroke_start });
-	// 		stroke_start = undefined;
-	// 		stroke_id = undefined;
-	// 	});
-	// 	signaturePad.addEventListener("beforeUpdateStroke", (e: any) => {
-	// 		console.log("beforeUpdateStroke", signaturePad.dotSize, e.detail.pressure);
-	// 		signaturePad.dotSize = e.detail.pressure;
-	// 	});
-	// 	signaturePad.addEventListener("afterUpdateStroke", (e: any) => {
-	// 		console.log("afterUpdateStroke", signaturePad.dotSize, e.detail.pressure);
-	// 		signaturePad.dotSize = e.detail.pressure;
-	// 	});
-	// }
 
 	onMount(() => {
-		// check if device has touchscreen, mouse or pen
-
-		cv = component.shadowRoot.querySelector("canvas");
-		let retryToMount = 0;
-		const interval = setInterval(() => {
-			cv = component.shadowRoot.querySelector("canvas");
-			if (cv) {
-				clearInterval(interval);
-				// configureSign();
-			} else {
-				retryToMount++;
-				if (retryToMount > 10) {
-					clearInterval(interval);
-					console.warn("no canvas found on check " + retryToMount);
-				} else {
-					console.error("no canvas found on check " + retryToMount + " end");
-				}
-			}
-		}, 100);
-		if (!cv) return console.error("no canvas found on mount");
+		// cv = component.shadowRoot.querySelector("canvas");
+		// let retryToMount = 0;
+		// const interval = setInterval(() => {
+		// 	cv = component.shadowRoot.querySelector("canvas");
+		// 	if (cv) {
+		// 		clearInterval(interval);
+		// 		// configureSign();
+		// 	} else {
+		// 		retryToMount++;
+		// 		if (retryToMount > 10) {
+		// 			clearInterval(interval);
+		// 			console.warn("no canvas found on check " + retryToMount);
+		// 		} else {
+		// 			console.error("no canvas found on check " + retryToMount + " end");
+		// 		}
+		// 	}
+		// }, 100);
+		// if (!cv) return console.error("no canvas found on mount");
 		// configureSign();
-
 		//  component.style.cssText = componentStyleToSet;
 	});
-
-	function dispatchDrawEvent() {
-		dispatch("draw", { type: "point" });
-	}
-
-	function handleMouseEvent(event: any) {
-		console.log(event);
-	}
 </script>
 
 <canvas id="stylus-canvas" part="stylus-canvas" />
