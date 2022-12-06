@@ -17,3 +17,9 @@ const Template: Story = (args) =>
 
 export const Main = Template.bind({})
 Main.args = setStorybookData(componentSetup.name, componentSetup.examples[0])
+
+export const WithPressure = Template.bind({})
+WithPressure.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[1],
+)

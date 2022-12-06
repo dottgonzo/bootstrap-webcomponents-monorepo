@@ -4,7 +4,7 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	background_color: { control: { type: "text" } },
 	pen_color: { control: { type: "text" } },
-	draw: { action: "drawEvent" },
+	options: { control: { type: "object" } },
 	startStroke: { action: "startStrokeEvent" },
 	beginStroke: { action: "beginStrokeEvent" },
 	endStroke: { action: "endStrokeEvent" },
@@ -26,6 +26,42 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		data: {
 			background_color: "rgb(200,200,200)",
 			pen_color: "rgb(100,100,100)",
+		},
+	},
+	{
+		name: "withPressure",
+		data: {
+			background_color: "rgb(200,200,200)",
+			pen_color: "rgb(100,100,100)",
+			options: {
+				simulatePressure: false,
+			},
+		},
+	},
+	{
+		name: "ThinBrush",
+		data: {
+			background_color: "rgb(200,200,200)",
+			pen_color: "rgb(100,100,100)",
+			options: {
+				size: 2,
+				thinning: 0.7,
+				smoothing: 0.5,
+				streamline: 0.5,
+			},
+		},
+	},
+	{
+		name: "BigBrush",
+		data: {
+			background_color: "rgb(200,200,200)",
+			pen_color: "rgb(100,100,100)",
+			options: {
+				size: 16,
+				thinning: 0.7,
+				smoothing: 0.5,
+				streamline: 0.5,
+			},
 		},
 	},
 ];

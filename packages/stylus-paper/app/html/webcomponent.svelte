@@ -25,6 +25,14 @@
 
 	export let background_color: Component["background_color"];
 	export let pen_color: Component["pen_color"];
+	export let options: Component["options"];
+
+	const defaultOptions: Component["options"] = {
+		size: 6,
+		thinning: 0.7,
+		smoothing: 0.5,
+		streamline: 0.5,
+	};
 
 	let cv: HTMLCanvasElement;
 	let start_drawing_date: Date;
@@ -74,27 +82,27 @@
 		if (!draw) draw = [];
 		// if (cv) configureSign();
 
-		const options = {
-			size: 6,
-			thinning: 0.7,
-			smoothing: 0.5,
-			streamline: 0.5,
-			simulatePressure: false,
-		};
-
 		stroke = getStroke(points, options);
 		pathData = getSvgPathFromStroke(stroke);
 
 		drawLength = draw.length;
 		if (draw.length) console.log("drawLength", drawLength, draw.length, draw);
 		// json
-		// if (typeof json === "string") {
-		// 	try {
-		// 		json = JSON.parse(json);
-		// 	} catch (err) {
-		// 		console.error("error parsing json", err);
-		// 	}
-		// }
+		if (typeof options === "string" && (options as string)?.length) {
+			try {
+				options = JSON.parse(options);
+			} catch (err) {
+				console.error("error parsing json", err);
+			}
+		} else if (!options) {
+			options = defaultOptions;
+		}
+
+		if (!options.size) options.size = defaultOptions.size;
+		if (!options.thinning) options.thinning = defaultOptions.thinning;
+		if (!options.smoothing) options.smoothing = defaultOptions.smoothing;
+		if (!options.streamline) options.streamline = defaultOptions.streamline;
+
 		// // boolean
 		// if (boolean === ("" as unknown)) boolean = true;
 		// if (typeof boolean === "string") boolean = boolean === "no" || boolean === "false" ? false : true;
@@ -116,24 +124,6 @@
 		//   minDistance: 5,
 		//   useWacom: true
 		// 	}
-
-		const options = {
-			size: 32,
-			thinning: 0.5,
-			smoothing: 0.5,
-			streamline: 0.5,
-			easing: (t) => t,
-			start: {
-				taper: 0,
-				easing: (t) => t,
-				cap: true,
-			},
-			end: {
-				taper: 100,
-				easing: (t) => t,
-				cap: true,
-			},
-		};
 	}
 
 	let points: TPath = [];
@@ -169,7 +159,7 @@
 		}
 
 		points = [[e.pageX, e.pageY, e.pressure]];
-		dispatch("startStroke", { start: stroke_start, min: [strokeMinX, strokeMinY], max: [strokeMaxX, strokeMaxY], id: stroke_id });
+		dispatch("startStroke", { start: stroke_start, id: stroke_id });
 	}
 	function handlePointerMove(e: any) {
 		if (e.buttons !== 1) return;
@@ -186,7 +176,15 @@
 	function handlePointerUp(e: any) {
 		const stroke_end = new Date();
 
-		dispatch("endStroke", { end: stroke_end, id: stroke_id, start: stroke_start, min: [strokeMinX, strokeMinY], max: [strokeMaxX, strokeMaxY] });
+		dispatch("endStroke", {
+			end: stroke_end,
+			id: stroke_id,
+			start: stroke_start,
+			min: [strokeMinX, strokeMinY],
+			max: [strokeMaxX, strokeMaxY],
+			pathData: pathData,
+			color: pen_color,
+		});
 
 		// points = [];
 	}
