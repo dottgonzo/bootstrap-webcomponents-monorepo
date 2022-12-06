@@ -41,11 +41,12 @@ export type Component = {
 	background_color?: string;
 	pen_color?: string;
 	options?: Partial<TPerfectFreeHandOptions>;
+	index?: number;
 };
 
 export type Events = {
 	draw: EventDraw;
 	beginStroke: { date: Date };
 	startStroke: { id: string; start: Date };
-	endStroke: { id: string; start: Date; end: Date; min: [number, number]; max: [number, number]; pathData: string; pen_color: string };
+	endStroke: { id: string; start: Date; end: Date; min: [number, number]; max: [number, number]; pathData: string; pen_color: string; index: number };
 };
