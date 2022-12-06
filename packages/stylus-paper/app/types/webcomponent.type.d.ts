@@ -6,15 +6,15 @@ export type TPerfectFreeHandOptions = {
 	thinning?: number;
 	smoothing?: number;
 	streamline?: number;
-	easing?: (t) => any;
+	easing?: any;
 	start?: {
 		taper: number;
-		easing: (t) => any;
+		easing: any;
 		cap: boolean;
 	};
 	end?: {
 		taper: number;
-		easing: (t) => any;
+		easing: any;
 		cap: boolean;
 	};
 	simulatePressure?: boolean;

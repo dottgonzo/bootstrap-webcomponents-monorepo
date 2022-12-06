@@ -229,6 +229,8 @@
 	// }
 
 	onMount(() => {
+		// check if device has touchscreen, mouse or pen
+
 		cv = component.shadowRoot.querySelector("canvas");
 		let retryToMount = 0;
 		const interval = setInterval(() => {
