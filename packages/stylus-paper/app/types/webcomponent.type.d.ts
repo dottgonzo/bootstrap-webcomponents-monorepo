@@ -22,6 +22,8 @@ export type TPerfectFreeHandOptions = {
 
 export type TPath = [number, number, number][];
 export type IStroke = {
+	index: number;
+	visible: boolean;
 	color: string;
 	path: TPath;
 	id: string;

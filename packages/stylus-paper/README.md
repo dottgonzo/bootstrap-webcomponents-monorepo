@@ -1,1 +1,3 @@
-# skeleton web component
+# styus paper
+
+## inspired by perfect-freehand

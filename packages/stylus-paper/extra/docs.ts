@@ -23,23 +23,18 @@ export const styleSetup: StyleSetup = {
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
-		data: {
-			background_color: "rgb(200,200,200)",
-			pen_color: "rgb(100,100,100)",
-		},
+		data: {},
 	},
 	{
 		name: "withPressure",
 		data: {
-			background_color: "rgb(200,200,200)",
-			pen_color: "rgb(100,100,100)",
 			options: {
 				simulatePressure: false,
 			},
 		},
 	},
 	{
-		name: "ThinBrush",
+		name: "ThinBrushOnBackground",
 		data: {
 			background_color: "rgb(200,200,200)",
 			pen_color: "rgb(100,100,100)",
@@ -52,9 +47,8 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		},
 	},
 	{
-		name: "BigBrush",
+		name: "BigBrushColor",
 		data: {
-			background_color: "rgb(200,200,200)",
 			pen_color: "rgb(100,100,100)",
 			options: {
 				size: 16,
@@ -79,8 +73,8 @@ export const componentSetup: ComponentSetup & { examples: { name: string; descri
 	licenses: [{ type: "Apache-2.0", path: "LICENSE.md", cost: 0, currency: "EUR" }],
 	readmePath: "README.md",
 	name: "hb-stylus-paper",
-	category: "dev",
-	tags: ["dev"],
+	category: "input",
+	tags: ["draw", "input", "stylus", "paper"],
 	size: { layout: "fullscreen" },
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-stylus-paper",
