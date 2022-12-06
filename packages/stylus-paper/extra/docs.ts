@@ -45,7 +45,7 @@ export const componentSetup: ComponentSetup & { examples: { name: string; descri
 	name: "hb-stylus-paper",
 	category: "dev",
 	tags: ["dev"],
-	size: {},
+	size: { layout: "fullscreen" },
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-stylus-paper",
 	version: null as any,
