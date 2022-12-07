@@ -95,7 +95,7 @@
 	}
 
 	let draw: TDraw;
-
+	let hide = false;
 	$: {
 		if (!id) id = "";
 		if (style) {
@@ -110,7 +110,12 @@
 
 		if (!index) index = 0;
 
-		if (index < 0) index = 0;
+		if (index < 0) {
+			index = 0;
+			hide = true;
+		} else if (index >= 0) {
+			hide = false;
+		}
 
 		if (!background_color) background_color = "rgb(255,255,255)";
 		if (!pen_color) pen_color = "rgb(0,0,0)";
@@ -250,7 +255,7 @@
 <svg on:pointerdown={handlePointerDown} on:pointermove={handlePointerMove} on:pointerup={handlePointerUp} style="background-color:{background_color}">
 	<!-- {#if draw?.length} -->
 	{#each draw as stroke (stroke.id)}
-		{#if stroke.index <= index}
+		{#if stroke.index <= index && !hide}
 			<g id={stroke.id}><path d={stroke.pathData} fill={stroke.color} /></g>
 		{/if}
 	{/each}
