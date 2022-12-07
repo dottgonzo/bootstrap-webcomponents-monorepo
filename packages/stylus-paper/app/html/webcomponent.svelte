@@ -27,6 +27,17 @@
 
 	export let index: number;
 
+	export const next = () => {
+		if (index < draw.length - 1) {
+			index++;
+		}
+	};
+
+	export const previous = () => {
+		if (index > 0) {
+			index--;
+		}
+	};
 	// export let next: () => void;
 	// export let previous: () => void;
 
