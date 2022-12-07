@@ -143,8 +143,14 @@
 
 	function handlePointerDown(e: PointerEvent) {
 		if (draw?.length && index < draw.length) {
-			draw = draw.slice(0, index + 1);
-			index++;
+			if (!hide) {
+				index++;
+				draw = draw.slice(0, index + 1);
+			} else {
+				draw = [];
+
+				hide = false;
+			}
 		}
 
 		// wip on auto detect pointer type
