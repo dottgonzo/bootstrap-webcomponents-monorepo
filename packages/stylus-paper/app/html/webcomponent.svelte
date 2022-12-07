@@ -25,7 +25,9 @@
 	export let pen_color: Component["pen_color"];
 	export let options: Component["options"];
 
-	export let index: number;
+	export let index: Component["index"];
+
+	export let eraser: Component["eraser"];
 
 	export const next = () => {
 		if (index < draw.length - 1) {
@@ -42,6 +44,8 @@
 	// export let previous: () => void;
 
 	let pointerType: string;
+
+	const historyActions: { action: "draw" | "erase"; index: number }[] = [];
 
 	const defaultOptions: Component["options"] = {
 		size: 6,
@@ -102,6 +106,10 @@
 			parsedStyle = parseStyle(style);
 			// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
 		}
+		// boolean eraser
+		if (eraser === ("" as unknown)) eraser = true;
+		if (typeof eraser === "string") eraser = eraser === "no" || eraser === "false" ? false : true;
+		if (!eraser) eraser = false;
 		if (!draw) {
 			draw = [];
 		}
@@ -141,96 +149,136 @@
 		if (!options.streamline) options.streamline = defaultOptions.streamline;
 	}
 
-	function handlePointerDown(e: PointerEvent) {
-		if (draw?.length && index < draw.length) {
-			if (!format) {
-				index++;
-				draw = draw.slice(0, index + 1);
-			} else {
-				draw = [];
-				format = false;
+	function eraseHere(e: PointerEvent) {
+		if (eraser) {
+			const pathId = (e.target as unknown as any)?.id?.split("_")?.[1];
+			console.info("erase here", e.pageX, e.pageY, e.target, pathId);
+			if (pathId) {
+				const oldDraw = [...draw];
+
+				const stroke = oldDraw.find((s) => s.id === pathId);
+				if (stroke) {
+					stroke.visible = false;
+					console.info("erase stroke", stroke.id);
+					draw = [...oldDraw];
+
+					// with multiple!?
+					historyActions.push({ action: "erase", index: index });
+				}
 			}
 		}
+	}
 
-		// wip on auto detect pointer type
-		pointerType = e.pointerType;
+	function handlePointerDown(e: PointerEvent) {
+		if (!eraser) {
+			if (draw?.length && index < draw.length) {
+				if (!format) {
+					index++;
+					draw = draw.slice(0, index + 1);
+				} else {
+					draw = [];
+					format = false;
+				}
+			}
 
-		stroke_start = new Date();
-		stroke_id = Date.now().toString();
-		strokeMinX = e.pageX;
-		strokeMinY = e.pageY;
-		strokeMaxX = e.pageX;
-		strokeMaxY = e.pageY;
+			// wip on auto detect pointer type
+			pointerType = e.pointerType;
 
-		if (!start_drawing_date) {
-			start_drawing_date = stroke_start;
-			dispatch("startStroke", { date: start_drawing_date });
-		}
-		(e.target as unknown as any).setPointerCapture(e.pointerId);
+			stroke_start = new Date();
+			stroke_id = Date.now().toString();
+			strokeMinX = e.pageX;
+			strokeMinY = e.pageY;
+			strokeMaxX = e.pageX;
+			strokeMaxY = e.pageY;
 
-		if (draw?.length) {
-			console.info("pushing draw");
+			if (!start_drawing_date) {
+				start_drawing_date = stroke_start;
+				dispatch("startStroke", { date: start_drawing_date });
+			}
+			(e.target as unknown as any).setPointerCapture(e.pointerId);
 
-			draw = [
-				...draw,
-				{
-					path: [[e.pageX, e.pageY, e.pressure]],
-					color: pen_color,
-					id: stroke_id,
-					start: stroke_start,
-					end: stroke_start,
-					pathData: pathData,
-					min: [strokeMinX, strokeMinY],
-					max: [strokeMaxX, strokeMaxY],
-					visible: true,
-					index: index,
-				},
-			];
+			if (draw?.length) {
+				console.info("pushing draw");
+
+				draw = [
+					...draw,
+					{
+						path: [[e.pageX, e.pageY, e.pressure]],
+						color: pen_color,
+						id: stroke_id,
+						start: stroke_start,
+						end: stroke_start,
+						pathData: pathData,
+						min: [strokeMinX, strokeMinY],
+						max: [strokeMaxX, strokeMaxY],
+						visible: true,
+						index: index,
+					},
+				];
+			} else {
+				draw = [
+					{
+						path: [[e.pageX, e.pageY, e.pressure]],
+						color: pen_color,
+						id: stroke_id,
+						start: stroke_start,
+						end: stroke_start,
+						pathData: pathData,
+						min: [strokeMinX, strokeMinY],
+						max: [strokeMaxX, strokeMaxY],
+						visible: true,
+						index: index,
+					},
+				];
+			}
+
+			dispatch("startStroke", { start: stroke_start, id: stroke_id, index: index });
 		} else {
-			draw = [
-				{
-					path: [[e.pageX, e.pageY, e.pressure]],
-					color: pen_color,
-					id: stroke_id,
-					start: stroke_start,
-					end: stroke_start,
-					pathData: pathData,
-					min: [strokeMinX, strokeMinY],
-					max: [strokeMaxX, strokeMaxY],
-					visible: true,
-					index: index,
-				},
-			];
+			// eraser
+			console.log("eraser down");
+			eraseHere(e);
+			historyActions.push({ action: "draw", index: index });
 		}
-
-		dispatch("startStroke", { start: stroke_start, id: stroke_id, index: index });
 	}
 	function handlePointerMove(e: PointerEvent) {
 		if (e.buttons !== 1) return;
-		draw[index].path = [...draw[index].path, [e.pageX, e.pageY, e.pressure]];
-		draw[index].pathData = pathData;
+		if (!eraser) {
+			draw[index].path = [...draw[index].path, [e.pageX, e.pageY, e.pressure]];
+			draw[index].pathData = pathData;
 
-		if (e.pageX < strokeMinX) strokeMinX = e.pageX;
-		if (e.pageY < strokeMinY) strokeMinY = e.pageY;
-		if (e.pageX > strokeMaxX) strokeMaxX = e.pageX;
-		if (e.pageY > strokeMaxY) strokeMaxY = e.pageY;
+			if (e.pageX < strokeMinX) strokeMinX = e.pageX;
+			if (e.pageY < strokeMinY) strokeMinY = e.pageY;
+			if (e.pageX > strokeMaxX) strokeMaxX = e.pageX;
+			if (e.pageY > strokeMaxY) strokeMaxY = e.pageY;
+		} else {
+			// eraser
+			console.log("eraser move");
+			eraseHere(e);
+		}
 	}
 
 	function handlePointerUp(e: PointerEvent) {
-		const stroke_end = new Date();
-		(e.target as unknown as any).releasePointerCapture(e.pointerId);
+		if (!eraser) {
+			const stroke_end = new Date();
+			(e.target as unknown as any).releasePointerCapture(e.pointerId);
 
-		dispatch("endStroke", {
-			end: stroke_end,
-			id: stroke_id,
-			start: stroke_start,
-			min: [strokeMinX, strokeMinY],
-			max: [strokeMaxX, strokeMaxY],
-			pathData: pathData,
-			color: pen_color,
-			index: index,
-		});
-		index++;
+			dispatch("endStroke", {
+				end: stroke_end,
+				id: stroke_id,
+				start: stroke_start,
+				min: [strokeMinX, strokeMinY],
+				max: [strokeMaxX, strokeMaxY],
+				pathData: pathData,
+				color: pen_color,
+				index: index,
+			});
+			historyActions.push({ action: "draw", index: index });
+			index++;
+		} else {
+			// eraser
+			console.log("eraser up");
+			eraseHere(e);
+		}
 	}
 
 	// onMount(() => {
@@ -260,8 +308,8 @@
 <svg on:pointerdown={handlePointerDown} on:pointermove={handlePointerMove} on:pointerup={handlePointerUp} style="background-color:{background_color}">
 	<!-- {#if draw?.length} -->
 	{#each draw as stroke (stroke.id)}
-		{#if stroke.index <= index && !format}
-			<g id={stroke.id}><path d={stroke.pathData} fill={stroke.color} /></g>
+		{#if stroke.index <= index && !format && stroke.visible}
+			<g id={"g_" + stroke.id}><path id={"path_" + stroke.id} d={stroke.pathData} fill={stroke.color} /></g>
 		{/if}
 	{/each}
 

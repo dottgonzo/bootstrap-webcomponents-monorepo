@@ -42,6 +42,7 @@ export type Component = {
 	pen_color?: string;
 	options?: Partial<TPerfectFreeHandOptions>;
 	index?: number;
+	eraser?: boolean;
 };
 
 export type Events = {

@@ -6,6 +6,7 @@ export const storybookArgs = {
 	pen_color: { control: { type: "text" } },
 	options: { control: { type: "object" } },
 	index: { control: { type: "number" } },
+	eraser: { control: { type: "boolean" } },
 	startStroke: { action: "startStrokeEvent" },
 	beginStroke: { action: "beginStrokeEvent" },
 	endStroke: { action: "endStrokeEvent" },
