@@ -148,7 +148,6 @@
 				draw = draw.slice(0, index + 1);
 			} else {
 				draw = [];
-
 				hide = false;
 			}
 		}
