@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-input-datetime",
 	"displayName": "Svelte-Bootstrap Date Input WebComponent",
 	"description": "Svelte-Bootstrap Date Input WebComponent",
-	"version": "0.16.32",
+	"version": "0.16.33",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.16.32",
+		"@htmlbricks/hb-jsutils": "^0.16.33",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
@@ -77,7 +77,7 @@
 	"contributors": [],
 	"gitHead": "c7e05d1adf5c5814c656a70cc498c3d8b4bcca3a",
 	"dependencies": {
-		"@htmlbricks/hb-input-date": "^0.16.32",
-		"@htmlbricks/hb-input-number": "^0.16.32"
+		"@htmlbricks/hb-input-date": "^0.16.33",
+		"@htmlbricks/hb-input-number": "^0.16.33"
 	}
 }
