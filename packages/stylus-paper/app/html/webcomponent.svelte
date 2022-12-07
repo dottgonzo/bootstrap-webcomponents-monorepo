@@ -115,7 +115,6 @@
 		if (!background_color) background_color = "rgb(255,255,255)";
 		if (!pen_color) pen_color = "rgb(0,0,0)";
 		// if (cv) configureSign();
-		console.log("iii", index, draw?.length ? draw.length - 1 : 0);
 
 		stroke = getStroke(draw[index]?.path || [], Object.assign({ simulatePressure: pointerType === "pen" ? false : true }, options));
 		pathData = getSvgPathFromStroke(stroke);
