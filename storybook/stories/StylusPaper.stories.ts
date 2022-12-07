@@ -24,14 +24,20 @@ WithPressure.args = setStorybookData(
   componentSetup.examples[1],
 )
 
+export const WithSimulatePressure = Template.bind({})
+WithSimulatePressure.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[2],
+)
+
 export const WithThinBrush = Template.bind({})
 WithThinBrush.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples[2],
+  componentSetup.examples[3],
 )
 
 export const WithBigBrush = Template.bind({})
 WithBigBrush.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples[3],
+  componentSetup.examples[4],
 )

@@ -117,7 +117,7 @@
 		// if (cv) configureSign();
 		console.log("iii", index, draw?.length ? draw.length - 1 : 0);
 
-		stroke = getStroke(draw[index]?.path || [], options);
+		stroke = getStroke(draw[index]?.path || [], Object.assign({ simulatePressure: pointerType === "pen" ? false : true }, options));
 		pathData = getSvgPathFromStroke(stroke);
 
 		// json

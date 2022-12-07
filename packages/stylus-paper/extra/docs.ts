@@ -35,6 +35,14 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		},
 	},
 	{
+		name: "withSimulatePressure",
+		data: {
+			options: {
+				simulatePressure: true,
+			},
+		},
+	},
+	{
 		name: "ThinBrushOnBackground",
 		data: {
 			background_color: "rgb(200,200,200)",
