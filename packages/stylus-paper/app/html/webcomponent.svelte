@@ -95,7 +95,7 @@
 	}
 
 	let draw: TDraw;
-	let cancel = false;
+	let format = false;
 	$: {
 		if (!id) id = "";
 		if (style) {
@@ -112,9 +112,9 @@
 
 		if (index < 0) {
 			index = 0;
-			cancel = true;
+			format = true;
 		} else if (index >= 0) {
-			cancel = false;
+			format = false;
 		}
 
 		if (!background_color) background_color = "rgb(255,255,255)";
@@ -143,12 +143,12 @@
 
 	function handlePointerDown(e: PointerEvent) {
 		if (draw?.length && index < draw.length) {
-			if (!cancel) {
+			if (!format) {
 				index++;
 				draw = draw.slice(0, index + 1);
 			} else {
 				draw = [];
-				cancel = false;
+				format = false;
 			}
 		}
 
@@ -260,7 +260,7 @@
 <svg on:pointerdown={handlePointerDown} on:pointermove={handlePointerMove} on:pointerup={handlePointerUp} style="background-color:{background_color}">
 	<!-- {#if draw?.length} -->
 	{#each draw as stroke (stroke.id)}
-		{#if stroke.index <= index && !cancel}
+		{#if stroke.index <= index && !format}
 			<g id={stroke.id}><path d={stroke.pathData} fill={stroke.color} /></g>
 		{/if}
 	{/each}
