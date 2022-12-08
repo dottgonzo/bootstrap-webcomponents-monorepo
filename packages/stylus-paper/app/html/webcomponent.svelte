@@ -159,11 +159,14 @@
 				const stroke = oldDraw.find((s) => s.id === pathId);
 				if (stroke) {
 					stroke.visible = false;
+					stroke.erasedAtIndex = index;
 					console.info("erase stroke", stroke.id);
 					draw = [...oldDraw];
 
 					// with multiple!?
-					historyActions.push({ action: "erase", index: index });
+					if (historyActions[historyActions.length - 1]?.action !== "erase" || historyActions[historyActions.length - 1]?.index !== index) {
+						historyActions.push({ action: "erase", index: index });
+					}
 				}
 			}
 		}

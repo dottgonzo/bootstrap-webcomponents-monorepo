@@ -32,6 +32,7 @@ export type IStroke = {
 	pathData: string;
 	min: [number, number];
 	max: [number, number];
+	erasedAtIndex?: number;
 };
 export type TDraw = IStroke[];
 
