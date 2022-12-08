@@ -123,12 +123,12 @@
 		if (!index) {
 			index = 0;
 		}
-		if (goto && goto < 0) {
+		if ((goto && goto < 0) || goto === 0) {
 			index = -1;
 			// goto = null;
 		} else if (goto || goto === 0) {
-			if (goto > historyActions.length - 1) goto = historyActions.length - 1;
-			index = historyActions[goto].index;
+			if (goto > historyActions.length) goto = historyActions.length;
+			index = historyActions[goto - 1]?.index || 0;
 			console.log("set index to", index, "from goto", goto, "historyActions", historyActions);
 			// const oldDraw = [...draw];
 			// // const newDraw = oldDraw.slice(0, index + 1);
@@ -170,6 +170,7 @@
 		if (!options.thinning) options.thinning = defaultOptions.thinning;
 		if (!options.smoothing) options.smoothing = defaultOptions.smoothing;
 		if (!options.streamline) options.streamline = defaultOptions.streamline;
+		console.table([{ l: historyActions.length, index, goto }]);
 	}
 
 	function eraseHere(e: PointerEvent) {
@@ -197,6 +198,9 @@
 
 	function handlePointerDown(e: PointerEvent) {
 		if (mode === "draw") {
+			if (historyActions.length && goto) {
+				historyActions = historyActions.slice(0, historyActions.findIndex((f) => f.index === goto && f.action === "draw") + 1);
+			}
 			if (draw?.length && index < draw.length) {
 				if (!format) {
 					index++;
@@ -207,10 +211,7 @@
 				}
 			}
 
-			if (historyActions.length && goto) {
-				historyActions = historyActions.slice(0, goto + 1);
-				goto = null;
-			}
+			goto = null;
 
 			// wip on auto detect pointer type
 			pointerType = e.pointerType;
@@ -270,7 +271,6 @@
 			// eraser
 			console.log("eraser down");
 			eraseHere(e);
-			historyActions.push({ action: "draw", index: index });
 		}
 	}
 	function handlePointerMove(e: PointerEvent) {
@@ -341,7 +341,7 @@
 <svg on:pointerdown={handlePointerDown} on:pointermove={handlePointerMove} on:pointerup={handlePointerUp} style="background-color:{background_color}">
 	<!-- {#if draw?.length} -->
 	{#each draw as stroke (stroke.id)}
-		{#if stroke.lineIndex <= index && !format && (stroke.visible || (goto && stroke.erasedAtIndex > goto))}
+		{#if stroke.lineIndex <= index && !format && (stroke.visible || stroke.erasedAtIndex > index)}
 			<g id={"g_" + stroke.id}><path id={"path_" + stroke.id} d={stroke.pathData} fill={stroke.color} /></g>
 		{/if}
 	{/each}
