@@ -34,6 +34,7 @@ export type IStroke = {
 	min: [number, number];
 	max: [number, number];
 	erasedAtIndex?: number;
+	opacity: number;
 };
 export type TDraw = IStroke[];
 
@@ -42,6 +43,7 @@ export type Component = {
 	style?: string;
 	background_color?: string;
 	pen_color?: string;
+	pen_opacity?: number;
 	options?: Partial<TPerfectFreeHandOptions>;
 	goto?: number;
 	mode: "eraser" | "draw";

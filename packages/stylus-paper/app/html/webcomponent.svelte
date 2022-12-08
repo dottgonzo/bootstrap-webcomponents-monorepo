@@ -23,6 +23,9 @@
 
 	export let background_color: Component["background_color"];
 	export let pen_color: Component["pen_color"];
+
+	export let pen_opacity: Component["pen_opacity"];
+
 	export let options: Component["options"];
 
 	export let goto: Component["goto"];
@@ -114,7 +117,10 @@
 		if (!draw) {
 			draw = [];
 		}
+		if (typeof pen_opacity === "string") pen_opacity = Number(pen_opacity);
+		if (!pen_opacity) pen_opacity = 1;
 		if (typeof goto === "string") goto = Number(goto);
+
 		if (!draw.length) {
 			index = 0;
 			goto = null;
@@ -246,6 +252,7 @@
 						visible: true,
 						lineIndex: index,
 						actionIndex: historyActions.length,
+						opacity: pen_opacity,
 					},
 				];
 			} else {
@@ -262,6 +269,7 @@
 						visible: true,
 						lineIndex: index,
 						actionIndex: historyActions.length,
+						opacity: pen_opacity,
 					},
 				];
 			}
@@ -340,16 +348,18 @@
 
 <svg on:pointerdown={handlePointerDown} on:pointermove={handlePointerMove} on:pointerup={handlePointerUp} style="background-color:{background_color}">
 	<!-- {#if draw?.length} -->
-	{#each draw as stroke (stroke.id)}
-		{#if stroke.lineIndex <= index && !format && (stroke.visible || stroke.erasedAtIndex > index)}
-			<g id={"g_" + stroke.id}><path id={"path_" + stroke.id} d={stroke.pathData} fill={stroke.color} /></g>
-		{/if}
-	{/each}
+	<g>
+		{#each draw as stroke (stroke.id)}
+			{#if stroke.lineIndex <= index && !format && (stroke.visible || stroke.erasedAtIndex > index)}
+				<path id={"path_" + stroke.id} d={stroke.pathData} fill={stroke.color} fill-opacity={stroke.opacity} />
+			{/if}
+		{/each}
 
-	<!-- {/if} -->
-	<!-- {#if points?.length}
+		<!-- {/if} -->
+		<!-- {#if points?.length}
 		<g id="foreground"><path d={pathData} fill={pen_color} /></g>
 	{/if} -->
+	</g>
 </svg>
 
 <style lang="scss">

@@ -4,6 +4,7 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	background_color: { control: { type: "text" } },
 	pen_color: { control: { type: "text" } },
+	pen_opacity: { control: { type: "range", min: 0, max: 1, step: 0.1 } },
 	options: { control: { type: "object" } },
 	goto: { control: { type: "number" } },
 	mode: {
