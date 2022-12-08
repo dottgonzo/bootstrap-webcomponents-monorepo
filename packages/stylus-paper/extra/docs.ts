@@ -5,8 +5,11 @@ export const storybookArgs = {
 	background_color: { control: { type: "text" } },
 	pen_color: { control: { type: "text" } },
 	options: { control: { type: "object" } },
-	index: { control: { type: "number" } },
-	eraser: { control: { type: "boolean" } },
+	goto: { control: { type: "number" } },
+	mode: {
+		options: ["eraser", "draw"],
+		control: { type: "radio" }, // Automatically inferred when 'options' is defined
+	},
 	startStroke: { action: "startStrokeEvent" },
 	beginStroke: { action: "beginStrokeEvent" },
 	endStroke: { action: "endStrokeEvent" },
@@ -25,7 +28,9 @@ export const styleSetup: StyleSetup = {
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
-		data: {},
+		data: {
+			mode: "draw",
+		},
 	},
 	{
 		name: "withPressure",
@@ -33,6 +38,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			options: {
 				simulatePressure: false,
 			},
+			mode: "draw",
 		},
 	},
 	{
@@ -41,6 +47,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			options: {
 				simulatePressure: true,
 			},
+			mode: "draw",
 		},
 	},
 	{
@@ -54,6 +61,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				smoothing: 0.5,
 				streamline: 0.5,
 			},
+			mode: "draw",
 		},
 	},
 	{
@@ -66,6 +74,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				smoothing: 0.5,
 				streamline: 0.5,
 			},
+			mode: "draw",
 		},
 	},
 ];

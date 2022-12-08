@@ -22,7 +22,8 @@ export type TPerfectFreeHandOptions = {
 
 export type TPath = [number, number, number][];
 export type IStroke = {
-	index: number;
+	lineIndex: number;
+	actionIndex: number;
 	visible: boolean;
 	color: string;
 	path: TPath;
@@ -42,8 +43,8 @@ export type Component = {
 	background_color?: string;
 	pen_color?: string;
 	options?: Partial<TPerfectFreeHandOptions>;
-	index?: number;
-	eraser?: boolean;
+	goto?: number;
+	mode: "eraser" | "draw";
 };
 
 export type Events = {
