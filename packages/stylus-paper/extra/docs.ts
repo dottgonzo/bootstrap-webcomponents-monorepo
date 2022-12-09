@@ -12,12 +12,13 @@ export const storybookArgs = {
 	options: { control: { type: "object" } },
 	goto: { control: { type: "number" } },
 	mode: {
-		options: ["eraser", "draw"],
+		options: ["eraser", "draw", "select"],
 		control: { type: "radio" }, // Automatically inferred when 'options' is defined
 	},
 	startStroke: { action: "startStrokeEvent" },
 	beginStroke: { action: "beginStrokeEvent" },
 	endStroke: { action: "endStrokeEvent" },
+	selection: { action: "selectionEvent" },
 };
 
 const cssVars: CssVar[] = [];

@@ -35,6 +35,7 @@ export type IStroke = {
 	max: [number, number];
 	erasedAtIndex?: number;
 	opacity: number;
+	selected?: boolean;
 };
 export type TDraw = IStroke[];
 
@@ -46,7 +47,7 @@ export type Component = {
 	pen_opacity?: number;
 	options?: Partial<TPerfectFreeHandOptions>;
 	goto?: number;
-	mode: "eraser" | "draw";
+	mode: "eraser" | "draw" | "select";
 	debug?: "yes" | "no";
 };
 
@@ -55,4 +56,11 @@ export type Events = {
 	beginStroke: { date: Date };
 	startStroke: { id: string; start: Date };
 	endStroke: { id: string; start: Date; end: Date; min: [number, number]; max: [number, number]; pathData: string; pen_color: string; index: number };
+	selection: {
+		minX: number;
+		minY: number;
+		maxX: number;
+		maxY: number;
+		strokes: IStroke[];
+	};
 };

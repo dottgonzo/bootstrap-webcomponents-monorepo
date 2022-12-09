@@ -74,6 +74,13 @@
 	let strokeMaxX = 0;
 	let strokeMaxY = 0;
 
+	let selectMinX = 0;
+	let selectMinY = 0;
+	let selectMaxX = 0;
+	let selectMaxY = 0;
+
+	let isSelecting = false;
+
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
 
@@ -108,19 +115,28 @@
 
 	let draw: TDraw;
 	let format = false;
-	let isDrawing = false;
+	let pencilStatus: "drawing" | "erasing" | "selecting" | "idle" = "idle";
+	let thereIsSelectedStrokes = false;
 	$: {
 		if (!id) id = "";
 		if (style) {
 			parsedStyle = parseStyle(style);
 			// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
 		}
-		// mode
-		if (!mode) mode = "draw";
-
 		if (!draw) {
 			draw = [];
 		}
+		// mode
+		if (!mode) mode = "draw";
+		if (mode !== "select" && thereIsSelectedStrokes) {
+			thereIsSelectedStrokes = false;
+			const oldDraw = [...draw];
+			oldDraw.forEach((stroke) => {
+				stroke.selected = false;
+			});
+			draw = [...oldDraw];
+		}
+
 		if (debug !== "yes") debug = "no";
 		if (typeof pen_opacity === "string") pen_opacity = Number(pen_opacity);
 		if (!pen_opacity) pen_opacity = 1;
@@ -212,7 +228,7 @@
 		mouseButton = e.buttons;
 
 		if (mode === "draw" && e.buttons === 1 && !(e.pointerType === "pen" && e.pressure === 0)) {
-			isDrawing = true;
+			pencilStatus = "drawing";
 			if (historyActions.length && goto) {
 				historyActions = historyActions.slice(0, historyActions.findIndex((f) => f.index === goto && f.action === "draw") + 1);
 			}
@@ -283,17 +299,26 @@
 			dispatch("startStroke", { start: stroke_start, id: stroke_id, index: index });
 		} else if (mode === "eraser" || (mode === "draw" && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32))) {
 			(e.target as unknown as any).setPointerCapture(e.pointerId);
+			pencilStatus = "erasing";
 
 			// eraser
 			console.log("eraser down");
 			eraseHere(e);
+		} else if (mode === "select") {
+			selectMinX = e.pageX;
+			selectMinY = e.pageY;
+
+			selectMaxX = e.pageX;
+			selectMaxY = e.pageY;
+
+			pencilStatus = "selecting";
 		}
 	}
 	function handlePointerMove(e: PointerEvent) {
 		pointerType = e.pointerType;
 		mouseButton = e.buttons + " " + [e.pageX, e.pageY, e.pressure].toString();
 
-		if (mode === "draw" && isDrawing && e.buttons === 1 && !(e.pointerType === "pen" && e.pressure === 0)) {
+		if (mode === "draw" && pencilStatus === "drawing" && e.buttons === 1 && !(e.pointerType === "pen" && e.pressure === 0)) {
 			draw[index].path = [...draw[index].path, [e.pageX, e.pageY, e.pressure]];
 			draw[index].pathData = pathData;
 
@@ -303,18 +328,23 @@
 			if (e.pageY > strokeMaxY) strokeMaxY = e.pageY;
 		} else if (
 			mode === "eraser" ||
-			(mode === "draw" && !isDrawing && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32))
+			(mode === "draw" && pencilStatus !== "drawing" && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32))
 		) {
 			// eraser
 			console.log("eraser move");
 			eraseHere(e);
+		} else if (mode === "select" && pencilStatus === "selecting") {
+			selectMaxX = e.pageX;
+			selectMaxY = e.pageY;
+
+			// console.log("selecting", selectMinX, selectMinY, selectMaxX, selectMaxY
 		}
 	}
 
 	function handlePointerUp(e: PointerEvent) {
 		mouseButton = e.buttons;
 
-		if (mode === "draw") {
+		if (mode === "draw" && pencilStatus === "drawing") {
 			const stroke_end = new Date();
 
 			dispatch("endStroke", {
@@ -331,13 +361,44 @@
 			index++;
 		} else if (
 			mode === "eraser" ||
-			(mode === "draw" && !isDrawing && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32))
+			(mode === "draw" && pencilStatus !== "drawing" && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32))
 		) {
 			// eraser
 			console.log("eraser up");
 			eraseHere(e);
+		} else if (mode === "select" && pencilStatus === "selecting") {
+			const oldDraw = [...draw];
+			if (thereIsSelectedStrokes) {
+				oldDraw.forEach((stroke) => {
+					stroke.selected = false;
+				});
+				thereIsSelectedStrokes = false;
+			}
+
+			const minX = selectMinX < selectMaxX ? selectMinX : selectMaxX;
+			const minY = selectMinY < selectMaxY ? selectMinY : selectMaxY;
+			const maxX = selectMinX > selectMaxX ? selectMinX : selectMaxX;
+			const maxY = selectMinY > selectMaxY ? selectMinY : selectMaxY;
+
+			const selectedStrokes = oldDraw.filter((stroke) => {
+				return stroke.min[0] > minX && stroke.min[1] > minY && stroke.max[0] < maxX && stroke.max[1] < maxY;
+			});
+
+			if (selectedStrokes.length > 0) {
+				for (const stroke of selectedStrokes) {
+					stroke.selected = true;
+				}
+				thereIsSelectedStrokes = true;
+				draw = [...oldDraw];
+
+				console.log(selectedStrokes);
+
+				dispatch("selection", { minX: selectMinX, minY: selectMinY, maxX: selectMaxX, maxY: selectMaxY, strokes: selectedStrokes });
+			}
+
+			// console.log("selecting", selectMinX, selectMinY, selectMaxX, selectMaxY
 		}
-		isDrawing = false;
+		pencilStatus = "idle";
 
 		if (e?.pointerId) (e.target as unknown as any)?.releasePointerCapture?.(e.pointerId);
 	}
@@ -372,9 +433,69 @@
 	<g>
 		{#each draw as stroke (stroke.id)}
 			{#if stroke.lineIndex <= index && !format && (stroke.visible || stroke.erasedAtIndex > index)}
-				<path id={"path_" + stroke.id} d={stroke.pathData} fill={stroke.color} fill-opacity={stroke.opacity} />
+				{#if stroke.selected}
+					<path
+						id={"path_" + stroke.id}
+						d={stroke.pathData}
+						fill={stroke.color}
+						fill-opacity={stroke.opacity}
+						stroke-linecap="round"
+						stroke="red"
+						stroke-width="2"
+					/>
+				{:else}
+					<path id={"path_" + stroke.id} d={stroke.pathData} fill={stroke.color} fill-opacity={stroke.opacity} />
+				{/if}
 			{/if}
 		{/each}
+
+		{#if mode === "select" && pencilStatus === "selecting"}
+			{#if selectMinX <= selectMaxX && selectMinY <= selectMaxY}
+				<rect
+					id="selector"
+					x={selectMinX}
+					y={selectMinY}
+					width={selectMaxX - selectMinX}
+					height={selectMaxY - selectMinY}
+					fill="none"
+					stroke="red"
+					stroke-width="1"
+				/>
+			{:else if selectMinX > selectMaxX && selectMinY < selectMaxY}
+				<rect
+					id="selector"
+					x={selectMaxX}
+					y={selectMinY}
+					width={selectMinX - selectMaxX}
+					height={selectMaxY - selectMinY}
+					fill="none"
+					stroke="red"
+					stroke-width="1"
+				/>
+			{:else if selectMinX < selectMaxX && selectMinY > selectMaxY}
+				<rect
+					id="selector"
+					x={selectMinX}
+					y={selectMaxY}
+					width={selectMaxX - selectMinX}
+					height={selectMinY - selectMaxY}
+					fill="none"
+					stroke="red"
+					stroke-width="1"
+				/>
+			{:else}
+				<rect
+					id="selector"
+					x={selectMaxX}
+					y={selectMaxY}
+					width={selectMinX - selectMaxX}
+					height={selectMinY - selectMaxY}
+					fill="none"
+					stroke="red"
+					stroke-width="1"
+				/>
+			{/if}
+		{/if}
 
 		<!-- {/if} -->
 		<!-- {#if points?.length}
