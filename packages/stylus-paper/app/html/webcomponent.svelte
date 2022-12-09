@@ -79,8 +79,6 @@
 	let selectMaxX = 0;
 	let selectMaxY = 0;
 
-	let isSelecting = false;
-
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
 
