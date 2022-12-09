@@ -73,8 +73,8 @@
 		if (changeHistoryIndex && changeHistoryIndex < historyIndex) changeHistoryIndex++;
 	}
 	function onHistoryIndexChange(details: { i: number }) {
-		changeHistoryIndex = details.i;
-		historyIndex = null;
+		historyIndex = details.i;
+		changeHistoryIndex = null;
 	}
 </script>
 
