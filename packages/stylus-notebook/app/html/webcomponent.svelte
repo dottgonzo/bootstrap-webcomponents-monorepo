@@ -32,6 +32,7 @@
 	let stylusPaperStyleToSet: string = "";
 
 	let historyIndex: number;
+	let changeHistoryIndex: number;
 
 	$: {
 		if (!id) id = "";
@@ -65,8 +66,16 @@
 	function changeMode(name: paperComponent["mode"]) {
 		mode = name;
 	}
-	function undo() {}
-	function redo() {}
+	function undo() {
+		if (changeHistoryIndex > 0) changeHistoryIndex = historyIndex - 1;
+	}
+	function redo() {
+		if (changeHistoryIndex && changeHistoryIndex < historyIndex) changeHistoryIndex++;
+	}
+	function onHistoryIndexChange(details: { i: number }) {
+		changeHistoryIndex = details.i;
+		historyIndex = null;
+	}
 </script>
 
 <div part="controller" id="controller">
@@ -77,7 +86,7 @@
 	<button on:click={() => redo()}>redo</button>
 </div>
 <div part="paper-container" id="paper-container" style="position:relative">
-	<hb-stylus-paper id="stylus-paper" style={stylusPaperStyleToSet} background_color="green" {mode} />
+	<hb-stylus-paper id="stylus-paper" style={stylusPaperStyleToSet} background_color="green" {mode} on:historyIndex={(e) => onHistoryIndexChange(e.details)} />
 </div>
 
 <style lang="scss">
