@@ -149,7 +149,7 @@
 		}
 		// mode
 		if (!mode) mode = "draw";
-		if (mode !== "select" && thereIsSelectedStrokes) {
+		if (mode && mode !== "select" && thereIsSelectedStrokes) {
 			thereIsSelectedStrokes = false;
 			const oldDraw = [...draw];
 			oldDraw.forEach((stroke) => {
@@ -413,6 +413,7 @@
 				oldDraw.forEach((stroke) => {
 					stroke.selected = false;
 				});
+				draw = [...oldDraw];
 				thereIsSelectedStrokes = false;
 			}
 
@@ -426,10 +427,11 @@
 			});
 
 			if (selectedStrokes.length > 0) {
+				thereIsSelectedStrokes = true;
+
 				for (const stroke of selectedStrokes) {
 					stroke.selected = true;
 				}
-				thereIsSelectedStrokes = true;
 				draw = [...oldDraw];
 
 				console.log(selectedStrokes);

@@ -46,7 +46,7 @@ export const componentSetup: ComponentSetup & { examples: { name: string; descri
 	name: "hb-stylus-notebook",
 	category: "input",
 	tags: ["draw", "input", "stylus", "notebook"],
-	size: {},
+	size: { layout: "fullscreen" },
 	iifePath: "release/release.js",
 	repoName: "@htmlbricks/hb-stylus-notebook",
 	version: null as any,
