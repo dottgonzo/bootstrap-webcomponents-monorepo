@@ -67,7 +67,7 @@
 		mode = name;
 	}
 	function undo() {
-		if (changeHistoryIndex > 0) changeHistoryIndex = historyIndex - 1;
+		if (historyIndex > 0 && (!changeHistoryIndex || changeHistoryIndex > 0)) changeHistoryIndex = historyIndex - 1;
 	}
 	function redo() {
 		if (changeHistoryIndex && changeHistoryIndex < historyIndex) changeHistoryIndex++;
