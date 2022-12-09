@@ -68,10 +68,12 @@ export const webComponentBind = (
   if (!document.getElementById(componentName + '-script')) {
     const script = document.createElement('script')
     script.id = componentName + '-script'
-    script.src = `http://192.168.1.33:6006/${componentName.replace(
-      'hb-',
-      '',
-    )}/dist/release.js`
+    script.src = !window.location.href.includes('localhost')
+      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/${componentName}@${version}/release/release.js`
+      : `http://localhost:6006/${componentName.replace(
+          'hb-',
+          '',
+        )}/dist/release.js`
     document.body.appendChild(script)
   }
   let c: HTMLElement
