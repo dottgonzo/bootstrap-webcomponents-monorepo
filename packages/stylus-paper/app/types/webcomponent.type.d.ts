@@ -47,6 +47,7 @@ export type Component = {
 	options?: Partial<TPerfectFreeHandOptions>;
 	goto?: number;
 	mode: "eraser" | "draw";
+	debug?: "yes" | "no";
 };
 
 export type Events = {

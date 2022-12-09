@@ -5,6 +5,10 @@ export const storybookArgs = {
 	background_color: { control: { type: "text" } },
 	pen_color: { control: { type: "text" } },
 	pen_opacity: { control: { type: "range", min: 0, max: 1, step: 0.1 } },
+	debug: {
+		options: ["yes", "no"],
+		control: { type: "select" }, // Automatically inferred when 'options' is defined
+	},
 	options: { control: { type: "object" } },
 	goto: { control: { type: "number" } },
 	mode: {

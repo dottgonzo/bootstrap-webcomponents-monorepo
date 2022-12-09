@@ -32,6 +32,8 @@
 
 	export let mode: Component["mode"];
 
+	export let debug: Component["debug"];
+
 	let index = 0;
 
 	export const next = () => {
@@ -48,7 +50,8 @@
 	// export let next: () => void;
 	// export let previous: () => void;
 
-	let pointerType: string;
+	let pointerType: string = "";
+	let mouseButton: any = 0;
 
 	let historyActions: { action: "draw" | "erase"; index: number }[] = [];
 
@@ -105,6 +108,7 @@
 
 	let draw: TDraw;
 	let format = false;
+	let isDrawing = false;
 	$: {
 		if (!id) id = "";
 		if (style) {
@@ -117,6 +121,7 @@
 		if (!draw) {
 			draw = [];
 		}
+		if (debug !== "yes") debug = "no";
 		if (typeof pen_opacity === "string") pen_opacity = Number(pen_opacity);
 		if (!pen_opacity) pen_opacity = 1;
 		if (typeof goto === "string") goto = Number(goto);
@@ -180,30 +185,34 @@
 	}
 
 	function eraseHere(e: PointerEvent) {
-		if (mode === "eraser") {
-			const pathId = (e.target as unknown as any)?.id?.split("_")?.[1];
-			console.info("erase here", e.pageX, e.pageY, e.target, pathId);
-			if (pathId) {
-				const oldDraw = [...draw];
+		const pathId = (e.target as unknown as any)?.id?.split("_")?.[1];
+		console.info("erase here", e.pageX, e.pageY, e.target, pathId);
+		if (pathId) {
+			const oldDraw = [...draw];
 
-				const stroke = oldDraw.find((s) => s.id === pathId);
-				if (stroke) {
-					stroke.visible = false;
-					stroke.erasedAtIndex = index;
-					console.info("erase stroke", stroke.id);
-					draw = [...oldDraw];
+			const stroke = oldDraw.find((s) => s.id === pathId);
+			if (stroke) {
+				stroke.visible = false;
+				stroke.erasedAtIndex = index;
+				console.info("erase stroke", stroke.id);
+				draw = [...oldDraw];
 
-					// with multiple!?
-					if (historyActions[historyActions.length - 1]?.action !== "erase" || historyActions[historyActions.length - 1]?.index !== index) {
-						historyActions.push({ action: "erase", index: index });
-					}
+				// with multiple!?
+				if (historyActions[historyActions.length - 1]?.action !== "erase" || historyActions[historyActions.length - 1]?.index !== index) {
+					historyActions.push({ action: "erase", index: index });
 				}
 			}
 		}
 	}
 
 	function handlePointerDown(e: PointerEvent) {
-		if (mode === "draw") {
+		// wip on auto detect pointer type
+		pointerType = e.pointerType;
+
+		mouseButton = e.buttons;
+
+		if (mode === "draw" && e.buttons === 1 && !(e.pointerType === "pen" && e.pressure === 0)) {
+			isDrawing = true;
 			if (historyActions.length && goto) {
 				historyActions = historyActions.slice(0, historyActions.findIndex((f) => f.index === goto && f.action === "draw") + 1);
 			}
@@ -218,9 +227,6 @@
 			}
 
 			goto = null;
-
-			// wip on auto detect pointer type
-			pointerType = e.pointerType;
 
 			stroke_start = new Date();
 			stroke_id = Date.now().toString();
@@ -275,15 +281,19 @@
 			}
 
 			dispatch("startStroke", { start: stroke_start, id: stroke_id, index: index });
-		} else if (mode === "eraser") {
+		} else if (mode === "eraser" || (mode === "draw" && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32))) {
+			(e.target as unknown as any).setPointerCapture(e.pointerId);
+
 			// eraser
 			console.log("eraser down");
 			eraseHere(e);
 		}
 	}
 	function handlePointerMove(e: PointerEvent) {
-		if (e.buttons !== 1) return;
-		if (mode === "draw") {
+		pointerType = e.pointerType;
+		mouseButton = e.buttons + " " + [e.pageX, e.pageY, e.pressure].toString();
+
+		if (mode === "draw" && isDrawing && e.buttons === 1 && !(e.pointerType === "pen" && e.pressure === 0)) {
 			draw[index].path = [...draw[index].path, [e.pageX, e.pageY, e.pressure]];
 			draw[index].pathData = pathData;
 
@@ -291,7 +301,10 @@
 			if (e.pageY < strokeMinY) strokeMinY = e.pageY;
 			if (e.pageX > strokeMaxX) strokeMaxX = e.pageX;
 			if (e.pageY > strokeMaxY) strokeMaxY = e.pageY;
-		} else if (mode === "eraser") {
+		} else if (
+			mode === "eraser" ||
+			(mode === "draw" && !isDrawing && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32))
+		) {
 			// eraser
 			console.log("eraser move");
 			eraseHere(e);
@@ -299,9 +312,10 @@
 	}
 
 	function handlePointerUp(e: PointerEvent) {
+		mouseButton = e.buttons;
+
 		if (mode === "draw") {
 			const stroke_end = new Date();
-			(e.target as unknown as any).releasePointerCapture(e.pointerId);
 
 			dispatch("endStroke", {
 				end: stroke_end,
@@ -315,11 +329,17 @@
 			});
 			historyActions.push({ action: "draw", index: index });
 			index++;
-		} else if (mode === "eraser") {
+		} else if (
+			mode === "eraser" ||
+			(mode === "draw" && !isDrawing && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32))
+		) {
 			// eraser
 			console.log("eraser up");
 			eraseHere(e);
 		}
+		isDrawing = false;
+
+		if (e?.pointerId) (e.target as unknown as any)?.releasePointerCapture?.(e.pointerId);
 	}
 
 	// onMount(() => {
@@ -346,6 +366,7 @@
 	// });
 </script>
 
+<div id="debug" style="display:{debug === 'yes' ? 'block' : 'none'}">{pointerType} b: {mouseButton}</div>
 <svg on:pointerdown={handlePointerDown} on:pointermove={handlePointerMove} on:pointerup={handlePointerUp} style="background-color:{background_color}">
 	<!-- {#if draw?.length} -->
 	<g>
@@ -364,5 +385,5 @@
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
-	@import "../styles/bootstrap.scss";
+	// @import "../styles/bootstrap.scss";
 </style>

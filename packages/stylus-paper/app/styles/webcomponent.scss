@@ -8,12 +8,12 @@
 	// width: fit-content;
 }
 
-#stylus-canvas {
-	// background-color: red;
-	// width: 100%;
-	// height: 100%;
-	// display: block;
-	// position: absolute;
+#debug {
+	position: absolute;
+	width: 100%;
+	height: 30px;
+	top: 0px;
+	z-index: 10;
 }
 svg {
 	position: absolute;
