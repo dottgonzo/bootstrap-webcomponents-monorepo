@@ -20,6 +20,7 @@ export const storybookArgs = {
 	beginStroke: { action: "beginStrokeEvent" },
 	endStroke: { action: "endStrokeEvent" },
 	selection: { action: "selectionEvent" },
+	historyIndex: { action: "historyIndexEvent" },
 };
 
 const cssVars: CssVar[] = [];

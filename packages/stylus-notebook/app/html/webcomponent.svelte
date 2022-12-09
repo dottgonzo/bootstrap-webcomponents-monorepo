@@ -31,6 +31,8 @@
 	let parsedStyle: { [x: string]: string };
 	let stylusPaperStyleToSet: string = "";
 
+	let historyIndex: number;
+
 	$: {
 		if (!id) id = "";
 		if (style) {
@@ -38,6 +40,8 @@
 			stylusPaperStyleToSet = getChildStyleToPass(parsedStyle, stylusPaperSetup?.vars);
 		}
 		if (!string) string = "";
+
+		if (!historyIndex) historyIndex = 0;
 
 		// json
 		if (typeof json === "string") {
@@ -61,12 +65,16 @@
 	function changeMode(name: paperComponent["mode"]) {
 		mode = name;
 	}
+	function undo() {}
+	function redo() {}
 </script>
 
 <div part="controller" id="controller">
 	<button on:click={() => changeMode("eraser")}>clear</button>
 	<button on:click={() => changeMode("select")}>select</button>
 	<button on:click={() => changeMode("draw")}>draw</button>
+	<button on:click={() => undo()} disabled={historyIndex === 0}>undo</button>
+	<button on:click={() => redo()}>redo</button>
 </div>
 <div part="paper-container" id="paper-container" style="position:relative">
 	<hb-stylus-paper id="stylus-paper" style={stylusPaperStyleToSet} background_color="green" {mode} />

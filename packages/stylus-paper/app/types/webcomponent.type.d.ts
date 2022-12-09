@@ -74,4 +74,5 @@ export type Events = {
 		id: string;
 		draw_id: string;
 	};
+	historyIndex: { index: number; id: string; draw_id: string };
 };
