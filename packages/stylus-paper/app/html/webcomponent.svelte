@@ -57,6 +57,7 @@
 	// export let previous: () => void;
 
 	let pointerType: string = "";
+	let containerPos: { left: number; top: number };
 	let mouseButton: any = 0;
 
 	let historyActions: { action: "draw" | "erase"; index: number }[] = [];
@@ -236,12 +237,11 @@
 		if (!options.thinning) options.thinning = defaultOptions.thinning;
 		if (!options.smoothing) options.smoothing = defaultOptions.smoothing;
 		if (!options.streamline) options.streamline = defaultOptions.streamline;
-		console.table([{ l: historyActions.length, index, goto }]);
 	}
 
 	function eraseHere(e: PointerEvent) {
 		const pathId = (e.target as unknown as any)?.id?.split("_")?.[1];
-		console.info("erase here", e.pageX, e.pageY, e.target, pathId);
+		console.info("erase here", e.pageX - containerPos.left, e.pageY - containerPos.top, e.target, pathId);
 		if (pathId) {
 			const oldDraw = [...draw];
 
@@ -264,6 +264,10 @@
 		// wip on auto detect pointer type
 		pointerType = e.pointerType;
 
+		// @ts-ignore
+		containerPos = e?.target?.getBoundingClientRect?.() || { left: 0, top: 0 };
+		console.log("pos", containerPos);
+
 		mouseButton = e.buttons;
 
 		if (mode === "draw" && e.buttons === 1 && !(e.pointerType === "pen" && e.pressure === 0)) {
@@ -285,10 +289,10 @@
 
 			stroke_start = new Date();
 			stroke_id = Date.now().toString();
-			strokeMinX = e.pageX;
-			strokeMinY = e.pageY;
-			strokeMaxX = e.pageX;
-			strokeMaxY = e.pageY;
+			strokeMinX = e.pageX - containerPos.left;
+			strokeMinY = e.pageY - containerPos.top;
+			strokeMaxX = e.pageX - containerPos.left;
+			strokeMaxY = e.pageY - containerPos.top;
 
 			if (!start_drawing_date) {
 				start_drawing_date = stroke_start;
@@ -302,7 +306,7 @@
 				draw = [
 					...draw,
 					{
-						path: [[e.pageX, e.pageY, e.pressure]],
+						path: [[e.pageX - containerPos.left, e.pageY - containerPos.top, e.pressure]],
 						color: pen_color,
 						id: stroke_id,
 						start: stroke_start,
@@ -319,7 +323,7 @@
 			} else {
 				draw = [
 					{
-						path: [[e.pageX, e.pageY, e.pressure]],
+						path: [[e.pageX - containerPos.left, e.pageY - containerPos.top, e.pressure]],
 						color: pen_color,
 						id: stroke_id,
 						start: stroke_start,
@@ -344,27 +348,30 @@
 			console.log("eraser down");
 			eraseHere(e);
 		} else if (mode === "select") {
-			selectMinX = e.pageX;
-			selectMinY = e.pageY;
+			selectMinX = e.pageX - containerPos.left;
+			selectMinY = e.pageY - containerPos.top;
 
-			selectMaxX = e.pageX;
-			selectMaxY = e.pageY;
+			selectMaxX = e.pageX - containerPos.left;
+			selectMaxY = e.pageY - containerPos.top;
 
 			pencilStatus = "selecting";
 		}
 	}
 	function handlePointerMove(e: PointerEvent) {
+		// @ts-ignore
+		containerPos = e?.target?.getBoundingClientRect?.() || { left: 0, top: 0 };
+
 		pointerType = e.pointerType;
-		mouseButton = e.buttons + " " + [e.pageX, e.pageY, e.pressure].toString();
+		mouseButton = e.buttons + " " + [e.pageX - containerPos.left, e.pageY - containerPos.top, e.pressure].toString();
 
 		if (mode === "draw" && pencilStatus === "drawing" && e.buttons === 1 && !(e.pointerType === "pen" && e.pressure === 0)) {
-			draw[index].path = [...draw[index].path, [e.pageX, e.pageY, e.pressure]];
+			draw[index].path = [...draw[index].path, [e.pageX - containerPos.left, e.pageY - containerPos.top, e.pressure]];
 			draw[index].pathData = pathData;
 
-			if (e.pageX < strokeMinX) strokeMinX = e.pageX;
-			if (e.pageY < strokeMinY) strokeMinY = e.pageY;
-			if (e.pageX > strokeMaxX) strokeMaxX = e.pageX;
-			if (e.pageY > strokeMaxY) strokeMaxY = e.pageY;
+			if (e.pageX - containerPos.left < strokeMinX) strokeMinX = e.pageX - containerPos.left;
+			if (e.pageY - containerPos.top < strokeMinY) strokeMinY = e.pageY - containerPos.top;
+			if (e.pageX - containerPos.left > strokeMaxX) strokeMaxX = e.pageX - containerPos.left;
+			if (e.pageY - containerPos.top > strokeMaxY) strokeMaxY = e.pageY - containerPos.top;
 		} else if (
 			mode === "eraser" ||
 			(mode === "draw" && pencilStatus !== "drawing" && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32))
@@ -373,8 +380,8 @@
 			console.log("eraser move");
 			eraseHere(e);
 		} else if (mode === "select" && pencilStatus === "selecting") {
-			selectMaxX = e.pageX;
-			selectMaxY = e.pageY;
+			selectMaxX = e.pageX - containerPos.left;
+			selectMaxY = e.pageY - containerPos.top;
 
 			// console.log("selecting", selectMinX, selectMinY, selectMaxX, selectMaxY
 		}
