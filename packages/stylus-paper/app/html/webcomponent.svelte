@@ -359,7 +359,7 @@
 	}
 	function handlePointerMove(e: PointerEvent) {
 		// @ts-ignore
-		containerPos = e?.target?.getBoundingClientRect?.() || { left: 0, top: 0 };
+		if (!containerPos) containerPos = e?.target?.getBoundingClientRect?.() || { left: 0, top: 0 };
 
 		pointerType = e.pointerType;
 		mouseButton = e.buttons + " " + [e.pageX - containerPos.left, e.pageY - containerPos.top, e.pressure].toString();
@@ -389,6 +389,7 @@
 
 	function handlePointerUp(e: PointerEvent) {
 		mouseButton = e.buttons;
+		containerPos = null;
 
 		if (mode === "draw" && pencilStatus === "drawing") {
 			const stroke_end = new Date();
