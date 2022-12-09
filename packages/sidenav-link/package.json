@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-sidenav-link",
 	"displayName": "Svelte Boostrap sidenavlink",
 	"description": "Svelte Boostrap sidenavlink",
-	"version": "0.16.36",
+	"version": "0.16.37",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.16.36",
+		"@htmlbricks/hb-jsutils": "^0.16.37",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
