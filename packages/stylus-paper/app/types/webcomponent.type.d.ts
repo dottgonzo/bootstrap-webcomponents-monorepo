@@ -1,6 +1,3 @@
-export type EventDraw = {
-	type: "point" | "line" | "rect" | "circle" | "ellipse" | "text" | "image" | "clear";
-};
 export type TPerfectFreeHandOptions = {
 	size: number;
 	thinning?: number;
@@ -49,18 +46,32 @@ export type Component = {
 	goto?: number;
 	mode: "eraser" | "draw" | "select";
 	debug?: "yes" | "no";
+	load_draw?: { time: Date; draw: TDraw; draw_id: string };
+	save?: { name: string; type: "pdf" | "json" | "png" | "svg" | "jpg" };
 };
 
 export type Events = {
-	draw: EventDraw;
-	beginStroke: { date: Date };
-	startStroke: { id: string; start: Date };
-	endStroke: { id: string; start: Date; end: Date; min: [number, number]; max: [number, number]; pathData: string; pen_color: string; index: number };
+	beginStroke: { date: Date; id: string; draw_id: string };
+	startStroke: { id: string; start: Date; stroke_id: string; index: number; draw_id: string };
+	endStroke: {
+		id: string;
+		stroke_id: string;
+		start: Date;
+		end: Date;
+		min: [number, number];
+		max: [number, number];
+		pathData: string;
+		pen_color: string;
+		index: number;
+		draw_id: string;
+	};
 	selection: {
 		minX: number;
 		minY: number;
 		maxX: number;
 		maxY: number;
 		strokes: IStroke[];
+		id: string;
+		draw_id: string;
 	};
 };

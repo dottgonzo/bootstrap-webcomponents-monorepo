@@ -15,6 +15,7 @@ export const storybookArgs = {
 		options: ["eraser", "draw", "select"],
 		control: { type: "radio" }, // Automatically inferred when 'options' is defined
 	},
+	load_draw: { control: { type: "object" } },
 	startStroke: { action: "startStrokeEvent" },
 	beginStroke: { action: "beginStrokeEvent" },
 	endStroke: { action: "endStrokeEvent" },

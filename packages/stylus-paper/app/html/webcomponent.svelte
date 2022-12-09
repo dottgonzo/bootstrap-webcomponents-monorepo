@@ -21,6 +21,8 @@
 	export let id: string;
 	export let style: string;
 
+	export let draw_id: string;
+
 	export let background_color: Component["background_color"];
 	export let pen_color: Component["pen_color"];
 
@@ -33,6 +35,10 @@
 	export let mode: Component["mode"];
 
 	export let debug: Component["debug"];
+
+	export let load_draw: Component["load_draw"];
+
+	export let save: Component["save"];
 
 	let index = 0;
 
@@ -111,16 +117,33 @@
 		}
 	}
 
+	function exportDraw(s: Component["save"]) {
+		if (s) {
+			switch (s.type) {
+				case "json":
+					return dispatch("save", { type: "json", data: draw, id: id, draw_id, name: s.name });
+				default:
+					return console.error("unknown save type");
+			}
+		}
+	}
+
 	let draw: TDraw;
 	let format = false;
 	let pencilStatus: "drawing" | "erasing" | "selecting" | "idle" = "idle";
 	let thereIsSelectedStrokes = false;
+	let loadTime: Date;
 	$: {
+		if (draw?.length && save) {
+			exportDraw(save);
+		}
 		if (!id) id = "";
 		if (style) {
 			parsedStyle = parseStyle(style);
 			// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
 		}
+		if (!draw_id) draw_id = Math.random().toString(36) + Math.random().toString(36) + Date.now().toString();
+
 		if (!draw) {
 			draw = [];
 		}
@@ -177,9 +200,6 @@
 		if (!pen_color) pen_color = "rgb(0,0,0)";
 		// if (cv) configureSign();
 
-		stroke = getStroke(draw[index]?.path || [], Object.assign({ simulatePressure: pointerType === "pen" ? false : true }, options));
-		pathData = getSvgPathFromStroke(stroke);
-
 		// json
 		if (typeof options === "string" && (options as string)?.length) {
 			try {
@@ -190,6 +210,27 @@
 		} else if (!options) {
 			options = defaultOptions;
 		}
+
+		if (typeof load_draw === "string" && (load_draw as string)?.length) {
+			try {
+				load_draw = JSON.parse(load_draw);
+			} catch (err) {
+				console.error("error parsing json", err);
+			}
+		} else if (!load_draw) {
+			load_draw = null;
+		}
+
+		if (load_draw && (!loadTime || loadTime.valueOf() < load_draw.time.valueOf())) {
+			draw = load_draw.draw.filter((f) => f.visible);
+			index = draw.length - 1;
+			load_draw = null;
+			draw_id = load_draw.draw_id;
+			historyActions = [];
+		}
+
+		stroke = getStroke(draw[index]?.path || [], Object.assign({ simulatePressure: pointerType === "pen" ? false : true }, options));
+		pathData = getSvgPathFromStroke(stroke);
 
 		if (!options.size) options.size = defaultOptions.size;
 		if (!options.thinning) options.thinning = defaultOptions.thinning;
@@ -251,7 +292,7 @@
 
 			if (!start_drawing_date) {
 				start_drawing_date = stroke_start;
-				dispatch("startStroke", { date: start_drawing_date });
+				dispatch("startStroke", { date: start_drawing_date, id: id, draw_id });
 			}
 			(e.target as unknown as any).setPointerCapture(e.pointerId);
 
@@ -294,7 +335,7 @@
 				];
 			}
 
-			dispatch("startStroke", { start: stroke_start, id: stroke_id, index: index });
+			dispatch("startStroke", { start: stroke_start, stroke_id: stroke_id, index: index, id: id, draw_id });
 		} else if (mode === "eraser" || (mode === "draw" && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32))) {
 			(e.target as unknown as any).setPointerCapture(e.pointerId);
 			pencilStatus = "erasing";
@@ -347,13 +388,15 @@
 
 			dispatch("endStroke", {
 				end: stroke_end,
-				id: stroke_id,
+				stroke_id: stroke_id,
 				start: stroke_start,
 				min: [strokeMinX, strokeMinY],
 				max: [strokeMaxX, strokeMaxY],
 				pathData: pathData,
 				color: pen_color,
 				index: index,
+				id,
+				draw_id,
 			});
 			historyActions.push({ action: "draw", index: index });
 			index++;
@@ -391,7 +434,7 @@
 
 				console.log(selectedStrokes);
 
-				dispatch("selection", { minX: selectMinX, minY: selectMinY, maxX: selectMaxX, maxY: selectMaxY, strokes: selectedStrokes });
+				dispatch("selection", { minX: selectMinX, minY: selectMinY, maxX: selectMaxX, maxY: selectMaxY, strokes: selectedStrokes, id, draw_id });
 			}
 
 			// console.log("selecting", selectMinX, selectMinY, selectMaxX, selectMaxY
