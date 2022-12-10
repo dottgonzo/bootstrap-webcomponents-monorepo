@@ -57,7 +57,7 @@
 	function undo() {
 		console.log("ch", historyIndex, changeHistoryIndex);
 		if (historyIndex >= 0 && (!changeHistoryIndex || changeHistoryIndex > -1)) {
-			changeHistoryIndex = changeHistoryIndex || changeHistoryIndex === 0 ? changeHistoryIndex - 1 : historyIndex - 1;
+			changeHistoryIndex = changeHistoryIndex || changeHistoryIndex === 0 ? changeHistoryIndex - 1 : historyIndex - 2;
 			console.log("undo", historyIndex, changeHistoryIndex);
 		}
 	}
