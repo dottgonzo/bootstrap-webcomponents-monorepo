@@ -90,7 +90,8 @@
 		console.log(historyIndex, changeHistoryIndex, details);
 	}
 	function save() {}
-	function select() {}
+	function load() {}
+	function move() {}
 </script>
 
 <div part="controller" id="controller">
@@ -99,8 +100,10 @@
 	<button on:click={() => changeMode("draw")}>draw</button>
 	<button on:click={() => undo()} disabled={!enableUndo}>undo</button>
 	<button on:click={() => redo()} disabled={!enableRedo}>redo</button>
-	<button on:click={() => select()} disabled={!enableUndo}>select</button>
+	<button on:click={() => load()}>load</button>
 	<button on:click={() => save()} disabled={!enableUndo}>save</button>
+	<button on:click={() => move()} disabled={!enableUndo}>move</button>
+	<button disabled={mode !== "draw"}>brush</button>
 </div>
 <div part="paper-container" id="paper-container" style="position:relative">
 	<hb-stylus-paper
