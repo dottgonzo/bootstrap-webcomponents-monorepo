@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-captcha-google-recaptcha-v2-invisible",
 	"displayName": "Svelte-Bootstrap Checkbox Input WebComponent",
 	"description": "Svelte-Bootstrap Checkbox Input WebComponent",
-	"version": "0.16.45",
+	"version": "0.16.46",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.16.45",
+		"@htmlbricks/hb-jsutils": "^0.16.46",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
