@@ -19,20 +19,18 @@ export type TPerfectFreeHandOptions = {
 
 export type TPath = [number, number, number][];
 export type IStroke = {
-	lineIndex: number;
 	actionIndex: number;
 	visible: boolean;
-	color: string;
-	path: TPath;
+	color?: string;
+	path?: TPath;
 	id: string;
-	end: Date;
-	start: Date;
-	pathData: string;
-	min: [number, number];
-	max: [number, number];
+	pathData?: string;
+	min?: [number, number];
+	max?: [number, number];
 	erasedAtIndex?: number;
-	opacity: number;
+	opacity?: number;
 	selected?: boolean;
+	type: "stroke" | "eraser";
 };
 export type TDraw = IStroke[];
 

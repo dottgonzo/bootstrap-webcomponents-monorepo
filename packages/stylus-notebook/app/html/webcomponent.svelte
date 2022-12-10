@@ -55,18 +55,23 @@
 		mode = name;
 	}
 	function undo() {
-		console.log(historyIndex, changeHistoryIndex);
-		if (historyIndex >= 0 && (!changeHistoryIndex || changeHistoryIndex > -1))
-			changeHistoryIndex = changeHistoryIndex || changeHistoryIndex === 0 ? changeHistoryIndex - 1 : historyIndex;
+		console.log("ch", historyIndex, changeHistoryIndex);
+		if (historyIndex >= 0 && (!changeHistoryIndex || changeHistoryIndex > -1)) {
+			changeHistoryIndex = changeHistoryIndex || changeHistoryIndex === 0 ? changeHistoryIndex - 1 : historyIndex - 1;
+			console.log("undo", historyIndex, changeHistoryIndex);
+		}
 	}
 	function redo() {
 		console.log(historyIndex, changeHistoryIndex);
 
-		if ((changeHistoryIndex || changeHistoryIndex === 0) && changeHistoryIndex <= historyIndex) changeHistoryIndex++;
+		if ((changeHistoryIndex || changeHistoryIndex === 0) && changeHistoryIndex <= historyIndex) {
+			changeHistoryIndex++;
+			console.log("redo", historyIndex, changeHistoryIndex);
+		}
 	}
 	function onHistoryIndexChange(details: { i?: number; index?: number }) {
 		console.log(details);
-		historyIndex = details.i || details.index || 0;
+		historyIndex = details.index;
 		if (historyIndex > -1) enableUndo = true;
 		changeHistoryIndex = null;
 		console.log(historyIndex, changeHistoryIndex, details);

@@ -60,8 +60,6 @@
 	let containerPos: { left: number; top: number };
 	let mouseButton: any = 0;
 
-	let historyActions: { action: "draw" | "erase"; index: number }[] = [];
-
 	const defaultOptions: Component["options"] = {
 		size: 6,
 		thinning: 0.7,
@@ -172,16 +170,15 @@
 		if (!index) {
 			index = 0;
 		}
-		if ((goto && goto < 0) || goto === 0) {
+		if (goto && goto < 0) {
 			index = -1;
 			// goto = null;
 		} else if (goto || goto === 0) {
-			if (goto > historyActions.length) goto = historyActions.length;
-			index = historyActions[goto - 1]?.index || 0;
+			if (goto > draw.length) goto = draw.length;
+			index = goto + 0;
+			goto = null;
+			dispatch("changeIndex", { index: index, draw_id, id });
 
-			dispatch("changeIndex", { index: goto - 1, draw_id, id });
-
-			console.log("set index to", index, "from goto", goto, "historyActions", historyActions);
 			// const oldDraw = [...draw];
 			// // const newDraw = oldDraw.slice(0, index + 1);
 			// oldDraw.forEach((stroke, i) => {
@@ -230,8 +227,7 @@
 			index = draw.length - 1;
 			load_draw = null;
 			draw_id = load_draw.draw_id;
-			historyActions = [];
-			dispatch("historyIndex", { index: 0, draw_id, id });
+			dispatch("historyIndex", { index: index, draw_id, id });
 		}
 
 		stroke = getStroke(draw[index]?.path || [], Object.assign({ simulatePressure: pointerType === "pen" ? false : true }, options));
@@ -241,6 +237,7 @@
 		if (!options.thinning) options.thinning = defaultOptions.thinning;
 		if (!options.smoothing) options.smoothing = defaultOptions.smoothing;
 		if (!options.streamline) options.streamline = defaultOptions.streamline;
+		console.log("set index to", index, "from goto", goto, "historyActions", draw.length);
 	}
 
 	function eraseHere(e: PointerEvent) {
@@ -253,13 +250,25 @@
 				stroke.visible = false;
 				stroke.erasedAtIndex = index;
 				console.info("erase stroke", stroke.id);
-				draw = [...oldDraw];
+
+				if (oldDraw[oldDraw.length - 1].type !== "eraser") {
+					oldDraw.push({
+						type: "eraser",
+						visible: true,
+						id: Math.random().toString(36) + Math.random().toString(36) + Date.now().toString(),
+						actionIndex: draw.length,
+					});
+					draw = [...oldDraw];
+					index++;
+					dispatch("historyIndex", { index: index, draw_id, id });
+				} else {
+					draw = [...oldDraw];
+				}
 
 				// with multiple!?
-				if (historyActions[historyActions.length - 1]?.action !== "erase" || historyActions[historyActions.length - 1]?.index !== index) {
-					historyActions.push({ action: "erase", index: index });
-				}
-				dispatch("historyIndex", { index: historyActions.length - 1, draw_id, id });
+				// if (historyActions[historyActions.length - 1]?.action !== "erase" || historyActions[historyActions.length - 1]?.index !== index) {
+				// 	historyActions.push({ action: "erase", index: index });
+				// }
 			}
 		}
 	}
@@ -276,12 +285,11 @@
 
 		if (mode === "draw" && e.buttons === 1 && !(e.pointerType === "pen" && e.pressure === 0)) {
 			pencilStatus = "drawing";
-			if (historyActions.length && goto) {
-				//TODO: history on erase if needed
-				historyActions = historyActions.slice(0, goto + 1);
+			if (index !== draw.length - 1) {
+				// 	//TODO: history on erase if needed
+				// 	historyActions = historyActions.slice(0, goto + 1);
 				const oldDraw = [...draw];
 
-				// TODO: to be tested
 				oldDraw.forEach((stroke, i) => {
 					if (!stroke.visible && stroke.erasedAtIndex < index) {
 						stroke.visible = true;
@@ -290,7 +298,7 @@
 				});
 				draw = oldDraw;
 
-				dispatch("historyIndex", { index: historyActions.length - 1, draw_id, id });
+				// 	dispatch("historyIndex", { index: historyActions.length - 1, draw_id, id });
 			}
 			if (draw?.length && index < draw.length) {
 				if (!format) {
@@ -301,9 +309,8 @@
 					draw = [];
 					format = false;
 				}
+				dispatch("historyIndex", { index: index, draw_id, id });
 			}
-
-			goto = null;
 
 			stroke_start = new Date();
 			stroke_id = Date.now().toString();
@@ -327,15 +334,13 @@
 						path: [[e.pageX - containerPos.left, e.pageY - containerPos.top, e.pressure]],
 						color: pen_color,
 						id: stroke_id,
-						start: stroke_start,
-						end: stroke_start,
 						pathData: pathData,
 						min: [strokeMinX, strokeMinY],
 						max: [strokeMaxX, strokeMaxY],
 						visible: true,
-						lineIndex: index,
-						actionIndex: historyActions.length,
+						actionIndex: draw.length,
 						opacity: pen_opacity,
+						type: "stroke",
 					},
 				];
 			} else {
@@ -344,15 +349,13 @@
 						path: [[e.pageX - containerPos.left, e.pageY - containerPos.top, e.pressure]],
 						color: pen_color,
 						id: stroke_id,
-						start: stroke_start,
-						end: stroke_start,
 						pathData: pathData,
 						min: [strokeMinX, strokeMinY],
 						max: [strokeMaxX, strokeMaxY],
 						visible: true,
-						lineIndex: index,
-						actionIndex: historyActions.length,
+						actionIndex: draw.length,
 						opacity: pen_opacity,
+						type: "stroke",
 					},
 				];
 			}
@@ -424,9 +427,8 @@
 				id,
 				draw_id,
 			});
-			historyActions.push({ action: "draw", index: index });
 			index++;
-			dispatch("historyIndex", { index: historyActions.length - 1, draw_id, id });
+			dispatch("historyIndex", { index: index, draw_id, id });
 		} else if (
 			mode === "eraser" ||
 			(mode === "draw" && pencilStatus !== "drawing" && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32))
@@ -501,8 +503,8 @@
 <svg on:pointerdown={handlePointerDown} on:pointermove={handlePointerMove} on:pointerup={handlePointerUp} style="background-color:{background_color}">
 	<!-- {#if draw?.length} -->
 	<g>
-		{#each draw as stroke (stroke.id)}
-			{#if stroke.lineIndex <= index && !format && (stroke.visible || stroke.erasedAtIndex > index || (stroke.erasedAtIndex === index && goto))}
+		{#each draw.filter((f) => f.type === "stroke" && f.path) as stroke (stroke.id)}
+			{#if stroke.actionIndex <= index && !format && (stroke.visible || stroke.erasedAtIndex > index)}
 				{#if stroke.selected}
 					<path
 						id={"path_" + stroke.id}
