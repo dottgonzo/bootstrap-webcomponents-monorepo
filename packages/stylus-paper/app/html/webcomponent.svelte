@@ -245,7 +245,6 @@
 
 	function eraseHere(e: PointerEvent) {
 		const pathId = (e.target as unknown as any)?.id?.split("_")?.[1];
-		console.info("erase here", e.pageX - containerPos.left, e.pageY - containerPos.top, e.target, pathId);
 		if (pathId) {
 			const oldDraw = [...draw];
 
