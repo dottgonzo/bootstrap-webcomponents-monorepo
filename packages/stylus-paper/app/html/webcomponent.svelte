@@ -41,6 +41,7 @@
 	export let save: Component["save"];
 
 	let index = 0;
+	let pointerIsOnSelect: boolean;
 
 	export const next = () => {
 		// if (index < draw.length - 1) {
@@ -55,6 +56,8 @@
 	};
 	// export let next: () => void;
 	// export let previous: () => void;
+
+	let svgDom: SVGSVGElement;
 
 	let pointerType: string = "";
 	let containerPos: { left: number; top: number };
@@ -132,112 +135,120 @@
 	let pencilStatus: "drawing" | "erasing" | "selecting" | "idle" = "idle";
 	let thereIsSelectedStrokes = false;
 	let loadTime: Date;
+
 	$: {
-		if (draw?.length && save) {
-			exportDraw(save);
-		}
-		if (!id) id = "";
-		if (style) {
-			parsedStyle = parseStyle(style);
-			// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
-		}
-		if (!draw_id) draw_id = Math.random().toString(36) + Math.random().toString(36) + Date.now().toString();
+		if (svgDom) {
+			containerPos = svgDom.getBoundingClientRect();
 
-		if (!draw) {
-			draw = [];
-		}
-		// mode
-		if (!mode) mode = "draw";
-		if (mode && mode !== "select" && thereIsSelectedStrokes) {
-			thereIsSelectedStrokes = false;
-			const oldDraw = [...draw];
-			oldDraw.forEach((stroke) => {
-				stroke.selected = false;
-			});
-			draw = [...oldDraw];
-		}
-
-		if (debug !== "yes") debug = "no";
-		if (typeof pen_opacity === "string") pen_opacity = Number(pen_opacity);
-		if (!pen_opacity) pen_opacity = 1;
-		if (typeof goto === "string") goto = Number(goto);
-
-		if (!draw.length) {
-			index = 0;
-			goto = null;
-		}
-
-		if (!index) {
-			index = 0;
-		}
-		if (goto && goto < 0) {
-			index = -1;
-			// goto = null;
-		} else if (goto || goto === 0) {
-			if (goto > draw.length) goto = draw.length;
-			index = goto + 0;
-			goto = null;
-			dispatch("changeIndex", { index: index, draw_id, id });
-
-			// const oldDraw = [...draw];
-			// // const newDraw = oldDraw.slice(0, index + 1);
-			// oldDraw.forEach((stroke, i) => {
-			// 	if (!stroke.visible && stroke.erasedAtIndex < goto) {
-			// 		stroke.visible = true;
-			// 		stroke.erasedAtIndex = null;
-			// 	}
-			// });
-
-			// draw = newDraw;
-		}
-		if (index < 0) {
-			index = 0;
-			format = true;
-		} else if (index >= 0) {
-			format = false;
-		}
-
-		if (!background_color) background_color = "rgb(255,255,255)";
-		if (!pen_color) pen_color = "rgb(0,0,0)";
-		// if (cv) configureSign();
-
-		// json
-		if (typeof options === "string" && (options as string)?.length) {
-			try {
-				options = JSON.parse(options);
-			} catch (err) {
-				console.error("error parsing json", err);
+			if (draw?.length && save) {
+				exportDraw(save);
 			}
-		} else if (!options) {
-			options = defaultOptions;
-		}
-
-		if (typeof load_draw === "string" && (load_draw as string)?.length) {
-			try {
-				load_draw = JSON.parse(load_draw);
-			} catch (err) {
-				console.error("error parsing json", err);
+			if (!id) id = "";
+			if (style) {
+				parsedStyle = parseStyle(style);
+				// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
 			}
-		} else if (!load_draw) {
-			load_draw = null;
+			if (!draw_id) draw_id = Math.random().toString(36) + Math.random().toString(36) + Date.now().toString();
+
+			if (!draw) {
+				draw = [];
+			}
+			// mode
+			if (!mode) mode = "draw";
+			if (mode && mode !== "select" && thereIsSelectedStrokes) {
+				thereIsSelectedStrokes = false;
+				const oldDraw = [...draw];
+				oldDraw.forEach((stroke) => {
+					stroke.selected = false;
+				});
+				draw = [...oldDraw];
+			}
+			if (mode !== "select") {
+				pointerIsOnSelect = false;
+			}
+
+			if (debug !== "yes") debug = "no";
+			if (typeof pen_opacity === "string") pen_opacity = Number(pen_opacity);
+			if (!pen_opacity) pen_opacity = 1;
+			if (typeof goto === "string") goto = Number(goto);
+
+			if (!draw.length) {
+				index = 0;
+				goto = null;
+			}
+
+			if (!index) {
+				index = 0;
+			}
+			if (goto && goto < 0) {
+				index = -1;
+				// goto = null;
+			} else if (goto || goto === 0) {
+				if (goto > draw.length) goto = draw.length;
+				index = goto + 0;
+				goto = null;
+				dispatch("changeIndex", { index: index, draw_id, id });
+
+				// const oldDraw = [...draw];
+				// // const newDraw = oldDraw.slice(0, index + 1);
+				// oldDraw.forEach((stroke, i) => {
+				// 	if (!stroke.visible && stroke.erasedAtIndex < goto) {
+				// 		stroke.visible = true;
+				// 		stroke.erasedAtIndex = null;
+				// 	}
+				// });
+
+				// draw = newDraw;
+			}
+			if (index < 0) {
+				index = 0;
+				format = true;
+			} else if (index >= 0) {
+				format = false;
+			}
+
+			if (!background_color) background_color = "rgb(255,255,255)";
+			if (!pen_color) pen_color = "rgb(0,0,0)";
+			// if (cv) configureSign();
+
+			// json
+			if (typeof options === "string" && (options as string)?.length) {
+				try {
+					options = JSON.parse(options);
+				} catch (err) {
+					console.error("error parsing json", err);
+				}
+			} else if (!options) {
+				options = defaultOptions;
+			}
+
+			if (typeof load_draw === "string" && (load_draw as string)?.length) {
+				try {
+					load_draw = JSON.parse(load_draw);
+				} catch (err) {
+					console.error("error parsing json", err);
+				}
+			} else if (!load_draw) {
+				load_draw = null;
+			}
+
+			if (load_draw && (!loadTime || loadTime.valueOf() < load_draw.time.valueOf())) {
+				draw = load_draw.draw.filter((f) => f.visible && f.type === "stroke");
+				index = draw.length - 1;
+				load_draw = null;
+				draw_id = load_draw.draw_id;
+				dispatch("historyIndex", { index: index, draw_id, id });
+			}
+
+			stroke = getStroke(draw[index]?.path || [], Object.assign({ simulatePressure: pointerType === "pen" ? false : true }, options));
+			pathData = getSvgPathFromStroke(stroke);
+
+			if (!options.size) options.size = defaultOptions.size;
+			if (!options.thinning) options.thinning = defaultOptions.thinning;
+			if (!options.smoothing) options.smoothing = defaultOptions.smoothing;
+			if (!options.streamline) options.streamline = defaultOptions.streamline;
+			console.log("set index to", index, "from goto", goto, "historyActions", draw.length);
 		}
-
-		if (load_draw && (!loadTime || loadTime.valueOf() < load_draw.time.valueOf())) {
-			draw = load_draw.draw.filter((f) => f.visible && f.type === "stroke");
-			index = draw.length - 1;
-			load_draw = null;
-			draw_id = load_draw.draw_id;
-			dispatch("historyIndex", { index: index, draw_id, id });
-		}
-
-		stroke = getStroke(draw[index]?.path || [], Object.assign({ simulatePressure: pointerType === "pen" ? false : true }, options));
-		pathData = getSvgPathFromStroke(stroke);
-
-		if (!options.size) options.size = defaultOptions.size;
-		if (!options.thinning) options.thinning = defaultOptions.thinning;
-		if (!options.smoothing) options.smoothing = defaultOptions.smoothing;
-		if (!options.streamline) options.streamline = defaultOptions.streamline;
-		console.log("set index to", index, "from goto", goto, "historyActions", draw.length);
 	}
 
 	function eraseHere(e: PointerEvent) {
@@ -276,10 +287,6 @@
 	function handlePointerDown(e: PointerEvent) {
 		// wip on auto detect pointer type
 		pointerType = e.pointerType;
-
-		// @ts-ignore
-		containerPos = e?.target?.getBoundingClientRect?.() || { left: 0, top: 0 };
-		console.log("pos", containerPos);
 
 		mouseButton = e.buttons;
 
@@ -379,9 +386,6 @@
 		}
 	}
 	function handlePointerMove(e: PointerEvent) {
-		// @ts-ignore
-		if (!containerPos) containerPos = e?.target?.getBoundingClientRect?.() || { left: 0, top: 0 };
-
 		pointerType = e.pointerType;
 		mouseButton = e.buttons + " " + [e.pageX - containerPos.left, e.pageY - containerPos.top, e.pressure].toString();
 
@@ -408,6 +412,19 @@
 			selectMaxY = e.pageY - containerPos.top;
 
 			// console.log("selecting", selectMinX, selectMinY, selectMaxX, selectMaxY
+		} else if (mode === "select" && pencilStatus === "idle" && thereIsSelectedStrokes) {
+			const pointerIsOnSelectX = e.pageX - containerPos.left;
+			const pointerIsOnSelectY = e.pageY - containerPos.top;
+			const isSelected =
+				pointerIsOnSelectX > selectMinX && pointerIsOnSelectX < selectMaxX && pointerIsOnSelectY > selectMinY && pointerIsOnSelectY < selectMaxY;
+			if (isSelected && !pointerIsOnSelect) {
+				pointerIsOnSelect = true;
+
+				console.log("on select", pointerIsOnSelect);
+			} else if (!isSelected && pointerIsOnSelect) {
+				pointerIsOnSelect = false;
+				console.log("off select", pointerIsOnSelect);
+			}
 		}
 	}
 
@@ -480,105 +497,110 @@
 		if (e?.pointerId) (e.target as unknown as any)?.releasePointerCapture?.(e.pointerId);
 	}
 
-	// onMount(() => {
-	// cv = component.shadowRoot.querySelector("canvas");
-	// let retryToMount = 0;
-	// const interval = setInterval(() => {
-	// 	cv = component.shadowRoot.querySelector("canvas");
-	// 	if (cv) {
-	// 		clearInterval(interval);
-	// 		// configureSign();
-	// 	} else {
-	// 		retryToMount++;
-	// 		if (retryToMount > 10) {
-	// 			clearInterval(interval);
-	// 			console.warn("no canvas found on check " + retryToMount);
-	// 		} else {
-	// 			console.error("no canvas found on check " + retryToMount + " end");
-	// 		}
-	// 	}
-	// }, 100);
-	// if (!cv) return console.error("no canvas found on mount");
-	// configureSign();
-	//  component.style.cssText = componentStyleToSet;
-	// });
+	onMount(() => {
+		svgDom = component.shadowRoot.querySelector("svg");
+		let retryToMount = 0;
+		const interval = setInterval(() => {
+			svgDom = component.shadowRoot.querySelector("svg");
+			if (svgDom) {
+				clearInterval(interval);
+				// configureSign();
+			} else {
+				retryToMount++;
+				if (retryToMount > 10) {
+					clearInterval(interval);
+					console.warn("no canvas found on check " + retryToMount);
+				} else {
+					console.error("no canvas found on check " + retryToMount + " end");
+				}
+			}
+		}, 100);
+		if (!svgDom) return console.error("no canvas found on mount");
+	});
 </script>
 
 <div id="debug" style="display:{debug === 'yes' ? 'block' : 'none'}">{pointerType} b: {mouseButton}</div>
-<svg on:pointerdown={handlePointerDown} on:pointermove={handlePointerMove} on:pointerup={handlePointerUp} style="background-color:{background_color}">
+<svg
+	on:pointerdown={handlePointerDown}
+	on:pointermove={handlePointerMove}
+	on:pointerup={handlePointerUp}
+	style="background-color:{background_color};cursor:{pointerIsOnSelect === true ? 'move' : 'default'}"
+>
 	<!-- {#if draw?.length} -->
-	<g>
-		{#each draw.filter((f) => f.type === "stroke" && f.path) as stroke (stroke.id)}
-			{#if stroke.actionIndex <= index && !format && (stroke.visible || stroke.erasedAtIndex > index)}
-				{#if stroke.selected}
-					<path
-						id={"path_" + stroke.id}
-						d={stroke.pathData}
-						fill={stroke.color}
-						fill-opacity={stroke.opacity}
-						stroke-linecap="round"
+	{#if svgDom}
+		<g>
+			{#each draw.filter((f) => f.type === "stroke" && f.path) as stroke (stroke.id)}
+				{#if stroke.actionIndex <= index && !format && (stroke.visible || stroke.erasedAtIndex > index)}
+					{#if stroke.selected}
+						<path
+							id={"path_" + stroke.id}
+							d={stroke.pathData}
+							fill={stroke.color}
+							fill-opacity={stroke.opacity}
+							stroke-linecap="round"
+							stroke="red"
+							stroke-width="2"
+						/>
+					{:else}
+						<path id={"path_" + stroke.id} d={stroke.pathData} fill={stroke.color} fill-opacity={stroke.opacity} />
+					{/if}
+				{/if}
+			{/each}
+
+			{#if mode === "select"}
+				{#if selectMinX <= selectMaxX && selectMinY <= selectMaxY}
+					<rect
+						id="selector"
+						x={selectMinX}
+						y={selectMinY}
+						width={selectMaxX - selectMinX}
+						height={selectMaxY - selectMinY}
+						fill="none"
 						stroke="red"
-						stroke-width="2"
+						stroke-width="1"
+					/>
+				{:else if selectMinX > selectMaxX && selectMinY < selectMaxY}
+					<rect
+						id="selector"
+						x={selectMaxX}
+						y={selectMinY}
+						width={selectMinX - selectMaxX}
+						height={selectMaxY - selectMinY}
+						fill="none"
+						stroke="red"
+						stroke-width="1"
+					/>
+				{:else if selectMinX < selectMaxX && selectMinY > selectMaxY}
+					<rect
+						id="selector"
+						x={selectMinX}
+						y={selectMaxY}
+						width={selectMaxX - selectMinX}
+						height={selectMinY - selectMaxY}
+						fill="none"
+						stroke="red"
+						stroke-width="1"
 					/>
 				{:else}
-					<path id={"path_" + stroke.id} d={stroke.pathData} fill={stroke.color} fill-opacity={stroke.opacity} />
+					<rect
+						id="selector"
+						x={selectMaxX}
+						y={selectMaxY}
+						width={selectMinX - selectMaxX}
+						height={selectMinY - selectMaxY}
+						fill="none"
+						stroke="red"
+						stroke-width="1"
+					/>
 				{/if}
 			{/if}
-		{/each}
 
-		{#if mode === "select" && pencilStatus === "selecting"}
-			{#if selectMinX <= selectMaxX && selectMinY <= selectMaxY}
-				<rect
-					id="selector"
-					x={selectMinX}
-					y={selectMinY}
-					width={selectMaxX - selectMinX}
-					height={selectMaxY - selectMinY}
-					fill="none"
-					stroke="red"
-					stroke-width="1"
-				/>
-			{:else if selectMinX > selectMaxX && selectMinY < selectMaxY}
-				<rect
-					id="selector"
-					x={selectMaxX}
-					y={selectMinY}
-					width={selectMinX - selectMaxX}
-					height={selectMaxY - selectMinY}
-					fill="none"
-					stroke="red"
-					stroke-width="1"
-				/>
-			{:else if selectMinX < selectMaxX && selectMinY > selectMaxY}
-				<rect
-					id="selector"
-					x={selectMinX}
-					y={selectMaxY}
-					width={selectMaxX - selectMinX}
-					height={selectMinY - selectMaxY}
-					fill="none"
-					stroke="red"
-					stroke-width="1"
-				/>
-			{:else}
-				<rect
-					id="selector"
-					x={selectMaxX}
-					y={selectMaxY}
-					width={selectMinX - selectMaxX}
-					height={selectMinY - selectMaxY}
-					fill="none"
-					stroke="red"
-					stroke-width="1"
-				/>
-			{/if}
-		{/if}
-
-		<!-- {/if} -->
-		<!-- {#if points?.length}
+			<!-- {/if} -->
+			<!-- {#if points?.length}
 		<g id="foreground"><path d={pathData} fill={pen_color} /></g>
 	{/if} -->
-	</g>
+		</g>
+	{/if}
 </svg>
 
 <style lang="scss">
