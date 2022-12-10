@@ -22,10 +22,6 @@
 	export let id: string;
 	export let style: string;
 
-	export let string: string;
-	export let json: Component["json"];
-	export let boolean: boolean;
-
 	let mode: paperComponent["mode"] = "draw";
 
 	let parsedStyle: { [x: string]: string };
@@ -43,25 +39,11 @@
 			parsedStyle = parseStyle(style);
 			stylusPaperStyleToSet = getChildStyleToPass(parsedStyle, stylusPaperSetup?.vars);
 		}
-		if (!string) string = "";
 
 		if (!historyIndex && historyIndex !== 0) historyIndex = 0;
 
 		if ((changeHistoryIndex === 0 || changeHistoryIndex) && changeHistoryIndex <= historyIndex) enableRedo = true;
 		else enableRedo = false;
-
-		// json
-		if (typeof json === "string") {
-			try {
-				json = JSON.parse(json);
-			} catch (err) {
-				console.error("error parsing json", err);
-			}
-		}
-		// boolean
-		if (boolean === ("" as unknown)) boolean = true;
-		if (typeof boolean === "string") boolean = boolean === "no" || boolean === "false" ? false : true;
-		if (!boolean) boolean = false;
 	}
 	addComponent({ repoName: "@htmlbricks/hb-stylus-paper", version: pkg.version });
 
@@ -92,6 +74,7 @@
 	function save() {}
 	function load() {}
 	function move() {}
+	function insert() {}
 </script>
 
 <div part="controller" id="controller">
@@ -103,6 +86,7 @@
 	<button on:click={() => load()}>load</button>
 	<button on:click={() => save()} disabled={!enableUndo}>save</button>
 	<button on:click={() => move()} disabled={!enableUndo}>move</button>
+	<button on:click={() => insert()}>insert</button>
 	<button disabled={mode !== "draw"}>brush</button>
 </div>
 <div part="paper-container" id="paper-container" style="position:relative">

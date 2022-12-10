@@ -2,9 +2,12 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	json: { control: { type: "object" } },
-	string: { control: { type: "text" } },
-	boolean: { control: { type: "boolean" } },
+	load_draw: { control: { type: "object" } },
+	save: { control: { type: "object" } },
+	debug: {
+		options: ["yes", "no"],
+		control: { type: "select" }, // Automatically inferred when 'options' is defined
+	},
 	event: { action: "eventEvent" },
 };
 
@@ -21,13 +24,7 @@ export const styleSetup: StyleSetup = {
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
-		data: {
-			json: {
-				a: 0,
-			},
-			string: "test",
-			boolean: false,
-		},
+		data: {},
 	},
 ];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {

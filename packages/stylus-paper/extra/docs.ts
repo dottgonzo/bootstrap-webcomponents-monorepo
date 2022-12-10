@@ -9,6 +9,7 @@ export const storybookArgs = {
 		options: ["yes", "no"],
 		control: { type: "select" }, // Automatically inferred when 'options' is defined
 	},
+	save: { control: { type: "object" } },
 	options: { control: { type: "object" } },
 	goto: { control: { type: "number" } },
 	mode: {
