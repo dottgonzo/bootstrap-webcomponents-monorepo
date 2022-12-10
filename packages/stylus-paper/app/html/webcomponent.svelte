@@ -223,7 +223,7 @@
 		}
 
 		if (load_draw && (!loadTime || loadTime.valueOf() < load_draw.time.valueOf())) {
-			draw = load_draw.draw.filter((f) => f.visible);
+			draw = load_draw.draw.filter((f) => f.visible && f.type === "stroke");
 			index = draw.length - 1;
 			load_draw = null;
 			draw_id = load_draw.draw_id;
