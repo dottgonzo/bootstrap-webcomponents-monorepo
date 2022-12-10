@@ -34,6 +34,9 @@
 	let historyIndex: number;
 	let changeHistoryIndex: number;
 
+	let enableUndo: boolean = false;
+	let enableRedo: boolean;
+
 	$: {
 		if (!id) id = "";
 		if (style) {
@@ -42,7 +45,10 @@
 		}
 		if (!string) string = "";
 
-		if (!historyIndex) historyIndex = 0;
+		if (!historyIndex && historyIndex !== 0) historyIndex = 0;
+
+		if ((changeHistoryIndex === 0 || changeHistoryIndex) && changeHistoryIndex <= historyIndex) enableRedo = true;
+		else enableRedo = false;
 
 		// json
 		if (typeof json === "string") {
@@ -67,14 +73,21 @@
 		mode = name;
 	}
 	function undo() {
-		if (historyIndex > 0 && (!changeHistoryIndex || changeHistoryIndex > 0)) changeHistoryIndex = historyIndex - 1;
+		console.log(historyIndex, changeHistoryIndex);
+		if (historyIndex >= 0 && (!changeHistoryIndex || changeHistoryIndex > -1))
+			changeHistoryIndex = changeHistoryIndex || changeHistoryIndex === 0 ? changeHistoryIndex - 1 : historyIndex;
 	}
 	function redo() {
-		if (changeHistoryIndex && changeHistoryIndex < historyIndex) changeHistoryIndex++;
+		console.log(historyIndex, changeHistoryIndex);
+
+		if ((changeHistoryIndex || changeHistoryIndex === 0) && changeHistoryIndex <= historyIndex) changeHistoryIndex++;
 	}
-	function onHistoryIndexChange(details: { i: number }) {
-		historyIndex = details.i;
+	function onHistoryIndexChange(details: { i?: number; index?: number }) {
+		console.log(details);
+		historyIndex = details.i || details.index || 0;
+		if (historyIndex > -1) enableUndo = true;
 		changeHistoryIndex = null;
+		console.log(historyIndex, changeHistoryIndex, details);
 	}
 </script>
 
@@ -82,11 +95,18 @@
 	<button on:click={() => changeMode("eraser")}>clear</button>
 	<button on:click={() => changeMode("select")}>select</button>
 	<button on:click={() => changeMode("draw")}>draw</button>
-	<button on:click={() => undo()} disabled={historyIndex === 0}>undo</button>
-	<button on:click={() => redo()}>redo</button>
+	<button on:click={() => undo()} disabled={!enableUndo}>undo</button>
+	<button on:click={() => redo()} disabled={!enableRedo}>redo</button>
 </div>
 <div part="paper-container" id="paper-container" style="position:relative">
-	<hb-stylus-paper id="stylus-paper" style={stylusPaperStyleToSet} background_color="green" {mode} on:historyIndex={(e) => onHistoryIndexChange(e.details)} />
+	<hb-stylus-paper
+		id="stylus-paper"
+		goto={changeHistoryIndex}
+		style={stylusPaperStyleToSet}
+		background_color="green"
+		{mode}
+		on:historyIndex={(e) => onHistoryIndexChange(e.detail)}
+	/>
 </div>
 
 <style lang="scss">

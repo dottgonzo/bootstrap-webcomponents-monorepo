@@ -179,7 +179,7 @@
 			if (goto > historyActions.length) goto = historyActions.length;
 			index = historyActions[goto - 1]?.index || 0;
 
-			dispatch("historyIndex", { i: goto - 1, draw_id, id });
+			dispatch("changeIndex", { index: goto - 1, draw_id, id });
 
 			console.log("set index to", index, "from goto", goto, "historyActions", historyActions);
 			// const oldDraw = [...draw];
@@ -231,7 +231,7 @@
 			load_draw = null;
 			draw_id = load_draw.draw_id;
 			historyActions = [];
-			dispatch("historyIndex", { i: 0, draw_id, id });
+			dispatch("historyIndex", { index: 0, draw_id, id });
 		}
 
 		stroke = getStroke(draw[index]?.path || [], Object.assign({ simulatePressure: pointerType === "pen" ? false : true }, options));
@@ -259,7 +259,7 @@
 				// with multiple!?
 				if (historyActions[historyActions.length - 1]?.action !== "erase" || historyActions[historyActions.length - 1]?.index !== index) {
 					historyActions.push({ action: "erase", index: index });
-					dispatch("historyIndex", { i: historyActions.length - 1, draw_id, id });
+					dispatch("historyIndex", { index: historyActions.length - 1, draw_id, id });
 				}
 			}
 		}
@@ -279,7 +279,7 @@
 			pencilStatus = "drawing";
 			if (historyActions.length && goto) {
 				historyActions = historyActions.slice(0, historyActions.findIndex((f) => f.index === goto && f.action === "draw") + 1);
-				dispatch("historyIndex", { i: historyActions.length - 1, draw_id, id });
+				dispatch("historyIndex", { index: historyActions.length - 1, draw_id, id });
 			}
 			if (draw?.length && index < draw.length) {
 				if (!format) {
@@ -379,8 +379,8 @@
 			if (e.pageX - containerPos.left > strokeMaxX) strokeMaxX = e.pageX - containerPos.left;
 			if (e.pageY - containerPos.top > strokeMaxY) strokeMaxY = e.pageY - containerPos.top;
 		} else if (
-			mode === "eraser" ||
-			(mode === "draw" && pencilStatus !== "drawing" && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32))
+			pencilStatus === "erasing" &&
+			(mode === "eraser" || (mode === "draw" && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32)))
 		) {
 			// eraser
 			console.log("eraser move");
