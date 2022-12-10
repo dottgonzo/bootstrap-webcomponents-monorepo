@@ -89,6 +89,8 @@
 		changeHistoryIndex = null;
 		console.log(historyIndex, changeHistoryIndex, details);
 	}
+	function save() {}
+	function select() {}
 </script>
 
 <div part="controller" id="controller">
@@ -97,6 +99,8 @@
 	<button on:click={() => changeMode("draw")}>draw</button>
 	<button on:click={() => undo()} disabled={!enableUndo}>undo</button>
 	<button on:click={() => redo()} disabled={!enableRedo}>redo</button>
+	<button on:click={() => select()} disabled={!enableUndo}>select</button>
+	<button on:click={() => save()} disabled={!enableUndo}>save</button>
 </div>
 <div part="paper-container" id="paper-container" style="position:relative">
 	<hb-stylus-paper

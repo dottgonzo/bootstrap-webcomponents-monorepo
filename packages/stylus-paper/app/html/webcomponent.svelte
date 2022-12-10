@@ -258,8 +258,8 @@
 				// with multiple!?
 				if (historyActions[historyActions.length - 1]?.action !== "erase" || historyActions[historyActions.length - 1]?.index !== index) {
 					historyActions.push({ action: "erase", index: index });
-					dispatch("historyIndex", { index: historyActions.length - 1, draw_id, id });
 				}
+				dispatch("historyIndex", { index: historyActions.length - 1, draw_id, id });
 			}
 		}
 	}
@@ -277,12 +277,25 @@
 		if (mode === "draw" && e.buttons === 1 && !(e.pointerType === "pen" && e.pressure === 0)) {
 			pencilStatus = "drawing";
 			if (historyActions.length && goto) {
-				historyActions = historyActions.slice(0, historyActions.findIndex((f) => f.index === goto && f.action === "draw") + 1);
+				//TODO: history on erase if needed
+				historyActions = historyActions.slice(0, goto + 1);
+				const oldDraw = [...draw];
+
+				// TODO: to be tested
+				oldDraw.forEach((stroke, i) => {
+					if (!stroke.visible && stroke.erasedAtIndex < index) {
+						stroke.visible = true;
+						stroke.erasedAtIndex = null;
+					}
+				});
+				draw = oldDraw;
+
 				dispatch("historyIndex", { index: historyActions.length - 1, draw_id, id });
 			}
 			if (draw?.length && index < draw.length) {
 				if (!format) {
 					index++;
+
 					draw = draw.slice(0, index);
 				} else {
 					draw = [];
@@ -489,7 +502,7 @@
 	<!-- {#if draw?.length} -->
 	<g>
 		{#each draw as stroke (stroke.id)}
-			{#if stroke.lineIndex <= index && !format && (stroke.visible || stroke.erasedAtIndex > index)}
+			{#if stroke.lineIndex <= index && !format && (stroke.visible || stroke.erasedAtIndex > index || (stroke.erasedAtIndex === index && goto))}
 				{#if stroke.selected}
 					<path
 						id={"path_" + stroke.id}
