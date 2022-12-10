@@ -69,7 +69,7 @@
 			console.log("redo", historyIndex, changeHistoryIndex);
 		}
 	}
-	function onHistoryIndexChange(details: { i?: number; index?: number }) {
+	function onHistoryIndexChange(details: { index: number }) {
 		console.log(details);
 		historyIndex = details.index;
 		if (historyIndex > -1) enableUndo = true;
