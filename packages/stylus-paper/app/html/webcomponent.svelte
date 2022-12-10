@@ -393,6 +393,9 @@
 			if (e.pageY - containerPos.top < strokeMinY) strokeMinY = e.pageY - containerPos.top;
 			if (e.pageX - containerPos.left > strokeMaxX) strokeMaxX = e.pageX - containerPos.left;
 			if (e.pageY - containerPos.top > strokeMaxY) strokeMaxY = e.pageY - containerPos.top;
+
+			draw[index].min = [strokeMinX, strokeMinY];
+			draw[index].max = [strokeMaxX, strokeMaxY];
 		} else if (
 			pencilStatus === "erasing" &&
 			(mode === "eraser" || (mode === "draw" && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32)))
@@ -454,6 +457,8 @@
 			const selectedStrokes = oldDraw.filter((stroke) => {
 				return stroke.min[0] > minX && stroke.min[1] > minY && stroke.max[0] < maxX && stroke.max[1] < maxY;
 			});
+
+			console.table({ minX, minY, maxX, maxY, selectedStrokes });
 
 			if (selectedStrokes.length > 0) {
 				thereIsSelectedStrokes = true;
