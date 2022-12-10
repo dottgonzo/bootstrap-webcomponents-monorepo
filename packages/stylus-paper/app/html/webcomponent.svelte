@@ -6,7 +6,7 @@
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
-	import type { Component, TPath, TDraw } from "@app/types/webcomponent.type";
+	import type { Component, IStroke } from "@app/types/webcomponent.type";
 
 	import { getStroke } from "perfect-freehand";
 
@@ -127,7 +127,7 @@
 		}
 	}
 
-	let draw: TDraw;
+	let draw: IStroke[];
 	let format = false;
 	let pencilStatus: "drawing" | "erasing" | "selecting" | "idle" = "idle";
 	let thereIsSelectedStrokes = false;

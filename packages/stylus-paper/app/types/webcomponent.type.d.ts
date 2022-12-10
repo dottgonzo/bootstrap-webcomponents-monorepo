@@ -32,7 +32,6 @@ export type IStroke = {
 	selected?: boolean;
 	type: "stroke" | "eraser";
 };
-export type TDraw = IStroke[];
 
 export type Component = {
 	id?: string;
@@ -44,7 +43,7 @@ export type Component = {
 	goto?: number;
 	mode: "eraser" | "draw" | "select";
 	debug?: "yes" | "no";
-	load_draw?: { time: Date; draw: TDraw; draw_id: string };
+	load_draw?: { time: Date; draw: IStroke[]; draw_id: string };
 	save?: { name: string; type: "pdf" | "json" | "png" | "svg" | "jpg" };
 };
 
