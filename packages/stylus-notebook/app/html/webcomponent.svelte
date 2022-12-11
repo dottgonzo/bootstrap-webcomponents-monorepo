@@ -92,7 +92,8 @@
 	function insert() {}
 
 	function onPaperSave(e) {
-		console.log("save", e.detail);
+		console.log("save", e);
+		save_as = null;
 	}
 </script>
 
