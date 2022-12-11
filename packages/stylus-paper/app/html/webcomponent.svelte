@@ -254,7 +254,7 @@
 	function eraseHere(e: PointerEvent) {
 		const pathId = (e.target as unknown as any)?.id?.split("_")?.[1];
 		if (pathId) {
-			const oldDraw = [...draw];
+			let oldDraw = [...draw];
 
 			const stroke = oldDraw.find((s) => s.id === pathId);
 			if (stroke) {
@@ -263,13 +263,22 @@
 				console.info("erase stroke", stroke.id);
 
 				if (oldDraw[oldDraw.length - 1].type !== "eraser") {
+					oldDraw = oldDraw.slice(0, index + 1);
+
 					oldDraw.push({
 						type: "eraser",
 						visible: true,
 						id: Math.random().toString(36) + Math.random().toString(36) + Date.now().toString(),
 						actionIndex: draw.length,
 					});
+					oldDraw.forEach((stroke, i) => {
+						if (!stroke.visible && stroke.erasedAtIndex > index) {
+							stroke.visible = true;
+							stroke.erasedAtIndex = null;
+						}
+					});
 					draw = [...oldDraw];
+
 					index++;
 					dispatch("historyIndex", { index: index, draw_id, id });
 				} else {
@@ -298,7 +307,7 @@
 				const oldDraw = [...draw];
 
 				oldDraw.forEach((stroke, i) => {
-					if (!stroke.visible && stroke.erasedAtIndex < index) {
+					if (!stroke.visible && stroke.erasedAtIndex > index) {
 						stroke.visible = true;
 						stroke.erasedAtIndex = null;
 					}
@@ -310,14 +319,15 @@
 			if (draw?.length && index < draw.length) {
 				if (!format) {
 					index++;
+					const oldDraw = [...draw];
 
-					draw = draw.slice(0, index);
+					draw = oldDraw.slice(0, index);
 				} else {
 					draw = [];
 					format = false;
 				}
-				dispatch("historyIndex", { index: index, draw_id, id });
 			}
+			dispatch("historyIndex", { index: index, draw_id, id });
 
 			stroke_start = new Date();
 			stroke_id = Date.now().toString();
@@ -430,7 +440,6 @@
 
 	function handlePointerUp(e: PointerEvent) {
 		mouseButton = e.buttons;
-		containerPos = null;
 
 		if (mode === "draw" && pencilStatus === "drawing") {
 			const stroke_end = new Date();
