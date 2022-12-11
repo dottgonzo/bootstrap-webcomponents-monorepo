@@ -1,3 +1,5 @@
+export type TSaveType = "pdf" | "json" | "png" | "svg" | "jpg";
+
 export type TPerfectFreeHandOptions = {
 	size: number;
 	thinning?: number;
@@ -44,7 +46,7 @@ export type Component = {
 	mode: "eraser" | "draw" | "select";
 	debug?: "yes" | "no";
 	load_draw?: { time: Date; draw: IStroke[]; draw_id: string };
-	save?: { name: string; type: "pdf" | "json" | "png" | "svg" | "jpg" };
+	save_as?: { name: string; type: TSaveType };
 };
 
 export type Events = {
@@ -72,4 +74,5 @@ export type Events = {
 		draw_id: string;
 	};
 	historyIndex: { index: number; id: string; draw_id: string };
+	save: { type: TSaveType; data: draw; id: id; draw_id; name: s.name };
 };

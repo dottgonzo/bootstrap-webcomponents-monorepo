@@ -9,7 +9,7 @@ export const storybookArgs = {
 		options: ["yes", "no"],
 		control: { type: "select" }, // Automatically inferred when 'options' is defined
 	},
-	save: { control: { type: "object" } },
+	save_as: { control: { type: "object" } },
 	options: { control: { type: "object" } },
 	goto: { control: { type: "number" } },
 	mode: {
@@ -22,6 +22,7 @@ export const storybookArgs = {
 	endStroke: { action: "endStrokeEvent" },
 	selection: { action: "selectionEvent" },
 	historyIndex: { action: "historyIndexEvent" },
+	save: { action: "saveEvent" },
 };
 
 const cssVars: CssVar[] = [];

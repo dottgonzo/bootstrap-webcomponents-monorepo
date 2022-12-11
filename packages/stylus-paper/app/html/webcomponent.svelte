@@ -38,7 +38,7 @@
 
 	export let load_draw: Component["load_draw"];
 
-	export let save: Component["save"];
+	export let save_as: Component["save_as"];
 
 	let index = 0;
 	let pointerIsOnSelect: boolean;
@@ -119,7 +119,7 @@
 		}
 	}
 
-	function exportDraw(s: Component["save"]) {
+	function exportDraw(s: Component["save_as"]) {
 		if (s) {
 			switch (s.type) {
 				case "json":
@@ -140,8 +140,8 @@
 		if (svgDom) {
 			containerPos = svgDom.getBoundingClientRect();
 
-			if (draw?.length && save) {
-				exportDraw(save);
+			if (draw?.length && save_as) {
+				exportDraw(save_as);
 			}
 			if (!id) id = "";
 			if (style) {

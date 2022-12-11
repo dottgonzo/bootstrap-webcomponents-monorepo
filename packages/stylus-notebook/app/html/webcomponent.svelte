@@ -33,6 +33,7 @@
 	let enableUndo: boolean = false;
 	let enableRedo: boolean;
 	let started = false;
+	let save_as: paperComponent["save"];
 	$: {
 		if (!id) id = "";
 		if (style) {
@@ -80,7 +81,12 @@
 
 		changeHistoryIndex = null;
 	}
-	function save() {}
+	function save() {
+		save_as = {
+			name: "test",
+			type: "json",
+		};
+	}
 	function load() {}
 	function move() {}
 	function insert() {}
@@ -106,6 +112,7 @@
 		background_color="green"
 		{mode}
 		on:historyIndex={(e) => onHistoryIndexChange(e.detail)}
+		on:save={(e) => dispatch("save", e.detail)}
 	/>
 </div>
 
