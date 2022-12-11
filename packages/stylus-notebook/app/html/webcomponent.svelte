@@ -90,6 +90,10 @@
 	function load() {}
 	function move() {}
 	function insert() {}
+
+	function onPaperSave(e) {
+		console.log("save", e.detail);
+	}
 </script>
 
 <div part="controller" id="controller">
@@ -111,8 +115,9 @@
 		style={stylusPaperStyleToSet}
 		background_color="green"
 		{mode}
+		save_as={JSON.stringify(save_as)}
 		on:historyIndex={(e) => onHistoryIndexChange(e.detail)}
-		on:save={(e) => dispatch("save", e.detail)}
+		on:save={(e) => onPaperSave(e.detail)}
 	/>
 </div>
 

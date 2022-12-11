@@ -140,13 +140,20 @@
 		if (svgDom) {
 			containerPos = svgDom.getBoundingClientRect();
 
-			if (draw?.length && save_as) {
-				exportDraw(save_as);
-			}
 			if (!id) id = "";
 			if (style) {
 				parsedStyle = parseStyle(style);
 				// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
+			}
+			if (typeof save_as === "string" && (save_as as string)?.length) {
+				try {
+					save_as = JSON.parse(save_as);
+				} catch (err) {
+					console.error("error parsing json", err);
+				}
+			}
+			if (draw?.length && save_as) {
+				exportDraw(save_as);
 			}
 			if (!draw_id) draw_id = Math.random().toString(36) + Math.random().toString(36) + Date.now().toString();
 
