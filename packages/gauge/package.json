@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-gauge",
 	"displayName": "Svelte-Bootstrap gauge",
 	"description": "Svelte-Bootstrap gauge",
-	"version": "0.16.52",
+	"version": "0.16.53",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.16.52",
+		"@htmlbricks/hb-jsutils": "^0.16.53",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",

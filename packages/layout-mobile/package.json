@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-layout-mobile",
 	"displayName": "Svelte Bootstrap Layout Mobile WebComponent",
 	"description": "Svelte Bootstrap 5 WebComponent",
-	"version": "0.16.52",
+	"version": "0.16.53",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -77,12 +77,12 @@
 	"contributors": [],
 	"gitHead": "64e9fac85127d9a97c1fc8c08fcba4c00b0b89aa",
 	"dependencies": {
-		"@htmlbricks/hb-cookie-law-banner": "^0.16.52",
-		"@htmlbricks/hb-footer": "^0.16.52",
-		"@htmlbricks/hb-jsutils": "^0.16.52",
-		"@htmlbricks/hb-navbar": "^0.16.52",
-		"@htmlbricks/hb-offcanvas": "^0.16.52",
-		"@htmlbricks/hb-sidebar-desktop": "^0.16.52",
+		"@htmlbricks/hb-cookie-law-banner": "^0.16.53",
+		"@htmlbricks/hb-footer": "^0.16.53",
+		"@htmlbricks/hb-jsutils": "^0.16.53",
+		"@htmlbricks/hb-navbar": "^0.16.53",
+		"@htmlbricks/hb-offcanvas": "^0.16.53",
+		"@htmlbricks/hb-sidebar-desktop": "^0.16.53",
 		"debounce": "^1.2.1",
 		"style-to-object": "^0.3.0"
 	}
