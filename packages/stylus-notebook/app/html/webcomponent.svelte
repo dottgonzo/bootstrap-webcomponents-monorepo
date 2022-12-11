@@ -32,7 +32,7 @@
 
 	let enableUndo: boolean = false;
 	let enableRedo: boolean;
-
+	let started = false;
 	$: {
 		if (!id) id = "";
 		if (style) {
@@ -42,8 +42,11 @@
 
 		if (!historyIndex && historyIndex !== 0) historyIndex = 0;
 
-		if ((changeHistoryIndex === 0 || changeHistoryIndex) && changeHistoryIndex <= historyIndex) enableRedo = true;
+		if ((changeHistoryIndex === 0 || changeHistoryIndex) && changeHistoryIndex < historyIndex) enableRedo = true;
 		else enableRedo = false;
+
+		if ((historyIndex || historyIndex === 0) && started && (!changeHistoryIndex || changeHistoryIndex !== -1)) enableUndo = true;
+		else enableUndo = false;
 	}
 	addComponent({ repoName: "@htmlbricks/hb-stylus-paper", version: pkg.version });
 
@@ -57,7 +60,7 @@
 	function undo() {
 		console.log("ch", historyIndex, changeHistoryIndex);
 		if (historyIndex >= 0 && (!changeHistoryIndex || changeHistoryIndex > -1)) {
-			changeHistoryIndex = changeHistoryIndex || changeHistoryIndex === 0 ? changeHistoryIndex - 1 : historyIndex - 2;
+			changeHistoryIndex = changeHistoryIndex || changeHistoryIndex === 0 ? changeHistoryIndex - 1 : historyIndex - 1;
 			console.log("undo", historyIndex, changeHistoryIndex);
 		}
 	}
@@ -66,15 +69,16 @@
 
 		if ((changeHistoryIndex || changeHistoryIndex === 0) && changeHistoryIndex <= historyIndex) {
 			changeHistoryIndex++;
+			// if (changeHistoryIndex === historyIndex - 2) changeHistoryIndex = historyIndex - 1;
 			console.log("redo", historyIndex, changeHistoryIndex);
 		}
 	}
 	function onHistoryIndexChange(details: { index: number }) {
-		console.log(details);
-		historyIndex = details.index;
-		if (historyIndex > -1) enableUndo = true;
+		if (!started) started = true;
+		console.log("h", details);
+		historyIndex = details.index - 1;
+
 		changeHistoryIndex = null;
-		console.log(historyIndex, changeHistoryIndex, details);
 	}
 	function save() {}
 	function load() {}
