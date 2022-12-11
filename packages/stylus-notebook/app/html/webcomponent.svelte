@@ -33,7 +33,7 @@
 	let enableUndo: boolean = false;
 	let enableRedo: boolean;
 	let started = false;
-	let save_as: paperComponent["save"];
+	let save_as: any; // paperComponent["save_as"];
 	$: {
 		if (!id) id = "";
 		if (style) {
