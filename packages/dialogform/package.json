@@ -75,7 +75,7 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "9355ee8677a3b003edfacbedd740a533390736a7",
+	"gitHead": "64e9fac85127d9a97c1fc8c08fcba4c00b0b89aa",
 	"dependencies": {
 		"@htmlbricks/hb-dialog": "^0.16.52",
 		"@htmlbricks/hb-form": "^0.16.52"
