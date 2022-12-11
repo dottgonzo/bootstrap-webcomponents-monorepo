@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-terms-doc-templates",
 	"displayName": "Svelte-Bootstrap terms-doc-templates",
 	"description": "Svelte-Bootstrap terms-doc-templates",
-	"version": "0.16.51",
+	"version": "0.16.52",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.16.51",
+		"@htmlbricks/hb-jsutils": "^0.16.52",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
@@ -77,7 +77,7 @@
 	"contributors": [],
 	"gitHead": "9355ee8677a3b003edfacbedd740a533390736a7",
 	"dependencies": {
-		"@htmlbricks/hb-table": "^0.16.51",
+		"@htmlbricks/hb-table": "^0.16.52",
 		"style-to-object": "^0.3.0"
 	}
 }
