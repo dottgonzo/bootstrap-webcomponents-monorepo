@@ -123,7 +123,7 @@
 		if (s) {
 			switch (s.type) {
 				case "json":
-					return dispatch("save", { type: "json", data: draw, id: id, draw_id, name: s.name });
+					return dispatch("save", { type: "json", draw, id: id, draw_id, name: s.name });
 				default:
 					return console.error("unknown save type");
 			}

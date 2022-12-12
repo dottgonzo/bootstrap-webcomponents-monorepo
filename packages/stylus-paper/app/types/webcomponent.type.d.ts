@@ -74,5 +74,5 @@ export type Events = {
 		draw_id: string;
 	};
 	historyIndex: { index: number; id: string; draw_id: string };
-	save: { type: TSaveType; data: IStroke[]; id: string; draw_id: string; name: string };
+	save: { type: TSaveType; draw: IStroke[]; id: string; draw_id: string; name: string };
 };

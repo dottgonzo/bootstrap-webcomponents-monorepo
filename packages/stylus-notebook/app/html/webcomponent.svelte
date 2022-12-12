@@ -10,7 +10,7 @@
 	import type { Component } from "@app/types/webcomponent.type";
 	import { styleSetup as stylePaperSetup } from "../../node_modules/@htmlbricks/hb-stylus-paper/release/docs";
 	import { styleSetup as styleInputFileSetup } from "../../node_modules/@htmlbricks/hb-input-file/release/docs";
-	import type { Component as paperComponent } from "../../node_modules/@htmlbricks/hb-stylus-paper/release/webcomponent.type";
+	import type { Component as paperComponent, Events as paperEvents } from "../../node_modules/@htmlbricks/hb-stylus-paper/release/webcomponent.type";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -61,7 +61,7 @@
 		console.log(component.shadowRoot.getElementById("skeletontest"));
 	});
 
-	function downloadObjectAsJson(exportObj: JSON, exportName: string) {
+	function downloadObjectAsJson(exportObj: any, exportName: string) {
 		var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
 		var downloadAnchorNode = document.createElement("a");
 		downloadAnchorNode.setAttribute("href", dataStr);
@@ -107,7 +107,7 @@
 	function move() {}
 	function insert() {}
 
-	function onPaperSave(e) {
+	function onPaperSave(e: paperEvents["save"]) {
 		console.log("save", e);
 		save_as = null;
 		downloadObjectAsJson(e, e.name + ".json");
