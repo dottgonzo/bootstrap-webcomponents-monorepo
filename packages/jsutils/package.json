@@ -2,7 +2,7 @@
   "name": "@htmlbricks/hb-jsutils",
   "displayName": "HTMLBricks jsutils",
   "description": "HTMLBricks jsutils",
-  "version": "0.16.55",
+  "version": "0.16.56",
   "main": "main.js",
   "publishConfig": {
     "access": "public"
