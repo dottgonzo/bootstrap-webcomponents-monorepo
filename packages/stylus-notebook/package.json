@@ -78,6 +78,7 @@
 	"gitHead": "64e9fac85127d9a97c1fc8c08fcba4c00b0b89aa",
 	"dependencies": {
 		"@htmlbricks/hb-stylus-paper": "^0.16.54",
+		"@htmlbricks/hb-input-file": "^0.16.54",
 		"style-to-object": "^0.3.0"
 	}
 }

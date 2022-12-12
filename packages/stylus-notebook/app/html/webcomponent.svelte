@@ -8,7 +8,8 @@
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
 	import type { Component } from "@app/types/webcomponent.type";
-	import { styleSetup as stylusPaperSetup } from "../../node_modules/@htmlbricks/hb-stylus-paper/release/docs";
+	import { styleSetup as stylePaperSetup } from "../../node_modules/@htmlbricks/hb-stylus-paper/release/docs";
+	import { styleSetup as styleInputFileSetup } from "../../node_modules/@htmlbricks/hb-input-file/release/docs";
 	import type { Component as paperComponent } from "../../node_modules/@htmlbricks/hb-stylus-paper/release/webcomponent.type";
 
 	const component = get_current_component();
@@ -26,6 +27,7 @@
 
 	let parsedStyle: { [x: string]: string };
 	let stylusPaperStyleToSet: string = "";
+	let inputFileStyleToSet: string = "";
 
 	let historyIndex: number;
 	let changeHistoryIndex: number;
@@ -34,11 +36,14 @@
 	let enableRedo: boolean;
 	let started = false;
 	let save_as: paperComponent["save_as"];
+
+	let load_draw: string;
 	$: {
 		if (!id) id = "";
 		if (style) {
 			parsedStyle = parseStyle(style);
-			stylusPaperStyleToSet = getChildStyleToPass(parsedStyle, stylusPaperSetup?.vars);
+			stylusPaperStyleToSet = getChildStyleToPass(parsedStyle, stylePaperSetup?.vars);
+			inputFileStyleToSet = getChildStyleToPass(parsedStyle, styleInputFileSetup?.vars);
 		}
 
 		if (!historyIndex && historyIndex !== 0) historyIndex = 0;
@@ -50,6 +55,7 @@
 		else enableUndo = false;
 	}
 	addComponent({ repoName: "@htmlbricks/hb-stylus-paper", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-file", version: pkg.version });
 
 	onMount(() => {
 		console.log(component.shadowRoot.getElementById("skeletontest"));
@@ -59,7 +65,7 @@
 		var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
 		var downloadAnchorNode = document.createElement("a");
 		downloadAnchorNode.setAttribute("href", dataStr);
-		downloadAnchorNode.setAttribute("download", exportName + ".json");
+		downloadAnchorNode.setAttribute("download", exportName);
 		document.body.appendChild(downloadAnchorNode); // required for firefox
 		downloadAnchorNode.click();
 		downloadAnchorNode.remove();
@@ -106,6 +112,26 @@
 		save_as = null;
 		downloadObjectAsJson(e, e.name + ".json");
 	}
+
+	function onFileSelected(e) {
+		console.log("file", e);
+		if (e.value.name) {
+			const reader = new FileReader();
+			reader.readAsText(e.value, "UTF-8");
+
+			reader.onload = function (evt) {
+				console.log(evt.target.result);
+				try {
+					load_draw = evt.target.result.toString();
+				} catch (e) {
+					console.error("error loading file");
+				}
+			};
+			reader.onerror = function (evt) {
+				console.error("error reading file");
+			};
+		}
+	}
 </script>
 
 <div part="controller" id="controller">
@@ -117,8 +143,8 @@
 	<button on:click={() => load()}>load</button>
 	<button on:click={() => save()} disabled={!enableUndo}>save</button>
 	<button on:click={() => move()} disabled={!enableUndo}>move</button>
-	<button on:click={() => insert()}>insert</button>
 	<button disabled={mode !== "draw"}>brush</button>
+	<hb-input-file id="input-file" style={inputFileStyleToSet} on:setValue={(e) => onFileSelected(e.detail)} />
 </div>
 <div part="paper-container" id="paper-container" style="position:relative">
 	<hb-stylus-paper
@@ -128,6 +154,7 @@
 		background_color="green"
 		{mode}
 		save_as={JSON.stringify(save_as)}
+		{load_draw}
 		on:historyIndex={(e) => onHistoryIndexChange(e.detail)}
 		on:save={(e) => onPaperSave(e.detail)}
 	/>
