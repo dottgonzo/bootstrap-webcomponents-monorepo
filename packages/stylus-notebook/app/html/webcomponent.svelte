@@ -162,8 +162,18 @@
 	<button on:click={() => save()} disabled={!enableUndo}>save</button>
 	<button on:click={() => move()} disabled={!enableUndo}>move</button>
 	<button disabled={mode !== "draw"}>brush</button>
-	<hb-input-file id="loadfile" style={inputFileStyleToSet} on:setValue={(e) => onDrawLoaded(e.detail)} />
-	<hb-input-file id="insertfile" style={inputFileStyleToSet} on:setValue={(e) => onFileInsertLoaded(e.detail)} />
+	<br />load:<hb-input-file
+		id="loadfile"
+		style={inputFileStyleToSet}
+		on:setValue={(e) => onDrawLoaded(e.detail)}
+		schemaentry={JSON.stringify({ label: "ciao", id: "xxxxxxx" })}
+	/>
+	insert:<hb-input-file
+		id="insertfile"
+		style={inputFileStyleToSet}
+		on:setValue={(e) => onFileInsertLoaded(e.detail)}
+		schemaentry={JSON.stringify({ label: "ciao" })}
+	/>
 </div>
 <div part="paper-container" id="paper-container" style="position:relative">
 	<hb-stylus-paper
