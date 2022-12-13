@@ -135,7 +135,10 @@
 	let draw: IStroke[];
 	let format = false;
 	let pencilStatus: "drawing" | "erasing" | "selecting" | "idle" = "idle";
-	let thereIsSelectedStrokes = false;
+	let thereIsSelectedStrokes: number;
+
+	let moveFromX: number;
+	let moveFromY: number;
 
 	$: {
 		if (svgDom) {
@@ -164,7 +167,7 @@
 			// mode
 			if (!mode) mode = "draw";
 			if (mode && mode !== "select" && thereIsSelectedStrokes) {
-				thereIsSelectedStrokes = false;
+				thereIsSelectedStrokes = 0;
 				const oldDraw = [...draw];
 				oldDraw.forEach((stroke) => {
 					stroke.selected = false;
@@ -311,8 +314,6 @@
 		if (mode === "draw" && e.buttons === 1 && !(e.pointerType === "pen" && e.pressure === 0)) {
 			pencilStatus = "drawing";
 			if (index !== draw.length - 1) {
-				// 	//TODO: history on erase if needed
-				// 	historyActions = historyActions.slice(0, goto + 1);
 				const oldDraw = [...draw];
 
 				oldDraw.forEach((stroke, i) => {
@@ -395,13 +396,52 @@
 			console.log("eraser down");
 			eraseHere(e);
 		} else if (mode === "select") {
-			selectMinX = e.pageX - containerPos.left;
-			selectMinY = e.pageY - containerPos.top;
+			let isSelected = false;
+			if (thereIsSelectedStrokes) {
+				const pointerIsOnSelectX = e.pageX - containerPos.left;
+				const pointerIsOnSelectY = e.pageY - containerPos.top;
+				isSelected =
+					pointerIsOnSelectX > selectMinX && pointerIsOnSelectX < selectMaxX && pointerIsOnSelectY > selectMinY && pointerIsOnSelectY < selectMaxY;
+			}
+			if (!isSelected) {
+				selectMinX = e.pageX - containerPos.left;
+				selectMinY = e.pageY - containerPos.top;
 
-			selectMaxX = e.pageX - containerPos.left;
-			selectMaxY = e.pageY - containerPos.top;
+				selectMaxX = e.pageX - containerPos.left;
+				selectMaxY = e.pageY - containerPos.top;
 
-			pencilStatus = "selecting";
+				pencilStatus = "selecting";
+			} else {
+				const oldDraw = [...draw];
+				moveFromX = e.pageX - containerPos.left;
+				moveFromY = e.pageY - containerPos.top;
+				// hide selected strokes
+				oldDraw
+					.filter((f) => f.selected)
+					.forEach((f) => {
+						f.visible = false;
+						f.erasedAtIndex = index;
+					});
+				// copy all selected strokes inside new path that contains all of them
+				const newMultiPath = draw
+					.filter((f) => f.selected)
+					.map((m) => {
+						m.visible = true;
+						return m;
+					});
+				oldDraw.push({
+					multipath: newMultiPath,
+					id: thereIsSelectedStrokes.toString(),
+					type: "multiplestroke",
+					actionIndex: index,
+					visible: true,
+					min: [selectMinX, selectMinY],
+					max: [selectMaxX, selectMaxY],
+				});
+				draw = [...oldDraw];
+				// index++;
+				console.log(draw, index);
+			}
 		}
 	}
 	function handlePointerMove(e: PointerEvent) {
@@ -443,6 +483,25 @@
 			} else if (!isSelected && pointerIsOnSelect) {
 				pointerIsOnSelect = false;
 				console.log("off select", pointerIsOnSelect);
+			} else if (isSelected && pointerIsOnSelect && e.buttons === 1) {
+				console.info("move selected strokes");
+				const oldDraw = [...draw];
+
+				if (draw[index].type === "multiplestroke" && thereIsSelectedStrokes.toString() === draw[index].id) {
+					// move selected strokes
+					const moveToX = e.pageX - containerPos.left;
+					const moveToY = e.pageY - containerPos.top;
+
+					const moveX = moveToX - moveFromX;
+					const moveY = moveToY - moveFromY;
+
+					oldDraw[index].multipath.forEach((f) => {
+						f.path.forEach((p) => {
+							p[0] += moveX;
+							p[1] += moveY;
+						});
+					});
+				}
 			}
 		}
 	}
@@ -481,7 +540,7 @@
 					stroke.selected = false;
 				});
 				draw = [...oldDraw];
-				thereIsSelectedStrokes = false;
+				thereIsSelectedStrokes = 0;
 			}
 
 			const minX = selectMinX < selectMaxX ? selectMinX : selectMaxX;
@@ -496,7 +555,7 @@
 			console.table({ minX, minY, maxX, maxY, selectedStrokes });
 
 			if (selectedStrokes.length > 0) {
-				thereIsSelectedStrokes = true;
+				thereIsSelectedStrokes = Date.now();
 
 				for (const stroke of selectedStrokes) {
 					stroke.selected = true;
@@ -564,7 +623,25 @@
 					{/if}
 				{/if}
 			{/each}
-
+			{#each draw.filter((f) => f.type === "multiplestroke") as multistroke (multistroke.id)}
+				{#each multistroke.multipath as stroke (stroke.id)}
+					{#if stroke.actionIndex <= index && !format && (stroke.visible || stroke.erasedAtIndex > index)}
+						{#if stroke.selected}
+							<path
+								id={"path_" + stroke.id}
+								d={stroke.pathData}
+								fill={stroke.color}
+								fill-opacity={stroke.opacity}
+								stroke-linecap="round"
+								stroke="red"
+								stroke-width="2"
+							/>
+						{:else}
+							<path id={"path_" + stroke.id} d={stroke.pathData} fill={stroke.color} fill-opacity={stroke.opacity} />
+						{/if}
+					{/if}
+				{/each}
+			{/each}
 			{#if mode === "select"}
 				{#if selectMinX <= selectMaxX && selectMinY <= selectMaxY}
 					<rect

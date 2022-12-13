@@ -34,7 +34,8 @@ export type IStroke = {
 	erasedAtIndex?: number;
 	opacity?: number;
 	selected?: boolean;
-	type: "stroke" | "eraser";
+	multipath?: IStroke[];
+	type: "stroke" | "multiplestroke" | "eraser" | "move";
 };
 
 export type Component = {
