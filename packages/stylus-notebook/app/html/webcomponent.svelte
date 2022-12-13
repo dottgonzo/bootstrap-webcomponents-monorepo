@@ -11,6 +11,7 @@
 	import { styleSetup as stylePaperSetup } from "../../node_modules/@htmlbricks/hb-stylus-paper/release/docs";
 	import { styleSetup as styleInputFileSetup } from "../../node_modules/@htmlbricks/hb-input-file/release/docs";
 	import type { Component as paperComponent, Events as paperEvents } from "../../node_modules/@htmlbricks/hb-stylus-paper/release/webcomponent.type";
+	import type { Component as inputFileComponent, Events as inputFileEvents } from "../../node_modules/@htmlbricks/hb-input-file/release/webcomponent.type";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -105,7 +106,25 @@
 	}
 	function load() {}
 	function move() {}
-	function insert() {}
+	function onFileInsertLoaded(e: inputFileEvents["setValue"]) {
+		if ((e.value as unknown as File).name) {
+			const reader = new FileReader();
+			reader.readAsText(e.value as unknown as Blob, "UTF-8");
+
+			reader.onload = function (evt) {
+				console.log(evt.target.result);
+				try {
+					// load_draw = evt.target.result.toString();
+					console.log("insert file");
+				} catch (e) {
+					console.error("error loading file");
+				}
+			};
+			reader.onerror = function (evt) {
+				console.error("error reading file");
+			};
+		}
+	}
 
 	function onPaperSave(e: paperEvents["save"]) {
 		console.log("save", e);
@@ -113,14 +132,13 @@
 		downloadObjectAsJson(e, e.name + ".json");
 	}
 
-	function onFileSelected(e) {
+	function onDrawLoaded(e: inputFileEvents["setValue"]) {
 		console.log("file", e);
-		if (e.value.name) {
+		if ((e.value as unknown as File).name) {
 			const reader = new FileReader();
-			reader.readAsText(e.value, "UTF-8");
+			reader.readAsText(e.value as unknown as Blob, "UTF-8");
 
 			reader.onload = function (evt) {
-				console.log(evt.target.result);
 				try {
 					load_draw = evt.target.result.toString();
 				} catch (e) {
@@ -144,7 +162,8 @@
 	<button on:click={() => save()} disabled={!enableUndo}>save</button>
 	<button on:click={() => move()} disabled={!enableUndo}>move</button>
 	<button disabled={mode !== "draw"}>brush</button>
-	<hb-input-file id="input-file" style={inputFileStyleToSet} on:setValue={(e) => onFileSelected(e.detail)} />
+	<hb-input-file id="loadfile" style={inputFileStyleToSet} on:setValue={(e) => onDrawLoaded(e.detail)} />
+	<hb-input-file id="insertfile" style={inputFileStyleToSet} on:setValue={(e) => onFileInsertLoaded(e.detail)} />
 </div>
 <div part="paper-container" id="paper-container" style="position:relative">
 	<hb-stylus-paper
