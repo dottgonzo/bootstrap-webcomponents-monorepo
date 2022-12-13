@@ -43,6 +43,8 @@
 	let index = 0;
 	let pointerIsOnSelect: boolean;
 
+	let version: number;
+
 	export const next = () => {
 		// if (index < draw.length - 1) {
 		// 	index++;
@@ -123,7 +125,7 @@
 		if (s) {
 			switch (s.type) {
 				case "json":
-					return dispatch("save", { type: "json", draw, id: id, draw_id, name: s.name });
+					return dispatch("save", { type: "json", draw, id: id, draw_id, name: s.name, version });
 				default:
 					return console.error("unknown save type");
 			}
@@ -134,7 +136,6 @@
 	let format = false;
 	let pencilStatus: "drawing" | "erasing" | "selecting" | "idle" = "idle";
 	let thereIsSelectedStrokes = false;
-	let loadTime: Date;
 
 	$: {
 		if (svgDom) {
@@ -239,10 +240,11 @@
 				load_draw = null;
 			}
 
-			if (load_draw && (!loadTime || loadTime.valueOf() < load_draw.time.valueOf())) {
+			if (load_draw && (!version || version < load_draw.version || draw_id !== load_draw.draw_id)) {
 				draw = load_draw.draw.filter((f) => f.visible && f.type === "stroke");
 				index = draw.length - 1;
 				draw_id = load_draw.draw_id;
+				version = load_draw.version;
 				load_draw = null;
 				dispatch("historyIndex", { index: index, draw_id, id });
 			}
@@ -305,7 +307,7 @@
 		pointerType = e.pointerType;
 
 		mouseButton = e.buttons;
-
+		version++;
 		if (mode === "draw" && e.buttons === 1 && !(e.pointerType === "pen" && e.pressure === 0)) {
 			pencilStatus = "drawing";
 			if (index !== draw.length - 1) {
