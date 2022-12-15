@@ -139,6 +139,11 @@
 
 	let moveFromX: number;
 	let moveFromY: number;
+	let startMove: boolean = false;
+	let selectMinXStart: number;
+	let selectMinYStart: number;
+	let selectMaxXStart: number;
+	let selectMaxYStart: number;
 
 	$: {
 		if (svgDom) {
@@ -171,11 +176,18 @@
 				const oldDraw = [...draw];
 				oldDraw.forEach((stroke) => {
 					stroke.selected = false;
+					if (stroke.type === "multiplestroke")
+						stroke.multipath.forEach((stroke) => {
+							stroke.selected = false;
+						});
 				});
 				draw = [...oldDraw];
 			}
 			if (mode !== "select") {
-				pointerIsOnSelect = false;
+				selectMaxX = 0;
+				selectMaxY = 0;
+				selectMinX = 0;
+				selectMinY = 0;
 			}
 
 			if (debug !== "yes") debug = "no";
@@ -395,23 +407,26 @@
 			// eraser
 			console.log("eraser down");
 			eraseHere(e);
-		} else if (mode === "select") {
+		} else if (mode === "select" && draw.length) {
 			let isSelected = false;
-			if (thereIsSelectedStrokes) {
-				const pointerIsOnSelectX = e.pageX - containerPos.left;
-				const pointerIsOnSelectY = e.pageY - containerPos.top;
-				isSelected =
-					pointerIsOnSelectX > selectMinX && pointerIsOnSelectX < selectMaxX && pointerIsOnSelectY > selectMinY && pointerIsOnSelectY < selectMaxY;
-			}
-			if (!isSelected) {
-				selectMinX = e.pageX - containerPos.left;
-				selectMinY = e.pageY - containerPos.top;
 
-				selectMaxX = e.pageX - containerPos.left;
-				selectMaxY = e.pageY - containerPos.top;
+			const pointerIsOnSelectX = e.pageX - containerPos.left;
+			const pointerIsOnSelectY = e.pageY - containerPos.top;
+			isSelected =
+				pointerIsOnSelectX > selectMinX && pointerIsOnSelectX < selectMaxX && pointerIsOnSelectY > selectMinY && pointerIsOnSelectY < selectMaxY;
 
-				pencilStatus = "selecting";
-			} else {
+			selectMinX = e.pageX - containerPos.left;
+			selectMinY = e.pageY - containerPos.top;
+
+			selectMaxX = e.pageX - containerPos.left;
+			selectMaxY = e.pageY - containerPos.top;
+
+			if (!startMove && !thereIsSelectedStrokes && isSelected) {
+				pencilStatus = "idle";
+
+				thereIsSelectedStrokes = Date.now();
+
+				console.info("set move mode");
 				const oldDraw = [...draw];
 				moveFromX = e.pageX - containerPos.left;
 				moveFromY = e.pageY - containerPos.top;
@@ -423,12 +438,12 @@
 						f.erasedAtIndex = index;
 					});
 				// copy all selected strokes inside new path that contains all of them
-				const newMultiPath = draw
-					.filter((f) => f.selected)
-					.map((m) => {
-						m.visible = true;
-						return m;
-					});
+				const newMultiPath = JSON.parse(JSON.stringify(draw.filter((f) => f.selected)));
+
+				newMultiPath.forEach((m) => {
+					m.visible = true;
+				});
+
 				oldDraw.push({
 					multipath: newMultiPath,
 					id: thereIsSelectedStrokes.toString(),
@@ -441,6 +456,14 @@
 				draw = [...oldDraw];
 				// index++;
 				console.log(draw, index);
+				startMove = true;
+				selectMinXStart = selectMinX;
+				selectMinYStart = selectMinY;
+				selectMaxXStart = selectMaxX;
+				selectMaxYStart = selectMaxY;
+			} else {
+				pencilStatus = "selecting";
+				thereIsSelectedStrokes = 0;
 			}
 		}
 	}
@@ -471,7 +494,7 @@
 			selectMaxY = e.pageY - containerPos.top;
 
 			// console.log("selecting", selectMinX, selectMinY, selectMaxX, selectMaxY
-		} else if (mode === "select" && pencilStatus === "idle" && thereIsSelectedStrokes) {
+		} else if (mode === "select" && !startMove) {
 			const pointerIsOnSelectX = e.pageX - containerPos.left;
 			const pointerIsOnSelectY = e.pageY - containerPos.top;
 			const isSelected =
@@ -483,31 +506,41 @@
 			} else if (!isSelected && pointerIsOnSelect) {
 				pointerIsOnSelect = false;
 				console.log("off select", pointerIsOnSelect);
-			} else if (isSelected && pointerIsOnSelect && e.buttons === 1) {
-				console.info("move selected strokes");
-				const oldDraw = [...draw];
-
-				if (draw[index].type === "multiplestroke" && thereIsSelectedStrokes.toString() === draw[index].id) {
-					// move selected strokes
-					const moveToX = e.pageX - containerPos.left;
-					const moveToY = e.pageY - containerPos.top;
-
-					const moveX = moveToX - moveFromX;
-					const moveY = moveToY - moveFromY;
-
-					oldDraw[index].multipath.forEach((f) => {
-						f.path.forEach((p) => {
-							p[0] += moveX;
-							p[1] += moveY;
-						});
-					});
-				}
 			}
+		} else if (startMove && draw[index].type === "multiplestroke" && thereIsSelectedStrokes.toString() === draw[index].id) {
+			const oldDraw = [...draw];
+
+			// move selected strokes
+			const moveToX = e.pageX - containerPos.left;
+			const moveToY = e.pageY - containerPos.top;
+
+			const moveX = moveToX - moveFromX;
+			const moveY = moveToY - moveFromY;
+			console.info("move selected strokes on multistrokes", moveFromX, moveFromY, moveX, moveY);
+
+			oldDraw[index].multipath.forEach((f) => {
+				const oldStroke = draw.find((d) => d.id === f.id);
+
+				f.path.forEach((p, i) => {
+					if (i === 0) console.log("debug path ", p[0], oldStroke.path[i][0], draw);
+					p[0] = oldStroke.path[i][0] + moveX;
+					p[1] = oldStroke.path[i][1] + moveY;
+				});
+				const thestroke = getStroke(f.path || [], Object.assign({ simulatePressure: pointerType === "pen" ? false : true }, options));
+				f.pathData = getSvgPathFromStroke(thestroke);
+			});
+			selectMinX = selectMinXStart + moveX;
+			selectMinY = selectMinYStart + moveY;
+			selectMaxX = selectMaxXStart + moveX;
+			selectMaxY = selectMaxYStart + moveY;
+
+			draw = [...oldDraw];
 		}
 	}
 
 	function handlePointerUp(e: PointerEvent) {
 		mouseButton = e.buttons;
+		startMove = false;
 
 		if (mode === "draw" && pencilStatus === "drawing") {
 			const stroke_end = new Date();
@@ -533,15 +566,17 @@
 			// eraser
 			console.log("eraser up");
 			eraseHere(e);
-		} else if (mode === "select" && pencilStatus === "selecting") {
+		} else if (mode === "select") {
 			const oldDraw = [...draw];
-			if (thereIsSelectedStrokes) {
-				oldDraw.forEach((stroke) => {
-					stroke.selected = false;
-				});
-				draw = [...oldDraw];
-				thereIsSelectedStrokes = 0;
-			}
+			oldDraw.forEach((stroke) => {
+				stroke.selected = false;
+				if (stroke.type === "multiplestroke")
+					stroke.multipath.forEach((stroke) => {
+						stroke.selected = false;
+					});
+			});
+			draw = [...oldDraw];
+			thereIsSelectedStrokes = 0;
 
 			const minX = selectMinX < selectMaxX ? selectMinX : selectMaxX;
 			const minY = selectMinY < selectMaxY ? selectMinY : selectMaxY;
@@ -555,8 +590,6 @@
 			console.table({ minX, minY, maxX, maxY, selectedStrokes });
 
 			if (selectedStrokes.length > 0) {
-				thereIsSelectedStrokes = Date.now();
-
 				for (const stroke of selectedStrokes) {
 					stroke.selected = true;
 				}
@@ -565,6 +598,11 @@
 				console.log(selectedStrokes);
 
 				dispatch("selection", { minX: selectMinX, minY: selectMinY, maxX: selectMaxX, maxY: selectMaxY, strokes: selectedStrokes, id, draw_id });
+			} else {
+				selectMinX = 0;
+				selectMinY = 0;
+				selectMaxX = 0;
+				selectMaxY = 0;
 			}
 
 			// console.log("selecting", selectMinX, selectMinY, selectMaxX, selectMaxY
