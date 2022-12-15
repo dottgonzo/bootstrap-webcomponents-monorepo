@@ -437,6 +437,16 @@
 						f.visible = false;
 						f.erasedAtIndex = index;
 					});
+				oldDraw
+					.filter((f) => f.type === "multiplestroke")
+					.forEach((f) => {
+						f.multipath
+							.filter((f) => f.selected)
+							.forEach((f) => {
+								f.visible = false;
+								f.erasedAtIndex = index;
+							});
+					});
 				// copy all selected strokes inside new path that contains all of them
 				const newMultiPath = JSON.parse(JSON.stringify(draw.filter((f) => f.selected)));
 
@@ -601,8 +611,31 @@
 					return false;
 				}
 			});
+			let thereAreSubStrokes = false;
+			for (const substroke of oldDraw.filter((f) => f.type === "multiplestroke")) {
+				for (const stroke of substroke.multipath) {
+					if (
+						stroke.visible &&
+						stroke.type === "stroke" &&
+						stroke.min[0] > minX &&
+						stroke.min[1] > minY &&
+						stroke.max[0] < maxX &&
+						stroke.max[1] < maxY
+					) {
+						thereAreSubStrokes = true;
+					}
+				}
+			}
 
-			if (selectedStrokes.length > 0) {
+			if (selectedStrokes.length > 0 || thereAreSubStrokes) {
+				for (const stroke of oldDraw.filter((f) => f.type === "multiplestroke")) {
+					for (const substroke of stroke.multipath) {
+						if (substroke.visible && substroke.min[0] > minX && substroke.min[1] > minY && substroke.max[0] < maxX && substroke.max[1] < maxY) {
+							substroke.selected = true;
+						}
+					}
+				}
+
 				for (const stroke of selectedStrokes) {
 					stroke.selected = true;
 				}
