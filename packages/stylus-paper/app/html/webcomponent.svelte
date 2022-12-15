@@ -453,7 +453,11 @@
 					min: [selectMinX, selectMinY],
 					max: [selectMaxX, selectMaxY],
 				});
+				if (draw[draw.length - 1].type === "multiplestroke") {
+					index++;
+				}
 				draw = [...oldDraw];
+
 				// index++;
 				console.log(draw, index);
 				startMove = true;
@@ -584,10 +588,19 @@
 			const maxY = selectMinY > selectMaxY ? selectMinY : selectMaxY;
 
 			const selectedStrokes = oldDraw.filter((stroke) => {
-				return stroke.min[0] > minX && stroke.min[1] > minY && stroke.max[0] < maxX && stroke.max[1] < maxY;
+				if (
+					stroke.visible &&
+					stroke.type === "stroke" &&
+					stroke.min[0] > minX &&
+					stroke.min[1] > minY &&
+					stroke.max[0] < maxX &&
+					stroke.max[1] < maxY
+				) {
+					return true;
+				} else {
+					return false;
+				}
 			});
-
-			console.table({ minX, minY, maxX, maxY, selectedStrokes });
 
 			if (selectedStrokes.length > 0) {
 				for (const stroke of selectedStrokes) {
@@ -644,26 +657,9 @@
 	<!-- {#if draw?.length} -->
 	{#if svgDom}
 		<g>
-			{#each draw.filter((f) => f.type === "stroke" && f.path) as stroke (stroke.id)}
+			{#each draw as stroke (stroke.id)}
 				{#if stroke.actionIndex <= index && !format && (stroke.visible || stroke.erasedAtIndex > index)}
-					{#if stroke.selected}
-						<path
-							id={"path_" + stroke.id}
-							d={stroke.pathData}
-							fill={stroke.color}
-							fill-opacity={stroke.opacity}
-							stroke-linecap="round"
-							stroke="red"
-							stroke-width="2"
-						/>
-					{:else}
-						<path id={"path_" + stroke.id} d={stroke.pathData} fill={stroke.color} fill-opacity={stroke.opacity} />
-					{/if}
-				{/if}
-			{/each}
-			{#each draw.filter((f) => f.type === "multiplestroke") as multistroke (multistroke.id)}
-				{#each multistroke.multipath as stroke (stroke.id)}
-					{#if stroke.actionIndex <= index && !format && (stroke.visible || stroke.erasedAtIndex > index)}
+					{#if stroke.type === "stroke"}
 						{#if stroke.selected}
 							<path
 								id={"path_" + stroke.id}
@@ -677,9 +673,31 @@
 						{:else}
 							<path id={"path_" + stroke.id} d={stroke.pathData} fill={stroke.color} fill-opacity={stroke.opacity} />
 						{/if}
+					{:else if stroke.type === "multiplestroke"}
+						{#each stroke.multipath as m_stroke (m_stroke.id + stroke.id)}
+							{#if m_stroke.selected}
+								<path
+									id={"path_" + m_stroke.id + "_" + stroke.id}
+									d={m_stroke.pathData}
+									fill={m_stroke.color}
+									fill-opacity={m_stroke.opacity}
+									stroke-linecap="round"
+									stroke="red"
+									stroke-width="2"
+								/>
+							{:else}
+								<path
+									id={"path_" + m_stroke.id + "_" + stroke.id}
+									d={m_stroke.pathData}
+									fill={m_stroke.color}
+									fill-opacity={m_stroke.opacity}
+								/>
+							{/if}
+						{/each}
 					{/if}
-				{/each}
+				{/if}
 			{/each}
+
 			{#if mode === "select"}
 				{#if selectMinX <= selectMaxX && selectMinY <= selectMaxY}
 					<rect
