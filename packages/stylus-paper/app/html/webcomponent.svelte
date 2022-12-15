@@ -43,7 +43,7 @@
 	let index = 0;
 	let pointerIsOnSelect: boolean;
 
-	let version: number;
+	let version: number = 0;
 
 	export const next = () => {
 		// if (index < draw.length - 1) {
@@ -256,7 +256,7 @@
 			}
 
 			if (load_draw && (!version || version < load_draw.version || draw_id !== load_draw.draw_id)) {
-				draw = load_draw.draw.filter((f) => f.visible && f.type === "stroke");
+				draw = load_draw.draw;
 				index = draw.length - 1;
 				draw_id = load_draw.draw_id;
 				version = load_draw.version;
@@ -477,6 +477,7 @@
 					index++;
 				}
 				draw = [...oldDraw];
+				dispatch("historyIndex", { index: index, draw_id, id });
 
 				// index++;
 				console.log(draw, index);
