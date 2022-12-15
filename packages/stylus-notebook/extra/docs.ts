@@ -26,6 +26,10 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "default",
 		data: {},
 	},
+	{
+		name: "withLoadDraw",
+		data: {},
+	},
 ];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null as any,

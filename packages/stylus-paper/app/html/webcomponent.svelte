@@ -125,7 +125,7 @@
 		if (s) {
 			switch (s.type) {
 				case "json":
-					return dispatch("save", { type: "json", draw, id: id, draw_id, name: s.name, version });
+					return dispatch("save", { type: "json", draw, id: id, draw_id, name: s.name, version: version + 1 });
 				default:
 					return console.error("unknown save type");
 			}
@@ -277,10 +277,22 @@
 
 	function eraseHere(e: PointerEvent) {
 		const pathId = (e.target as unknown as any)?.id?.split("_")?.[1];
+
 		if (pathId) {
 			let oldDraw = [...draw];
 
-			const stroke = oldDraw.find((s) => s.id === pathId);
+			let stroke = oldDraw.find((s) => s.id === pathId && s.visible);
+			if (!stroke) {
+				console.log("check on multipaths");
+				for (const substroke of oldDraw.filter((s) => s.type === "multiplestroke").sort((a, b) => b.actionIndex - a.actionIndex)) {
+					const substrokeFind = substroke.multipath.find((s) => s.id === pathId && s.visible);
+					if (substrokeFind) {
+						stroke = substrokeFind;
+						break;
+					}
+				}
+			}
+
 			if (stroke) {
 				stroke.visible = false;
 				stroke.erasedAtIndex = index;
@@ -322,7 +334,6 @@
 		pointerType = e.pointerType;
 
 		mouseButton = e.buttons;
-		version++;
 		if (mode === "draw" && e.buttons === 1 && !(e.pointerType === "pen" && e.pressure === 0)) {
 			pencilStatus = "drawing";
 			if (index !== draw.length - 1) {
