@@ -41,3 +41,9 @@ WithBigBrush.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples[4],
 )
+
+export const LoadDraw = Template.bind({})
+LoadDraw.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[5],
+)

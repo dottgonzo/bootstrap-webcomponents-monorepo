@@ -87,6 +87,19 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			mode: "draw",
 		},
 	},
+	{
+		name: "LoadDraw",
+		data: {
+			pen_color: "rgb(100,100,100)",
+			options: {
+				size: 16,
+				thinning: 0.7,
+				smoothing: 0.5,
+				streamline: 0.5,
+			},
+			mode: "draw",
+		},
+	},
 ];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null as any,
