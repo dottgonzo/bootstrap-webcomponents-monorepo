@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-stylus-notebook",
 	"displayName": "Svelte-Bootstrap stylus-notebook",
 	"description": "Svelte-Bootstrap stylus-notebook",
-	"version": "0.16.56",
+	"version": "0.16.57",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.16.56",
+		"@htmlbricks/hb-jsutils": "^0.16.57",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
@@ -77,8 +77,8 @@
 	"contributors": [],
 	"gitHead": "64e9fac85127d9a97c1fc8c08fcba4c00b0b89aa",
 	"dependencies": {
-		"@htmlbricks/hb-input-file": "^0.16.56",
-		"@htmlbricks/hb-stylus-paper": "^0.16.56",
+		"@htmlbricks/hb-input-file": "^0.16.57",
+		"@htmlbricks/hb-stylus-paper": "^0.16.57",
 		"style-to-object": "^0.3.0"
 	}
 }
