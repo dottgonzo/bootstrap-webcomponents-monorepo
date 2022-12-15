@@ -448,7 +448,17 @@
 							});
 					});
 				// copy all selected strokes inside new path that contains all of them
-				const newMultiPath = JSON.parse(JSON.stringify(draw.filter((f) => f.selected)));
+
+				const subSelection: IStroke[] = [];
+
+				for (const stroke of oldDraw.filter((f) => f.type === "multiplestroke")) {
+					for (const substroke of stroke.multipath.filter((f) => f.selected)) {
+						subSelection.push(JSON.parse(JSON.stringify(substroke)));
+						substroke.visible = false;
+					}
+				}
+
+				const newMultiPath = JSON.parse(JSON.stringify(draw.filter((f) => f.selected))).concat(subSelection);
 
 				newMultiPath.forEach((m) => {
 					m.visible = true;
@@ -533,13 +543,28 @@
 			console.info("move selected strokes on multistrokes", moveFromX, moveFromY, moveX, moveY);
 
 			oldDraw[index].multipath.forEach((f) => {
-				const oldStroke = draw.find((d) => d.id === f.id);
+				let oldStroke: IStroke;
+				for (const substroke of draw
+					.filter((f) => f.type === "multiplestroke")
+					.filter((f) => f.id !== draw[index].id)
+					.sort((a, b) => b.actionIndex - a.actionIndex)) {
+					const oldSubStroke = substroke.multipath.find((d) => d.id === f.id);
+					if (oldSubStroke) {
+						oldStroke = oldSubStroke;
+						break;
+					}
+				}
+				if (!oldStroke) {
+					oldStroke = draw.find((d) => d.id === f.id);
+				}
 
 				f.path.forEach((p, i) => {
 					if (i === 0) console.log("debug path ", p[0], oldStroke.path[i][0], draw);
 					p[0] = oldStroke.path[i][0] + moveX;
 					p[1] = oldStroke.path[i][1] + moveY;
 				});
+				f.max = [oldStroke.max[0] + moveX, oldStroke.max[1] + moveY];
+				f.min = [oldStroke.min[0] + moveX, oldStroke.min[1] + moveY];
 				const thestroke = getStroke(f.path || [], Object.assign({ simulatePressure: pointerType === "pen" ? false : true }, options));
 				f.pathData = getSvgPathFromStroke(thestroke);
 			});
@@ -708,23 +733,25 @@
 						{/if}
 					{:else if stroke.type === "multiplestroke"}
 						{#each stroke.multipath as m_stroke (m_stroke.id + stroke.id)}
-							{#if m_stroke.selected}
-								<path
-									id={"path_" + m_stroke.id + "_" + stroke.id}
-									d={m_stroke.pathData}
-									fill={m_stroke.color}
-									fill-opacity={m_stroke.opacity}
-									stroke-linecap="round"
-									stroke="red"
-									stroke-width="2"
-								/>
-							{:else}
-								<path
-									id={"path_" + m_stroke.id + "_" + stroke.id}
-									d={m_stroke.pathData}
-									fill={m_stroke.color}
-									fill-opacity={m_stroke.opacity}
-								/>
+							{#if m_stroke.actionIndex <= index && !format && (m_stroke.visible || m_stroke.erasedAtIndex > index)}
+								{#if m_stroke.selected}
+									<path
+										id={"path_" + m_stroke.id + "_" + stroke.id}
+										d={m_stroke.pathData}
+										fill={m_stroke.color}
+										fill-opacity={m_stroke.opacity}
+										stroke-linecap="round"
+										stroke="red"
+										stroke-width="2"
+									/>
+								{:else}
+									<path
+										id={"path_" + m_stroke.id + "_" + stroke.id}
+										d={m_stroke.pathData}
+										fill={m_stroke.color}
+										fill-opacity={m_stroke.opacity}
+									/>
+								{/if}
 							{/if}
 						{/each}
 					{/if}
