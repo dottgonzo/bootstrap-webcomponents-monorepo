@@ -1,4 +1,5 @@
 export type TSaveType = "pdf" | "json" | "png" | "svg" | "jpg";
+export type TInsertType = "png" | "svg" | "jpg";
 
 export type TSave = { type: TSaveType; draw: IStroke[]; id: string; draw_id: string; name: string; version: number };
 
@@ -50,6 +51,7 @@ export type Component = {
 	debug?: "yes" | "no";
 	load_draw?: TSave;
 	save_as?: { name: string; type: TSaveType };
+	insert_object?: { name: string; type: TInsertType };
 };
 
 export type Events = {

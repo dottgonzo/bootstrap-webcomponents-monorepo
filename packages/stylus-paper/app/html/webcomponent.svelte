@@ -25,6 +25,7 @@
 
 	export let background_color: Component["background_color"];
 	export let pen_color: Component["pen_color"];
+	export let insert_object: Component["insert_object"];
 
 	export let pen_opacity: Component["pen_opacity"];
 
@@ -258,6 +259,19 @@
 				}
 			} else if (!options) {
 				options = defaultOptions;
+			}
+			if (!insert_object) {
+				insert_object = null;
+			} else if (typeof insert_object === "string") {
+				try {
+					insert_object = JSON.parse(insert_object);
+				} catch (err) {
+					console.error("error parsing insert_object json", err);
+				}
+			}
+
+			if (insert_object) {
+				console.info("inserting object");
 			}
 
 			if (typeof load_draw === "string" && (load_draw as string)?.length) {
