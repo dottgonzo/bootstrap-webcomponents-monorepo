@@ -125,7 +125,22 @@
 		if (s) {
 			switch (s.type) {
 				case "json":
-					return dispatch("save", { type: "json", draw, id: id, draw_id, name: s.name, version: version + 1 });
+					const drawToSave: IStroke[] = [];
+					for (const s of draw) {
+						if (s.visible) {
+							if (s.type === "stroke") {
+								s.actionIndex = 0;
+								drawToSave.push(s);
+							} else if (s.type === "multiplestroke") {
+								for (const s2 of s.multipath.filter((f) => f.visible)) {
+									s2.actionIndex = 0;
+									drawToSave.push(s2);
+								}
+							}
+						}
+					}
+
+					return dispatch("save", { type: "json", draw: drawToSave, id: id, draw_id, name: s.name, version: version + 1 });
 				default:
 					return console.error("unknown save type");
 			}
