@@ -38,7 +38,8 @@
 	let started = false;
 	let save_as: paperComponent["save_as"];
 
-	let load_draw: string;
+	export let load_draw: Component["load_draw"];
+
 	$: {
 		if (!id) id = "";
 		if (style) {
@@ -54,6 +55,16 @@
 
 		if ((historyIndex || historyIndex === 0) && started && (!changeHistoryIndex || changeHistoryIndex !== -1)) enableUndo = true;
 		else enableUndo = false;
+
+		if (typeof load_draw === "string" && (load_draw as string)?.length) {
+			try {
+				load_draw = JSON.parse(load_draw);
+			} catch (err) {
+				console.error("error parsing json", err);
+			}
+		} else if (!load_draw) {
+			load_draw = null;
+		}
 	}
 	addComponent({ repoName: "@htmlbricks/hb-stylus-paper", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-input-file", version: pkg.version });
@@ -140,7 +151,7 @@
 
 			reader.onload = function (evt) {
 				try {
-					load_draw = evt.target.result.toString();
+					load_draw = JSON.parse(evt.target.result.toString());
 				} catch (e) {
 					console.error("error loading file");
 				}
@@ -183,7 +194,7 @@
 		background_color="green"
 		{mode}
 		save_as={JSON.stringify(save_as)}
-		{load_draw}
+		load_draw={load_draw ? JSON.stringify(load_draw) : null}
 		on:historyIndex={(e) => onHistoryIndexChange(e.detail)}
 		on:save={(e) => onPaperSave(e.detail)}
 	/>
