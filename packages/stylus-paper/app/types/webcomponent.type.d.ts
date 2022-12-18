@@ -51,7 +51,7 @@ export type Component = {
 	debug?: "yes" | "no";
 	load_draw?: TSave;
 	save_as?: { name: string; type: TSaveType };
-	insert_image?: { name: string; type: TInsertImageType };
+	insert_image?: { name: string; type: TInsertImageType; uri: string };
 	insert_text?: { name: string; content: string };
 };
 
