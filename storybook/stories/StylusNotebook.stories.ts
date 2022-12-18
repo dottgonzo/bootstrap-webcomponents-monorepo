@@ -18,8 +18,8 @@ const Template: Story = (args) =>
 export const Main = Template.bind({})
 Main.args = setStorybookData(componentSetup.name, componentSetup.examples[0])
 
-export const WithLoad = Template.bind({})
-WithLoad.args = setStorybookData(
+export const WithLoadDraw = Template.bind({})
+WithLoadDraw.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples[1],
 )
