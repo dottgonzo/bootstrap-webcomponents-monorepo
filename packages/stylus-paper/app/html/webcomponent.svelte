@@ -286,7 +286,7 @@
 
 			if (load_draw && (!version || version < load_draw.version || draw_id !== load_draw.draw_id)) {
 				draw = load_draw.draw;
-				index = draw.length - 1;
+				index = draw.length;
 				draw_id = load_draw.draw_id;
 				version = load_draw.version;
 				load_draw = null;
