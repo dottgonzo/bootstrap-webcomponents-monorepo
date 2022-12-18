@@ -1,3 +1,5 @@
+export type TSaveType = "pdf" | "json" | "png" | "svg" | "jpg";
+
 export type TPath = [number, number, number][];
 
 export type IStroke = {
