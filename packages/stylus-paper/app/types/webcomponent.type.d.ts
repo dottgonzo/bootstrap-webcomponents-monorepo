@@ -1,5 +1,5 @@
 export type TSaveType = "pdf" | "json" | "png" | "svg" | "jpg";
-export type TInsertType = "png" | "svg" | "jpg";
+export type TInsertImageType = "png" | "svg" | "jpg";
 
 export type TSave = { type: TSaveType; draw: IStroke[]; id: string; draw_id: string; name: string; version: number };
 
@@ -51,7 +51,8 @@ export type Component = {
 	debug?: "yes" | "no";
 	load_draw?: TSave;
 	save_as?: { name: string; type: TSaveType };
-	insert_object?: { name: string; type: TInsertType };
+	insert_image?: { name: string; type: TInsertImageType };
+	insert_text?: { name: string; content: string };
 };
 
 export type Events = {
@@ -78,6 +79,8 @@ export type Events = {
 		id: string;
 		draw_id: string;
 	};
-	historyIndex: { index: number; id: string; draw_id: string };
+	historyIndex: { index: number; id: string; draw_id: string; start_index?: number };
 	save: TSave;
+	drawLoaded: { index: number; id: string; draw_id: string; start_index?: number };
+	imageLoaded: { index: number; id: string; draw_id: string; start_index?: number };
 };

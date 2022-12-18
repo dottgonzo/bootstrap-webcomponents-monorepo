@@ -37,8 +37,10 @@
 	let enableRedo: boolean;
 	let started = false;
 	let save_as: paperComponent["save_as"];
+	let insert_object: paperComponent["insert_object"];
 
 	export let load_draw: Component["load_draw"];
+	let start_index: number;
 
 	$: {
 		if (!id) id = "";
@@ -53,7 +55,13 @@
 		if ((changeHistoryIndex === 0 || changeHistoryIndex) && changeHistoryIndex < historyIndex) enableRedo = true;
 		else enableRedo = false;
 
-		if ((historyIndex || historyIndex === 0) && started && (!changeHistoryIndex || changeHistoryIndex !== -1)) enableUndo = true;
+		if (
+			(historyIndex || historyIndex === 0) &&
+			started &&
+			(!changeHistoryIndex || changeHistoryIndex !== -1) &&
+			(!start_index || (start_index < historyIndex && (!changeHistoryIndex || changeHistoryIndex < start_index)))
+		)
+			enableUndo = true;
 		else enableUndo = false;
 
 		if (typeof load_draw === "string" && (load_draw as string)?.length) {
@@ -102,10 +110,11 @@
 			console.log("redo", historyIndex, changeHistoryIndex);
 		}
 	}
-	function onHistoryIndexChange(details: { index: number }) {
+	function onHistoryIndexChange(details: { index: number; start_index?: number }) {
 		if (!started) started = true;
 		console.log("h", details);
 		historyIndex = details.index - 1;
+		if (details.start_index) start_index = details.start_index;
 
 		changeHistoryIndex = null;
 	}
@@ -127,6 +136,7 @@
 				try {
 					// load_draw = evt.target.result.toString();
 					console.log("insert file");
+					// insert_object=""
 				} catch (e) {
 					console.error("error loading file");
 				}
@@ -195,6 +205,7 @@
 		{mode}
 		save_as={JSON.stringify(save_as)}
 		load_draw={load_draw ? JSON.stringify(load_draw) : null}
+		insert_object={insert_object ? JSON.stringify(insert_object) : null}
 		on:historyIndex={(e) => onHistoryIndexChange(e.detail)}
 		on:save={(e) => onPaperSave(e.detail)}
 	/>

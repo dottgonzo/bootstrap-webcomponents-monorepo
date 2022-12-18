@@ -25,7 +25,9 @@
 
 	export let background_color: Component["background_color"];
 	export let pen_color: Component["pen_color"];
-	export let insert_object: Component["insert_object"];
+
+	export let insert_image: Component["insert_image"];
+	export let insert_text: Component["insert_text"];
 
 	export let pen_opacity: Component["pen_opacity"];
 
@@ -41,24 +43,12 @@
 
 	export let save_as: Component["save_as"];
 
+	let start_index: number;
+
 	let index = 0;
 	let pointerIsOnSelect: boolean;
 
 	let version: number = 0;
-
-	export const next = () => {
-		// if (index < draw.length - 1) {
-		// 	index++;
-		// }
-	};
-
-	export const previous = () => {
-		// if (index > 0) {
-		// 	index--;
-		// }
-	};
-	// export let next: () => void;
-	// export let previous: () => void;
 
 	let svgDom: SVGSVGElement;
 
@@ -112,16 +102,6 @@
 		return d.join(" ");
 	}
 
-	function gotoIndex(i: number) {
-		if (i > -1) {
-			if (!draw[i]) return console.info("no draw");
-			if (i === index) return console.info("same draw");
-			index = i;
-		} else {
-			console.log("no more");
-		}
-	}
-
 	function exportDraw(s: Component["save_as"]) {
 		if (s) {
 			switch (s.type) {
@@ -169,6 +149,26 @@
 			if (style) {
 				parsedStyle = parseStyle(style);
 				// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
+			}
+			if (typeof load_draw === "string" && (load_draw as string)?.length) {
+				try {
+					load_draw = JSON.parse(load_draw);
+				} catch (err) {
+					console.error("error parsing json", err);
+				}
+			} else if (!load_draw) {
+				load_draw = null;
+			}
+
+			if (load_draw && (!version || version < load_draw.version || draw_id !== load_draw.draw_id)) {
+				draw = load_draw.draw;
+				index = draw.length;
+				draw_id = load_draw.draw_id;
+				version = load_draw.version;
+				load_draw = null;
+				start_index = draw.length;
+				dispatch("historyIndex", { index: index, draw_id, id, start_index });
+				dispatch("drawLoaded", { index: index, draw_id, id, start_index });
 			}
 			if (typeof save_as === "string" && (save_as as string)?.length) {
 				try {
@@ -223,10 +223,12 @@
 				index = -1;
 				// goto = null;
 			} else if (goto || goto === 0) {
-				if (goto > draw.length) goto = draw.length;
+				if (start_index && goto > start_index) goto = start_index;
+				else if (goto > draw.length) goto = draw.length;
+
 				index = goto + 0;
 				goto = null;
-				dispatch("changeIndex", { index: index, draw_id, id });
+				dispatch("changeIndex", { index: index, draw_id, id, start_index });
 
 				// const oldDraw = [...draw];
 				// // const newDraw = oldDraw.slice(0, index + 1);
@@ -250,6 +252,16 @@
 			if (!pen_color) pen_color = "rgb(0,0,0)";
 			// if (cv) configureSign();
 
+			// // number
+			// if (typeof start_index === "string" && (start_index as string)?.length) {
+			// 	try {
+			// 		start_index = Number(start_index);
+			// 	} catch (err) {
+			// 		console.error("error parsing start_index", err);
+			// 	}
+			// } else if (!start_index) {
+			// 	start_index = null;
+			// }
 			// json
 			if (typeof options === "string" && (options as string)?.length) {
 				try {
@@ -260,39 +272,51 @@
 			} else if (!options) {
 				options = defaultOptions;
 			}
-			if (!insert_object) {
-				insert_object = null;
-			} else if (typeof insert_object === "string") {
+			if (!insert_image) {
+				insert_image = null;
+			} else if (typeof insert_image === "string") {
 				try {
-					insert_object = JSON.parse(insert_object);
+					insert_image = JSON.parse(insert_image);
 				} catch (err) {
 					console.error("error parsing insert_object json", err);
 				}
 			}
 
-			if (insert_object) {
+			if (insert_image) {
 				console.info("inserting object");
-			}
+				let isLoaded = false;
+				switch (insert_image.type) {
+					case "jpg":
+					case "png":
+						insertImage(insert_image);
+						isLoaded = true;
+						break;
+					case "svg":
+						insertSvg(insert_image);
+						isLoaded = true;
+						break;
 
-			if (typeof load_draw === "string" && (load_draw as string)?.length) {
-				try {
-					load_draw = JSON.parse(load_draw);
-				} catch (err) {
-					console.error("error parsing json", err);
+					default:
+						console.error("unknown insert_object type", insert_image.type);
+						isLoaded = false;
 				}
-			} else if (!load_draw) {
-				load_draw = null;
+				if (isLoaded) dispatch("imageLoaded", { insert_image, draw_id, id, start_index });
+			}
+			if (!insert_image) {
+				insert_image = null;
+			} else if (typeof insert_image === "string") {
+				try {
+					insert_image = JSON.parse(insert_image);
+				} catch (err) {
+					console.error("error parsing insert_object json", err);
+				}
 			}
 
-			if (load_draw && (!version || version < load_draw.version || draw_id !== load_draw.draw_id)) {
-				draw = load_draw.draw;
-				index = draw.length;
-				draw_id = load_draw.draw_id;
-				version = load_draw.version;
-				load_draw = null;
-				dispatch("historyIndex", { index: index, draw_id, id });
-			}
+			if (insert_text) {
+				insertText(insert_text);
 
+				dispatch("imageLoaded", { insert_text, draw_id, id, start_index });
+			}
 			stroke = getStroke(draw[index]?.path || [], Object.assign({ simulatePressure: pointerType === "pen" ? false : true }, options));
 			pathData = getSvgPathFromStroke(stroke);
 
@@ -304,6 +328,16 @@
 		}
 	}
 
+	function insertImage(o: Component["insert_image"]) {
+		console.info(`inserting image ${o.type}`);
+	}
+
+	function insertSvg(o: Component["insert_image"]) {
+		console.info(`inserting SVG ${o.type}`);
+	}
+	function insertText(o: Component["insert_text"]) {
+		console.info(`inserting Text ${o.content}`);
+	}
 	function eraseHere(e: PointerEvent) {
 		const pathId = (e.target as unknown as any)?.id?.split("_")?.[1];
 
@@ -345,7 +379,7 @@
 					draw = [...oldDraw];
 
 					index++;
-					dispatch("historyIndex", { index: index, draw_id, id });
+					dispatch("historyIndex", { index: index, draw_id, id, start_index });
 				} else {
 					draw = [...oldDraw];
 				}
@@ -389,7 +423,7 @@
 					format = false;
 				}
 			}
-			dispatch("historyIndex", { index: index, draw_id, id });
+			dispatch("historyIndex", { index: index, draw_id, id, start_index });
 
 			stroke_start = new Date();
 			stroke_id = Date.now().toString();
@@ -517,7 +551,7 @@
 					index++;
 				}
 				draw = [...oldDraw];
-				dispatch("historyIndex", { index: index, draw_id, id });
+				dispatch("historyIndex", { index: index, draw_id, id, start_index });
 
 				// index++;
 				console.log(draw, index);
@@ -638,7 +672,7 @@
 				draw_id,
 			});
 			index++;
-			dispatch("historyIndex", { index: index, draw_id, id });
+			dispatch("historyIndex", { index: index, draw_id, id, start_index });
 		} else if (
 			mode === "eraser" ||
 			(mode === "draw" && pencilStatus !== "drawing" && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32))
