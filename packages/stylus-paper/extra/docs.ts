@@ -11,18 +11,26 @@ export const storybookArgs = {
 	},
 	save_as: { control: { type: "object" } },
 	options: { control: { type: "object" } },
+	size: { control: { type: "object" } },
+	view: { control: { type: "object" } },
 	goto: { control: { type: "number" } },
 	mode: {
 		options: ["eraser", "draw", "select"],
 		control: { type: "radio" }, // Automatically inferred when 'options' is defined
 	},
 	load_draw: { control: { type: "object" } },
+	insert_text: { control: { type: "object" } },
+	insert_image: { control: { type: "object" } },
 	startStroke: { action: "startStrokeEvent" },
 	beginStroke: { action: "beginStrokeEvent" },
 	endStroke: { action: "endStrokeEvent" },
 	selection: { action: "selectionEvent" },
 	historyIndex: { action: "historyIndexEvent" },
+	changeIndex: { action: "changeIndexEvent" },
 	save: { action: "saveEvent" },
+	drawLoaded: { action: "drawLoadedEvent" },
+	imageLoaded: { action: "imageLoadedEvent" },
+	txtLoaded: { action: "txtLoadedEvent" },
 };
 
 const cssVars: CssVar[] = [];
@@ -38,9 +46,7 @@ export const styleSetup: StyleSetup = {
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
-		data: {
-			mode: "draw",
-		},
+		data: {},
 	},
 	{
 		name: "withPressure",
@@ -48,7 +54,6 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			options: {
 				simulatePressure: false,
 			},
-			mode: "draw",
 		},
 	},
 	{
@@ -57,7 +62,6 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			options: {
 				simulatePressure: true,
 			},
-			mode: "draw",
 		},
 	},
 	{
@@ -71,7 +75,6 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				smoothing: 0.5,
 				streamline: 0.5,
 			},
-			mode: "draw",
 		},
 	},
 	{
@@ -84,7 +87,6 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				smoothing: 0.5,
 				streamline: 0.5,
 			},
-			mode: "draw",
 		},
 	},
 	{
@@ -117,6 +119,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				draw_id: "0.wh3036wc7x0.fevf9p1uqkg1671124483602",
 				name: "test",
 				version: 0,
+				size: { paperSize: "A4" },
 			},
 			options: {
 				size: 16,
@@ -124,7 +127,27 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				smoothing: 0.5,
 				streamline: 0.5,
 			},
-			mode: "draw",
+		},
+	},
+
+	{
+		name: "LoadImage",
+		data: {
+			insert_image: {
+				name: "test",
+				type: "jpeg",
+				base64:
+					"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEBLAEsAAD//gATQ3JlYXRlZCB3aXRoIEdJTVD/4gKwSUNDX1BST0ZJTEUAAQEAAAKgbGNtcwQwAABtbnRyUkdCIFhZWiAH5gAMABMAFgA1ACZhY3NwQVBQTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9tYAAQAAAADTLWxjbXMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1kZXNjAAABIAAAAEBjcHJ0AAABYAAAADZ3dHB0AAABmAAAABRjaGFkAAABrAAAACxyWFlaAAAB2AAAABRiWFlaAAAB7AAAABRnWFlaAAACAAAAABRyVFJDAAACFAAAACBnVFJDAAACFAAAACBiVFJDAAACFAAAACBjaHJtAAACNAAAACRkbW5kAAACWAAAACRkbWRkAAACfAAAACRtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACQAAAAcAEcASQBNAFAAIABiAHUAaQBsAHQALQBpAG4AIABzAFIARwBCbWx1YwAAAAAAAAABAAAADGVuVVMAAAAaAAAAHABQAHUAYgBsAGkAYwAgAEQAbwBtAGEAaQBuAABYWVogAAAAAAAA9tYAAQAAAADTLXNmMzIAAAAAAAEMQgAABd7///MlAAAHkwAA/ZD///uh///9ogAAA9wAAMBuWFlaIAAAAAAAAG+gAAA49QAAA5BYWVogAAAAAAAAJJ8AAA+EAAC2xFhZWiAAAAAAAABilwAAt4cAABjZcGFyYQAAAAAAAwAAAAJmZgAA8qcAAA1ZAAAT0AAACltjaHJtAAAAAAADAAAAAKPXAABUfAAATM0AAJmaAAAmZwAAD1xtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAEcASQBNAFBtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEL/2wBDABMNDhAODBMQDxAVFBMWHC4eHBoaHDkpKyIuQztHRkI7QUBKVGtaSk9lUEBBXX5eZW5yd3l3SFmDjIJ0i2t1d3P/2wBDARQVFRwYHDceHjdzTUFNc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3P/wgARCAAyADIDAREAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAMGBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAe0AAAAAAACJYAAGVNIWAAAAAAAAAAAB/8QAGRABAAMBAQAAAAAAAAAAAAAAAwECQBMg/9oACAEBAAEFAsEsdbelJOoxNS0f/8QAFBEBAAAAAAAAAAAAAAAAAAAAUP/aAAgBAwEBPwFH/8QAFBEBAAAAAAAAAAAAAAAAAAAAUP/aAAgBAgEBPwFH/8QAHBAAAQMFAAAAAAAAAAAAAAAAAQIRQAASICIx/9oACAEBAAY/AoFpUHzOpLmkhXWk/wD/xAAbEAABBQEBAAAAAAAAAAAAAAABABEhMUAgUf/aAAgBAQABPyHA0G8Or6EGSICypqS0/wD/2gAMAwEAAgADAAAAEJJJJJJJJBJJIBJJJJJJJJJJJJ//xAAUEQEAAAAAAAAAAAAAAAAAAABQ/9oACAEDAQE/EEf/xAAUEQEAAAAAAAAAAAAAAAAAAABQ/9oACAECAQE/EEf/xAAaEAEBAAIDAAAAAAAAAAAAAAABEQAhIEBB/9oACAEBAAE/EOgST/W2CARo+8WozTj3oIJEXW8dSmNrygthen//2Q==",
+			},
+		},
+	},
+	{
+		name: "LoadTxt",
+		data: {
+			insert_text: {
+				name: "test",
+				content: "ciao",
+			},
 		},
 	},
 ];

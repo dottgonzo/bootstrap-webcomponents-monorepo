@@ -6,7 +6,7 @@
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
-	import type { Component, IStroke } from "@app/types/webcomponent.type";
+	import type { Component, IStroke, Events } from "@app/types/webcomponent.type";
 
 	import { getStroke } from "perfect-freehand";
 
@@ -42,7 +42,26 @@
 	export let load_draw: Component["load_draw"];
 
 	export let save_as: Component["save_as"];
+	export let size: Component["size"];
+	export let view: Component["view"];
+	let viewStatus: {
+		containerWidth: number;
+		containerHeight: number;
+		drawWidth: number;
+		drawHeight: number;
+		paperWidth: number;
+		paperHeight: number;
+	};
 
+	const defaultSize: Component["size"] = {
+		paperSize: "A4",
+	};
+	const defaultView: Component["view"] = {
+		zoom: { type: "fit", value: 1 },
+		pan: { x: 0, y: 0 },
+		lockPan: false,
+		lockZoom: false,
+	};
 	let start_index: number;
 
 	let index = 0;
@@ -51,6 +70,7 @@
 	let version: number = 0;
 
 	let svgDom: SVGSVGElement;
+	let containerDom: HTMLElement;
 
 	let pointerType: string = "";
 	let containerPos: { left: number; top: number };
@@ -121,7 +141,7 @@
 						}
 					}
 
-					return dispatch("save", { type: "json", draw: drawToSave, id: id, draw_id, name: s.name, version: version + 1 });
+					return dispatchSave({ type: "json", draw: drawToSave, id: id, draw_id, name: s.name, version: version + 1, size });
 				default:
 					return console.error("unknown save type");
 			}
@@ -141,24 +161,137 @@
 	let selectMaxXStart: number;
 	let selectMaxYStart: number;
 
-	$: {
-		if (svgDom) {
-			containerPos = svgDom.getBoundingClientRect();
+	function dispatchDrawLoaded(d: Events["drawLoaded"]) {
+		dispatch("drawLoaded", d);
+	}
+	function dispatchSave(d: Events["save"]) {
+		dispatch("save", d);
+	}
+	function dispatchHistoryStatus(d: Events["historyIndex"]) {
+		dispatch("historyIndex", d);
+	}
+	function dispatchChangeIndex(d: Events["changeIndex"]) {
+		dispatch("changeIndex", d);
+	}
+	function dispatchSelection(d: Events["selection"]) {
+		dispatch("selection", d);
+	}
+	function dispatchStartStroke(d: Events["startStroke"]) {
+		dispatch("startStroke", d);
+	}
+	function dispatchEndStroke(d: Events["endStroke"]) {
+		dispatch("endStroke", d);
+	}
+	function dispatchImageLoaded(d: Events["imageLoaded"]) {
+		dispatch("imageLoaded", d);
+	}
+	function dispatchTxtLoaded(d: Events["txtLoaded"]) {
+		dispatch("txtLoaded", d);
+	}
 
-			if (!id) id = "";
-			if (style) {
-				parsedStyle = parseStyle(style);
-				// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
+	function updateSvgDomWindowStatus() {
+		containerPos = svgDom.getBoundingClientRect();
+
+		if (!viewStatus) viewStatus = {} as any;
+		viewStatus.containerWidth = containerDom.clientWidth;
+		viewStatus.containerHeight = containerDom.clientHeight;
+		viewStatus.drawWidth = svgDom.clientWidth;
+		viewStatus.drawHeight = svgDom.clientHeight;
+
+		switch (size.paperSize) {
+			case "A3":
+				viewStatus.paperWidth = 297;
+				viewStatus.paperHeight = 420;
+				break;
+			case "A4":
+			default:
+				viewStatus.paperWidth = 210;
+				viewStatus.paperHeight = 297;
+				break;
+		}
+	}
+	$: {
+		if (!id) id = "";
+		if (style) {
+			parsedStyle = parseStyle(style);
+			// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
+		}
+		if (!size) {
+			size = Object.assign({}, defaultSize);
+		} else if (typeof size === "string") {
+			try {
+				size = JSON.parse(size);
+			} catch (err) {
+				console.error("error parsing size json", err);
 			}
-			if (typeof load_draw === "string" && (load_draw as string)?.length) {
-				try {
-					load_draw = JSON.parse(load_draw);
-				} catch (err) {
-					console.error("error parsing json", err);
-				}
-			} else if (!load_draw) {
-				load_draw = null;
+		}
+		if (!view) {
+			view = Object.assign({}, defaultView);
+		} else if (typeof view === "string") {
+			try {
+				view = JSON.parse(view);
+			} catch (err) {
+				console.error("error parsing view json", err);
 			}
+		}
+		if (typeof load_draw === "string" && (load_draw as string)?.length) {
+			try {
+				load_draw = JSON.parse(load_draw);
+			} catch (err) {
+				console.error("error parsing json", err);
+			}
+		} else if (!load_draw) {
+			load_draw = null;
+		}
+		if (typeof save_as === "string" && (save_as as string)?.length) {
+			try {
+				save_as = JSON.parse(save_as);
+			} catch (err) {
+				console.error("error parsing json", err);
+			}
+		}
+		if (!mode) mode = "draw";
+		if (debug !== "yes") debug = "no";
+		if (typeof pen_opacity === "string") pen_opacity = Number(pen_opacity);
+		if (!pen_opacity) pen_opacity = 1;
+		if (!background_color) background_color = "rgb(255,255,255)";
+		if (!pen_color) pen_color = "rgb(0,0,0)";
+		// json
+		if (typeof options === "string" && (options as string)?.length) {
+			try {
+				options = JSON.parse(options);
+			} catch (err) {
+				console.error("error parsing json", err);
+			}
+		} else if (!options) {
+			options = defaultOptions;
+		}
+		if (!options.size) options.size = defaultOptions.size;
+		if (!options.thinning) options.thinning = defaultOptions.thinning;
+		if (!options.smoothing) options.smoothing = defaultOptions.smoothing;
+		if (!options.streamline) options.streamline = defaultOptions.streamline;
+
+		if (!insert_image) {
+			insert_image = null;
+		} else if (typeof insert_image === "string") {
+			try {
+				insert_image = JSON.parse(insert_image);
+			} catch (err) {
+				console.error("error parsing insert_object json", err);
+			}
+		}
+
+		if (!insert_image) {
+			insert_image = null;
+		} else if (typeof insert_image === "string") {
+			try {
+				insert_image = JSON.parse(insert_image);
+			} catch (err) {
+				console.error("error parsing insert_object json", err);
+			}
+		}
+		if (svgDom) {
+			if (!containerPos) updateSvgDomWindowStatus();
 
 			if (load_draw && (!version || version < load_draw.version || draw_id !== load_draw.draw_id)) {
 				draw = load_draw.draw;
@@ -167,16 +300,10 @@
 				version = load_draw.version;
 				load_draw = null;
 				start_index = draw.length;
-				dispatch("historyIndex", { index: index, draw_id, id, start_index });
-				dispatch("drawLoaded", { index: index, draw_id, id, start_index });
+				dispatchHistoryStatus({ index: index, draw_id, id, start_index });
+				dispatchDrawLoaded({ index: index, draw_id, id, start_index });
 			}
-			if (typeof save_as === "string" && (save_as as string)?.length) {
-				try {
-					save_as = JSON.parse(save_as);
-				} catch (err) {
-					console.error("error parsing json", err);
-				}
-			}
+
 			if (draw?.length && save_as) {
 				exportDraw(save_as);
 			}
@@ -186,7 +313,6 @@
 				draw = [];
 			}
 			// mode
-			if (!mode) mode = "draw";
 			if (mode && mode !== "select" && thereIsSelectedStrokes) {
 				thereIsSelectedStrokes = 0;
 				const oldDraw = [...draw];
@@ -206,9 +332,6 @@
 				selectMinY = 0;
 			}
 
-			if (debug !== "yes") debug = "no";
-			if (typeof pen_opacity === "string") pen_opacity = Number(pen_opacity);
-			if (!pen_opacity) pen_opacity = 1;
 			if (typeof goto === "string") goto = Number(goto);
 
 			if (!draw.length) {
@@ -228,7 +351,7 @@
 
 				index = goto + 0;
 				goto = null;
-				dispatch("changeIndex", { index: index, draw_id, id, start_index });
+				dispatchChangeIndex({ index: index, draw_id, id, start_index });
 
 				// const oldDraw = [...draw];
 				// // const newDraw = oldDraw.slice(0, index + 1);
@@ -248,8 +371,6 @@
 				format = false;
 			}
 
-			if (!background_color) background_color = "rgb(255,255,255)";
-			if (!pen_color) pen_color = "rgb(0,0,0)";
 			// if (cv) configureSign();
 
 			// // number
@@ -262,31 +383,13 @@
 			// } else if (!start_index) {
 			// 	start_index = null;
 			// }
-			// json
-			if (typeof options === "string" && (options as string)?.length) {
-				try {
-					options = JSON.parse(options);
-				} catch (err) {
-					console.error("error parsing json", err);
-				}
-			} else if (!options) {
-				options = defaultOptions;
-			}
-			if (!insert_image) {
-				insert_image = null;
-			} else if (typeof insert_image === "string") {
-				try {
-					insert_image = JSON.parse(insert_image);
-				} catch (err) {
-					console.error("error parsing insert_object json", err);
-				}
-			}
 
 			if (insert_image) {
 				console.info("inserting object");
 				let isLoaded = false;
 				switch (insert_image.type) {
 					case "jpg":
+					case "jpeg":
 					case "png":
 						insertImage(insert_image);
 						isLoaded = true;
@@ -300,36 +403,32 @@
 						console.error("unknown insert_object type", insert_image.type);
 						isLoaded = false;
 				}
-				if (isLoaded) dispatch("imageLoaded", { insert_image, draw_id, id, start_index });
+				if (isLoaded) dispatchImageLoaded({ ok: true, draw_id, id });
 			}
-			if (!insert_image) {
-				insert_image = null;
-			} else if (typeof insert_image === "string") {
-				try {
-					insert_image = JSON.parse(insert_image);
-				} catch (err) {
-					console.error("error parsing insert_object json", err);
-				}
-			}
-
 			if (insert_text) {
 				insertText(insert_text);
 
-				dispatch("imageLoaded", { insert_text, draw_id, id, start_index });
+				dispatchTxtLoaded({ ok: true, draw_id, id });
 			}
 			stroke = getStroke(draw[index]?.path || [], Object.assign({ simulatePressure: pointerType === "pen" ? false : true }, options));
 			pathData = getSvgPathFromStroke(stroke);
 
-			if (!options.size) options.size = defaultOptions.size;
-			if (!options.thinning) options.thinning = defaultOptions.thinning;
-			if (!options.smoothing) options.smoothing = defaultOptions.smoothing;
-			if (!options.streamline) options.streamline = defaultOptions.streamline;
 			console.log("set index to", index, "from goto", goto, "historyActions", draw.length);
 		}
 	}
 
 	function insertImage(o: Component["insert_image"]) {
-		console.info(`inserting image ${o.type}`);
+		const oldDraw = [...draw];
+		const attachObj: IStroke = {
+			id: Date.now().toString(),
+			type: "image",
+			actionIndex: index,
+			visible: true,
+			pathData: o.base64,
+		};
+		oldDraw.push(attachObj);
+		draw = [...oldDraw];
+		index++;
 	}
 
 	function insertSvg(o: Component["insert_image"]) {
@@ -346,7 +445,6 @@
 
 			let stroke = oldDraw.find((s) => s.id === pathId && s.visible);
 			if (!stroke) {
-				console.log("check on multipaths");
 				for (const substroke of oldDraw.filter((s) => s.type === "multiplestroke").sort((a, b) => b.actionIndex - a.actionIndex)) {
 					const substrokeFind = substroke.multipath.find((s) => s.id === pathId && s.visible);
 					if (substrokeFind) {
@@ -379,7 +477,7 @@
 					draw = [...oldDraw];
 
 					index++;
-					dispatch("historyIndex", { index: index, draw_id, id, start_index });
+					dispatchHistoryStatus({ index: index, draw_id, id, start_index });
 				} else {
 					draw = [...oldDraw];
 				}
@@ -410,7 +508,7 @@
 				});
 				draw = oldDraw;
 
-				// 	dispatch("historyIndex", { index: historyActions.length - 1, draw_id, id });
+				// 	dispatchHistoryStatus({ index: historyActions.length - 1, draw_id, id });
 			}
 			if (draw?.length && index < draw.length) {
 				if (!format) {
@@ -423,7 +521,7 @@
 					format = false;
 				}
 			}
-			dispatch("historyIndex", { index: index, draw_id, id, start_index });
+			dispatchHistoryStatus({ index: index, draw_id, id, start_index });
 
 			stroke_start = new Date();
 			stroke_id = Date.now().toString();
@@ -434,7 +532,7 @@
 
 			if (!start_drawing_date) {
 				start_drawing_date = stroke_start;
-				dispatch("startStroke", { date: start_drawing_date, id: id, draw_id });
+				dispatchStartStroke({ start: start_drawing_date, id: id, draw_id, stroke_id, index });
 			}
 			(e.target as unknown as any).setPointerCapture(e.pointerId);
 
@@ -473,7 +571,7 @@
 				];
 			}
 
-			dispatch("startStroke", { start: stroke_start, stroke_id: stroke_id, index: index, id: id, draw_id });
+			dispatchStartStroke({ start: stroke_start, stroke_id: stroke_id, index: index, id: id, draw_id });
 		} else if (mode === "eraser" || (mode === "draw" && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32))) {
 			(e.target as unknown as any).setPointerCapture(e.pointerId);
 			pencilStatus = "erasing";
@@ -551,10 +649,9 @@
 					index++;
 				}
 				draw = [...oldDraw];
-				dispatch("historyIndex", { index: index, draw_id, id, start_index });
+				dispatchHistoryStatus({ index: index, draw_id, id, start_index });
 
 				// index++;
-				console.log(draw, index);
 				startMove = true;
 				selectMinXStart = selectMinX;
 				selectMinYStart = selectMinY;
@@ -659,20 +756,20 @@
 		if (mode === "draw" && pencilStatus === "drawing") {
 			const stroke_end = new Date();
 
-			dispatch("endStroke", {
+			dispatchEndStroke({
 				end: stroke_end,
 				stroke_id: stroke_id,
 				start: stroke_start,
 				min: [strokeMinX, strokeMinY],
 				max: [strokeMaxX, strokeMaxY],
 				pathData: pathData,
-				color: pen_color,
+				pen_color: pen_color,
 				index: index,
 				id,
 				draw_id,
 			});
 			index++;
-			dispatch("historyIndex", { index: index, draw_id, id, start_index });
+			dispatchHistoryStatus({ index: index, draw_id, id, start_index });
 		} else if (
 			mode === "eraser" ||
 			(mode === "draw" && pencilStatus !== "drawing" && ((e.pointerType === "pen" && e.pressure === 0 && e.buttons === 1) || e.buttons === 32))
@@ -743,7 +840,7 @@
 
 				console.log(selectedStrokes);
 
-				dispatch("selection", { minX: selectMinX, minY: selectMinY, maxX: selectMaxX, maxY: selectMaxY, strokes: selectedStrokes, id, draw_id });
+				dispatchSelection({ minX: selectMinX, minY: selectMinY, maxX: selectMaxX, maxY: selectMaxY, strokes: selectedStrokes, id, draw_id });
 			} else {
 				selectMinX = 0;
 				selectMinY = 0;
@@ -760,6 +857,7 @@
 
 	onMount(() => {
 		svgDom = component.shadowRoot.querySelector("svg");
+		containerDom = component.shadowRoot.getElementById("container");
 		let retryToMount = 0;
 		const interval = setInterval(() => {
 			svgDom = component.shadowRoot.querySelector("svg");
@@ -781,113 +879,133 @@
 </script>
 
 <div id="debug" style="display:{debug === 'yes' ? 'block' : 'none'}">{pointerType} b: {mouseButton}</div>
-<svg
-	on:pointerdown={handlePointerDown}
-	on:pointermove={handlePointerMove}
-	on:pointerup={handlePointerUp}
-	style="background-color:{background_color};cursor:{pointerIsOnSelect === true ? 'move' : 'default'}"
->
-	<!-- {#if draw?.length} -->
-	{#if svgDom}
-		<g>
-			{#each draw as stroke (stroke.id)}
-				{#if stroke.actionIndex <= index && !format && (stroke.visible || stroke.erasedAtIndex > index)}
-					{#if stroke.type === "stroke"}
-						{#if stroke.selected}
-							<path
-								id={"path_" + stroke.id}
-								d={stroke.pathData}
-								fill={stroke.color}
-								fill-opacity={stroke.opacity}
-								stroke-linecap="round"
-								stroke="red"
-								stroke-width="2"
-							/>
-						{:else}
-							<path id={"path_" + stroke.id} d={stroke.pathData} fill={stroke.color} fill-opacity={stroke.opacity} />
-						{/if}
-					{:else if stroke.type === "multiplestroke"}
-						{#each stroke.multipath as m_stroke (m_stroke.id + stroke.id)}
-							{#if m_stroke.actionIndex <= index && !format && (m_stroke.visible || m_stroke.erasedAtIndex > index)}
-								{#if m_stroke.selected}
+<div id="container">
+	<svg
+		on:pointerdown={handlePointerDown}
+		on:pointermove={handlePointerMove}
+		on:pointerup={handlePointerUp}
+		style="background-color:{background_color};cursor:{pointerIsOnSelect === true ? 'move' : 'default'}"
+	>
+		<!-- {#if draw?.length} -->
+		{#if svgDom}
+			<g>
+				{#each draw as stroke (stroke.id)}
+					{#if stroke.actionIndex <= index && !format && (stroke.visible || stroke.erasedAtIndex > index)}
+						{#if stroke.type === "stroke" || stroke.type === "image"}
+							{#if stroke.selected}
+								{#if stroke.type === "stroke"}
 									<path
-										id={"path_" + m_stroke.id + "_" + stroke.id}
-										d={m_stroke.pathData}
-										fill={m_stroke.color}
-										fill-opacity={m_stroke.opacity}
+										id={"path_" + stroke.id}
+										d={stroke.pathData}
+										fill={stroke.color}
+										fill-opacity={stroke.opacity}
 										stroke-linecap="round"
 										stroke="red"
 										stroke-width="2"
 									/>
-								{:else}
-									<path
-										id={"path_" + m_stroke.id + "_" + stroke.id}
-										d={m_stroke.pathData}
-										fill={m_stroke.color}
-										fill-opacity={m_stroke.opacity}
-									/>
+								{:else if stroke.type === "image"}
+									<image id={"path_" + stroke.id} href={stroke.pathData} stroke-linecap="round" stroke="red" stroke-width="2" />
 								{/if}
+							{:else if !stroke.selected && stroke.type === "stroke"}
+								<path id={"path_" + stroke.id} d={stroke.pathData} fill={stroke.color} fill-opacity={stroke.opacity} />
+							{:else if !stroke.selected && stroke.type === "image"}
+								<image id={"path_" + stroke.id} href={stroke.pathData} />
 							{/if}
-						{/each}
+						{:else if stroke.type === "multiplestroke"}
+							{#each stroke.multipath as m_stroke (m_stroke.id + stroke.id)}
+								{#if m_stroke.actionIndex <= index && !format && (m_stroke.visible || m_stroke.erasedAtIndex > index)}
+									{#if m_stroke.selected}
+										{#if m_stroke.type === "stroke"}
+											<path
+												id={"path_" + m_stroke.id + "_" + stroke.id}
+												d={m_stroke.pathData}
+												fill={m_stroke.color}
+												fill-opacity={m_stroke.opacity}
+												stroke-linecap="round"
+												stroke="red"
+												stroke-width="2"
+											/>
+										{:else if m_stroke.type === "image"}
+											<image
+												id={"path_" + m_stroke.id + "_" + stroke.id}
+												href={m_stroke.pathData}
+												stroke-linecap="round"
+												stroke="red"
+												stroke-width="2"
+											/>
+										{/if}
+									{:else if !m_stroke.selected && m_stroke.type === "stroke"}
+										<path
+											id={"path_" + m_stroke.id + "_" + stroke.id}
+											d={m_stroke.pathData}
+											fill={m_stroke.color}
+											fill-opacity={m_stroke.opacity}
+										/>
+									{:else if !m_stroke.selected && m_stroke.type === "image"}
+										<image id={"path_" + m_stroke.id + "_" + stroke.id} href={m_stroke.pathData} />
+									{/if}
+								{/if}
+							{/each}
+						{/if}
+					{/if}
+				{/each}
+
+				{#if mode === "select"}
+					{#if selectMinX <= selectMaxX && selectMinY <= selectMaxY}
+						<rect
+							id="selector"
+							x={selectMinX}
+							y={selectMinY}
+							width={selectMaxX - selectMinX}
+							height={selectMaxY - selectMinY}
+							fill="none"
+							stroke="red"
+							stroke-width="1"
+						/>
+					{:else if selectMinX > selectMaxX && selectMinY < selectMaxY}
+						<rect
+							id="selector"
+							x={selectMaxX}
+							y={selectMinY}
+							width={selectMinX - selectMaxX}
+							height={selectMaxY - selectMinY}
+							fill="none"
+							stroke="red"
+							stroke-width="1"
+						/>
+					{:else if selectMinX < selectMaxX && selectMinY > selectMaxY}
+						<rect
+							id="selector"
+							x={selectMinX}
+							y={selectMaxY}
+							width={selectMaxX - selectMinX}
+							height={selectMinY - selectMaxY}
+							fill="none"
+							stroke="red"
+							stroke-width="1"
+						/>
+					{:else}
+						<rect
+							id="selector"
+							x={selectMaxX}
+							y={selectMaxY}
+							width={selectMinX - selectMaxX}
+							height={selectMinY - selectMaxY}
+							fill="none"
+							stroke="red"
+							stroke-width="1"
+						/>
 					{/if}
 				{/if}
-			{/each}
 
-			{#if mode === "select"}
-				{#if selectMinX <= selectMaxX && selectMinY <= selectMaxY}
-					<rect
-						id="selector"
-						x={selectMinX}
-						y={selectMinY}
-						width={selectMaxX - selectMinX}
-						height={selectMaxY - selectMinY}
-						fill="none"
-						stroke="red"
-						stroke-width="1"
-					/>
-				{:else if selectMinX > selectMaxX && selectMinY < selectMaxY}
-					<rect
-						id="selector"
-						x={selectMaxX}
-						y={selectMinY}
-						width={selectMinX - selectMaxX}
-						height={selectMaxY - selectMinY}
-						fill="none"
-						stroke="red"
-						stroke-width="1"
-					/>
-				{:else if selectMinX < selectMaxX && selectMinY > selectMaxY}
-					<rect
-						id="selector"
-						x={selectMinX}
-						y={selectMaxY}
-						width={selectMaxX - selectMinX}
-						height={selectMinY - selectMaxY}
-						fill="none"
-						stroke="red"
-						stroke-width="1"
-					/>
-				{:else}
-					<rect
-						id="selector"
-						x={selectMaxX}
-						y={selectMaxY}
-						width={selectMinX - selectMaxX}
-						height={selectMinY - selectMaxY}
-						fill="none"
-						stroke="red"
-						stroke-width="1"
-					/>
-				{/if}
-			{/if}
-
-			<!-- {/if} -->
-			<!-- {#if points?.length}
+				<!-- {/if} -->
+				<!-- {#if points?.length}
 		<g id="foreground"><path d={pathData} fill={pen_color} /></g>
 	{/if} -->
-		</g>
-	{/if}
-</svg>
+			</g>
+		{/if}
+	</svg>
+</div>
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";

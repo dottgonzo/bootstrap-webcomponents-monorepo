@@ -37,7 +37,8 @@
 	let enableRedo: boolean;
 	let started = false;
 	let save_as: paperComponent["save_as"];
-	let insert_object: paperComponent["insert_object"];
+	let insert_image: paperComponent["insert_image"];
+	let insert_text: paperComponent["insert_text"];
 
 	export let load_draw: Component["load_draw"];
 	let start_index: number;
@@ -127,15 +128,25 @@
 	function load() {}
 	function move() {}
 	function onFileInsertLoaded(e: inputFileEvents["setValue"]) {
-		if ((e.value as unknown as File).name) {
+		const fileName = (e.value as unknown as File)?.name;
+		if (fileName) {
 			const reader = new FileReader();
-			reader.readAsText(e.value as unknown as Blob, "UTF-8");
+			reader.readAsDataURL(e.value as unknown as Blob);
 
 			reader.onload = function (evt) {
-				console.log(evt.target.result);
 				try {
 					// load_draw = evt.target.result.toString();
-					console.log("insert file");
+					console.log("insert file", evt.target, evt.target?.result);
+					if (evt.target?.result) {
+						const imageBase64 = evt.target.result.toString();
+						const imageType = imageBase64.split(";")[0].split(":")[1] as "png" | "jpg";
+
+						insert_image = {
+							base64: evt.target.result.toString(),
+							type: imageType,
+							name: fileName,
+						};
+					}
 					// insert_object=""
 				} catch (e) {
 					console.error("error loading file");
@@ -205,7 +216,8 @@
 		{mode}
 		save_as={JSON.stringify(save_as)}
 		load_draw={load_draw ? JSON.stringify(load_draw) : null}
-		insert_object={insert_object ? JSON.stringify(insert_object) : null}
+		insert_image={insert_image ? JSON.stringify(insert_image) : null}
+		insert_text={insert_text ? JSON.stringify(insert_text) : null}
 		on:historyIndex={(e) => onHistoryIndexChange(e.detail)}
 		on:save={(e) => onPaperSave(e.detail)}
 	/>

@@ -47,3 +47,15 @@ LoadDraw.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples[5],
 )
+
+export const LoadImage = Template.bind({})
+LoadImage.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[6],
+)
+
+export const LoadText = Template.bind({})
+LoadText.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[7],
+)
