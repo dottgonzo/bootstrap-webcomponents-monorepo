@@ -125,8 +125,7 @@
 			type: "json",
 		};
 	}
-	function load() {}
-	function move() {}
+
 	function onFileInsertLoaded(e: inputFileEvents["setValue"]) {
 		const fileName = (e.value as unknown as File)?.name;
 		if (fileName) {
@@ -190,9 +189,8 @@
 	<button on:click={() => changeMode("draw")}>draw</button>
 	<button on:click={() => undo()} disabled={!enableUndo}>undo</button>
 	<button on:click={() => redo()} disabled={!enableRedo}>redo</button>
-	<button on:click={() => load()}>load</button>
+	<!-- <button on:click={() => load()}>load</button> -->
 	<button on:click={() => save()} disabled={!enableUndo}>save</button>
-	<button on:click={() => move()} disabled={!enableUndo}>move</button>
 	<button disabled={mode !== "draw"}>brush</button>
 	<br />load:<hb-input-file
 		id="loadfile"
