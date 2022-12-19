@@ -139,7 +139,7 @@
 					console.log("insert file", evt.target, evt.target?.result);
 					if (evt.target?.result) {
 						const imageBase64 = evt.target.result.toString();
-						const imageType = imageBase64.split(";")[0].split(":")[1] as "png" | "jpg";
+						const imageType = imageBase64.split(";")[0].split("/")[1] as "png" | "jpg";
 
 						insert_image = {
 							base64: evt.target.result.toString(),
