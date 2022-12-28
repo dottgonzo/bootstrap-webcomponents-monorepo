@@ -17,6 +17,8 @@ export interface ITableHeader {
 	select?: string[];
 	nosort?: boolean;
 	sortBy?: "asc" | "desc" | "none";
+	truncateAt?: number;
+	copyTxt?: boolean;
 }
 
 export interface IRow {
