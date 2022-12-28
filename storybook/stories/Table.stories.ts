@@ -76,3 +76,12 @@ BasicTableWithActionsConfirmAndForm.args = setStorybookData(
     (f) => f.name === "BasicTableWithActionsConfirmAndForm"
   )
 );
+
+export const BasicTableWithTruncateAndCopy = Template.bind({});
+
+BasicTableWithTruncateAndCopy.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find(
+    (f) => f.name === "BasicTableWithTruncateAndCopy"
+  )
+);

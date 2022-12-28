@@ -270,7 +270,7 @@
 	// 	return app();
 	// }
 
-	function getObjVal(obj: IRow, opts: { key: string; type?: string; format?: string; truncateAt?: number }): string | number {
+	function getObjVal(obj: IRow, opts: { key: string; type?: string; format?: string; truncateAt?: number }, trim?: boolean): string | number {
 		if (!opts) {
 			return "";
 		}
@@ -293,7 +293,7 @@
 		if (!value && value !== 0) {
 			return "";
 		} else if (!opts.type || opts.type === "string" || opts.type === "enum") {
-			if (opts.truncateAt && value.length > opts.truncateAt) {
+			if (trim && opts.truncateAt && value.length > opts.truncateAt) {
 				return value.substring(0, opts.truncateAt) + "...";
 			} else {
 				return value;
@@ -518,6 +518,10 @@
 	function modalFormConfirmation(detail, action: string) {
 		console.log(action, "action");
 		dispatch("confirmActionModalForm", Object.assign({}, detail, { _action: action }));
+	}
+	function copyToClipBoard(content: string) {
+		navigator.clipboard.writeText(content);
+		dispatch("clipboardCopyText", { text: content });
 	}
 </script>
 
@@ -765,10 +769,15 @@
 											>
 												{#if td.click}
 													<button on:click={() => handleClickOnRow(item._id, td.key)} type="button" class="btn btn-link"
-														>{getObjVal(item, td)}</button
+														>{getObjVal(item, td, true)}</button
 													>
 												{:else}
-													{getObjVal(item, td)}
+													{getObjVal(item, td, true)}
+												{/if}
+												{#if (td.type === "string" || !td.type) && getObjVal(item, td).toString().length && td.copyTxt}
+													<button on:click={() => copyToClipBoard(getObjVal(item, td).toString())} type="button" class="btn btn-link"
+														><i class="bi-clipboard" /></button
+													>
 												{/if}
 											</td>
 										{/if}

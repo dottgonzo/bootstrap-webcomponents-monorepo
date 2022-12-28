@@ -24,6 +24,7 @@ export const storybookArgs = {
 	showConfirmModalForm: { action: "showConfirmModalForm" },
 	externalfilter: { control: { type: "boolean" } },
 	pages: { control: { type: "number" } },
+	clipboardCopyText: { action: "pagechangeEvent" },
 };
 
 const cssVars: CssVar[] = [
@@ -283,7 +284,29 @@ const basicHeaders: Component["headers"] = [
 		format: "DD MMMM YYYY",
 	},
 ];
-
+const basicHeadersWithTruncateAndCopy: Component["headers"] = [
+	{
+		label: "title",
+		key: "title",
+		search: true,
+	},
+	{
+		label: "description",
+		key: "description",
+		truncateAt: 3,
+		copyTxt: true,
+	},
+	{
+		label: "nested",
+		key: "testnested.nested",
+	},
+	{
+		label: "data",
+		key: "time",
+		type: "datetime",
+		format: "DD MMMM YYYY",
+	},
+];
 const basicHeadersWithActions: Component["headers"] = [
 	{
 		label: "title",
@@ -502,6 +525,14 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			headers: basicHeadersWithActions,
 			rows: rowsWithActions,
 			actions,
+		},
+	},
+	{
+		name: "BasicTableWithTruncateAndCopy",
+		data: {
+			headers: basicHeadersWithTruncateAndCopy,
+			rows,
+			selectrow: "yes",
 		},
 	},
 ];
