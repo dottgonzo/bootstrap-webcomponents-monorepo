@@ -101,6 +101,10 @@
 		if (!textMessage?.length && !fileMessage) return console.warn("no message to send");
 		console.log("send message " + textMessage);
 		dispatch("sendMessage", { text: textMessage, id, file: fileMessage });
+		if (textMessage) {
+			message = "";
+			textMessage = "";
+		}
 	}
 </script>
 
@@ -155,7 +159,7 @@
 		</label>
 		<button
 			type="button"
-			on:click={sendMessage}
+			on:click={() => sendMessage()}
 			class="send-message-button btn-info"
 			disabled={textMessage?.length || fileMessage ? false : true}
 			style="opacity:{textMessage?.length || fileMessage ? '1' : '0.25'}"
