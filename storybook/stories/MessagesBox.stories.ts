@@ -7,7 +7,7 @@ import {
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/skeleton-component/extra/docs";
+} from "../../packages/messages-box/extra/docs";
 
 const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
@@ -15,13 +15,16 @@ export default meta;
 const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes as any, componentSetup.name);
 
-export const Skel = Template.bind({});
+export const MessageBoxDefault = Template.bind({});
 
-Skel.args = setStorybookData(
+MessageBoxDefault.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default"),
-  {
-    _testInnerHtml:
-      '<span style="background-color:blue" slot="skelcontent">cooontent</span>',
-  }
+  componentSetup.examples.find((f) => f.name === "default")
+);
+
+export const MessageBoxWithAMessage = Template.bind({});
+
+MessageBoxWithAMessage.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "withAMessage")
 );
