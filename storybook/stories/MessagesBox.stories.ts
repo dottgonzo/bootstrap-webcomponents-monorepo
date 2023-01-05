@@ -10,6 +10,8 @@ import {
 } from "../../packages/messages-box/extra/docs";
 
 const meta = getStorybookMeta(storybookArgs, componentSetup);
+meta.parameters = { layout: "fullscreen" };
+
 export default meta;
 
 const Template: Story = (args) =>
@@ -27,4 +29,11 @@ export const MessageBoxWithAMessage = Template.bind({});
 MessageBoxWithAMessage.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples.find((f) => f.name === "withAMessage")
+);
+
+export const MessageBoxWithMoreMessages = Template.bind({});
+
+MessageBoxWithMoreMessages.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "moreMessages")
 );

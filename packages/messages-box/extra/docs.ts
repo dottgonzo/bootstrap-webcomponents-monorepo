@@ -37,7 +37,98 @@ const defaultExampleMessages: Component["messages"] = [
 		authorId: "2",
 	},
 ];
+const moreExampleMessages: Component["messages"] = [
+	...defaultExampleMessages,
+	{
+		id: "3",
+		text: "How are you?",
+		timestamp: new Date(Date.now()),
+		type: "text",
+		status: "received",
+		authorId: "2",
+	},
+	{
+		id: "4",
+		text: "I'm fine, thanks",
+		timestamp: new Date(Date.now()),
+		type: "text",
+		status: "sent",
+		authorId: "1",
+	},
+	{
+		id: "5",
 
+		text: "What about you?",
+		timestamp: new Date(Date.now()),
+		type: "text",
+		status: "received",
+		authorId: "2",
+	},
+	{
+		id: "6",
+		text: "I'm fine too, thanks for asking",
+		timestamp: new Date(Date.now()),
+		type: "text",
+		status: "sent",
+		authorId: "1",
+	},
+	{
+		id: "7",
+		text: "You're welcome",
+		timestamp: new Date(Date.now()),
+		type: "text",
+		status: "received",
+		authorId: "2",
+	},
+	{
+		id: "8",
+		text: "Bye",
+		timestamp: new Date(Date.now()),
+		type: "text",
+		status: "sent",
+		authorId: "1",
+	},
+	{
+		id: "9",
+		text: "Bye",
+		timestamp: new Date(Date.now()),
+		type: "text",
+		status: "received",
+		authorId: "2",
+	},
+	{
+		id: "10",
+		text: "See you later",
+		timestamp: new Date(Date.now()),
+		type: "text",
+		status: "sent",
+		authorId: "1",
+	},
+	{
+		id: "11",
+		text: "See you later",
+		timestamp: new Date(Date.now()),
+		type: "text",
+		status: "received",
+		authorId: "2",
+	},
+	{
+		id: "12",
+		text: "Bye",
+		timestamp: new Date(Date.now()),
+		type: "text",
+		status: "sent",
+		authorId: "1",
+	},
+	{
+		id: "13",
+		text: "Bye",
+		timestamp: new Date(Date.now()),
+		type: "text",
+		status: "received",
+		authorId: "2",
+	},
+];
 const defaultExampleAuthors: Component["authors"] = [
 	{
 		id: "1",
@@ -67,6 +158,13 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		data: {
 			message: 'This is a message from the "message" property',
 			messages: defaultExampleMessages,
+			authors: defaultExampleAuthors,
+		},
+	},
+	{
+		name: "moreMessages",
+		data: {
+			messages: moreExampleMessages,
 			authors: defaultExampleAuthors,
 		},
 	},
