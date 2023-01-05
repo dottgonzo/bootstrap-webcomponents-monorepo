@@ -71,27 +71,6 @@
 	float: right;
 }
 
-.message-body .message-top {
-	display: inline-block;
-	width: 100%;
-	position: relative;
-	min-height: 53px;
-	height: auto;
-	background-color: #fff;
-	border-bottom: 1px solid rgba(205, 211, 237, 0.5);
-}
-
-.message-body .message-top > .btn:hover,
-.message-body .message-top > .btn:focus,
-.message-body .message-top > .btn.active {
-	opacity: 1;
-}
-
-.message-body .message-top > .btn > i {
-	margin-right: 5px;
-	font-size: 18px;
-}
-
 .chat-footer.new-message-textarea {
 	display: block;
 	position: relative;
@@ -428,11 +407,6 @@
 		max-width: calc(100% - 85px);
 	}
 
-	.message-body .chat-body {
-		background-color: #fff;
-		width: 100%;
-	}
-
 	.chat-footer {
 		width: calc(100% - 100px);
 
@@ -445,15 +419,6 @@
 
 	.chat-footer .upload-file {
 		right: 60px;
-	}
-
-	.message-body .message-top > .btn {
-		border-radius: 0;
-		width: 100%;
-	}
-
-	.contacts-add {
-		display: none;
 	}
 }
 
