@@ -1,0 +1,264 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+:host {
+	font-family: "Roboto", sans-serif;
+
+	width: 100%;
+	background-color: #fbfcff;
+	max-height: 100%;
+	position: absolute;
+	padding-top: 20px;
+}
+
+/* Messages */
+
+.medium-image {
+	width: 45px;
+	height: 45px;
+	margin-right: 5px;
+}
+
+.img-circle {
+	border-radius: 50%;
+}
+
+.message-body {
+	background-color: #fbfcff;
+	height: 100%;
+	width: calc(100% - 305px);
+	float: right;
+}
+
+.message {
+	position: relative;
+	width: 100%;
+}
+
+.message br {
+	clear: both;
+}
+
+.message .message-body {
+	position: relative;
+	width: auto;
+	max-width: calc(100% - 150px);
+	float: left;
+	background-color: #fff;
+	border-radius: 4px;
+	border: 1px solid #dbe3e8;
+	margin: 0 5px 20px 15px;
+	color: #788288;
+	overflow-x: hidden;
+}
+
+.message:after {
+	content: "";
+	position: absolute;
+	top: 11px;
+	left: 63px;
+	float: left;
+	z-index: 100;
+	border-top: 10px solid transparent;
+	border-left: none;
+	border-bottom: 10px solid transparent;
+	border-right: 13px solid #fff;
+}
+
+.message:before {
+	content: "";
+	position: absolute;
+	top: 10px;
+	left: 62px;
+	float: left;
+	z-index: 99;
+	border-top: 11px solid transparent;
+	border-left: none;
+	border-bottom: 11px solid transparent;
+	border-right: 13px solid #dbe3e8;
+}
+
+.message .medium-image {
+	float: left;
+	margin-left: 10px;
+}
+
+.message .message-info {
+	width: 100%;
+	height: 22px;
+}
+
+.message .message-info > h5 > i {
+	font-size: 11px;
+	font-weight: 700;
+	margin: 0 2px 0 0;
+	color: #a2b8c5;
+}
+
+.message .message-info > h5 {
+	color: #a2b8c5;
+	margin: 8px 0 0 0;
+	font-size: 12px;
+	float: right;
+	padding-right: 10px;
+}
+
+.message .message-info > h4 {
+	font-size: 14px;
+	font-weight: 600;
+	margin: 7px 13px 0 10px;
+	color: #65addd;
+	float: left;
+}
+
+.message hr {
+	margin: 4px 2%;
+	width: 96%;
+	opacity: 0.75;
+}
+
+.message .message-text {
+	text-align: left;
+	padding: 3px 13px 10px 13px;
+	font-size: 14px;
+}
+
+.message.my-message .message-body {
+	float: right;
+	margin: 0 15px 20px 5px;
+}
+
+.message.my-message:after {
+	content: "";
+	position: absolute;
+	top: 11px;
+	left: auto;
+	right: 63px;
+	float: left;
+	z-index: 100;
+	border-top: 10px solid transparent;
+	border-left: 13px solid #fff;
+	border-bottom: 10px solid transparent;
+	border-right: none;
+}
+
+.message.my-message:before {
+	content: "";
+	position: absolute;
+	top: 10px;
+	left: auto;
+	right: 62px;
+	float: left;
+	z-index: 99;
+	border-top: 11px solid transparent;
+	border-left: 13px solid #dbe3e8;
+	border-bottom: 11px solid transparent;
+	border-right: none;
+}
+
+.message.my-message .medium-image {
+	float: right;
+	margin-left: 5px;
+	margin-right: 10px;
+}
+
+.message.my-message .message-info > h5 {
+	float: left;
+	padding-left: 10px;
+	padding-right: 0;
+}
+
+.message.my-message .message-info > h4 {
+	float: right;
+}
+
+.message.info .message-body {
+	background-color: #2da9e9;
+	border: 1px solid #2da9e9;
+	color: #fff;
+}
+
+.message.info:after,
+.message.info:before {
+	border-right: 13px solid #2da9e9;
+}
+
+.message.success .message-body {
+	background-color: #0ec8a2;
+	border: 1px solid #0ec8a2;
+	color: #fff;
+}
+
+.message.success:after,
+.message.success:before {
+	border-right: 13px solid #0ec8a2;
+}
+
+.message.warning .message-body {
+	background-color: #ff9e2a;
+	border: 1px solid #ff9e2a;
+	color: #fff;
+}
+
+.message.warning:after,
+.message.warning:before {
+	border-right: 13px solid #ff9e2a;
+}
+
+.message.danger .message-body {
+	background-color: #f95858;
+	border: 1px solid #f95858;
+	color: #fff;
+}
+
+.message.danger:after,
+.message.danger:before {
+	border-right: 13px solid #f95858;
+}
+
+.message.dark .message-body {
+	background-color: #314557;
+	border: 1px solid #314557;
+	color: #fff;
+}
+
+.message.dark:after,
+.message.dark:before {
+	border-right: 13px solid #314557;
+}
+
+.message.info .message-info > h4,
+.message.success .message-info > h4,
+.message.warning .message-info > h4,
+.message.danger .message-info > h4,
+.message.dark .message-info > h4 {
+	color: #fff;
+}
+
+.message.info .message-info > h5,
+.message.info .message-info > h5 > i,
+.message.success .message-info > h5,
+.message.success .message-info > h5 > i,
+.message.warning .message-info > h5,
+.message.warning .message-info > h5 > i,
+.message.danger .message-info > h5,
+.message.danger .message-info > h5 > i,
+.message.dark .message-info > h5,
+.message.dark .message-info > h5 > i {
+	color: #fff;
+	opacity: 0.9;
+}
+
+@media screen and (max-width: 767px) {
+	.message-body {
+		width: 100%;
+		margin: 20px 0;
+		border: 1px solid #dce2e9;
+		background-color: #fff;
+	}
+
+	.message .message-body {
+		max-width: calc(100% - 85px);
+	}
+}
+
+/* Profile page */
