@@ -21,13 +21,18 @@ export type TAuthor = {
 	me?: boolean;
 };
 
+export type TMessageSend = {
+	text?: string;
+	file?: File;
+};
+
 export type Component = {
 	id?: string;
 	style?: string;
 	messages: TMessage[];
 	authors: TAuthor[];
 	options?: {};
-	message?: string;
+	message?: TMessageSend;
 };
 
 export type Events = {

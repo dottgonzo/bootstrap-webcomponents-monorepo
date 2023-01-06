@@ -5,7 +5,7 @@ export const storybookArgs = {
 	messages: { control: { type: "object" } },
 	authors: { control: { type: "object" } },
 	options: { control: { type: "object" } },
-	message: { control: { type: "text" } },
+	message: { control: { type: "object" } },
 	sendMessage: { action: "sendMessageEvent" },
 };
 
@@ -156,7 +156,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "withAMessage",
 		data: {
-			message: 'This is a message from the "message" property',
+			message: { text: 'This is a message from the "message" property' },
 			messages: defaultExampleMessages,
 			authors: defaultExampleAuthors,
 		},
