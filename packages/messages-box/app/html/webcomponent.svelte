@@ -66,13 +66,13 @@
 		textMessage = sendDetail.text;
 		textMessage = "";
 
-		const newMessage: messageListComponent["messages"][0] = {
-			id: Date.now().toString(),
-			text: sendDetail.text,
-			timestamp: new Date(Date.now()),
-			type: "text",
-			authorId: "1",
-		};
+		// const newMessage: messageListComponent["messages"][0] = {
+		// 	id: Date.now().toString(),
+		// 	text: sendDetail.text,
+		// 	timestamp: new Date(Date.now()),
+		// 	type: "text",
+		// 	authorId: "1",
+		// };
 		// messages = [...messages, newMessage];
 	}
 
