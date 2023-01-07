@@ -22,11 +22,8 @@
 	export let id: string;
 	export let style: string;
 
-	export let time: string;
-	export let title: string;
-	export let text: string;
-	export let img_uri: string;
-	export let counter: number;
+	export let content: Component["content"];
+	export let chat: Component["chat"];
 
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
@@ -39,32 +36,51 @@
 			parsedStyle = parseStyle(style);
 		}
 
-		if (typeof counter === "string") {
+		if (typeof content === "string") {
 			try {
-				counter = Number(counter);
+				content = JSON.parse(content);
 			} catch (err) {
-				console.error("error parsing counter", err);
+				console.error("error parsing content", err);
 			}
 		}
-		if (!counter) counter = 0;
+		if (typeof chat === "string") {
+			try {
+				chat = JSON.parse(chat);
+			} catch (err) {
+				console.error("error parsing chat", err);
+			}
+		}
+		if (!content && chat) {
+			content = {
+				title: chat.chat_name || chat.last_message_author,
+				text: chat.last_message_text,
+				img_uri: chat.last_message_author_img,
+				time: chat.last_message_time,
+				counter: chat.counter || 0,
+			};
+		}
 
-		localeTimeString = time ? new Date(time).getHours().toString().padStart(2, "0") + ":" + new Date(time).getMinutes().toString().padStart(2, "0") : "";
+		localeTimeString = content?.time
+			? new Date(content.time).getHours().toString().padStart(2, "0") + ":" + new Date(content.time).getMinutes().toString().padStart(2, "0")
+			: "";
 	}
 </script>
 
-<div id="grid">
-	<img src={img_uri} alt={img_uri} />
-	<div id="header">
-		<span class="text-item" id="title">{title}</span>
-		<span class="text-item right" id="time">{localeTimeString}</span>
+{#if content}
+	<div id="grid">
+		<img src={content.img_uri} alt={content.img_uri} />
+		<div id="header">
+			<span class="text-item" id="title">{content.title}</span>
+			<span class="text-item right" id="time">{localeTimeString}</span>
+		</div>
+		<div id="details">
+			<span id="description" class="text-item">{content.text}</span>
+			<span id="counter" class="text-item right">
+				<span class="badge rounded-pill bg-secondary">{content.counter.toString()}</span>
+			</span>
+		</div>
 	</div>
-	<div id="details">
-		<span id="description" class="text-item">{text}</span>
-		<span id="counter" class="text-item right">
-			<span class="badge rounded-pill bg-secondary">{counter.toString()}</span>
-		</span>
-	</div>
-</div>
+{/if}
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";

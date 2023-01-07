@@ -2,11 +2,8 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	counter: { control: { type: "number" } },
-	text: { control: { type: "text" } },
-	title: { control: { type: "text" } },
-	img_uri: { control: { type: "text" } },
-	time: { control: { type: "date" } },
+	content: { control: { type: "object" } },
+	chat: { control: { type: "object" } },
 	sendMessage: { action: "sendMessageEvent" },
 };
 
@@ -24,11 +21,13 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {
-			counter: 0,
-			text: "Hello",
-			title: "Hello",
-			time: new Date().toString(),
-			img_uri: "https://www.w3schools.com/howto/img_avatar.png",
+			content: {
+				counter: 0,
+				text: "Hello",
+				title: "Hello",
+				time: new Date(),
+				img_uri: "https://www.w3schools.com/howto/img_avatar.png",
+			},
 		},
 	},
 ];
