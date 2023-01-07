@@ -86,7 +86,6 @@
 		<hb-messages-send text={textMessage} style={messagesSendStyleSetupToSet} on:sendMessage={(e) => sendMessageEvent(e.detail)} />
 	</div>
 {/if}
-{textMessage}
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
