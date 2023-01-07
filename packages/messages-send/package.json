@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-messages-send",
 	"displayName": "Svelte-Bootstrap messages-send",
 	"description": "Svelte-Bootstrap messages-send",
-	"version": "0.16.71",
+	"version": "0.17.0",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.16.71",
+		"@htmlbricks/hb-jsutils": "^0.17.0",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
