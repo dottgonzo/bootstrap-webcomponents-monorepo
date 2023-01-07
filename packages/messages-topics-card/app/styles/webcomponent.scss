@@ -4,22 +4,28 @@
 :host {
 	font-family: "Roboto", sans-serif;
 	width: 100%;
-	margin-top: 20px;
 
 	display: block;
+	--hb-topics-card-size: calc(1vw + 1vh + 12px);
+	--hb-topics-card-padding: 4px;
+
+	--hb-topics-card-double-size: calc(var(--hb-topics-card-size) * 2);
+	--hb-topics-card-double-padding: calc(var(--hb-topics-card-padding) * 2);
 }
 #grid {
 	display: grid;
 	grid-template-areas:
 		"img header"
 		"img details";
-	grid-template-columns: 200px calc(100% - 200px);
-	grid-template-rows: auto;
+	grid-template-columns: var(--hb-topics-card-double-size) calc(100% - var(--hb-topics-card-double-size));
+	grid-template-rows: calc(var(--hb-topics-card-size) + var(--hb-topics-card-double-padding)) calc(var(--hb-topics-card-size) + var(--hb-topics-card-padding));
 }
 img {
+	padding: var(--hb-topics-card-padding);
+
 	grid-area: img;
-	height: 200px;
-	width: 200px;
+	height: calc(var(--hb-topics-card-size) + var(--hb-topics-card-double-padding) + var(--hb-topics-card-size) + var(--hb-topics-card-padding));
+	width: calc(var(--hb-topics-card-size) + var(--hb-topics-card-double-padding) + var(--hb-topics-card-size) + var(--hb-topics-card-padding));
 	border-radius: 50%;
 }
 
@@ -27,13 +33,44 @@ img {
 }
 #header {
 	grid-area: header;
-	height: 100px;
+	// height: calc(var(--hb-topics-card-size) - var(--hb-topics-card-double-padding) + 10px);
+
+	padding: var(--hb-topics-card-padding) var(--hb-topics-card-padding) var(--hb-topics-card-padding) 10px;
+
+	line-height: calc(var(--hb-topics-card-size) + 0px);
 }
+
 #details {
+	padding: var(--hb-topics-card-padding) var(--hb-topics-card-padding) var(--hb-topics-card-padding) 10px;
+
 	grid-area: details;
-	height: 100px;
+	// height: calc(var(--hb-topics-card-size) - var(--hb-topics-card-double-padding) - 10px);
+	line-height: calc(var(--hb-topics-card-size) - var(--hb-topics-card-double-padding));
+}
+
+#title {
+	font-size: 1.5em;
+	font-weight: 600;
+}
+#description {
+	font-size: 1em;
+	font-weight: 300;
+	opacity: 0.8;
+}
+
+#time {
+	font-size: 0.8em;
+	font-weight: 300;
+	opacity: 0.6;
 }
 
 .right {
-	float: right;
+	position: absolute;
+	right: var(--hb-topics-card-padding);
+}
+.text-item {
+	margin-left: 12px;
+	margin-right: 6px;
+	// height: 100%;
+	// vertical-align: middle;
 }

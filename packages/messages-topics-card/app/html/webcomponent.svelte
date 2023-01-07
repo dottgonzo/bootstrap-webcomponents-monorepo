@@ -46,8 +46,9 @@
 				console.error("error parsing counter", err);
 			}
 		}
+		if (!counter) counter = 0;
 
-		localeTimeString = time ? new Date(time).toLocaleTimeString() : "";
+		localeTimeString = time ? new Date(time).getHours().toString().padStart(2, "0") + ":" + new Date(time).getMinutes().toString().padStart(2, "0") : "";
 	}
 </script>
 
@@ -59,11 +60,13 @@
 	</div>
 	<div id="details">
 		<span id="description" class="text-item">{text}</span>
-		<span id="counter" class="text-item right">{counter.toString()}</span>
+		<span id="counter" class="text-item right">
+			<span class="badge rounded-pill bg-secondary">{counter.toString()}</span>
+		</span>
 	</div>
 </div>
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
-	// @import "../styles/bootstrap.scss";
+	@import "../styles/bootstrap.scss";
 </style>
