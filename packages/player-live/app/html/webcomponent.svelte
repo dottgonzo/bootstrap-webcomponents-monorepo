@@ -16,10 +16,15 @@
 	import Hls from "hls.js";
 	import { onDestroy, onMount } from "svelte";
 	import { createEventDispatcher, current_component, get_current_component } from "svelte/internal";
+	import type { Component } from "@app/types/webcomponent.type";
+	import WebrtcPlayer from "simple-webrtc-element";
 
 	export let mediauri: string;
 	export let id: string;
 	export let forcecover: string;
+	export let media_type: Component["media_type"];
+	export let no_controls: boolean;
+
 	export let replacewithtext: {
 		title: string;
 		subtitle: string;
@@ -27,16 +32,27 @@
 	};
 	if (!id) id = null;
 	// const component = get_current_component();
-	let liveUri;
-
-	let timeo;
-	let isLive;
+	let timeo: number;
+	let isLive: boolean;
+	let webrtcPlayer: WebrtcPlayer;
+	let htmlVideo: HTMLVideoElement;
 	$: {
+		if (no_controls && (no_controls as any) !== "no" && (no_controls as any) !== "false") {
+			no_controls = true;
+		} else {
+			no_controls = false;
+		}
 		if (!mediauri) {
 			mediauri = null;
 		}
 		if (!forcecover) {
 			forcecover = null;
+		}
+		if (!media_type) media_type = "auto";
+		if (media_type === "auto" && (mediauri?.includes("http://") || mediauri?.includes("https://"))) {
+			media_type = "hls";
+		} else if (media_type === "auto" && (mediauri?.includes("wss://") || mediauri?.includes("ws://"))) {
+			media_type = "webrtc";
 		}
 
 		if (!replacewithtext) {
@@ -46,32 +62,64 @@
 				replacewithtext = JSON.parse(replacewithtext as any as string);
 			} catch (err) {}
 		}
+		// if (media_type === "webrtc" && mediauri) {
+		// 	webrtcPlayer = new WebrtcPlayer(component.shadowRoot.querySelector("video"), mediauri);
+		// } else {
+		// 	webrtcPlayer = null;
+		// }
 	}
+
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 	function dispatch(name, detail) {
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	function setHls(video) {
-		if (video && Hls.isSupported()) {
-			const hls = new Hls({});
-			hls.loadSource(mediauri);
-			hls.attachMedia(video);
-			hls.on(Hls.Events.MEDIA_ATTACHED, function () {
-				video.muted = true;
-				video.play();
-			});
-		}
-		// hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
-		// When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
-		// This is using the built-in support of the plain video element, without using hls.js.
-		else if (video?.canPlayType("application/vnd.apple.mpegurl")) {
-			console.log(`without Media Source Extensions`);
-			video.src = mediauri;
-			video.addEventListener("canplay", function () {
-				video.play();
-			});
+	function setVideo(videoElement: HTMLVideoElement) {
+		htmlVideo = videoElement;
+		dispatch("htmlVideoInit", { htmlVideoElement: htmlVideo });
+
+		if (media_type === "hls") {
+			if (videoElement && Hls.isSupported()) {
+				const hls = new Hls({});
+				hls.loadSource(mediauri);
+				hls.attachMedia(videoElement);
+				hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+					videoElement.muted = true;
+					videoElement.play();
+				});
+			}
+			// hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
+			// When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
+			// This is using the built-in support of the plain video element, without using hls.js.
+			else if (videoElement?.canPlayType("application/vnd.apple.mpegurl")) {
+				console.log(`without Media Source Extensions`);
+				videoElement.src = mediauri;
+				videoElement.addEventListener("canplay", function () {
+					videoElement.play();
+				});
+			}
+		} else if (media_type === "webrtc") {
+			console.info("webrtc", mediauri);
+			try {
+				function onOffline() {
+					console.log("set offline");
+					dispatch("liveStatus", { live: false });
+					isLive = false;
+				}
+				function onOnline() {
+					console.log("set online");
+					dispatch("liveStatus", { live: true });
+					isLive = true;
+				}
+				webrtcPlayer = new WebrtcPlayer({ videoElement, wsUri: mediauri, onOnline, onOffline });
+				webrtcPlayer.start();
+				videoElement.play();
+			} catch (err) {
+				console.error("error ....", err);
+			}
+		} else {
+			console.error("unknown media type", media_type);
 		}
 	}
 
@@ -88,12 +136,16 @@
 				timeo = setTimeout(relo, 5000);
 				return;
 			}
-			console.info("checking live");
-			const res = await fetch(mediauri);
-			if (!res || (res.status && (res.status > 299 || res.status < 199))) throw new Error("wrong uri");
+			if (media_type === "hls") {
+				console.info("checking live");
+				const res = await fetch(mediauri);
+				if (!res || (res.status && (res.status > 299 || res.status < 199))) throw new Error("wrong uri");
 
-			isLive = true;
-			dispatch("liveStatus", { live: true });
+				isLive = true;
+				dispatch("liveStatus", { live: true });
+			} else {
+				throw new Error("wrong media type");
+			}
 		} catch (err) {
 			if (isLive !== false) dispatch("liveStatus", { live: false });
 			isLive = false;
@@ -103,6 +155,11 @@
 
 		return;
 	}
+	component.getVideoElement = () => {
+		if (htmlVideo) {
+			return htmlVideo;
+		}
+	};
 
 	onMount(() => {
 		loadLive()
@@ -124,40 +181,33 @@
 	});
 
 	// onMount(async () => {
-	// 	setHls();
+	// 	setVideo();
 	// });
 </script>
 
 <!-- svelte-ignore a11y-media-has-caption -->
-<div part="container" style="width: 100%">
-	{#if mediauri && isLive && !forcecover}
-		<video
-			controls
-			part="video"
-			use:setHls
-			style="width: 100%;background-color: black; color: white;display: flex; align-items: center; justify-content: center; flex-direction:column;aspect-ratio:16/9;margin:auto"
-		/>
-	{:else if replacewithtext?.title || replacewithtext?.subtitle || replacewithtext?.text}
-		<div
-			part="replacewithtext"
-			style="width: 100%;background-color: black; color: white;display: flex; align-items: center; justify-content: center; flex-direction:column;aspect-ratio:16/9;margin:auto"
-		>
+<div part="container" style="width: 100%;position:relative">
+	{#if mediauri}
+		<video id="video" controls={no_controls ? false : true} part="video" use:setVideo class="video" />
+	{/if}
+	{#if forcecover || (mediauri && !isLive && (replacewithtext?.title || replacewithtext?.subtitle || replacewithtext?.text))}
+		<div part="replacewithtext" class="replacetext video">
 			{#if replacewithtext?.title && replacewithtext?.subtitle && replacewithtext?.text}
 				<slot name="replacewithtext">
 					<div style="flex: 1">
-						<div style="display: flex;height:100%;align-items: center; justify-content: center; flex-direction:column">
+						<div class="subsection">
 							<div><slot name="replacetitle">{replacewithtext?.title || ""}</slot></div>
 						</div>
 					</div>
 					<div style="flex:1">
-						<div style="display: flex;height:100%;align-items: center; justify-content: center; flex-direction:column">
+						<div class="subsection">
 							<div style="flex:1">
-								<div style="display: flex;height:100%;align-items: center; justify-content: center; flex-direction:column">
+								<div class="subsection">
 									<div><slot name="replacesubtitle">{replacewithtext?.subtitle || ""}</slot></div>
 								</div>
 							</div>
 							<div style="flex:1">
-								<div style="display: flex;height:100%;align-items: center; justify-content: center; flex-direction:column">
+								<div class="subsection">
 									<div><slot name="replacetext">{replacewithtext?.text || ""}</slot></div>
 								</div>
 							</div>
@@ -167,14 +217,14 @@
 			{:else if replacewithtext?.title && replacewithtext?.subtitle}
 				<slot name="replacewithtext">
 					<div style="flex: 1">
-						<div style="display: flex;height:100%;align-items: center; justify-content: center; flex-direction:column">
+						<div class="subsection">
 							<div><slot name="replacetitle">{replacewithtext?.title || ""}</slot></div>
 						</div>
 					</div>
 					<div style="flex:1">
-						<div style="display: flex;height:100%;align-items: center; justify-content: center; flex-direction:column">
+						<div class="subsection">
 							<div style="flex:1">
-								<div style="display: flex;height:100%;align-items: center; justify-content: center; flex-direction:column">
+								<div class="subsection">
 									<div><slot name="replacesubtitle">{replacewithtext?.subtitle || ""}</slot></div>
 								</div>
 							</div>
@@ -184,27 +234,17 @@
 			{:else if replacewithtext?.title}
 				<slot name="replacewithtext">
 					<div style="flex: 1">
-						<div style="display: flex;height:100%;align-items: center; justify-content: center; flex-direction:column">
+						<div class="subsection">
 							<div><slot name="replacetitle">{replacewithtext?.title || ""}</slot></div>
 						</div>
 					</div>
 				</slot>
 			{/if}
 		</div>
-	{:else if !replacewithtext || (!replacewithtext.title && !replacewithtext.subtitle && !replacewithtext.text)}
-		<div
-			part="replacewithtext"
-			style="	background-color: black; color: white;display: flex; align-items: center; justify-content: center; flex-direction:column;aspect-ratio:16/9;height:100%;margin:auto;background-color:grey"
-		>
-			offline
-		</div>
-	{:else}
-		<div
-			part="replacewithtext"
-			style="	background-color: black; color: white;display: flex; align-items: center; justify-content: center; flex-direction:column;aspect-ratio:16/9;height:100%;margin:auto;background-color:grey"
-		>
-			nouri
-		</div>
+	{:else if mediauri && !isLive && (!replacewithtext || (!replacewithtext.title && !replacewithtext.subtitle && !replacewithtext.text))}
+		<div class="replacetext video" part="replacewithtext">offline</div>
+	{:else if !mediauri}
+		<div class="replacetext video" part="replacewithtext">nouri</div>
 	{/if}
 </div>
 

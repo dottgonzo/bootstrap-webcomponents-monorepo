@@ -9,20 +9,6 @@ import {
   componentSetup,
 } from "../../packages/player-live/extra/docs";
 
-const mediauri = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
-const replacewithtext1 = {
-  title: "title",
-};
-const replacewithtext2 = {
-  title: "title",
-  subtitle: "subtitle",
-};
-const replacewithtext3 = {
-  title: "title",
-  subtitle: "subtitle",
-  text: "text",
-};
-
 const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
 
@@ -31,53 +17,45 @@ const Template: Story = (args) =>
 
 export const LiveVideoPlayer = Template.bind({});
 
-LiveVideoPlayer.args = {
-  id: "LiveVideoPlayer",
-  mediauri,
-};
+LiveVideoPlayer.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "default")
+);
 export const LiveVideoPlayerWithWidth = Template.bind({});
-LiveVideoPlayerWithWidth.args = {
-  width: 400,
-  id: "LiveVideoPlayerWithWidth",
-  mediauri,
-};
+LiveVideoPlayerWithWidth.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "LiveVideoPlayerWithWidth")
+);
 export const LiveVideoPlayerWithHeight = Template.bind({});
 
-LiveVideoPlayerWithHeight.args = {
-  height: 400,
-  id: "LiveVideoPlayerWithHeight",
-  mediauri,
-};
+LiveVideoPlayerWithHeight.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "LiveVideoPlayerWithHeight")
+);
 export const LiveVideoPlayerWithoutUri = Template.bind({});
 
-LiveVideoPlayerWithoutUri.args = {
-  height: 400,
-  id: "LiveVideoPlayerWithoutUri",
-};
+LiveVideoPlayerWithoutUri.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "LiveVideoPlayerWithoutUri")
+);
 
 export const LiveVideoPlayerWithText3 = Template.bind({});
 
-LiveVideoPlayerWithText3.args = {
-  height: 400,
-  id: "LiveVideoPlayerWithText3",
-  replacewithtext: replacewithtext3,
-  mediauri: "8446648",
-};
+LiveVideoPlayerWithText3.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "LiveVideoPlayerWithText3")
+);
 
 export const LiveVideoPlayerWithText2 = Template.bind({});
 
-LiveVideoPlayerWithText2.args = {
-  height: 400,
-  id: "LiveVideoPlayerWithText2",
-  replacewithtext: replacewithtext2,
-  mediauri: "8446648",
-};
+LiveVideoPlayerWithText2.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "LiveVideoPlayerWithText2")
+);
 
 export const LiveVideoPlayerWithText1 = Template.bind({});
 
-LiveVideoPlayerWithText1.args = {
-  height: 400,
-  id: "LiveVideoPlayerWithText1",
-  replacewithtext: replacewithtext1,
-  mediauri: "8446648",
-};
+LiveVideoPlayerWithText1.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "LiveVideoPlayerWithText1")
+);

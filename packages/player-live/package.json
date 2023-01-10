@@ -78,6 +78,7 @@
 	"contributors": [],
 	"gitHead": "555af4d40308c39e8396d4ab1d261b5647f024bc",
 	"dependencies": {
-		"hls.js": "^1.0.10"
+		"hls.js": "^1.0.10",
+		"simple-webrtc-element": "^0.0.1"
 	}
 }

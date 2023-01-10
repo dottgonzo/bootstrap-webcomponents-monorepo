@@ -2,13 +2,18 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	width: { control: { type: "range", min: 100, max: 2000, step: 25 } },
-	height: { control: { type: "range", min: 100, max: 2000, step: 25 } },
-	mediatype: { control: { type: "text" } },
+	// width: { control: { type: "text" } },
+	// height: { control: { type: "text" } },
+	media_type: {
+		options: ["", "webrtc", "hls", "auto"],
+		control: { type: "select" }, // Automatically inferred when 'options' is defined
+	},
+	no_controls: { control: { type: "boolean" } },
 	mediauri: { control: { type: "text" } },
 	forcecover: { control: { type: "text" } },
 	replacewithtext: { control: { type: "object" } },
 	liveStatus: { action: "liveStatusEvent" },
+	timeStamp: { action: "timeStampEvent" },
 };
 
 const cssVars: CssVar[] = [];
@@ -25,11 +30,67 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
+const mediauri = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
+const replacewithtext1 = {
+	title: "title",
+};
+const replacewithtext2 = {
+	title: "title",
+	subtitle: "subtitle",
+};
+const replacewithtext3 = {
+	title: "title",
+	subtitle: "subtitle",
+	text: "text",
+};
+
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {
 			mediauri: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+		},
+	},
+	{
+		name: "LiveVideoPlayerWithWidth",
+		data: {
+			mediauri,
+		},
+	},
+	{
+		name: "LiveVideoPlayerWithHeight",
+		data: {
+			mediauri,
+		},
+	},
+	{
+		name: "LiveVideoPlayerWithoutUri",
+		data: {
+			mediauri: "",
+		},
+	},
+	{
+		name: "LiveVideoPlayerWithText3",
+		data: {
+			mediauri,
+			replacewithtext: replacewithtext3,
+			forcecover: "yes",
+		},
+	},
+	{
+		name: "LiveVideoPlayerWithText2",
+		data: {
+			mediauri,
+			replacewithtext: replacewithtext2,
+			forcecover: "yes",
+		},
+	},
+	{
+		name: "LiveVideoPlayerWithText1",
+		data: {
+			mediauri,
+			replacewithtext: replacewithtext1,
+			forcecover: "yes",
 		},
 	},
 ];

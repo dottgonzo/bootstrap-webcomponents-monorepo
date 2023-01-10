@@ -8,6 +8,34 @@
 	// background-color: red;
 	// width: fit-content;
 }
+video {
+}
+.replacetext {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+}
+
+.video {
+	width: 100%;
+	background-color: black;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	aspect-ratio: 16/9;
+	margin: auto;
+}
+
+.subsection {
+	display: flex;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
 
 // @charset "UTF-8";
 // .vjs-modal-dialog .vjs-modal-dialog-content,
