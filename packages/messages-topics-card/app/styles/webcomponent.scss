@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css");
+
+:host {
+	font-family: "Roboto", sans-serif;
+	width: 100%;
+
+	display: block;
+	--hb-topics-card-size: calc(1vw + 1vh + 12px);
+	--hb-topics-card-padding: 4px;
+
+	--hb-topics-card-double-size: calc(var(--hb-topics-card-size) * 2);
+	--hb-topics-card-double-padding: calc(var(--hb-topics-card-padding) * 2);
+}
+#grid {
+	display: grid;
+	grid-template-areas:
+		"img header"
+		"img details";
+	grid-template-columns: var(--hb-topics-card-double-size) calc(100% - var(--hb-topics-card-double-size));
+	grid-template-rows: calc(var(--hb-topics-card-size) + var(--hb-topics-card-double-padding)) calc(var(--hb-topics-card-size) + var(--hb-topics-card-padding));
+}
+img {
+	padding: var(--hb-topics-card-padding);
+
+	grid-area: img;
+	height: calc(var(--hb-topics-card-size) + var(--hb-topics-card-double-padding) + var(--hb-topics-card-size) + var(--hb-topics-card-padding));
+	width: calc(var(--hb-topics-card-size) + var(--hb-topics-card-double-padding) + var(--hb-topics-card-size) + var(--hb-topics-card-padding));
+	border-radius: 50%;
+}
+
+#text-content {
+}
+#header {
+	grid-area: header;
+	// height: calc(var(--hb-topics-card-size) - var(--hb-topics-card-double-padding) + 10px);
+
+	padding: var(--hb-topics-card-padding) var(--hb-topics-card-padding) var(--hb-topics-card-padding) 10px;
+
+	line-height: calc(var(--hb-topics-card-size) + 0px);
+}
+
+#details {
+	padding: var(--hb-topics-card-padding) var(--hb-topics-card-padding) var(--hb-topics-card-padding) 10px;
+
+	grid-area: details;
+	// height: calc(var(--hb-topics-card-size) - var(--hb-topics-card-double-padding) - 10px);
+	line-height: calc(var(--hb-topics-card-size) - var(--hb-topics-card-double-padding));
+}
+
+#title {
+	font-size: 1.5em;
+	font-weight: 600;
+}
+#description {
+	font-size: 1em;
+	font-weight: 300;
+	opacity: 0.8;
+}
+
+#time {
+	font-size: 0.8em;
+	font-weight: 300;
+	opacity: 0.6;
+}
+
+.right {
+	position: absolute;
+	right: var(--hb-topics-card-padding);
+}
+.text-item {
+	margin-left: 12px;
+	margin-right: 6px;
+	// height: 100%;
+	// vertical-align: middle;
+}

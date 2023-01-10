@@ -891,7 +891,7 @@
 			<g>
 				{#each draw as stroke (stroke.id)}
 					{#if stroke.actionIndex <= index && !format && (stroke.visible || stroke.erasedAtIndex > index)}
-						{#if stroke.type === "stroke" || stroke.type === "image"}
+						{#if stroke.type === "stroke" || stroke.type === "image" || stroke.type === "text"}
 							{#if stroke.selected}
 								{#if stroke.type === "stroke"}
 									<path
@@ -905,11 +905,15 @@
 									/>
 								{:else if stroke.type === "image"}
 									<image id={"path_" + stroke.id} href={stroke.pathData} stroke-linecap="round" stroke="red" stroke-width="2" />
+								{:else if stroke.type === "text"}
+									<text id={"path_" + stroke.id} stroke-linecap="round" stroke="red" stroke-width="2">{stroke.pathData}</text>
 								{/if}
 							{:else if !stroke.selected && stroke.type === "stroke"}
 								<path id={"path_" + stroke.id} d={stroke.pathData} fill={stroke.color} fill-opacity={stroke.opacity} />
 							{:else if !stroke.selected && stroke.type === "image"}
 								<image id={"path_" + stroke.id} href={stroke.pathData} />
+							{:else if !stroke.selected && stroke.type === "text"}
+								<text id={"path_" + stroke.id}>{stroke.pathData}</text>
 							{/if}
 						{:else if stroke.type === "multiplestroke"}
 							{#each stroke.multipath as m_stroke (m_stroke.id + stroke.id)}
@@ -933,6 +937,10 @@
 												stroke="red"
 												stroke-width="2"
 											/>
+										{:else if m_stroke.type === "text"}
+											<text id={"path_" + m_stroke.id + "_" + stroke.id} stroke-linecap="round" stroke="red" stroke-width="2"
+												>{m_stroke.pathData}</text
+											>
 										{/if}
 									{:else if !m_stroke.selected && m_stroke.type === "stroke"}
 										<path
@@ -943,6 +951,8 @@
 										/>
 									{:else if !m_stroke.selected && m_stroke.type === "image"}
 										<image id={"path_" + m_stroke.id + "_" + stroke.id} href={m_stroke.pathData} />
+									{:else if !m_stroke.selected && m_stroke.type === "text"}
+										<text id={"path_" + m_stroke.id + "_" + stroke.id}>{m_stroke.pathData}</text>
 									{/if}
 								{/if}
 							{/each}

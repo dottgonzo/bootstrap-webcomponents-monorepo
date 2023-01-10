@@ -64,7 +64,7 @@ export type IStroke = {
 	opacity?: number;
 	selected?: boolean;
 	multipath?: IStroke[];
-	type: "stroke" | "multiplestroke" | "eraser" | "move" | "image";
+	type: "stroke" | "multiplestroke" | "eraser" | "move" | "image" | "text";
 };
 
 export type Component = {

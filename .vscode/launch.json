@@ -5,15 +5,23 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "name": "Launch Storybook",
       "request": "launch",
       "runtimeVersion": "16.18.1",
-      "name": "dev streamingtable",
+      "runtimeArgs": ["run", "storybook"],
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
       "skipFiles": ["<node_internals>/**"],
-      "cwd": "${workspaceFolder}/packages/streamingtable"
+      "type": "pwa-node",
+      "cwd": "${workspaceFolder}/storybook"
     },
+    {
+      "name": "Launch Chrome 4 Storybook",
+      "request": "launch",
+      "type": "chrome",
+      "url": "http://localhost:6006/",
+      "webRoot": "${workspaceFolder}"
+    },
+
     {
       "type": "node",
       "request": "launch",
@@ -24,14 +32,14 @@
       "cwd": "${workspaceFolder}/readmewriter"
     },
     {
-      "name": "Launch Storybook",
+      "type": "node",
       "request": "launch",
       "runtimeVersion": "16.18.1",
-      "runtimeArgs": ["run", "storybook"],
+      "name": "dev streamingtable",
       "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
       "skipFiles": ["<node_internals>/**"],
-      "type": "pwa-node",
-      "cwd": "${workspaceFolder}/storybook"
+      "cwd": "${workspaceFolder}/packages/streamingtable"
     }
   ],
   "compounds": []

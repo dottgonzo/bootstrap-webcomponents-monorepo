@@ -270,7 +270,7 @@
 	// 	return app();
 	// }
 
-	function getObjVal(obj: IRow, opts: { key: string; type?: string; format?: string }): string | number {
+	function getObjVal(obj: IRow, opts: { key: string; type?: string; format?: string; truncateAt?: number }, trim?: boolean): string | number {
 		if (!opts) {
 			return "";
 		}
@@ -290,10 +290,14 @@
 			}
 		}
 
-		if (!value) {
+		if (!value && value !== 0) {
 			return "";
 		} else if (!opts.type || opts.type === "string" || opts.type === "enum") {
-			return value;
+			if (trim && opts.truncateAt && value.length > opts.truncateAt) {
+				return value.substring(0, opts.truncateAt) + "...";
+			} else {
+				return value;
+			}
 		} else if (opts.type === "number") {
 			return Number(value);
 		} else if (opts.type === "datetime") {
@@ -515,6 +519,10 @@
 		console.log(action, "action");
 		dispatch("confirmActionModalForm", Object.assign({}, detail, { _action: action, itemId }));
 	}
+	function copyToClipBoard(content: string) {
+		navigator.clipboard.writeText(content);
+		dispatch("clipboardCopyText", { text: content });
+	}
 </script>
 
 <svelte:head>
@@ -682,7 +690,7 @@
 						{#each !externalfilter ? rows.slice(page * size, (page + 1) * size) : rows as item (item._id)}
 							<tr>
 								{#if enableselect && selectactions?.length}
-									<td part="td-selection" style="box-shadow: none;">
+									<td style="box-shadow: none;">
 										<div class="form-check">
 											{#if selectedItems.find((f) => f === item._id)}
 												<input
@@ -711,7 +719,7 @@
 									{#each headers as td (td.key)}
 										{#if td.type === "actions"}
 											{#if item._actions?.length}
-												<td part="td-{td.key}">
+												<td>
 													{#each item._actions as abutton (abutton.name)}
 														{#if abutton.disabled}
 															{#if abutton.type === "text"}
@@ -751,28 +759,32 @@
 													{/each}
 												</td>
 											{:else}
-												<td part="td-{td.key}" />
+												<td />
 											{/if}
 										{:else}
 											<td
-												part="td-{td.key}"
 												on:click={() => {
 													if (selectrow) clickonrow(item._id);
 												}}
 											>
 												{#if td.click}
 													<button on:click={() => handleClickOnRow(item._id, td.key)} type="button" class="btn btn-link"
-														>{getObjVal(item, td) || ""}</button
+														>{getObjVal(item, td, true)}</button
 													>
 												{:else}
-													{getObjVal(item, td) || ""}
+													{getObjVal(item, td, true)}
+												{/if}
+												{#if (td.type === "string" || !td.type) && getObjVal(item, td).toString().length && td.copyTxt}
+													<button on:click={() => copyToClipBoard(getObjVal(item, td).toString())} type="button" class="btn btn-link"
+														><i class="bi-clipboard" /></button
+													>
 												{/if}
 											</td>
 										{/if}
 									{/each}
 								{/if}
 								{#if actions}
-									<td part="td-action">
+									<td>
 										{#each actions as abutton (abutton.name)}
 											{#if abutton.type === "text"}
 												<button

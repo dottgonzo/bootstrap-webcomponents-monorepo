@@ -17,6 +17,8 @@ export interface ITableHeader {
 	select?: string[];
 	nosort?: boolean;
 	sortBy?: "asc" | "desc" | "none";
+	truncateAt?: number;
+	copyTxt?: boolean;
 }
 
 export interface IRow {
@@ -81,4 +83,5 @@ export type Events = {
 	showConfirmModalForm: { action: string; detail: { id: string; show: boolean } };
 	confirmActionModalForm: { action: string; id: string; confirm: boolean };
 	confirmActionModal: { action: string; id: string; confirm: boolean };
+	clipboardCopyText: { text: string };
 };
