@@ -480,8 +480,8 @@
 		});
 		console.log(sortedBy, sortedDirection);
 	}
-	function dialogShowConfirm(detail, action: string) {
-		dispatch("showConfirmModal", Object.assign({ action }, detail));
+	function dialogShowConfirm(detail, action: string, itemId: string) {
+		dispatch("showConfirmModal", Object.assign({ action, itemId }, detail));
 
 		if (!detail.show)
 			modalConfirm = {
@@ -494,8 +494,8 @@
 				closelabel: null,
 			};
 	}
-	function dialogShowConfirmForm(detail, action: string) {
-		dispatch("showConfirmModalForm", Object.assign({ action }, detail));
+	function dialogShowConfirmForm(detail, action: string, itemId: string) {
+		dispatch("showConfirmModalForm", Object.assign({ action, itemId }, detail));
 
 		if (!detail.show)
 			modalConfirmForm = {
@@ -508,12 +508,12 @@
 				closelabel: null,
 			};
 	}
-	function modalConfirmation(detail, action: string) {
-		dispatch("confirmActionModal", Object.assign({ action }, detail));
+	function modalConfirmation(detail, action: string, itemId: string) {
+		dispatch("confirmActionModal", Object.assign({ action, itemId }, detail));
 	}
-	function modalFormConfirmation(detail, action: string) {
+	function modalFormConfirmation(detail, action: string, itemId: string) {
 		console.log(action, "action");
-		dispatch("confirmActionModalForm", Object.assign({}, detail, { _action: action }));
+		dispatch("confirmActionModalForm", Object.assign({}, detail, { _action: action, itemId }));
 	}
 </script>
 
@@ -529,8 +529,8 @@
 	content={modalConfirmForm.content}
 	closelabel={modalConfirmForm.closelabel || "Close"}
 	schema={modalConfirmForm.schema ? JSON.stringify(modalConfirmForm.schema) : "[]"}
-	on:modalFormConfirm={(e) => modalFormConfirmation(e.detail, modalConfirmForm.action)}
-	on:modalShow={(d) => dialogShowConfirmForm(d.detail, modalConfirmForm.action)}
+	on:modalFormConfirm={(e) => modalFormConfirmation(e.detail, modalConfirmForm.action, modalConfirmForm.itemId || "confirmationModalForm")}
+	on:modalShow={(d) => dialogShowConfirmForm(d.detail, modalConfirmForm.action, modalConfirmForm.itemId || "confirmationModalForm")}
 />
 <hb-dialog
 	style={dialogStyleToSet}
@@ -540,8 +540,8 @@
 	confirmlabel={modalConfirm.confirmlabel || "Conferma"}
 	content={modalConfirm.content}
 	closelabel={modalConfirm.closelabel || "Close"}
-	on:modalConfirm={(e) => modalConfirmation(e.detail, modalConfirm.action)}
-	on:modalShow={(d) => dialogShowConfirm(d.detail, modalConfirm.action)}
+	on:modalConfirm={(e) => modalConfirmation(e.detail, modalConfirm.action, modalConfirm.itemId || "confirmationModalForm")}
+	on:modalShow={(d) => dialogShowConfirm(d.detail, modalConfirm.action, modalConfirm.itemId || "confirmationModalForm")}
 />
 <div id="webcomponent">
 	<div class="container-fluid" style="padding:0px; margin-left: 0px; margin-right: 0px;">
