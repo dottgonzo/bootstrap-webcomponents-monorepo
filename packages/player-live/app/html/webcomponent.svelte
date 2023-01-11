@@ -77,7 +77,7 @@
 	}
 	function setVideo(videoElement: HTMLVideoElement) {
 		htmlVideo = videoElement;
-		dispatch("htmlVideoInit", { htmlVideoElement: htmlVideo });
+		dispatch("htmlVideoInit", { htmlVideoElement: htmlVideo, id });
 
 		if (media_type === "hls") {
 			if (videoElement && Hls.isSupported()) {
@@ -103,13 +103,11 @@
 			console.info("webrtc", mediauri);
 			try {
 				function onOffline() {
-					console.log("set offline");
-					dispatch("liveStatus", { live: false });
+					dispatch("liveStatus", { live: false, id });
 					isLive = false;
 				}
 				function onOnline() {
-					console.log("set online");
-					dispatch("liveStatus", { live: true });
+					dispatch("liveStatus", { live: true, id });
 					isLive = true;
 				}
 				webrtcPlayer = new WebrtcPlayer({ videoElement, wsUri: mediauri, onOnline, onOffline });
@@ -142,12 +140,12 @@
 				if (!res || (res.status && (res.status > 299 || res.status < 199))) throw new Error("wrong uri");
 
 				isLive = true;
-				dispatch("liveStatus", { live: true });
+				dispatch("liveStatus", { live: true, id });
 			} else {
 				throw new Error("wrong media type");
 			}
 		} catch (err) {
-			if (isLive !== false) dispatch("liveStatus", { live: false });
+			if (isLive !== false) dispatch("liveStatus", { live: false, id });
 			isLive = false;
 
 			timeo = setTimeout(relo, 5000);

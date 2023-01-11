@@ -14,5 +14,5 @@ export type Component = {
 
 export type Events = {
 	liveStatus: { live: boolean };
-	timeStamp: { timeStamp: number; id: string };
+	htmlVideoInit: { video: HTMLVideoElement };
 };
