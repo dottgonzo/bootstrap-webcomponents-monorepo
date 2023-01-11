@@ -13,6 +13,6 @@ export type Component = {
 };
 
 export type Events = {
-	liveStatus: { live: boolean };
-	htmlVideoInit: { video: HTMLVideoElement };
+	liveStatus: { live: boolean; id: string };
+	htmlVideoInit: { video: HTMLVideoElement; id: string };
 };
