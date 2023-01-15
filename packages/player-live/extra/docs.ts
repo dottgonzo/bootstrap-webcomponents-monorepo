@@ -13,7 +13,7 @@ export const storybookArgs = {
 	forcecover: { control: { type: "text" } },
 	replacewithtext: { control: { type: "object" } },
 	liveStatus: { action: "liveStatusEvent" },
-	timeStamp: { action: "timeStampEvent" },
+	htmlVideoInit: { action: "htmlVideoInitEvent" },
 };
 
 const cssVars: CssVar[] = [];
