@@ -53,6 +53,8 @@
 	let videoElement: HTMLVideoElement;
 	let videoTime: number;
 
+	let isPaused = true;
+
 	$: {
 		if (style) {
 			parsedStyle = parseStyle(style);
@@ -229,7 +231,13 @@
 	<!-- svelte-ignore a11y-media-has-caption -->
 
 	<div class="ratio ratio-16x9" style="background-color: black;">
-		<video on:timeupdate={(e) => videoTimeUpdate(e)} id="video" on:loadedmetadata={(e) => videoLoad(e)} class="ratio ratio-16x9"
+		<video
+			on:play={() => (isPaused = false)}
+			on:pause={() => (isPaused = true)}
+			on:timeupdate={(e) => videoTimeUpdate(e)}
+			id="video"
+			on:loadedmetadata={(e) => videoLoad(e)}
+			class="ratio ratio-16x9"
 			><source {src} type="video/mp4" />
 			Your browser does not support the video tag.
 		</video>
@@ -255,8 +263,13 @@
 				<input type="number" class="form-control form-custom-control-numbers" bind:value={minSeconds} on:change={valueChanged} />s
 			</div>
 			<div style="flex-grow: 2;text-align:center">
-				{videoTime}
-				{#if track?.maxValue}duration {Math.round((track.maxValue - track.minValue) * 100) / 100}{/if}
+				<!-- {videoTime} -->
+				{#if videoElement}
+					<button on:click={() => (videoElement.paused ? videoElement.play() : videoElement.pause())}
+						>{#if isPaused} play {:else} pause{/if}</button
+					>
+				{/if}
+				<!-- {#if track?.maxValue}duration {Math.round((track.maxValue - track.minValue) * 100) / 100}{/if} -->
 			</div>
 			<div style="flex-grow: 2;text-align:right">
 				<input type="number" class="form-control form-custom-control-numbers" bind:value={maxHours} on:change={valueChanged} />h
