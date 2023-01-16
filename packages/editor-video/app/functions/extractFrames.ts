@@ -7,11 +7,15 @@ export default async function extractFrames(videoElement: HTMLVideoElement, posi
 	const ctx = canvas.getContext("2d");
 	const frames: string[] = [];
 
+	const newVideoElement = document.createElement("video");
+	newVideoElement.srcObject = videoElement.srcObject;
+	newVideoElement.muted = true;
+
 	positions.forEach((pos) => {
-		videoElement.currentTime = pos;
-		canvas.width = videoElement.videoWidth;
-		canvas.height = videoElement.videoHeight;
-		ctx.drawImage(videoElement, 0, 0);
+		newVideoElement.currentTime = pos;
+		canvas.width = newVideoElement.videoWidth;
+		canvas.height = newVideoElement.videoHeight;
+		ctx.drawImage(newVideoElement, 0, 0);
 		const dataURL = canvas.toDataURL("image/jpeg");
 		frames.push(dataURL);
 	});
