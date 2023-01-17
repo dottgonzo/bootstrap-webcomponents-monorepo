@@ -2,12 +2,13 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	changeRangeValues: { action: "changeRangeValuesEvent" },
 	withbubbles: { control: { type: "boolean" } },
 	min: { control: { type: "number" } },
 	max: { control: { type: "number" } },
 	minval: { control: { type: "number" } },
 	maxval: { control: { type: "number" } },
+	position_value: { control: { type: "number" } },
+	changeRangeValues: { action: "changeRangeValuesEvent" },
 };
 
 const cssVars: CssVar[] = [];
@@ -28,10 +29,31 @@ export const styleSetup: StyleSetup = {
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
+		data: {},
+	},
+	{
+		name: "withBubbles",
+		data: {
+			withbubbles: true,
+		},
+	},
+	{
+		name: "withValues",
 		data: {
 			withbubbles: true,
 			minval: 20,
 			maxval: 60,
+		},
+	},
+	{
+		name: "withPositionValue",
+		data: {
+			withbubbles: true,
+			minval: 13,
+			maxval: 20,
+			max: 25,
+			min: 10,
+			position_value: 17,
 		},
 	},
 ];

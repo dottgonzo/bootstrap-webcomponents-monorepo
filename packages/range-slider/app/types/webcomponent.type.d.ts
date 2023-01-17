@@ -5,9 +5,10 @@ export type Component = {
 	max?: number;
 	minval?: number;
 	maxval?: number;
+	position_value?: number;
 	withbubbles?: boolean;
 };
 
 export type Events = {
-	changeRangeValues: { status: { minValue: number; maxValue: number; minPercent: number } };
+	changeRangeValues: { status: { minValue: number; maxValue: number; minPercent: number; maxPercent: number; positionPercent: number } };
 };
