@@ -222,7 +222,7 @@
 			videoElement.pause();
 			setVideoTime(track.minValue);
 		}
-		// videoTime = videoElement.currentTime;
+		videoTime = videoElement.currentTime;
 		// videoTime = track.minValue > videoElement.currentTime ? track.minValue : videoElement.currentTime;
 	}
 </script>
@@ -264,11 +264,11 @@
 			</div>
 			<div style="flex-grow: 2;text-align:center">
 				<!-- {videoTime} -->
-				{#if videoElement}
+				<!-- {#if videoElement}
 					<button on:click={() => (videoElement.paused ? videoElement.play() : videoElement.pause())}
 						>{#if isPaused} play {:else} pause{/if}</button
 					>
-				{/if}
+				{/if} -->
 				<!-- {#if track?.maxValue}duration {Math.round((track.maxValue - track.minValue) * 100) / 100}{/if} -->
 			</div>
 			<div style="flex-grow: 2;text-align:right">
@@ -296,16 +296,26 @@
 		</div>
 		{#if durationInSeconds && track}
 			<div style="width: 100%;margin-top:20px">
-				<hb-range-slider
-					style={rangeSliderStyleToSet}
-					max={max.toString()}
-					min={min.toString()}
-					maxval={track.maxValue.toString()}
-					minval={track.minValue.toString()}
-					on:changeRangeValues={(e) => {
-						dispatchTrackVals(e.detail);
-					}}
-				/>
+				<div style="display:inline-block; width:50px;">
+					{#if videoElement}
+						<button on:click={() => (videoElement.paused ? videoElement.play() : videoElement.pause())}
+							>{#if isPaused} play {:else} pause{/if}</button
+						>
+					{/if}
+				</div>
+				<div style="display:inline-block;width:calc(100% - 60px);position:relative">
+					<hb-range-slider
+						style={rangeSliderStyleToSet}
+						max={max.toString()}
+						min={min.toString()}
+						maxval={track.maxValue.toString()}
+						minval={track.minValue.toString()}
+						position_value={videoTime.toString()}
+						on:changeRangeValues={(e) => {
+							dispatchTrackVals(e.detail);
+						}}
+					/>
+				</div>
 			</div>
 		{/if}
 		{#if form}
