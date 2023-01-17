@@ -2,22 +2,13 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	withbubbles: { control: { type: "boolean" } },
-	min: { control: { type: "number" } },
-	max: { control: { type: "number" } },
-	minval: { control: { type: "number" } },
-	maxval: { control: { type: "number" } },
-	position_value: { control: { type: "number" } },
-	changeRangeValues: { action: "changeRangeValuesEvent" },
+	// width: { control: { type: "text" } },
+	// height: { control: { type: "text" } },
+	// liveStatus: { action: "liveStatusEvent" },
 };
 
 const cssVars: CssVar[] = [];
-export const cssParts: CssPart[] = [
-	{ name: "inverse", description: "" },
-	{ name: "the-range", description: "" },
-	{ name: "the-thumb", description: "" },
-	{ name: "sign", description: "" },
-];
+export const cssParts: CssPart[] = [];
 export const htmlSlots: HtmlSlot[] = [];
 export const i18nLanguages: i18nLang[] = [];
 
@@ -30,31 +21,6 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {},
-	},
-	{
-		name: "withBubbles",
-		data: {
-			withbubbles: true,
-		},
-	},
-	{
-		name: "withValues",
-		data: {
-			withbubbles: true,
-			minval: 20,
-			maxval: 60,
-		},
-	},
-	{
-		name: "withPositionValue",
-		data: {
-			withbubbles: true,
-			minval: 13,
-			maxval: 20,
-			max: 25,
-			min: 10,
-			position_value: 17,
-		},
 	},
 ];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
@@ -70,11 +36,11 @@ export const componentSetup: ComponentSetup & { examples: { name: string; descri
 	screenshots: [],
 	licenses: [{ type: "Apache-2.0", path: "LICENSE.md", cost: 0, currency: "EUR" }],
 	readmePath: "README.md",
-	name: "hb-range-slider",
+	name: "hb-player-live-camera-ptz",
 	category: "basic",
 	tags: ["basic"],
 	size: {},
 	iifePath: "release/release.js",
-	repoName: "@htmlbricks/hb-range-slider",
+	repoName: "@htmlbricks/hb-player-live-camera-ptz",
 	version: null as any,
 };

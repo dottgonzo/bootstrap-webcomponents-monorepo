@@ -27,6 +27,8 @@
 	let formStyleToSet: string = "";
 	let rangeSliderStyleToSet: string = "";
 
+	import extractFrames from "../functions/extractFrames";
+
 	dayjs.extend(duration);
 
 	const component = get_current_component();
@@ -48,6 +50,10 @@
 	let durationInSeconds: number;
 	let sendform: "yes" | "no" = "no";
 	let enablesubmit: boolean;
+	let videoElement: HTMLVideoElement;
+	let videoTime: number;
+
+	let isPaused = true;
 
 	$: {
 		if (style) {
@@ -79,6 +85,11 @@
 				minValue: null,
 			};
 		}
+		console.log("reload all");
+		console.log(videoTime, "log", min);
+
+		if (track) videoTime = track.minValue < (videoTime || 0) ? videoTime || 0 : track.minValue;
+		console.log(videoTime, "log2");
 	}
 
 	function valueChanged() {
@@ -90,12 +101,9 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	function getVideo() {
-		const video = component.shadowRoot.getElementById("video");
-		return video;
-	}
+
 	function setVideoTime(seconds: number) {
-		getVideo().currentTime = seconds;
+		videoElement.currentTime = seconds;
 	}
 
 	addComponent({ repoName: "@htmlbricks/hb-range-slider", version: pkg.version });
@@ -106,10 +114,10 @@
 		track.maxValue = trackStatus.maxValue;
 		setTimings();
 
-		if (getVideo().currentTime < track.minValue) {
+		if (videoElement.currentTime < track.minValue) {
 			setVideoTime(track.minValue);
 		}
-		if (getVideo().currentTime > track.maxValue) {
+		if (videoElement.currentTime > track.maxValue) {
 			setVideoTime(track.maxValue);
 		}
 		dispatch("changeTrackValues", { minVaule: track.minValue, maxValue: track.maxValue });
@@ -135,16 +143,51 @@
 
 		if (!track.maxValue || track.maxValue > max) track.maxValue = max;
 		if (!track.minValue || track.minValue < min) track.minValue = min;
+		videoElement = component.shadowRoot.getElementById("video");
 		setTimings();
+
+		// if (!videoTime) videoTime = track.minValue > videoElement.currentTime ? track.minValue : videoElement.currentTime;
+
+		console.log("videoElement", videoElement);
+
+		const parts = durationInSeconds / 5 > 100 ? 100 : durationInSeconds / 5;
+
+		const positions: number[] = [];
+		for (let i = 0; i < parts; i++) {
+			positions.push(i * 5);
+		}
+
+		extractFrames(videoElement, positions)
+			.then((imgs) => {
+				console.log("extractFrames done ", durationInSeconds, positions, imgs);
+			})
+			.catch((err) => {
+				console.log("extractFrames error ", positions, err);
+			});
+
+		// videoToThumb
+		// 	.load()
+		// 	.positions([0])
+		// 	.type("base64")
+		// 	.error(function (err) {
+		// 		console.log("videoToThumb error", JSON.stringify(err));
+		// 	})
+		// 	.done(function (imgs) {
+		// 		imgs.forEach(function (img) {
+		// 			const elem = new Image();
+		// 			elem.src = img;
+		// 			console.log(elem, "videoToThumb img loaded");
+		// 		});
+		// 	});
 	}
 
 	function cue(point: string) {
 		switch (point) {
 			case "start":
-				if (getVideo().currentTime < track.maxValue) track.minValue = getVideo().currentTime;
+				if (videoElement.currentTime < track.maxValue) track.minValue = videoElement.currentTime;
 				break;
 			case "end":
-				if (getVideo().currentTime > track.minValue) track.maxValue = getVideo().currentTime;
+				if (videoElement.currentTime > track.minValue) track.maxValue = videoElement.currentTime;
 
 				break;
 
@@ -171,14 +214,16 @@
 		enablesubmit = details._valid;
 	}
 	function videoTimeUpdate(v) {
-		if (getVideo().currentTime > track.maxValue) {
-			getVideo().pause();
+		if (videoElement.currentTime > track.maxValue) {
+			videoElement.pause();
 
 			setVideoTime(track.maxValue);
-		} else if (getVideo().currentTime < track.minValue - 0.01) {
-			getVideo().pause();
+		} else if (videoElement.currentTime < track.minValue - 0.01) {
+			videoElement.pause();
 			setVideoTime(track.minValue);
 		}
+		// videoTime = videoElement.currentTime;
+		// videoTime = track.minValue > videoElement.currentTime ? track.minValue : videoElement.currentTime;
 	}
 </script>
 
@@ -186,7 +231,13 @@
 	<!-- svelte-ignore a11y-media-has-caption -->
 
 	<div class="ratio ratio-16x9" style="background-color: black;">
-		<video on:timeupdate={(e) => videoTimeUpdate(e)} id="video" on:loadedmetadata={(e) => videoLoad(e)} controls class="ratio ratio-16x9"
+		<video
+			on:play={() => (isPaused = false)}
+			on:pause={() => (isPaused = true)}
+			on:timeupdate={(e) => videoTimeUpdate(e)}
+			id="video"
+			on:loadedmetadata={(e) => videoLoad(e)}
+			class="ratio ratio-16x9"
 			><source {src} type="video/mp4" />
 			Your browser does not support the video tag.
 		</video>
@@ -211,13 +262,24 @@
 				<input bind:value={minMinutes} class="form-control form-custom-control-numbers" type="number" on:change={valueChanged} />m
 				<input type="number" class="form-control form-custom-control-numbers" bind:value={minSeconds} on:change={valueChanged} />s
 			</div>
-			<!-- <div style="flex-grow: 2;text-align:center">
-				{#if track?.maxValue}duration {Math.round((track.maxValue - track.minValue) * 100) / 100}{/if}
-			</div> -->
+			<div style="flex-grow: 2;text-align:center">
+				<!-- {videoTime} -->
+				{#if videoElement}
+					<button on:click={() => (videoElement.paused ? videoElement.play() : videoElement.pause())}
+						>{#if isPaused} play {:else} pause{/if}</button
+					>
+				{/if}
+				<!-- {#if track?.maxValue}duration {Math.round((track.maxValue - track.minValue) * 100) / 100}{/if} -->
+			</div>
 			<div style="flex-grow: 2;text-align:right">
 				<input type="number" class="form-control form-custom-control-numbers" bind:value={maxHours} on:change={valueChanged} />h
 				<input bind:value={maxMinutes} class="form-control form-custom-control-numbers" type="number" on:change={valueChanged} />m
 				<input type="number" class="form-control form-custom-control-numbers" bind:value={maxSeconds} on:change={valueChanged} />s
+
+				<!-- <span>
+	{videoTime}
+</span> -->
+
 				<button
 					class="btn btn-sm btn-secondary"
 					on:click={() => {

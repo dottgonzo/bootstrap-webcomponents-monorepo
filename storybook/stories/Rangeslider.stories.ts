@@ -16,18 +16,23 @@ const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes as any, componentSetup.name);
 
 export const BasicRangeslider = Template.bind({});
-BasicRangeslider.args = {
-  id: "BasicRangeslider",
-};
+BasicRangeslider.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "default")
+);
+
 export const BasicRangesliderWithBubbles = Template.bind({});
-BasicRangesliderWithBubbles.args = {
-  id: "BasicRangesliderWithBubbles",
-  withbubbles: true,
-};
+BasicRangesliderWithBubbles.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "withBubbles")
+);
 export const BasicRangesliderWithValues = Template.bind({});
-BasicRangesliderWithValues.args = {
-  id: "BasicRangesliderWithValues",
-  withbubbles: true,
-  minval: 20,
-  maxval: 60,
-};
+BasicRangesliderWithValues.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "withValues")
+);
+export const BasicRangesliderWithPositionValue = Template.bind({});
+BasicRangesliderWithPositionValue.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "withPositionValue")
+);

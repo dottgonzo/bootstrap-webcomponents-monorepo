@@ -23,15 +23,20 @@
 	export let maxval: number;
 	export let withbubbles: boolean;
 
+	export let position_value: number;
+
 	const minSlider = 0;
 	const maxSlider = 100;
 	let minValReal: number;
 	let maxValReal: number;
+	let positionValReal: number;
 	let minPercent: number;
 	let maxPercent: number;
+	let positionPercent: number;
 
 	let fromleft: number;
 	let fromright: number;
+	let positionFromLeft: number;
 
 	$: {
 		if (!id) {
@@ -66,6 +71,14 @@
 			maxval = null;
 		}
 
+		if (position_value || position_value === 0) {
+			position_value = Number(position_value) <= max ? Number(position_value) : max;
+			position_value = Number(position_value) >= min ? Number(position_value) : min;
+			positionPercent = ((position_value - min) * 100) / (max - min);
+
+			position_value = null;
+		}
+
 		if (!minPercent) {
 			minPercent = minSlider;
 		}
@@ -75,16 +88,23 @@
 
 		minValReal = min + ((max - min) / 100) * minPercent;
 		maxValReal = min + ((max - min) / 100) * maxPercent;
+		positionValReal = min + ((max - min) / 100) * positionPercent;
 
 		fromleft = (minPercent / maxSlider) * 100;
 		fromright = (maxPercent / maxSlider) * 100;
+		if (positionPercent || positionPercent === 0) {
+			positionPercent = positionPercent <= maxPercent ? positionPercent : maxPercent;
+			positionPercent = positionPercent >= minPercent ? positionPercent : minPercent;
+			positionFromLeft = (positionPercent / maxSlider) * 100;
+			console.info("newpos", minSlider, positionPercent, positionFromLeft);
+		}
 	}
 	function dispatch(name, detail) {
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 	function dispatchVals() {
-		const status = { minValue: minValReal, maxValue: maxValReal, minPercent, maxPercent };
+		const status = { minValue: minValReal, maxValue: maxValReal, minPercent, maxPercent, positionPercent, positionValReal };
 		dispatch("changeRangeValues", status);
 	}
 	function changeValMin(e) {
@@ -107,6 +127,18 @@
 			maxPercent = minSlider > minPercent ? minSlider : minPercent;
 		}
 	}
+	function changePos(e) {
+		console.log("changePos", e);
+		if (!e?.target?.value || Number(e.target.value) === Infinity || isNaN(Number(e.target.value)))
+			return console.error(`invalid value ${e?.target?.value}`);
+
+		if (Number(e.target.value) >= minSlider && Number(e.target.value) <= maxSlider) {
+			positionPercent = Number(e.target.value);
+		} else {
+			positionPercent = minSlider > Number(e.target.value) ? minSlider : maxSlider;
+		}
+		console.log("new pos", positionPercent);
+	}
 </script>
 
 <div id="slider-distance-container" style={withbubbles ? "margin: 45px 0 10px 0;" : ""}>
@@ -115,6 +147,11 @@
 		<div class="inverse" part="inverse" id="inverse-right" style="width:{fromleft + 100 - fromright}%;" />
 		<div id="the-range" part="the-range" style="left:{fromleft}%;right:{100 - fromright}%;" />
 		<span class="the-thumb" part="the-thumb" style="left:{fromleft}%;" />
+		{#if positionFromLeft || positionFromLeft === 0}<span
+				class="the-thumb thumb-internal"
+				part="the-thumb-internal"
+				style="left:{positionFromLeft}%;"
+			/>{/if}
 		<span class="the-thumb" part="the-thumb" style="left:{fromright}%;" />
 		{#if withbubbles}
 			<div class="sign" part="sign" style="left:{fromleft}%;">
@@ -125,6 +162,7 @@
 			</div>
 		{/if}
 	</div>
+
 	<input
 		type="range"
 		tabindex="0"
@@ -135,6 +173,18 @@
 		on:input={(e) => changeValMin(e)}
 		on:change={dispatchVals}
 	/>
+	{#if positionPercent || positionPercent === 0}
+		<input
+			type="range"
+			tabindex="0"
+			bind:value={positionPercent}
+			max={maxSlider}
+			min={minSlider}
+			step="0.0001"
+			on:input={(e) => changePos(e)}
+			on:change={dispatchVals}
+		/>
+	{/if}
 	<input
 		type="range"
 		tabindex="0"
@@ -202,12 +252,19 @@
 		border-radius: 50%;
 		outline: none;
 	}
-
+	.thumb-internal {
+		z-index: 20;
+		height: 18px;
+		width: 18px;
+		background-color: black;
+		top: -2px;
+		margin-left: -6px;
+	}
 	input[type="range"] {
 		position: absolute;
 		pointer-events: none;
 		-webkit-appearance: none;
-		z-index: 3;
+		z-index: 30;
 		height: 14px;
 		top: -2px;
 		width: 100%;
