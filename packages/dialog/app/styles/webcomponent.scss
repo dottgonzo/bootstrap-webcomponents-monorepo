@@ -6,4 +6,9 @@
 	// align-items: center;
 	// background-color: red;
 	// width: fit-content;
+	--hb-modal-max-width: 500px;
+}
+
+.modal-dialog {
+	max-width: var(--hb-modal-max-width);
 }

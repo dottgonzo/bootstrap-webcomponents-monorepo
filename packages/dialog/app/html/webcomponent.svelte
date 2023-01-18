@@ -121,7 +121,7 @@
 		on:outroend={onModalClosed}
 		transition:fade
 	>
-		<div class="modal-dialog" role="document" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300, easing: quintOut }}>
+		<div class="modal-dialog" part="modal-dialog" role="document" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300, easing: quintOut }}>
 			<div class="modal-content">
 				<slot name="header" class="modal-header">
 					<h5 class="modal-title"><slot name="title">{title || "title"}</slot></h5>

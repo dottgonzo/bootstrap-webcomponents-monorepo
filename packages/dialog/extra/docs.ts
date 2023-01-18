@@ -27,8 +27,9 @@ const cssVars: CssVar[] = [
 	{ name: "--bs-info", valueType: "color", theme: "bootstrap", defaultValue: "#a2d5f2" },
 	{ name: "--bs-warning", valueType: "color", theme: "bootstrap", defaultValue: "#ffc107" },
 	{ name: "--bs-danger", valueType: "color", theme: "bootstrap", defaultValue: "#f67280" },
+	{ name: "--hb-modal-max-width", valueType: "htmlsize", defaultValue: "500px" },
 ];
-export const cssParts: CssPart[] = [];
+export const cssParts: CssPart[] = [{ name: "modal-dialog", description: "The modal dialog" }];
 export const htmlSlots: HtmlSlot[] = [
 	{ name: "header" },
 	{ name: "modal-footer" },
