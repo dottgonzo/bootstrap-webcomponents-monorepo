@@ -11,7 +11,7 @@ export const storybookArgs = {
 	changeRangeValues: { action: "changeRangeValuesEvent" },
 };
 
-const cssVars: CssVar[] = [{ name: "--hb-range-slider-bg-color", defaultValue: "#1abc9c", valueType: "color" }];
+const cssVars: CssVar[] = [{ name: "--hb-slider-background-color", defaultValue: "#1abc9c", valueType: "color" }];
 export const cssParts: CssPart[] = [
 	{ name: "inverse", description: "" },
 	{ name: "the-range", description: "" },

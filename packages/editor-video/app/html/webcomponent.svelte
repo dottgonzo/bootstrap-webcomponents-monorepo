@@ -16,7 +16,8 @@
 	import { get_current_component } from "svelte/internal";
 
 	import pkg from "../../package.json";
-	import type { IDispatchValsEvent, ITrack } from "@app/types/webcomponent.type";
+	import type { ITrack } from "@app/types/webcomponent.type";
+	import type { Events as RangeSliderEvents } from "@htmlbricks/hb-range-slider/types/webcomponent.type";
 	import duration from "dayjs/plugin/duration";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
 	import parseStyle from "style-to-object";
@@ -109,9 +110,11 @@
 	addComponent({ repoName: "@htmlbricks/hb-range-slider", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
 
-	function dispatchTrackVals(trackStatus: IDispatchValsEvent) {
+	function dispatchTrackVals(trackStatus: RangeSliderEvents["changeTrackValues"]) {
 		track.minValue = trackStatus.minValue;
 		track.maxValue = trackStatus.maxValue;
+		videoElement.currentTime = trackStatus.positionValReal;
+		videoTime = trackStatus.positionValReal;
 		setTimings();
 
 		if (videoElement.currentTime < track.minValue) {
@@ -247,6 +250,40 @@
 	</div>
 
 	<div class="card-body">
+		{#if durationInSeconds && track}
+			<div style="width: 100%;margin-bottom:15px">
+				<div style="display:inline-block; width:50px;">
+					{#if videoElement}
+						<button class="btn btn-outline-dark" on:click={() => (videoElement.paused ? videoElement.play() : videoElement.pause())}
+							>{#if isPaused} <i class="bi bi-play-fill" /> {:else} <i class="bi bi-pause-fill" />{/if}</button
+						>
+					{/if}
+				</div>
+				<div style="display:inline-block;width:calc(100% - 60px);position:relative">
+					<hb-range-slider
+						style={rangeSliderStyleToSet + ";--hb-slider-background-color: red;"}
+						max={max.toString()}
+						min={min.toString()}
+						maxval={track.maxValue.toString()}
+						minval={track.minValue.toString()}
+						position_value={videoTime.toString()}
+						on:changeRangeValues={(e) => {
+							dispatchTrackVals(e.detail);
+						}}
+					/>
+				</div>
+			</div>
+		{/if}
+		{#if form}
+			<hb-form
+				hide_submit="yes"
+				style={formStyleToSet + "margin:40px auto 20px auto; display:block"}
+				on:submit={(e) => formSubmit(e.detail)}
+				on:change={(e) => formCheck(e.detail)}
+				submitted={sendform}
+				schema={form}
+			/>
+		{/if}
 		<div id="controls">
 			<div style="flex-grow: 2">
 				<button
@@ -280,8 +317,8 @@
 				<input type="number" class="form-control form-custom-control-numbers" bind:value={maxSeconds} on:change={valueChanged} />s
 
 				<!-- <span>
-	{videoTime}
-</span> -->
+					{videoTime}
+				</span> -->
 
 				<button
 					class="btn btn-sm btn-secondary"
@@ -297,40 +334,6 @@
 				>
 			</div>
 		</div>
-		{#if durationInSeconds && track}
-			<div style="width: 100%;margin-top:20px">
-				<div style="display:inline-block; width:50px;">
-					{#if videoElement}
-						<button class="btn btn-outline-dark" on:click={() => (videoElement.paused ? videoElement.play() : videoElement.pause())}
-							>{#if isPaused} <i class="bi bi-play-fill" /> {:else} <i class="bi bi-pause-fill" />{/if}</button
-						>
-					{/if}
-				</div>
-				<div style="display:inline-block;width:calc(100% - 60px);position:relative">
-					<hb-range-slider
-						style={rangeSliderStyleToSet + ";--hb-range-slider-bg-color: red;"}
-						max={max.toString()}
-						min={min.toString()}
-						maxval={track.maxValue.toString()}
-						minval={track.minValue.toString()}
-						position_value={videoTime.toString()}
-						on:changeRangeValues={(e) => {
-							dispatchTrackVals(e.detail);
-						}}
-					/>
-				</div>
-			</div>
-		{/if}
-		{#if form}
-			<hb-form
-				hide_submit="yes"
-				style={formStyleToSet + "margin:40px auto 20px auto; display:block"}
-				on:submit={(e) => formSubmit(e.detail)}
-				on:change={(e) => formCheck(e.detail)}
-				submitted={sendform}
-				schema={form}
-			/>
-		{/if}
 	</div>
 	<div class="card-footer">
 		<span style="float:left;height:30px;line-height:30px"
