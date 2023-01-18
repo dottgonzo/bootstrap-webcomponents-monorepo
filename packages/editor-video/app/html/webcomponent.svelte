@@ -227,6 +227,9 @@
 	}
 </script>
 
+<svelte:head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
+</svelte:head>
 <div id="card" class="card h-100">
 	<!-- svelte-ignore a11y-media-has-caption -->
 
@@ -298,14 +301,14 @@
 			<div style="width: 100%;margin-top:20px">
 				<div style="display:inline-block; width:50px;">
 					{#if videoElement}
-						<button on:click={() => (videoElement.paused ? videoElement.play() : videoElement.pause())}
-							>{#if isPaused} play {:else} pause{/if}</button
+						<button class="btn btn-outline-dark" on:click={() => (videoElement.paused ? videoElement.play() : videoElement.pause())}
+							>{#if isPaused} <i class="bi bi-play-fill" /> {:else} <i class="bi bi-pause-fill" />{/if}</button
 						>
 					{/if}
 				</div>
 				<div style="display:inline-block;width:calc(100% - 60px);position:relative">
 					<hb-range-slider
-						style={rangeSliderStyleToSet}
+						style={rangeSliderStyleToSet + ";--hb-range-slider-bg-color: red;"}
 						max={max.toString()}
 						min={min.toString()}
 						maxval={track.maxValue.toString()}

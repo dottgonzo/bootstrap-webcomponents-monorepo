@@ -235,7 +235,7 @@
 		left: 0;
 		height: 14px;
 		border-radius: 14px;
-		background-color: #1abc9c;
+		background-color: var(--hb-slider-background-color);
 	}
 
 	.the-thumb {
