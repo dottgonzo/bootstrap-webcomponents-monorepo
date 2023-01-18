@@ -149,8 +149,6 @@
 		videoElement = component.shadowRoot.getElementById("video");
 		setTimings();
 
-		// if (!videoTime) videoTime = track.minValue > videoElement.currentTime ? track.minValue : videoElement.currentTime;
-
 		console.log("videoElement", videoElement);
 
 		const parts = durationInSeconds / 5 > 100 ? 100 : durationInSeconds / 5;
@@ -160,27 +158,13 @@
 			positions.push(i * 5);
 		}
 
-		extractFrames(videoElement, positions)
-			.then((imgs) => {
-				console.log("extractFrames done ", durationInSeconds, positions, imgs);
-			})
-			.catch((err) => {
-				console.log("extractFrames error ", positions, err);
-			});
-
-		// videoToThumb
-		// 	.load()
-		// 	.positions([0])
-		// 	.type("base64")
-		// 	.error(function (err) {
-		// 		console.log("videoToThumb error", JSON.stringify(err));
+		// ENABLE TO EXTRACT FRAMES
+		// extractFrames(videoElement, positions)
+		// 	.then((imgs) => {
+		// 		console.log("extractFrames done ", durationInSeconds, positions, imgs);
 		// 	})
-		// 	.done(function (imgs) {
-		// 		imgs.forEach(function (img) {
-		// 			const elem = new Image();
-		// 			elem.src = img;
-		// 			console.log(elem, "videoToThumb img loaded");
-		// 		});
+		// 	.catch((err) => {
+		// 		console.log("extractFrames error ", positions, err);
 		// 	});
 	}
 
@@ -226,7 +210,6 @@
 			setVideoTime(track.minValue);
 		}
 		videoTime = videoElement.currentTime;
-		// videoTime = track.minValue > videoElement.currentTime ? track.minValue : videoElement.currentTime;
 	}
 </script>
 
@@ -315,10 +298,6 @@
 				<input type="number" class="form-control form-custom-control-numbers" bind:value={maxHours} on:change={valueChanged} />h
 				<input bind:value={maxMinutes} class="form-control form-custom-control-numbers" type="number" on:change={valueChanged} />m
 				<input type="number" class="form-control form-custom-control-numbers" bind:value={maxSeconds} on:change={valueChanged} />s
-
-				<!-- <span>
-					{videoTime}
-				</span> -->
 
 				<button
 					class="btn btn-sm btn-secondary"
