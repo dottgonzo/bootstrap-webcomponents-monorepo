@@ -3,7 +3,7 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	chats: { control: { type: "object" } },
-	sendMessage: { action: "sendMessageEvent" },
+	selected: { action: "selectedEvent" },
 };
 
 const cssVars: CssVar[] = [
