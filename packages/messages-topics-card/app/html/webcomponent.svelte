@@ -40,6 +40,7 @@
 				console.error("error parsing chat", err);
 			}
 		}
+		if (!chats) chats = [];
 		chats.forEach((chat) => {
 			if (!chat.localeTimeString)
 				chat.localeTimeString = chat.time
@@ -57,11 +58,25 @@
 		// 	};
 		// }
 	}
+	function setSelectedChat(chat: Component["chats"][0]) {
+		chats.forEach((c) => {
+			if (c.chat_id !== chat.chat_id) c._selected = false;
+			else c._selected = true;
+		});
+		chats = [...chats];
+		dispatch("select", chat);
+	}
 </script>
 
 {#if chats}
 	{#each chats as chat (chat.chat_id)}
-		<div class="grid">
+		<div
+			class="grid"
+			style={chat._selected ? "background-color: var(--hb-topics-card-selected-background-color);" : ""}
+			on:click={() => {
+				setSelectedChat(chat);
+			}}
+		>
 			<img src={chat.img_uri} alt={chat.img_uri} />
 			<div class="header">
 				<span class="text-item title">{chat.title}</span>

@@ -23,3 +23,9 @@ MessageTopicsCardDefault.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples.find((f) => f.name === "default")
 );
+export const MessageTopicsCardSelected = Template.bind({});
+
+MessageTopicsCardSelected.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "selected")
+);

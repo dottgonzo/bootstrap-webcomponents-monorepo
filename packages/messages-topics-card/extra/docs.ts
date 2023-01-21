@@ -6,9 +6,34 @@ export const storybookArgs = {
 	sendMessage: { action: "sendMessageEvent" },
 };
 
-const cssVars: CssVar[] = [];
-export const cssParts: CssPart[] = [{ name: "testpart", description: "test css part on 2 div tag" }];
-export const htmlSlots: HtmlSlot[] = [{ name: "skelcontent", description: "test slot" }];
+const cssVars: CssVar[] = [
+	{
+		name: "--hb-topics-card-selected-background-color",
+		description: "Selected background color",
+		defaultValue: "#e9ecef",
+		valueType: "color",
+	},
+	{
+		name: "--hb-topics-card-hover-background-color",
+		description: "Hover background color",
+		defaultValue: "#f5f5f5",
+		valueType: "color",
+	},
+	{
+		name: "--hb-topics-card-size",
+		description: "Topic card size",
+		defaultValue: "calc(1vw + 1vh + 12px)",
+		valueType: "htmlsize",
+	},
+	{
+		name: "--hb-topics-card-padding",
+		description: "Topic card padding",
+		defaultValue: "4px",
+		valueType: "htmlsize",
+	},
+];
+export const cssParts: CssPart[] = [];
+export const htmlSlots: HtmlSlot[] = [];
 export const i18nLanguages: i18nLang[] = [];
 
 export const styleSetup: StyleSetup = {
@@ -36,6 +61,38 @@ const examples: { name: string; description?: string; data: Component }[] = [
 					title: "Hello1",
 					time: new Date(),
 					img_uri: "https://www.w3schools.com/howto/img_avatar.png",
+				},
+				{
+					chat_id: "ciao2",
+					counter: 0,
+					text: "Hello 2",
+					title: "Hello2",
+					time: new Date(),
+					img_uri: "https://www.w3schools.com/howto/img_avatar.png",
+				},
+			],
+		},
+	},
+	{
+		name: "selected",
+		data: {
+			chats: [
+				{
+					chat_id: "ciao0",
+					counter: 0,
+					text: "Hello 0",
+					title: "Hello0",
+					time: new Date(),
+					img_uri: "https://www.w3schools.com/howto/img_avatar.png",
+				},
+				{
+					chat_id: "ciao1",
+					counter: 0,
+					text: "Hello 1",
+					title: "Hello1",
+					time: new Date(),
+					img_uri: "https://www.w3schools.com/howto/img_avatar.png",
+					_selected: true,
 				},
 				{
 					chat_id: "ciao2",

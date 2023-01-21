@@ -14,6 +14,7 @@ export type IChat = {
 	last_message_text?: string;
 	counter?: number;
 	localeTimeString?: string;
+	_selected?: boolean;
 };
 
 export type Component = {
@@ -24,5 +25,5 @@ export type Component = {
 };
 
 export type Events = {
-	select: { id: string };
+	select: IChat;
 };

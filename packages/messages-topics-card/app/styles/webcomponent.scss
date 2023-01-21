@@ -6,6 +6,8 @@
 	width: 100%;
 
 	display: block;
+	--hb-topics-card-selected-background-color: #e9ecef;
+	--hb-topics-card-hover-background-color: #f5f5f5;
 	--hb-topics-card-size: calc(1vw + 1vh + 12px);
 	--hb-topics-card-padding: 4px;
 
@@ -20,6 +22,10 @@
 	grid-template-columns: var(--hb-topics-card-double-size) calc(100% - var(--hb-topics-card-double-size));
 	grid-template-rows: calc(var(--hb-topics-card-size) + var(--hb-topics-card-double-padding)) calc(var(--hb-topics-card-size) + var(--hb-topics-card-padding));
 }
+.grid:hover {
+	background-color: var(--hb-topics-card-hover-background-color);
+}
+
 img {
 	padding: var(--hb-topics-card-padding);
 
