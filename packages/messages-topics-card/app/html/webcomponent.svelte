@@ -85,7 +85,7 @@
 			<div class="details">
 				<span class="description text-item">{chat.text}</span>
 				<span class="counter text-item right">
-					<span class="badge rounded-pill bg-secondary">{chat.counter.toString()}</span>
+					<span class="badge rounded-pill bg-secondary">{chat.counter ? chat.counter.toString() : "0"}</span>
 				</span>
 			</div>
 		</div>
