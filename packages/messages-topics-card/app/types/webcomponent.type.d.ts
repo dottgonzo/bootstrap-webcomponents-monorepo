@@ -3,7 +3,6 @@ export type IChat = {
 	title: string;
 	text: string;
 	img_uri: string;
-	counter: number;
 	is_group?: boolean;
 	chat_name?: string;
 	chat_img?: string;
