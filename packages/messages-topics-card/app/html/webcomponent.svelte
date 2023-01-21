@@ -22,13 +22,10 @@
 	export let id: string;
 	export let style: string;
 
-	export let content: Component["content"];
-	export let chat: Component["chat"];
+	export let chats: Component["chats"];
 
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
-
-	let localeTimeString: string;
 
 	$: {
 		if (!id) id = "";
@@ -36,50 +33,48 @@
 			parsedStyle = parseStyle(style);
 		}
 
-		if (typeof content === "string") {
+		if (typeof chats === "string") {
 			try {
-				content = JSON.parse(content);
-			} catch (err) {
-				console.error("error parsing content", err);
-			}
-		}
-		if (typeof chat === "string") {
-			try {
-				chat = JSON.parse(chat);
+				chats = JSON.parse(chats);
 			} catch (err) {
 				console.error("error parsing chat", err);
 			}
 		}
-		if (!content && chat) {
-			content = {
-				title: chat.chat_name || chat.last_message_author,
-				text: chat.last_message_text,
-				img_uri: chat.last_message_author_img,
-				time: chat.last_message_time,
-				counter: chat.counter || 0,
-			};
-		}
+		chats.forEach((chat) => {
+			if (!chat.localeTimeString)
+				chat.localeTimeString = chat.time
+					? new Date(chat.time).getHours().toString().padStart(2, "0") + ":" + new Date(chat.time).getMinutes().toString().padStart(2, "0")
+					: "";
+		});
 
-		localeTimeString = content?.time
-			? new Date(content.time).getHours().toString().padStart(2, "0") + ":" + new Date(content.time).getMinutes().toString().padStart(2, "0")
-			: "";
+		// if (!content && chat) {
+		// 	content = {
+		// 		title: chat.chat_name || chat.last_message_author,
+		// 		text: chat.last_message_text,
+		// 		img_uri: chat.last_message_author_img,
+		// 		time: chat.last_message_time,
+		// 		counter: chat.counter || 0,
+		// 	};
+		// }
 	}
 </script>
 
-{#if content}
-	<div id="grid">
-		<img src={content.img_uri} alt={content.img_uri} />
-		<div id="header">
-			<span class="text-item" id="title">{content.title}</span>
-			<span class="text-item right" id="time">{localeTimeString}</span>
+{#if chats}
+	{#each chats as chat (chat.chat_id)}
+		<div class="grid">
+			<img src={chat.img_uri} alt={chat.img_uri} />
+			<div class="header">
+				<span class="text-item title">{chat.title}</span>
+				<span class="text-item right time">{chat.localeTimeString}</span>
+			</div>
+			<div class="details">
+				<span class="description text-item">{chat.text}</span>
+				<span class="counter text-item right">
+					<span class="badge rounded-pill bg-secondary">{chat.counter.toString()}</span>
+				</span>
+			</div>
 		</div>
-		<div id="details">
-			<span id="description" class="text-item">{content.text}</span>
-			<span id="counter" class="text-item right">
-				<span class="badge rounded-pill bg-secondary">{content.counter.toString()}</span>
-			</span>
-		</div>
-	</div>
+	{/each}
 {/if}
 
 <style lang="scss">

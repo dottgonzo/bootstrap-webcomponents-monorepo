@@ -12,7 +12,7 @@
 	--hb-topics-card-double-size: calc(var(--hb-topics-card-size) * 2);
 	--hb-topics-card-double-padding: calc(var(--hb-topics-card-padding) * 2);
 }
-#grid {
+.grid {
 	display: grid;
 	grid-template-areas:
 		"img header"
@@ -28,10 +28,9 @@ img {
 	width: calc(var(--hb-topics-card-size) + var(--hb-topics-card-double-padding) + var(--hb-topics-card-size) + var(--hb-topics-card-padding));
 	border-radius: 50%;
 }
-
-#text-content {
+.text-content {
 }
-#header {
+.header {
 	grid-area: header;
 	// height: calc(var(--hb-topics-card-size) - var(--hb-topics-card-double-padding) + 10px);
 
@@ -40,7 +39,7 @@ img {
 	line-height: calc(var(--hb-topics-card-size) + 0px);
 }
 
-#details {
+.details {
 	padding: var(--hb-topics-card-padding) var(--hb-topics-card-padding) var(--hb-topics-card-padding) 10px;
 
 	grid-area: details;
@@ -48,17 +47,17 @@ img {
 	line-height: calc(var(--hb-topics-card-size) - var(--hb-topics-card-double-padding));
 }
 
-#title {
+.title {
 	font-size: 1.5em;
 	font-weight: 600;
 }
-#description {
+.description {
 	font-size: 1em;
 	font-weight: 300;
 	opacity: 0.8;
 }
 
-#time {
+.time {
 	font-size: 0.8em;
 	font-weight: 300;
 	opacity: 0.6;

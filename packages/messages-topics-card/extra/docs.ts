@@ -2,8 +2,7 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	content: { control: { type: "object" } },
-	chat: { control: { type: "object" } },
+	chats: { control: { type: "object" } },
 	sendMessage: { action: "sendMessageEvent" },
 };
 
@@ -21,13 +20,32 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {
-			content: {
-				counter: 0,
-				text: "Hello",
-				title: "Hello",
-				time: new Date(),
-				img_uri: "https://www.w3schools.com/howto/img_avatar.png",
-			},
+			chats: [
+				{
+					chat_id: "ciao0",
+					counter: 0,
+					text: "Hello 0",
+					title: "Hello0",
+					time: new Date(),
+					img_uri: "https://www.w3schools.com/howto/img_avatar.png",
+				},
+				{
+					chat_id: "ciao1",
+					counter: 0,
+					text: "Hello 1",
+					title: "Hello1",
+					time: new Date(),
+					img_uri: "https://www.w3schools.com/howto/img_avatar.png",
+				},
+				{
+					chat_id: "ciao2",
+					counter: 0,
+					text: "Hello 2",
+					title: "Hello2",
+					time: new Date(),
+					img_uri: "https://www.w3schools.com/howto/img_avatar.png",
+				},
+			],
 		},
 	},
 ];
