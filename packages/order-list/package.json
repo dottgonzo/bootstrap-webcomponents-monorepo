@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-order-list",
 	"displayName": "Svelte Order List WebComponent",
 	"description": "Svelte Order List WebComponent",
-	"version": "0.17.8",
+	"version": "0.17.9",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.17.8",
+		"@htmlbricks/hb-jsutils": "^0.17.9",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
