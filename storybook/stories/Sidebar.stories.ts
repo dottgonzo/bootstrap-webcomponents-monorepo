@@ -13,7 +13,7 @@ const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
 
 const Template: Story = (args: any) =>
-  webComponentBind(args, meta.argTypes, componentSetup.name);
+  webComponentBind(args, meta.argTypes as any, componentSetup.name);
 
 const navlinks1b = [
   {
@@ -218,88 +218,54 @@ const groups1 = [
   },
 ];
 
-export const BasicSidebarDesktop = Template.bind({});
-BasicSidebarDesktop.args = {
-  id: "BasicSidebarDesktop",
-  navlinks: navlinks0,
-};
-export const BasicSidebarDesktopOpen = Template.bind({});
-BasicSidebarDesktopOpen.args = {
-  opened: true,
-  id: "BasicSidebarDesktopOpen",
-  navlinks: navlinks0,
-};
-export const BasicSidebarDesktopOnSettings = Template.bind({});
-BasicSidebarDesktopOnSettings.args = {
-  opened: true,
-  id: "BasicSidebarDesktopOnSettings",
-  navlinks: navlinks0,
-  navpage: "settings",
-};
-export const BasicSidebarDesktopWithGroups = Template.bind({});
-BasicSidebarDesktopWithGroups.args = {
-  opened: true,
-  id: "BasicSidebarDesktopWithGroups",
-  navlinks: navlinks1b,
-  groups: groups1,
-};
-export const BasicSidebarDesktopWithGroupsOnSettings = Template.bind({});
-BasicSidebarDesktopWithGroupsOnSettings.args = {
-  opened: true,
-  id: "BasicSidebarDesktopWithGroupsOnSettings",
-  navlinks: navlinks1,
-  groups: groups1,
-  navpage: "settings",
-};
-export const BasicSidebarDesktopWithAutoGroupsOnSettings = Template.bind({});
-BasicSidebarDesktopWithAutoGroupsOnSettings.args = {
-  opened: true,
-  id: "BasicSidebarDesktopWithAutoGroupsOnSettings",
-  navlinks: navlinks1,
-  navpage: "settings",
-};
+export const BasicSidebarDesktopDefault = Template.bind({});
+BasicSidebarDesktopDefault.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "default")
+);
 
-export const BasicSidebarDesktopWithAutoGroupsOnSettingsAndBadge =
-  Template.bind({});
-BasicSidebarDesktopWithAutoGroupsOnSettingsAndBadge.args = {
-  opened: true,
-  id: "BasicSidebarDesktopWithAutoGroupsOnSettingsAndBadge",
-  navlinks: navlinks2,
-  navpage: "settings",
-};
-export const SidebarDesktopWithFooter = Template.bind({});
-SidebarDesktopWithFooter.args = {
-  opened: true,
-  id: "SidebarDesktopWithFooter",
-  navlinks: navlinks2,
-  navpage: "settings",
-  enablefooter: true,
-};
+export const BasicSidebarOnSettings = Template.bind({});
+BasicSidebarOnSettings.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "sidebarOnSettings")
+);
 
-export const SidebarDesktopWithFooterCustom = Template.bind({});
-SidebarDesktopWithFooterCustom.args = {
-  opened: true,
-  id: "SidebarDesktopWithFooterCustom",
-  navlinks: navlinks2,
-  navpage: "settings",
-  enablefooter: true,
-};
+export const BasicSidebarWithGroups = Template.bind({});
+BasicSidebarWithGroups.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "sidebarWithGroups")
+);
 
-export const SidebarDesktopWithFooterCustomDesktop = Template.bind({});
-SidebarDesktopWithFooterCustomDesktop.args = {
-  opened: true,
-  id: "SidebarDesktopWithFooterCustomDesktop",
-  navlinks: navlinks2,
-  navpage: "settings",
-  enablefooter: true,
-  type: "open",
-};
-export const SidebarDesktopMultilevel = Template.bind({});
-SidebarDesktopMultilevel.args = {
-  opened: true,
-  id: "SidebarDesktopMultilevel",
-  navlinks: navlinks3,
-  navpage: "settings",
-  enablefooter: true,
-  type: "open",
-};
+export const BasicSidebarWithGroupsOnSettings = Template.bind({});
+BasicSidebarWithGroupsOnSettings.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "sidebarWithGroupsOnSettings")
+);
+
+export const BasicSidebarWithAutoGroupsOnSettings = Template.bind({});
+BasicSidebarWithAutoGroupsOnSettings.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find(
+    (f) => f.name === "sidebarWithAutoGroupsOnSettings"
+  )
+);
+
+export const BasicSidebarWithAutoGroupsOnSettingsAndBadge = Template.bind({});
+BasicSidebarWithAutoGroupsOnSettingsAndBadge.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find(
+    (f) => f.name === "sidebarWithAutoGroupsOnSettingsAndBadge"
+  )
+);
+
+export const BasicSidebarWithFooter = Template.bind({});
+BasicSidebarWithFooter.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "sidebarWithFooter")
+);
+
+export const BasicSidebarMultilevel = Template.bind({});
+BasicSidebarMultilevel.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "sidebarMultilevel")
+);

@@ -41,39 +41,268 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
+const navlinks1b: Component["navlinks"] = [
+	{
+		label: "Settings",
+		key: "settings",
+		icon: "gear",
+		group: "admin",
+	},
+	{
+		label: "Users",
+		key: "users",
+		icon: "people-fill",
+		group: "admin",
+	},
+	{
+		label: "Stats",
+		key: "stats",
+		icon: "graph-up",
+		group: "stats",
+	},
+];
+const navlinks1: Component["navlinks"] = [
+	{
+		label: "Home",
+		key: "home",
+		icon: "house-door",
+	},
+	{
+		label: "Dashboard",
+		key: "dashboard",
+		icon: "speedometer",
+	},
+	{
+		label: "Settings",
+		key: "settings",
+		icon: "gear",
+		group: "admin",
+	},
+	{
+		label: "Users",
+		key: "users",
+		icon: "people-fill",
+		group: "admin",
+	},
+	{
+		label: "Stats",
+		key: "stats",
+		icon: "graph-up",
+		group: "stats",
+	},
+];
+const navlinks3: Component["navlinks"] = [
+	{
+		label: "Home",
+		key: "home",
+		icon: "house-door",
+		badge: {
+			text: "bbb",
+		},
+	},
+	{
+		label: "Dashboard",
+		key: "dashboard",
+		icon: "speedometer",
+		badge: {
+			text: "bbb",
+		},
+	},
+	{
+		label: "Settings",
+		key: "settings",
+		icon: "gear",
+		group: "admin",
+		badge: {
+			text: "bbb",
+		},
+	},
+	{
+		label: "Settingsss",
+		key: "settingsss",
+		icon: "gear",
+		group: "admin",
+		subLinks: [
+			{
+				label: "Home",
+				key: "home",
+				icon: "house-door",
+				badge: {
+					text: "bbb",
+				},
+			},
+			{
+				label: "Dashboard",
+				key: "dashboard",
+				icon: "speedometer",
+				badge: {
+					text: "bbb",
+				},
+			},
+		],
+	},
+	{
+		label: "Users",
+		key: "users",
+		icon: "people-fill",
+		group: "admin",
+		badge: {
+			text: "uuuuu",
+		},
+	},
+	{
+		label: "Stats",
+		key: "stats",
+		icon: "graph-up",
+		group: "stats",
+		badge: {
+			text: "bbb",
+		},
+	},
+];
+const navlinks2: Component["navlinks"] = [
+	{
+		label: "Home",
+		key: "home",
+		icon: "house-door",
+		badge: {
+			text: "bbb",
+		},
+	},
+	{
+		label: "Dashboard",
+		key: "dashboard",
+		icon: "speedometer",
+		badge: {
+			text: "bbb",
+		},
+	},
+	{
+		label: "Settings",
+		key: "settings",
+		icon: "gear",
+		group: "admin",
+		badge: {
+			text: "bbb",
+		},
+	},
+	{
+		label: "Users",
+		key: "users",
+		icon: "people-fill",
+		group: "admin",
+		badge: {
+			text: "uuuuu",
+		},
+	},
+	{
+		label: "Stats",
+		key: "stats",
+		icon: "graph-up",
+		group: "stats",
+		badge: {
+			text: "bbb",
+		},
+	},
+];
+const navlinks0: Component["navlinks"] = [
+	{
+		label: "Home",
+		key: "home",
+		icon: "house-door",
+	},
+	{
+		label: "Dashboard",
+		key: "dashboard",
+		icon: "speedometer",
+	},
+	{
+		label: "Settings",
+		key: "settings",
+		icon: "gear",
+	},
+	{
+		label: "Users",
+		key: "users",
+		icon: "people-fill",
+	},
+	{
+		label: "Stats",
+		key: "stats",
+		icon: "graph-up",
+	},
+];
+
+const groups1: Component["groups"] = [
+	{
+		key: "stats",
+		label: "statistiche",
+	},
+	{
+		key: "admin",
+		label: "amministrazione",
+	},
+];
+
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {
-			navlinks: [
-				{
-					label: "Home",
-					key: "home",
-					icon: "house-door",
-				},
-				{
-					label: "Dashboard",
-					key: "dashboard",
-					icon: "speedometer",
-				},
-				{
-					label: "Settings",
-					key: "settings",
-					icon: "gear",
-				},
-				{
-					label: "Users",
-					key: "users",
-					icon: "people-fill",
-				},
-				{
-					label: "Stats",
-					key: "stats",
-					icon: "graph-up",
-				},
-			],
+			navlinks: navlinks0,
+		},
+	},
+	{
+		name: "sidebarOnSettings",
+		data: {
+			navlinks: navlinks0,
 			navpage: "settings",
-			companytitle: "acme corp",
+		},
+	},
+	{
+		name: "sidebarWithGroups",
+		data: {
+			navlinks: navlinks1b,
+			groups: groups1,
+		},
+	},
+	{
+		name: "sidebarWithGroupsOnSettings",
+		data: {
+			navlinks: navlinks1,
+			groups: groups1,
+			navpage: "settings",
+		},
+	},
+	{
+		name: "sidebarWithAutoGroupsOnSettings",
+		data: {
+			navlinks: navlinks1,
+			navpage: "settings",
+		},
+	},
+	{
+		name: "sidebarWithAutoGroupsOnSettingsAndBadge",
+		data: {
+			navlinks: navlinks2,
+			navpage: "settings",
+		},
+	},
+
+	{
+		name: "sidebarWithFooter",
+		data: {
+			navlinks: navlinks2,
+			navpage: "settings",
+			enablefooter: true,
+		},
+	},
+
+	{
+		name: "sidebarMultilevel",
+		data: {
+			navlinks: navlinks3,
+			navpage: "settings",
+			enablefooter: true,
 		},
 	},
 ];
