@@ -4,6 +4,7 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	navpage: { control: { type: "text" } },
 	navlink: { control: { type: "object" } },
+	pageChange: { action: "pageChangeEvent" },
 };
 
 const cssVars: CssVar[] = [{ name: "--bs-primary", defaultValue: "#07689f", valueType: "color", theme: "bootstrap" }];
@@ -20,7 +21,21 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {
+			navlink: {
+				label: "Home",
+				key: "home",
+				icon: "house-door",
+				badge: {
+					text: "bbb",
+				},
+			},
+		},
+	},
+	{
+		name: "withPage",
+		data: {
 			navpage: "home",
+
 			navlink: {
 				label: "Home",
 				key: "home",

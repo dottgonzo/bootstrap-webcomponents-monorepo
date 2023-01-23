@@ -2,7 +2,7 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	cards: { control: { type: "object" } },
+	panels: { control: { type: "object" } },
 	// string: { control: { type: "text" } },
 	// boolean: { control: { type: "boolean" } },
 	itemClick: { action: "itemClickEvent" },
@@ -22,10 +22,15 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {
-			cards: [
+			panels: [
 				{
 					id: "1",
-					rows: [{ id: "1", text: "test", type: "line" }],
+					cards: [
+						{
+							id: "1",
+							rows: [{ id: "1", text: "test", type: "line" }],
+						},
+					],
 				},
 			],
 		},
@@ -33,16 +38,21 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "empty",
 		data: {
-			cards: [],
+			panels: [],
 		},
 	},
 	{
 		name: "emptyRows",
 		data: {
-			cards: [
+			panels: [
 				{
 					id: "1",
-					rows: [],
+					cards: [
+						{
+							id: "1",
+							rows: [],
+						},
+					],
 				},
 			],
 		},

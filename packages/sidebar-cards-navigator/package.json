@@ -77,6 +77,8 @@
 	"contributors": [],
 	"gitHead": "971dc613b021869b8ad70a31823115ab78d81134",
 	"dependencies": {
+		"@htmlbricks/hb-navbar": "^0.17.10",
+		"@htmlbricks/hb-sidenav-link": "^0.17.10",
 		"style-to-object": "^0.3.0"
 	}
 }

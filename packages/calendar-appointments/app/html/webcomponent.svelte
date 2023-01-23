@@ -102,7 +102,7 @@
 	const monthDateFormat = new Intl.DateTimeFormat(detectedLang, { month: "long" });
 	const longDayDateFormat = new Intl.DateTimeFormat(detectedLang, { weekday: "long" });
 
-	function dispatch(name, detail) {
+	function dispatch(name: string, detail: any) {
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}

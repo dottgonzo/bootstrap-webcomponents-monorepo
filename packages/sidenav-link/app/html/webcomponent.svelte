@@ -17,11 +17,12 @@
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 
-	function dispatch(name, detail) {
+	function dispatch(name: string, detail: any) {
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
-	function changePage(page: string) {
+	function pageChange(page: string) {
+		console.log("oooooo");
 		dispatch("pageChange", {
 			page,
 		});
@@ -94,7 +95,7 @@
 							{:else}
 								<button
 									on:click={() => {
-										changePage(navLinkSub.key);
+										pageChange(navLinkSub.key);
 									}}
 									style="width:100%;text-align:left;color:black;box-shadow: none!important;"
 									class="btn nav-link"
@@ -126,7 +127,7 @@
 			{:else}
 				<button
 					on:click={() => {
-						changePage(navlink.key);
+						pageChange(navlink.key);
 					}}
 					style="width:100%;text-align:left;color:black;box-shadow: none!important;"
 					class="btn nav-link"

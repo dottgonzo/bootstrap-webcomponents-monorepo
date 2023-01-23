@@ -98,7 +98,7 @@
 		track.minValue = minHours * 3600 + minMinutes * 60 + minSeconds;
 	}
 
-	function dispatch(name, detail) {
+	function dispatch(name: string, detail: any) {
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}

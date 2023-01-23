@@ -15,17 +15,16 @@ export default meta;
 const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes as any, componentSetup.name);
 
-export const SidenavLink = Template.bind({});
+export const SidenavLinkDefault = Template.bind({});
 
-SidenavLink.args = {
-  id: "SidenavLink",
-  navpage: "home",
-  navlink: {
-    label: "Home",
-    key: "home",
-    icon: "house-door",
-    badge: {
-      text: "bbb",
-    },
-  },
-};
+SidenavLinkDefault.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "default")
+);
+
+export const SidenavLinkWithPage = Template.bind({});
+
+SidenavLinkWithPage.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "withPage")
+);

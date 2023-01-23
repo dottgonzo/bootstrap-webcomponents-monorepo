@@ -89,7 +89,7 @@
 	}
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
-	function dispatch(name, detail) {
+	function dispatch(name: string, detail: any) {
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}

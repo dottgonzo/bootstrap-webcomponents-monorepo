@@ -99,7 +99,7 @@
 			console.info("newpos", minSlider, positionPercent, positionFromLeft);
 		}
 	}
-	function dispatch(name, detail) {
+	function dispatch(name: string, detail: any) {
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}

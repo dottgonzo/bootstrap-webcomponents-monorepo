@@ -1,15 +1,15 @@
-export type CardBase = {
+export type CardRowBase = {
 	id: string;
-	_selected?: boolean;
+	switchToPanelId?: string;
 };
 
-export interface CardRowLine extends CardBase {
+export interface CardRowLine extends CardRowBase {
 	iconUrl?: string;
 	bootstrapIcon?: string;
 	text: string;
 	type: "line";
 }
-export interface CardRowCustomLine extends CardBase {
+export interface CardRowCustomLine extends CardRowBase {
 	iconUrl?: string;
 	bootstrapIcon?: string;
 	title: string;
@@ -29,16 +29,31 @@ export type CardNavigatorRowSelected = {
 export interface CardNavigator extends CardNavigatorRowSelected {
 	rows: CardRow[];
 }
+export type PanelRowSelected = {
+	id: string;
+	title?: string;
+	icon?: string;
+	parentPanelId?: string;
+	main?: boolean;
+};
+
+export interface Panel extends PanelRowSelected {
+	cards: CardNavigator[];
+}
+
 export type Component = {
 	id?: string;
 	style?: string;
-	cards?: CardNavigator[];
+	panels?: Panel[];
 };
+
 export type CardRowSelected = {
+	panel: PanelRowSelected;
 	card: CardNavigatorRowSelected;
 	row: CardRow;
 	id: string;
 };
+
 export type Events = {
 	event: { itemClick: CardRowSelected };
 };
