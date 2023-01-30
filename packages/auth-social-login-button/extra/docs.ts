@@ -2,12 +2,9 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-
 	provider: { control: { type: "object" } },
 	oauthFlowInit: { action: "oauthFlowInitEvent" },
-		oauthFlowCustom: { action: "oauthFlowCustomEvent" },
-
-
+	oauthFlowCustom: { action: "oauthFlowCustomEvent" },
 };
 
 const cssVars: CssVar[] = [
@@ -40,34 +37,42 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "facebook",
 		data: {
 			provider: {
-				name: 'facebook',
-			}
+				name: "facebook",
+			},
 		},
 	},
 	{
 		name: "gitlab",
 		data: {
 			provider: {
-				name: 'gitlab',
-			}
+				name: "gitlab",
+			},
 		},
 	},
 	{
 		name: "github",
 		data: {
 			provider: {
-				name: 'github',
-			}
+				name: "github",
+			},
 		},
 	},
 	{
 		name: "google",
 		data: {
 			provider: {
-				name: 'google',
-			}
+				name: "google",
+			},
 		},
-	}
+	},
+	{
+		name: "spid",
+		data: {
+			provider: {
+				name: "spid",
+			},
+		},
+	},
 ];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null as any,
