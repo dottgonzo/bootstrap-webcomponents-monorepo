@@ -28,7 +28,24 @@ const examples: { name: string; description?: string; data: Component }[] = [
 					cards: [
 						{
 							id: "1",
+							rows: [{ id: "1", text: "test", type: "line", bootstrapIcon: "house-door", switchToPanelId: "2" }],
+						},
+						{
+							id: "2",
+							rows: [{ id: "1", text: "test2", type: "line" }],
+						},
+					],
+				},
+				{
+					id: "2",
+					cards: [
+						{
+							id: "1",
 							rows: [{ id: "1", text: "test", type: "line" }],
+						},
+						{
+							id: "2",
+							rows: [{ id: "1", text: "test2", type: "line", bootstrapIcon: "house-door", switchToPanelId: "1" }],
 						},
 					],
 				},

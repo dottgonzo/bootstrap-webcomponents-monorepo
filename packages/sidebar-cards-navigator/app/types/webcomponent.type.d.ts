@@ -4,10 +4,14 @@ export type CardRowBase = {
 };
 
 export interface CardRowLine extends CardRowBase {
-	iconUrl?: string;
 	bootstrapIcon?: string;
 	text: string;
 	type: "line";
+	badge?: {
+		text: string;
+		class?: string;
+		classcolor?: string;
+	};
 }
 export interface CardRowCustomLine extends CardRowBase {
 	iconUrl?: string;

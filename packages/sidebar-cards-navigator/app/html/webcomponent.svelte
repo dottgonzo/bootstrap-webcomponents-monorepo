@@ -8,9 +8,10 @@
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
-	import type { Component, CardRowSelected, CardNavigatorRowSelected } from "@app/types/webcomponent.type";
+	import type { Component, CardRowSelected, CardRowLine } from "@app/types/webcomponent.type";
 	import { styleSetup as navbarStyleSetup } from "../../node_modules/@htmlbricks/hb-navbar/release/docs";
-	import { styleSetup as sidenavLinkStyleSetup } from "../../node_modules/@htmlbricks/hb-navbar/release/docs";
+	import type { Component as NavbarComponent } from "../../node_modules/@htmlbricks/hb-sidenav-link/release/webcomponent.type";
+	import { styleSetup as sidenavLinkStyleSetup } from "../../node_modules/@htmlbricks/hb-sidenav-link/release/docs";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -85,8 +86,19 @@
 	}
 	addComponent({ repoName: "@htmlbricks/hb-navbar", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-sidenav-link", version: pkg.version });
+
+	function rowToLineNavlink(row: CardRowLine) {
+		const newSidebarLink: NavbarComponent["navlink"] = {
+			label: row.text,
+			key: row.id,
+		};
+		if (row.bootstrapIcon) newSidebarLink.icon = row.bootstrapIcon;
+		if (row.badge) newSidebarLink.badge = row.badge;
+		return newSidebarLink;
+	}
 </script>
 
+to be done, ref <a href="https://web.telegram.org/z/">https://web.telegram.com</a> left panel
 <!-- <div class="sidebar-panel-card"> -->
 {#if panel}
 	<hb-navbar />
@@ -101,14 +113,7 @@
 									on:pageChange={(e) => {
 										itemClick(row.id, card.id);
 									}}
-									navlink={JSON.stringify({
-										label: row.text,
-										key: row.id,
-										icon: "house-door",
-										badge: {
-											text: "bbb",
-										},
-									})}
+									navlink={JSON.stringify(rowToLineNavlink(row))}
 								/>
 							{:else if row.type === "customLine"}
 								<div
