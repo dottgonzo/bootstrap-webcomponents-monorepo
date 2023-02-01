@@ -61,6 +61,26 @@
 				// 		provider.params.client_id
 				// 	}&redirect_uri=${provider.params.redirect_url}`;
 				// 	break;
+				case "spid":
+					let entityUri: string;
+					switch (provider.params.providerIdentity) {
+						case "arubaid":
+							entityUri = "https://loginspid.aruba.it";
+							break;
+						case "infocertid":
+							entityUri = "https://identity.infocert.it";
+							break;
+						case "intesaid":
+							entityUri = "https://spid.intesa.it";
+							break;
+						case "posteid":
+							entityUri = "https://posteid.poste.it";
+							break;
+					}
+					url = `${entityUri}/oauth/authorize?scope=${provider.params.scope}&response_type=code&state=${new Date().valueOf()}&client_id=${
+						provider.params.client_id
+					}&redirect_uri=${provider.params.redirect_url}`;
+					break;
 				default:
 					return console.error("no provider uri composed for " + provider.name);
 			}

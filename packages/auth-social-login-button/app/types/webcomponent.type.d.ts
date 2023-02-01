@@ -10,6 +10,7 @@ export type Component = {
 			redirect_url: string;
 			client_id: string;
 			scope: string;
+			providerIdentity?: string;
 		};
 	};
 };
