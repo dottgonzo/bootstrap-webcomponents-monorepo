@@ -2,9 +2,9 @@ export type Component = {
 	id?: string;
 	style?: string;
 
-	type: "dpad" | "joystick";
+	type?: "dpad" | "joystick";
 };
 
 export type Events = {
-	sendDirection: { direction: string };
+	sendDirection: { direction: "up" | "right" | "down" | "left" };
 };

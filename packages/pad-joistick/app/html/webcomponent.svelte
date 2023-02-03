@@ -58,6 +58,10 @@
 			<button on:click={() => sendArrow("left")} class="left" />
 		</nav>
 	</div>
+{:else if type === "joystick"}
+	....
+{:else}
+	<div>Unknown type</div>
 {/if}
 
 <style lang="scss">

@@ -19,17 +19,19 @@
 	--tri-lrg-b: 19px;
 	--dpad-arrow-shift: 5px;
 	--dpad-arrow-move: 35%;
+	width: 200px;
+	height: 200px;
+	display: block;
 }
 
 .set {
 	overflow: hidden;
-	padding: 30px;
 	text-align: center;
 	.d-pad {
 		margin-right: 40px;
-	}
-	.d-pad,
-	.o-pad {
+		// }
+		// .d-pad,
+		// .o-pad {
 		display: inline-block;
 		// transform: scale(.7);
 	}
@@ -43,8 +45,8 @@
 
 .d-pad {
 	position: relative;
-	width: 200px;
-	height: 200px;
+	width: 100%;
+	height: 100%;
 	border-radius: 48%;
 	overflow: hidden;
 	&:before {
@@ -265,18 +267,5 @@
 	border-right-color: #333;
 }
 .d-pad.right button.right:before {
-	border-left-color: #333;
-}
-
-.o-pad.up button.up:after {
-	border-bottom-color: #333;
-}
-.o-pad.down button.down:after {
-	border-top-color: #333;
-}
-.o-pad.left button.left:after {
-	border-right-color: #333;
-}
-.o-pad.right button.right:after {
 	border-left-color: #333;
 }
