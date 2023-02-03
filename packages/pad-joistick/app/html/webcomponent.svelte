@@ -19,9 +19,7 @@
 	export let id: string;
 	export let style: string;
 
-	export let string: string;
-	export let json: Component["json"];
-	export let boolean: boolean;
+	export let type: Component["type"];
 
 	// let nipple: nipplejs.JoystickManager;
 
@@ -34,20 +32,7 @@
 			parsedStyle = parseStyle(style);
 			// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
 		}
-		if (!string) string = "";
-
-		// json
-		if (typeof json === "string") {
-			try {
-				json = JSON.parse(json);
-			} catch (err) {
-				console.error("error parsing json", err);
-			}
-		}
-		// boolean
-		if (boolean === ("" as unknown)) boolean = true;
-		if (typeof boolean === "string") boolean = boolean === "no" || boolean === "false" ? false : true;
-		if (!boolean) boolean = false;
+		if (!type) type = "dpad";
 	}
 
 	onMount(() => {
@@ -59,21 +44,21 @@
 		// });
 	});
 
-	function dispatchCustomEvent() {
-		dispatch("event", { test: true });
+	function sendArrow(direction: "up" | "right" | "down" | "left") {
+		dispatch("sendDirection", { direction });
 	}
 </script>
 
-<div id="dpad">
+{#if type === "dpad"}
 	<div class="set">
 		<nav class="d-pad">
-			<a class="up" href="#" />
-			<a class="right" href="#" />
-			<a class="down" href="#" />
-			<a class="left" href="#" />
+			<button on:click={() => sendArrow("up")} class="up" />
+			<button on:click={() => sendArrow("right")} class="right" />
+			<button on:click={() => sendArrow("down")} class="down" />
+			<button on:click={() => sendArrow("left")} class="left" />
 		</nav>
 	</div>
-</div>
+{/if}
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";

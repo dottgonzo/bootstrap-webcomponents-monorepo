@@ -21,3 +21,9 @@ PadJoistickDefault.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples.find((f) => f.name === "default")
 );
+export const PadJoistickJoystick = Template.bind({});
+
+PadJoistickJoystick.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "joystick")
+);

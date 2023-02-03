@@ -1,11 +1,10 @@
 export type Component = {
 	id?: string;
 	style?: string;
-	json?: { a: number };
-	string: string;
-	boolean?: boolean;
+
+	type: "dpad" | "joystick";
 };
 
 export type Events = {
-	event: { test: boolean };
+	sendDirection: { direction: string };
 };

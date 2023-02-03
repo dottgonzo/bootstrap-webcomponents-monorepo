@@ -20,6 +20,7 @@
 	--dpad-arrow-shift: 5px;
 	--dpad-arrow-move: 35%;
 }
+
 .set {
 	overflow: hidden;
 	padding: 30px;
@@ -76,7 +77,9 @@
 		width: 30%;
 		height: 30%;
 	}
-	a {
+	button {
+		cursor: pointer;
+		border: none;
 		display: block;
 		position: absolute;
 		-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
@@ -87,7 +90,7 @@
 		background: var(--dpad-fg);
 		text-align: center;
 		&:hover {
-			background: var(--dpad-fg)-hover;
+			background: var(--dpad-fg-hover);
 		}
 		&:before {
 			content: "";
@@ -107,8 +110,8 @@
 			border-radius: var(--dpad-radius-in);
 		}
 	}
-	a.left,
-	a.right {
+	button.left,
+	button.right {
 		width: 43%;
 		height: 33%;
 		&:after {
@@ -117,13 +120,13 @@
 		}
 	}
 
-	a.up {
+	button.up {
 		top: 0;
 		left: 50%;
 		transform: translate(-50%, 0);
 		border-radius: var(--dpad-radius) var(--dpad-radius) 50% 50%;
 		&:hover {
-			background: linear-gradient(0deg, var(--dpad-fg) 0%, var(--dpad-fg)-hover 50%);
+			background: linear-gradient(0deg, var(--dpad-fg) 0%, var(--dpad-fg-hover) 50%);
 		}
 		&:after {
 			left: 0;
@@ -143,17 +146,17 @@
 			border-bottom-color: #333;
 		}
 	}
-	a.up:hover:before {
+	button.up:hover:before {
 		top: var(--dpad-arrow-move);
 	}
 
-	a.down {
+	button.down {
 		bottom: 0;
 		left: 50%;
 		transform: translate(-50%, 0);
 		border-radius: 50% 50% var(--dpad-radius) var(--dpad-radius);
 		&:hover {
-			background: linear-gradient(180deg, var(--dpad-fg) 0%, var(--dpad-fg)-hover 50%);
+			background: linear-gradient(180deg, var(--dpad-fg) 0%, var(--dpad-fg-hover) 50%);
 		}
 		&:after {
 			right: 0;
@@ -173,17 +176,17 @@
 			border-top-color: #333;
 		}
 	}
-	a.down:hover:before {
+	button.down:hover:before {
 		bottom: var(--dpad-arrow-move);
 	}
 
-	a.left {
+	button.left {
 		top: 50%;
 		left: 0;
 		transform: translate(0, -50%);
 		border-radius: var(--dpad-radius) 50% 50% var(--dpad-radius);
 		&:hover {
-			background: linear-gradient(-90deg, var(--dpad-fg) 0%, var(--dpad-fg)-hover 50%);
+			background: linear-gradient(-90deg, var(--dpad-fg) 0%, var(--dpad-fg-hover) 50%);
 		}
 		&:after {
 			left: 0;
@@ -203,17 +206,17 @@
 			border-right-color: #333;
 		}
 	}
-	a.left:hover:before {
+	button.left:hover:before {
 		left: var(--dpad-arrow-move);
 	}
 
-	a.right {
+	button.right {
 		top: 50%;
 		right: 0;
 		transform: translate(0, -50%);
 		border-radius: 50% var(--dpad-radius) var(--dpad-radius) 50%;
 		&:hover {
-			background: linear-gradient(90deg, var(--dpad-fg) 0%, var(--dpad-fg)-hover 50%);
+			background: linear-gradient(90deg, var(--dpad-fg) 0%, var(--dpad-fg-hover) 50%);
 		}
 		&:after {
 			right: 0;
@@ -233,801 +236,47 @@
 			border-left-color: #333;
 		}
 	}
-	a.right:hover:before {
+	button.right:hover:before {
 		right: var(--dpad-arrow-move);
 	}
 }
-.d-pad.up a.up:before {
+.d-pad.up button.up:before {
 	border-bottom-color: #333;
 }
-.d-pad.down a.down:before {
+.d-pad.down button.down:before {
 	border-top-color: #333;
 }
-.d-pad.left a.left:before {
+.d-pad.left button.left:before {
 	border-right-color: #333;
 }
-.d-pad.right a.right:before {
+.d-pad.right button.right:before {
 	border-left-color: #333;
-}
-
-.o-pad {
-	position: relative;
-	background: var(--dpad-fg);
-	width: 200px;
-	height: 200px;
-	border-radius: 50%;
-	overflow: hidden;
-	&:after {
-		content: "";
-		position: absolute;
-		z-index: 2;
-		width: 20%;
-		height: 20%;
-		top: 50%;
-		left: 50%;
-		background: #ddd;
-		border-radius: 50%;
-		transform: translate(-50%, -50%);
-		display: none;
-		transition: all 0.25s;
-		cursor: pointer;
-	}
-	&:hover:after {
-		width: 30%;
-		height: 30%;
-	}
-	a {
-		display: block;
-		position: absolute;
-		-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-		width: 50%;
-		height: 50%;
-		text-align: center;
-		transform: rotate(45deg);
-		border: 1px solid rgba(0, 0, 0, 0.2);
-		&:before {
-			content: "";
-			position: absolute;
-			width: 60%;
-			height: 60%;
-			top: 50%;
-			left: 50%;
-			background: rgba(255, 255, 255, 0.1);
-			border-radius: 50%;
-			transform: translate(-50%, -50%);
-			transition: all 0.25s;
-			cursor: pointer;
-			display: none;
-		}
-		&:after {
-			content: "";
-			position: absolute;
-			width: 0;
-			height: 0;
-			border-radius: 5px;
-			border-style: solid;
-			transform: translate(-50%, -50%) rotate(-45deg);
-			transition: all 0.25s;
-		}
-	}
-	a.up {
-		bottom: 50%;
-		left: 50%;
-		transform: translate(-50%, -20%) rotate(45deg);
-		border-top-left-radius: 50%;
-		z-index: 1;
-		&:hover {
-			background: linear-gradient(315deg, rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 0.4) 100%);
-		}
-		&:before {
-			left: 57%;
-			top: 57%;
-		}
-		&:after {
-			left: 53%;
-			top: 53%;
-			border-width: 0 var(--tri-lrg-a) var(--tri-lrg-b) var(--tri-lrg-a);
-			border-color: transparent transparent var(--arrowcolor) transparent;
-		}
-		&:active:after {
-			border-bottom-color: #333;
-		}
-	}
-
-	a.down {
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, 20%) rotate(45deg);
-		border-bottom-right-radius: 50%;
-		z-index: 1;
-		&:hover {
-			background: linear-gradient(135deg, rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 0.4) 100%);
-		}
-		&:before {
-			left: 43%;
-			top: 43%;
-		}
-		&:after {
-			left: 47%;
-			top: 47%;
-			border-width: var(--tri-lrg-b) var(--tri-lrg-a) 0px var(--tri-lrg-a);
-			border-color: var(--arrowcolor) transparent transparent transparent;
-		}
-		&:active:after {
-			border-top-color: #333;
-		}
-	}
-
-	a.left {
-		top: 50%;
-		right: 50%;
-		transform: translate(-20%, -50%) rotate(45deg);
-		border-bottom-left-radius: 50%;
-		border: none;
-		&:hover {
-			background: linear-gradient(225deg, rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 0.4) 100%);
-		}
-		&:before {
-			left: 57%;
-			top: 43%;
-		}
-		&:after {
-			left: 53%;
-			top: 47%;
-			border-width: var(--tri-lrg-a) var(--tri-lrg-b) var(--tri-lrg-a) 0;
-			border-color: transparent var(--arrowcolor) transparent transparent;
-		}
-		&:active:after {
-			border-right-color: #333;
-		}
-	}
-
-	a.right {
-		top: 50%;
-		left: 50%;
-		transform: translate(20%, -50%) rotate(45deg);
-		border-top-right-radius: 50%;
-		border: none;
-		&:hover {
-			background: linear-gradient(45deg, rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 0.4) 100%);
-		}
-		&:before {
-			left: 43%;
-			top: 57%;
-		}
-		&:after {
-			left: 47%;
-			top: 53%;
-			border-width: var(--tri-lrg-a) 0 var(--tri-lrg-a) var(--tri-lrg-b);
-			border-color: transparent transparent transparent var(--arrowcolor);
-		}
-		&:active:after {
-			border-left-color: #333;
-		}
-	}
-	a:hover:after {
-		left: 50%;
-		top: 50%;
-	}
-}
-
-.dark {
-	--c: #111;
-	--c-h: #222;
-	--c-t: rgba(255, 255, 255, 0.9);
-	--c-t-a: #61e22d;
-	.d-pad {
-		a {
-			border-radius: 35%;
-		}
-		&:before,
-		a {
-			background: #111;
-		}
-		a.up:hover {
-			background: linear-gradient(0deg, var(--c) 0%, var(--c-h) 50%);
-		}
-		a.right:hover {
-			background: linear-gradient(90deg, var(--c) 0%, var(--c-h) 50%);
-		}
-		a.down:hover {
-			background: linear-gradient(180deg, var(--c) 0%, var(--c-h) 50%);
-		}
-		a.left:hover {
-			background: linear-gradient(-90deg, var(--c) 0%, var(--c-h) 50%);
-		}
-		a.up:before {
-			border-bottom-color: var(--c-t);
-		}
-		a.right:before {
-			border-left-color: var(--c-t);
-		}
-		a.down:before {
-			border-top-color: var(--c-t);
-		}
-		a.left:before {
-			border-right-color: var(--c-t);
-		}
-		a.up:active:before {
-			border-bottom-color: var(--c-t-a);
-		}
-		a.right:active:before {
-			border-left-color: var(--c-t-a);
-		}
-		a.down:active:before {
-			border-top-color: var(--c-t-a);
-		}
-		a.left:active:before {
-			border-right-color: var(--c-t-a);
-		}
-	}
-	.o-pad {
-		background: var(--c);
-		a {
-			border-color: rgba(255, 255, 255, 0.4);
-		}
-		a:before {
-			display: block;
-		}
-		&:before,
-		a {
-			background: var(--c);
-		}
-		a.up:after {
-			border-bottom-color: var(--c-t);
-		}
-		a.right:after {
-			border-left-color: var(--c-t);
-		}
-		a.down:after {
-			border-top-color: var(--c-t);
-		}
-		a.left:after {
-			border-right-color: var(--c-t);
-		}
-		a.up:active:after {
-			border-bottom-color: var(--c-t-a);
-		}
-		a.right:active:after {
-			border-left-color: var(--c-t-a);
-		}
-		a.down:active:after {
-			border-top-color: var(--c-t-a);
-		}
-		a.left:active:after {
-			border-right-color: var(--c-t-a);
-		}
-	}
-}
-
-.pink {
-	--c: #ff1285;
-	--c-h: #f366aa;
-	--c-t: rgba(255, 255, 255, 0.7);
-	--c-t-a: rgba(255, 255, 255, 1);
-	.d-pad {
-		&:before,
-		a {
-			background: var(--c);
-		}
-		a:after {
-			border-radius: 30%;
-		}
-		a.up:hover {
-			background: linear-gradient(0deg, var(--c) 0%, var(--c-h) 50%);
-		}
-		a.right:hover {
-			background: linear-gradient(90deg, var(--c) 0%, var(--c-h) 50%);
-		}
-		a.down:hover {
-			background: linear-gradient(180deg, var(--c) 0%, var(--c-h) 50%);
-		}
-		a.left:hover {
-			background: linear-gradient(-90deg, var(--c) 0%, var(--c-h) 50%);
-		}
-		a.up:before {
-			border-bottom-color: var(--c-t);
-		}
-		a.right:before {
-			border-left-color: var(--c-t);
-		}
-		a.down:before {
-			border-top-color: var(--c-t);
-		}
-		a.left:before {
-			border-right-color: var(--c-t);
-		}
-		a.up:active:before {
-			border-bottom-color: var(--c-t-a);
-		}
-		a.right:active:before {
-			border-left-color: var(--c-t-a);
-		}
-		a.down:active:before {
-			border-top-color: var(--c-t-a);
-		}
-		a.left:active:before {
-			border-right-color: var(--c-t-a);
-		}
-	}
-	.o-pad {
-		background: var(--c);
-		a {
-			border-color: rgba(255, 255, 255, 0.6);
-		}
-		&:before,
-		a {
-			background: var(--c);
-		}
-		a.up:after {
-			border-bottom-color: var(--c-t);
-		}
-		a.right:after {
-			border-left-color: var(--c-t);
-		}
-		a.down:after {
-			border-top-color: var(--c-t);
-		}
-		a.left:after {
-			border-right-color: var(--c-t);
-		}
-		a.up:active:after {
-			border-bottom-color: var(--c-t-a);
-		}
-		a.right:active:after {
-			border-left-color: var(--c-t-a);
-		}
-		a.down:active:after {
-			border-top-color: var(--c-t-a);
-		}
-		a.left:active:after {
-			border-right-color: var(--c-t-a);
-		}
-	}
-}
-
-.clear {
-	--c: #fff;
-	--c-h: #6ea248;
-	--c-bg: #5f9837;
-	--c-t: #fff;
-	--c-t-a: rgba(0, 0, 0, 0.6);
-	.d-pad {
-		border-radius: 0;
-		a {
-			border: 1px solid var(--c);
-		}
-		&:before,
-		a {
-			background: none;
-		}
-		a:after {
-			display: none;
-		}
-		a.up:hover {
-			background: linear-gradient(0deg, var(--c-bg) 0%, var(--c-h) 50%);
-		}
-		a.right:hover {
-			background: linear-gradient(90deg, var(--c-bg) 0%, var(--c-h) 50%);
-		}
-		a.down:hover {
-			background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-h) 50%);
-		}
-		a.left:hover {
-			background: linear-gradient(-90deg, var(--c-bg) 0%, var(--c-h) 50%);
-		}
-		a.up:before {
-			border-bottom-color: var(--c-t);
-		}
-		a.right:before {
-			border-left-color: var(--c-t);
-		}
-		a.down:before {
-			border-top-color: var(--c-t);
-		}
-		a.left:before {
-			border-right-color: var(--c-t);
-		}
-		a.up:active:before {
-			border-bottom-color: var(--c-t-a);
-		}
-		a.right:active:before {
-			border-left-color: var(--c-t-a);
-		}
-		a.down:active:before {
-			border-top-color: var(--c-t-a);
-		}
-		a.left:active:before {
-			border-right-color: var(--c-t-a);
-		}
-	}
-	.o-pad {
-		--c: #fff;
-		background: none;
-		border: 1px solid var(--c-t);
-		a {
-			border-color: var(--c-t);
-		}
-		&:before,
-		a {
-			background: none;
-		}
-		a.up:after {
-			border-bottom-color: var(--c-t);
-		}
-		a.right:after {
-			border-left-color: var(--c-t);
-		}
-		a.down:after {
-			border-top-color: var(--c-t);
-		}
-		a.left:after {
-			border-right-color: var(--c-t);
-		}
-		a.up:active:after {
-			border-bottom-color: var(--c-t-a);
-		}
-		a.right:active:after {
-			border-left-color: var(--c-t-a);
-		}
-		a.down:active:after {
-			border-top-color: var(--c-t-a);
-		}
-		a.left:active:after {
-			border-right-color: var(--c-t-a);
-		}
-	}
-}
-
-.outline {
-	--c: #fff;
-	--c-h: #efefef;
-	--c-t: rgba(0, 0, 0, 0.1);
-	.d-pad {
-		border-radius: 0;
-		a {
-			border: 1px solid var(--c-t);
-		}
-		&:after,
-		&:before,
-		a {
-			background: var(--c);
-		}
-		a:after {
-			display: none;
-		}
-		a.up:hover {
-			background: linear-gradient(0deg, var(--c) 0%, var(--c-h) 50%);
-		}
-		a.right:hover {
-			background: linear-gradient(90deg, var(--c) 0%, var(--c-h) 50%);
-		}
-		a.down:hover {
-			background: linear-gradient(180deg, var(--c) 0%, var(--c-h) 50%);
-		}
-		a.left:hover {
-			background: linear-gradient(-90deg, var(--c) 0%, var(--c-h) 50%);
-		}
-		a.up:before {
-			border-bottom-color: var(--c-t);
-		}
-		a.right:before {
-			border-left-color: var(--c-t);
-		}
-		a.down:before {
-			border-top-color: var(--c-t);
-		}
-		a.left:before {
-			border-right-color: var(--c-t);
-		}
-	}
-	.o-pad {
-		--c: #fff;
-		background: var(--c);
-		border: 1px solid var(--c-t);
-		a {
-			border-color: var(--c-t);
-		}
-		&:after,
-		&:before,
-		a {
-			background: var(--c);
-		}
-		a.up:after {
-			border-bottom-color: var(--c-t);
-		}
-		a.right:after {
-			border-left-color: var(--c-t);
-		}
-		a.down:after {
-			border-top-color: var(--c-t);
-		}
-		a.left:after {
-			border-right-color: var(--c-t);
-		}
-	}
-}
-
-.blue {
-	--c: #1843ca;
-	--c-h: #143cb9;
-	--c-t: #ccc;
-	--c-t-a: rgba(255, 255, 255, 1);
-	.d-pad {
-		&:before,
-		a {
-			background: var(--c);
-		}
-		&:after {
-			display: block;
-			background: var(--c-t);
-		}
-		a:after {
-			border-radius: 10%;
-		}
-		a.up:hover {
-			background: linear-gradient(0deg, var(--c) 0%, var(--c-h) 50%);
-		}
-		a.right:hover {
-			background: linear-gradient(90deg, var(--c) 0%, var(--c-h) 50%);
-		}
-		a.down:hover {
-			background: linear-gradient(180deg, var(--c) 0%, var(--c-h) 50%);
-		}
-		a.left:hover {
-			background: linear-gradient(-90deg, var(--c) 0%, var(--c-h) 50%);
-		}
-		a.up:before {
-			border-bottom-color: var(--c-t);
-		}
-		a.right:before {
-			border-left-color: var(--c-t);
-		}
-		a.down:before {
-			border-top-color: var(--c-t);
-		}
-		a.left:before {
-			border-right-color: var(--c-t);
-		}
-		a.up:active:before {
-			border-bottom-color: var(--c-t-a);
-		}
-		a.right:active:before {
-			border-left-color: var(--c-t-a);
-		}
-		a.down:active:before {
-			border-top-color: var(--c-t-a);
-		}
-		a.left:active:before {
-			border-right-color: var(--c-t-a);
-		}
-	}
-	.o-pad {
-		background: var(--c);
-		a {
-			border-color: rgba(255, 255, 255, 0.6);
-		}
-		&:before,
-		a {
-			background: var(--c);
-		}
-		&:after {
-			display: block;
-			background: #ccc;
-		}
-		a.up:after {
-			border-bottom-color: var(--c-t);
-		}
-		a.right:after {
-			border-left-color: var(--c-t);
-		}
-		a.down:after {
-			border-top-color: var(--c-t);
-		}
-		a.left:after {
-			border-right-color: var(--c-t);
-		}
-		a.up:active:after {
-			border-bottom-color: var(--c-t-a);
-		}
-		a.right:active:after {
-			border-left-color: var(--c-t-a);
-		}
-		a.down:active:after {
-			border-top-color: var(--c-t-a);
-		}
-		a.left:active:after {
-			border-right-color: var(--c-t-a);
-		}
-	}
-}
-
-.setbg.white {
-	--c: #fff;
-	--c-t: rgba(0, 0, 0, 0.1);
-	--c-t-a: rgba(0, 0, 0, 0.6);
-	--c-h: #143cb9;
-	.d-pad {
-		&:before,
-		a {
-			background: var(--c);
-		}
-		&:after {
-			display: block;
-			background: var(--c-t);
-		}
-		a:after {
-			border-radius: 40%;
-			background: #222;
-		}
-		a.up:hover {
-			background: var(--c);
-		}
-		a.right:hover {
-			background: var(--c);
-		}
-		a.down:hover {
-			background: var(--c);
-		}
-		a.left:hover {
-			background: var(--c);
-		}
-		a.up:before {
-			border-bottom-color: #0074d9;
-		}
-		a.right:before {
-			border-left-color: #ff851b;
-		}
-		a.down:before {
-			border-top-color: #3d9970;
-		}
-		a.left:before {
-			border-right-color: #ffdc00;
-		}
-		a.up:active:before {
-			border-bottom-color: var(--c-t-a);
-		}
-		a.right:active:before {
-			border-left-color: var(--c-t-a);
-		}
-		a.down:active:before {
-			border-top-color: var(--c-t-a);
-		}
-		a.left:active:before {
-			border-right-color: var(--c-t-a);
-		}
-	}
-	.o-pad {
-		background: var(--c);
-		a {
-			border-color: rgba(255, 255, 255, 0.6);
-		}
-		&:before,
-		a {
-			background: var(--c);
-		}
-		&:after {
-			display: block;
-			background: #ccc;
-		}
-		a.up:after {
-			border-bottom-color: #2ecc40;
-		}
-		a.right:after {
-			border-left-color: #85144b;
-		}
-		a.down:after {
-			border-top-color: #7fdbff;
-		}
-		a.left:after {
-			border-right-color: #b10dc9;
-		}
-		a.up:active:after {
-			border-bottom-color: var(--c-t-a);
-		}
-		a.right:active:after {
-			border-left-color: var(--c-t-a);
-		}
-		a.down:active:after {
-			border-top-color: var(--c-t-a);
-		}
-		a.left:active:after {
-			border-right-color: var(--c-t-a);
-		}
-	}
-}
-
-.wire {
-	--c: #93b4ff;
-	.d-pad {
-		overflow: initial;
-		border: 1px dashed var(--c);
-		&:after {
-			display: block;
-		}
-		&:after,
-		&:before,
-		a,
-		a:after {
-			background: none;
-			border: 1px solid var(--c);
-		}
-		a:after {
-			border: 1px dashed var(--c);
-		}
-		a.up:before {
-			border-bottom-color: var(--c);
-		}
-		a.right:before {
-			border-left-color: var(--c);
-		}
-		a.down:before {
-			border-top-color: var(--c);
-		}
-		a.left:before {
-			border-right-color: var(--c);
-		}
-		a:hover {
-			background: none;
-		}
-	}
-	.o-pad {
-		border: 1px dashed var(--c);
-		background: none;
-		overflow: initial;
-		&:after,
-		a:before {
-			display: block;
-		}
-		&:after,
-		&:before,
-		a,
-		a:before {
-			background: none;
-			border: 1px solid var(--c);
-		}
-		a.up:after {
-			border-bottom-color: var(--c);
-		}
-		a.right:after {
-			border-left-color: var(--c);
-		}
-		a.down:after {
-			border-top-color: var(--c);
-		}
-		a.left:after {
-			border-right-color: var(--c);
-		}
-		a:hover {
-			background: none;
-		}
-	}
 }
 
 // set direction active state
 
-.d-pad.up a.up:before {
+.d-pad.up button.up:before {
 	border-bottom-color: #333;
 }
-.d-pad.down a.down:before {
+.d-pad.down button.down:before {
 	border-top-color: #333;
 }
-.d-pad.left a.left:before {
+.d-pad.left button.left:before {
 	border-right-color: #333;
 }
-.d-pad.right a.right:before {
+.d-pad.right button.right:before {
 	border-left-color: #333;
 }
 
-.o-pad.up a.up:after {
+.o-pad.up button.up:after {
 	border-bottom-color: #333;
 }
-.o-pad.down a.down:after {
+.o-pad.down button.down:after {
 	border-top-color: #333;
 }
-.o-pad.left a.left:after {
+.o-pad.left button.left:after {
 	border-right-color: #333;
 }
-.o-pad.right a.right:after {
+.o-pad.right button.right:after {
 	border-left-color: #333;
 }
