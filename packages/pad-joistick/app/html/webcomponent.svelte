@@ -72,12 +72,6 @@
 			<a class="down" href="#" />
 			<a class="left" href="#" />
 		</nav>
-		<nav class="o-pad">
-			<a class="up" href="#" />
-			<a class="right" href="#" />
-			<a class="down" href="#" />
-			<a class="left" href="#" />
-		</nav>
 	</div>
 </div>
 
