@@ -9,7 +9,14 @@ export const storybookArgs = {
 	sendJoystickPosition: { action: "sendJoystickPositionEvent" },
 };
 
-const cssVars: CssVar[] = [];
+const cssVars: CssVar[] = [
+	{
+		name: "--hb-pad-joystick-size",
+		description: "pad/joystick size",
+		defaultValue: "200px",
+		valueType: "htmlsize",
+	},
+];
 export const cssParts: CssPart[] = [];
 export const htmlSlots: HtmlSlot[] = [];
 export const i18nLanguages: i18nLang[] = [];
