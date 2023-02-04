@@ -5,6 +5,7 @@ export const storybookArgs = {
 	type: { control: { type: "string" } },
 
 	sendDirection: { action: "sendDirectionEvent" },
+	sendJoystickPosition: { action: "sendJoystickPositionEvent" },
 };
 
 const cssVars: CssVar[] = [];

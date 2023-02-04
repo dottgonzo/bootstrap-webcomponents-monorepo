@@ -8,7 +8,7 @@
 	import JoyStick from "html5-joystick-new";
 
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
-	import type { Component } from "@app/types/webcomponent.type";
+	import type { Component, CardinalDirection } from "@app/types/webcomponent.type";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -48,12 +48,19 @@
 		// });
 		const joyEl = component.shadowRoot.getElementById("joystick");
 		if (type === "joystick" && !joystick && joyEl?.style) {
-			joystick = new JoyStick(joyEl);
+			joystick = new JoyStick(joyEl, {
+				callback: (pos: { x: number; y: number; cardinalDirection: CardinalDirection; xPosition: number; yPosition: number }) => {
+					sendJoystickPosition(pos);
+				},
+			});
 		}
 	});
 
 	function sendArrow(direction: "up" | "right" | "down" | "left") {
-		dispatch("sendDirection", { direction });
+		dispatch("sendDirection", { id, direction });
+	}
+	function sendJoystickPosition(pos: { x: number; y: number; cardinalDirection: CardinalDirection }) {
+		dispatch("sendJoystickPosition", Object.assign({ id }, pos));
 	}
 </script>
 
