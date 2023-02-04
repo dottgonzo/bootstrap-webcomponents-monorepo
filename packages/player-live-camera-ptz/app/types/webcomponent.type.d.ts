@@ -2,6 +2,10 @@ export type TPreset = {
 	label?: string;
 	id: string;
 };
+export type TMovementSettings = {
+	speed: number;
+	precision: number;
+};
 
 export type Component = {
 	id?: string;
@@ -9,13 +13,14 @@ export type Component = {
 
 	live_uri: string;
 	presets?: TPreset[];
+	position?: "top" | "right-bottom" | "left-bottom" | "bottom" | "right-top" | "left-top";
 };
 
 export type Events = {
-	zoomAction: { direction: "in" | "out"; id: string };
-	goToHome: { id: string };
+	zoomAction: { movementSettings: TMovementSettings; direction: "in" | "out"; id: string };
+	goToHome: { movementSettings: TMovementSettings; id: string };
 	addAsPreset: { id: string };
-	changePreset: TPreset & { playerId: string };
-	sendJoystickPosition: { x: number; y: number; cardinalDirection: CardinalDirection; id: string; joyId: string };
-	sendDirection: { direction: "up" | "right" | "down" | "left"; id: string; joyId: string };
+	changePreset: TPreset & { playerId: string; movementSettings: TMovementSettings };
+	sendJoystickPosition: { movementSettings: TMovementSettings; x: number; y: number; cardinalDirection: CardinalDirection; id: string; joyId: string };
+	sendDirection: { movementSettings: TMovementSettings; direction: "up" | "right" | "down" | "left"; id: string; joyId: string };
 };

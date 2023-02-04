@@ -29,6 +29,24 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			live_uri: "",
 		},
 	},
+
+	{
+		name: "withPresets",
+		data: {
+			live_uri: "",
+
+			presets: [
+				{
+					label: "Preset 1",
+					id: "preset1",
+				},
+				{
+					label: "Preset 2",
+					id: "preset2",
+				},
+			],
+		},
+	},
 ];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null as any,

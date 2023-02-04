@@ -42,8 +42,8 @@ hb-pad-joystick {
 	padding: 5px;
 	text-align: center;
 }
-#accurancy {
-	grid-area: accurancy;
+#precision {
+	grid-area: precision;
 	padding: 5px;
 	text-align: center;
 }
@@ -51,12 +51,10 @@ hb-pad-joystick {
 #presets_select {
 	grid-area: presets_select;
 	padding: 5px;
-	text-align: center;
 }
 #presets_view {
 	grid-area: presets_view;
 	padding: 5px;
-	text-align: center;
 }
 #controller {
 	position: absolute;
@@ -72,7 +70,13 @@ hb-pad-joystick {
 	grid-template-areas:
 		"pad buttons presets_view"
 		"pad speed presets_select"
-		"pad accurancy presets_buttons";
+		"pad precision presets_buttons";
 	grid-template-columns: 120px 200px 200px;
 	grid-template-rows: 1fr 1fr 1fr;
+}
+.slider_label {
+	font-size: 0.6em;
+	width: 50px;
+	display: inline-block;
+	vertical-align: super;
 }

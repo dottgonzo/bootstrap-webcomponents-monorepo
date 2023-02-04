@@ -80,6 +80,8 @@
 	"dependencies": {
 		"@htmlbricks/hb-pad-joystick": "^0.17.14",
 		"@htmlbricks/hb-player-live": "^0.17.14",
+		"@htmlbricks/hb-table": "^0.17.14",
+		"@htmlbricks/hb-dialog": "^0.17.14",
 		"style-to-object": "^0.3.0"
 	}
 }
