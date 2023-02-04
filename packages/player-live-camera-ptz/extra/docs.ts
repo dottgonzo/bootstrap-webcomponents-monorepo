@@ -20,7 +20,9 @@ export const styleSetup: StyleSetup = {
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
-		data: {},
+		data: {
+			live_uri: "",
+		},
 	},
 ];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
