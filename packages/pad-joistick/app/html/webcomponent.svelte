@@ -51,8 +51,8 @@
 			joystick = new JoyStick(joyEl, {
 				callback: (pos: { x: number; y: number; cardinalDirection: CardinalDirection; xPosition: number; yPosition: number }) => {
 					sendJoystickPosition({
-						x: pos.xPosition,
-						y: pos.yPosition,
+						x: pos.x,
+						y: pos.y,
 						cardinalDirection: pos.cardinalDirection,
 					});
 				},
