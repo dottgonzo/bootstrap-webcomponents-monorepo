@@ -3,6 +3,7 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	type: { control: { type: "string" } },
+	joystick_parameters: { control: { type: "object" } },
 
 	sendDirection: { action: "sendDirectionEvent" },
 	sendJoystickPosition: { action: "sendJoystickPositionEvent" },

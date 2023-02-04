@@ -22,6 +22,7 @@
 	export let style: string;
 
 	export let type: Component["type"];
+	export let joystick_parameters: Component["joystick_parameters"];
 
 	let joystick: JoyStick;
 
@@ -48,7 +49,16 @@
 		// });
 		const joyEl = component.shadowRoot.getElementById("joystick");
 		if (type === "joystick" && !joystick && joyEl?.style) {
+			const defaultInternalFillColor = "#F2eef6";
+			const defaultInternalStrokeColor = "#Ece2f7";
+			const defaultExternalStrokeColor = "silver";
+
 			joystick = new JoyStick(joyEl, {
+				parameters: {
+					internalFillColor: joystick_parameters?.internalFillColor || defaultInternalFillColor,
+					internalStrokeColor: joystick_parameters?.internalStrokeColor || defaultInternalStrokeColor,
+					externalStrokeColor: joystick_parameters?.externalStrokeColor || defaultExternalStrokeColor,
+				},
 				callback: (pos: { x: number; y: number; cardinalDirection: CardinalDirection; xPosition: number; yPosition: number }) => {
 					sendJoystickPosition({
 						x: pos.x,

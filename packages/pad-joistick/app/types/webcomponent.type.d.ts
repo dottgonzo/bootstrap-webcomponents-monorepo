@@ -3,6 +3,13 @@ export type Component = {
 	style?: string;
 
 	type?: "dpad" | "joystick";
+	joystick_parameters?: {
+		internalFillColor?: string;
+		internalLineWidth?: number;
+		internalStrokeColor?: string;
+		externalLineWidth?: number;
+		externalStrokeColor?: string;
+	};
 };
 
 export type CardinalDirection = "C" | "N" | "S" | "NE" | "SE" | "NW" | "SW" | "NO" | "SO" | "W" | "O";
