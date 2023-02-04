@@ -7,16 +7,17 @@
 	// background-color: red;
 	// width: fit-content;
 
+	--hb-pad-joystick-size: 60px;
 	--dpad-radius: 17%;
 	--dpad-radius-in: 20%;
 	--dpad-fg: #ddd;
 	--dpad-fg-hover: #eee;
 	--dpad-bg: #fff;
 	--arrowcolor: #aaa;
-	--tri-sml-a: 13px;
-	--tri-sml-b: 19px;
-	--tri-lrg-a: 13px;
-	--tri-lrg-b: 19px;
+	--tri-sml-a: calc(var(--hb-pad-joystick-size) / 9);
+	--tri-sml-b: calc(var(--hb-pad-joystick-size) / 6);
+	--tri-lrg-a: calc(var(--hb-pad-joystick-size) / 9);
+	--tri-lrg-b: calc(var(--hb-pad-joystick-size) / 6);
 	--dpad-arrow-shift: 5px;
 	--dpad-arrow-move: 35%;
 	// width: 200px;
@@ -24,8 +25,8 @@
 	// display: block;
 }
 #joystick {
-	width: 200px;
-	height: 200px;
+	width: var(--hb-pad-joystick-size);
+	height: var(--hb-pad-joystick-size);
 }
 .set {
 	overflow: hidden;
@@ -42,8 +43,8 @@
 
 .d-pad {
 	position: relative;
-	width: 200px;
-	height: 200px;
+	width: var(--hb-pad-joystick-size);
+	height: var(--hb-pad-joystick-size);
 	border-radius: 48%;
 	overflow: hidden;
 	&:before {
