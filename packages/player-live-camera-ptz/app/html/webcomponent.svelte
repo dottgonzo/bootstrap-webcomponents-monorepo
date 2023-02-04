@@ -252,17 +252,27 @@
 	<div id="controller">
 		<div id="panel">
 			<div id="joystick">
-				<hb-pad-joystick
-					on:sendJoystickPosition={(e) => {
-						sendJoystickPosition(e.detail);
-					}}
-					on:sendDirection={(e) => {
-						sendDirection(e.detail);
-					}}
-					pad_or_joystick={dpadOrJoystick}
-					size="60px"
-					style={padJoystickStyleSetupToSet}
-				/>
+				{#if dpadOrJoystick === "dpad"}
+					<hb-pad-joystick
+						id={"pad_" + dpadOrJoystick}
+						on:sendDirection={(e) => {
+							sendDirection(e.detail);
+						}}
+						pad_or_joystick="dpad"
+						size="60px"
+						style={padJoystickStyleSetupToSet}
+					/>
+				{:else}
+					<hb-pad-joystick
+						id={"pad_" + dpadOrJoystick}
+						on:sendJoystickPosition={(e) => {
+							sendJoystickPosition(e.detail);
+						}}
+						pad_or_joystick="joystick"
+						size="60px"
+						style={padJoystickStyleSetupToSet}
+					/>
+				{/if}
 			</div>
 			<div id="buttons">
 				<div class="btn-group" style="margin-right:10px">
