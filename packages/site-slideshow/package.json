@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-site-slideshow",
 	"displayName": "Svelte-Bootstrap site-slideshow",
 	"description": "Svelte-Bootstrap site-slideshow",
-	"version": "0.17.14",
+	"version": "0.17.15",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.17.14",
+		"@htmlbricks/hb-jsutils": "^0.17.15",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
