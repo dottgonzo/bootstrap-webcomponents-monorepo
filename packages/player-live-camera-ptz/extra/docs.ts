@@ -4,6 +4,7 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	presets: { control: { type: "object" } },
 	live_uri: { control: { type: "text" } },
+	current_preset: { control: { type: "text" } },
 	// height: { control: { type: "text" } },
 	zoomAction: { action: "zoomActionEvent" },
 	goToHome: { action: "goToHomeEvent" },
@@ -46,6 +47,24 @@ const examples: { name: string; description?: string; data: Component }[] = [
 					id: "preset2",
 				},
 			],
+		},
+	},
+	{
+		name: "withPresetSelected",
+		data: {
+			live_uri: "",
+
+			presets: [
+				{
+					label: "Preset 1",
+					id: "preset1",
+				},
+				{
+					label: "Preset 2",
+					id: "preset2",
+				},
+			],
+			current_preset: "preset1",
 		},
 	},
 ];

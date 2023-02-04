@@ -18,11 +18,17 @@ export type Component = {
 	configuration?: {
 		joystick?: boolean;
 		presets?: boolean;
+		addPreset?: boolean;
+		switchPreset?: boolean;
 		home?: boolean;
 		zoom?: {
 			in?: boolean;
 			out?: boolean;
 		};
+		pan?: boolean;
+		tilt?: boolean;
+		clickToCenter?: boolean;
+		settings?: boolean;
 	};
 };
 export type CardinalDirection = "C" | "N" | "S" | "NE" | "SE" | "NW" | "SW" | "NO" | "SO" | "W" | "O";

@@ -32,6 +32,7 @@
 	export let live_uri: string;
 	export let presets: Component["presets"];
 	export let position: Component["position"];
+	export let configuration: Component["configuration"];
 
 	export let current_preset: Component["current_preset"];
 
@@ -45,6 +46,17 @@
 		precision: 50,
 		speed: 50,
 	};
+	const defaultConfiguration: Component["configuration"] = {
+		joystick: true,
+		presets: true,
+		home: true,
+		zoom: {
+			in: true,
+			out: true,
+		},
+		pan: true,
+		tilt: true,
+	};
 	let time = new Date().toLocaleTimeString();
 	let tablePresetsRows: TableComponent["rows"];
 	const tablePresetsHeaders = [
@@ -57,7 +69,8 @@
 	let showConfirmAddSceneToPreset = false;
 	let showGoToHomeConfirm = false;
 	let isGridOpen = false;
-	let dpadOrJoystick: "dpad" | "joystick";
+	let dpadOrJoystick: "dpad" | "joystick" = "dpad";
+	let selectingZone = false;
 	$: {
 		if (!live_uri) live_uri = "";
 		if (!id) id = "";
@@ -68,8 +81,11 @@
 			tableStyleSetupToSet = getChildStyleToPass(parsedStyle, tableStyleSetup?.vars);
 			dialogStyleSetupToSet = getChildStyleToPass(parsedStyle, dialogStyleSetup?.vars);
 		}
+		if (!configuration) configuration = defaultConfiguration;
+		else if (typeof configuration === "string") {
+			configuration = JSON.parse(configuration);
+		}
 		if (!current_preset) current_preset = "";
-		if (!dpadOrJoystick) dpadOrJoystick = "dpad";
 		if (!presets) presets = [];
 		else if (typeof presets === "string") {
 			presets = JSON.parse(presets);
@@ -88,29 +104,38 @@
 		time = new Date().toLocaleTimeString();
 	}, 1000);
 	function zoomAction(direction: "in" | "out") {
+		if (!configuration.zoom) return console.error("Zoom is not enabled in the configuration");
+		if (!configuration.zoom[direction]) return console.error(`Zoom ${direction} is not enabled in the configuration`);
 		const zoomActionEventPayload: Events["zoomAction"] = { id, movementSettings, direction };
 
 		dispatch("zoomAction", zoomActionEventPayload);
 	}
 	function goToHome() {
+		if (!configuration.home) return console.error("Go to home is not enabled in the configuration");
 		const goToHomeEventPayload: Events["goToHome"] = { id, movementSettings };
 		dispatch("goToHome", { id, movementSettings });
 	}
 	function addSceneAsPreset() {
+		if (!configuration.addPreset) return console.error("Add scene to preset is not enabled in the configuration");
 		const addAsPresetEventPayload: Events["addSceneAsPreset"] = { id };
 
 		dispatch("addSceneAsPreset", addAsPresetEventPayload);
 	}
 	function openPresetsModal() {
+		if (!configuration.presets) return console.error("Presets is not enabled in the configuration");
 		showTablePresets = !showTablePresets;
 	}
 	function confirmAddSceneToPresets() {
+		if (!configuration.addPreset) return console.error("Add scene to preset is not enabled in the configuration");
 		showConfirmAddSceneToPreset = !showConfirmAddSceneToPreset;
 	}
 	function confirmGoToHome() {
+		if (!configuration.home) return console.error("Go to home is not enabled in the configuration");
 		showGoToHomeConfirm = !showGoToHomeConfirm;
 	}
 	function changePreset(e: any) {
+		if (!configuration.switchPreset) return console.error("Switch preset is not enabled in the configuration");
+
 		const presetClick = e.target.value;
 		const preset = presets.find((p) => p.id === presetClick);
 		if (preset) {
@@ -120,6 +145,8 @@
 		} else console.error("Preset not found");
 	}
 	function sendJoystickPosition(position: padJoystickEvents["sendJoystickPosition"]) {
+		if (!configuration?.joystick || configuration?.pan || configuration?.tilt)
+			return console.error("Pan and Tilt on joystick are not enabled in the configuration");
 		dispatch("sendJoystickPosition", {
 			id,
 			x: position.x,
@@ -130,20 +157,26 @@
 		});
 	}
 	function sendDirection(direction: padJoystickEvents["sendDirection"]) {
-		dispatch("sendDirection", { id, movementSettings, direction: direction.direction, joyId: direction.id });
+		if (configuration.pan && configuration.tilt) dispatch("sendDirection", { id, movementSettings, direction: direction.direction, joyId: direction.id });
+		else console.error("Pan and Tilt are not enabled in the configuration");
 	}
 	function showGrid() {
 		isGridOpen = !isGridOpen;
 	}
-	function selectZone() {}
+	function selectZone() {
+		if (!configuration?.clickToCenter) return console.error("Click to center is not enabled in the configuration");
+		selectingZone = !selectingZone;
+	}
 	function showJoystick() {
 		if (dpadOrJoystick === "dpad") {
+			if (!configuration?.joystick) return console.error("Joystick is not enabled in the configuration");
+
 			dpadOrJoystick = "joystick";
 		} else {
 			dpadOrJoystick = "dpad";
 		}
 	}
-	function selectPreset() {}
+
 	function showSettings() {}
 
 	addComponent({ repoName: "@htmlbricks/hb-player-live", version: pkg.version });
@@ -276,17 +309,21 @@
 			</div>
 			<div id="buttons">
 				<div class="btn-group" style="margin-right:10px">
-					<button on:click={() => zoomAction("in")} class="btn btn-sm btn-primary">
+					<button disabled={configuration?.zoom?.in ? false : true} on:click={() => zoomAction("in")} class="btn btn-sm btn-secondary">
 						<i class="bi bi-zoom-in" />
 					</button>
-					<button on:click={() => zoomAction("out")} class="btn btn-sm btn-primary">
+					<button disabled={configuration?.zoom?.out ? false : true} on:click={() => zoomAction("out")} class="btn btn-sm btn-secondary">
 						<i class="bi bi-zoom-out" />
 					</button>
 				</div>
-				<button on:click={() => confirmGoToHome()} class="btn btn-sm btn-primary">
+				<button disabled={configuration?.home ? false : true} on:click={() => confirmGoToHome()} class="btn btn-sm btn-secondary">
 					<i class="bi bi-house-door-fill" />
 				</button>
-				<button on:click={() => selectZone()} class="btn btn-sm btn-primary">
+				<button
+					disabled={configuration?.clickToCenter ? false : true}
+					on:click={() => selectZone()}
+					class="btn btn-sm btn-{selectingZone ? 'primary' : 'secondary'}"
+				>
 					<i class="bi bi-square" />
 				</button>
 			</div>
@@ -297,13 +334,17 @@
 				<span class="slider_label">precision:</span> <input type="range" bind:value={movementSettings.precision} />
 			</div>
 			<div id="presets_view">
-				<button on:click={() => showGrid()} class="btn btn-primary">
+				<button on:click={() => showGrid()} class="btn btn-{isGridOpen ? 'primary' : 'secondary'}">
 					<i class="bi bi-grid-3x3" />
 				</button>
-				<button on:click={() => showJoystick()} class="btn btn-primary">
+				<button
+					disabled={configuration?.joystick ? false : true}
+					on:click={() => showJoystick()}
+					class="btn btn-{dpadOrJoystick && dpadOrJoystick === 'dpad' ? 'secondary' : 'primary'}"
+				>
 					<i class="bi bi-joystick" />
 				</button>
-				<button on:click={() => showSettings()} class="btn btn-primary">
+				<button disabled={configuration?.settings ? false : true} on:click={() => showSettings()} class="btn btn-secondary">
 					<i class="bi bi-sliders" />
 				</button>
 				<!-- <button on:click={() => openPresetsModal()} class="btn btn-primary">
@@ -311,15 +352,17 @@
 				</button> -->
 			</div>
 			<div id="presets_select">
-				<button on:click={() => confirmAddSceneToPresets()} class="btn btn-sm btn-primary">
+				<button disabled={configuration?.addPreset ? false : true} on:click={() => confirmAddSceneToPresets()} class="btn btn-sm btn-secondary">
 					<i class="bi bi-plus-circle-fill" />
 				</button>
 				<button
+					disabled={configuration?.presets ? false : true}
 					style="width:120px!important;display:inline-block!important"
 					on:click={() => {
 						openPresetsModal();
 					}}
-					class="btn btn-sm btn-primary">{current_preset} <i style="float:right" class="bi bi-arrow-down-up" /></button
+					class="btn btn-sm btn-{current_preset ? 'primary' : 'secondary'}"
+					>{current_preset} <i style="float:right" class="bi bi-arrow-down-up" /></button
 				>
 				<!-- <select
 					on:change={(e) => {

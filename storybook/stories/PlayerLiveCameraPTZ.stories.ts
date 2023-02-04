@@ -28,3 +28,9 @@ PlayerLiveCameraPTZWithPresets.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples.find((f) => f.name === "withPresets")
 );
+export const PlayerLiveCameraPTZWithPresetSelected = Template.bind({});
+
+PlayerLiveCameraPTZWithPresetSelected.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "withPresetSelected")
+);
