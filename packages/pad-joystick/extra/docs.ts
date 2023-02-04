@@ -2,7 +2,7 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	type: { control: { type: "text" } },
+	pad_or_joystick: { control: { type: "text" } },
 	joystick_parameters: { control: { type: "object" } },
 
 	sendDirection: { action: "sendDirectionEvent" },
@@ -34,7 +34,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "joystick",
 		data: {
-			type: "joystick",
+			pad_or_joystick: "joystick",
 		},
 	},
 ];

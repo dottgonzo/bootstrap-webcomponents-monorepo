@@ -21,7 +21,7 @@
 	export let id: string;
 	export let style: string;
 
-	export let type: Component["type"];
+	export let pad_or_joystick: Component["pad_or_joystick"];
 	export let joystick_parameters: Component["joystick_parameters"];
 
 	let joystick: JoyStick;
@@ -37,7 +37,7 @@
 			parsedStyle = parseStyle(style);
 			// componentStyleToSet = getChildStyleToPass(parsedStyle, componentStyleSetup?.vars);
 		}
-		if (!type) type = "dpad";
+		if (!pad_or_joystick) pad_or_joystick = "dpad";
 	}
 
 	onMount(() => {
@@ -48,7 +48,7 @@
 		// 	color: "red",
 		// });
 		const joyEl = component.shadowRoot.getElementById("joystick");
-		if (type === "joystick" && !joystick && joyEl?.style) {
+		if (pad_or_joystick === "joystick" && !joystick && joyEl?.style) {
 			const defaultInternalFillColor = "#F2eef6";
 			const defaultInternalStrokeColor = "#Ece2f7";
 			const defaultExternalStrokeColor = "silver";
@@ -78,7 +78,7 @@
 	}
 </script>
 
-{#if type === "dpad"}
+{#if pad_or_joystick === "dpad"}
 	<div class="set">
 		<nav class="d-pad">
 			<button on:click={() => sendArrow("up")} class="up" />
@@ -87,7 +87,7 @@
 			<button on:click={() => sendArrow("left")} class="left" />
 		</nav>
 	</div>
-{:else if type === "joystick"}
+{:else if pad_or_joystick === "joystick"}
 	<div id="joystick" />
 {:else}
 	<div>Unknown type</div>

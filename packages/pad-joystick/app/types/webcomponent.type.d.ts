@@ -2,7 +2,7 @@ export type Component = {
 	id?: string;
 	style?: string;
 
-	type?: "dpad" | "joystick";
+	pad_or_joystick?: "dpad" | "joystick";
 	joystick_parameters?: {
 		internalFillColor?: string;
 		internalLineWidth?: number;

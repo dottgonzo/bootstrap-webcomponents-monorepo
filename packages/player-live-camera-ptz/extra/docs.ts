@@ -27,7 +27,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {
-			live_uri: "",
+			live_uri: "wss://testenv-installatori.movia.biz/vvwebrtc/vdeo_52089/ws",
 		},
 	},
 

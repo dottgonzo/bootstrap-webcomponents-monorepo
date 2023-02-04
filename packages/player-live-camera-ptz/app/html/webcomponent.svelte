@@ -56,6 +56,8 @@
 	let showTablePresets = false;
 	let showConfirmAddSceneToPreset = false;
 	let showGoToHomeConfirm = false;
+	let isGridOpen = false;
+	let dpadOrJoystick: "dpad" | "joystick";
 	$: {
 		if (!live_uri) live_uri = "";
 		if (!id) id = "";
@@ -67,7 +69,7 @@
 			dialogStyleSetupToSet = getChildStyleToPass(parsedStyle, dialogStyleSetup?.vars);
 		}
 		if (!current_preset) current_preset = "";
-
+		if (!dpadOrJoystick) dpadOrJoystick = "dpad";
 		if (!presets) presets = [];
 		else if (typeof presets === "string") {
 			presets = JSON.parse(presets);
@@ -130,9 +132,17 @@
 	function sendDirection(direction: padJoystickEvents["sendDirection"]) {
 		dispatch("sendDirection", { id, movementSettings, direction: direction.direction, joyId: direction.id });
 	}
-	function showGrid() {}
+	function showGrid() {
+		isGridOpen = !isGridOpen;
+	}
 	function selectZone() {}
-	function showJoystick() {}
+	function showJoystick() {
+		if (dpadOrJoystick === "dpad") {
+			dpadOrJoystick = "joystick";
+		} else {
+			dpadOrJoystick = "dpad";
+		}
+	}
 	function selectPreset() {}
 	function showSettings() {}
 
@@ -211,6 +221,34 @@
 
 <div id="container">
 	<hb-player-live no_controls="yes" id="player" mediauri={live_uri} style={playerLiveStyleSetupToSet} />
+	<div id="grid" style="display:{isGridOpen ? 'inherit' : 'none'}">
+		<table id="grid_table">
+			<tr>
+				<td />
+				<td />
+				<td />
+				<td />
+			</tr>
+			<tr>
+				<td />
+				<td />
+				<td />
+				<td />
+			</tr>
+			<tr>
+				<td />
+				<td />
+				<td />
+				<td />
+			</tr>
+			<tr>
+				<td />
+				<td />
+				<td />
+				<td />
+			</tr>
+		</table>
+	</div>
 	<div id="controller">
 		<div id="panel">
 			<div id="joystick">
@@ -221,6 +259,7 @@
 					on:sendDirection={(e) => {
 						sendDirection(e.detail);
 					}}
+					pad_or_joystick={dpadOrJoystick}
 					size="60px"
 					style={padJoystickStyleSetupToSet}
 				/>
