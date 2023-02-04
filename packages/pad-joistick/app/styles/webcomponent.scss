@@ -19,16 +19,19 @@
 	--tri-lrg-b: 19px;
 	--dpad-arrow-shift: 5px;
 	--dpad-arrow-move: 35%;
+	// width: 200px;
+	// height: 200px;
+	// display: block;
+}
+#joystick {
 	width: 200px;
 	height: 200px;
-	display: block;
 }
-
 .set {
 	overflow: hidden;
-	text-align: center;
+	//text-align: center;
 	.d-pad {
-		margin-right: 40px;
+		//margin-right: 40px;
 		// }
 		// .d-pad,
 		// .o-pad {
@@ -36,17 +39,11 @@
 		// transform: scale(.7);
 	}
 }
-.set.setbg {
-	background: #222;
-}
-.set.setbg2 {
-	background: #5f9837;
-}
 
 .d-pad {
 	position: relative;
-	width: 100%;
-	height: 100%;
+	width: 200px;
+	height: 200px;
 	border-radius: 48%;
 	overflow: hidden;
 	&:before {
@@ -242,30 +239,18 @@
 		right: var(--dpad-arrow-move);
 	}
 }
-.d-pad.up button.up:before {
-	border-bottom-color: #333;
-}
-.d-pad.down button.down:before {
-	border-top-color: #333;
-}
-.d-pad.left button.left:before {
-	border-right-color: #333;
-}
-.d-pad.right button.right:before {
-	border-left-color: #333;
-}
 
 // set direction active state
 
-.d-pad.up button.up:before {
-	border-bottom-color: #333;
-}
-.d-pad.down button.down:before {
-	border-top-color: #333;
-}
-.d-pad.left button.left:before {
-	border-right-color: #333;
-}
-.d-pad.right button.right:before {
-	border-left-color: #333;
-}
+// .d-pad.up button.up:before {
+// 	border-bottom-color: #333;
+// }
+// .d-pad.down button.down:before {
+// 	border-top-color: #333;
+// }
+// .d-pad.left button.left:before {
+// 	border-right-color: #333;
+// }
+// .d-pad.right button.right:before {
+// 	border-left-color: #333;
+// }

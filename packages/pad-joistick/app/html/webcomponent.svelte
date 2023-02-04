@@ -5,6 +5,8 @@
 
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
+	import JoyStick from "html5-joystick-new";
+
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
 	import type { Component } from "@app/types/webcomponent.type";
 
@@ -20,6 +22,8 @@
 	export let style: string;
 
 	export let type: Component["type"];
+
+	let joystick: JoyStick;
 
 	// let nipple: nipplejs.JoystickManager;
 
@@ -42,6 +46,10 @@
 		// 	position: { left: "50%", top: "50%" },
 		// 	color: "red",
 		// });
+		const joyEl = component.shadowRoot.getElementById("joystick");
+		if (type === "joystick" && !joystick && joyEl?.style) {
+			joystick = new JoyStick(joyEl);
+		}
 	});
 
 	function sendArrow(direction: "up" | "right" | "down" | "left") {
@@ -59,7 +67,7 @@
 		</nav>
 	</div>
 {:else if type === "joystick"}
-	....
+	<div id="joystick" />
 {:else}
 	<div>Unknown type</div>
 {/if}
