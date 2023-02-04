@@ -169,7 +169,7 @@
 		{/if}
 	</div>
 	<!-- <div slot="footer">
-		<button type="button" class="btn btn-secondary" on:click={() => openPresetsModal()}>Close</button>
+		<button type="button" class="btn btn-primary" on:click={() => openPresetsModal()}>Close</button>
 	</div> -->
 </hb-dialog>
 
@@ -190,7 +190,7 @@
 	</div> -->
 	<div slot="body-content">Are You sure to add this scene to the preset?</div>
 	<!-- <div slot="footer">
-		<button type="button" class="btn btn-secondary" on:click={() => openPresetsModal()}>Close</button>
+		<button type="button" class="btn btn-primary" on:click={() => openPresetsModal()}>Close</button>
 	</div> -->
 </hb-dialog>
 
@@ -210,7 +210,7 @@
 </hb-dialog>
 
 <div id="container">
-	<hb-player-live mediauri={live_uri} style={playerLiveStyleSetupToSet} />
+	<hb-player-live no_controls="yes" id="player" mediauri={live_uri} style={playerLiveStyleSetupToSet} />
 	<div id="controller">
 		<div id="panel">
 			<div id="joystick">
@@ -227,17 +227,17 @@
 			</div>
 			<div id="buttons">
 				<div class="btn-group" style="margin-right:10px">
-					<button on:click={() => zoomAction("in")} class="btn btn-sm btn-secondary">
+					<button on:click={() => zoomAction("in")} class="btn btn-sm btn-primary">
 						<i class="bi bi-zoom-in" />
 					</button>
-					<button on:click={() => zoomAction("out")} class="btn btn-sm btn-secondary">
+					<button on:click={() => zoomAction("out")} class="btn btn-sm btn-primary">
 						<i class="bi bi-zoom-out" />
 					</button>
 				</div>
-				<button on:click={() => confirmGoToHome()} class="btn btn-sm btn-secondary">
+				<button on:click={() => confirmGoToHome()} class="btn btn-sm btn-primary">
 					<i class="bi bi-house-door-fill" />
 				</button>
-				<button on:click={() => selectZone()} class="btn btn-sm btn-secondary">
+				<button on:click={() => selectZone()} class="btn btn-sm btn-primary">
 					<i class="bi bi-square" />
 				</button>
 			</div>
@@ -248,21 +248,21 @@
 				<span class="slider_label">precision:</span> <input type="range" bind:value={movementSettings.precision} />
 			</div>
 			<div id="presets_view">
-				<button on:click={() => showGrid()} class="btn btn-secondary">
+				<button on:click={() => showGrid()} class="btn btn-primary">
 					<i class="bi bi-grid-3x3" />
 				</button>
-				<button on:click={() => showJoystick()} class="btn btn-secondary">
+				<button on:click={() => showJoystick()} class="btn btn-primary">
 					<i class="bi bi-joystick" />
 				</button>
-				<button on:click={() => showSettings()} class="btn btn-secondary">
+				<button on:click={() => showSettings()} class="btn btn-primary">
 					<i class="bi bi-sliders" />
 				</button>
-				<!-- <button on:click={() => openPresetsModal()} class="btn btn-secondary">
+				<!-- <button on:click={() => openPresetsModal()} class="btn btn-primary">
 					<i class="bi bi-gear-fill" />
 				</button> -->
 			</div>
 			<div id="presets_select">
-				<button on:click={() => confirmAddSceneToPresets()} class="btn btn-sm btn-secondary">
+				<button on:click={() => confirmAddSceneToPresets()} class="btn btn-sm btn-primary">
 					<i class="bi bi-plus-circle-fill" />
 				</button>
 				<button
@@ -270,7 +270,7 @@
 					on:click={() => {
 						openPresetsModal();
 					}}
-					class="btn btn-sm btn-secondary">{current_preset} <i style="float:right" class="bi bi-arrow-down-up" /></button
+					class="btn btn-sm btn-primary">{current_preset} <i style="float:right" class="bi bi-arrow-down-up" /></button
 				>
 				<!-- <select
 					on:change={(e) => {
@@ -285,7 +285,7 @@
 				</select> -->
 			</div>
 			<div id="presets_buttons">
-				<span style="font-size:0.8em;color:grey">
+				<span class="timecell">
 					<i class="bi bi-clock" />
 					<span>{time}</span>
 				</span>
