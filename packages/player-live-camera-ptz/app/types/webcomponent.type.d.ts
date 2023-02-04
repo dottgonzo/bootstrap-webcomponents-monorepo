@@ -15,6 +15,15 @@ export type Component = {
 	presets?: TPreset[];
 	position?: "top" | "right-bottom" | "left-bottom" | "bottom" | "right-top" | "left-top";
 	current_preset?: string;
+	configuration?: {
+		joystick?: boolean;
+		presets?: boolean;
+		home?: boolean;
+		zoom?: {
+			in?: boolean;
+			out?: boolean;
+		};
+	};
 };
 
 export type Events = {
