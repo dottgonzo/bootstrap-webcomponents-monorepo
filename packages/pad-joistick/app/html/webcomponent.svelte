@@ -50,7 +50,11 @@
 		if (type === "joystick" && !joystick && joyEl?.style) {
 			joystick = new JoyStick(joyEl, {
 				callback: (pos: { x: number; y: number; cardinalDirection: CardinalDirection; xPosition: number; yPosition: number }) => {
-					sendJoystickPosition(pos);
+					sendJoystickPosition({
+						x: pos.xPosition,
+						y: pos.yPosition,
+						cardinalDirection: pos.cardinalDirection,
+					});
 				},
 			});
 		}
