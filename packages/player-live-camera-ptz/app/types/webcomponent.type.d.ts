@@ -25,6 +25,7 @@ export type Component = {
 		};
 	};
 };
+export type CardinalDirection = "C" | "N" | "S" | "NE" | "SE" | "NW" | "SW" | "NO" | "SO" | "W" | "O";
 
 export type Events = {
 	zoomAction: { movementSettings: TMovementSettings; direction: "in" | "out"; id: string };
