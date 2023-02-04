@@ -2,9 +2,14 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	// width: { control: { type: "text" } },
+	presets: { control: { type: "object" } },
 	// height: { control: { type: "text" } },
-	// liveStatus: { action: "liveStatusEvent" },
+	zoomAction: { action: "zoomActionEvent" },
+	goToHome: { action: "goToHomeEvent" },
+	sendJoystickPosition: { action: "sendJoystickPositionEvent" },
+	sendDirection: { action: "sendDirectionEvent" },
+	addAsPreset: { action: "addAsPresetEvent" },
+	changePreset: { action: "changePresetEvent" },
 };
 
 const cssVars: CssVar[] = [];
