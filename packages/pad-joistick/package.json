@@ -77,7 +77,7 @@
 	"contributors": [],
 	"gitHead": "fc1fcac661743a043e0f333f80942fa29aa81596",
 	"dependencies": {
-		"html5-joystick-new": "^0.0.3",
+		"html5-joystick-new": "^0.0.6",
 		"style-to-object": "^0.3.0"
 	}
 }
