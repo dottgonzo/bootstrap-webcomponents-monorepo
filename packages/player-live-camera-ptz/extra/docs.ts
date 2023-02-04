@@ -3,6 +3,7 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	presets: { control: { type: "object" } },
+	live_uri: { control: { type: "text" } },
 	// height: { control: { type: "text" } },
 	zoomAction: { action: "zoomActionEvent" },
 	goToHome: { action: "goToHomeEvent" },
