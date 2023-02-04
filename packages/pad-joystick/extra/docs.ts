@@ -44,11 +44,11 @@ export const componentSetup: ComponentSetup & { examples: { name: string; descri
 	screenshots: [],
 	licenses: [{ type: "Apache-2.0", path: "LICENSE.md", cost: 0, currency: "EUR" }],
 	readmePath: "README.md",
-	name: "hb-pad-joistick",
+	name: "hb-pad-joystick",
 	category: "dev",
 	tags: ["dev"],
 	size: {},
 	iifePath: "release/release.js",
-	repoName: "@htmlbricks/hb-pad-joistick",
+	repoName: "@htmlbricks/hb-pad-joystick",
 	version: null as any,
 };

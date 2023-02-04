@@ -7,7 +7,7 @@ import {
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/pad-joistick/extra/docs";
+} from "../../packages/pad-joystick/extra/docs";
 
 const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
@@ -15,15 +15,15 @@ export default meta;
 const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes as any, componentSetup.name);
 
-export const PadJoistickDefault = Template.bind({});
+export const PadJoystickDefault = Template.bind({});
 
-PadJoistickDefault.args = setStorybookData(
+PadJoystickDefault.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples.find((f) => f.name === "default")
 );
-export const PadJoistickJoystick = Template.bind({});
+export const PadJoystickJoystick = Template.bind({});
 
-PadJoistickJoystick.args = setStorybookData(
+PadJoystickJoystick.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples.find((f) => f.name === "joystick")
 );

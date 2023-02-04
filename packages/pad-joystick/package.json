@@ -1,7 +1,7 @@
 {
-	"name": "@htmlbricks/hb-pad-joistick",
-	"displayName": "Svelte-Bootstrap pad-joistick",
-	"description": "Svelte-Bootstrap pad-joistick",
+	"name": "@htmlbricks/hb-pad-joystick",
+	"displayName": "Svelte-Bootstrap pad-joystick",
+	"description": "Svelte-Bootstrap pad-joystick",
 	"version": "0.17.13",
 	"main": "release/release.js",
 	"publishConfig": {

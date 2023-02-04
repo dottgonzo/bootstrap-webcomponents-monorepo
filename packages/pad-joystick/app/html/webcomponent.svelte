@@ -1,4 +1,4 @@
-<svelte:options tag="hb-pad-joistick" />
+<svelte:options tag="hb-pad-joystick" />
 
 <script lang="ts">
 	import { get_current_component, onDestroy, onMount } from "svelte/internal";
