@@ -8,7 +8,7 @@ export const storybookArgs = {
 	goToHome: { action: "goToHomeEvent" },
 	sendJoystickPosition: { action: "sendJoystickPositionEvent" },
 	sendDirection: { action: "sendDirectionEvent" },
-	addAsPreset: { action: "addAsPresetEvent" },
+	addSceneAsPreset: { action: "addSceneAsPresetEvent" },
 	changePreset: { action: "changePresetEvent" },
 };
 

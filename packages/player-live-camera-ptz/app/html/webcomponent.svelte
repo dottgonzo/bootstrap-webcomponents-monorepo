@@ -33,6 +33,8 @@
 	export let presets: Component["presets"];
 	export let position: Component["position"];
 
+	export let current_preset: Component["current_preset"];
+
 	let parsedStyle: { [x: string]: string };
 
 	let playerLiveStyleSetupToSet: string = "";
@@ -52,6 +54,8 @@
 		},
 	];
 	let showTablePresets = false;
+	let showConfirmAddSceneToPreset = false;
+	let showGoToHomeConfirm = false;
 	$: {
 		if (!live_uri) live_uri = "";
 		if (!id) id = "";
@@ -62,6 +66,8 @@
 			tableStyleSetupToSet = getChildStyleToPass(parsedStyle, tableStyleSetup?.vars);
 			dialogStyleSetupToSet = getChildStyleToPass(parsedStyle, dialogStyleSetup?.vars);
 		}
+		if (!current_preset) current_preset = "";
+
 		if (!presets) presets = [];
 		else if (typeof presets === "string") {
 			presets = JSON.parse(presets);
@@ -88,15 +94,20 @@
 		const goToHomeEventPayload: Events["goToHome"] = { id, movementSettings };
 		dispatch("goToHome", { id, movementSettings });
 	}
-	function addAsPreset() {
-		const addAsPresetEventPayload: Events["addAsPreset"] = { id };
+	function addSceneAsPreset() {
+		const addAsPresetEventPayload: Events["addSceneAsPreset"] = { id };
 
-		dispatch("addAsPreset", addAsPresetEventPayload);
+		dispatch("addSceneAsPreset", addAsPresetEventPayload);
 	}
 	function openPresetsModal() {
 		showTablePresets = !showTablePresets;
 	}
-
+	function confirmAddSceneToPresets() {
+		showConfirmAddSceneToPreset = !showConfirmAddSceneToPreset;
+	}
+	function confirmGoToHome() {
+		showGoToHomeConfirm = !showGoToHomeConfirm;
+	}
 	function changePreset(e: any) {
 		const presetClick = e.target.value;
 		const preset = presets.find((p) => p.id === presetClick);
@@ -122,6 +133,8 @@
 	function showGrid() {}
 	function selectZone() {}
 	function showJoystick() {}
+	function selectPreset() {}
+	function showSettings() {}
 
 	addComponent({ repoName: "@htmlbricks/hb-player-live", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-pad-joystick", version: pkg.version });
@@ -132,6 +145,8 @@
 <svelte:head>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
 </svelte:head>
+
+<!-- This Dialog allows to manage the presets -->
 <hb-dialog
 	on:modalShow={(s) => {
 		showTablePresets = s.detail.show;
@@ -157,6 +172,43 @@
 		<button type="button" class="btn btn-secondary" on:click={() => openPresetsModal()}>Close</button>
 	</div> -->
 </hb-dialog>
+
+<!-- This Dialog allows to confirm the addSceneToPreset -->
+
+<hb-dialog
+	on:modalShow={(s) => {
+		showConfirmAddSceneToPreset = s.detail.show;
+	}}
+	title="Add Scene to Preset"
+	show={showConfirmAddSceneToPreset ? "yes" : "no"}
+	on:modalConfirm={(e) => {
+		if (e?.detail?.confirm) addSceneAsPreset();
+	}}
+>
+	<!-- <div slot="header">
+		<h5 class="modal-title">Presets</h5>
+	</div> -->
+	<div slot="body-content">Are You sure to add this scene to the preset?</div>
+	<!-- <div slot="footer">
+		<button type="button" class="btn btn-secondary" on:click={() => openPresetsModal()}>Close</button>
+	</div> -->
+</hb-dialog>
+
+<!-- This Dialog allows to confirm the Go To Home Movement -->
+
+<hb-dialog
+	on:modalShow={(s) => {
+		showGoToHomeConfirm = s.detail.show;
+	}}
+	title="Go to Home"
+	show={showGoToHomeConfirm ? "yes" : "no"}
+	on:modalConfirm={(e) => {
+		if (e?.detail?.confirm) goToHome();
+	}}
+>
+	<div slot="body-content">Are You sure to go To Home?</div>
+</hb-dialog>
+
 <div id="container">
 	<hb-player-live mediauri={live_uri} style={playerLiveStyleSetupToSet} />
 	<div id="controller">
@@ -182,11 +234,8 @@
 						<i class="bi bi-zoom-out" />
 					</button>
 				</div>
-				<button on:click={() => showGrid()} class="btn btn-sm btn-secondary">
-					<i class="bi bi-grid-3x3" />
-				</button>
-				<button on:click={() => showJoystick()} class="btn btn-sm btn-secondary">
-					<i class="bi bi-joystick" />
+				<button on:click={() => confirmGoToHome()} class="btn btn-sm btn-secondary">
+					<i class="bi bi-house-door-fill" />
 				</button>
 				<button on:click={() => selectZone()} class="btn btn-sm btn-secondary">
 					<i class="bi bi-square" />
@@ -199,27 +248,41 @@
 				<span class="slider_label">precision:</span> <input type="range" bind:value={movementSettings.precision} />
 			</div>
 			<div id="presets_view">
-				<button on:click={() => goToHome()} class="btn btn-secondary">
-					<i class="bi bi-house-door-fill" />
+				<button on:click={() => showGrid()} class="btn btn-secondary">
+					<i class="bi bi-grid-3x3" />
 				</button>
-				<button on:click={() => openPresetsModal()} class="btn btn-secondary">
+				<button on:click={() => showJoystick()} class="btn btn-secondary">
+					<i class="bi bi-joystick" />
+				</button>
+				<button on:click={() => showSettings()} class="btn btn-secondary">
+					<i class="bi bi-sliders" />
+				</button>
+				<!-- <button on:click={() => openPresetsModal()} class="btn btn-secondary">
 					<i class="bi bi-gear-fill" />
-				</button>
-				<button on:click={() => addAsPreset()} class="btn btn-secondary">
-					<i class="bi bi-plus-circle-fill" />
-				</button>
+				</button> -->
 			</div>
 			<div id="presets_select">
-				<select
+				<button on:click={() => confirmAddSceneToPresets()} class="btn btn-sm btn-secondary">
+					<i class="bi bi-plus-circle-fill" />
+				</button>
+				<button
+					style="width:120px!important;display:inline-block!important"
+					on:click={() => {
+						openPresetsModal();
+					}}
+					class="btn btn-sm btn-secondary">{current_preset} <i style="float:right" class="bi bi-arrow-down-up" /></button
+				>
+				<!-- <select
 					on:change={(e) => {
 						changePreset(e);
 					}}
 					class="btn btn-primary"
+					bind:value={current_preset}
 				>
 					{#each presets as preset (preset.id)}
 						<option value={preset.id}>{preset.label || preset.id}</option>
 					{/each}
-				</select>
+				</select> -->
 			</div>
 			<div id="presets_buttons">
 				<span style="font-size:0.8em;color:grey">
