@@ -38,6 +38,16 @@ export type CardinalDirection = "C" | "N" | "S" | "NE" | "SE" | "NW" | "SW" | "N
 export type Events = {
 	zoomAction: { movementSettings: TMovementSettings; direction: "in" | "out"; id: string };
 	goToHome: { movementSettings: TMovementSettings; id: string };
+	sendRect: {
+		movementSettings: TMovementSettings;
+		id: string;
+		x: number;
+		y: number;
+		width: number;
+		height: number;
+		htmlVideoElementWidth: number;
+		htmlVideoElementHeight: number;
+	};
 	addSceneAsPreset: { id: string };
 	changePreset: TPreset & { playerId: string; movementSettings: TMovementSettings };
 	deletePreset: TPreset & { playerId: string };

@@ -12,6 +12,7 @@ export const storybookArgs = {
 	sendDirection: { action: "sendDirectionEvent" },
 	addSceneAsPreset: { action: "addSceneAsPresetEvent" },
 	changePreset: { action: "changePresetEvent" },
+	sendRect: { action: "sendRectEvent" },
 };
 
 const cssVars: CssVar[] = [

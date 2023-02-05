@@ -36,6 +36,8 @@
 
 	export let current_preset: Component["current_preset"];
 
+	let htmlVideoElement: HTMLVideoElement;
+
 	let parsedStyle: { [x: string]: string };
 
 	let playerLiveStyleSetupToSet: string = "";
@@ -50,6 +52,9 @@
 	const defaultConfiguration: Component["configuration"] = {
 		joystick: true,
 		presets: true,
+		deletePreset: true,
+		addPreset: true,
+		switchPreset: true,
 		home: true,
 		zoom: {
 			in: true,
@@ -57,6 +62,8 @@
 		},
 		pan: true,
 		tilt: true,
+		clickToCenter: true,
+		settings: true,
 	};
 	let time = new Date().toLocaleTimeString();
 	let tablePresetsRows: TableComponent["rows"];
@@ -87,6 +94,8 @@
 		},
 	];
 
+	type TrectClicks = { start?: { x: number; y: number }; end?: { x: number; y: number } };
+
 	let showTablePresets = false;
 	let showConfirmAddSceneToPreset = false;
 	let showConfirmDeletePreset = false;
@@ -95,6 +104,8 @@
 	let isGridOpen = false;
 	let dpadOrJoystick: "dpad" | "joystick" = "dpad";
 	let selectingZone = false;
+	let rect = { x: 0, y: 0, width: 0, height: 0 };
+	let rectClicks: TrectClicks = {};
 	$: {
 		if (!live_uri) live_uri = "";
 		if (!id) id = "";
@@ -145,6 +156,18 @@
 		const addAsPresetEventPayload: Events["addSceneAsPreset"] = { id };
 
 		dispatch("addSceneAsPreset", addAsPresetEventPayload);
+	}
+	function sendRect() {
+		if (!configuration?.clickToCenter) return console.error("Click to center is not enabled in the configuration");
+		const sendRectEventPayload: Events["sendRect"] = Object.assign(
+			{ id, movementSettings, htmlVideoElementWidth: htmlVideoElement.width, htmlVideoElementHeight: htmlVideoElement.height },
+			rect,
+		);
+
+		dispatch("sendRect", sendRectEventPayload);
+		selectingZone = false;
+		rect = { x: 0, y: 0, width: 0, height: 0 };
+		rectClicks = {};
 	}
 	function openPresetsModal() {
 		if (!configuration.presets) return console.error("Presets is not enabled in the configuration");
@@ -310,14 +333,17 @@
 <!-- This Dialog allows to confirm the delete preset -->
 
 <hb-dialog
+	id={"del_" + selectedPresetId}
 	on:modalShow={(s) => {
 		showConfirmDeletePreset = s.detail.show;
 	}}
 	title="Go to Preset {selectedPresetId ? presets.find((f) => f.id === selectedPresetId)?.id : ''}"
 	show={showConfirmDeletePreset ? "yes" : "no"}
+	confirmlabel="delete"
+	confirm_btn_class="danger"
 	on:modalConfirm={(e) => {
 		console.log(e.detail, "detail");
-		if (e?.detail?.confirm) deletePreset(e.detail.itemId);
+		if (e?.detail?.confirm) deletePreset(e.detail.id.split("del_")[1]);
 	}}
 >
 	<div slot="body-content">Are You sure to DELETE preset {selectedPresetId ? presets.find((f) => f.id === selectedPresetId)?.id : ""}?</div>
@@ -326,21 +352,61 @@
 <!-- This Dialog allows to confirm the Go To Preset -->
 
 <hb-dialog
+	id={"goto_" + selectedPresetId}
 	on:modalShow={(s) => {
 		showConfirmGoToPreset = s.detail.show;
 	}}
 	title="Go to Preset {selectedPresetId ? presets.find((f) => f.id === selectedPresetId)?.id : ''}"
 	show={showConfirmGoToPreset ? "yes" : "no"}
+	confirmlabel="go"
+	confirm_btn_class="light"
 	on:modalConfirm={(e) => {
-		console.log(e.detail, "detail");
-		if (e?.detail?.confirm) changePreset(e.detail.itemId);
+		console.log(e.detail.id.split("goto")[1], "detail");
+		if (e?.detail?.confirm) changePreset(e.detail.id.split("goto_")[1]);
 	}}
 >
 	<div slot="body-content">Are You sure to GO to preset "{selectedPresetId ? presets.find((f) => f.id === selectedPresetId)?.id : ""}"?</div>
 </hb-dialog>
 
 <div id="container">
-	<hb-player-live no_controls="yes" id="player" mediauri={live_uri} style={playerLiveStyleSetupToSet} />
+	<hb-player-live
+		on:htmlVideoInit={(e) => {
+			console.log(e.detail, "detailvid");
+			htmlVideoElement = e.detail.htmlVideoElement;
+			htmlVideoElement.onclick = (element_click) => {
+				if (selectingZone) {
+					const newClick = { x: element_click.clientX, y: element_click.clientY };
+					if (!rectClicks.start) {
+						rectClicks.start = newClick;
+					} else {
+						rectClicks.end = newClick;
+						sendRect();
+					}
+				}
+			};
+			htmlVideoElement.onmousemove = (element_click) => {
+				if (selectingZone) {
+					const newClick = { x: element_click.clientX, y: element_click.clientY };
+					if (rectClicks.start) {
+						rectClicks.end = newClick;
+					}
+				}
+			};
+		}}
+		no_controls="yes"
+		id="player"
+		mediauri={live_uri}
+		style={playerLiveStyleSetupToSet}
+	/>
+	<div
+		id="area_selector"
+		style="display:{selectingZone ? 'inherit' : 'none'}; width:{((rectClicks?.start?.x || 0) + (rectClicks?.end?.x || 0)) / 2}px;height:{((rectClicks?.start
+			?.y || 0) +
+			(rectClicks?.end?.y || 0)) /
+			2}px;top:{Math.abs((rectClicks?.start?.y || 0) - (rectClicks?.end?.y || 0))}px;left:{Math.abs(
+			(rectClicks?.start?.x || 0) - (rectClicks?.end?.x || 0),
+		)}px;"
+	/>
 	<div id="grid" style="display:{isGridOpen ? 'inherit' : 'none'}">
 		<table id="grid_table">
 			<tr>
@@ -396,20 +462,20 @@
 			</div>
 			<div id="buttons">
 				<div class="btn-group" style="margin-right:10px">
-					<button disabled={configuration?.zoom?.in ? false : true} on:click={() => zoomAction("in")} class="btn btn-sm btn-secondary">
+					<button disabled={configuration?.zoom?.in ? false : true} on:click={() => zoomAction("in")} class="btn btn-sm btn-light">
 						<i class="bi bi-zoom-in" />
 					</button>
-					<button disabled={configuration?.zoom?.out ? false : true} on:click={() => zoomAction("out")} class="btn btn-sm btn-secondary">
+					<button disabled={configuration?.zoom?.out ? false : true} on:click={() => zoomAction("out")} class="btn btn-sm btn-light">
 						<i class="bi bi-zoom-out" />
 					</button>
 				</div>
-				<button disabled={configuration?.home ? false : true} on:click={() => confirmGoToHome()} class="btn btn-sm btn-secondary">
+				<button disabled={configuration?.home ? false : true} on:click={() => confirmGoToHome()} class="btn btn-sm btn-light">
 					<i class="bi bi-house-door-fill" />
 				</button>
 				<button
 					disabled={configuration?.clickToCenter ? false : true}
 					on:click={() => selectZone()}
-					class="btn btn-sm btn-{selectingZone ? 'primary' : 'secondary'}"
+					class="btn btn-sm btn-{selectingZone ? 'primary' : 'light'}"
 				>
 					<i class="bi bi-square" />
 				</button>
@@ -421,17 +487,17 @@
 				<span class="slider_label">precision:</span> <input type="range" bind:value={movementSettings.precision} />
 			</div>
 			<div id="presets_view">
-				<button on:click={() => showGrid()} class="btn btn-{isGridOpen ? 'primary' : 'secondary'}">
+				<button on:click={() => showGrid()} class="btn btn-{isGridOpen ? 'primary' : 'light'}">
 					<i class="bi bi-grid-3x3" />
 				</button>
 				<button
 					disabled={configuration?.joystick ? false : true}
 					on:click={() => showJoystick()}
-					class="btn btn-{dpadOrJoystick && dpadOrJoystick === 'dpad' ? 'secondary' : 'primary'}"
+					class="btn btn-{dpadOrJoystick && dpadOrJoystick === 'dpad' ? 'light' : 'primary'}"
 				>
 					<i class="bi bi-joystick" />
 				</button>
-				<button disabled={configuration?.settings ? false : true} on:click={() => showSettings()} class="btn btn-secondary">
+				<button disabled={configuration?.settings ? false : true} on:click={() => showSettings()} class="btn btn-light">
 					<i class="bi bi-sliders" />
 				</button>
 				<!-- <button on:click={() => openPresetsModal()} class="btn btn-primary">
@@ -439,7 +505,7 @@
 				</button> -->
 			</div>
 			<div id="presets_select">
-				<button disabled={configuration?.addPreset ? false : true} on:click={() => confirmAddSceneToPresets()} class="btn btn-sm btn-secondary">
+				<button disabled={configuration?.addPreset ? false : true} on:click={() => confirmAddSceneToPresets()} class="btn btn-sm btn-light">
 					<i class="bi bi-plus-circle-fill" />
 				</button>
 				<button
@@ -448,8 +514,7 @@
 					on:click={() => {
 						openPresetsModal();
 					}}
-					class="btn btn-sm btn-{current_preset ? 'primary' : 'secondary'}"
-					>{current_preset} <i style="float:right" class="bi bi-arrow-down-up" /></button
+					class="btn btn-sm btn-{current_preset ? 'primary' : 'light'}">{current_preset} <i style="float:right" class="bi bi-arrow-down-up" /></button
 				>
 				<!-- <select
 					on:change={(e) => {
