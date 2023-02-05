@@ -6,6 +6,7 @@ export const storybookArgs = {
 	live_uri: { control: { type: "text" } },
 	current_preset: { control: { type: "text" } },
 	// height: { control: { type: "text" } },
+	initVideo: { action: "initVideoEvent" },
 	zoomAction: { action: "zoomActionEvent" },
 	goToHome: { action: "goToHomeEvent" },
 	sendJoystickPosition: { action: "sendJoystickPositionEvent" },
