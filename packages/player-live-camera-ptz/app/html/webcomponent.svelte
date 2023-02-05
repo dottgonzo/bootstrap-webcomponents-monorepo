@@ -95,6 +95,7 @@
 	];
 
 	type TrectClicks = { start?: { x: number; y: number }; end?: { x: number; y: number } };
+	type Trect = { top: number; left: number; width: number; height: number };
 
 	let showTablePresets = false;
 	let showConfirmAddSceneToPreset = false;
@@ -104,7 +105,7 @@
 	let isGridOpen = false;
 	let dpadOrJoystick: "dpad" | "joystick" = "dpad";
 	let selectingZone = false;
-	let rect = { x: 0, y: 0, width: 0, height: 0 };
+	let rect: Trect = { top: 0, left: 0, width: 0, height: 0 };
 	let rectClicks: TrectClicks = {};
 	$: {
 		if (!live_uri) live_uri = "";
@@ -142,31 +143,32 @@
 	function zoomAction(direction: "in" | "out") {
 		if (!configuration.zoom) return console.error("Zoom is not enabled in the configuration");
 		if (!configuration.zoom[direction]) return console.error(`Zoom ${direction} is not enabled in the configuration`);
-		const zoomActionEventPayload: Events["zoomAction"] = { id, movementSettings, direction };
+		const zoomActionEventPayload: Events["zoomAction"] = { time: new Date(), id, movementSettings, direction };
 
 		dispatch("zoomAction", zoomActionEventPayload);
 	}
 	function goToHome() {
 		if (!configuration.home) return console.error("Go to home is not enabled in the configuration");
-		const goToHomeEventPayload: Events["goToHome"] = { id, movementSettings };
+		const goToHomeEventPayload: Events["goToHome"] = { time: new Date(), id, movementSettings };
 		dispatch("goToHome", { id, movementSettings });
 	}
 	function addSceneAsPreset() {
 		if (!configuration.addPreset) return console.error("Add scene to preset is not enabled in the configuration");
-		const addAsPresetEventPayload: Events["addSceneAsPreset"] = { id };
+		const addAsPresetEventPayload: Events["addSceneAsPreset"] = { time: new Date(), id };
 
 		dispatch("addSceneAsPreset", addAsPresetEventPayload);
 	}
 	function sendRect() {
 		if (!configuration?.clickToCenter) return console.error("Click to center is not enabled in the configuration");
+		const videoRect = htmlVideoElement.getBoundingClientRect();
 		const sendRectEventPayload: Events["sendRect"] = Object.assign(
-			{ id, movementSettings, htmlVideoElementWidth: htmlVideoElement.width, htmlVideoElementHeight: htmlVideoElement.height },
+			{ time: new Date(), id, movementSettings, htmlVideoElementWidth: videoRect.width, htmlVideoElementHeight: videoRect.height },
 			rect,
 		);
 
 		dispatch("sendRect", sendRectEventPayload);
 		selectingZone = false;
-		rect = { x: 0, y: 0, width: 0, height: 0 };
+		rect = { top: 0, left: 0, width: 0, height: 0 };
 		rectClicks = {};
 	}
 	function openPresetsModal() {
@@ -186,7 +188,7 @@
 
 		const preset = presets.find((p) => p.id === presetId);
 		if (preset) {
-			const changePresetEventPayload: Events["changePreset"] = Object.assign({ playerId: id, movementSettings }, preset);
+			const changePresetEventPayload: Events["changePreset"] = Object.assign({ time: new Date(), playerId: id, movementSettings }, preset);
 
 			dispatch("changePreset", changePresetEventPayload);
 		} else console.error("Preset not found");
@@ -197,7 +199,7 @@
 
 		const preset = presets.find((p) => p.id === presetId);
 		if (preset) {
-			const deletePresetEventPayload: Events["deletePreset"] = Object.assign({ playerId: id }, preset);
+			const deletePresetEventPayload: Events["deletePreset"] = Object.assign({ time: new Date(), playerId: id }, preset);
 
 			dispatch("deletePreset", deletePresetEventPayload);
 		} else console.error("Preset not found");
@@ -368,27 +370,60 @@
 	<div slot="body-content">Are You sure to GO to preset "{selectedPresetId ? presets.find((f) => f.id === selectedPresetId)?.id : ""}"?</div>
 </hb-dialog>
 
-<div id="container">
+<div
+	id="container"
+	style="cursor: {selectingZone ? 'crosshair' : ''};"
+	on:mousemove={(element_click) => {
+		if (selectingZone) {
+			const containerPos = htmlVideoElement.getBoundingClientRect();
+
+			const newClick = {
+				x: element_click.clientX - containerPos.left,
+				y: element_click.clientY - containerPos.top,
+			};
+			if (rectClicks.start) {
+				rectClicks = { start: rectClicks.start, end: newClick };
+				rect = {
+					top: rectClicks.start.y > rectClicks.end.y ? rectClicks.end.y : rectClicks.start.y,
+					left: rectClicks.start.x > rectClicks.end.x ? rectClicks.end.x : rectClicks.start.x,
+					width: Math.abs((rectClicks?.start?.x || 0) - (rectClicks?.end?.x || 0)),
+					height: Math.abs((rectClicks?.start?.y || 0) - (rectClicks?.end?.y || 0)),
+				};
+			}
+		}
+	}}
+>
 	<hb-player-live
 		on:htmlVideoInit={(e) => {
 			console.log(e.detail, "detailvid");
 			htmlVideoElement = e.detail.htmlVideoElement;
 			htmlVideoElement.onclick = (element_click) => {
 				if (selectingZone) {
-					const newClick = { x: element_click.clientX, y: element_click.clientY };
+					const containerPos = htmlVideoElement.getBoundingClientRect();
+
+					const newClick = { x: element_click.clientX - containerPos.left, y: element_click.clientY - containerPos.top, width: 0, height: 0 };
 					if (!rectClicks.start) {
-						rectClicks.start = newClick;
+						rectClicks = { start: newClick };
 					} else {
-						rectClicks.end = newClick;
+						rectClicks = { start: rectClicks.start, end: newClick };
 						sendRect();
 					}
 				}
 			};
 			htmlVideoElement.onmousemove = (element_click) => {
 				if (selectingZone) {
-					const newClick = { x: element_click.clientX, y: element_click.clientY };
+					const newClick = {
+						x: element_click.clientX,
+						y: element_click.clientY,
+					};
 					if (rectClicks.start) {
-						rectClicks.end = newClick;
+						rectClicks = { start: rectClicks.start, end: newClick };
+						rect = {
+							top: rectClicks.start.y > rectClicks.end.y ? rectClicks.end.y : rectClicks.start.y,
+							left: rectClicks.start.x > rectClicks.end.x ? rectClicks.end.x : rectClicks.start.x,
+							width: Math.abs((rectClicks?.start?.x || 0) - (rectClicks?.end?.x || 0)),
+							height: Math.abs((rectClicks?.start?.y || 0) - (rectClicks?.end?.y || 0)),
+						};
 					}
 				}
 			};
@@ -400,12 +435,7 @@
 	/>
 	<div
 		id="area_selector"
-		style="display:{selectingZone ? 'inherit' : 'none'}; width:{((rectClicks?.start?.x || 0) + (rectClicks?.end?.x || 0)) / 2}px;height:{((rectClicks?.start
-			?.y || 0) +
-			(rectClicks?.end?.y || 0)) /
-			2}px;top:{Math.abs((rectClicks?.start?.y || 0) - (rectClicks?.end?.y || 0))}px;left:{Math.abs(
-			(rectClicks?.start?.x || 0) - (rectClicks?.end?.x || 0),
-		)}px;"
+		style="display:{selectingZone ? 'inherit' : 'none'}; width:{rect.width}px; height:{rect.height}px;top:{rect.top}px;left:{rect.left}px;"
 	/>
 	<div id="grid" style="display:{isGridOpen ? 'inherit' : 'none'}">
 		<table id="grid_table">

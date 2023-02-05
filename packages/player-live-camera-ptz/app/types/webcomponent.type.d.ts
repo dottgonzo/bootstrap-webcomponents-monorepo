@@ -36,21 +36,30 @@ export type Component = {
 export type CardinalDirection = "C" | "N" | "S" | "NE" | "SE" | "NW" | "SW" | "NO" | "SO" | "W" | "O";
 
 export type Events = {
-	zoomAction: { movementSettings: TMovementSettings; direction: "in" | "out"; id: string };
-	goToHome: { movementSettings: TMovementSettings; id: string };
+	zoomAction: { movementSettings: TMovementSettings; direction: "in" | "out"; id: string; time: Date };
+	goToHome: { movementSettings: TMovementSettings; id: string; time: Date };
 	sendRect: {
 		movementSettings: TMovementSettings;
 		id: string;
-		x: number;
-		y: number;
+		top: number;
+		left: number;
 		width: number;
 		height: number;
 		htmlVideoElementWidth: number;
 		htmlVideoElementHeight: number;
+		time: Date;
 	};
-	addSceneAsPreset: { id: string };
-	changePreset: TPreset & { playerId: string; movementSettings: TMovementSettings };
-	deletePreset: TPreset & { playerId: string };
-	sendJoystickPosition: { movementSettings: TMovementSettings; x: number; y: number; cardinalDirection: CardinalDirection; id: string; joyId: string };
-	sendDirection: { movementSettings: TMovementSettings; direction: "up" | "right" | "down" | "left"; id: string; joyId: string };
+	addSceneAsPreset: { id: string; time: Date };
+	changePreset: TPreset & { playerId: string; movementSettings: TMovementSettings; time: Date };
+	deletePreset: TPreset & { playerId: string; time: Date };
+	sendJoystickPosition: {
+		movementSettings: TMovementSettings;
+		x: number;
+		y: number;
+		cardinalDirection: CardinalDirection;
+		id: string;
+		joyId: string;
+		time: Date;
+	};
+	sendDirection: { movementSettings: TMovementSettings; direction: "up" | "right" | "down" | "left"; id: string; joyId: string; time: Date };
 };
