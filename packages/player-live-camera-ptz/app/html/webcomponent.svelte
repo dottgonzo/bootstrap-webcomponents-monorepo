@@ -255,6 +255,12 @@
 		}
 	}
 
+	function playOrPauseVideo() {
+		if (!htmlVideoElement) return console.error("Video element not found");
+		if (htmlVideoElement.paused) htmlVideoElement.play();
+		else htmlVideoElement.pause();
+	}
+
 	addComponent({ repoName: "@htmlbricks/hb-player-live", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-pad-joystick", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-table", version: pkg.version });
@@ -467,7 +473,7 @@
 	</div>
 	<div id="controller">
 		<div id="panel">
-			<div id="joystick">
+			<div id="joystick" class="area">
 				{#if dpadOrJoystick === "dpad"}
 					<hb-pad-joystick
 						id={"pad_" + dpadOrJoystick}
@@ -490,7 +496,7 @@
 					/>
 				{/if}
 			</div>
-			<div id="buttons">
+			<div id="buttons" class="area">
 				<div class="btn-group" style="margin-right:10px">
 					<button disabled={configuration?.zoom?.in ? false : true} on:click={() => zoomAction("in")} class="btn btn-sm btn-light">
 						<i class="bi bi-zoom-in" />
@@ -510,37 +516,38 @@
 					<i class="bi bi-square" />
 				</button>
 			</div>
-			<div id="speed">
-				<span class="slider_label">speed:</span> <input type="range" bind:value={movementSettings.speed} />
+			<div id="speed" class="area">
+				<span class="slider_label">speed:</span> <input class="range" type="range" bind:value={movementSettings.speed} />
 			</div>
-			<div id="precision">
-				<span class="slider_label">precision:</span> <input type="range" bind:value={movementSettings.precision} />
+			<div id="precision" class="area">
+				<span class="slider_label">precision:</span> <input class="range" type="range" bind:value={movementSettings.precision} />
 			</div>
-			<div id="presets_view">
-				<button on:click={() => showGrid()} class="btn btn-{isGridOpen ? 'primary' : 'light'}">
+			<div id="presets_view" class="area">
+				<button on:click={() => showGrid()} class="btn btn-sm btn-{isGridOpen ? 'primary' : 'light'}">
 					<i class="bi bi-grid-3x3" />
 				</button>
 				<button
 					disabled={configuration?.joystick ? false : true}
 					on:click={() => showJoystick()}
-					class="btn btn-{dpadOrJoystick && dpadOrJoystick === 'dpad' ? 'light' : 'primary'}"
+					class="btn btn-sm btn-{dpadOrJoystick && dpadOrJoystick === 'dpad' ? 'light' : 'primary'}"
 				>
 					<i class="bi bi-joystick" />
 				</button>
-				<button disabled={configuration?.settings ? false : true} on:click={() => showSettings()} class="btn btn-light">
-					<i class="bi bi-sliders" />
+
+				<button style="float:right;margin-right:25px;" on:click={() => htmlVideoElement.requestFullscreen()} class="btn btn-sm btn-light">
+					<i class="bi bi-arrows-fullscreen" />
 				</button>
 				<!-- <button on:click={() => openPresetsModal()} class="btn btn-primary">
 					<i class="bi bi-gear-fill" />
 				</button> -->
 			</div>
-			<div id="presets_select">
+			<div id="presets_select" class="area">
 				<button disabled={configuration?.addPreset ? false : true} on:click={() => confirmAddSceneToPresets()} class="btn btn-sm btn-light">
 					<i class="bi bi-plus-circle-fill" />
 				</button>
 				<button
 					disabled={configuration?.presets ? false : true}
-					style="width:120px!important;display:inline-block!important"
+					style="width:130px!important;display:inline-block!important"
 					on:click={() => {
 						openPresetsModal();
 					}}
@@ -558,9 +565,21 @@
 					{/each}
 				</select> -->
 			</div>
-			<div id="presets_buttons">
+			<div id="presets_buttons" class="area">
+				<button
+					on:click={() => (htmlVideoElement.muted = !htmlVideoElement.muted)}
+					class="btn btn-sm btn-{htmlVideoElement?.paused || !htmlVideoElement ? 'light' : 'primary'}"
+				>
+					<i class="bi bi-{htmlVideoElement?.muted || !htmlVideoElement ? 'volume-mute-fill' : 'volume-up-fill'}" />
+				</button>
+				<button on:click={() => playOrPauseVideo()} class="btn btn-sm btn-{htmlVideoElement?.paused || !htmlVideoElement ? 'light' : 'primary'}">
+					<i class="bi bi-{htmlVideoElement?.paused || !htmlVideoElement ? 'pause-fill' : 'play'}" />
+				</button>
+				<button disabled={configuration?.settings ? false : true} on:click={() => showSettings()} class="btn btn-sm btn-light">
+					<i class="bi bi-sliders" />
+				</button>
 				<span class="timecell">
-					<i class="bi bi-clock" />
+					<!-- <i class="bi bi-clock" /> -->
 					<span>{time}</span>
 				</span>
 			</div>

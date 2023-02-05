@@ -32,6 +32,9 @@
 		width: 25%;
 	}
 }
+.area {
+	padding: 5px;
+}
 #container {
 	position: relative;
 	width: 100%;
@@ -45,7 +48,7 @@ hb-pad-joystick {
 }
 #joystick {
 	grid-area: pad;
-	margin-top: 10px;
+	margin-top: 5px;
 
 	display: block;
 	width: 100%;
@@ -53,30 +56,28 @@ hb-pad-joystick {
 }
 #buttons {
 	grid-area: buttons;
-	padding: 5px;
 }
 #presets_buttons {
 	grid-area: presets_buttons;
-	padding: 5px;
 }
 #speed {
 	grid-area: speed;
-	padding: 5px;
 	text-align: center;
+	vertical-align: middle;
+	line-height: 28px;
 }
 #precision {
 	grid-area: precision;
-	padding: 5px;
 	text-align: center;
+	vertical-align: middle;
+	line-height: 28px;
 }
 
 #presets_select {
 	grid-area: presets_select;
-	padding: 5px;
 }
 #presets_view {
 	grid-area: presets_view;
-	padding: 5px;
 }
 #controller {
 	position: absolute;
@@ -88,7 +89,7 @@ hb-pad-joystick {
 #panel {
 	display: grid;
 	width: 500px;
-	height: 120px;
+	height: 124px;
 	// opacity: 0.8;
 	background-color: rgb(127 127 127 / 80%);
 	grid-template-areas:
@@ -102,7 +103,6 @@ hb-pad-joystick {
 	font-size: 0.6em;
 	width: 50px;
 	display: inline-block;
-	vertical-align: super;
 	font-weight: bold;
 }
 #player {
@@ -110,4 +110,8 @@ hb-pad-joystick {
 }
 .timecell {
 	font-size: 0.8em;
+}
+.range {
+	vertical-align: middle;
+	line-height: 28px;
 }
