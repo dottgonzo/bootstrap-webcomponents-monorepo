@@ -21,6 +21,7 @@ export type Component = {
 		presets?: boolean;
 		addPreset?: boolean;
 		switchPreset?: boolean;
+		deletePreset?: boolean;
 		home?: boolean;
 		zoom?: {
 			in?: boolean;
@@ -39,6 +40,7 @@ export type Events = {
 	goToHome: { movementSettings: TMovementSettings; id: string };
 	addSceneAsPreset: { id: string };
 	changePreset: TPreset & { playerId: string; movementSettings: TMovementSettings };
+	deletePreset: TPreset & { playerId: string };
 	sendJoystickPosition: { movementSettings: TMovementSettings; x: number; y: number; cardinalDirection: CardinalDirection; id: string; joyId: string };
 	sendDirection: { movementSettings: TMovementSettings; direction: "up" | "right" | "down" | "left"; id: string; joyId: string };
 };

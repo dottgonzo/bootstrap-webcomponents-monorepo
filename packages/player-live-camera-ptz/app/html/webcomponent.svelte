@@ -174,7 +174,7 @@
 
 		const preset = presets.find((p) => p.id === presetId);
 		if (preset) {
-			const deletePresetEventPayload: Events["deletePreset"] = Object.assign({ playerId: id, movementSettings }, preset);
+			const deletePresetEventPayload: Events["deletePreset"] = Object.assign({ playerId: id }, preset);
 
 			dispatch("deletePreset", deletePresetEventPayload);
 		} else console.error("Preset not found");
