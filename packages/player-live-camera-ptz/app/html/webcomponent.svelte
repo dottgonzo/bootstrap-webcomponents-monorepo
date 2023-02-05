@@ -97,6 +97,10 @@
 	type TrectClicks = { start?: { x: number; y: number }; end?: { x: number; y: number } };
 	type Trect = { top: number; left: number; width: number; height: number };
 
+	let isVideoPaused: boolean;
+	let isVideoPlaying: boolean;
+	let isVideoLoaded = false;
+
 	let showTablePresets = false;
 	let showConfirmAddSceneToPreset = false;
 	let showConfirmDeletePreset = false;
@@ -403,6 +407,17 @@
 		on:htmlVideoInit={(e) => {
 			console.log(e.detail, "detailvid");
 			htmlVideoElement = e.detail.htmlVideoElement;
+			htmlVideoElement.onloadedmetadata = () => {
+				isVideoLoaded = true;
+			};
+			htmlVideoElement.onpause = () => {
+				isVideoPaused = true;
+				isVideoPlaying = false;
+			};
+			htmlVideoElement.onplay = () => {
+				isVideoPaused = false;
+				isVideoPlaying = true;
+			};
 			htmlVideoElement.onclick = (element_click) => {
 				if (selectingZone) {
 					const containerPos = htmlVideoElement.getBoundingClientRect();
@@ -567,21 +582,26 @@
 			</div>
 			<div id="presets_buttons" class="area">
 				<button
+					disabled={!isVideoLoaded}
 					on:click={() => (htmlVideoElement.muted = !htmlVideoElement.muted)}
-					class="btn btn-sm btn-{htmlVideoElement?.paused || !htmlVideoElement ? 'light' : 'primary'}"
+					class="btn btn-sm btn-{isVideoLoaded ? (htmlVideoElement?.muted ? 'warning' : 'primary') : 'light'}"
 				>
 					<i class="bi bi-{htmlVideoElement?.muted || !htmlVideoElement ? 'volume-mute-fill' : 'volume-up-fill'}" />
 				</button>
-				<button on:click={() => playOrPauseVideo()} class="btn btn-sm btn-{htmlVideoElement?.paused || !htmlVideoElement ? 'light' : 'primary'}">
-					<i class="bi bi-{htmlVideoElement?.paused || !htmlVideoElement ? 'pause-fill' : 'play'}" />
+				<button
+					disabled={!isVideoLoaded}
+					on:click={() => playOrPauseVideo()}
+					class="btn btn-sm btn-{isVideoLoaded ? (isVideoPlaying ? 'primary' : 'warning') : 'light'}"
+				>
+					<i class="bi bi-{isVideoPaused || !htmlVideoElement ? 'pause-fill' : 'play'}" />
 				</button>
 				<button disabled={configuration?.settings ? false : true} on:click={() => showSettings()} class="btn btn-sm btn-light">
 					<i class="bi bi-sliders" />
+					<span class="timecell">
+						<!-- <i class="bi bi-clock" /> -->
+						<span>{time}</span>
+					</span>
 				</button>
-				<span class="timecell">
-					<!-- <i class="bi bi-clock" /> -->
-					<span>{time}</span>
-				</span>
 			</div>
 		</div>
 	</div>

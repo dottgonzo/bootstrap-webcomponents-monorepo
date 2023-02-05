@@ -110,6 +110,10 @@ hb-pad-joystick {
 }
 .timecell {
 	font-size: 0.8em;
+	line-height: 20px;
+	width: 56px;
+	display: inline-block;
+	vertical-align: middle;
 }
 .range {
 	vertical-align: middle;
