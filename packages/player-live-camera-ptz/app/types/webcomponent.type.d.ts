@@ -36,6 +36,7 @@ export type Component = {
 export type CardinalDirection = "C" | "N" | "S" | "NE" | "SE" | "NW" | "SW" | "NO" | "SO" | "W" | "O";
 
 export type Events = {
+	initVideo: { id: string; time: Date; htmlVideoElement: any };
 	zoomAction: { movementSettings: TMovementSettings; direction: "in" | "out"; id: string; time: Date };
 	goToHome: { movementSettings: TMovementSettings; id: string; time: Date };
 	sendRect: {

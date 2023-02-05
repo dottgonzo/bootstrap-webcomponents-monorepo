@@ -198,6 +198,53 @@
 		} else console.error("Preset not found");
 	}
 
+	function initializeVideo() {
+		const initVideoEventPayload: Events["initVideo"] = { time: new Date(), id, htmlVideoElement };
+		dispatch("initVideo", initVideoEventPayload);
+
+		htmlVideoElement.onloadedmetadata = () => {
+			isVideoLoaded = true;
+		};
+		htmlVideoElement.onpause = () => {
+			isVideoPaused = true;
+			isVideoPlaying = false;
+		};
+		htmlVideoElement.onplay = () => {
+			isVideoPaused = false;
+			isVideoPlaying = true;
+		};
+		htmlVideoElement.onclick = (element_click) => {
+			if (selectingZone) {
+				const containerPos = htmlVideoElement.getBoundingClientRect();
+
+				const newClick = { x: element_click.clientX - containerPos.left, y: element_click.clientY - containerPos.top, width: 0, height: 0 };
+				if (!rectClicks.start) {
+					rectClicks = { start: newClick };
+				} else {
+					rectClicks = { start: rectClicks.start, end: newClick };
+					sendRect();
+				}
+			}
+		};
+		htmlVideoElement.onmousemove = (element_click) => {
+			if (selectingZone) {
+				const newClick = {
+					x: element_click.clientX,
+					y: element_click.clientY,
+				};
+				if (rectClicks.start) {
+					rectClicks = { start: rectClicks.start, end: newClick };
+					rect = {
+						top: rectClicks.start.y > rectClicks.end.y ? rectClicks.end.y : rectClicks.start.y,
+						left: rectClicks.start.x > rectClicks.end.x ? rectClicks.end.x : rectClicks.start.x,
+						width: Math.abs((rectClicks?.start?.x || 0) - (rectClicks?.end?.x || 0)),
+						height: Math.abs((rectClicks?.start?.y || 0) - (rectClicks?.end?.y || 0)),
+					};
+				}
+			}
+		};
+	}
+
 	function deletePreset(presetId: string) {
 		if (!configuration.deletePreset) return console.error("Delete preset is not enabled in the configuration");
 
@@ -407,47 +454,7 @@
 		on:htmlVideoInit={(e) => {
 			console.log(e.detail, "detailvid");
 			htmlVideoElement = e.detail.htmlVideoElement;
-			htmlVideoElement.onloadedmetadata = () => {
-				isVideoLoaded = true;
-			};
-			htmlVideoElement.onpause = () => {
-				isVideoPaused = true;
-				isVideoPlaying = false;
-			};
-			htmlVideoElement.onplay = () => {
-				isVideoPaused = false;
-				isVideoPlaying = true;
-			};
-			htmlVideoElement.onclick = (element_click) => {
-				if (selectingZone) {
-					const containerPos = htmlVideoElement.getBoundingClientRect();
-
-					const newClick = { x: element_click.clientX - containerPos.left, y: element_click.clientY - containerPos.top, width: 0, height: 0 };
-					if (!rectClicks.start) {
-						rectClicks = { start: newClick };
-					} else {
-						rectClicks = { start: rectClicks.start, end: newClick };
-						sendRect();
-					}
-				}
-			};
-			htmlVideoElement.onmousemove = (element_click) => {
-				if (selectingZone) {
-					const newClick = {
-						x: element_click.clientX,
-						y: element_click.clientY,
-					};
-					if (rectClicks.start) {
-						rectClicks = { start: rectClicks.start, end: newClick };
-						rect = {
-							top: rectClicks.start.y > rectClicks.end.y ? rectClicks.end.y : rectClicks.start.y,
-							left: rectClicks.start.x > rectClicks.end.x ? rectClicks.end.x : rectClicks.start.x,
-							width: Math.abs((rectClicks?.start?.x || 0) - (rectClicks?.end?.x || 0)),
-							height: Math.abs((rectClicks?.start?.y || 0) - (rectClicks?.end?.y || 0)),
-						};
-					}
-				}
-			};
+			initializeVideo();
 		}}
 		no_controls="yes"
 		id="player"
