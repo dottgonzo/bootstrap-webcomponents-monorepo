@@ -39,11 +39,11 @@ const examples: { name: string; description?: string; data: Component }[] = [
 
 			presets: [
 				{
-					label: "Preset 1",
+					name: "Preset 1",
 					id: "preset1",
 				},
 				{
-					label: "Preset 2",
+					name: "Preset 2",
 					id: "preset2",
 				},
 			],
@@ -56,11 +56,11 @@ const examples: { name: string; description?: string; data: Component }[] = [
 
 			presets: [
 				{
-					label: "Preset 1",
+					name: "Preset 1",
 					id: "preset1",
 				},
 				{
-					label: "Preset 2",
+					name: "Preset 2",
 					id: "preset2",
 				},
 			],

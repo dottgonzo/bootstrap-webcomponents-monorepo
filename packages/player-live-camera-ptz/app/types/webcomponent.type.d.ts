@@ -1,6 +1,7 @@
 export type TPreset = {
-	label?: string;
+	name?: string;
 	id: string;
+	number?: number;
 };
 export type TMovementSettings = {
 	speed: number;

@@ -14,7 +14,8 @@ export type Component = {
 	confirmlabel?: string;
 	disable_confirm?: boolean;
 	close_btn_class?: boolean;
-	hide_close?:boolean
+	hide_close?: boolean;
+	hide_confirm?: boolean;
 };
 
 export type Events = {

@@ -42,6 +42,7 @@
 	let padJoystickStyleSetupToSet: string = "";
 	let tableStyleSetupToSet: string = "";
 	let dialogStyleSetupToSet: string = "";
+	let selectedPresetId = "";
 	const movementSettings = {
 		precision: 50,
 		speed: 50,
@@ -59,14 +60,37 @@
 	};
 	let time = new Date().toLocaleTimeString();
 	let tablePresetsRows: TableComponent["rows"];
-	const tablePresetsHeaders = [
+	const tablePresetsHeaders: TableComponent["headers"] = [
 		{
-			label: "Label",
-			key: "label",
+			label: "Name",
+			key: "name",
+			copyTxt: true,
+		},
+		{
+			label: "Number",
+			key: "number",
+			type: "number",
+			copyTxt: true,
 		},
 	];
+	const tablePresetsActions: TableComponent["actions"] = [
+		{
+			name: "goto",
+			type: "icon",
+			iconOrText: "arrow-right-circle",
+		},
+		{
+			name: "delete",
+			type: "icon",
+			iconOrText: "x-circle-fill",
+			btnClass: "danger",
+		},
+	];
+
 	let showTablePresets = false;
 	let showConfirmAddSceneToPreset = false;
+	let showConfirmDeletePreset = false;
+	let showConfirmGoToPreset = false;
 	let showGoToHomeConfirm = false;
 	let isGridOpen = false;
 	let dpadOrJoystick: "dpad" | "joystick" = "dpad";
@@ -94,7 +118,8 @@
 			tablePresetsRows = presets.map((p) => {
 				return {
 					_id: p.id,
-					label: p.label,
+					name: p.name,
+					number: p.number,
 				};
 			});
 		}
@@ -133,17 +158,28 @@
 		if (!configuration.home) return console.error("Go to home is not enabled in the configuration");
 		showGoToHomeConfirm = !showGoToHomeConfirm;
 	}
-	function changePreset(e: any) {
+	function changePreset(presetId: string) {
 		if (!configuration.switchPreset) return console.error("Switch preset is not enabled in the configuration");
 
-		const presetClick = e.target.value;
-		const preset = presets.find((p) => p.id === presetClick);
+		const preset = presets.find((p) => p.id === presetId);
 		if (preset) {
 			const changePresetEventPayload: Events["changePreset"] = Object.assign({ playerId: id, movementSettings }, preset);
 
 			dispatch("changePreset", changePresetEventPayload);
 		} else console.error("Preset not found");
 	}
+
+	function deletePreset(presetId: string) {
+		if (!configuration.deletePreset) return console.error("Delete preset is not enabled in the configuration");
+
+		const preset = presets.find((p) => p.id === presetId);
+		if (preset) {
+			const deletePresetEventPayload: Events["deletePreset"] = Object.assign({ playerId: id, movementSettings }, preset);
+
+			dispatch("deletePreset", deletePresetEventPayload);
+		} else console.error("Preset not found");
+	}
+
 	function sendJoystickPosition(position: padJoystickEvents["sendJoystickPosition"]) {
 		if (!configuration?.joystick || configuration?.pan || configuration?.tilt)
 			return console.error("Pan and Tilt on joystick are not enabled in the configuration");
@@ -178,6 +214,21 @@
 	}
 
 	function showSettings() {}
+	function presetsActionClick(c: { itemId: string; action: string; id: string }) {
+		showTablePresets = false;
+		selectedPresetId = c.itemId;
+
+		switch (c.action) {
+			case "goto":
+				showConfirmGoToPreset = true;
+				break;
+			case "delete":
+				showConfirmDeletePreset = true;
+				break;
+			default:
+				return console.error("Action not found");
+		}
+	}
 
 	addComponent({ repoName: "@htmlbricks/hb-player-live", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-pad-joystick", version: pkg.version });
@@ -196,6 +247,7 @@
 	}}
 	title="Presets"
 	show={showTablePresets ? "yes" : "no"}
+	hide_confirm="yes"
 >
 	<!-- <div slot="header">
 		<h5 class="modal-title">Presets</h5>
@@ -206,8 +258,12 @@
 				style={tableStyleSetupToSet}
 				rows={JSON.stringify(tablePresetsRows)}
 				headers={JSON.stringify(tablePresetsHeaders)}
+				actions={JSON.stringify(tablePresetsActions)}
 				size="12"
 				disablepagination={tablePresetsRows.length < 12 ? "yes" : "no"}
+				on:tableaction={(e) => {
+					presetsActionClick(e.detail);
+				}}
 			/>
 		{/if}
 	</div>
@@ -250,6 +306,37 @@
 	}}
 >
 	<div slot="body-content">Are You sure to go To Home?</div>
+</hb-dialog>
+<!-- This Dialog allows to confirm the delete preset -->
+
+<hb-dialog
+	on:modalShow={(s) => {
+		showConfirmDeletePreset = s.detail.show;
+	}}
+	title="Go to Preset {selectedPresetId ? presets.find((f) => f.id === selectedPresetId)?.id : ''}"
+	show={showConfirmDeletePreset ? "yes" : "no"}
+	on:modalConfirm={(e) => {
+		console.log(e.detail, "detail");
+		if (e?.detail?.confirm) deletePreset(e.detail.itemId);
+	}}
+>
+	<div slot="body-content">Are You sure to DELETE preset {selectedPresetId ? presets.find((f) => f.id === selectedPresetId)?.id : ""}?</div>
+</hb-dialog>
+
+<!-- This Dialog allows to confirm the Go To Preset -->
+
+<hb-dialog
+	on:modalShow={(s) => {
+		showConfirmGoToPreset = s.detail.show;
+	}}
+	title="Go to Preset {selectedPresetId ? presets.find((f) => f.id === selectedPresetId)?.id : ''}"
+	show={showConfirmGoToPreset ? "yes" : "no"}
+	on:modalConfirm={(e) => {
+		console.log(e.detail, "detail");
+		if (e?.detail?.confirm) changePreset(e.detail.itemId);
+	}}
+>
+	<div slot="body-content">Are You sure to GO to preset "{selectedPresetId ? presets.find((f) => f.id === selectedPresetId)?.id : ""}"?</div>
 </hb-dialog>
 
 <div id="container">
