@@ -15,9 +15,9 @@ export default meta;
 const Template: Story = (args) =>
   webComponentBind(args, meta.argTypes as any, componentSetup.name);
 
-export const PlayerInputStreaming = Template.bind({});
+export const PlayerInputStreamingDefault = Template.bind({});
 
-PlayerInputStreaming.args = setStorybookData(
+PlayerInputStreamingDefault.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples.find((f) => f.name === "default")
 );
