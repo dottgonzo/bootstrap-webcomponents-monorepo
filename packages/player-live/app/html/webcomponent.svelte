@@ -86,7 +86,11 @@
 				hls.attachMedia(videoElement);
 				hls.on(Hls.Events.MEDIA_ATTACHED, function () {
 					videoElement.muted = true;
-					videoElement.play();
+					try {
+						videoElement.play();
+					} catch (err) {
+						console.error("cannot autoplay", err);
+					}
 				});
 			}
 			// hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
@@ -96,7 +100,11 @@
 				console.log(`without Media Source Extensions`);
 				videoElement.src = mediauri;
 				videoElement.addEventListener("canplay", function () {
-					videoElement.play();
+					try {
+						videoElement.play();
+					} catch (err) {
+						console.error("cannot autoplay", err);
+					}
 				});
 			}
 		} else if (media_type === "webrtc") {
@@ -112,7 +120,11 @@
 				}
 				webrtcPlayer = new WebrtcPlayer({ videoElement, wsUri: mediauri, onOnline, onOffline });
 				webrtcPlayer.start();
-				videoElement.play();
+				try {
+					videoElement.play();
+				} catch (err) {
+					console.error("cannot autoplay", err);
+				}
 			} catch (err) {
 				console.error("error ....", err);
 			}
