@@ -99,6 +99,8 @@
 			else if (videoElement?.canPlayType("application/vnd.apple.mpegurl")) {
 				console.log(`without Media Source Extensions`);
 				videoElement.src = mediauri;
+				videoElement.muted = true;
+
 				videoElement.addEventListener("canplay", function () {
 					try {
 						videoElement.play();
@@ -121,6 +123,7 @@
 				webrtcPlayer = new WebrtcPlayer({ videoElement, wsUri: mediauri, onOnline, onOffline });
 				webrtcPlayer.start();
 				try {
+					videoElement.muted = true;
 					videoElement.play();
 				} catch (err) {
 					console.error("cannot autoplay", err);
@@ -198,7 +201,7 @@
 <!-- svelte-ignore a11y-media-has-caption -->
 <div part="container" style="width: 100%;position:relative">
 	{#if mediauri}
-		<video id="video" controls={no_controls ? false : true} part="video" use:setVideo class="video" />
+		<video id="video" controls={no_controls ? false : true} part="video" use:setVideo class="video" autoplay />
 	{/if}
 	{#if forcecover || (mediauri && !isLive && (replacewithtext?.title || replacewithtext?.subtitle || replacewithtext?.text))}
 		<div part="replacewithtext" class="replacetext video">
