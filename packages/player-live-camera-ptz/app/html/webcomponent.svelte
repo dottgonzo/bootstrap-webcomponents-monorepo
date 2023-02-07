@@ -599,7 +599,8 @@
 								openPresetsModal();
 							}}
 							class="btn btn-sm btn-{current_preset ? 'primary' : 'light'}"
-							>{current_preset} <i style="float:right" class="bi bi-arrow-down-up" /></button
+							>{current_preset && presets.find((f) => f.token === current_preset) ? presets.find((f) => f.token === current_preset)?.name : ""}
+							<i style="float:right" class="bi bi-arrow-down-up" /></button
 						>
 						<!-- <select
 					on:change={(e) => {
