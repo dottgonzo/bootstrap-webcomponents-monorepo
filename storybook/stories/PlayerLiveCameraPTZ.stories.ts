@@ -34,3 +34,15 @@ PlayerLiveCameraPTZWithPresetSelected.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples.find((f) => f.name === "withPresetSelected")
 );
+export const PlayerLiveCameraPTZWithPanelClosed = Template.bind({});
+
+PlayerLiveCameraPTZWithPanelClosed.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "withPanelClosed")
+);
+export const PlayerLiveCameraPTZDisconnected = Template.bind({});
+
+PlayerLiveCameraPTZDisconnected.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "disconnected")
+);

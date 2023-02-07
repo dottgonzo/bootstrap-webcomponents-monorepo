@@ -1,7 +1,9 @@
 export type TPreset = {
-	name?: string;
-	id: string;
-	number?: number;
+	token: string;
+	name: string;
+	x: number;
+	y: number;
+	z: number;
 };
 export type TMovementSettings = {
 	speed: number;
@@ -42,7 +44,7 @@ export type Events = {
 	panelMove: { id: string; opened: boolean };
 
 	goToHome: { movementSettings: TMovementSettings; id: string; time: Date };
-	sendRect: {
+	goToSelectedArea: {
 		movementSettings: TMovementSettings;
 		id: string;
 		top: number;
@@ -53,9 +55,11 @@ export type Events = {
 		htmlVideoElementHeight: number;
 		time: Date;
 	};
-	addSceneAsPreset: { id: string; time: Date };
-	changePreset: TPreset & { playerId: string; movementSettings: TMovementSettings; time: Date };
+
+	setPreset: { id: string; time: Date };
+	goToPreset: TPreset & { playerId: string; movementSettings: TMovementSettings; time: Date };
 	deletePreset: TPreset & { playerId: string; time: Date };
+
 	zoomAction: { movementSettings: TMovementSettings; direction: "in" | "out"; id: string; time: Date };
 
 	sendJoystickPosition: {

@@ -7,15 +7,21 @@ export const storybookArgs = {
 	current_preset: { control: { type: "text" } },
 	is_ptz_connected: { control: { type: "boolean" } },
 	is_ptz_panel_opened: { control: { type: "boolean" } },
-	// height: { control: { type: "text" } },
+
 	initVideo: { action: "initVideoEvent" },
-	zoomAction: { action: "zoomActionEvent" },
+	panelMove: { action: "panelMoveEvent" },
+
 	goToHome: { action: "goToHomeEvent" },
+	goToSelectedArea: { action: "goToSelectedAreaEvent" },
+
+	setPreset: { action: "setPresetEvent" },
+	goToPreset: { action: "goToPresetEvent" },
+	deletePreset: { action: "deletePresetEvent" },
+
+	zoomAction: { action: "zoomActionEvent" },
+
 	sendJoystickPosition: { action: "sendJoystickPositionEvent" },
 	sendDirection: { action: "sendDirectionEvent" },
-	addSceneAsPreset: { action: "addSceneAsPresetEvent" },
-	changePreset: { action: "changePresetEvent" },
-	sendRect: { action: "sendRectEvent" },
 };
 
 const cssVars: CssVar[] = [
@@ -40,6 +46,8 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "default",
 		data: {
 			live_uri: "",
+			is_ptz_connected: true,
+			is_ptz_panel_opened: true,
 		},
 	},
 
@@ -47,15 +55,23 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "withPresets",
 		data: {
 			live_uri: "",
+			is_ptz_connected: true,
+			is_ptz_panel_opened: true,
 
 			presets: [
 				{
 					name: "Preset 1",
-					id: "preset1",
+					token: "preset1",
+					x: 0,
+					y: 0,
+					z: 0,
 				},
 				{
 					name: "Preset 2",
-					id: "preset2",
+					token: "preset2",
+					x: 0,
+					y: 0,
+					z: 0,
 				},
 			],
 		},
@@ -64,17 +80,56 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "withPresetSelected",
 		data: {
 			live_uri: "",
-
+			is_ptz_connected: true,
+			is_ptz_panel_opened: true,
 			presets: [
 				{
 					name: "Preset 1",
-					id: "preset1",
+					token: "preset1",
+					x: 0,
+					y: 0,
+					z: 0,
 				},
 				{
 					name: "Preset 2",
-					id: "preset2",
+					token: "preset2",
+					x: 0,
+					y: 0,
+					z: 0,
 				},
 			],
+			current_preset: "preset1",
+		},
+	},
+	{
+		name: "withPanelClosed",
+		data: {
+			live_uri: "",
+			is_ptz_connected: true,
+			presets: [
+				{
+					name: "Preset 1",
+					token: "preset1",
+					x: 0,
+					y: 0,
+					z: 0,
+				},
+				{
+					name: "Preset 2",
+					token: "preset2",
+					x: 0,
+					y: 0,
+					z: 0,
+				},
+			],
+			current_preset: "preset1",
+		},
+	},
+	{
+		name: "disconnected",
+		data: {
+			live_uri: "",
+			presets: [],
 			current_preset: "preset1",
 		},
 	},

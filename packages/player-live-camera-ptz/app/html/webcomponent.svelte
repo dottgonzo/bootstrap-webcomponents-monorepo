@@ -46,7 +46,7 @@
 	let padJoystickStyleSetupToSet: string = "";
 	let tableStyleSetupToSet: string = "";
 	let dialogStyleSetupToSet: string = "";
-	let selectedPresetId = "";
+	let selectedPresetToken = "";
 	const movementSettings = {
 		precision: 50,
 		speed: 50,
@@ -76,9 +76,8 @@
 			copyTxt: true,
 		},
 		{
-			label: "Number",
-			key: "number",
-			type: "number",
+			label: "Token",
+			key: "token",
 			copyTxt: true,
 		},
 	];
@@ -144,9 +143,9 @@
 		if (!tablePresetsRows?.length && presets.length) {
 			tablePresetsRows = presets.map((p) => {
 				return {
-					_id: p.id,
+					_id: p.token + "_" + p.name,
 					name: p.name,
-					number: p.number,
+					token: p.token,
 				};
 			});
 		}
@@ -167,21 +166,21 @@
 		const goToHomeEventPayload: Events["goToHome"] = { time: new Date(), id, movementSettings };
 		dispatch("goToHome", { id, movementSettings });
 	}
-	function addSceneAsPreset() {
+	function setPreset() {
 		if (!configuration.addPreset) return console.error("Add scene to preset is not enabled in the configuration");
-		const addAsPresetEventPayload: Events["addSceneAsPreset"] = { time: new Date(), id };
+		const addAsPresetEventPayload: Events["setPreset"] = { time: new Date(), id };
 
-		dispatch("addSceneAsPreset", addAsPresetEventPayload);
+		dispatch("setPreset", addAsPresetEventPayload);
 	}
-	function sendRect() {
+	function goToSelectedArea() {
 		if (!configuration?.clickToCenter) return console.error("Click to center is not enabled in the configuration");
 		const videoRect = htmlVideoElement.getBoundingClientRect();
-		const sendRectEventPayload: Events["sendRect"] = Object.assign(
+		const goToSelectedAreaEventPayload: Events["goToSelectedArea"] = Object.assign(
 			{ time: new Date(), id, movementSettings, htmlVideoElementWidth: videoRect.width, htmlVideoElementHeight: videoRect.height },
 			rect,
 		);
 
-		dispatch("sendRect", sendRectEventPayload);
+		dispatch("goToSelectedArea", goToSelectedAreaEventPayload);
 		selectingZone = false;
 		rect = { top: 0, left: 0, width: 0, height: 0 };
 		rectClicks = {};
@@ -198,14 +197,14 @@
 		if (!configuration.home) return console.error("Go to home is not enabled in the configuration");
 		showGoToHomeConfirm = !showGoToHomeConfirm;
 	}
-	function changePreset(presetId: string) {
+	function goToPreset(token: string) {
 		if (!configuration.switchPreset) return console.error("Switch preset is not enabled in the configuration");
 
-		const preset = presets.find((p) => p.id === presetId);
+		const preset = presets.find((p) => p.token === token);
 		if (preset) {
-			const changePresetEventPayload: Events["changePreset"] = Object.assign({ time: new Date(), playerId: id, movementSettings }, preset);
+			const goToPresetEventPayload: Events["goToPreset"] = Object.assign({ time: new Date(), playerId: id, movementSettings }, preset);
 
-			dispatch("changePreset", changePresetEventPayload);
+			dispatch("goToPreset", goToPresetEventPayload);
 		} else console.error("Preset not found");
 	}
 
@@ -233,7 +232,7 @@
 					rectClicks = { start: newClick };
 				} else {
 					rectClicks = { start: rectClicks.start, end: newClick };
-					sendRect();
+					goToSelectedArea();
 				}
 			}
 		};
@@ -256,10 +255,10 @@
 		};
 	}
 
-	function deletePreset(presetId: string) {
+	function deletePreset(token: string) {
 		if (!configuration.deletePreset) return console.error("Delete preset is not enabled in the configuration");
 
-		const preset = presets.find((p) => p.id === presetId);
+		const preset = presets.find((p) => p.token === token);
 		if (preset) {
 			const deletePresetEventPayload: Events["deletePreset"] = Object.assign({ time: new Date(), playerId: id }, preset);
 
@@ -302,8 +301,10 @@
 
 	function showSettings() {}
 	function presetsActionClick(c: { itemId: string; action: string; id: string }) {
+		console.log(c, "presetclick");
 		showTablePresets = false;
-		selectedPresetId = c.itemId;
+		const presetToken = presets.find((f) => c.itemId.includes(f.token + "_"))?.token;
+		selectedPresetToken = presetToken;
 
 		switch (c.action) {
 			case "goto":
@@ -374,7 +375,7 @@
 	title="Add Scene to Preset"
 	show={showConfirmAddSceneToPreset ? "yes" : "no"}
 	on:modalConfirm={(e) => {
-		if (e?.detail?.confirm) addSceneAsPreset();
+		if (e?.detail?.confirm) setPreset();
 	}}
 >
 	<!-- <div slot="header">
@@ -403,11 +404,11 @@
 <!-- This Dialog allows to confirm the delete preset -->
 
 <hb-dialog
-	id={"del_" + selectedPresetId}
+	id={"del_" + selectedPresetToken}
 	on:modalShow={(s) => {
 		showConfirmDeletePreset = s.detail.show;
 	}}
-	title="Go to Preset {selectedPresetId ? presets.find((f) => f.id === selectedPresetId)?.id : ''}"
+	title="Go to Preset {selectedPresetToken ? presets.find((f) => f.token === selectedPresetToken)?.token : ''}"
 	show={showConfirmDeletePreset ? "yes" : "no"}
 	confirmlabel="delete"
 	confirm_btn_class="danger"
@@ -416,26 +417,26 @@
 		if (e?.detail?.confirm) deletePreset(e.detail.id.split("del_")[1]);
 	}}
 >
-	<div slot="body-content">Are You sure to DELETE preset {selectedPresetId ? presets.find((f) => f.id === selectedPresetId)?.id : ""}?</div>
+	<div slot="body-content">Are You sure to DELETE preset {selectedPresetToken ? presets.find((f) => f.token === selectedPresetToken)?.token : ""}?</div>
 </hb-dialog>
 
 <!-- This Dialog allows to confirm the Go To Preset -->
 
 <hb-dialog
-	id={"goto_" + selectedPresetId}
+	id={"goto_" + selectedPresetToken}
 	on:modalShow={(s) => {
 		showConfirmGoToPreset = s.detail.show;
 	}}
-	title="Go to Preset {selectedPresetId ? presets.find((f) => f.id === selectedPresetId)?.id : ''}"
+	title="Go to Preset {selectedPresetToken ? presets.find((f) => f.token === selectedPresetToken)?.token : ''}"
 	show={showConfirmGoToPreset ? "yes" : "no"}
 	confirmlabel="go"
 	confirm_btn_class="light"
 	on:modalConfirm={(e) => {
 		console.log(e.detail.id.split("goto")[1], "detail");
-		if (e?.detail?.confirm) changePreset(e.detail.id.split("goto_")[1]);
+		if (e?.detail?.confirm) goToPreset(e.detail.id.split("goto_")[1]);
 	}}
 >
-	<div slot="body-content">Are You sure to GO to preset "{selectedPresetId ? presets.find((f) => f.id === selectedPresetId)?.id : ""}"?</div>
+	<div slot="body-content">Are You sure to GO to preset "{selectedPresetToken ? presets.find((f) => f.token === selectedPresetToken)?.token : ""}"?</div>
 </hb-dialog>
 
 <div
@@ -591,7 +592,7 @@
 						>
 						<!-- <select
 					on:change={(e) => {
-						changePreset(e);
+						goToPreset(e);
 					}}
 					class="btn btn-primary"
 					bind:value={current_preset}
@@ -631,6 +632,7 @@
 			id="opener"
 			on:click={() => {
 				is_ptz_panel_opened = !is_ptz_panel_opened;
+				dispatch("panelMove", { id, opened: is_ptz_panel_opened });
 			}}
 			style="left:{is_ptz_panel_opened ? '500' : '0'}px;"
 		>
