@@ -37,7 +37,7 @@ export type CardinalDirection = "C" | "N" | "S" | "NE" | "SE" | "NW" | "SW" | "N
 
 export type Events = {
 	initVideo: { id: string; time: Date; htmlVideoElement: any };
-	zoomAction: { movementSettings: TMovementSettings; direction: "in" | "out"; id: string; time: Date };
+
 	goToHome: { movementSettings: TMovementSettings; id: string; time: Date };
 	sendRect: {
 		movementSettings: TMovementSettings;
@@ -53,6 +53,8 @@ export type Events = {
 	addSceneAsPreset: { id: string; time: Date };
 	changePreset: TPreset & { playerId: string; movementSettings: TMovementSettings; time: Date };
 	deletePreset: TPreset & { playerId: string; time: Date };
+	zoomAction: { movementSettings: TMovementSettings; direction: "in" | "out"; id: string; time: Date };
+
 	sendJoystickPosition: {
 		movementSettings: TMovementSettings;
 		x: number;
