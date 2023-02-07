@@ -569,7 +569,7 @@
 							<i class="bi bi-joystick" />
 						</button>
 
-						<button style="float:right;margin-right:25px;" on:click={() => htmlVideoElement.requestFullscreen()} class="btn btn-sm btn-light">
+						<button style="float:right;margin-right:5px;" on:click={() => htmlVideoElement.requestFullscreen()} class="btn btn-sm btn-light">
 							<i class="bi bi-arrows-fullscreen" />
 						</button>
 						<!-- <button on:click={() => openPresetsModal()} class="btn btn-primary">
