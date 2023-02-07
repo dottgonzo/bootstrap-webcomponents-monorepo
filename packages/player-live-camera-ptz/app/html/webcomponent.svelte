@@ -398,6 +398,7 @@
 	on:modalConfirm={(e) => {
 		if (e?.detail?.confirm) goToHome();
 	}}
+	confirmlabel="GO"
 >
 	<div slot="body-content">Are You sure to go To Home?</div>
 </hb-dialog>
