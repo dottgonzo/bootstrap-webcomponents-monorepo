@@ -12,6 +12,8 @@ export type Component = {
 	id?: string;
 	style?: string;
 
+	is_ptz_connected?: boolean;
+	is_ptz_panel_opened?: boolean;
 	live_uri: string;
 	presets?: TPreset[];
 	position?: "top" | "right-bottom" | "left-bottom" | "bottom" | "right-top" | "left-top";
@@ -37,6 +39,7 @@ export type CardinalDirection = "C" | "N" | "S" | "NE" | "SE" | "NW" | "SW" | "N
 
 export type Events = {
 	initVideo: { id: string; time: Date; htmlVideoElement: any };
+	panelMove: { id: string; opened: boolean };
 
 	goToHome: { movementSettings: TMovementSettings; id: string; time: Date };
 	sendRect: {

@@ -35,6 +35,8 @@
 	export let configuration: Component["configuration"];
 
 	export let current_preset: Component["current_preset"];
+	export let is_ptz_connected: Component["is_ptz_connected"];
+	export let is_ptz_panel_opened: Component["is_ptz_panel_opened"];
 
 	let htmlVideoElement: HTMLVideoElement;
 
@@ -121,6 +123,15 @@
 			tableStyleSetupToSet = getChildStyleToPass(parsedStyle, tableStyleSetup?.vars);
 			dialogStyleSetupToSet = getChildStyleToPass(parsedStyle, dialogStyleSetup?.vars);
 		}
+
+		if ((is_ptz_connected as unknown as string) === "") is_ptz_connected = true;
+		if (!is_ptz_connected) is_ptz_connected = false;
+		if (typeof is_ptz_connected === "string") is_ptz_connected = is_ptz_connected === "true" || is_ptz_connected === "yes" ? true : false;
+
+		if ((is_ptz_panel_opened as unknown as string) === "") is_ptz_panel_opened = true;
+		if (!is_ptz_panel_opened) is_ptz_panel_opened = false;
+		if (typeof is_ptz_panel_opened === "string") is_ptz_panel_opened = is_ptz_panel_opened === "true" || is_ptz_panel_opened === "yes" ? true : false;
+
 		if (!configuration) configuration = defaultConfiguration;
 		else if (typeof configuration === "string") {
 			configuration = JSON.parse(configuration);
@@ -493,89 +504,92 @@
 			</tr>
 		</table>
 	</div>
-	<div id="controller">
-		<div id="panel">
-			<div id="joystick" class="area">
-				{#if dpadOrJoystick === "dpad"}
-					<hb-pad-joystick
-						id={"pad_" + dpadOrJoystick}
-						on:sendDirection={(e) => {
-							sendDirection(e.detail);
-						}}
-						pad_or_joystick="dpad"
-						size="60px"
-						style={padJoystickStyleSetupToSet}
-					/>
-				{:else}
-					<hb-pad-joystick
-						id={"pad_" + dpadOrJoystick}
-						on:sendJoystickPosition={(e) => {
-							sendJoystickPosition(e.detail);
-						}}
-						pad_or_joystick="joystick"
-						size="60px"
-						style={padJoystickStyleSetupToSet}
-					/>
-				{/if}
-			</div>
-			<div id="buttons" class="area">
-				<div class="btn-group" style="margin-right:10px">
-					<button disabled={configuration?.zoom?.in ? false : true} on:click={() => zoomAction("in")} class="btn btn-sm btn-light">
-						<i class="bi bi-zoom-in" />
-					</button>
-					<button disabled={configuration?.zoom?.out ? false : true} on:click={() => zoomAction("out")} class="btn btn-sm btn-light">
-						<i class="bi bi-zoom-out" />
-					</button>
-				</div>
-				<button disabled={configuration?.home ? false : true} on:click={() => confirmGoToHome()} class="btn btn-sm btn-light">
-					<i class="bi bi-house-door-fill" />
-				</button>
-				<button
-					disabled={configuration?.clickToCenter ? false : true}
-					on:click={() => selectZone()}
-					class="btn btn-sm btn-{selectingZone ? 'primary' : 'light'}"
-				>
-					<i class="bi bi-square" />
-				</button>
-			</div>
-			<div id="speed" class="area">
-				<span class="slider_label">speed:</span> <input class="range" type="range" bind:value={movementSettings.speed} />
-			</div>
-			<div id="precision" class="area">
-				<span class="slider_label">precision:</span> <input class="range" type="range" bind:value={movementSettings.precision} />
-			</div>
-			<div id="presets_view" class="area">
-				<button on:click={() => showGrid()} class="btn btn-sm btn-{isGridOpen ? 'primary' : 'light'}">
-					<i class="bi bi-grid-3x3" />
-				</button>
-				<button
-					disabled={configuration?.joystick ? false : true}
-					on:click={() => showJoystick()}
-					class="btn btn-sm btn-{dpadOrJoystick && dpadOrJoystick === 'dpad' ? 'light' : 'primary'}"
-				>
-					<i class="bi bi-joystick" />
-				</button>
+	{#if is_ptz_connected}
+		{#if is_ptz_panel_opened}
+			<div id="controller">
+				<div id="panel">
+					<div id="joystick" class="area">
+						{#if dpadOrJoystick === "dpad"}
+							<hb-pad-joystick
+								id={"pad_" + dpadOrJoystick}
+								on:sendDirection={(e) => {
+									sendDirection(e.detail);
+								}}
+								pad_or_joystick="dpad"
+								size="60px"
+								style={padJoystickStyleSetupToSet}
+							/>
+						{:else}
+							<hb-pad-joystick
+								id={"pad_" + dpadOrJoystick}
+								on:sendJoystickPosition={(e) => {
+									sendJoystickPosition(e.detail);
+								}}
+								pad_or_joystick="joystick"
+								size="60px"
+								style={padJoystickStyleSetupToSet}
+							/>
+						{/if}
+					</div>
+					<div id="buttons" class="area">
+						<div class="btn-group" style="margin-right:10px">
+							<button disabled={configuration?.zoom?.in ? false : true} on:click={() => zoomAction("in")} class="btn btn-sm btn-light">
+								<i class="bi bi-zoom-in" />
+							</button>
+							<button disabled={configuration?.zoom?.out ? false : true} on:click={() => zoomAction("out")} class="btn btn-sm btn-light">
+								<i class="bi bi-zoom-out" />
+							</button>
+						</div>
+						<button disabled={configuration?.home ? false : true} on:click={() => confirmGoToHome()} class="btn btn-sm btn-light">
+							<i class="bi bi-house-door-fill" />
+						</button>
+						<button
+							disabled={configuration?.clickToCenter ? false : true}
+							on:click={() => selectZone()}
+							class="btn btn-sm btn-{selectingZone ? 'primary' : 'light'}"
+						>
+							<i class="bi bi-square" />
+						</button>
+					</div>
+					<div id="speed" class="area">
+						<span class="slider_label">speed:</span> <input class="range" type="range" bind:value={movementSettings.speed} />
+					</div>
+					<div id="precision" class="area">
+						<span class="slider_label">precision:</span> <input class="range" type="range" bind:value={movementSettings.precision} />
+					</div>
+					<div id="presets_view" class="area">
+						<button on:click={() => showGrid()} class="btn btn-sm btn-{isGridOpen ? 'primary' : 'light'}">
+							<i class="bi bi-grid-3x3" />
+						</button>
+						<button
+							disabled={configuration?.joystick ? false : true}
+							on:click={() => showJoystick()}
+							class="btn btn-sm btn-{dpadOrJoystick && dpadOrJoystick === 'dpad' ? 'light' : 'primary'}"
+						>
+							<i class="bi bi-joystick" />
+						</button>
 
-				<button style="float:right;margin-right:25px;" on:click={() => htmlVideoElement.requestFullscreen()} class="btn btn-sm btn-light">
-					<i class="bi bi-arrows-fullscreen" />
-				</button>
-				<!-- <button on:click={() => openPresetsModal()} class="btn btn-primary">
+						<button style="float:right;margin-right:25px;" on:click={() => htmlVideoElement.requestFullscreen()} class="btn btn-sm btn-light">
+							<i class="bi bi-arrows-fullscreen" />
+						</button>
+						<!-- <button on:click={() => openPresetsModal()} class="btn btn-primary">
 					<i class="bi bi-gear-fill" />
 				</button> -->
-			</div>
-			<div id="presets_select" class="area">
-				<button disabled={configuration?.addPreset ? false : true} on:click={() => confirmAddSceneToPresets()} class="btn btn-sm btn-light">
-					<i class="bi bi-plus-circle-fill" />
-				</button>
-				<button
-					disabled={configuration?.presets ? false : true}
-					style="width:130px!important;display:inline-block!important"
-					on:click={() => {
-						openPresetsModal();
-					}}
-					class="btn btn-sm btn-{current_preset ? 'primary' : 'light'}">{current_preset} <i style="float:right" class="bi bi-arrow-down-up" /></button
-				>
-				<!-- <select
+					</div>
+					<div id="presets_select" class="area">
+						<button disabled={configuration?.addPreset ? false : true} on:click={() => confirmAddSceneToPresets()} class="btn btn-sm btn-light">
+							<i class="bi bi-plus-circle-fill" />
+						</button>
+						<button
+							disabled={configuration?.presets ? false : true}
+							style="width:130px!important;display:inline-block!important"
+							on:click={() => {
+								openPresetsModal();
+							}}
+							class="btn btn-sm btn-{current_preset ? 'primary' : 'light'}"
+							>{current_preset} <i style="float:right" class="bi bi-arrow-down-up" /></button
+						>
+						<!-- <select
 					on:change={(e) => {
 						changePreset(e);
 					}}
@@ -586,32 +600,43 @@
 						<option value={preset.id}>{preset.label || preset.id}</option>
 					{/each}
 				</select> -->
+					</div>
+					<div id="presets_buttons" class="area">
+						<button
+							disabled={!isVideoLoaded}
+							on:click={() => (htmlVideoElement.muted = !htmlVideoElement.muted)}
+							class="btn btn-sm btn-{isVideoLoaded ? (htmlVideoElement?.muted ? 'warning' : 'primary') : 'light'}"
+						>
+							<i class="bi bi-{htmlVideoElement?.muted || !htmlVideoElement ? 'volume-mute-fill' : 'volume-up-fill'}" />
+						</button>
+						<button
+							disabled={!isVideoLoaded}
+							on:click={() => playOrPauseVideo()}
+							class="btn btn-sm btn-{isVideoLoaded ? (isVideoPlaying ? 'primary' : 'warning') : 'light'}"
+						>
+							<i class="bi bi-{isVideoPaused || !htmlVideoElement ? 'pause-fill' : 'play'}" />
+						</button>
+						<button disabled={configuration?.settings ? false : true} on:click={() => showSettings()} class="btn btn-sm btn-light">
+							<i class="bi bi-sliders" />
+							<span class="timecell">
+								<!-- <i class="bi bi-clock" /> -->
+								<span>{time}</span>
+							</span>
+						</button>
+					</div>
+				</div>
 			</div>
-			<div id="presets_buttons" class="area">
-				<button
-					disabled={!isVideoLoaded}
-					on:click={() => (htmlVideoElement.muted = !htmlVideoElement.muted)}
-					class="btn btn-sm btn-{isVideoLoaded ? (htmlVideoElement?.muted ? 'warning' : 'primary') : 'light'}"
-				>
-					<i class="bi bi-{htmlVideoElement?.muted || !htmlVideoElement ? 'volume-mute-fill' : 'volume-up-fill'}" />
-				</button>
-				<button
-					disabled={!isVideoLoaded}
-					on:click={() => playOrPauseVideo()}
-					class="btn btn-sm btn-{isVideoLoaded ? (isVideoPlaying ? 'primary' : 'warning') : 'light'}"
-				>
-					<i class="bi bi-{isVideoPaused || !htmlVideoElement ? 'pause-fill' : 'play'}" />
-				</button>
-				<button disabled={configuration?.settings ? false : true} on:click={() => showSettings()} class="btn btn-sm btn-light">
-					<i class="bi bi-sliders" />
-					<span class="timecell">
-						<!-- <i class="bi bi-clock" /> -->
-						<span>{time}</span>
-					</span>
-				</button>
-			</div>
+		{/if}
+		<div
+			id="opener"
+			on:click={() => {
+				is_ptz_panel_opened = !is_ptz_panel_opened;
+			}}
+			style="left:{is_ptz_panel_opened ? '500' : '0'}px;"
+		>
+			<i class="bi-{is_ptz_panel_opened ? 'caret-left-fill' : 'caret-right-fill'}" />
 		</div>
-	</div>
+	{/if}
 </div>
 
 <style lang="scss">

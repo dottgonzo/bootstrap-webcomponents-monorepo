@@ -86,19 +86,30 @@ hb-pad-joystick {
 	height: 100%;
 	z-index: 3;
 }
+#opener {
+	background-color: silver;
+	line-height: 126px;
+	vertical-align: middle;
+	position: absolute;
+	position: absolute;
+	top: calc(100% - 160px);
+	z-index: 4;
+	cursor: pointer;
+}
 #panel {
 	display: grid;
 	width: 500px;
-	height: 124px;
+	height: 126px;
 	// opacity: 0.8;
 	background-color: rgb(127 127 127 / 80%);
 	grid-template-areas:
-		"pad buttons presets_view"
-		"pad speed presets_select"
-		"pad precision presets_buttons";
-	grid-template-columns: 120px 200px 200px;
-	grid-template-rows: 1fr 1fr 1fr;
+		"pad buttons presets_view opener"
+		"pad speed presets_select opener"
+		"pad precision presets_buttons opener";
+	grid-template-columns: 120px 200px 180px;
+	grid-template-rows: 42px 42px 42px;
 }
+
 .slider_label {
 	font-size: 0.6em;
 	width: 50px;
