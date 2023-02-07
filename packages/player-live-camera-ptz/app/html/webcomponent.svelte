@@ -35,6 +35,8 @@
 	export let configuration: Component["configuration"];
 
 	export let current_preset: Component["current_preset"];
+	export let is_home: Component["is_home"];
+
 	export let is_ptz_connected: Component["is_ptz_connected"];
 	export let is_ptz_panel_opened: Component["is_ptz_panel_opened"];
 
@@ -130,6 +132,10 @@
 		if ((is_ptz_panel_opened as unknown as string) === "") is_ptz_panel_opened = true;
 		if (!is_ptz_panel_opened) is_ptz_panel_opened = false;
 		if (typeof is_ptz_panel_opened === "string") is_ptz_panel_opened = is_ptz_panel_opened === "true" || is_ptz_panel_opened === "yes" ? true : false;
+
+		if ((is_home as unknown as string) === "") is_home = true;
+		if (!is_home) is_home = false;
+		if (typeof is_home === "string") is_home = is_home === "true" || is_home === "yes" ? true : false;
 
 		if (!configuration) configuration = defaultConfiguration;
 		else if (typeof configuration === "string") {
@@ -542,7 +548,11 @@
 								<i class="bi bi-zoom-out" />
 							</button>
 						</div>
-						<button disabled={configuration?.home ? false : true} on:click={() => confirmGoToHome()} class="btn btn-sm btn-light">
+						<button
+							disabled={configuration?.home ? false : true}
+							on:click={() => confirmGoToHome()}
+							class="btn btn-sm btn-{is_home ? 'primary' : 'light'}"
+						>
 							<i class="bi bi-house-door-fill" />
 						</button>
 						<button

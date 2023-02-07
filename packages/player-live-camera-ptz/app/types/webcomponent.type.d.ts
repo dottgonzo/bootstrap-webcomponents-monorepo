@@ -20,6 +20,7 @@ export type Component = {
 	presets?: TPreset[];
 	position?: "top" | "right-bottom" | "left-bottom" | "bottom" | "right-top" | "left-top";
 	current_preset?: string;
+	is_home?: boolean;
 	configuration?: {
 		joystick?: boolean;
 		presets?: boolean;

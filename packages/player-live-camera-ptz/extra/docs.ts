@@ -5,6 +5,7 @@ export const storybookArgs = {
 	presets: { control: { type: "object" } },
 	live_uri: { control: { type: "text" } },
 	current_preset: { control: { type: "text" } },
+	is_home: { control: { type: "boolean" } },
 	is_ptz_connected: { control: { type: "boolean" } },
 	is_ptz_panel_opened: { control: { type: "boolean" } },
 
