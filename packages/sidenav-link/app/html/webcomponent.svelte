@@ -22,7 +22,6 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 	function pageChange(page: string) {
-		console.log("oooooo");
 		dispatch("pageChange", {
 			page,
 		});
@@ -62,8 +61,8 @@
 					on:click={() => {
 						openKey();
 					}}
-					style="width:100%;text-align:left;color:black;box-shadow: none!important;"
-					class="btn nav-link"
+					style="color:black;line-height: 100%;"
+					class="custom-button btn nav-link"
 				>
 					<i class="bi me-2 bi-{navlink.icon}" />
 					{navlink.label}
@@ -77,11 +76,7 @@
 					<div style="padding-left:0.8em">
 						{#each navlink.subLinks as navLinkSub (navLinkSub.key)}
 							{#if navLinkSub.key === navpage}
-								<button
-									style="width: 100%;text-align:left;box-shadow: none!important"
-									class="btn btn-outline-primary nav-link active"
-									aria-current="page"
-								>
+								<button style="" class="custom-button btn btn-outline-primary nav-link active" aria-current="page">
 									<i class="bi me-2 bi-{navLinkSub.icon}" />
 									{navLinkSub.label}
 									{#if navLinkSub.badge}
@@ -97,8 +92,8 @@
 									on:click={() => {
 										pageChange(navLinkSub.key);
 									}}
-									style="width:100%;text-align:left;color:black;box-shadow: none!important;"
-									class="btn nav-link"
+									style="color:black;"
+									class="custom-button btn nav-link"
 								>
 									<i class="bi me-2 bi-{navLinkSub.icon}" />
 									{navLinkSub.label}
@@ -115,7 +110,7 @@
 					</div>
 				{/if}
 			{:else if navlink.key === navpage}
-				<button style="width: 100%;text-align:left;box-shadow: none!important" class="btn btn-outline-primary nav-link active" aria-current="page">
+				<button style="" class="custom-button btn btn-outline-primary nav-link active" aria-current="page">
 					<i class="bi me-2 bi-{navlink.icon}" />
 					{navlink.label}
 					{#if navlink.badge}
@@ -129,8 +124,8 @@
 					on:click={() => {
 						pageChange(navlink.key);
 					}}
-					style="width:100%;text-align:left;color:black;box-shadow: none!important;"
-					class="btn nav-link"
+					style="color:black;"
+					class="custom-button btn nav-link"
 				>
 					<i class="bi me-2 bi-{navlink.icon}" />
 					{navlink.label}
