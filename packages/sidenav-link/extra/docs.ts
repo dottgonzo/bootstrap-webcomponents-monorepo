@@ -4,6 +4,7 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	navpage: { control: { type: "text" } },
 	navlink: { control: { type: "object" } },
+	selected: { control: { type: "boolean" } },
 	pageChange: { action: "pageChangeEvent" },
 };
 
@@ -35,6 +36,21 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "withPage",
 		data: {
 			navpage: "home",
+
+			navlink: {
+				label: "Home",
+				key: "home",
+				icon: "house-door",
+				badge: {
+					text: "bbb",
+				},
+			},
+		},
+	},
+	{
+		name: "selected",
+		data: {
+			selected: true,
 
 			navlink: {
 				label: "Home",

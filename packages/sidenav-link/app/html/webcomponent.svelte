@@ -30,6 +30,7 @@
 	export let id: string;
 	export let navlink: INavLink;
 	export let navpage: string;
+	export let selected: boolean;
 
 	$: {
 		if (!id) id = null;
@@ -43,6 +44,13 @@
 				navlink = null;
 			}
 		} catch (err) {}
+		if ((selected as unknown as string) === "") {
+			selected = true;
+		} else if (typeof selected === "string" && (selected === "yes" || selected === "true")) {
+			selected = true;
+		} else if (selected !== true) {
+			selected = false;
+		}
 	}
 
 	function openKey() {
@@ -75,7 +83,7 @@
 				{#if navlink.open || (navlink.subLinks && navlink.subLinks.find((f) => f.key === navpage))}
 					<div style="padding-left:0.8em">
 						{#each navlink.subLinks as navLinkSub (navLinkSub.key)}
-							{#if navLinkSub.key === navpage}
+							{#if navLinkSub.key === navpage || selected}
 								<button style="" class="custom-button btn btn-outline-primary nav-link active" aria-current="page">
 									<i class="bi me-2 bi-{navLinkSub.icon}" />
 									{navLinkSub.label}
@@ -109,7 +117,7 @@
 						{/each}
 					</div>
 				{/if}
-			{:else if navlink.key === navpage}
+			{:else if navlink.key === navpage || selected}
 				<button style="" class="custom-button btn btn-outline-primary nav-link active" aria-current="page">
 					<i class="bi me-2 bi-{navlink.icon}" />
 					{navlink.label}

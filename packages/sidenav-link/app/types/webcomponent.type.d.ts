@@ -18,6 +18,7 @@ export type Component = {
 	style?: string;
 	navlink: INavLink;
 	navpage?: string;
+	selected?: boolean;
 };
 
 export type Events = {
