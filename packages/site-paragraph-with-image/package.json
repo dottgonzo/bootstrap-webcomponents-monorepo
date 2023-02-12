@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-site-paragraph-with-image",
 	"displayName": "Svelte-Bootstrap site-paragraph-with-image",
 	"description": "Svelte-Bootstrap site-paragraph-with-image",
-	"version": "0.17.32",
+	"version": "0.17.33",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.17.32",
+		"@htmlbricks/hb-jsutils": "^0.17.33",
 		"@htmlbricks/manifester": "^0.0.22",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
