@@ -1,6 +1,6 @@
 export interface INavLink {
 	key: string;
-	icon?: string;
+	bootstrapIcon?: string;
 	text: string;
 	subtext?: string;
 	badge?: {

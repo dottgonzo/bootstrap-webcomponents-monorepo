@@ -25,7 +25,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			navlink: {
 				text: "Home",
 				key: "home",
-				icon: "house-door",
+				bootstrapIcon: "house-door",
 				badge: {
 					text: "bbb",
 				},
@@ -38,7 +38,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			navlink: {
 				text: "Home",
 				key: "home",
-				icon: "house-door",
+				bootstrapIcon: "house-door",
 				badge: {
 					text: "bbb",
 				},
@@ -52,7 +52,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			navlink: {
 				text: "Home",
 				key: "home",
-				icon: "house-door",
+				bootstrapIcon: "house-door",
 				value: true,
 				type: "switch",
 			},
@@ -64,7 +64,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			navlink: {
 				text: "Home",
 				key: "home",
-				icon: "house-door",
+				bootstrapIcon: "house-door",
 				value: true,
 				type: "checkbox",
 			},
@@ -76,7 +76,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			navlink: {
 				text: "Home",
 				key: "home",
-				icon: "house-door",
+				bootstrapIcon: "house-door",
 				value: false,
 				type: "radio",
 			},

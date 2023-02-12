@@ -59,8 +59,8 @@
 				<span class="chkb"><i class="bi bi-check-circle{navlink.value ? '-fill' : ''}" /></span>
 			{:else if !navlink.badge && navlink.type === "radio"}
 				<span class="chkb"><i class="bi bi-circle{navlink.value ? '-fill' : ''}" /></span>
-			{:else}
-				<i class="bi me-2 bi-{navlink.icon}" />
+			{:else if navlink.bootstrapIcon}
+				<i class="bi me-2 bi-{navlink.bootstrapIcon}" />
 			{/if}
 			{navlink.text}
 			{#if navlink.badge}
