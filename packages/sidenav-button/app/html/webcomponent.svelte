@@ -30,28 +30,16 @@
 
 	export let id: string;
 	export let navlink: INavLink;
-	export let selected: boolean;
-	export let nav_type: Component["nav_type"];
 
 	$: {
 		if (!id) id = null;
-		try {
-			if (navlink) {
-				try {
-					navlink = JSON.parse(navlink as unknown as string);
-				} catch (err) {}
-			} else {
+		if (typeof navlink === "string") {
+			try {
+				navlink = JSON.parse(navlink as unknown as string);
+			} catch (err) {
 				navlink = null;
 			}
-		} catch (err) {}
-		if ((selected as unknown as string) === "") {
-			selected = true;
-		} else if (typeof selected === "string" && (selected === "yes" || selected === "true")) {
-			selected = true;
-		} else if (selected !== true) {
-			selected = false;
 		}
-		if (!nav_type) nav_type = null;
 	}
 </script>
 
@@ -65,11 +53,11 @@
 				pageChange(navlink.key);
 			}}
 			style="color:black;"
-			class="custom-button btn nav-link {selected ? 'btn-outline-primary active' : ''}"
+			class="custom-button btn nav-link {navlink.selected ? 'btn-outline-primary active' : ''}"
 		>
-			{#if !navlink.badge && nav_type === "checkbox"}
+			{#if !navlink.badge && navlink.type === "checkbox"}
 				<span class="chkb"><i class="bi bi-check-circle{navlink.value ? '-fill' : ''}" /></span>
-			{:else if !navlink.badge && nav_type === "radio"}
+			{:else if !navlink.badge && navlink.type === "radio"}
 				<span class="chkb"><i class="bi bi-circle{navlink.value ? '-fill' : ''}" /></span>
 			{:else}
 				<i class="bi me-2 bi-{navlink.icon}" />
@@ -79,7 +67,7 @@
 				<span style="float:right" class="{navlink.badge.class || 'badge rounded-pill'} {navlink.badge.classcolor || 'bg-secondary'}"
 					>{navlink.badge.text}</span
 				>
-			{:else if nav_type === "switch"}
+			{:else if navlink.type === "switch"}
 				<span class="switcher"><i class="bi bi-toggle-{navlink.value ? 'on' : 'off'}" /></span>
 			{/if}
 		</button>

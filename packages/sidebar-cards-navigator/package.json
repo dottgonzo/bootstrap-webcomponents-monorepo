@@ -79,6 +79,7 @@
 	"dependencies": {
 		"@htmlbricks/hb-navbar": "^0.17.31",
 		"@htmlbricks/hb-sidenav-link": "^0.17.31",
+		"@htmlbricks/hb-sidenav-button": "^0.17.31",
 		"style-to-object": "^0.3.0"
 	}
 }

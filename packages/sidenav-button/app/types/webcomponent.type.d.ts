@@ -9,14 +9,14 @@ export interface INavLink {
 		classcolor?: string;
 	};
 	value?: string | number | boolean;
+	selected?: boolean;
+	type?: "switch" | "range" | "radio" | "checkbox" | "button";
 }
 
 export type Component = {
 	id?: string;
 	style?: string;
 	navlink: INavLink;
-	selected?: boolean;
-	nav_type?: "switch" | "range" | "radio" | "checkbox" | "button";
 };
 
 export type Events = {

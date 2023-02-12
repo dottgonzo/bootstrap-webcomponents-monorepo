@@ -13,6 +13,9 @@
 	import type { Component as NavbarComponent } from "../../node_modules/@htmlbricks/hb-sidenav-link/release/webcomponent.type";
 	import { styleSetup as sidenavLinkStyleSetup } from "../../node_modules/@htmlbricks/hb-sidenav-link/release/docs";
 
+	import type { Component as SidenavButtonComponent } from "../../node_modules/@htmlbricks/hb-sidenav-button/release/webcomponent.type";
+	import { styleSetup as sidenavButtonStyleSetup } from "../../node_modules/@htmlbricks/hb-sidenav-button/release/docs";
+
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
 
@@ -32,6 +35,7 @@
 	let parsedStyle: { [x: string]: string };
 	let navbarStyleToSet: string = "";
 	let sidenavLinkStyleToSet: string = "";
+	let sidenavButtonStyleToSet: string = "";
 	let panel: Component["panels"][0];
 
 	$: {
@@ -40,6 +44,7 @@
 			parsedStyle = parseStyle(style);
 			navbarStyleToSet = getChildStyleToPass(parsedStyle, navbarStyleSetup?.vars);
 			sidenavLinkStyleToSet = getChildStyleToPass(parsedStyle, sidenavLinkStyleSetup?.vars);
+			sidenavButtonStyleToSet = getChildStyleToPass(parsedStyle, sidenavButtonStyleSetup?.vars);
 		}
 		// if (!string) string = "";
 
@@ -86,6 +91,7 @@
 	}
 	addComponent({ repoName: "@htmlbricks/hb-navbar", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-sidenav-link", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-sidenav-button", version: pkg.version });
 
 	function rowToLineNavlink(row: CardRowLine) {
 		const newSidebarLink: NavbarComponent["navlink"] = {

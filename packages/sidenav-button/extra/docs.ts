@@ -35,8 +35,6 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "selected",
 		data: {
-			selected: true,
-
 			navlink: {
 				text: "Home",
 				key: "home",
@@ -44,45 +42,43 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				badge: {
 					text: "bbb",
 				},
+				selected: true,
 			},
 		},
 	},
 	{
 		name: "switch",
 		data: {
-			nav_type: "switch",
-
 			navlink: {
 				text: "Home",
 				key: "home",
 				icon: "house-door",
 				value: true,
+				type: "switch",
 			},
 		},
 	},
 	{
 		name: "checkbox",
 		data: {
-			nav_type: "checkbox",
-
 			navlink: {
 				text: "Home",
 				key: "home",
 				icon: "house-door",
 				value: true,
+				type: "checkbox",
 			},
 		},
 	},
 	{
 		name: "radio",
 		data: {
-			nav_type: "radio",
-
 			navlink: {
 				text: "Home",
 				key: "home",
 				icon: "house-door",
 				value: false,
+				type: "radio",
 			},
 		},
 	},
