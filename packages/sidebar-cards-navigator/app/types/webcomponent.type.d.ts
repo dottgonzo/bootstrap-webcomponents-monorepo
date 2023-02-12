@@ -1,4 +1,4 @@
-export interface CardRow extends CardRowBase {
+export interface CardRow {
 	key: string;
 	bootstrapIcon?: string;
 	text: string;

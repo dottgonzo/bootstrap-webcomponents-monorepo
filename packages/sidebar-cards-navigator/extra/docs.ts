@@ -34,10 +34,27 @@ const examples: { name: string; description?: string; data: Component }[] = [
 							id: "2",
 							rows: [{ key: "1", text: "test2" }],
 						},
+						{
+							id: "2",
+							rows: [{ key: "1", text: "test3" }],
+						},
 					],
 				},
 				{
 					id: "2",
+					cards: [
+						{
+							id: "1",
+							rows: [{ key: "1", text: "test" }],
+						},
+						{
+							id: "2",
+							rows: [{ key: "1", text: "test2", bootstrapIcon: "house-door", switchToPanelId: "1" }],
+						},
+					],
+				},
+				{
+					id: "3",
 					cards: [
 						{
 							id: "1",
