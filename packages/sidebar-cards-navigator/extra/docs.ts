@@ -28,11 +28,11 @@ const examples: { name: string; description?: string; data: Component }[] = [
 					cards: [
 						{
 							id: "1",
-							rows: [{ id: "1", text: "test", type: "line", bootstrapIcon: "house-door", switchToPanelId: "2" }],
+							rows: [{ key: "1", text: "test", bootstrapIcon: "house-door", switchToPanelId: "2" }],
 						},
 						{
 							id: "2",
-							rows: [{ id: "1", text: "test2", type: "line" }],
+							rows: [{ key: "1", text: "test2" }],
 						},
 					],
 				},
@@ -41,11 +41,11 @@ const examples: { name: string; description?: string; data: Component }[] = [
 					cards: [
 						{
 							id: "1",
-							rows: [{ id: "1", text: "test", type: "line" }],
+							rows: [{ key: "1", text: "test" }],
 						},
 						{
 							id: "2",
-							rows: [{ id: "1", text: "test2", type: "line", bootstrapIcon: "house-door", switchToPanelId: "1" }],
+							rows: [{ key: "1", text: "test2", bootstrapIcon: "house-door", switchToPanelId: "1" }],
 						},
 					],
 				},

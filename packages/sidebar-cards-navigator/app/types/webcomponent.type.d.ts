@@ -1,27 +1,19 @@
-export type CardRowBase = {
-	id: string;
-	switchToPanelId?: string;
-};
-
-export interface CardRowLine extends CardRowBase {
+export interface CardRow extends CardRowBase {
+	key: string;
 	bootstrapIcon?: string;
 	text: string;
-	type: "line";
+	subtext?: string;
 	badge?: {
 		text: string;
 		class?: string;
 		classcolor?: string;
 	};
-}
-export interface CardRowCustomLine extends CardRowBase {
-	iconUrl?: string;
-	bootstrapIcon?: string;
-	title: string;
-	subtitle?: string;
-	type: "customLine";
-}
+	value?: string | number | boolean;
+	selected?: boolean;
+	type?: "switch" | "range" | "radio" | "checkbox" | "button";
 
-export type CardRow = CardRowLine | CardRowCustomLine;
+	switchToPanelId?: string;
+}
 
 export type CardNavigatorRowSelected = {
 	sort?: number;
