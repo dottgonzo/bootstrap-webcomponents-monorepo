@@ -82,7 +82,11 @@
 		const customCard: CardRowSelected = { id, row: rowItem, panel: simplePanel, card: simpleCard };
 		dispatch("itemClick", customCard);
 		if (rowItem.switchToPanelId) {
-			panel = panels.find((p) => p.id === rowItem.switchToPanelId);
+			// const oldPanelId = panel.id;
+			if (panels.find((p) => p.id === rowItem.switchToPanelId)) {
+				panel = panels.find((p) => p.id === rowItem.switchToPanelId);
+				// panel.parentPanelId = oldPanelId;
+			}
 		}
 	}
 	addComponent({ repoName: "@htmlbricks/hb-navbar", version: pkg.version });
@@ -99,10 +103,25 @@
 	}
 </script>
 
+<svelte:head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" />
+</svelte:head>
 to be done, ref <a href="https://web.telegram.org/z/">https://web.telegram.com</a> left panel
 <!-- <div class="sidebar-panel-card"> -->
 {#if panel}
-	<div id="sidebar-nav"></div>
+	<hb-navbar
+		on:navmenuswitch={(s) => {
+			if (panel.parentPanelId) {
+				panel = panels.find((p) => p.id === panel.parentPanelId);
+			}
+		}}
+	>
+		<i
+			slot="nav-switcher"
+			style="font-weight:bold;cursor:{panel.parentPanelId ? 'pointer' : ''}"
+			class="bi bi-{panel.parentPanelId ? 'arrow-left' : 'list'}"
+		/>
+	</hb-navbar>
 	{#each panel.cards as card (card.id + "_c_" + panel.id)}
 		<div class="sidebar-card-container">
 			{#if card.rows && card.rows.length > 0}

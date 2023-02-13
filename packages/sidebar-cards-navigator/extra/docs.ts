@@ -42,6 +42,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				},
 				{
 					id: "2",
+					parentPanelId: "1",
 					cards: [
 						{
 							id: "1",
