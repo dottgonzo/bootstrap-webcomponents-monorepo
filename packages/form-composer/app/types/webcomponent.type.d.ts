@@ -1,11 +1,10 @@
 export type Component = {
 	id?: string;
 	style?: string;
-	json?: { a: number };
-	string: string;
-	boolean?: boolean;
+
+	debug?: boolean;
 };
 
 export type Events = {
-	event: { test: boolean };
+	changeFormSchema: { test: boolean };
 };
