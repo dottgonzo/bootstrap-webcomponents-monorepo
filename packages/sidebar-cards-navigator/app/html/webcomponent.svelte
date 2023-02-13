@@ -102,12 +102,12 @@
 to be done, ref <a href="https://web.telegram.org/z/">https://web.telegram.com</a> left panel
 <!-- <div class="sidebar-panel-card"> -->
 {#if panel}
-	<hb-navbar />
-	{#each panel.cards as card (card.id)}
+	<div id="sidebar-nav"></div>
+	{#each panel.cards as card (card.id + "_c_" + panel.id)}
 		<div class="sidebar-card-container">
 			{#if card.rows && card.rows.length > 0}
 				<div class="sidebar-card-rows-container">
-					{#each card.rows as row (row.key)}
+					{#each card.rows as row (row.key + "_r_" + card.id)}
 						<div class="sidebar-card-row">
 							<hb-sidenav-button
 								on:pageChange={(e) => {

@@ -23,6 +23,7 @@ export const htmlSlots: HtmlSlot[] = [
 	{ name: "left-slot", description: "" },
 	{ name: "right-slot", description: "" },
 	{ name: "center-slot", description: "" },
+	{ name: "nav-switcher", description: " button to switch context" },
 	{ name: "brand", description: "" },
 ];
 export const i18nLanguages: i18nLang[] = [];

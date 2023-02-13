@@ -80,47 +80,45 @@
 	}
 </script>
 
-<nav id="navbar">
-	<div id="left_side" class="navitem" part="left-slot">
-		<div style="padding-left: 10px;">
-			<div id="left_side_content" class="side">
-				{#if !noburger}
-					<button style="font-size:20px;border:none" on:click={() => switchMenu()}>☰</button>
-				{/if}
-				<span style="cursor:pointer" on:click={() => dispatch("navbarSlotClick", { side: "left" })}><slot name="left-slot" /></span>
-			</div>
+<div id="left_side" class="navitem" part="left-slot">
+	<div style="padding-left: 10px;">
+		<div id="left_side_content" class="side">
+			{#if !noburger}
+				<button style="font-size:20px;border:none" on:click={() => switchMenu()}><slot name="nav-switcher">☰</slot></button>
+			{/if}
+			<span style="cursor:pointer" on:click={() => dispatch("navbarSlotClick", { side: "left" })}><slot name="left-slot" /></span>
 		</div>
 	</div>
-	<div id="center_side" part="center-slot" class="navitem">
-		<div class="side" style="margin:auto;max-width: 100%;">
-			<span style="cursor:pointer" on:click={() => dispatch("navbarSlotClick", { side: "center" })}>
-				<slot name="brand">
-					{#if companylogouri}<img style="height: 30px;vertical-align: middle;" alt="" src={companylogouri} />{/if}
-					{companybrandname}
-				</slot>
-			</span>
-			<slot name="center-slot" />
-		</div>
+</div>
+<div id="center_side" part="center-slot" class="navitem">
+	<div class="side" style="margin:auto;max-width: 100%;">
+		<span style="cursor:pointer" on:click={() => dispatch("navbarSlotClick", { side: "center" })}>
+			<slot name="brand">
+				{#if companylogouri}<img style="height: 30px;vertical-align: middle;" alt="" src={companylogouri} />{/if}
+				{companybrandname}
+			</slot>
+		</span>
+		<slot name="center-slot" />
 	</div>
+</div>
 
-	<div id="rigth_side" part="right-slot" class="navitem">
-		<div id="rigth_side_content">
-			<div class="side">
-				<!-- <span on:click={() => dispatch("navbarSlotClick", { side: "right" })}> -->
-				<slot name="right-slot">
-					<!-- <div style="text-align:right;margin-right:10px">{pagetitle}</div> -->
-				</slot>
-				<!-- </span> -->
-				{#if usermenu}
-					<hb-dropdown-simple
-						style={dropdownSimpleStyleToSet}
-						on:dropDownClick={(e) => dispatch("navbarDropDownClick", e.detail.key)}
-						list={JSON.stringify(usermenu.list)}
-						position="right"
-						><span slot="dropdownbutton"><img style="height: 30px;vertical-align: middle;" alt="" src={usermenu.imgUri} /></span
-						></hb-dropdown-simple
-					>
-					<!-- 
+<div id="rigth_side" part="right-slot" class="navitem">
+	<div id="rigth_side_content">
+		<div class="side">
+			<!-- <span on:click={() => dispatch("navbarSlotClick", { side: "right" })}> -->
+			<slot name="right-slot">
+				<!-- <div style="text-align:right;margin-right:10px">{pagetitle}</div> -->
+			</slot>
+			<!-- </span> -->
+			{#if usermenu}
+				<hb-dropdown-simple
+					style={dropdownSimpleStyleToSet}
+					on:dropDownClick={(e) => dispatch("navbarDropDownClick", e.detail.key)}
+					list={JSON.stringify(usermenu.list)}
+					position="right"
+					><span slot="dropdownbutton"><img style="height: 30px;vertical-align: middle;" alt="" src={usermenu.imgUri} /></span></hb-dropdown-simple
+				>
+				<!-- 
 					<sp-avatar size="100" label="Dog the User" src={usermenu.imgUri} />
 				<sp-action-menu size="m" style="margin-right:5px;max-height:30px">
 					{#each usermenu.list as menuItem (menuItem.key)}
@@ -133,14 +131,13 @@
 					{/each}
 				</sp-action-menu> -->
 
-					<!-- <bootstrapdropdown-component list={usermenu.list?.length ? JSON.stringify(usermenu.list) : ""}>
+				<!-- <bootstrapdropdown-component list={usermenu.list?.length ? JSON.stringify(usermenu.list) : ""}>
 				<div slot="dropdownbutton">user</div>
 			</bootstrapdropdown-component> -->
-				{/if}
-			</div>
+			{/if}
 		</div>
 	</div>
-</nav>
+</div>
 <!-- Insert content requiring theme application here. -->
 
 <!-- End content requiring theme application. -->

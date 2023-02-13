@@ -35,7 +35,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 							rows: [{ key: "1", text: "test2" }],
 						},
 						{
-							id: "2",
+							id: "3",
 							rows: [{ key: "1", text: "test3" }],
 						},
 					],
