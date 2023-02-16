@@ -26,15 +26,6 @@
       "type": "node",
       "request": "launch",
       "runtimeVersion": "16.19.0",
-      "name": "write readme",
-      "runtimeArgs": ["-r", "ts-node/register/transpile-only", "."],
-      "skipFiles": ["<node_internals>/**"],
-      "cwd": "${workspaceFolder}/readmewriter"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "runtimeVersion": "16.19.0",
       "name": "dev streamingtable",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
