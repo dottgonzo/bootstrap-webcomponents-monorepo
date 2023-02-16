@@ -10,7 +10,7 @@
 	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
 	import type { Component } from "@app/types/webcomponent.type";
 	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
-	import type { Component as FormComponent } from "../../node_modules/@htmlbricks/hb-form/release/webcomponent.type";
+	import type { Component as FormComponent, Events as FormEvents } from "../../node_modules/@htmlbricks/hb-form/release/webcomponent.type";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -28,37 +28,67 @@
 
 	const schema4selector: FormComponent["schema"] = [
 		{
-			id: "name-row",
-			type: "row",
+			type: "text",
+			placeholder: "Label...",
+			id: "label",
+			required: true,
+			label: "Property Label",
+			validationTip: "This field cannot be empty.",
+		},
+		{
+			type: "select",
+			placeholder: "Select something here...",
+			id: "type",
+			required: true,
+			label: "Selection of something",
+			validationTip: "This field cannot be empty.",
 			params: {
-				columns: [
-					{
-						type: "text",
-						placeholder: "Label...",
-						id: "label",
-						required: true,
-						label: "Property Label",
-						validationTip: "This field cannot be empty.",
-					},
-					{
-						type: "select",
-						placeholder: "Select something here...",
-						id: "selectsomething",
-						required: true,
-						label: "Selection of something",
-						validationTip: "This field cannot be empty.",
-						params: {
-							options: [
-								{ label: "text", value: "text" },
-								{ label: "textarea", value: "textarea" },
-								{ label: "number", value: "number" },
-								{ label: "select", value: "select" },
-								{ label: "radio", value: "radio" },
-							],
-						},
-					},
+				options: [
+					{ label: "", value: "" },
+					{ label: "text", value: "text" },
+					{ label: "textarea", value: "textarea" },
+					{ label: "number", value: "number" },
+					{ label: "select", value: "select" },
+					{ label: "radio", value: "radio" },
 				],
 			},
+		},
+		{
+			type: "checkbox",
+			placeholder: "Required...",
+			id: "required",
+			label: "Is Required?",
+		},
+		{
+			type: "checkbox",
+			placeholder: "Conditional...",
+			id: "conditional",
+			label: "Is Conditional?",
+		},
+
+		{
+			type: "number",
+			placeholder: "Min Length...",
+			id: "minLength",
+			label: "Min Length",
+			dependencies: [
+				{
+					id: "type",
+					values: ["text", "textarea"],
+				},
+			],
+		},
+		{
+			type: "number",
+			placeholder: "Max Length...",
+			id: "maxLength",
+			label: "Max Length",
+			dependencies: [
+				{
+					id: "type",
+					values: ["text", "textarea"],
+				},
+			],
 		},
 	];
 
@@ -81,23 +111,57 @@
 	function dispatchCustomEvent() {
 		dispatch("event", { test: true });
 	}
+	function changeItemSchema(customEvent: FormEvents["change"]) {
+		console.log("changeItemSchema", customEvent);
+	}
+	function addSchema(e: any) {
+		console.log("addSchema", e);
+		switch (e.type) {
+			case "textarea":
+			case "text":
+				outputSchema = [
+					...outputSchema,
+					{
+						id: e.id,
+						type: e.type,
+						label: e.label,
+						required: e.required,
+						placeholder: e.placeholder,
+						params: e.params,
+					},
+				];
+				break;
+		}
+	}
 </script>
 
 TO BE DONE
 <br />
 <br />
-<hb-form schema={JSON.stringify(schema4selector)} />
-
+<hb-form
+	on:submit={(e) => {
+		addSchema(e.detail);
+	}}
+	hide_submit={outputSchema?.length ? "yes" : "no"}
+	on:change={(e) => changeItemSchema(e.detail)}
+	schema={JSON.stringify(schema4selector)}
+/>
+{#each outputSchema as sch (sch.id)}
+	<hb-form
+		on:submit={(e) => {
+			addSchema(e.detail);
+		}}
+		on:change={(e) => changeItemSchema(e.detail)}
+		schema={JSON.stringify(schema4selector)}
+	/>
+{/each}
 {#if debug}
-	<br />
-	<br />
-	output:
-	<br />
-	<br />
+	<h2 style="margin:60px;text-align:center;color:blue">output</h2>
+
 	{#if outputSchema?.length}
 		<hb-form schema={JSON.stringify(outputSchema)} style={formStyleToSet} />
 	{:else}
-		no outputSchema?.length
+		...no output
 	{/if}
 {/if}
 

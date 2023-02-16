@@ -115,6 +115,7 @@ to be done, ref <a href="https://web.telegram.org/z/">https://web.telegram.com</
 				panel = panels.find((p) => p.id === panel.parentPanelId);
 			}
 		}}
+		companybrandname={panel.title}
 	>
 		<i
 			slot="nav-switcher"

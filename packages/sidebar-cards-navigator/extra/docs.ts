@@ -25,6 +25,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			panels: [
 				{
 					id: "1",
+					title: "test",
 					cards: [
 						{
 							id: "1",
@@ -43,10 +44,16 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				{
 					id: "2",
 					parentPanelId: "1",
+					title: "test2",
+
 					cards: [
 						{
 							id: "1",
-							rows: [{ key: "1", text: "test" }],
+							title: "ttteesstt",
+							rows: [
+								{ key: "1", text: "test" },
+								{ key: "2", text: "ciao" },
+							],
 						},
 						{
 							id: "2",
@@ -56,6 +63,8 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				},
 				{
 					id: "3",
+					title: "test3",
+
 					cards: [
 						{
 							id: "1",
