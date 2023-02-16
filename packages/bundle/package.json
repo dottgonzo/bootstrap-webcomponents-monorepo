@@ -74,7 +74,8 @@
     "@htmlbricks/hb-range-slider": "^0.17.34",
     "@htmlbricks/hb-sidenav-link": "^0.17.34",
     "@htmlbricks/hb-table": "^0.17.34",
-    "@htmlbricks/hb-toast": "^0.17.34"
+    "@htmlbricks/hb-toast": "^0.17.34",
+    "monorepo-wc-packages-manifester": "^0.0.3"
   },
   "contributors": [],
   "gitHead": "b2c16d16a6fb286939f569e2ca39708a87d2ba64"

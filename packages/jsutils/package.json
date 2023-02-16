@@ -29,5 +29,8 @@
   "devDependencies": {
     "typescript": "^4.2.4"
   },
-  "gitHead": "b2c16d16a6fb286939f569e2ca39708a87d2ba64"
+  "gitHead": "b2c16d16a6fb286939f569e2ca39708a87d2ba64",
+  "dependencies": {
+    "monorepo-wc-packages-manifester": "^0.0.3"
+  }
 }
