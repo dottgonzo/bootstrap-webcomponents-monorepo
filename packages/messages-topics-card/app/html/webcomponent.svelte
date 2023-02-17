@@ -7,7 +7,7 @@
 
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import type { Component as messageListComponent } from "@htmlbricks/hb-messages-list/release/webcomponent.type";
 	import type { Events as messageSendEvents } from "@htmlbricks/hb-messages-send/release/webcomponent.type";
 	import type { Component } from "@app/types/webcomponent.type";

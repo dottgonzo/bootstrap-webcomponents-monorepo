@@ -17,7 +17,7 @@
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { formCreditCardSchema } from "@app/functions/formSchemes";
 	import { loadScript } from "@paypal/paypal-js";
-	// import { addComponent } from "@htmlbricks/hb-jsutils/main";
+	// import { addComponent } from "wc-js-utils/main";
 	// import parseStyle from "style-to-object";
 	// let parsedStyle: { [x: string]: string };
 	// export let style: string;

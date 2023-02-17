@@ -7,7 +7,7 @@
 
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import type { Events as padJoystickEvents } from "@htmlbricks/hb-pad-joystick/release/webcomponent.type";
 	import type { Component as PlayerLiveComponent } from "@htmlbricks/hb-player-live/release/webcomponent.type";
 	import type { Component as TableComponent } from "@htmlbricks/hb-table/release/webcomponent.type";

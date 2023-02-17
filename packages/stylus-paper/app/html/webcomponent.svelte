@@ -5,7 +5,7 @@
 
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import type { Component, IStroke, Events } from "@app/types/webcomponent.type";
 
 	import { getStroke } from "perfect-freehand";

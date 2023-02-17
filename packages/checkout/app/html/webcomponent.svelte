@@ -20,7 +20,7 @@
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
 	import { formUserSchema, formCreditCardSchema } from "@app/functions/formSchemes";
 	import dayjs from "dayjs";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;

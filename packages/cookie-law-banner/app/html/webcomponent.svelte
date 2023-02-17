@@ -14,7 +14,7 @@
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
 	import { dictionary } from "@app/functions/i18n";
-	import { LanguageTranslator } from "@htmlbricks/hb-jsutils";
+	import { LanguageTranslator } from "wc-js-utils";
 
 	import type { ICapabilities } from "@app/types/webcomponent.type";
 

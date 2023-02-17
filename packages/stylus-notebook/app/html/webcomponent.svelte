@@ -6,7 +6,7 @@
 
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import type { Component } from "@app/types/webcomponent.type";
 	import { styleSetup as stylePaperSetup } from "../../node_modules/@htmlbricks/hb-stylus-paper/release/docs";
 	import { styleSetup as styleInputFileSetup } from "../../node_modules/@htmlbricks/hb-input-file/release/docs";

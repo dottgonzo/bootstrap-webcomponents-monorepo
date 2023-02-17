@@ -6,7 +6,7 @@
 
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
-	import { addComponent, getChildStyleToPass, LanguageTranslator } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass, LanguageTranslator } from "wc-js-utils/main";
 	// import GDPR from "@app/html/GDPR.svelte";
 	// import ItPolicy from "@app/html/ItPolicy.svelte.bk";
 	import itPrivacyContent from "@app/functions/privacyItContent";

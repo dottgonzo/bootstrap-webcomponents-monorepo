@@ -58,7 +58,6 @@
     "@htmlbricks/hb-input-radio": "^0.17.34",
     "@htmlbricks/hb-input-select": "^0.17.34",
     "@htmlbricks/hb-input-text": "^0.17.34",
-    "@htmlbricks/hb-jsutils": "^0.17.34",
     "@htmlbricks/hb-layout": "^0.17.34",
     "@htmlbricks/hb-map": "^0.17.34",
     "@htmlbricks/hb-modal-video": "^0.17.34",
@@ -75,7 +74,8 @@
     "@htmlbricks/hb-sidenav-link": "^0.17.34",
     "@htmlbricks/hb-table": "^0.17.34",
     "@htmlbricks/hb-toast": "^0.17.34",
-    "monorepo-wc-packages-manifester": "^0.0.3"
+    "monorepo-wc-packages-manifester": "^0.0.3",
+    "wc-js-utils": "^0.0.1"
   },
   "contributors": [],
   "gitHead": "b2c16d16a6fb286939f569e2ca39708a87d2ba64"

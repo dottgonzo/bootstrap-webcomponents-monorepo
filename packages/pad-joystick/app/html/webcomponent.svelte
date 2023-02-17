@@ -7,7 +7,7 @@
 	import parseStyle from "style-to-object";
 	import JoyStick from "html5-joystick-new";
 
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import type { Component, CardinalDirection } from "@app/types/webcomponent.type";
 
 	const component = get_current_component();

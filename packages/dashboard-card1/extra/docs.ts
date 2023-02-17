@@ -1,4 +1,4 @@
-import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "wc-js-utils/main";
 import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	header: { control: { type: "object" } },

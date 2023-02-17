@@ -19,7 +19,7 @@
 	import type { ITrack } from "@app/types/webcomponent.type";
 	import type { Events as RangeSliderEvents } from "@htmlbricks/hb-range-slider/types/webcomponent.type";
 	import duration from "dayjs/plugin/duration";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;

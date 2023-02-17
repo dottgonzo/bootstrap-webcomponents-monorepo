@@ -18,7 +18,7 @@
 	import pkg from "../../package.json";
 
 	import { groupMultipleBy } from "@app/functions/utils";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;

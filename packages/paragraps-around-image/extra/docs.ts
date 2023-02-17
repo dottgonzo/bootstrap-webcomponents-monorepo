@@ -1,4 +1,4 @@
-import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "wc-js-utils/main";
 import { title } from "process";
 import type { Component } from "../app/types/webcomponent.type";
 

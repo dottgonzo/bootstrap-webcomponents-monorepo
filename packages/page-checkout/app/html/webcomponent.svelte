@@ -17,7 +17,7 @@
 	import type { IShipment, IUser, IGateway, IPayment as CheckoutPayment } from "../../../checkout/app/types/webcomponent.type";
 	import type { IShoppingPayment, IShopItem } from "../../../checkout-shopping-cart/app/types/webcomponent.type";
 	import type { FormSchema } from "../../../form/app/types/webcomponent.type";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import { styleSetup as checkoutStyleSetup } from "../../node_modules/@htmlbricks/hb-checkout/release/docs";
 	import { styleSetup as checkoutShoppingCartStyleSetup } from "../../node_modules/@htmlbricks/hb-checkout-shopping-cart/release/docs";
 

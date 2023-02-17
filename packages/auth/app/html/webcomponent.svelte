@@ -13,8 +13,8 @@
 
 	import { dictionary } from "@app/functions/i18n";
 	import type { Component } from "@app/types/webcomponent.type";
-	import { LanguageTranslator } from "@htmlbricks/hb-jsutils";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { LanguageTranslator } from "wc-js-utils";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import pkg from "../../package.json";
 
 	import { createEventDispatcher } from "svelte";

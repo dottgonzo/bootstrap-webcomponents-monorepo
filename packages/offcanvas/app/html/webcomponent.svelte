@@ -15,7 +15,7 @@
 	import type { INavLink } from "../../../sidenav-link/app/types/webcomponent.type";
 
 	import type { Component } from "../types/webcomponent.type";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import parseStyle from "style-to-object";
 
 	import { styleSetup as sidenavLinkStyleSetup } from "../../node_modules/@htmlbricks/hb-sidenav-link/release/docs";

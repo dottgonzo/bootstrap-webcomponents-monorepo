@@ -30,7 +30,7 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.10.39",
+		"wc-js-utils": "^0.10.39",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
 		"@rollup/plugin-json": "^4.1.0",
@@ -79,10 +79,10 @@
 	"dependencies": {
 		"@htmlbricks/hb-cookie-law-banner": "^0.17.34",
 		"@htmlbricks/hb-footer": "^0.17.34",
-		"@htmlbricks/hb-jsutils": "^0.17.34",
 		"@htmlbricks/hb-navbar": "^0.17.34",
 		"@htmlbricks/hb-sidebar-desktop": "^0.17.34",
 		"debounce": "^1.2.1",
-		"style-to-object": "^0.3.0"
+		"style-to-object": "^0.3.0",
+		"wc-js-utils": "^0.0.1"
 	}
 }

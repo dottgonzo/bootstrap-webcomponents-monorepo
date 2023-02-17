@@ -4,7 +4,7 @@
 	import { createEventDispatcher, onMount, beforeUpdate, afterUpdate } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	import { fly, fade } from "svelte/transition";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import pkg from "../../package.json";
 	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
 	import type { Component as FormComponent } from "../../../form/app/types/webcomponent.type";

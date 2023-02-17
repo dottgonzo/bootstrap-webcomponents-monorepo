@@ -20,7 +20,7 @@
 	import type { Component as ModalComponent } from "../../../dialog/app/types/webcomponent.type";
 
 	import pkg from "@app/../package.json";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;

@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import parseStyle from "style-to-object";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import type { Component } from "@app/types/webcomponent.type";
 
 	export let id: string;

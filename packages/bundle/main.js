@@ -4,7 +4,9 @@ const pkg = require('./package.json')
 
 async function run() {
     const packagesPath = path.resolve(__dirname, '..')
-    const packages = (await fs.readdir(packagesPath, { withFileTypes: true })).filter(f => f.isDirectory && f.name !== 'bundle' && f.name !== 'jsutils').map(m => m.name)
+    const packages = (await fs.readdir(packagesPath, { withFileTypes: true })).filter(f => f.isDirectory && f.name !== 'bundle').map(m => m.name)
+
+    const npmGroup = pkg.name.split('/')[0]
 
     let packagesCode = ''
     let packagesMainDatas = []
@@ -20,7 +22,7 @@ async function run() {
         if (!document.getElementById("hb-" + componentName + "-script")) {
             const script = document.createElement("script");
             script.id = "hb-" + componentName + "-script";
-            script.src = "https://cdn.jsdelivr.net/npm/@htmlbricks/hb-" + componentName + "@${pkg.version}/release/release.js";
+            script.src = "https://cdn.jsdelivr.net/npm/${npmGroup}/hb-" + componentName + "@${pkg.version}/release/release.js";
             document.head.appendChild(script);
         }
     }\n`

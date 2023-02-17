@@ -25,8 +25,8 @@
 	import { styleSetup as layoutDesktopStyleSetup } from "../../node_modules/@htmlbricks/hb-layout-desktop/release/docs";
 	import { styleSetup as layoutMobileStyleSetup } from "../../node_modules/@htmlbricks/hb-layout-mobile/release/docs";
 
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
-	import { LanguageTranslator } from "@htmlbricks/hb-jsutils";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
+	import { LanguageTranslator } from "wc-js-utils";
 
 	export let id: string;
 	export let socials: ISocials;

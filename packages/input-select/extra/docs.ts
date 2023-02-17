@@ -1,4 +1,4 @@
-import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } from "wc-js-utils/main";
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
@@ -27,18 +27,18 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 const selectSchema = {
-  type: "select",
-  placeholder: "Select something here...",
-  id: "selectsomething",
-  required: true,
-  label: "Selection of something",
-  validationTip: "This field cannot be empty.",
-  params: {
-    options: [
-      { label: "", value: "" },
-      { label: "testlabel", value: "testvalue" },
-    ],
-  },
+	type: "select",
+	placeholder: "Select something here...",
+	id: "selectsomething",
+	required: true,
+	label: "Selection of something",
+	validationTip: "This field cannot be empty.",
+	params: {
+		options: [
+			{ label: "", value: "" },
+			{ label: "testlabel", value: "testvalue" },
+		],
+	},
 };
 const examples: { name: string; description?: string; data: Component }[] = [
 	{

@@ -3,7 +3,7 @@
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;

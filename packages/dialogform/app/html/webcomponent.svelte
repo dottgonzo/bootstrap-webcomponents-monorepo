@@ -3,7 +3,7 @@
 <script lang="ts">
 	import { get_current_component, now } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import pkg from "../../package.json";
 	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
 	import { styleSetup as dialogStyleSetup } from "../../node_modules/@htmlbricks/hb-dialog/release/docs";

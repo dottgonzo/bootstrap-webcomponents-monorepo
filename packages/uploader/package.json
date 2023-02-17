@@ -30,7 +30,6 @@
 		"prepublish": "npm run build:release"
 	},
 	"devDependencies": {
-		"@htmlbricks/hb-jsutils": "^0.17.34",
 		"@rollup/plugin-alias": "^3.1.2",
 		"@rollup/plugin-commonjs": "^18.0.0",
 		"@rollup/plugin-json": "^4.1.0",
@@ -67,7 +66,8 @@
 		"tslib": "^2.2.0",
 		"ttypescript": "^1.5.12",
 		"typescript": "^4.2.4",
-		"typescript-transform-paths": "^2.2.3"
+		"typescript-transform-paths": "^2.2.3",
+		"wc-js-utils": "^0.0.1"
 	},
 	"dependencies": {
 		"@htmlbricks/hb-dialog": "^0.17.34",

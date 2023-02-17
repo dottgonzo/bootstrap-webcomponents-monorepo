@@ -5,7 +5,7 @@
 	import { createEventDispatcher } from "svelte";
 	import pkg from "../../package.json";
 	import axios, { type AxiosRequestConfig } from "axios";
-	import { addComponent, getChildStyleToPass } from "@htmlbricks/hb-jsutils/main";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	import { styleSetup as dialogStyleSetup } from "../../node_modules/@htmlbricks/hb-dialog/release/docs";
