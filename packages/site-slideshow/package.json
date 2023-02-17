@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-site-slideshow",
 	"displayName": "Svelte-Bootstrap site-slideshow",
 	"description": "Svelte-Bootstrap site-slideshow",
-	"version": "0.18.2",
+	"version": "0.18.3",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
