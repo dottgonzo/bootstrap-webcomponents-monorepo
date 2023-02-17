@@ -1,7 +1,7 @@
 import type { Meta } from "@storybook/html";
 import { version } from "../../../lerna.json";
 import { ArgTypes } from "@storybook/html";
-import type { ComponentSetup } from "@htmlbricks/hb-jsutils/main";
+import type { ComponentSetup } from "wc-js-utils";
 
 function capitalize(string) {
   // take first character, uppercase it
