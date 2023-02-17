@@ -138,9 +138,13 @@
 				break;
 		}
 		if (added) {
-			schemaSelectedString = "";
-			schemaSelectedString = JSON.stringify(schema4selector);
-			console.log("reset form");
+			const c = component.shadowRoot.getElementById("schema") as HTMLElement;
+			console.log("reset", c);
+			// console.log("reset form");
+			// const formComponent=`<hb-form schema="${JSON.stringify(schemaSelectedString)}"`;
+
+			// c.innerHTML=formComponent
+			c.setAttribute("schema", JSON.stringify(schemaSelectedString));
 		}
 	}
 	function removeSchema(id: string) {
@@ -163,15 +167,16 @@ TO BE DONE
 		>
 	</div>
 {/each}
-{#if schemaSelectedString}
+<div id="schemaContainer">
 	<hb-form
+		id="schema"
 		on:submit={(e) => {
 			addSchema(e.detail);
 		}}
 		on:change={(e) => changeItemSchema(e.detail)}
 		schema={schemaSelectedString}
 	/>
-{/if}
+</div>
 
 {#if debug}
 	<h2 style="margin:60px;text-align:center;color:blue">output</h2>

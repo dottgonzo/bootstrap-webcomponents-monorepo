@@ -140,7 +140,7 @@
 				}
 			}
 		}
-		dependencyMap = schema
+		dependencyMap = schema?.length
 			? groupMultipleBy(
 					schema.filter((entry) => entry.dependencies?.length),
 					(entry) => entry.dependencies.map((dep) => dep.id),
