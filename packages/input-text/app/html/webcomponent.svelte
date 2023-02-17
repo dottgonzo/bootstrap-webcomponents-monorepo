@@ -21,7 +21,6 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 
-	let old_schemaentry_value: any;
 	$: {
 		if (typeof schemaentry === "string") {
 			try {
@@ -30,15 +29,9 @@
 				console.error("error parsing JSON for schemaentry hb-input-number", err);
 			}
 		}
-		if (
-			(schemaentry?.value || schemaentry?.value === 0 || schemaentry?.value === "") &&
-			((!old_schemaentry_value && old_schemaentry_value !== 0 && old_schemaentry_value !== "") || old_schemaentry_value !== schemaentry?.value)
-		) {
-			old_schemaentry_value = schemaentry.value;
-			value = schemaentry.value;
-		} else if (!value && value !== 0) {
-			value = null;
-		}
+
+		value = value != null ? value : (schemaentry?.value as string);
+
 		if (!show_validation) show_validation = "no";
 
 		if (!set_value && (set_value as unknown as string) === "no") {
