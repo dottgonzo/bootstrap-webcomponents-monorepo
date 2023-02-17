@@ -169,7 +169,7 @@
 			);
 		};
 
-		controls = schema ? getControls(schema) : [];
+		controls = schema?.length ? getControls(schema) : [];
 		isInvalid = !Object.entries(valids).length || Object.entries(valids).some(([id, isValid]) => !isValid && visibility[id]);
 		const obj = Object.assign({ _valid: !isInvalid }, values);
 		// dispatch("initialize", obj);

@@ -92,13 +92,16 @@
 		},
 	];
 
-	let schemaSelectedString: string;
+	let schema4selectorS: { counter: number; schema: string }[];
 
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
 	let formStyleToSet: string = "";
+	let formComponent: HTMLElement;
 	onMount(() => {
 		addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
+		formComponent = component.shadowRoot.getElementById("schema") as HTMLElement;
+		console.log("formComponent", formComponent);
 	});
 	$: {
 		if (!id) id = "";
@@ -108,7 +111,7 @@
 		}
 		if (typeof debug === "string" && (debug === "true" || debug === "yes" || debug === "")) debug = true;
 		else debug = false;
-		if (!schemaSelectedString) schemaSelectedString = JSON.stringify(schema4selector);
+		if (!schema4selectorS) schema4selectorS = [{ counter: 0, schema: JSON.stringify(schema4selector) }];
 	}
 
 	function dispatchCustomEvent() {
@@ -123,32 +126,51 @@
 		switch (e.type) {
 			case "textarea":
 			case "text":
-				outputSchema = [
-					...outputSchema,
-					{
-						id: "schema_" + Math.random().toString(36).substr(2, 9),
-						type: e.type,
-						label: e.label,
-						required: e.required,
-						placeholder: e.placeholder,
-						params: e.params,
-					},
-				];
+				if (outputSchema.find((f) => f.label === e.label)) {
+					// replace previous outputScheme
+					outputSchema = outputSchema.map((f) => {
+						if (f.label === e.label) {
+							return {
+								id: f.id,
+								type: e.type,
+								label: e.label,
+								required: e.required,
+								placeholder: e.placeholder,
+								params: e.params,
+							};
+						} else return f;
+					});
+				} else {
+					// add new outputSchema
+					outputSchema = [
+						...outputSchema,
+						{
+							id: outputSchema.length.toString(),
+							type: e.type,
+							label: e.label,
+							required: e.required,
+							placeholder: e.placeholder,
+							params: e.params,
+						},
+					];
+				}
 				added = true;
+
 				break;
 		}
 		if (added) {
-			const c = component.shadowRoot.getElementById("schema") as HTMLElement;
-			console.log("reset", c);
+			schema4selectorS = [...schema4selectorS, { counter: schema4selectorS.length, schema: JSON.stringify(schema4selector) }];
+			console.info("schema4selectorS", schema4selectorS);
+
 			// console.log("reset form");
 			// const formComponent=`<hb-form schema="${JSON.stringify(schemaSelectedString)}"`;
 
 			// c.innerHTML=formComponent
-			c.setAttribute("schema", JSON.stringify(schemaSelectedString));
 		}
 	}
 	function removeSchema(id: string) {
 		outputSchema = outputSchema.filter((e) => e.id !== id);
+		schema4selectorS = schema4selectorS.filter((e) => e.counter !== schema4selectorS.length - 1);
 	}
 </script>
 
@@ -167,17 +189,18 @@ TO BE DONE
 		>
 	</div>
 {/each}
-<div id="schemaContainer">
-	<hb-form
-		id="schema"
-		on:submit={(e) => {
-			addSchema(e.detail);
-		}}
-		on:change={(e) => changeItemSchema(e.detail)}
-		schema={schemaSelectedString}
-	/>
-</div>
-
+{#each schema4selectorS as sc (sc.counter)}
+	{#if sc.counter === schema4selectorS.length - 1}
+		<hb-form
+			id="schema"
+			on:submit={(e) => {
+				addSchema(e.detail);
+			}}
+			on:change={(e) => changeItemSchema(e.detail)}
+			schema={sc.schema}
+		/>
+	{/if}
+{/each}
 {#if debug}
 	<h2 style="margin:60px;text-align:center;color:blue">output</h2>
 
