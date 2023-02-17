@@ -30,8 +30,6 @@
 			}
 		}
 
-		value = value != null ? value : (schemaentry?.value as string);
-
 		if (!show_validation) show_validation = "no";
 
 		if (!set_value && (set_value as unknown as string) === "no") {
