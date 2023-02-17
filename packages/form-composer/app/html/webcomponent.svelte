@@ -92,6 +92,8 @@
 		},
 	];
 
+	let schemaSelectedString: string;
+
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
 	let formStyleToSet: string = "";
@@ -106,6 +108,7 @@
 		}
 		if (typeof debug === "string" && (debug === "true" || debug === "yes" || debug === "")) debug = true;
 		else debug = false;
+		if (!schemaSelectedString) schemaSelectedString = JSON.stringify(schema4selector);
 	}
 
 	function dispatchCustomEvent() {
@@ -116,13 +119,14 @@
 	}
 	function addSchema(e: any) {
 		console.log("addSchema", e);
+		let added = false;
 		switch (e.type) {
 			case "textarea":
 			case "text":
 				outputSchema = [
 					...outputSchema,
 					{
-						id: e.id,
+						id: "schema_" + Math.random().toString(36).substr(2, 9),
 						type: e.type,
 						label: e.label,
 						required: e.required,
@@ -130,31 +134,45 @@
 						params: e.params,
 					},
 				];
+				added = true;
 				break;
 		}
+		if (added) {
+			schemaSelectedString = "";
+			schemaSelectedString = JSON.stringify(schema4selector);
+			console.log("reset form");
+		}
+	}
+	function removeSchema(id: string) {
+		outputSchema = outputSchema.filter((e) => e.id !== id);
 	}
 </script>
 
 TO BE DONE
 <br />
 <br />
-<hb-form
-	on:submit={(e) => {
-		addSchema(e.detail);
-	}}
-	hide_submit={outputSchema?.length ? "yes" : "no"}
-	on:change={(e) => changeItemSchema(e.detail)}
-	schema={JSON.stringify(schema4selector)}
-/>
+
 {#each outputSchema as sch (sch.id)}
+	<div>
+		{sch.label} added
+
+		<button
+			on:click={() => {
+				removeSchema(sch.id);
+			}}>remove</button
+		>
+	</div>
+{/each}
+{#if schemaSelectedString}
 	<hb-form
 		on:submit={(e) => {
 			addSchema(e.detail);
 		}}
 		on:change={(e) => changeItemSchema(e.detail)}
-		schema={JSON.stringify(schema4selector)}
+		schema={schemaSelectedString}
 	/>
-{/each}
+{/if}
+
 {#if debug}
 	<h2 style="margin:60px;text-align:center;color:blue">output</h2>
 

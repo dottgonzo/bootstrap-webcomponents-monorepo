@@ -63,6 +63,7 @@
 	};
 
 	export let schema: FormSchema;
+	export let id: string;
 
 	export let values: Record<string, string | number | boolean> = {};
 
@@ -78,7 +79,9 @@
 	let allValues: Record<string, string | number | boolean> = {};
 	let dependencyMap: Record<string, FormSchemaEntry[]>;
 	let getControls: (schema: FormSchema) => IControl[];
+	let lastId: string;
 	$: {
+		if (!id) id = "form";
 		if (hide_submit === true || (hide_submit as unknown as string) === "yes" || (hide_submit as unknown as string) === "true") {
 			hide_submit = true;
 		} else {
@@ -109,34 +112,33 @@
 		if (typeof schema === "string") {
 			try {
 				schema = JSON.parse(schema as unknown as string);
-				if (!controls?.length || !schema.length || !controls.find((f) => f.entry.id === schema[0].id)) {
-					valids = {};
-					allValues = {};
-					dependencyMap = {};
-					visibility = {};
-					controls = [];
-					values = {};
-				}
-
-				for (const s of schema) {
-					if (s.type !== "row") {
-						values[s.id] = s.value;
-					}
-				}
 			} catch (error) {
 				console.error("error with schema", schema, error);
-				valids = {};
-				allValues = {};
-				dependencyMap = {};
-				visibility = {};
-				controls = [];
-				values = {};
-				schema = [];
 			}
 		} else if (!schema) {
 			console.warn("no schema provided");
 
+			valids = {};
+			allValues = {};
+			dependencyMap = {};
+			visibility = {};
+			controls = [];
+			values = {};
 			schema = [];
+		}
+		if (!controls?.length || !schema.length || !controls.find((f) => f.entry.id === schema[0].id) || lastId !== id) {
+			lastId = id;
+			valids = {};
+			allValues = {};
+			dependencyMap = {};
+			visibility = {};
+			controls = [];
+			values = {};
+			for (const s of schema) {
+				if (s.type !== "row") {
+					values[s.id] = s.value;
+				}
+			}
 		}
 		dependencyMap = schema
 			? groupMultipleBy(
