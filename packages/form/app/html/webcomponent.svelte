@@ -181,7 +181,7 @@
 
 	const canShow = (entry: FormSchemaEntry) => {
 		for (const dep of entry.dependencies || []) {
-			if (!visibility[dep.id] || !dep.values?.includes(values[dep.id])) {
+			if (!visibility[dep.id] || (dep.values && values[dep.id] && !dep.values?.includes(values[dep.id]))) {
 				return false;
 			}
 		}

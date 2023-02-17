@@ -90,6 +90,282 @@
 				},
 			],
 		},
+		{
+			type: "text",
+			placeholder: "Option Label...",
+			id: "optionLabel1",
+			label: "Option Label",
+			dependencies: [
+				{
+					id: "type",
+					values: ["select", "radio"],
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Values (separated by comma)...",
+			id: "optionValues1",
+			label: "Option Values",
+			dependencies: [
+				{
+					id: "type",
+					values: ["select", "radio"],
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Label...",
+			id: "optionLabel2",
+			label: "Option Label",
+			dependencies: [
+				{
+					id: "optionLabel1",
+				},
+				{
+					id: "optionValues1",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Values (separated by comma)...",
+			id: "optionValues2",
+			label: "Option Values",
+			dependencies: [
+				{
+					id: "optionLabel1",
+				},
+				{
+					id: "optionValues1",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Label...",
+			id: "optionLabel3",
+			label: "Option Label",
+			dependencies: [
+				{
+					id: "optionLabel2",
+				},
+				{
+					id: "optionValues2",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Values (separated by comma)...",
+			id: "optionValues3",
+			label: "Option Values",
+			dependencies: [
+				{
+					id: "optionLabel2",
+				},
+				{
+					id: "optionValues2",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Label...",
+			id: "optionLabel4",
+			label: "Option Label",
+			dependencies: [
+				{
+					id: "optionLabel3",
+				},
+				{
+					id: "optionValues3",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Values (separated by comma)...",
+			id: "optionValues4",
+			label: "Option Values",
+			dependencies: [
+				{
+					id: "optionLabel3",
+				},
+				{
+					id: "optionValues3",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Label...",
+			id: "optionLabel5",
+			label: "Option Label",
+			dependencies: [
+				{
+					id: "optionLabel4",
+				},
+				{
+					id: "optionValues4",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Values (separated by comma)...",
+			id: "optionValues5",
+			label: "Option Values",
+			dependencies: [
+				{
+					id: "optionLabel4",
+				},
+				{
+					id: "optionValues4",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Label...",
+			id: "optionLabel6",
+			label: "Option Label",
+			dependencies: [
+				{
+					id: "optionLabel5",
+				},
+				{
+					id: "optionValues5",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Values (separated by comma)...",
+			id: "optionValues6",
+			label: "Option Values",
+			dependencies: [
+				{
+					id: "optionLabel5",
+				},
+				{
+					id: "optionValues5",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Label...",
+			id: "optionLabel7",
+			label: "Option Label",
+			dependencies: [
+				{
+					id: "optionLabel6",
+				},
+				{
+					id: "optionValues6",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Values (separated by comma)...",
+			id: "optionValues7",
+			label: "Option Values",
+			dependencies: [
+				{
+					id: "optionLabel6",
+				},
+				{
+					id: "optionValues6",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Label...",
+			id: "optionLabel8",
+			label: "Option Label",
+			dependencies: [
+				{
+					id: "optionLabel7",
+				},
+				{
+					id: "optionValues7",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Values (separated by comma)...",
+			id: "optionValues8",
+			label: "Option Values",
+			dependencies: [
+				{
+					id: "optionLabel7",
+				},
+				{
+					id: "optionValues7",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Label...",
+			id: "optionLabel9",
+			label: "Option Label",
+			dependencies: [
+				{
+					id: "optionLabel8",
+				},
+				{
+					id: "optionValues8",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Values (separated by comma)...",
+			id: "optionValues9",
+			label: "Option Values",
+			dependencies: [
+				{
+					id: "optionLabel8",
+				},
+				{
+					id: "optionValues8",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Label...",
+			id: "optionLabel10",
+			label: "Option Label",
+			dependencies: [
+				{
+					id: "optionLabel9",
+				},
+				{
+					id: "optionValues9",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Option Values (separated by comma)...",
+			id: "optionValues10",
+			label: "Option Values",
+			dependencies: [
+				{
+					id: "optionLabel9",
+				},
+				{
+					id: "optionValues9",
+				},
+			],
+		},
 	];
 
 	let schema4selectorS: { counter: number; schema: string }[];
@@ -98,6 +374,7 @@
 	//  let componentStyleToSet: string = "";
 	let formStyleToSet: string = "";
 	let formComponent: HTMLElement;
+	let optionElements: { label: string; value: string }[];
 	onMount(() => {
 		addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
 		formComponent = component.shadowRoot.getElementById("schema") as HTMLElement;
@@ -112,19 +389,24 @@
 		if (typeof debug === "string" && (debug === "true" || debug === "yes" || debug === "")) debug = true;
 		else debug = false;
 		if (!schema4selectorS) schema4selectorS = [{ counter: 0, schema: JSON.stringify(schema4selector) }];
+		if (!optionElements) optionElements = [];
 	}
 
 	function dispatchCustomEvent() {
 		dispatch("event", { test: true });
 	}
-	function changeItemSchema(customEvent: FormEvents["change"]) {
+	function changeItemSchema(customEvent: any) {
 		console.log("changeItemSchema", customEvent);
+		if (customEvent._id === "type" && (customEvent.type === "select" || customEvent.value === "radio")) {
+			///
+		}
 	}
 	function addSchema(e: any) {
 		console.log("addSchema", e);
 		let added = false;
 		switch (e.type) {
 			case "textarea":
+			case "number":
 			case "text":
 				if (outputSchema.find((f) => f.label === e.label)) {
 					// replace previous outputScheme
