@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-player-input-streaming",
 	"displayName": "Svelte-Bootstrap player-input-streaming",
 	"description": "Svelte-Bootstrap player-input-streaming",
-	"version": "0.18.1",
+	"version": "0.18.2",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
