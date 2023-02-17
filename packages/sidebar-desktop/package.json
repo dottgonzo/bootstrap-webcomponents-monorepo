@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-sidebar-desktop",
 	"displayName": "Svelte Boostrap Sidebar Desktop",
 	"description": "Svelte Boostrap Sidebar Desktop",
-	"version": "0.18.0",
+	"version": "0.18.1",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -78,7 +78,7 @@
 	"contributors": [],
 	"gitHead": "b2c16d16a6fb286939f569e2ca39708a87d2ba64",
 	"dependencies": {
-		"@htmlbricks/hb-sidenav-link": "^0.18.0",
+		"@htmlbricks/hb-sidenav-link": "^0.18.1",
 		"style-to-object": "^0.3.0"
 	}
 }
