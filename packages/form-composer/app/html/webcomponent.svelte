@@ -3,14 +3,16 @@
 <script lang="ts">
 	import pkg from "../../package.json";
 
-	import { get_current_component, onDestroy, onMount } from "svelte/internal";
+	import { get_current_component, onMount } from "svelte/internal";
 
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import type { Component } from "@app/types/webcomponent.type";
 	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
+	import { styleSetup as tableStyleSetup } from "../../node_modules/@htmlbricks/hb-table/release/docs";
 	import type { Component as FormComponent, Events as FormEvents } from "../../node_modules/@htmlbricks/hb-form/release/webcomponent.type";
+	import type { Component as TableComponent, Events as TableEvents } from "../../node_modules/@htmlbricks/hb-table/release/webcomponent.type";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -47,9 +49,11 @@
 					{ label: "", value: "" },
 					{ label: "text", value: "text" },
 					{ label: "textarea", value: "textarea" },
+					{ label: "email", value: "email" },
 					{ label: "number", value: "number" },
 					{ label: "select", value: "select" },
 					{ label: "radio", value: "radio" },
+					{ label: "checkbox", value: "checkbox" },
 				],
 			},
 		},
@@ -373,10 +377,36 @@
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
 	let formStyleToSet: string = "";
+	let tableStyleToSet: string = "";
 	let formComponent: HTMLElement;
-	let optionElements: { label: string; value: string }[];
+	const tableHeaders: TableComponent["headers"] = [
+		{
+			label: "Label",
+			key: "label",
+		},
+		{
+			label: "type",
+			key: "type",
+		},
+		{
+			label: "options",
+			key: "options",
+			nosort: true,
+		},
+		{
+			label: "params",
+			key: "params",
+			nosort: true,
+		},
+		{
+			label: "required",
+			key: "required",
+		},
+	];
+	let tableRows: TableComponent["rows"];
 	onMount(() => {
 		addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
+		addComponent({ repoName: "@htmlbricks/hb-table", version: pkg.version });
 		formComponent = component.shadowRoot.getElementById("schema") as HTMLElement;
 		console.log("formComponent", formComponent);
 	});
@@ -385,28 +415,43 @@
 		if (style) {
 			parsedStyle = parseStyle(style);
 			formStyleToSet = getChildStyleToPass(parsedStyle, formStyleSetup?.vars);
+			tableStyleToSet = getChildStyleToPass(parsedStyle, tableStyleSetup?.vars);
 		}
 		if (typeof debug === "string" && (debug === "true" || debug === "yes" || debug === "")) debug = true;
-		else debug = false;
+		else if (debug !== true) debug = false;
 		if (!schema4selectorS) schema4selectorS = [{ counter: 0, schema: JSON.stringify(schema4selector) }];
-		if (!optionElements) optionElements = [];
+		const newTableRows: TableComponent["rows"] = [];
+		for (const sc of outputSchema) {
+			newTableRows.push({
+				_id: sc.label,
+				label: sc.label,
+				type: sc.type,
+				params: sc.params,
+				required: sc.required,
+				// options: sc.options ? sc.options.map((o) => o.label).join(", ") : "",
+			});
+		}
+		tableRows = newTableRows;
 	}
 
 	function dispatchCustomEvent() {
 		dispatch("event", { test: true });
 	}
-	function changeItemSchema(customEvent: any) {
-		console.log("changeItemSchema", customEvent);
-		if (customEvent._id === "type" && (customEvent.type === "select" || customEvent.value === "radio")) {
-			///
-		}
-	}
+	// function changeItemSchema(customEvent: any) {
+	// 	console.log("changeItemSchema", customEvent);
+	// 	if (customEvent._id === "type" && (customEvent.type === "select" || customEvent.value === "radio")) {
+	// 		///
+	// 	}
+	// }
+
 	function addSchema(e: any) {
 		console.log("addSchema", e);
 		let added = false;
 		switch (e.type) {
+			case "checkbox":
 			case "textarea":
 			case "number":
+			case "email":
 			case "text":
 				if (outputSchema.find((f) => f.label === e.label)) {
 					// replace previous outputScheme
@@ -439,6 +484,37 @@
 				added = true;
 
 				break;
+			case "select":
+				if (outputSchema.find((f) => f.label === e.label)) {
+					// replace previous outputScheme
+					outputSchema = outputSchema.map((f) => {
+						if (f.label === e.label) {
+							return {
+								id: f.id,
+								type: e.type,
+								label: e.label,
+								required: e.required,
+								placeholder: e.placeholder,
+								params: e.params,
+							};
+						} else return f;
+					});
+				} else {
+					// add new outputSchema
+					outputSchema = [
+						...outputSchema,
+						{
+							id: outputSchema.length.toString(),
+							type: e.type,
+							label: e.label,
+							required: e.required,
+							placeholder: e.placeholder,
+							params: e.params,
+						},
+					];
+				}
+				added = true;
+				break;
 		}
 		if (added) {
 			schema4selectorS = [...schema4selectorS, { counter: schema4selectorS.length, schema: JSON.stringify(schema4selector) }];
@@ -460,7 +536,7 @@ TO BE DONE
 <br />
 <br />
 
-{#each outputSchema as sch (sch.id)}
+<!-- {#each outputSchema as sch (sch.id)}
 	<div>
 		{sch.label} added
 
@@ -470,24 +546,29 @@ TO BE DONE
 			}}>remove</button
 		>
 	</div>
-{/each}
+{/each} -->
+
+<hb-table id="table_specs" style={tableStyleToSet} disablepagination="yes" headers={JSON.stringify(tableHeaders)} rows={JSON.stringify(tableRows)} />
+{#if !outputSchema?.length}
+	empty
+{/if}
 {#each schema4selectorS as sc (sc.counter)}
 	{#if sc.counter === schema4selectorS.length - 1}
 		<hb-form
-			id="schema"
+			class="mainform"
+			style={formStyleToSet}
+			id="schema{sc.counter}"
 			on:submit={(e) => {
 				addSchema(e.detail);
 			}}
-			on:change={(e) => changeItemSchema(e.detail)}
 			schema={sc.schema}
 		/>
 	{/if}
 {/each}
 {#if debug}
 	<h2 style="margin:60px;text-align:center;color:blue">output</h2>
-
 	{#if outputSchema?.length}
-		<hb-form schema={JSON.stringify(outputSchema)} style={formStyleToSet} />
+		<hb-form hide_submit="yes" schema={JSON.stringify(outputSchema)} style={formStyleToSet} />
 	{:else}
 		...no output
 	{/if}
