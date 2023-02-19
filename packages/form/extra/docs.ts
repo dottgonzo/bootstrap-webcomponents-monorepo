@@ -220,25 +220,82 @@ const conditionalSchema = [
 ];
 const conditionalSchema2 = [
 	{
-		type: "text",
-		placeholder: "Inserisci titolo di default",
-		id: "defaultTitleCond",
-		required: true,
-
-		label: "Titolo di default",
-		value: "titolotest",
+		id: "name-row",
+		type: "row",
 		params: {
-			minLength: 8,
-			maxLength: 120,
+			columns: [
+				{
+					type: "text",
+					placeholder: "Insert your first name here...",
+					id: "firstName",
+					required: true,
+					label: "First Name",
+					validationTip: "This field cannot be empty.",
+				},
+				{
+					type: "text",
+					placeholder: "Insert your last name here...",
+					id: "lastName",
+					required: true,
+					label: "Last Name",
+					validationTip: "This field cannot be empty.",
+				},
+				{
+					type: "text",
+					placeholder: "Insert your last namez here...",
+					id: "lastNamez",
+					label: "Last Namez",
+					validationTip: "This field cannot be emptyz.",
+				},
+				{
+					type: "select",
+					placeholder: "Select something here...",
+					id: "selectsomething",
+					label: "Selection of something",
+					validationTip: "This field cannot be empty.",
+					params: {
+						options: [
+							{ label: "", value: "" },
+							{ label: "testlabel", value: "testvalue" },
+						],
+					},
+					dependencies: [
+						{
+							id: "CondAge",
+							values: [100],
+						},
+					],
+				},
+				{
+					type: "radio",
+					placeholder: "radio something here...",
+					id: "radiosomething",
+					label: "Selection of something",
+					validationTip: "This field cannot be empty.",
+					params: {
+						options: [
+							{ label: "radio", value: "radio" },
+							{ label: "radio2", value: "radi2o" },
+							{ label: "radio3", value: "radio2" },
+							{ label: "testlabel", value: "testvalue" },
+						],
+					},
+					dependencies: [
+						{
+							id: "firstName",
+							values: ["00000000"],
+						},
+					],
+				},
+			],
 		},
 	},
 	{
 		type: "number",
 		id: "CondAge",
-		required: true,
 		dependencies: [
 			{
-				id: "defaultTitleCond",
+				id: "firstName",
 				values: ["00000000"],
 			},
 		],

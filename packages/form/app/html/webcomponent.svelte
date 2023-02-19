@@ -114,8 +114,10 @@
 				schema = JSON.parse(schema as unknown as string);
 			} catch (error) {
 				console.error("error with schema", schema, error);
+				schema = null;
 			}
-		} else if (!schema) {
+		}
+		if (!schema) {
 			console.warn("no schema provided");
 
 			valids = {};
@@ -137,15 +139,32 @@
 			for (const s of schema) {
 				if (s.type !== "row") {
 					values[s.id] = s.value;
+				} else if (s.type === "row" && s.params?.columns?.length) {
+					for (const c of s.params.columns) {
+						values[c.id] = c.value;
+					}
 				}
 			}
 		}
-		dependencyMap = schema?.length
-			? groupMultipleBy(
-					schema.filter((entry) => entry.dependencies?.length),
-					(entry) => entry.dependencies.map((dep) => dep.id),
-			  )
-			: {};
+		if (schema?.length) {
+			const allRowEntriesAndColumnEntries = [];
+			for (const el of schema) {
+				if (el.type === "row") {
+					allRowEntriesAndColumnEntries.push(el);
+					if (el.params?.columns?.length) {
+						allRowEntriesAndColumnEntries.push(...el.params.columns);
+					}
+				} else {
+					allRowEntriesAndColumnEntries.push(el);
+				}
+			}
+			dependencyMap = groupMultipleBy(
+				allRowEntriesAndColumnEntries.filter((entry) => entry.dependencies?.length),
+				(entry) => entry.dependencies.map((dep) => dep.id),
+			);
+		} else {
+			dependencyMap = {};
+		}
 
 		if (!isInvalid && isInvalid !== false) isInvalid = true;
 
