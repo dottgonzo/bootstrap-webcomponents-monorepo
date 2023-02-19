@@ -12,9 +12,7 @@ import {
 } from "../../packages/footer/extra/docs";
 import { IColumn } from "../../packages/footer/release/webcomponent.type";
 
-const meta = getStorybookMeta(storybookArgs, componentSetup, {
-  layout: "fullscreen",
-});
+const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
 
 const Template: Story = (args) =>

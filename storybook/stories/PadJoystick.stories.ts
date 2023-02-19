@@ -25,11 +25,13 @@ export const PadJoystickDefault = Template.bind({});
 
 PadJoystickDefault.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default")
+  componentSetup.examples.find((f) => f.name === "default") ||
+    (undefined as any)
 );
 export const PadJoystickJoystick = Template.bind({});
 
 PadJoystickJoystick.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "joystick")
+  componentSetup.examples.find((f) => f.name === "joystick") ||
+    (undefined as any)
 );

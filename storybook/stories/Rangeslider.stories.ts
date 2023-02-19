@@ -24,21 +24,24 @@ const Template: Story = (args) =>
 export const BasicRangeslider = Template.bind({});
 BasicRangeslider.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default")
+  componentSetup.examples.find((f) => f.name === "default") ||
+    (undefined as any)
 );
 
 export const BasicRangesliderWithBubbles = Template.bind({});
 BasicRangesliderWithBubbles.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withBubbles")
+  componentSetup.examples.find((f) => f.name === "withBubbles") || (undefined as any)
 );
 export const BasicRangesliderWithValues = Template.bind({});
 BasicRangesliderWithValues.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withValues")
+  componentSetup.examples.find((f) => f.name === "withValues") ||
+    (undefined as any)
 );
 export const BasicRangesliderWithPositionValue = Template.bind({});
 BasicRangesliderWithPositionValue.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withPositionValue")
+  componentSetup.examples.find((f) => f.name === "withPositionValue") ||
+    (undefined as any)
 );

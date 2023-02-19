@@ -27,18 +27,21 @@ export const MessageSendDefault = Template.bind({});
 
 MessageSendDefault.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default")
+  componentSetup.examples.find((f) => f.name === "default") ||
+    (undefined as any)
 );
 
 export const MessageSendWithAMessage = Template.bind({});
 
 MessageSendWithAMessage.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withAMessage")
+  componentSetup.examples.find((f) => f.name === "withAMessage") ||
+    (undefined as any)
 );
 export const MessageSendWithABigMessage = Template.bind({});
 
 MessageSendWithABigMessage.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withABigMessage")
+  componentSetup.examples.find((f) => f.name === "withABigMessage") ||
+    (undefined as any)
 );

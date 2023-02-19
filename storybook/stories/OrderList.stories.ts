@@ -28,5 +28,6 @@ export const OrderListDefault = Template.bind({});
 
 OrderListDefault.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default")
+  componentSetup.examples.find((f) => f.name === "default") ||
+    (undefined as any)
 );

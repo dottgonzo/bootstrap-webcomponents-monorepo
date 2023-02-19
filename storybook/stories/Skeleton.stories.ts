@@ -25,7 +25,8 @@ export const Skel = Template.bind({});
 
 Skel.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default"),
+  componentSetup.examples.find((f) => f.name === "default") ||
+    (undefined as any),
   {
     _testInnerHtml:
       '<span style="background-color:blue" slot="skelcontent">cooontent</span>',

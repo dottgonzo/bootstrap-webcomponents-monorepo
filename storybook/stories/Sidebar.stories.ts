@@ -227,25 +227,30 @@ const groups1 = [
 export const BasicSidebarDesktopDefault = Template.bind({});
 BasicSidebarDesktopDefault.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default")
+  componentSetup.examples.find((f) => f.name === "default") ||
+    (undefined as any)
 );
 
 export const BasicSidebarOnSettings = Template.bind({});
 BasicSidebarOnSettings.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "sidebarOnSettings")
+  componentSetup.examples.find((f) => f.name === "sidebarOnSettings") ||
+    (undefined as any)
 );
 
 export const BasicSidebarWithGroups = Template.bind({});
 BasicSidebarWithGroups.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "sidebarWithGroups")
+  componentSetup.examples.find((f) => f.name === "sidebarWithGroups") ||
+    (undefined as any)
 );
 
 export const BasicSidebarWithGroupsOnSettings = Template.bind({});
 BasicSidebarWithGroupsOnSettings.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "sidebarWithGroupsOnSettings")
+  componentSetup.examples.find(
+    (f) => f.name === "sidebarWithGroupsOnSettings"
+  ) || (undefined as any)
 );
 
 export const BasicSidebarWithAutoGroupsOnSettings = Template.bind({});
@@ -253,7 +258,7 @@ BasicSidebarWithAutoGroupsOnSettings.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples.find(
     (f) => f.name === "sidebarWithAutoGroupsOnSettings"
-  )
+  ) || (undefined as any)
 );
 
 export const BasicSidebarWithAutoGroupsOnSettingsAndBadge = Template.bind({});
@@ -261,17 +266,19 @@ BasicSidebarWithAutoGroupsOnSettingsAndBadge.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples.find(
     (f) => f.name === "sidebarWithAutoGroupsOnSettingsAndBadge"
-  )
+  ) || (undefined as any)
 );
 
 export const BasicSidebarWithFooter = Template.bind({});
 BasicSidebarWithFooter.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "sidebarWithFooter")
+  componentSetup.examples.find((f) => f.name === "sidebarWithFooter") ||
+    (undefined as any)
 );
 
 export const BasicSidebarMultilevel = Template.bind({});
 BasicSidebarMultilevel.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "sidebarMultilevel")
+  componentSetup.examples.find((f) => f.name === "sidebarMultilevel") ||
+    (undefined as any)
 );

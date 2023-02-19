@@ -25,17 +25,19 @@ export const FormTextDateTimeTemplate_empty = Template.bind({});
 
 FormTextDateTimeTemplate_empty.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "empty")
+  componentSetup.examples.find((f) => f.name === "empty") || (undefined as any)
 );
 export const FormTextDateTimeTemplate_emptyRequired = Template.bind({});
 
 FormTextDateTimeTemplate_emptyRequired.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "emptyRequired")
+  componentSetup.examples.find((f) => f.name === "emptyRequired") ||
+    (undefined as any)
 );
 export const FormTextDateTimeTemplate_withValue = Template.bind({});
 
 FormTextDateTimeTemplate_withValue.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withValue")
+  componentSetup.examples.find((f) => f.name === "withValue") ||
+    (undefined as any)
 );

@@ -25,11 +25,12 @@ export const SidebarCardsNavigator = Template.bind({});
 
 SidebarCardsNavigator.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default")
+  componentSetup.examples.find((f) => f.name === "default") ||
+    (undefined as any)
 );
 export const SidebarCardsNavigatorEmpty = Template.bind({});
 
 SidebarCardsNavigatorEmpty.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "empty")
+  componentSetup.examples.find((f) => f.name === "empty") || (undefined as any)
 );

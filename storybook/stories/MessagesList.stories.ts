@@ -27,12 +27,14 @@ export const MessageListDefault = Template.bind({});
 
 MessageListDefault.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default")
+  componentSetup.examples.find((f) => f.name === "default") ||
+    (undefined as any)
 );
 
 export const MessageListWithMoreMessages = Template.bind({});
 
 MessageListWithMoreMessages.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "moreMessages")
+  componentSetup.examples.find((f) => f.name === "moreMessages") ||
+    (undefined as any)
 );

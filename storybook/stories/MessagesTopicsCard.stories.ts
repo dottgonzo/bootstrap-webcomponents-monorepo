@@ -27,12 +27,14 @@ export const MessageTopicsCardDefault = Template.bind({});
 
 MessageTopicsCardDefault.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default")
+  componentSetup.examples.find((f) => f.name === "default") ||
+    (undefined as any)
 );
 export const MessageTopicsCardSelected = Template.bind({});
 
 MessageTopicsCardSelected.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "selected"),
+  componentSetup.examples.find((f) => f.name === "selected") ||
+    (undefined as any),
   {}
 );

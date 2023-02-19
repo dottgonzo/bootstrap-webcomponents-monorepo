@@ -25,5 +25,6 @@ export const FormComposerDefault = Template.bind({});
 
 FormComposerDefault.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default")
+  componentSetup.examples.find((f) => f.name === "default") ||
+    (undefined as any)
 );

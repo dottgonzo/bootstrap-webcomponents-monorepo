@@ -21,21 +21,26 @@ const Template: Story = (args) =>
 export const BasicFormHost = Template.bind({});
 BasicFormHost.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "BasicFormHost")
+  componentSetup.examples.find((f) => f.name === "BasicFormHost") ||
+    (undefined as any)
 );
 export const FormHostWithFileTemplate = Template.bind({});
 
 FormHostWithFileTemplate.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "FormHostWithFileTemplate")
+  componentSetup.examples.find((f) => f.name === "FormHostWithFileTemplate") ||
+    (undefined as any)
 );
 export const FormHostTemplateCompiled = Template.bind({});
 FormHostTemplateCompiled.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "FormHostTemplateCompiled")
+  componentSetup.examples.find((f) => f.name === "FormHostTemplateCompiled") ||
+    (undefined as any)
 );
 export const FormHostTemplateConditional = Template.bind({});
 FormHostTemplateConditional.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "FormHostTemplateConditional")
+  componentSetup.examples.find(
+    (f) => f.name === "FormHostTemplateConditional"
+  ) || (undefined as any)
 );

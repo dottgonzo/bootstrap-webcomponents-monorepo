@@ -27,19 +27,22 @@ export const MessageBoxDefault = Template.bind({});
 
 MessageBoxDefault.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default")
+  componentSetup.examples.find((f) => f.name === "default") ||
+    (undefined as any)
 );
 
 export const MessageBoxWithAMessage = Template.bind({});
 
 MessageBoxWithAMessage.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withAMessage")
+  componentSetup.examples.find((f) => f.name === "withAMessage") ||
+    (undefined as any)
 );
 
 export const MessageBoxWithMoreMessages = Template.bind({});
 
 MessageBoxWithMoreMessages.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "moreMessages")
+  componentSetup.examples.find((f) => f.name === "moreMessages") ||
+    (undefined as any)
 );
