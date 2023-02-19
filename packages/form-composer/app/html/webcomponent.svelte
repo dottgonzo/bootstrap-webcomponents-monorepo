@@ -30,90 +30,115 @@
 
 	const schema4selector: FormComponent["schema"] = [
 		{
-			type: "text",
-			placeholder: "Label...",
-			id: "label",
-			required: true,
-			label: "Property Label",
-			validationTip: "This field cannot be empty.",
-		},
-		{
-			type: "select",
-			placeholder: "Select something here...",
-			id: "type",
-			required: true,
-			label: "Selection of something",
-			validationTip: "This field cannot be empty.",
+			id: "first-row",
+			type: "row",
 			params: {
-				options: [
-					{ label: "", value: "" },
-					{ label: "text", value: "text" },
-					{ label: "textarea", value: "textarea" },
-					{ label: "email", value: "email" },
-					{ label: "number", value: "number" },
-					{ label: "select", value: "select" },
-					{ label: "radio", value: "radio" },
-					{ label: "checkbox", value: "checkbox" },
+				columns: [
+					{
+						type: "text",
+						placeholder: "Label...",
+						id: "label",
+						required: true,
+						label: "Property Label",
+						validationTip: "This field cannot be empty.",
+					},
+					{
+						type: "select",
+						placeholder: "Select something here...",
+						id: "type",
+						required: true,
+						label: "Selection of something",
+						validationTip: "This field cannot be empty.",
+						params: {
+							options: [
+								{ label: "", value: "" },
+								{ label: "text", value: "text" },
+								{ label: "textarea", value: "textarea" },
+								{ label: "email", value: "email" },
+								{ label: "number", value: "number" },
+								{ label: "select", value: "select" },
+								{ label: "radio", value: "radio" },
+								{ label: "checkbox", value: "checkbox" },
+							],
+						},
+					},
+					{
+						type: "checkbox",
+						placeholder: "Required...",
+						id: "required",
+						label: "Is Required?",
+					},
+				],
+			},
+		},
+
+		{
+			id: "dep-row",
+			type: "row",
+			params: {
+				columns: [
+					{
+						type: "checkbox",
+						placeholder: "Conditional...",
+						id: "conditional",
+						label: "Is Conditional?",
+					},
+					{
+						type: "text",
+						placeholder: "Conditional property...",
+						id: "depName",
+						label: "Conditional property",
+						dependencies: [
+							{
+								id: "conditional",
+							},
+						],
+					},
+					{
+						type: "text",
+						placeholder: "Conditional values (separated by comma)...",
+						id: "depValues",
+						label: "Conditional values",
+						dependencies: [
+							{
+								id: "conditional",
+							},
+						],
+					},
 				],
 			},
 		},
 		{
-			type: "checkbox",
-			placeholder: "Required...",
-			id: "required",
-			label: "Is Required?",
-		},
-		{
-			type: "checkbox",
-			placeholder: "Conditional...",
-			id: "conditional",
-			label: "Is Conditional?",
-		},
-		{
-			type: "text",
-			placeholder: "Conditional property...",
-			id: "depName",
-			label: "Conditional property",
-			dependencies: [
-				{
-					id: "conditional",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Conditional values (separated by comma)...",
-			id: "depValues",
-			label: "Conditional values",
-			dependencies: [
-				{
-					id: "conditional",
-				},
-			],
-		},
-		{
-			type: "number",
-			placeholder: "Min Length...",
-			id: "minLength",
-			label: "Min Length",
-			dependencies: [
-				{
-					id: "type",
-					values: ["text", "textarea"],
-				},
-			],
-		},
-		{
-			type: "number",
-			placeholder: "Max Length...",
-			id: "maxLength",
-			label: "Max Length",
-			dependencies: [
-				{
-					id: "type",
-					values: ["text", "textarea"],
-				},
-			],
+			id: "length-row",
+			type: "row",
+			params: {
+				columns: [
+					{
+						type: "number",
+						placeholder: "Min Length...",
+						id: "minLength",
+						label: "Min Length",
+						dependencies: [
+							{
+								id: "type",
+								values: ["text", "textarea"],
+							},
+						],
+					},
+					{
+						type: "number",
+						placeholder: "Max Length...",
+						id: "maxLength",
+						label: "Max Length",
+						dependencies: [
+							{
+								id: "type",
+								values: ["text", "textarea"],
+							},
+						],
+					},
+				],
+			},
 		},
 		{
 			type: "text",
