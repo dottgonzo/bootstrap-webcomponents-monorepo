@@ -8,7 +8,7 @@
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
-	import type { Component, TFormSchemaGeneretor4Prop } from "@app/types/webcomponent.type";
+	import type { Component, TFormSchemaGeneretor4Prop, Events } from "@app/types/webcomponent.type";
 	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
 	import { styleSetup as tableStyleSetup } from "../../node_modules/@htmlbricks/hb-table/release/docs";
 	import type { Component as FormComponent, Events as FormEvents } from "../../node_modules/@htmlbricks/hb-form/release/webcomponent.type";
@@ -476,9 +476,6 @@
 		tableRows = newTableRows;
 	}
 
-	function dispatchCustomEvent() {
-		dispatch("event", { test: true });
-	}
 	// function changeItemSchema(customEvent: any) {
 	// 	console.log("changeItemSchema", customEvent);
 	// 	if (customEvent._id === "type" && (customEvent.type === "select" || customEvent.value === "radio")) {
@@ -605,6 +602,10 @@
 		outputSchema = outputSchema.filter((e) => e.label !== label);
 		schema4selectorS = schema4selectorS.filter((e) => e.counter !== schema4selectorS.length - 1);
 	}
+	function dispatchDone() {
+		const toDispatch: Events["done"] = { schema: outputSchema, id };
+		dispatch("done", toDispatch);
+	}
 </script>
 
 TO BE DONE
@@ -650,6 +651,7 @@ TO BE DONE
 		/>
 	{/if}
 {/each}
+<button on:click={() => dispatchDone()}>done</button>
 {#if debug}
 	<h2 style="margin:60px;text-align:center;color:blue">output</h2>
 	{#if outputSchema?.length}

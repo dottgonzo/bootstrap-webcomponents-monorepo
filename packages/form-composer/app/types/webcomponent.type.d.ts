@@ -38,5 +38,5 @@ export type Component = {
 };
 
 export type Events = {
-	changeFormSchema: { test: boolean };
+	done: { schema: any; id: string };
 };
