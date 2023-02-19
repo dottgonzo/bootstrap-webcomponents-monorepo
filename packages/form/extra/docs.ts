@@ -218,7 +218,40 @@ const conditionalSchema = [
 		validationTip: "Min 8, Max 120",
 	},
 ];
+const conditionalSchema2 = [
+	{
+		type: "text",
+		placeholder: "Inserisci titolo di default",
+		id: "defaultTitleCond",
+		required: true,
 
+		label: "Titolo di default",
+		value: "titolotest",
+		params: {
+			minLength: 8,
+			maxLength: 120,
+		},
+	},
+	{
+		type: "number",
+		id: "CondAge",
+		required: true,
+		dependencies: [
+			{
+				id: "defaultTitleCond",
+				values: ["00000000"],
+			},
+		],
+
+		label: "Age",
+		value: 9,
+		params: {
+			min: 8,
+			max: 120,
+		},
+		validationTip: "Min 8, Max 120",
+	},
+];
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "BasicFormHost",
@@ -242,6 +275,12 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "FormHostTemplateConditional",
 		data: {
 			schema: conditionalSchema,
+		},
+	},
+	{
+		name: "FormHostTemplateConditionalAndColumns",
+		data: {
+			schema: conditionalSchema2,
 		},
 	},
 ];

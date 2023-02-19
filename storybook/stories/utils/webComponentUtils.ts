@@ -1,6 +1,6 @@
 import type { Meta } from "@storybook/html";
 import { version } from "../../../lerna.json";
-import { ArgTypes } from "@storybook/html";
+import type { ArgTypes } from "@storybook/html";
 import type { ComponentSetup } from "wc-js-utils";
 
 function capitalize(string) {
@@ -57,9 +57,11 @@ export function setStorybookData(
 export const webComponentBind = (
   args: any,
   argTypes: ArgTypes,
-  componentName: string,
+  repoName: string,
   options?: { innerHTML?: string; style?: any }
 ) => {
+  const componentName =
+    repoName.split("/").length > 1 ? repoName.split("/")[1] : repoName;
   if (!args.id) args.id = componentName.replace("hb-", "") + "key";
   const attributes = Object.keys(argTypes).filter(
     (f) => argTypes[f].control && !argTypes[f].control.disable
@@ -69,7 +71,7 @@ export const webComponentBind = (
     const script = document.createElement("script");
     script.id = componentName + "-script";
     script.src = !window.location.href.includes("localhost")
-      ? `https://cdn.jsdelivr.net/npm/@htmlbricks/${componentName}@${version}/release/release.js`
+      ? `https://cdn.jsdelivr.net/npm/${repoName}@${version}/release/release.js`
       : `http://localhost:6006/${componentName.replace(
           "hb-",
           ""

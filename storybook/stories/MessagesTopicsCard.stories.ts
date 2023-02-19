@@ -15,7 +15,7 @@ meta.parameters = { layout: "fullscreen" };
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes as any, componentSetup.name);
+  webComponentBind(args, meta.argTypes as any, componentSetup.repoName);
 
 export const MessageTopicsCardDefault = Template.bind({});
 

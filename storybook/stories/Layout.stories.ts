@@ -113,7 +113,7 @@ const socials1 = {
   youtube: "yttttttt",
 };
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes as any, componentSetup.name);
+  webComponentBind(args, meta.argTypes as any, componentSetup.repoName);
 
 export const LayoutA = Template.bind({});
 LayoutA.args = setStorybookData(

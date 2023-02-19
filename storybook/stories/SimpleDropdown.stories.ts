@@ -39,7 +39,7 @@ const usermenu1 = {
 };
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes as any, componentSetup.name);
+  webComponentBind(args, meta.argTypes as any, componentSetup.repoName);
 
 export const BasicSimpleDropdown = Template.bind({});
 BasicSimpleDropdown.args = {
