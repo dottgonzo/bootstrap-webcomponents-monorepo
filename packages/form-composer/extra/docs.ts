@@ -3,7 +3,7 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	debug: { control: { type: "boolean" } },
-	changeFormSchema: { action: "changeFormSchemaEvent" },
+	done: { action: "doneEvent" },
 };
 
 const cssVars: CssVar[] = [];
