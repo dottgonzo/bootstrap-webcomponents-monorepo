@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-form-contact",
 	"displayName": "Svelte Form Contact WebComponent",
 	"description": "Svelte Form Contact WebComponent",
-	"version": "0.18.8",
+	"version": "0.18.9",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -68,7 +68,7 @@
 		"wc-js-utils": "^0.0.1"
 	},
 	"dependencies": {
-		"@htmlbricks/hb-form": "^0.18.8"
+		"@htmlbricks/hb-form": "^0.18.9"
 	},
 	"keywords": [
 		"svelte",
