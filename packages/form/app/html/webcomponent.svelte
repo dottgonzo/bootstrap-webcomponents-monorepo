@@ -149,11 +149,9 @@
 		if (schema?.length) {
 			const allRowEntriesAndColumnEntries = [];
 			for (const el of schema) {
-				if (el.type === "row") {
-					allRowEntriesAndColumnEntries.push(el);
-					if (el.params?.columns?.length) {
-						allRowEntriesAndColumnEntries.push(...el.params.columns);
-					}
+				if (el.type === "row" && el.params?.columns?.length) {
+					// allRowEntriesAndColumnEntries.push(el);
+					allRowEntriesAndColumnEntries.push(...el.params.columns);
 				} else {
 					allRowEntriesAndColumnEntries.push(el);
 				}
