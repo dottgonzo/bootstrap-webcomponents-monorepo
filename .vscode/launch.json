@@ -7,11 +7,11 @@
     {
       "name": "Launch Storybook",
       "request": "launch",
-      "runtimeVersion": "16.19.0",
+      "runtimeVersion": "16.19.1",
       "runtimeArgs": ["run", "storybook"],
       "runtimeExecutable": "npm",
       "skipFiles": ["<node_internals>/**"],
-      "type": "pwa-node",
+      "type": "node",
       "cwd": "${workspaceFolder}/storybook"
     },
     {
@@ -25,7 +25,7 @@
     {
       "type": "node",
       "request": "launch",
-      "runtimeVersion": "16.19.0",
+      "runtimeVersion": "16.19.1",
       "name": "dev streamingtable",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
