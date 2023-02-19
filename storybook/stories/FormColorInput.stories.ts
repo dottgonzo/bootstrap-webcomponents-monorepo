@@ -3,7 +3,8 @@ import {
   webComponentBind,
   getStorybookMeta,
   setStorybookData,
-} from "./utils/webComponentUtils";
+} from "storybook-wc-utils";
+import { version } from "../../lerna.json";
 import {
   storybookArgs,
   componentSetup,
@@ -22,7 +23,12 @@ const inputEntry1 = {
 };
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes as any, componentSetup.repoName);
+  webComponentBind(
+    args,
+    meta.argTypes as any,
+    componentSetup.repoName,
+    version
+  );
 
 export const FormColorInputTemplate = Template.bind({});
 FormColorInputTemplate.args = {

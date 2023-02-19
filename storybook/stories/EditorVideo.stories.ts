@@ -3,7 +3,8 @@ import {
   webComponentBind,
   getStorybookMeta,
   setStorybookData,
-} from "./utils/webComponentUtils";
+} from "storybook-wc-utils";
+import { version } from "../../lerna.json";
 import {
   storybookArgs,
   componentSetup,
@@ -85,7 +86,12 @@ const form = [
   },
 ];
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes as any, componentSetup.repoName);
+  webComponentBind(
+    args,
+    meta.argTypes as any,
+    componentSetup.repoName,
+    version
+  );
 
 export const BasicVideoeditor = Template.bind({});
 BasicVideoeditor.args = {

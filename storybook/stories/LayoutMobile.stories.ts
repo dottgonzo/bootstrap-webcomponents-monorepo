@@ -3,7 +3,8 @@ import {
   webComponentBind,
   getStorybookMeta,
   setStorybookData,
-} from "./utils/webComponentUtils";
+} from "storybook-wc-utils";
+import { version } from "../../lerna.json";
 import {
   storybookArgs,
   componentSetup,
@@ -113,7 +114,12 @@ const socials1 = {
   youtube: "yttttttt",
 };
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes as any, componentSetup.repoName);
+  webComponentBind(
+    args,
+    meta.argTypes as any,
+    componentSetup.repoName,
+    version
+  );
 
 export const LayoutA = Template.bind({});
 

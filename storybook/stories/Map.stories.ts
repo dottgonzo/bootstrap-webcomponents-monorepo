@@ -3,16 +3,23 @@ import {
   webComponentBind,
   getStorybookMeta,
   setStorybookData,
-} from "./utils/webComponentUtils";
+} from "storybook-wc-utils";
+import { version } from "../../lerna.json";
 import { storybookArgs, componentSetup } from "../../packages/map/extra/docs";
 
 const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes as any, componentSetup.repoName, {
-    style: { height: "400px" },
-  });
+  webComponentBind(
+    args,
+    meta.argTypes as any,
+    componentSetup.repoName,
+    version,
+    {
+      style: { height: "400px" },
+    }
+  );
 
 export const MapTemplate = Template.bind({});
 MapTemplate.args = {

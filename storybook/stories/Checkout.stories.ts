@@ -3,7 +3,8 @@ import {
   webComponentBind,
   getStorybookMeta,
   setStorybookData,
-} from "./utils/webComponentUtils";
+} from "storybook-wc-utils";
+import { version } from "../../lerna.json";
 import {
   storybookArgs,
   componentSetup,
@@ -13,9 +14,15 @@ const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
 
 const Template: Story = (args) =>
-  webComponentBind(args, meta.argTypes as any, componentSetup.repoName, {
-    style: { margin: "20px auto 20px auto" },
-  });
+  webComponentBind(
+    args,
+    meta.argTypes as any,
+    componentSetup.repoName,
+    version,
+    {
+      style: { margin: "20px auto 20px auto" },
+    }
+  );
 
 const paypal = {
   id: "paypal",

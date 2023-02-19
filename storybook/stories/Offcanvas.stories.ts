@@ -3,7 +3,8 @@ import {
   webComponentBind,
   getStorybookMeta,
   setStorybookData,
-} from "./utils/webComponentUtils";
+} from "storybook-wc-utils";
+import { version } from "../../lerna.json";
 import {
   storybookArgs,
   componentSetup,
@@ -15,9 +16,15 @@ export default meta;
 const innerHTML = `<button slot="test" onclick="document.getElementsByTagName('hb-offcanvas')[0].setAttribute('opened', 'yes')">test</button>`;
 
 const Template: Story = (args: any) =>
-  webComponentBind(args, meta.argTypes as any, componentSetup.repoName, {
-    innerHTML,
-  });
+  webComponentBind(
+    args,
+    meta.argTypes as any,
+    componentSetup.repoName,
+    version,
+    {
+      innerHTML,
+    }
+  );
 
 const navlinks1b = [
   {
