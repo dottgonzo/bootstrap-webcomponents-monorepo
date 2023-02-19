@@ -8,7 +8,7 @@
 	import { createEventDispatcher } from "svelte";
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
-	import type { Component } from "@app/types/webcomponent.type";
+	import type { Component, TFormSchemaGeneretor4Prop } from "@app/types/webcomponent.type";
 	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
 	import { styleSetup as tableStyleSetup } from "../../node_modules/@htmlbricks/hb-table/release/docs";
 	import type { Component as FormComponent, Events as FormEvents } from "../../node_modules/@htmlbricks/hb-form/release/webcomponent.type";
@@ -69,7 +69,28 @@
 			id: "conditional",
 			label: "Is Conditional?",
 		},
-
+		{
+			type: "text",
+			placeholder: "Conditional property...",
+			id: "depName",
+			label: "Conditional property",
+			dependencies: [
+				{
+					id: "conditional",
+				},
+			],
+		},
+		{
+			type: "text",
+			placeholder: "Conditional values (separated by comma)...",
+			id: "depValues",
+			label: "Conditional values",
+			dependencies: [
+				{
+					id: "conditional",
+				},
+			],
+		},
 		{
 			type: "number",
 			placeholder: "Min Length...",
@@ -108,9 +129,9 @@
 		},
 		{
 			type: "text",
-			placeholder: "Option Values (separated by comma)...",
-			id: "optionValues1",
-			label: "Option Values",
+			placeholder: "Option Value",
+			id: "optionValue1",
+			label: "Option Value",
 			dependencies: [
 				{
 					id: "type",
@@ -128,21 +149,21 @@
 					id: "optionLabel1",
 				},
 				{
-					id: "optionValues1",
+					id: "optionValue1",
 				},
 			],
 		},
 		{
 			type: "text",
-			placeholder: "Option Values (separated by comma)...",
-			id: "optionValues2",
-			label: "Option Values",
+			placeholder: "Option Value",
+			id: "optionValue2",
+			label: "Option Value",
 			dependencies: [
 				{
 					id: "optionLabel1",
 				},
 				{
-					id: "optionValues1",
+					id: "optionValue1",
 				},
 			],
 		},
@@ -156,21 +177,21 @@
 					id: "optionLabel2",
 				},
 				{
-					id: "optionValues2",
+					id: "optionValue2",
 				},
 			],
 		},
 		{
 			type: "text",
-			placeholder: "Option Values (separated by comma)...",
-			id: "optionValues3",
-			label: "Option Values",
+			placeholder: "Option Value",
+			id: "optionValue3",
+			label: "Option Value",
 			dependencies: [
 				{
 					id: "optionLabel2",
 				},
 				{
-					id: "optionValues2",
+					id: "optionValue2",
 				},
 			],
 		},
@@ -184,21 +205,21 @@
 					id: "optionLabel3",
 				},
 				{
-					id: "optionValues3",
+					id: "optionValue3",
 				},
 			],
 		},
 		{
 			type: "text",
-			placeholder: "Option Values (separated by comma)...",
-			id: "optionValues4",
-			label: "Option Values",
+			placeholder: "Option Value",
+			id: "optionValue4",
+			label: "Option Value",
 			dependencies: [
 				{
 					id: "optionLabel3",
 				},
 				{
-					id: "optionValues3",
+					id: "optionValue3",
 				},
 			],
 		},
@@ -212,21 +233,21 @@
 					id: "optionLabel4",
 				},
 				{
-					id: "optionValues4",
+					id: "optionValue4",
 				},
 			],
 		},
 		{
 			type: "text",
-			placeholder: "Option Values (separated by comma)...",
-			id: "optionValues5",
-			label: "Option Values",
+			placeholder: "Option Value",
+			id: "optionValue5",
+			label: "Option Value",
 			dependencies: [
 				{
 					id: "optionLabel4",
 				},
 				{
-					id: "optionValues4",
+					id: "optionValue4",
 				},
 			],
 		},
@@ -240,21 +261,21 @@
 					id: "optionLabel5",
 				},
 				{
-					id: "optionValues5",
+					id: "optionValue5",
 				},
 			],
 		},
 		{
 			type: "text",
-			placeholder: "Option Values (separated by comma)...",
-			id: "optionValues6",
-			label: "Option Values",
+			placeholder: "Option Value",
+			id: "optionValue6",
+			label: "Option Value",
 			dependencies: [
 				{
 					id: "optionLabel5",
 				},
 				{
-					id: "optionValues5",
+					id: "optionValue5",
 				},
 			],
 		},
@@ -268,21 +289,21 @@
 					id: "optionLabel6",
 				},
 				{
-					id: "optionValues6",
+					id: "optionValue6",
 				},
 			],
 		},
 		{
 			type: "text",
-			placeholder: "Option Values (separated by comma)...",
-			id: "optionValues7",
-			label: "Option Values",
+			placeholder: "Option Value",
+			id: "optionValue7",
+			label: "Option Value",
 			dependencies: [
 				{
 					id: "optionLabel6",
 				},
 				{
-					id: "optionValues6",
+					id: "optionValue6",
 				},
 			],
 		},
@@ -296,21 +317,21 @@
 					id: "optionLabel7",
 				},
 				{
-					id: "optionValues7",
+					id: "optionValue7",
 				},
 			],
 		},
 		{
 			type: "text",
-			placeholder: "Option Values (separated by comma)...",
-			id: "optionValues8",
-			label: "Option Values",
+			placeholder: "Option Value",
+			id: "optionValue8",
+			label: "Option Value",
 			dependencies: [
 				{
 					id: "optionLabel7",
 				},
 				{
-					id: "optionValues7",
+					id: "optionValue7",
 				},
 			],
 		},
@@ -324,21 +345,21 @@
 					id: "optionLabel8",
 				},
 				{
-					id: "optionValues8",
+					id: "optionValue8",
 				},
 			],
 		},
 		{
 			type: "text",
-			placeholder: "Option Values (separated by comma)...",
-			id: "optionValues9",
-			label: "Option Values",
+			placeholder: "Option Value",
+			id: "optionValue9",
+			label: "Option Value",
 			dependencies: [
 				{
 					id: "optionLabel8",
 				},
 				{
-					id: "optionValues8",
+					id: "optionValue8",
 				},
 			],
 		},
@@ -352,21 +373,21 @@
 					id: "optionLabel9",
 				},
 				{
-					id: "optionValues9",
+					id: "optionValue9",
 				},
 			],
 		},
 		{
 			type: "text",
-			placeholder: "Option Values (separated by comma)...",
-			id: "optionValues10",
-			label: "Option Values",
+			placeholder: "Option Value",
+			id: "optionValue10",
+			label: "Option Value",
 			dependencies: [
 				{
 					id: "optionLabel9",
 				},
 				{
-					id: "optionValues9",
+					id: "optionValue9",
 				},
 			],
 		},
@@ -379,6 +400,18 @@
 	let formStyleToSet: string = "";
 	let tableStyleToSet: string = "";
 	let formComponent: HTMLElement;
+	const tableActions: TableComponent["actions"] = [
+		{
+			name: "delete",
+			type: "icon",
+			iconOrText: "x-octagon-fill",
+		},
+		// {
+		// 	name: "edit",
+		// 	type: "icon",
+		// 	iconOrText: "pencil-square",
+		// },
+	];
 	const tableHeaders: TableComponent["headers"] = [
 		{
 			label: "Label",
@@ -388,15 +421,15 @@
 			label: "type",
 			key: "type",
 		},
-		{
-			label: "options",
-			key: "options",
-			nosort: true,
-		},
+
 		{
 			label: "params",
 			key: "params",
 			nosort: true,
+		},
+		{
+			label: "dependencies",
+			key: "dependencies",
 		},
 		{
 			label: "required",
@@ -422,12 +455,21 @@
 		if (!schema4selectorS) schema4selectorS = [{ counter: 0, schema: JSON.stringify(schema4selector) }];
 		const newTableRows: TableComponent["rows"] = [];
 		for (const sc of outputSchema) {
+			let depsString: string;
+			let paramsString: string;
+			if (sc.params) {
+				paramsString = JSON.stringify(sc.params);
+			}
+			if (sc.dependencies) {
+				depsString = JSON.stringify(sc.dependencies);
+			}
 			newTableRows.push({
 				_id: sc.label,
 				label: sc.label,
 				type: sc.type,
-				params: sc.params,
+				params: paramsString,
 				required: sc.required,
+				dependencies: depsString,
 				// options: sc.options ? sc.options.map((o) => o.label).join(", ") : "",
 			});
 		}
@@ -444,90 +486,123 @@
 	// 	}
 	// }
 
-	function addSchema(e: any) {
+	function addSchema(e: TFormSchemaGeneretor4Prop) {
 		console.log("addSchema", e);
-		let added = false;
-		switch (e.type) {
-			case "checkbox":
-			case "textarea":
-			case "number":
-			case "email":
-			case "text":
-				if (outputSchema.find((f) => f.label === e.label)) {
-					// replace previous outputScheme
-					outputSchema = outputSchema.map((f) => {
-						if (f.label === e.label) {
-							return {
-								id: f.id,
-								type: e.type,
-								label: e.label,
-								required: e.required,
-								placeholder: e.placeholder,
-								params: e.params,
-							};
-						} else return f;
-					});
-				} else {
-					// add new outputSchema
-					outputSchema = [
-						...outputSchema,
-						{
-							id: outputSchema.length.toString(),
-							type: e.type,
-							label: e.label,
-							required: e.required,
-							placeholder: e.placeholder,
-							params: e.params,
-						},
-					];
-				}
-				added = true;
-
-				break;
-			case "select":
-				if (outputSchema.find((f) => f.label === e.label)) {
-					// replace previous outputScheme
-					outputSchema = outputSchema.map((f) => {
-						if (f.label === e.label) {
-							return {
-								id: f.id,
-								type: e.type,
-								label: e.label,
-								required: e.required,
-								placeholder: e.placeholder,
-								params: e.params,
-							};
-						} else return f;
-					});
-				} else {
-					// add new outputSchema
-					outputSchema = [
-						...outputSchema,
-						{
-							id: outputSchema.length.toString(),
-							type: e.type,
-							label: e.label,
-							required: e.required,
-							placeholder: e.placeholder,
-							params: e.params,
-						},
-					];
-				}
-				added = true;
-				break;
+		let dep: { id: string; values?: string[] };
+		let params: { minLength?: number; maxLength?: number; options?: { label: string; value?: String }[] } = {};
+		if (e.depName) {
+			dep = {
+				id: e.depName,
+			};
+			if (e.depValues) dep.values = e.depValues.replace(", ", ",").replace(" ,", ",").split(",");
 		}
-		if (added) {
-			schema4selectorS = [...schema4selectorS, { counter: schema4selectorS.length, schema: JSON.stringify(schema4selector) }];
-			console.info("schema4selectorS", schema4selectorS);
+		const dependencies = dep ? [dep] : undefined;
 
-			// console.log("reset form");
-			// const formComponent=`<hb-form schema="${JSON.stringify(schemaSelectedString)}"`;
-
-			// c.innerHTML=formComponent
+		if (e.type === "text" || e.type === "textarea") {
+			if (e.minLength) params.minLength = e.minLength;
+			if (e.maxLength) params.maxLength = e.maxLength;
 		}
+
+		if (e.type === "select" || e.type === "radio") {
+			const options: FormComponent["schema"][0]["params"]["options"] = [];
+
+			if (e.optionLabel1) {
+				options.push({
+					label: e.optionLabel1,
+					value: e.optionValue1,
+				});
+			}
+			if (e.optionLabel2) {
+				options.push({
+					label: e.optionLabel2,
+					value: e.optionValue2,
+				});
+			}
+			if (e.optionLabel3) {
+				options.push({
+					label: e.optionLabel3,
+					value: e.optionValue3,
+				});
+			}
+			if (e.optionLabel4) {
+				options.push({
+					label: e.optionLabel4,
+					value: e.optionValue4,
+				});
+			}
+			if (e.optionLabel5) {
+				options.push({
+					label: e.optionLabel5,
+					value: e.optionValue5,
+				});
+			}
+			if (e.optionLabel6) {
+				options.push({
+					label: e.optionLabel6,
+					value: e.optionValue6,
+				});
+			}
+			if (e.optionLabel7) {
+				options.push({
+					label: e.optionLabel7,
+					value: e.optionValue7,
+				});
+			}
+			if (e.optionLabel8) {
+				options.push({
+					label: e.optionLabel8,
+					value: e.optionValue8,
+				});
+			}
+			if (e.optionLabel9) {
+				options.push({
+					label: e.optionLabel9,
+					value: e.optionValue9,
+				});
+			}
+			if (e.optionLabel10) {
+				options.push({
+					label: e.optionLabel10,
+					value: e.optionValue10,
+				});
+			}
+
+			params.options = options;
+		}
+
+		const newFormSchema: FormComponent["schema"][0] = {
+			id: e.label,
+			type: e.type,
+			label: e.label,
+			required: e.required,
+			placeholder: e.placeholder,
+			dependencies,
+			params,
+		};
+
+		if (outputSchema.find((f) => f.label === e.label)) {
+			// replace previous outputScheme
+			outputSchema = outputSchema.map((f) => {
+				if (f.label === e.label) {
+					return newFormSchema;
+				} else return f;
+			});
+		} else {
+			// add new outputSchema
+			outputSchema = [...outputSchema, newFormSchema];
+		}
+
+		schema4selectorS = [...schema4selectorS, { counter: schema4selectorS.length, schema: JSON.stringify(schema4selector) }];
+		console.info("schema4selectorS", schema4selectorS);
+
+		// console.log("reset form");
+		// const formComponent=`<hb-form schema="${JSON.stringify(schemaSelectedString)}"`;
+
+		// c.innerHTML=formComponent
 	}
-	function removeSchema(id: string) {
-		outputSchema = outputSchema.filter((e) => e.id !== id);
+	function removeSchema(label: string) {
+		console.log(label, outputSchema);
+		outputSchema = outputSchema.filter((e) => e.label !== label);
 		schema4selectorS = schema4selectorS.filter((e) => e.counter !== schema4selectorS.length - 1);
 	}
 </script>
@@ -548,7 +623,17 @@ TO BE DONE
 	</div>
 {/each} -->
 
-<hb-table id="table_specs" style={tableStyleToSet} disablepagination="yes" headers={JSON.stringify(tableHeaders)} rows={JSON.stringify(tableRows)} />
+<hb-table
+	id="table_specs"
+	style={tableStyleToSet}
+	disablepagination="yes"
+	actions={JSON.stringify(tableActions)}
+	headers={JSON.stringify(tableHeaders)}
+	rows={JSON.stringify(tableRows)}
+	on:tableaction={(e) => {
+		removeSchema(e.detail.itemId);
+	}}
+/>
 {#if !outputSchema?.length}
 	empty
 {/if}
