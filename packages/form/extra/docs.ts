@@ -143,6 +143,13 @@ const preferences = [
 		},
 	},
 	{
+		type: "checkbox",
+		placeholder: "Insert your last namez here...",
+		id: "lastNamez",
+		label: "Last Namez",
+		validationTip: "This field cannot be emptyz.",
+	},
+	{
 		type: "number",
 		id: "age",
 		required: true,

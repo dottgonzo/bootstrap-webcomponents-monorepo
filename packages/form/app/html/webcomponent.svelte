@@ -308,7 +308,7 @@
 					{#each columns as { entry, component, options } (entry.id)}
 						<div class="col">
 							{#if visibility[entry.id]}
-								<div class="col mb-3">
+								<div class="col mb-3" style={component === "hb-input-checkbox" ? "line-height:52px;" : ""}>
 									{#if !options.labelIsHandledByComponent}
 										<label for={entry.id}>{entry.label}{entry.required ? "*" : ""}</label>
 									{/if}
