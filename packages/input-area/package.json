@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-input-area",
 	"displayName": "Svelte-Bootstrap Text Area Input WebComponent",
 	"description": "Svelte-Bootstrap Text Area Input WebComponent",
-	"version": "0.18.11",
+	"version": "0.18.12",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
