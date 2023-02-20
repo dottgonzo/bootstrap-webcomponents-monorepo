@@ -66,6 +66,9 @@
 								{ label: "radio", value: "radio" },
 								{ label: "checkbox", value: "checkbox" },
 								{ label: "file", value: "file" },
+								{ label: "date", value: "date" },
+								{ label: "datetime", value: "datetime" },
+								{ label: "color", value: "color" },
 							],
 						},
 					},
@@ -141,6 +144,40 @@
 				],
 			},
 		},
+
+		{
+			id: "size-row",
+			type: "row",
+			params: {
+				columns: [
+					{
+						type: "number",
+						placeholder: "Min...",
+						id: "min",
+						label: "Min",
+						dependencies: [
+							{
+								id: "type",
+								values: ["number"],
+							},
+						],
+					},
+					{
+						type: "number",
+						placeholder: "Max...",
+						id: "max",
+						label: "Max",
+						dependencies: [
+							{
+								id: "type",
+								values: ["number"],
+							},
+						],
+					},
+				],
+			},
+		},
+
 		{
 			type: "text",
 			placeholder: "Option Label...",
@@ -512,7 +549,7 @@
 	function addSchema(e: TFormSchemaGeneretor4Prop) {
 		console.log("addSchema", e);
 		let dep: { id: string; values?: string[] };
-		let params: { minLength?: number; maxLength?: number; options?: { label: string; value?: String }[] } = {};
+		let params: { min?: number; max?: number; minLength?: number; maxLength?: number; options?: { label: string; value?: String }[] } = {};
 		if (e.depName) {
 			dep = {
 				id: e.depName,
@@ -525,7 +562,10 @@
 			if (e.minLength) params.minLength = e.minLength;
 			if (e.maxLength) params.maxLength = e.maxLength;
 		}
-
+		if (e.type === "number") {
+			if (e.min) params.min = e.min;
+			if (e.max) params.max = e.max;
+		}
 		if (e.type === "select" || e.type === "radio") {
 			const options: FormComponent["schema"][0]["params"]["options"] = [];
 
