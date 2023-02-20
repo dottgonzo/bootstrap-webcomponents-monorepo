@@ -35,6 +35,12 @@
 			params: {
 				columns: [
 					{
+						type: "checkbox",
+						placeholder: "Required...",
+						id: "required",
+						label: "Is Required?",
+					},
+					{
 						type: "text",
 						placeholder: "Label...",
 						id: "label",
@@ -59,14 +65,9 @@
 								{ label: "select", value: "select" },
 								{ label: "radio", value: "radio" },
 								{ label: "checkbox", value: "checkbox" },
+								{ label: "file", value: "file" },
 							],
 						},
-					},
-					{
-						type: "checkbox",
-						placeholder: "Required...",
-						id: "required",
-						label: "Is Required?",
 					},
 				],
 			},
