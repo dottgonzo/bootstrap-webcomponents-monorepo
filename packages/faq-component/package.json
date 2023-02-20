@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-faq-component",
 	"displayName": "Svelte-Bootstrap faq-component",
 	"description": "Svelte-Bootstrap faq-component",
-	"version": "0.18.9",
+	"version": "0.18.10",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
