@@ -418,6 +418,7 @@
 									{:else if component === "hb-input-checkbox"}
 										<hb-input-checkbox
 											style={inputCheckboxStyleToSet}
+											class="checkbox-inline"
 											on:setValid={(d) => setValidByMessage(d.detail)}
 											on:setValue={(d) => setValueByMessage(d.detail)}
 											schemaentry={JSON.stringify(

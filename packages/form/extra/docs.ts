@@ -61,7 +61,7 @@ const schema1 = [
 					validationTip: "This field cannot be empty.",
 				},
 				{
-					type: "text",
+					type: "checkbox",
 					placeholder: "Insert your last namez here...",
 					id: "lastNamez",
 					label: "Last Namez",
