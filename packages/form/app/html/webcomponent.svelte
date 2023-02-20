@@ -705,12 +705,14 @@
 		{/if}
 	{/each}
 	{#if !hide_submit}
-		<div id="button_container" part="button_container" on:click|preventDefault={() => onSubmit()}>
-			<slot name="submit_button">
-				<button part="main_button" type="button" class="btn btn-primary">
-					<slot name="submit_label">Submit</slot>
-				</button>
-			</slot>
+		<div id="button_container" part="button_container">
+			<span on:click|preventDefault={() => onSubmit()}
+				><slot name="submit_button">
+					<button part="main_button" type="button" class="btn btn-primary">
+						<slot name="submit_label">Submit</slot>
+					</button>
+				</slot></span
+			>
 			<slot name="other_buttons" />
 		</div>
 	{/if}
