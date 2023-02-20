@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-messages-topics-card",
 	"displayName": "Svelte-Bootstrap messages-topics-card",
 	"description": "Svelte-Bootstrap messages-topics-card",
-	"version": "0.18.10",
+	"version": "0.18.11",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"

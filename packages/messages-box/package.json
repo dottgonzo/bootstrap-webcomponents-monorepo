@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-messages-box",
 	"displayName": "Svelte-Bootstrap messages-box",
 	"description": "Svelte-Bootstrap messages-box",
-	"version": "0.18.10",
+	"version": "0.18.11",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -77,8 +77,8 @@
 	"contributors": [],
 	"gitHead": "af745c1c4258c18e8fc0d1079be3a1253a53c050",
 	"dependencies": {
-		"@htmlbricks/hb-messages-list": "^0.18.10",
-		"@htmlbricks/hb-messages-send": "^0.18.10",
+		"@htmlbricks/hb-messages-list": "^0.18.11",
+		"@htmlbricks/hb-messages-send": "^0.18.11",
 		"style-to-object": "^0.3.0"
 	}
 }
