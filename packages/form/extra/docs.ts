@@ -29,6 +29,7 @@ export const cssParts: CssPart[] = [
 export const htmlSlots: HtmlSlot[] = [
 	{ name: "submit_button", description: "" },
 	{ name: "submit_label", description: "" },
+	{ name: "other_buttons", description: "space alongside the default submit button" },
 ];
 export const i18nLanguages: i18nLang[] = [];
 
