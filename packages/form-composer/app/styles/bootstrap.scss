@@ -11,18 +11,18 @@
 @import "../../../../bootstrap/functions";
 @import "../../../../bootstrap/variables";
 @import "../../../../bootstrap/mixins";
-@import "../../../../bootstrap/utilities";
+// @import "../../../../bootstrap/utilities";
 
 // Layout & components
-@import "../../../../bootstrap/root";
-@import "../../../../bootstrap/reboot";
+// @import "../../../../bootstrap/root";
+// @import "../../../../bootstrap/reboot";
 // @import "../../../../bootstrap/type";
 // @import "../../../../bootstrap/images";
 // @import "../../../../bootstrap/containers";
 // @import "../../../../bootstrap/grid";
 // @import "../../../../bootstrap/tables";
 // @import "../../../../bootstrap/forms";
-// @import "../../../../bootstrap/buttons";
+@import "../../../../bootstrap/buttons";
 // @import "../../../../bootstrap/transitions";
 // @import "../../../../bootstrap/dropdown";
 // @import "../../../../bootstrap/button-group";
@@ -44,10 +44,10 @@
 // @import "../../../../bootstrap/carousel";
 // @import "../../../../bootstrap/spinners";
 // @import "../../../../bootstrap/offcanvas";
-@import "../../../../bootstrap/placeholders";
+// @import "../../../../bootstrap/placeholders";
 
 // Helpers
-@import "../../../../bootstrap/helpers";
+// @import "../../../../bootstrap/helpers";
 
 // Utilities
 // @import "../../../../bootstrap/utilities/api";

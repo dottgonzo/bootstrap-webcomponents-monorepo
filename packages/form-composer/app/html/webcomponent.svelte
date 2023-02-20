@@ -673,10 +673,13 @@ TO BE DONE
 				addSchema(e.detail);
 			}}
 			schema={sc.schema}
-		/>
+		>
+			<span slot="submit_button"><button type="button" class="btn btn-info">add Property</button></span>
+			<span slot="other_buttons"><button type="button" class="btn btn-primary" on:click={() => dispatchDone()}>done</button></span></hb-form
+		>
 	{/if}
 {/each}
-<button on:click={() => dispatchDone()}>done</button>
+
 {#if debug}
 	<h2 style="margin:60px;text-align:center;color:blue">output</h2>
 	{#if outputSchema?.length}
@@ -688,5 +691,5 @@ TO BE DONE
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
-	// @import "../styles/bootstrap.scss";
+	@import "../styles/bootstrap.scss";
 </style>
