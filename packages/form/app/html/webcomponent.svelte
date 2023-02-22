@@ -530,7 +530,7 @@
 						{show_validation}
 					/>
 				{:else if component === "hb-input-color"}
-					<hb-input-text
+					<hb-input-color
 						style={inputColorStyleToSet}
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}

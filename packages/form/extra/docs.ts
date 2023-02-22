@@ -300,6 +300,11 @@ const conditionalSchema2 = [
 		},
 	},
 	{
+		type: "color",
+		id: "colo",
+		label: "Last Color",
+	},
+	{
 		type: "number",
 		id: "CondAge",
 		dependencies: [
