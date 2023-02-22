@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-dialogform",
 	"displayName": "Svelte-Bootstrap dialogform WebComponent",
 	"description": "Svelte-Bootstrap dialogform WebComponent",
-	"version": "0.18.13",
+	"version": "0.18.14",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -77,7 +77,7 @@
 	"contributors": [],
 	"gitHead": "af745c1c4258c18e8fc0d1079be3a1253a53c050",
 	"dependencies": {
-		"@htmlbricks/hb-dialog": "^0.18.13",
-		"@htmlbricks/hb-form": "^0.18.13"
+		"@htmlbricks/hb-dialog": "^0.18.14",
+		"@htmlbricks/hb-form": "^0.18.14"
 	}
 }

@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-player-live-camera-ptz",
 	"displayName": "Svelte Boostrap Pagination WebComponent",
 	"description": "Svelte Boostrap Pagination WebComponent",
-	"version": "0.18.13",
+	"version": "0.18.14",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -78,10 +78,10 @@
 	"contributors": [],
 	"gitHead": "af745c1c4258c18e8fc0d1079be3a1253a53c050",
 	"dependencies": {
-		"@htmlbricks/hb-dialog": "^0.18.13",
-		"@htmlbricks/hb-pad-joystick": "^0.18.13",
-		"@htmlbricks/hb-player-live": "^0.18.13",
-		"@htmlbricks/hb-table": "^0.18.13",
+		"@htmlbricks/hb-dialog": "^0.18.14",
+		"@htmlbricks/hb-pad-joystick": "^0.18.14",
+		"@htmlbricks/hb-player-live": "^0.18.14",
+		"@htmlbricks/hb-table": "^0.18.14",
 		"style-to-object": "^0.3.0"
 	}
 }
