@@ -22,6 +22,8 @@
     "html-webpack-plugin": "^5.5.0"
   },
   "dependencies": {
+    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/manager-webpack5": "^6.5.16",
     "dayjs": "^1.11.7",
     "storybook-wc-utils": "^0.0.2"
   }
