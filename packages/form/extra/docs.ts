@@ -248,13 +248,7 @@ const conditionalSchema2 = [
 					label: "Last Name",
 					validationTip: "This field cannot be empty.",
 				},
-				{
-					type: "text",
-					placeholder: "Insert your last namez here...",
-					id: "lastNamez",
-					label: "Last Namez",
-					validationTip: "This field cannot be emptyz.",
-				},
+
 				{
 					type: "select",
 					placeholder: "Select something here...",
@@ -273,6 +267,13 @@ const conditionalSchema2 = [
 							values: [100],
 						},
 					],
+				},
+				{
+					type: "text",
+					placeholder: "Insert your last namez here...",
+					id: "lastNamez",
+					label: "Last Namez",
+					validationTip: "This field cannot be emptyz.",
 				},
 				{
 					type: "radio",
