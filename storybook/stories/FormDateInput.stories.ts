@@ -21,9 +21,17 @@ const Template: Story = (args) =>
     version
   );
 
-export const FormDateInputTemplate = Template.bind({});
+export const FormDateInputDefault = Template.bind({});
 
-FormDateInputTemplate.args = setStorybookData(
+FormDateInputDefault.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples[0]
+  componentSetup.examples.find((f) => f.name === "default") ||
+    (undefined as any)
+);
+export const FormDateInputFrom27Febb2022 = Template.bind({});
+
+FormDateInputFrom27Febb2022.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "from27Febb2022") ||
+    (undefined as any)
 );

@@ -40,6 +40,18 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			},
 		},
 	},
+	{
+		name: "from27Febb2022",
+		data: {
+			schemaentry: {
+				placeholder: "Insert your last name here...",
+				id: "lastName",
+				required: true,
+				label: "Last Name",
+				validationTip: "This field cannot be empty.",
+			},
+		},
+	},
 ];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null as any,
