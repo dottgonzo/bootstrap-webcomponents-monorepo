@@ -158,7 +158,7 @@
 						dependencies: [
 							{
 								id: "type",
-								values: ["number"],
+								values: ["number", "date", "datetime"],
 							},
 						],
 					},
@@ -170,7 +170,7 @@
 						dependencies: [
 							{
 								id: "type",
-								values: ["number"],
+								values: ["number", "date", "datetime"],
 							},
 						],
 					},
