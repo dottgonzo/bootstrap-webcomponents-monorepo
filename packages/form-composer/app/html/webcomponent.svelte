@@ -112,38 +112,6 @@
 				],
 			},
 		},
-		{
-			id: "length-row",
-			type: "row",
-			params: {
-				columns: [
-					{
-						type: "number",
-						placeholder: "Min Length...",
-						id: "min",
-						label: "Min Length",
-						dependencies: [
-							{
-								id: "type",
-								values: ["text", "textarea"],
-							},
-						],
-					},
-					{
-						type: "number",
-						placeholder: "Max Length...",
-						id: "max",
-						label: "Max Length",
-						dependencies: [
-							{
-								id: "type",
-								values: ["text", "textarea"],
-							},
-						],
-					},
-				],
-			},
-		},
 
 		{
 			id: "size-row",
@@ -158,7 +126,7 @@
 						dependencies: [
 							{
 								id: "type",
-								values: ["number", "date", "datetime"],
+								values: ["number", "date", "datetime", "text", "textarea"],
 							},
 						],
 					},
@@ -170,7 +138,7 @@
 						dependencies: [
 							{
 								id: "type",
-								values: ["number", "date", "datetime"],
+								values: ["number", "date", "datetime", "text", "textarea"],
 							},
 						],
 					},
@@ -549,7 +517,7 @@
 	function addSchema(e: TFormSchemaGeneretor4Prop) {
 		console.log("addSchema", e);
 		let dep: { id: string; values?: string[] };
-		let params: { min?: number; max?: number; min?: number; max?: number; options?: { label: string; value?: String }[] } = {};
+		let params: { min?: number; max?: number; options?: { label: string; value?: String }[] } = {};
 		if (e.depName) {
 			dep = {
 				id: e.depName,
@@ -558,14 +526,11 @@
 		}
 		const dependencies = dep ? [dep] : undefined;
 
-		if (e.type === "text" || e.type === "textarea") {
+		if (e.type === "text" || e.type === "textarea" || e.type === "number" || e.type === "datetime" || e.type === "date") {
 			if (e.min) params.min = e.min;
 			if (e.max) params.max = e.max;
 		}
-		if (e.type === "number" || e.type === "datetime" || e.type === "date") {
-			if (e.min) params.min = e.min;
-			if (e.max) params.max = e.max;
-		}
+
 		if (e.type === "select" || e.type === "radio") {
 			const options: FormComponent["schema"][0]["params"]["options"] = [];
 
