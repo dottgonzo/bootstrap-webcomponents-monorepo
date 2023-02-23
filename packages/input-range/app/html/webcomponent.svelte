@@ -83,7 +83,7 @@
 {#if (schemaentry?.params?.min || schemaentry?.params?.min === 0) && (schemaentry.params.max || schemaentry?.params?.max === 0)}
 	<input
 		bind:value
-		type="number"
+		type="range"
 		class="form-control {show_validation === 'yes' && schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
 		id={schemaentry?.id}
 		required={schemaentry?.required}
@@ -95,7 +95,7 @@
 {:else if schemaentry?.params?.min || schemaentry?.params?.min === 0}
 	<input
 		bind:value
-		type="number"
+		type="range"
 		class="form-control {show_validation === 'yes' && schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
 		id={schemaentry?.id}
 		required={schemaentry?.required}
@@ -106,7 +106,7 @@
 {:else if schemaentry?.params?.max || schemaentry?.params?.max === 0}
 	<input
 		bind:value
-		type="number"
+		type="range"
 		class="form-control {show_validation === 'yes' && schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
 		id={schemaentry?.id}
 		required={schemaentry?.required}
@@ -117,7 +117,7 @@
 {:else}
 	<input
 		bind:value
-		type="number"
+		type="range"
 		class="form-control {show_validation === 'yes' && schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
 		id={schemaentry?.id}
 		required={schemaentry?.required}

@@ -33,24 +33,10 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		data: {
 			schemaentry: {
 				placeholder: "Insert your last name here...3",
-				id: "lastName",
+				id: "lastName0",
 				required: true,
 				label: "Last Name",
 				validationTip: "This field cannot be empty.",
-				value: 4,
-			},
-		},
-	},
-	{
-		name: "withmax",
-		data: {
-			schemaentry: {
-				placeholder: "Insert your last name here...",
-				id: "lastName",
-				required: true,
-				label: "Last Name",
-				validationTip: "This field cannot be empty.",
-				params: { min: 3 },
 				value: 4,
 			},
 		},
@@ -60,12 +46,26 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		data: {
 			schemaentry: {
 				placeholder: "Insert your last name here...",
-				id: "lastName",
+				id: "lastName1",
+				required: true,
+				label: "Last Name",
+				validationTip: "This field cannot be empty.",
+				params: { min: 3 },
+				value: 4,
+			},
+		},
+	},
+	{
+		name: "withmax",
+		data: {
+			schemaentry: {
+				placeholder: "Insert your last name here...",
+				id: "lastName2",
 				required: true,
 				label: "Last Name",
 				validationTip: "This field cannot be empty.",
 				params: { max: 8 },
-				value: 4,
+				value: 6,
 			},
 		},
 	},
@@ -74,7 +74,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		data: {
 			schemaentry: {
 				placeholder: "Insert your last name here...",
-				id: "lastName",
+				id: "lastName3",
 				required: true,
 				label: "Last Name",
 				validationTip: "This field cannot be empty.",

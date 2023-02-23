@@ -28,20 +28,21 @@ FormRangeInputRequired.args = setStorybookData(
   componentSetup.examples.find((f) => f.name === "required") ||
     (undefined as any)
 );
+
 export const FormRangeInputwithmin = Template.bind({});
-
 FormRangeInputwithmin.args = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withmax") ||
-    (undefined as any)
-);
-export const FormRangeInputwithmax = Template.bind({});
-
-FormRangeInputwithmax.args = setStorybookData(
   componentSetup.name,
   componentSetup.examples.find((f) => f.name === "withmin") ||
     (undefined as any)
 );
+
+export const FormRangeInputwithmax = Template.bind({});
+FormRangeInputwithmax.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "withmax") ||
+    (undefined as any)
+);
+
 export const FormRangeInputwithminmax = Template.bind({});
 
 FormRangeInputwithminmax.args = setStorybookData(
