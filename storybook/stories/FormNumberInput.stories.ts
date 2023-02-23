@@ -32,14 +32,14 @@ export const FormNumberInputwithmin = Template.bind({});
 
 FormNumberInputwithmin.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withmax") ||
+  componentSetup.examples.find((f) => f.name === "withmin") ||
     (undefined as any)
 );
 export const FormNumberInputwithmax = Template.bind({});
 
 FormNumberInputwithmax.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withmin") ||
+  componentSetup.examples.find((f) => f.name === "withmax") ||
     (undefined as any)
 );
 export const FormNumberInputwithminmax = Template.bind({});
