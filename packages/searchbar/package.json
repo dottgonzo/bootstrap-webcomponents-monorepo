@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-searchbar",
 	"displayName": "Svelte Search Bar WebComponent",
 	"description": "Svelte Search Bar WebComponent",
-	"version": "0.18.14",
+	"version": "0.18.15",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
