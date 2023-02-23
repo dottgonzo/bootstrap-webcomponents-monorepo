@@ -65,7 +65,7 @@
 				value: informations.name.value || "",
 
 				validation: {
-					minLength: {
+					min: {
 						value: 3,
 						message: "Name must be at least 3 characters long",
 					},
@@ -86,7 +86,7 @@
 				value: informations.email.value || "",
 
 				validation: {
-					minLength: {
+					min: {
 						value: 3,
 						message: "email must be at least 3 characters long",
 					},
@@ -107,7 +107,7 @@
 				value: informations.phone.value || "",
 
 				validation: {
-					minLength: {
+					min: {
 						value: 3,
 						message: "phone must be at least 3 characters long",
 					},
@@ -127,7 +127,7 @@
 				value: informations.subject.value || "",
 
 				validation: {
-					minLength: {
+					min: {
 						value: 3,
 						message: "Name must be at least 3 characters long",
 					},
@@ -147,7 +147,7 @@
 				placeholder: informations.message.placeholder || "Your message here...",
 				value: informations.message.value || "",
 				validation: {
-					minLength: {
+					min: {
 						value: 3,
 						message: "Name must be at least 3 characters long",
 					},

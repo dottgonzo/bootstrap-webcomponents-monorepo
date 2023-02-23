@@ -70,20 +70,6 @@
 
 		valid = schemaentry ? !schemaentry?.required || (value != null && typeof files?.[0]?.name === "string") : false;
 
-		// if (files && files[0]?.name) {
-		// 	if (!loadedFile || files[0].name !== loadedFile.name) {
-		// 		readFile(files[0]);
-		// 	}
-		// }
-
-		// valid = schemaentry
-		// 	? !schemaentry?.required ||
-		// 	  (value &&
-		// 			value.length >= (schemaentry.params?.minLength ?? 0) &&
-		// 			value.length <= (schemaentry.params?.maxLength ?? Infinity) &&
-		// 			(regex ? regex.test(value) : true))
-		// 	: false;
-
 		console.log(valid, value, "validinput");
 		setTimeout(() => {
 			if (set_value) dispatch("setValue", { value: files?.[0] || {}, id: schemaentry?.id });

@@ -52,9 +52,9 @@
 				if (value) {
 					if (regex && !regex.test(value)) {
 						valid = false;
-					} else if (schemaentry.params?.minLength && !(value.length >= schemaentry.params.minLength)) {
+					} else if (schemaentry.params?.min && !(value.length >= schemaentry.params.min)) {
 						valid = false;
-					} else if (schemaentry.params?.maxLength && !(value.length <= schemaentry.params.maxLength)) {
+					} else if (schemaentry.params?.max && !(value.length <= schemaentry.params.max)) {
 						valid = false;
 					} else {
 						valid = true;
@@ -76,13 +76,13 @@
 		// 		  value != null &&
 		// 		  (regex ? regex.test(value) : true) &&
 		// 		  (!schemaentry?.params ||
-		// 				(value.length >= (schemaentry.params?.minLength ?? 1) && value.length <= (schemaentry.params?.maxLength ?? Infinity)));
+		// 				(value.length >= (schemaentry.params?.min ?? 1) && value.length <= (schemaentry.params?.max ?? Infinity)));
 
 		// valid = schemaentry
 		// 	? !schemaentry?.required ||
 		// 	  (value &&
-		// 			value.length >= (schemaentry.params?.minLength ?? 0) &&
-		// 			value.length <= (schemaentry.params?.maxLength ?? Infinity) &&
+		// 			value.length >= (schemaentry.params?.min ?? 0) &&
+		// 			value.length <= (schemaentry.params?.max ?? Infinity) &&
 		// 			(regex ? regex.test(value) : true))
 		// 	: false;
 

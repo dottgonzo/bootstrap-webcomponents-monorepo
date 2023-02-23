@@ -1,10 +1,8 @@
 export type TFormSchemaGeneretor4Prop = {
 	conditional?: boolean;
 	label: string;
-	maxLength?: number;
-	minLength?: number;
-	min?: number;
 	max?: number;
+	min?: number;
 	required?: boolean;
 	placeholder?: string;
 	type: "textarea" | "text" | "number" | "email" | "select" | "checkbox" | "radio" | "date" | "datetime" | "file";

@@ -120,7 +120,7 @@
 					{
 						type: "number",
 						placeholder: "Min Length...",
-						id: "minLength",
+						id: "min",
 						label: "Min Length",
 						dependencies: [
 							{
@@ -132,7 +132,7 @@
 					{
 						type: "number",
 						placeholder: "Max Length...",
-						id: "maxLength",
+						id: "max",
 						label: "Max Length",
 						dependencies: [
 							{
@@ -549,7 +549,7 @@
 	function addSchema(e: TFormSchemaGeneretor4Prop) {
 		console.log("addSchema", e);
 		let dep: { id: string; values?: string[] };
-		let params: { min?: number; max?: number; minLength?: number; maxLength?: number; options?: { label: string; value?: String }[] } = {};
+		let params: { min?: number; max?: number; min?: number; max?: number; options?: { label: string; value?: String }[] } = {};
 		if (e.depName) {
 			dep = {
 				id: e.depName,
@@ -559,8 +559,8 @@
 		const dependencies = dep ? [dep] : undefined;
 
 		if (e.type === "text" || e.type === "textarea") {
-			if (e.minLength) params.minLength = e.minLength;
-			if (e.maxLength) params.maxLength = e.maxLength;
+			if (e.min) params.min = e.min;
+			if (e.max) params.max = e.max;
 		}
 		if (e.type === "number" || e.type === "datetime" || e.type === "date") {
 			if (e.min) params.min = e.min;

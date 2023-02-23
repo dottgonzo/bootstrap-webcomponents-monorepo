@@ -58,7 +58,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				required: true,
 				validationTip: "This field cannot be empty.",
 				params: {
-					minLength: 2,
+					min: 2,
 				},
 				value: "a",
 			},
@@ -73,7 +73,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				required: true,
 				validationTip: "This field cannot be empty.",
 				params: {
-					maxLength: 2,
+					max: 2,
 				},
 			},
 		},
@@ -87,8 +87,8 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				required: true,
 				validationTip: "This field cannot be empty.",
 				params: {
-					minLength: 2,
-					maxLength: 6,
+					min: 2,
+					max: 6,
 				},
 			},
 		},
@@ -102,7 +102,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				required: true,
 				validationTip: "This field cannot be empty.",
 				params: {
-					minLength: 2,
+					min: 2,
 				},
 			},
 		},

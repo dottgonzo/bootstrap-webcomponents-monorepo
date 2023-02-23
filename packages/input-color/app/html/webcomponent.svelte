@@ -57,38 +57,15 @@
 
 		value = value != null ? value : (schemaentry?.value as string);
 		if (value) bootValue();
-		// if (!colorVal) colorVal = value?.toString();
-		// regex = schemaentry?.validationRegex && new RegExp(schemaentry.validationRegex);
-		valid = !schemaentry?.required || (typeof value === "string" && value.length > 1) ? true : false;
-		// ? (!schemaentry?.required || value != null) &&
-		// //   (regex ? regex.test(value) : true) &&
-		//   (value == null || (value.length >= (schemaentry.params?.minLength ?? 1) && value.length <= (schemaentry.params?.maxLength ?? Infinity)))
-		// : false;
 
-		// valid = schemaentry
-		// 	? !schemaentry?.required ||
-		// 	  (value &&
-		// 			value.length >= (schemaentry.params?.minLength ?? 0) &&
-		// 			value.length <= (schemaentry.params?.maxLength ?? Infinity) &&
-		// 			(regex ? regex.test(value) : true))
-		// 	: false;
+		valid = !schemaentry?.required || (typeof value === "string" && value.length > 1) ? true : false;
 
 		setTimeout(() => {
 			if (set_value) dispatch("setValue", { value, id: schemaentry?.id });
 			if (set_valid) dispatch("setValid", { valid, id: schemaentry?.id });
 		}, 0);
 	}
-	// let pickerEl: HTMLElement;
-	// function mountPicker() {
-	// 	if (schemaentry?.id && !pickerEl) {
-	// 		pickerEl = component.shadowRoot.getElementById(schemaentry.id);
-	// 	}
-	// }
-	// onMount(() => {
-	// 	pickerEl = component.shadowRoot.getElementById("picker2");
-	// 	console.log(pickerEl);
-	// 	AColorPicker.createPicker(pickerEl, {});
-	// });
+
 	function resetVal() {
 		console.log("resetval", colorVal, value);
 		value = colorVal;

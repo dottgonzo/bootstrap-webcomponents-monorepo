@@ -138,8 +138,8 @@ const preferences = [
 		label: "Titolo di default",
 		value: "titolotest",
 		params: {
-			minLength: 8,
-			maxLength: 120,
+			min: 8,
+			max: 120,
 		},
 	},
 	{
@@ -202,8 +202,8 @@ const conditionalSchema = [
 		label: "Titolo di default",
 		value: "titolotest",
 		params: {
-			minLength: 8,
-			maxLength: 120,
+			min: 8,
+			max: 120,
 		},
 	},
 	{
