@@ -34,6 +34,7 @@
 	import { styleSetup as inputFileStyleSetup } from "../../node_modules/@htmlbricks/hb-input-file/release/docs";
 	import { styleSetup as inputCheckboxStyleSetup } from "../../node_modules/@htmlbricks/hb-input-checkbox/release/docs";
 	import { styleSetup as inputRadioStyleSetup } from "../../node_modules/@htmlbricks/hb-input-radio/release/docs";
+	import { styleSetup as inputRangeStyleSetup } from "../../node_modules/@htmlbricks/hb-input-range/release/docs";
 
 	let inputSelectStyleToSet: string = "";
 	let inputDateStyleToSet: string = "";
@@ -46,6 +47,7 @@
 	let inputFileStyleToSet: string = "";
 	let inputCheckboxStyleToSet: string = "";
 	let inputRadioStyleToSet: string = "";
+	let inputRangeStyleToSet: string = "";
 
 	const registeredComponents: IRegisterComponent = {
 		row: { component: null, options: { row: true } },
@@ -58,6 +60,7 @@
 		color: { component: "hb-input-color" },
 		file: { component: "hb-input-file" },
 		textarea: { component: "hb-input-area" },
+		range: { component: "hb-input-range" },
 		checkbox: { component: "hb-input-checkbox", options: { labelIsHandledByComponent: true } },
 		radio: { component: "hb-input-radio" },
 	};
@@ -101,6 +104,7 @@
 			inputCheckboxStyleToSet = getChildStyleToPass(parsedStyle, inputCheckboxStyleSetup?.vars);
 			inputRadioStyleToSet = getChildStyleToPass(parsedStyle, inputRadioStyleSetup?.vars);
 			inputDateTimeStyleToSet = getChildStyleToPass(parsedStyle, inputDateTimeStyleSetup?.vars);
+			inputRangeStyleToSet = getChildStyleToPass(parsedStyle, inputRangeStyleSetup?.vars);
 		}
 		if (!show_validation) show_validation = "no";
 		if (!visibility) visibility = {};
@@ -262,6 +266,7 @@
 	addComponent({ repoName: "@htmlbricks/hb-input-select", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-input-file", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-input-color", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-range", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-input-datetime", version: pkg.version });
 
 	const component = get_current_component();
@@ -346,6 +351,23 @@
 										set_valid
 										{show_validation}
 									/>
+								{:else if component === "hb-input-range"}
+									<hb-input-range
+										style={inputRangeStyleToSet}
+										on:setValid={(d) => setValidByMessage(d.detail)}
+										on:setValue={(d) => setValueByMessage(d.detail)}
+										schemaentry={JSON.stringify(
+											{
+												...entry,
+												value: allValues[entry.id] ?? entry.value,
+											},
+											null,
+											0,
+										)}
+										set_value
+										set_valid
+										{show_validation}
+									/>
 								{:else if component === "hb-input-file"}
 									<hb-input-file
 										style={inputFileStyleToSet}
@@ -399,7 +421,7 @@
 									/>
 								{:else if component === "hb-input-datetime"}
 									<hb-input-datetime
-										style={inputDateStyleToSet}
+										style={inputDateTimeStyleToSet}
 										on:setValid={(d) => setValidByMessage(d.detail)}
 										on:setValue={(d) => setValueByMessage(d.detail)}
 										schemaentry={JSON.stringify(
@@ -532,6 +554,23 @@
 				{:else if component === "hb-input-color"}
 					<hb-input-color
 						style={inputColorStyleToSet}
+						on:setValid={(d) => setValidByMessage(d.detail)}
+						on:setValue={(d) => setValueByMessage(d.detail)}
+						schemaentry={JSON.stringify(
+							{
+								...entry,
+								value: allValues[entry.id] ?? entry.value,
+							},
+							null,
+							0,
+						)}
+						set_value
+						set_valid
+						{show_validation}
+					/>
+				{:else if component === "hb-input-range"}
+					<hb-input-range
+						style={inputRangeStyleToSet}
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(

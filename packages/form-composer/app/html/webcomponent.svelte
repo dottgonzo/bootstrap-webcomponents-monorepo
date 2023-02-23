@@ -69,6 +69,7 @@
 								{ label: "date", value: "date" },
 								{ label: "datetime", value: "datetime" },
 								{ label: "color", value: "color" },
+								{ label: "range", value: "range" },
 							],
 						},
 					},
@@ -126,7 +127,7 @@
 						dependencies: [
 							{
 								id: "type",
-								values: ["number", "date", "datetime", "text", "textarea"],
+								values: ["number", "date", "datetime", "text", "textarea", "range"],
 							},
 						],
 					},
@@ -138,7 +139,7 @@
 						dependencies: [
 							{
 								id: "type",
-								values: ["number", "date", "datetime", "text", "textarea"],
+								values: ["number", "date", "datetime", "text", "textarea", "range"],
 							},
 						],
 					},
@@ -526,7 +527,7 @@
 		}
 		const dependencies = dep ? [dep] : undefined;
 
-		if (e.type === "text" || e.type === "textarea" || e.type === "number" || e.type === "datetime" || e.type === "date") {
+		if (e.type === "text" || e.type === "textarea" || e.type === "number" || e.type === "datetime" || e.type === "date" || e.type === "range") {
 			if (e.min) params.min = e.min;
 			if (e.max) params.max = e.max;
 		}

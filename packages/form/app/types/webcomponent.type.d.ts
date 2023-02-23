@@ -69,6 +69,7 @@ export type IComponentName =
 	| "hb-input-checkbox"
 	| "hb-input-color"
 	| "hb-input-radio"
+	| "hb-input-range"
 	| "hb-input-captcha-google-v2";
 
 export interface ISchemaOption {

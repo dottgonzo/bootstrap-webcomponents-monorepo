@@ -5,7 +5,7 @@ export type TFormSchemaGeneretor4Prop = {
 	min?: number;
 	required?: boolean;
 	placeholder?: string;
-	type: "textarea" | "text" | "number" | "email" | "select" | "checkbox" | "radio" | "date" | "datetime" | "file";
+	type: "textarea" | "text" | "number" | "email" | "select" | "checkbox" | "radio" | "date" | "datetime" | "file" | "range";
 	depName?: string;
 	depValues?: string;
 	optionLabel1?: string;
