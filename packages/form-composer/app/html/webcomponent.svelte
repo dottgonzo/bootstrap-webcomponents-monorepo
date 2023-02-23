@@ -562,7 +562,7 @@
 			if (e.minLength) params.minLength = e.minLength;
 			if (e.maxLength) params.maxLength = e.maxLength;
 		}
-		if (e.type === "number") {
+		if (e.type === "number" || e.type === "datetime" || e.type === "date") {
 			if (e.min) params.min = e.min;
 			if (e.max) params.max = e.max;
 		}
