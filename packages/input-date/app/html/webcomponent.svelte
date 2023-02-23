@@ -13,6 +13,9 @@
 	let value: string;
 	// let regex: RegExp | undefined;
 	let valid = false;
+	let min_date: Date;
+	let max_date: Date;
+	let value_date: Date;
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -39,24 +42,34 @@
 		}
 
 		value = value != null ? value : (schemaentry?.value as string);
+		if (value) {
+			value_date = new Date(value);
+		}
 
 		// regex = schemaentry?.validationRegex && new RegExp(schemaentry.validationRegex);
+
+		if (schemaentry?.params?.min) {
+			min_date = new Date(schemaentry.params.min);
+		}
+		if (schemaentry?.params?.max) {
+			max_date = new Date(schemaentry.params.max);
+		}
 
 		if (schemaentry) {
 			if (schemaentry.required) {
 				if (value) {
-					if (schemaentry.params?.minLength && !(value.length >= schemaentry.params?.minLength)) {
+					if (min_date && !(value_date.valueOf() >= min_date.valueOf())) {
 						valid = false;
-					} else if (schemaentry.params?.maxLength && !(value.length <= schemaentry.params.maxLength)) {
+					} else if (max_date && !(value_date.valueOf() <= max_date.valueOf())) {
 						valid = false;
 					} else {
 						valid = true;
 					}
 				} else {
-					valid = true;
+					valid = false;
 				}
 			} else {
-				valid = false;
+				valid = true;
 			}
 		} else {
 			valid = false;
