@@ -21,27 +21,31 @@ const Template: Story = (args) =>
     lernaPkg.version
   );
 
-export const FormTextInputRequired = Template.bind({});
+export const FormNumberInputRequired = Template.bind({});
 
-FormTextInputRequired.args = setStorybookData(
+FormNumberInputRequired.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples[0]
+  componentSetup.examples.find((f) => f.name === "required") ||
+    (undefined as any)
 );
-export const FormTextInputwithmin = Template.bind({});
+export const FormNumberInputwithmin = Template.bind({});
 
-FormTextInputwithmin.args = setStorybookData(
+FormNumberInputwithmin.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples[1]
+  componentSetup.examples.find((f) => f.name === "withmax") ||
+    (undefined as any)
 );
-export const FormTextInputwithmax = Template.bind({});
+export const FormNumberInputwithmax = Template.bind({});
 
-FormTextInputwithmax.args = setStorybookData(
+FormNumberInputwithmax.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples[2]
+  componentSetup.examples.find((f) => f.name === "withmin") ||
+    (undefined as any)
 );
-export const FormTextInputwithminmax = Template.bind({});
+export const FormNumberInputwithminmax = Template.bind({});
 
-FormTextInputwithminmax.args = setStorybookData(
+FormNumberInputwithminmax.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples[3]
+  componentSetup.examples.find((f) => f.name === "withminmax") ||
+    (undefined as any)
 );
