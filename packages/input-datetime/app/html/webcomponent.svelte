@@ -65,20 +65,22 @@
 		}
 
 		if (schemaentry?.value && (old_schemaentry_value !== schemaentry?.value || first_access)) {
-			console.info("computing values");
+			console.info("computing values", schemaentry.value);
 			first_access = false;
 			let date: Date;
 			try {
 				date = new Date(schemaentry.value);
 			} catch (err) {
-				console.error("invalid input value on input-datetime", schemaentry.value);
+				console.error("invalid input value on input-datetime", schemaentry.value, err);
 			}
-			if (date.valueOf() > 10000 && date.valueOf() < 10000000000) {
+			console.info("now date is", date.valueOf());
+			if (date && date.valueOf() > 10000 && date.valueOf() < 10000000000000) {
 				console.info("converting date");
 				value_date = date.toISOString().split("T")[0];
-				value_hours = date.toISOString().split("T")[0];
-				value_minutes = date.toISOString().split("T")[0];
-				value_seconds = date.toISOString().split("T")[0];
+				const rest = date.toISOString().split("T")[1].split(":");
+				value_hours = rest[0];
+				value_minutes = rest[1];
+				value_seconds = rest[2].split(".")[0];
 				schemaDate = {
 					id: "date",
 					type: "date",
@@ -123,8 +125,13 @@
 			}
 		}
 		if (value_date && (value_hours || value_hours === 0) && (value_minutes || value_minutes === 0)) {
-			value = new Date(`${value_date} ${value_hours}:${value_minutes}:${value_seconds || 0}`).toISOString();
 			console.log("NOW", value_date, value_hours, value_minutes);
+
+			try {
+				value = new Date(`${value_date} ${value_hours}:${value_minutes}:${value_seconds || 0}`).toISOString();
+			} catch (err) {
+				console.error("convert error", err);
+			}
 		} else {
 			console.log("reset to 0 datetime");
 			value = null;
