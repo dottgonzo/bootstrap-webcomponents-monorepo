@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-sidebar-cards-navigator",
 	"displayName": "Svelte-Bootstrap sidebar-cards-navigator",
 	"description": "Svelte-Bootstrap sidebar-cards-navigator",
-	"version": "0.19.1",
+	"version": "0.19.2",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -77,9 +77,9 @@
 	"contributors": [],
 	"gitHead": "d020be34748863e140d6da06b572ab3ec64756a4",
 	"dependencies": {
-		"@htmlbricks/hb-navbar": "^0.19.1",
-		"@htmlbricks/hb-sidenav-button": "^0.19.1",
-		"@htmlbricks/hb-sidenav-link": "^0.19.1",
+		"@htmlbricks/hb-navbar": "^0.19.2",
+		"@htmlbricks/hb-sidenav-button": "^0.19.2",
+		"@htmlbricks/hb-sidenav-link": "^0.19.2",
 		"style-to-object": "^0.3.0"
 	}
 }

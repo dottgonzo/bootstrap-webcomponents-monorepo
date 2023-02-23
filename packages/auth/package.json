@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-auth",
 	"displayName": "Svelte Boostrap Login and Register WebComponent",
 	"description": "Svelte Boostrap Login and Register WebComponent",
-	"version": "0.19.1",
+	"version": "0.19.2",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -70,8 +70,8 @@
 		"wc-js-utils": "^0.0.1"
 	},
 	"dependencies": {
-		"@htmlbricks/hb-auth-social-login-button": "^0.19.1",
-		"@htmlbricks/hb-form": "^0.19.1"
+		"@htmlbricks/hb-auth-social-login-button": "^0.19.2",
+		"@htmlbricks/hb-form": "^0.19.2"
 	},
 	"keywords": [
 		"svelte",
