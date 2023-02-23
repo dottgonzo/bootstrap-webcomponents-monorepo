@@ -4,7 +4,7 @@ import {
   getStorybookMeta,
   setStorybookData,
 } from "storybook-wc-utils";
-import { version } from "../../lerna.json";
+import lernaPkg from "../../lerna.json";
 import {
   storybookArgs,
   componentSetup,
@@ -18,7 +18,7 @@ const Template: Story = (args) =>
     args,
     meta.argTypes as any,
     componentSetup.repoName,
-    version
+    lernaPkg.version
   );
 
 export const BasicRangeslider = Template.bind({});
@@ -31,7 +31,8 @@ BasicRangeslider.args = setStorybookData(
 export const BasicRangesliderWithBubbles = Template.bind({});
 BasicRangesliderWithBubbles.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withBubbles") || (undefined as any)
+  componentSetup.examples.find((f) => f.name === "withBubbles") ||
+    (undefined as any)
 );
 export const BasicRangesliderWithValues = Template.bind({});
 BasicRangesliderWithValues.args = setStorybookData(

@@ -4,7 +4,7 @@ import {
   getStorybookMeta,
   setStorybookData,
 } from "storybook-wc-utils";
-import { version } from "../../lerna.json";
+import lernaPkg from "../../lerna.json";
 import {
   storybookArgs,
   componentSetup,
@@ -20,7 +20,7 @@ const Template: Story = (args) =>
     args,
     meta.argTypes as any,
     componentSetup.repoName,
-    version
+    lernaPkg.version
   );
 
 export const MessageListDefault = Template.bind({});
