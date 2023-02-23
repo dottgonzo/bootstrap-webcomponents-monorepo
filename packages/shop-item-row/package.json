@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-shop-item-row",
 	"displayName": "Svelte Shop Item Row WebComponent",
 	"description": "Svelte Shop Item Row WebComponent",
-	"version": "0.19.0",
+	"version": "0.19.1",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
