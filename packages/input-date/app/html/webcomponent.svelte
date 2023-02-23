@@ -55,20 +55,24 @@
 			max_date = new Date(schemaentry.params.max);
 		}
 
-		if (schemaentry?.required) {
-			if (value) {
-				if (min_date && !(value_date.valueOf() >= min_date.valueOf())) {
-					valid = false;
-				} else if (max_date && !(value_date.valueOf() <= max_date.valueOf())) {
-					valid = false;
+		if (schemaentry) {
+			if (schemaentry.required) {
+				if (value) {
+					if (min_date && !(value_date.valueOf() >= min_date.valueOf())) {
+						valid = false;
+					} else if (max_date && !(value_date.valueOf() <= max_date.valueOf())) {
+						valid = false;
+					} else {
+						valid = true;
+					}
 				} else {
-					valid = true;
+					valid = false;
 				}
 			} else {
-				valid = false;
+				valid = true;
 			}
 		} else {
-			valid = true;
+			valid = false;
 		}
 
 		setTimeout(() => {

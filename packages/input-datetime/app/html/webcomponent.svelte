@@ -187,31 +187,35 @@
 		old_schemaentry_value = schemaentry?.value;
 		// regex = schemaentry?.validationRegex && new RegExp(schemaentry.validationRegex);
 
-		if (schemaentry?.required) {
-			if (value) {
-				let min_date: Date;
-				let max_date: Date;
-				if (schemaentry?.params?.min) {
-					min_date = new Date(schemaentry.params.min);
-				}
-				if (schemaentry?.params?.max) {
-					max_date = new Date(schemaentry.params.max);
-				}
+		if (schemaentry) {
+			if (schemaentry.required) {
+				if (value) {
+					let min_date: Date;
+					let max_date: Date;
+					if (schemaentry?.params?.min) {
+						min_date = new Date(schemaentry.params.min);
+					}
+					if (schemaentry?.params?.max) {
+						max_date = new Date(schemaentry.params.max);
+					}
 
-				const valueDateIs = new Date(value);
+					const valueDateIs = new Date(value);
 
-				if (min_date && !(valueDateIs.valueOf() >= min_date.valueOf())) {
-					valid = false;
-				} else if (max_date && !(valueDateIs.valueOf() <= max_date.valueOf())) {
-					valid = false;
+					if (min_date && !(valueDateIs.valueOf() >= min_date.valueOf())) {
+						valid = false;
+					} else if (max_date && !(valueDateIs.valueOf() <= max_date.valueOf())) {
+						valid = false;
+					} else {
+						valid = true;
+					}
 				} else {
-					valid = true;
+					valid = false;
 				}
 			} else {
-				valid = false;
+				valid = true;
 			}
 		} else {
-			valid = true;
+			valid = false;
 		}
 
 		addComponent({ repoName: "@htmlbricks/hb-input-number", version: pkg.version });
