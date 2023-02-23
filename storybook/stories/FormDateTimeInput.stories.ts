@@ -41,3 +41,27 @@ FormTextDateTimeTemplate_withValue.args = setStorybookData(
   componentSetup.examples.find((f) => f.name === "withValue") ||
     (undefined as any)
 );
+
+export const FormTextDateTimeTemplate_maxDate27Feb2023 = Template.bind({});
+
+FormTextDateTimeTemplate_maxDate27Feb2023.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "maxDate27Feb2023") ||
+    (undefined as any)
+);
+
+export const FormTextDateTimeTemplate_minDate27Feb2023 = Template.bind({});
+
+FormTextDateTimeTemplate_minDate27Feb2023.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "minDate27Feb2023") ||
+    (undefined as any)
+);
+
+export const FormTextDateTimeTemplate_rangeDate27Feb2023 = Template.bind({});
+
+FormTextDateTimeTemplate_rangeDate27Feb2023.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "rangeDate27Feb2023") ||
+    (undefined as any)
+);

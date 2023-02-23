@@ -67,6 +67,52 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			},
 		},
 	},
+	{
+		name: "maxDate27Feb2023",
+		data: {
+			schemaentry: {
+				placeholder: "Insert your last name here...",
+				id: "lastName",
+				required: true,
+				label: "Last Name",
+				validationTip: "This field cannot be empty.",
+				params: {
+					max: "2023-02-27T00:00:00.000Z",
+				},
+			},
+		},
+	},
+	{
+		name: "minDate27Feb2023",
+		data: {
+			schemaentry: {
+				placeholder: "Insert your last name here...",
+				id: "lastName",
+				required: true,
+				label: "Last Name",
+				validationTip: "This field cannot be empty.",
+				params: {
+					min: "2023-02-27T00:00:00.000Z",
+				},
+			},
+		},
+	},
+	{
+		name: "rangeDate27Feb2023",
+		data: {
+			schemaentry: {
+				placeholder: "Insert your last name here...",
+				id: "lastName",
+				required: true,
+				label: "Last Name",
+				validationTip: "This field cannot be empty.",
+				params: {
+					min: "2023-02-27T00:00:00.000Z",
+					max: "2023-02-27T23:59:59.999Z",
+				},
+			},
+		},
+	},
 ];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null as any,
