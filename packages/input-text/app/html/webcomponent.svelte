@@ -26,7 +26,7 @@
 			try {
 				schemaentry = JSON.parse(schemaentry);
 			} catch (err) {
-				console.error("error parsing JSON for schemaentry hb-input-number", err);
+				console.error("error parsing JSON for schemaentry hb-input-text", err);
 			}
 		}
 
