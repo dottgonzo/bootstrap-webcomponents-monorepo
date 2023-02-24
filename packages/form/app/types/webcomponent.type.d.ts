@@ -75,6 +75,7 @@ export type IComponentName =
 export interface ISchemaOption {
 	labelIsHandledByComponent?: boolean;
 	row?: boolean;
+	array?: boolean;
 }
 export interface IComponent {
 	options?: ISchemaOption;

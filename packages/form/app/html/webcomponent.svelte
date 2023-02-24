@@ -51,6 +51,7 @@
 
 	const registeredComponents: IRegisterComponent = {
 		row: { component: null, options: { row: true } },
+		array: { component: null, options: { array: true } },
 		select: { component: "hb-input-select" },
 		date: { component: "hb-input-date" },
 		datetime: { component: "hb-input-datetime" },
@@ -141,9 +142,13 @@
 			controls = [];
 			values = {};
 			for (const s of schema) {
-				if (s.type !== "row") {
+				if (s.type !== "row" && s.type !== "array") {
 					values[s.id] = s.value;
 				} else if (s.type === "row" && s.params?.columns?.length) {
+					for (const c of s.params.columns) {
+						values[c.id] = c.value;
+					}
+				} else if (s.type === "array" && s.params?.columns?.length) {
 					for (const c of s.params.columns) {
 						values[c.id] = c.value;
 					}
@@ -153,7 +158,7 @@
 		if (schema?.length) {
 			const allRowEntriesAndColumnEntries = [];
 			for (const el of schema) {
-				if (el.type === "row" && el.params?.columns?.length) {
+				if ((el.type === "row" || el.type === "array") && el.params?.columns?.length) {
 					// allRowEntriesAndColumnEntries.push(el);
 					allRowEntriesAndColumnEntries.push(...el.params.columns);
 				} else {
@@ -179,7 +184,7 @@
 						throw new Error(`FormRenderer: Tried to render an unknown component type ${entry.type}!`);
 					}
 
-					if (component.options?.row) {
+					if (component.options?.row || component.options?.array) {
 						return { entry, columns: getControls(entry.params?.columns ?? []), options: component.options };
 					} else {
 						visibility[entry.id] = visibility[entry.id] || !entry.dependencies?.length;
@@ -221,7 +226,7 @@
 	const show = (entry: FormSchemaEntry, defaultValue?: string | number | boolean) => {
 		visibility[entry.id] = true;
 
-		if (entry.type !== "row") {
+		if (entry.type !== "row" && entry.type !== "array") {
 			values[entry.id] = allValues[entry.id] ?? defaultValue;
 		}
 
@@ -526,6 +531,240 @@
 							</div>
 						{/if}
 					{/each}
+				</div>
+			{/if}
+		{:else if options.array}
+			{#if (visibility[entry.id] || visibility[entry.id] !== false) && columns?.length ? columns.some((c) => visibility[c.entry.id]) : false}
+				<div class="array-title">{entry.label}</div>
+
+				<div class="row row-array">
+					{#each columns as { entry, component, options } (entry.id)}
+						{#if visibility[entry.id]}
+							<div class="col mb-3" style={component === "hb-input-checkbox" ? "line-height:52px;" : ""}>
+								{#if !options.labelIsHandledByComponent}
+									<label for={entry.id}>{entry.label}{entry.required ? "*" : ""}</label>
+								{/if}
+
+								{#if component === "hb-input-text"}
+									<hb-input-text
+										style={inputTextStyleToSet}
+										on:setValid={(d) => setValidByMessage(d.detail)}
+										on:setValue={(d) => setValueByMessage(d.detail)}
+										schemaentry={JSON.stringify(
+											{
+												...entry,
+												value: allValues[entry.id] ?? entry.value,
+											},
+											null,
+											0,
+										)}
+										set_value
+										set_valid
+										{show_validation}
+									/>
+								{:else if component === "hb-input-color"}
+									<hb-input-color
+										style={inputColorStyleToSet}
+										on:setValid={(d) => setValidByMessage(d.detail)}
+										on:setValue={(d) => setValueByMessage(d.detail)}
+										schemaentry={JSON.stringify(
+											{
+												...entry,
+												value: allValues[entry.id] ?? entry.value,
+											},
+											null,
+											0,
+										)}
+										set_value
+										set_valid
+										{show_validation}
+									/>
+								{:else if component === "hb-input-range"}
+									<hb-input-range
+										style={inputRangeStyleToSet}
+										on:setValid={(d) => setValidByMessage(d.detail)}
+										on:setValue={(d) => setValueByMessage(d.detail)}
+										schemaentry={JSON.stringify(
+											{
+												...entry,
+												value: allValues[entry.id] ?? entry.value,
+											},
+											null,
+											0,
+										)}
+										set_value
+										set_valid
+										{show_validation}
+									/>
+								{:else if component === "hb-input-file"}
+									<hb-input-file
+										style={inputFileStyleToSet}
+										on:setValid={(d) => setValidByMessage(d.detail)}
+										on:setValue={(d) => setValueByMessage(d.detail)}
+										schemaentry={JSON.stringify(
+											{
+												...entry,
+												value: allValues[entry.id] ?? entry.value,
+											},
+											null,
+											0,
+										)}
+										set_value
+										set_valid
+										{show_validation}
+									/>
+								{:else if component === "hb-input-email"}
+									<hb-input-email
+										style={inputEmailStyleToSet}
+										on:setValid={(d) => setValidByMessage(d.detail)}
+										on:setValue={(d) => setValueByMessage(d.detail)}
+										schemaentry={JSON.stringify(
+											{
+												...entry,
+												value: allValues[entry.id] ?? entry.value,
+											},
+											null,
+											0,
+										)}
+										set_value
+										set_valid
+										{show_validation}
+									/>
+								{:else if component === "hb-input-date"}
+									<hb-input-date
+										style={inputDateStyleToSet}
+										on:setValid={(d) => setValidByMessage(d.detail)}
+										on:setValue={(d) => setValueByMessage(d.detail)}
+										schemaentry={JSON.stringify(
+											{
+												...entry,
+												value: allValues[entry.id] ?? entry.value,
+											},
+											null,
+											0,
+										)}
+										set_value
+										set_valid
+										{show_validation}
+									/>
+								{:else if component === "hb-input-datetime"}
+									<hb-input-datetime
+										style={inputDateTimeStyleToSet}
+										on:setValid={(d) => setValidByMessage(d.detail)}
+										on:setValue={(d) => setValueByMessage(d.detail)}
+										schemaentry={JSON.stringify(
+											{
+												...entry,
+												value: allValues[entry.id] ?? entry.value,
+											},
+											null,
+											0,
+										)}
+										set_value
+										set_valid
+										{show_validation}
+									/>
+								{:else if component === "hb-input-checkbox"}
+									<hb-input-checkbox
+										style={inputCheckboxStyleToSet}
+										class="checkbox-inline"
+										on:setValid={(d) => setValidByMessage(d.detail)}
+										on:setValue={(d) => setValueByMessage(d.detail)}
+										schemaentry={JSON.stringify(
+											{
+												...entry,
+												value: allValues[entry.id] ?? entry.value,
+											},
+											null,
+											0,
+										)}
+										set_value
+										set_valid
+										{show_validation}
+									/>
+								{:else if component === "hb-input-number"}
+									<hb-input-number
+										style={inputNumberStyleToSet}
+										on:setValid={(d) => setValidByMessage(d.detail)}
+										on:setValue={(d) => setValueByMessage(d.detail)}
+										schemaentry={JSON.stringify(
+											{
+												...entry,
+												value: allValues[entry.id] ?? entry.value,
+											},
+											null,
+											0,
+										)}
+										set_value
+										set_valid
+										{show_validation}
+									/>
+								{:else if component === "hb-input-area"}
+									<hb-input-area
+										style={inputAreaStyleToSet}
+										on:setValid={(d) => setValidByMessage(d.detail)}
+										on:setValue={(d) => setValueByMessage(d.detail)}
+										schemaentry={JSON.stringify(
+											{
+												...entry,
+												value: allValues[entry.id] ?? entry.value,
+											},
+											null,
+											0,
+										)}
+										set_value
+										set_valid
+										{show_validation}
+									/>
+								{:else if component === "hb-input-radio"}
+									<hb-input-radio
+										style={inputRadioStyleToSet}
+										on:setValid={(d) => setValidByMessage(d.detail)}
+										on:setValue={(d) => setValueByMessage(d.detail)}
+										schemaentry={JSON.stringify(
+											{
+												...entry,
+												value: allValues[entry.id] ?? entry.value,
+											},
+											null,
+											0,
+										)}
+										set_value
+										set_valid
+										{show_validation}
+									/>
+								{:else if component === "hb-input-select"}
+									<hb-input-select
+										style={inputSelectStyleToSet}
+										on:setValid={(d) => setValidByMessage(d.detail)}
+										on:setValue={(d) => setValueByMessage(d.detail)}
+										schemaentry={JSON.stringify(
+											{
+												...entry,
+												value: allValues[entry.id] ?? entry.value,
+											},
+											null,
+											0,
+										)}
+										set_value
+										set_valid
+										{show_validation}
+									/>
+								{/if}
+							</div>
+						{/if}
+					{/each}
+					<div class="array-add">
+						<button
+							type="button"
+							class="btn btn-primary"
+							on:click={() => {
+								// addArrayItem(entry.id);
+							}}
+						>
+							add
+						</button>
+					</div>
 				</div>
 			{/if}
 		{:else if visibility[entry.id]}

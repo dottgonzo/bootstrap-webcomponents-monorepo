@@ -192,6 +192,45 @@ const schemaFile = [
 		validationTip: "Min 8, Max 120",
 	},
 ];
+const schemaWithArray = [
+	{
+		id: "name-row",
+		type: "array",
+		label: "Array",
+		params: {
+			columns: [
+				{
+					type: "text",
+					placeholder: "Insert your first name here...",
+					id: "firstName",
+					required: true,
+					label: "First Name",
+					validationTip: "This field cannot be empty.",
+				},
+				{
+					type: "text",
+					placeholder: "Insert your last name here...",
+					id: "lastName",
+					required: true,
+					label: "Last Name",
+					validationTip: "This field cannot be empty.",
+				},
+			],
+		},
+	},
+	{
+		type: "number",
+		id: "age",
+		required: true,
+		label: "Age",
+		value: 9,
+		params: {
+			min: 8,
+			max: 120,
+		},
+		validationTip: "Min 8, Max 120",
+	},
+];
 const conditionalSchema = [
 	{
 		type: "text",
@@ -352,6 +391,12 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "FormHostTemplateConditionalAndColumns",
 		data: {
 			schema: conditionalSchema2,
+		},
+	},
+	{
+		name: "FormHostTemplateWithArray",
+		data: {
+			schema: schemaWithArray,
 		},
 	},
 ];
