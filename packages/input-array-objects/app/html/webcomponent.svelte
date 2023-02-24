@@ -7,6 +7,10 @@
 	export let set_value: boolean;
 	export let set_valid: boolean;
 	export let show_validation: "yes" | "no";
+	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
+
+	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
+	let formStyleToSet: string = "";
 
 	export let schemaentry: FormSchemaEntry;
 
@@ -22,6 +26,10 @@
 	}
 
 	$: {
+		if (style) {
+			parsedStyle = parseStyle(style);
+			formStyleToSet = getChildStyleToPass(parsedStyle, formStyleSetup?.vars);
+		}
 		if (typeof schemaentry === "string") {
 			try {
 				schemaentry = JSON.parse(schemaentry);
@@ -69,32 +77,16 @@
 			valid = false;
 		}
 
-		// valid =
-		// 	schemaentry && !schemaentry?.required
-		// 		? true
-		// 		: schemaentry &&
-		// 		  value != null &&
-		// 		  (regex ? regex.test(value) : true) &&
-		// 		  (!schemaentry?.params ||
-		// 				(value.length >= (schemaentry.params?.min ?? 1) && value.length <= (schemaentry.params?.max ?? Infinity)));
-
-		// valid = schemaentry
-		// 	? !schemaentry?.required ||
-		// 	  (value &&
-		// 			value.length >= (schemaentry.params?.min ?? 0) &&
-		// 			value.length <= (schemaentry.params?.max ?? Infinity) &&
-		// 			(regex ? regex.test(value) : true))
-		// 	: false;
-
 		console.log(valid, value, "validinput");
 		setTimeout(() => {
 			if (set_value) dispatch("setValue", { value, id: schemaentry?.id });
 			if (set_valid) dispatch("setValid", { valid, id: schemaentry?.id });
 		}, 0);
 	}
+	addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
 </script>
 
-<input
+<!-- <input
 	bind:value
 	type="text"
 	class="form-control {show_validation === 'yes' && schemaentry?.required ? (valid ? 'is-valid' : 'is-invalid') : ''}"
@@ -102,7 +94,10 @@
 	required={schemaentry?.required}
 	placeholder={schemaentry?.placeholder}
 	readonly={schemaentry?.readonly}
-/>
+/> -->
+
+<hb-form style={formStyleToSet} />
+
 {#if schemaentry?.validationTip && show_validation === "yes"}
 	<div part="invalid-feedback" class="invalid-feedback mb-1">
 		{schemaentry.validationTip}
