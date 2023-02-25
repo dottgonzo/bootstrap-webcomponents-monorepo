@@ -8,11 +8,13 @@
 	export let set_valid: boolean;
 	export let show_validation: "yes" | "no";
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
+	import type { Component as TableComponent, Events as TableEvents } from "../../node_modules/@htmlbricks/hb-table/release/webcomponent.type";
 
 	import pkg from "../../package.json";
 
 	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
 	import { styleSetup as tableStyleSetup } from "../../node_modules/@htmlbricks/hb-table/release/docs";
+	import type { FormSchema } from "@htmlbricks/hb-form/app/types/webcomponent.type";
 	let formStyleToSet: string = "";
 	let tableStyleToSet: string = "";
 
@@ -20,9 +22,22 @@
 	export let style: string;
 
 	let value: string;
-	let regex: RegExp | undefined;
 	let valid = false;
 
+	let tableHeaders: TableComponent["headers"] = [];
+	let tableRows: TableComponent["rows"] = [];
+	const tableActions: TableComponent["actions"] = [
+		{
+			name: "delete",
+			type: "icon",
+			iconOrText: "x-octagon-fill",
+		},
+		// {
+		// 	name: "edit",
+		// 	type: "icon",
+		// 	iconOrText: "pencil-square",
+		// },
+	];
 	let arrayOfResults: FormSchemaEntry[] = [];
 
 	const component = get_current_component();
@@ -59,27 +74,37 @@
 			set_valid = true;
 		}
 
-		value = value != null ? value : (schemaentry?.value as string);
-
-		regex = schemaentry?.validationRegex && new RegExp(schemaentry.validationRegex);
+		value = value != null ? value : schemaentry?.value && typeof schemaentry?.value === "object" ? schemaentry?.value : [];
 
 		if (schemaentry) {
 			if (schemaentry.params?.schema?.length) {
-				const newSchema = { schema: schemaentry.params.schema, id: "new" };
+				const schemaRow: FormSchema = schemaentry.params.schema;
+				const newSchema = { schema: schemaRow, id: Date.now().toString() };
 				arrayOfResults = [newSchema];
+				const newTableHeaders = [];
+				for (const s of schemaRow) {
+					if (s.type === "row") {
+						for (const ss of s.params.columns) {
+							newTableHeaders.push({
+								key: ss.id,
+								label: ss.label,
+								// width: s.width,
+							});
+						}
+					} else {
+						newTableHeaders.push({
+							key: s.id,
+							label: s.label,
+							// width: s.width,
+						});
+					}
+				}
+				tableHeaders = newTableHeaders;
 			}
 
 			if (schemaentry.required) {
-				if (value) {
-					if (regex && !regex.test(value)) {
-						valid = false;
-					} else if (schemaentry.params?.min && !(value.length >= schemaentry.params.min)) {
-						valid = false;
-					} else if (schemaentry.params?.max && !(value.length <= schemaentry.params.max)) {
-						valid = false;
-					} else {
-						valid = true;
-					}
+				if (value?.length) {
+					valid = true;
 				} else {
 					valid = false;
 				}
@@ -100,6 +125,25 @@
 			if (set_valid) dispatch("setValid", { valid, id: schemaentry?.id });
 		}, 0);
 	}
+
+	function addSchema(detail: any) {
+		console.log(detail);
+		const newSchema = { schema: schemaentry.params.schema, id: Date.now().toString() };
+		arrayOfResults = [...arrayOfResults, newSchema];
+		const newRows = JSON.parse(JSON.stringify(tableRows));
+		const newObj = { _id: Date.now().toString() };
+		for (const r of Object.keys(detail)) {
+			newObj[r] = detail[r];
+		}
+		value.push(detail);
+		newRows.push(newObj);
+		tableRows = newRows;
+	}
+	function onTableAction(detail: { action: "delete"; itemId: string }) {
+		console.log(detail, "detail");
+		tableRows = JSON.parse(JSON.stringify(tableRows.filter((f) => f._id !== detail.itemId)));
+	}
+
 	addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-table", version: pkg.version });
 </script>
@@ -116,9 +160,27 @@
 
 {#each arrayOfResults as sch (sch.id)}
 	{#if sch.id === arrayOfResults[arrayOfResults.length - 1].id}
-		<hb-form style={formStyleToSet} schema={JSON.stringify(sch.schema)} />
-	{:else}
-		<hb-table style={tableStyleToSet} />
+		<div class="array-label">{schemaentry?.params?.label ? schemaentry.params.label : "properties"}</div>
+		<hb-table
+			disablepagination="yes"
+			style={tableStyleToSet}
+			actions={JSON.stringify(tableActions)}
+			headers={JSON.stringify(tableHeaders)}
+			rows={JSON.stringify(tableRows)}
+			on:tableaction={(e) => {
+				onTableAction(e.detail);
+			}}
+		/>
+
+		<hb-form
+			style={formStyleToSet}
+			schema={JSON.stringify(sch.schema)}
+			on:submit={(e) => {
+				addSchema(e.detail);
+			}}
+		>
+			<span slot="submit_label">add Property</span>
+		</hb-form>
 	{/if}
 {/each}
 

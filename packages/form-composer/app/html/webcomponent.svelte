@@ -682,7 +682,11 @@ TO BE DONE
 			schema={sc.schema}
 		>
 			<span slot="submit_button"><button type="button" class="btn btn-info">add Property</button></span>
-			<span slot="other_buttons"><button type="button" class="btn btn-primary" on:click={() => dispatchDone()}>done</button></span></hb-form
+			<span slot="other_buttons"
+				><button disabled={schema4selectorS.length < 2 ? true : false} type="button" class="btn btn-primary" on:click={() => dispatchDone()}
+					>done</button
+				></span
+			></hb-form
 		>
 	{/if}
 {/each}
