@@ -35,12 +35,6 @@
 			params: {
 				columns: [
 					{
-						type: "checkbox",
-						placeholder: "Required...",
-						id: "required",
-						label: "Is Required?",
-					},
-					{
 						type: "text",
 						placeholder: "Label...",
 						id: "label",
@@ -78,7 +72,7 @@
 		},
 
 		{
-			id: "dep-row",
+			id: "conditionals-row",
 			type: "row",
 			params: {
 				columns: [
@@ -89,26 +83,10 @@
 						label: "Is Conditional?",
 					},
 					{
-						type: "text",
-						placeholder: "Conditional property...",
-						id: "depName",
-						label: "Conditional property",
-						dependencies: [
-							{
-								id: "conditional",
-							},
-						],
-					},
-					{
-						type: "text",
-						placeholder: "Conditional values (separated by comma)...",
-						id: "depValues",
-						label: "Conditional values",
-						dependencies: [
-							{
-								id: "conditional",
-							},
-						],
+						type: "checkbox",
+						placeholder: "Required...",
+						id: "required",
+						label: "Is Required?",
 					},
 				],
 			},
@@ -146,280 +124,83 @@
 				],
 			},
 		},
-
 		{
-			type: "text",
-			placeholder: "Option Label...",
-			id: "optionLabel1",
-			label: "Option Label",
+			type: "arrayobjects",
+			label: "conditions",
+			placeholder: "Insert your last name here...",
+			id: "conditions",
+			validationTip: "This field cannot be empty.",
+			params: {
+				schema: [
+					{
+						id: "conditions-row",
+						type: "row",
+						params: {
+							columns: [
+								{
+									type: "text",
+									placeholder: "Condition Property name...",
+									id: "conditionlabel",
+									required: true,
+									label: "Condition Label",
+									validationTip: "This field cannot be empty.",
+								},
+								{
+									type: "text",
+									placeholder: "Optional condition value...",
+									id: "conditionvalue",
+									label: "Condition value",
+									validationTip: "This field cannot be empty.",
+								},
+							],
+						},
+					},
+				],
+			},
+			dependencies: [
+				{
+					id: "conditional",
+				},
+			],
+		},
+		{
+			type: "arrayobjects",
+			label: "options",
+			placeholder: "Insert your last name here...",
+			id: "options",
+			validationTip: "This field cannot be empty.",
+			params: {
+				schema: [
+					{
+						id: "options-row",
+						type: "row",
+						params: {
+							columns: [
+								{
+									type: "text",
+									placeholder: "Option Property name...",
+									id: "optionlabel",
+									required: true,
+									label: "Option Label",
+									validationTip: "This field cannot be empty.",
+								},
+								{
+									type: "text",
+									placeholder: "Option value...",
+									id: "optionvalue",
+									label: "Option value",
+									required: true,
+									validationTip: "This field cannot be empty.",
+								},
+							],
+						},
+					},
+				],
+			},
 			dependencies: [
 				{
 					id: "type",
 					values: ["select", "radio"],
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Value",
-			id: "optionValue1",
-			label: "Option Value",
-			dependencies: [
-				{
-					id: "type",
-					values: ["select", "radio"],
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Label...",
-			id: "optionLabel2",
-			label: "Option Label",
-			dependencies: [
-				{
-					id: "optionLabel1",
-				},
-				{
-					id: "optionValue1",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Value",
-			id: "optionValue2",
-			label: "Option Value",
-			dependencies: [
-				{
-					id: "optionLabel1",
-				},
-				{
-					id: "optionValue1",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Label...",
-			id: "optionLabel3",
-			label: "Option Label",
-			dependencies: [
-				{
-					id: "optionLabel2",
-				},
-				{
-					id: "optionValue2",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Value",
-			id: "optionValue3",
-			label: "Option Value",
-			dependencies: [
-				{
-					id: "optionLabel2",
-				},
-				{
-					id: "optionValue2",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Label...",
-			id: "optionLabel4",
-			label: "Option Label",
-			dependencies: [
-				{
-					id: "optionLabel3",
-				},
-				{
-					id: "optionValue3",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Value",
-			id: "optionValue4",
-			label: "Option Value",
-			dependencies: [
-				{
-					id: "optionLabel3",
-				},
-				{
-					id: "optionValue3",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Label...",
-			id: "optionLabel5",
-			label: "Option Label",
-			dependencies: [
-				{
-					id: "optionLabel4",
-				},
-				{
-					id: "optionValue4",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Value",
-			id: "optionValue5",
-			label: "Option Value",
-			dependencies: [
-				{
-					id: "optionLabel4",
-				},
-				{
-					id: "optionValue4",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Label...",
-			id: "optionLabel6",
-			label: "Option Label",
-			dependencies: [
-				{
-					id: "optionLabel5",
-				},
-				{
-					id: "optionValue5",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Value",
-			id: "optionValue6",
-			label: "Option Value",
-			dependencies: [
-				{
-					id: "optionLabel5",
-				},
-				{
-					id: "optionValue5",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Label...",
-			id: "optionLabel7",
-			label: "Option Label",
-			dependencies: [
-				{
-					id: "optionLabel6",
-				},
-				{
-					id: "optionValue6",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Value",
-			id: "optionValue7",
-			label: "Option Value",
-			dependencies: [
-				{
-					id: "optionLabel6",
-				},
-				{
-					id: "optionValue6",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Label...",
-			id: "optionLabel8",
-			label: "Option Label",
-			dependencies: [
-				{
-					id: "optionLabel7",
-				},
-				{
-					id: "optionValue7",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Value",
-			id: "optionValue8",
-			label: "Option Value",
-			dependencies: [
-				{
-					id: "optionLabel7",
-				},
-				{
-					id: "optionValue7",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Label...",
-			id: "optionLabel9",
-			label: "Option Label",
-			dependencies: [
-				{
-					id: "optionLabel8",
-				},
-				{
-					id: "optionValue8",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Value",
-			id: "optionValue9",
-			label: "Option Value",
-			dependencies: [
-				{
-					id: "optionLabel8",
-				},
-				{
-					id: "optionValue8",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Label...",
-			id: "optionLabel10",
-			label: "Option Label",
-			dependencies: [
-				{
-					id: "optionLabel9",
-				},
-				{
-					id: "optionValue9",
-				},
-			],
-		},
-		{
-			type: "text",
-			placeholder: "Option Value",
-			id: "optionValue10",
-			label: "Option Value",
-			dependencies: [
-				{
-					id: "optionLabel9",
-				},
-				{
-					id: "optionValue9",
 				},
 			],
 		},
@@ -517,86 +298,33 @@
 
 	function addSchema(e: TFormSchemaGeneretor4Prop) {
 		console.log("addSchema", e);
-		let dep: { id: string; values?: string[] };
 		let params: { min?: number; max?: number; options?: { label: string; value?: String }[] } = {};
-		if (e.depName) {
-			dep = {
-				id: e.depName,
-			};
-			if (e.depValues) dep.values = e.depValues.replace(", ", ",").replace(" ,", ",").split(",");
+		let dep: { id: string; values?: string[] }[];
+		if (e.conditions) {
+			dep = e.conditions.map((c) => {
+				return {
+					id: c.conditionlabel,
+					values: c.conditionvalue.replace(", ", ",").replace(" ,", ",").split(","),
+				};
+			});
+			// 	dep = {
+			// 		id: e.depName,
+			// 	};
+			// 	if (e.depValues) dep.values = e.depValues.replace(", ", ",").replace(" ,", ",").split(",");
 		}
-		const dependencies = dep ? [dep] : undefined;
+		// const dependencies = dep ? [dep] : undefined;
 
 		if (e.type === "text" || e.type === "textarea" || e.type === "number" || e.type === "datetime" || e.type === "date" || e.type === "range") {
 			if (e.min) params.min = e.min;
 			if (e.max) params.max = e.max;
 		}
 
-		if (e.type === "select" || e.type === "radio") {
-			const options: FormComponent["schema"][0]["params"]["options"] = [];
+		if (e.type === "select" || (e.type === "radio" && e.options.length)) {
+			params.options = [];
 
-			if (e.optionLabel1) {
-				options.push({
-					label: e.optionLabel1,
-					value: e.optionValue1,
-				});
+			for (const o of e.options) {
+				params.options.push({ label: o.optionlabel, value: o.optionvalue });
 			}
-			if (e.optionLabel2) {
-				options.push({
-					label: e.optionLabel2,
-					value: e.optionValue2,
-				});
-			}
-			if (e.optionLabel3) {
-				options.push({
-					label: e.optionLabel3,
-					value: e.optionValue3,
-				});
-			}
-			if (e.optionLabel4) {
-				options.push({
-					label: e.optionLabel4,
-					value: e.optionValue4,
-				});
-			}
-			if (e.optionLabel5) {
-				options.push({
-					label: e.optionLabel5,
-					value: e.optionValue5,
-				});
-			}
-			if (e.optionLabel6) {
-				options.push({
-					label: e.optionLabel6,
-					value: e.optionValue6,
-				});
-			}
-			if (e.optionLabel7) {
-				options.push({
-					label: e.optionLabel7,
-					value: e.optionValue7,
-				});
-			}
-			if (e.optionLabel8) {
-				options.push({
-					label: e.optionLabel8,
-					value: e.optionValue8,
-				});
-			}
-			if (e.optionLabel9) {
-				options.push({
-					label: e.optionLabel9,
-					value: e.optionValue9,
-				});
-			}
-			if (e.optionLabel10) {
-				options.push({
-					label: e.optionLabel10,
-					value: e.optionValue10,
-				});
-			}
-
-			params.options = options;
 		}
 
 		const newFormSchema: FormComponent["schema"][0] = {
@@ -605,9 +333,11 @@
 			label: e.label,
 			required: e.required,
 			placeholder: e.placeholder,
-			dependencies,
-			params,
+			dependencies: dep,
 		};
+		if (Object.keys(params).length) {
+			newFormSchema.params = params;
+		}
 
 		if (outputSchema.find((f) => f.label === e.label)) {
 			// replace previous outputScheme
