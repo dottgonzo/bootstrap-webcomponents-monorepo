@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-messages-send",
 	"displayName": "Svelte-Bootstrap messages-send",
 	"description": "Svelte-Bootstrap messages-send",
-	"version": "0.19.15",
+	"version": "0.19.16",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"

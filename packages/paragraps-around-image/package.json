@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-paragraps-around-image",
 	"displayName": "Svelte-Bootstrap paragraps-around-image",
 	"description": "Svelte-Bootstrap paragraps-around-image",
-	"version": "0.19.15",
+	"version": "0.19.16",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
