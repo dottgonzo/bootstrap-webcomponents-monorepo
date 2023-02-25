@@ -75,7 +75,7 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "ecb47c527a94b94b58e9f8e07a96f096fb175843",
+	"gitHead": "6c500c692eb2381e7833259ca87779a15bd58c5e",
 	"dependencies": {
 		"html5-joystick-new": "^0.0.6",
 		"style-to-object": "^0.3.0"

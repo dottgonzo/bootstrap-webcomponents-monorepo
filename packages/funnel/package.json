@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-funnel",
 	"displayName": "Svelte Funnel WebComponent",
 	"description": "Svelte Funnel WebComponent",
-	"version": "0.19.11",
+	"version": "0.19.12",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -70,7 +70,7 @@
 		"wc-js-utils": "^0.0.1"
 	},
 	"dependencies": {
-		"@htmlbricks/hb-form": "^0.19.11"
+		"@htmlbricks/hb-form": "^0.19.12"
 	},
 	"keywords": [
 		"svelte",
@@ -78,5 +78,5 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "ecb47c527a94b94b58e9f8e07a96f096fb175843"
+	"gitHead": "6c500c692eb2381e7833259ca87779a15bd58c5e"
 }
