@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-stylus-paper",
 	"displayName": "Svelte-Bootstrap stylus-paper",
 	"description": "Svelte-Bootstrap stylus-paper",
-	"version": "0.19.4",
+	"version": "0.19.5",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
