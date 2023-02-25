@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-messages-list",
 	"displayName": "Svelte-Bootstrap messages-list",
 	"description": "Svelte-Bootstrap messages-list",
-	"version": "0.19.9",
+	"version": "0.19.10",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
