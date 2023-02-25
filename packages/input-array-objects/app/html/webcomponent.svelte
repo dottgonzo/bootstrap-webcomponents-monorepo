@@ -135,13 +135,14 @@
 		for (const r of Object.keys(detail)) {
 			newObj[r] = detail[r];
 		}
-		value.push(detail);
+		value = [...value, detail];
 		newRows.push(newObj);
 		tableRows = newRows;
 	}
 	function onTableAction(detail: { action: "delete"; itemId: string }) {
 		console.log(detail, "detail");
 		tableRows = JSON.parse(JSON.stringify(tableRows.filter((f) => f._id !== detail.itemId)));
+		value = JSON.parse(JSON.stringify(value.filter((f) => f._id !== detail.itemId)));
 	}
 
 	addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
