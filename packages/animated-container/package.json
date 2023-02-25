@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-animated-container",
 	"displayName": "Svelte-Bootstrap animated-container",
 	"description": "Svelte-Bootstrap animated-container",
-	"version": "0.19.16",
+	"version": "0.19.17",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
