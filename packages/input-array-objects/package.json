@@ -70,7 +70,8 @@
 		"wc-js-utils": "^0.0.1"
 	},
 	"dependencies": {
-		"@htmlbricks/hb-form": "^0.19.2"
+		"@htmlbricks/hb-form": "^0.19.2",
+		"@htmlbricks/hb-table": "^0.19.2"
 	},
 	"keywords": [
 		"svelte",

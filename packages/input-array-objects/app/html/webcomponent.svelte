@@ -10,7 +10,9 @@
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 
 	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
+	import { styleSetup as tableStyleSetup } from "../../node_modules/@htmlbricks/hb-table/release/docs";
 	let formStyleToSet: string = "";
+	let tableStyleToSet: string = "";
 
 	export let schemaentry: FormSchemaEntry;
 
@@ -29,6 +31,7 @@
 		if (style) {
 			parsedStyle = parseStyle(style);
 			formStyleToSet = getChildStyleToPass(parsedStyle, formStyleSetup?.vars);
+			tableStyleToSet = getChildStyleToPass(parsedStyle, tableStyleSetup?.vars);
 		}
 		if (typeof schemaentry === "string") {
 			try {
@@ -84,6 +87,7 @@
 		}, 0);
 	}
 	addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-table", version: pkg.version });
 </script>
 
 <!-- <input
