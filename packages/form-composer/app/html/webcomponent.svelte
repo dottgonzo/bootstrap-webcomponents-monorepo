@@ -127,9 +127,7 @@
 		{
 			type: "arrayobjects",
 			label: "conditions",
-			placeholder: "Insert your last name here...",
 			id: "conditions",
-			validationTip: "This field cannot be empty.",
 			params: {
 				schema: [
 					{
@@ -147,9 +145,9 @@
 								},
 								{
 									type: "text",
-									placeholder: "Optional condition value...",
+									placeholder: "Condition values (separated by comma)...",
 									id: "conditionvalue",
-									label: "Condition value",
+									label: "Condition values",
 									validationTip: "This field cannot be empty.",
 								},
 							],
