@@ -75,7 +75,7 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "3314bdf788ce4d05f108102beeedbac6fd4f19e4",
+	"gitHead": "862389e9ff7eadbd8bddf2a72cabcc0b83ce1adc",
 	"dependencies": {
 		"@htmlbricks/hb-input-file": "^0.19.6",
 		"@htmlbricks/hb-stylus-paper": "^0.19.6",
