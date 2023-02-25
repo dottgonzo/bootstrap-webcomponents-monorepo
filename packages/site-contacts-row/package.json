@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-site-contacts-row",
 	"displayName": "Svelte-Bootstrap site-contacts-row",
 	"description": "Svelte-Bootstrap site-contacts-row",
-	"version": "0.19.2",
+	"version": "0.19.3",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"

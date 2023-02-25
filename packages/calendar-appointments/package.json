@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-calendar-appointments",
 	"displayName": "Svelte Calendar WebComponent",
 	"description": "Svelte Calendar WebComponent",
-	"version": "0.19.2",
+	"version": "0.19.3",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
