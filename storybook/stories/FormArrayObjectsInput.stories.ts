@@ -28,33 +28,3 @@ FormArrayObjectsInputTemplate.args = setStorybookData(
   componentSetup.examples.find((f) => f.name === "default") ||
     (undefined as any)
 );
-export const FormArrayObjectsInputTemplateRequired = Template.bind({});
-
-FormArrayObjectsInputTemplateRequired.args = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "defaultRequired") ||
-    (undefined as any)
-);
-export const FormArrayObjectsInputTemplateRequiredWithMin = Template.bind({});
-
-FormArrayObjectsInputTemplateRequiredWithMin.args = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "requiredwithmin") ||
-    (undefined as any)
-);
-export const FormArrayObjectsInputTemplateRequiredWithMax = Template.bind({});
-
-FormArrayObjectsInputTemplateRequiredWithMax.args = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "requiredwithmax") ||
-    (undefined as any)
-);
-export const FormArrayObjectsInputTemplateRequiredWithMaxMin = Template.bind(
-  {}
-);
-
-FormArrayObjectsInputTemplateRequiredWithMaxMin.args = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "requiredwithminmax") ||
-    (undefined as any)
-);

@@ -9,16 +9,21 @@
 	export let show_validation: "yes" | "no";
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 
+	import pkg from "../../package.json";
+
 	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
 	import { styleSetup as tableStyleSetup } from "../../node_modules/@htmlbricks/hb-table/release/docs";
 	let formStyleToSet: string = "";
 	let tableStyleToSet: string = "";
 
 	export let schemaentry: FormSchemaEntry;
+	export let style: string;
 
 	let value: string;
 	let regex: RegExp | undefined;
 	let valid = false;
+
+	let arrayOfResults: FormSchemaEntry[] = [];
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -59,6 +64,11 @@
 		regex = schemaentry?.validationRegex && new RegExp(schemaentry.validationRegex);
 
 		if (schemaentry) {
+			if (schemaentry.params?.schema?.length) {
+				const newSchema = { schema: schemaentry.params.schema, id: "new" };
+				arrayOfResults = [newSchema];
+			}
+
 			if (schemaentry.required) {
 				if (value) {
 					if (regex && !regex.test(value)) {
@@ -78,6 +88,10 @@
 			}
 		} else {
 			valid = false;
+		}
+
+		if (!arrayOfResults?.length) {
+			arrayOfResults = [];
 		}
 
 		console.log(valid, value, "validinput");
@@ -100,7 +114,13 @@
 	readonly={schemaentry?.readonly}
 /> -->
 
-<hb-form style={formStyleToSet} />
+{#each arrayOfResults as sch (sch.id)}
+	{#if sch.id === arrayOfResults[arrayOfResults.length - 1].id}
+		<hb-form style={formStyleToSet} schema={JSON.stringify(sch.schema)} />
+	{:else}
+		<hb-table style={tableStyleToSet} />
+	{/if}
+{/each}
 
 {#if schemaentry?.validationTip && show_validation === "yes"}
 	<div part="invalid-feedback" class="invalid-feedback mb-1">

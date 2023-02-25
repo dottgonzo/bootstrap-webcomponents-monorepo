@@ -26,7 +26,69 @@ export const styleSetup: StyleSetup = {
 	vars: cssVars,
 	parts: cssParts,
 };
-
+const schema1 = [
+	{
+		id: "name-row",
+		type: "row",
+		params: {
+			columns: [
+				{
+					type: "text",
+					placeholder: "Insert your first name here...",
+					id: "firstName",
+					required: true,
+					label: "First Name",
+					validationTip: "This field cannot be empty.",
+				},
+				{
+					type: "text",
+					placeholder: "Insert your last name here...",
+					id: "lastName",
+					required: true,
+					label: "Last Name",
+					validationTip: "This field cannot be empty.",
+				},
+				{
+					type: "checkbox",
+					placeholder: "Insert your last namez here...",
+					id: "lastNamez",
+					label: "Last Namez",
+					validationTip: "This field cannot be emptyz.",
+				},
+				{
+					type: "select",
+					placeholder: "Select something here...",
+					id: "selectsomething",
+					required: true,
+					label: "Selection of something",
+					validationTip: "This field cannot be empty.",
+					params: {
+						options: [
+							{ label: "", value: "" },
+							{ label: "testlabel", value: "testvalue" },
+						],
+					},
+				},
+				{
+					type: "radio",
+					placeholder: "radio something here...",
+					id: "radiosomething",
+					required: true,
+					label: "Selection of something",
+					validationTip: "This field cannot be empty.",
+					params: {
+						options: [
+							{ label: "radio", value: "radio" },
+							{ label: "radio2", value: "radi2o" },
+							{ label: "radio3", value: "radio2" },
+							{ label: "testlabel", value: "testvalue" },
+						],
+					},
+				},
+			],
+		},
+	},
+];
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
@@ -35,74 +97,8 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				placeholder: "Insert your last name here...",
 				id: "lastName",
 				validationTip: "This field cannot be empty.",
-			},
-		},
-	},
-	{
-		name: "defaultRequired",
-		data: {
-			schemaentry: {
-				placeholder: "Insert your last name here...",
-				id: "lastName",
-				required: true,
-				validationTip: "This field cannot be empty.",
-			},
-		},
-	},
-	{
-		name: "requiredwithmin",
-		data: {
-			schemaentry: {
-				placeholder: "Insert your last name here...",
-				id: "lastName",
-				required: true,
-				validationTip: "This field cannot be empty.",
 				params: {
-					min: 2,
-				},
-				value: "a",
-			},
-		},
-	},
-	{
-		name: "requiredwithmax",
-		data: {
-			schemaentry: {
-				placeholder: "Insert your last name here...",
-				id: "lastName",
-				required: true,
-				validationTip: "This field cannot be empty.",
-				params: {
-					max: 2,
-				},
-			},
-		},
-	},
-	{
-		name: "requiredwithminmax",
-		data: {
-			schemaentry: {
-				placeholder: "Insert your last name here...",
-				id: "lastName",
-				required: true,
-				validationTip: "This field cannot be empty.",
-				params: {
-					min: 2,
-					max: 6,
-				},
-			},
-		},
-	},
-	{
-		name: "requiredwithregex",
-		data: {
-			schemaentry: {
-				placeholder: "Insert your last name here...",
-				id: "lastName",
-				required: true,
-				validationTip: "This field cannot be empty.",
-				params: {
-					min: 2,
+					schema: schema1,
 				},
 			},
 		},
