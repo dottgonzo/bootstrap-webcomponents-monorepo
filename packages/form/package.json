@@ -71,7 +71,7 @@
 	},
 	"dependencies": {
 		"@htmlbricks/hb-input-area": "^0.19.8",
-		"@htmlbricks/hb-input-array-objects": "^0.19.7",
+		"@htmlbricks/hb-input-array-objects": "^0.19.8",
 		"@htmlbricks/hb-input-checkbox": "^0.19.8",
 		"@htmlbricks/hb-input-color": "^0.19.8",
 		"@htmlbricks/hb-input-date": "^0.19.8",
@@ -90,5 +90,5 @@
 		"webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "862389e9ff7eadbd8bddf2a72cabcc0b83ce1adc"
+	"gitHead": "74b175342f0c78e076cb3e34588f0c3fe492b652"
 }
