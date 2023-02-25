@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-modal-video",
 	"displayName": "Svelte-Bootstrap Video Modal WebComponent",
 	"description": "Svelte-Bootstrap Video Modal WebComponent",
-	"version": "0.19.13",
+	"version": "0.19.14",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -70,7 +70,7 @@
 		"wc-js-utils": "^0.0.1"
 	},
 	"dependencies": {
-		"@htmlbricks/hb-dialog": "^0.19.13"
+		"@htmlbricks/hb-dialog": "^0.19.14"
 	},
 	"keywords": [
 		"svelte",
