@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-dialogform",
 	"displayName": "Svelte-Bootstrap dialogform WebComponent",
 	"description": "Svelte-Bootstrap dialogform WebComponent",
-	"version": "0.19.8",
+	"version": "0.19.9",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
