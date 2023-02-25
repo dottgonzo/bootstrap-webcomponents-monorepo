@@ -35,6 +35,7 @@
 	import { styleSetup as inputCheckboxStyleSetup } from "../../node_modules/@htmlbricks/hb-input-checkbox/release/docs";
 	import { styleSetup as inputRadioStyleSetup } from "../../node_modules/@htmlbricks/hb-input-radio/release/docs";
 	import { styleSetup as inputRangeStyleSetup } from "../../node_modules/@htmlbricks/hb-input-range/release/docs";
+	import { styleSetup as inputArrayObjectsStyleSetup } from "../../node_modules/@htmlbricks/hb-input-array-objects/release/docs";
 
 	let inputSelectStyleToSet: string = "";
 	let inputDateStyleToSet: string = "";
@@ -48,10 +49,12 @@
 	let inputCheckboxStyleToSet: string = "";
 	let inputRadioStyleToSet: string = "";
 	let inputRangeStyleToSet: string = "";
+	let inputArrayObjectsStyleToSet: string = "";
 
 	const registeredComponents: IRegisterComponent = {
 		row: { component: null, options: { row: true } },
 		select: { component: "hb-input-select" },
+		arrayobjects: { component: "hb-input-array-objects" },
 		date: { component: "hb-input-date" },
 		datetime: { component: "hb-input-datetime" },
 		text: { component: "hb-input-text" },
@@ -105,6 +108,7 @@
 			inputRadioStyleToSet = getChildStyleToPass(parsedStyle, inputRadioStyleSetup?.vars);
 			inputDateTimeStyleToSet = getChildStyleToPass(parsedStyle, inputDateTimeStyleSetup?.vars);
 			inputRangeStyleToSet = getChildStyleToPass(parsedStyle, inputRangeStyleSetup?.vars);
+			inputArrayObjectsStyleToSet = getChildStyleToPass(parsedStyle, inputArrayObjectsStyleSetup?.vars);
 		}
 		if (!show_validation) show_validation = "no";
 		if (!visibility) visibility = {};
@@ -268,6 +272,7 @@
 	addComponent({ repoName: "@htmlbricks/hb-input-color", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-input-range", version: pkg.version });
 	addComponent({ repoName: "@htmlbricks/hb-input-datetime", version: pkg.version });
+	addComponent({ repoName: "@htmlbricks/hb-input-array-objects", version: pkg.version });
 
 	const component = get_current_component();
 
@@ -316,8 +321,24 @@
 								{#if !options.labelIsHandledByComponent}
 									<label for={entry.id}>{entry.label}{entry.required ? "*" : ""}</label>
 								{/if}
-
-								{#if component === "hb-input-text"}
+								{#if component === "hb-array-objects"}
+									<hb-input-array-objects
+										style={inputArrayObjectsStyleToSet}
+										on:setValid={(d) => setValidByMessage(d.detail)}
+										on:setValue={(d) => setValueByMessage(d.detail)}
+										schemaentry={JSON.stringify(
+											{
+												...entry,
+												value: allValues[entry.id] ?? entry.value,
+											},
+											null,
+											0,
+										)}
+										set_value
+										set_valid
+										{show_validation}
+									/>
+								{:else if component === "hb-input-text"}
 									<hb-input-text
 										style={inputTextStyleToSet}
 										on:setValid={(d) => setValidByMessage(d.detail)}
@@ -537,6 +558,23 @@
 				{#if component === "hb-input-text"}
 					<hb-input-text
 						style={inputTextStyleToSet}
+						on:setValid={(d) => setValidByMessage(d.detail)}
+						on:setValue={(d) => setValueByMessage(d.detail)}
+						schemaentry={JSON.stringify(
+							{
+								...entry,
+								value: allValues[entry.id] ?? entry.value,
+							},
+							null,
+							0,
+						)}
+						set_value
+						set_valid
+						{show_validation}
+					/>
+				{:else if component === "hb-input-array-objects"}
+					<hb-input-array-objects
+						style={inputArrayObjectsStyleToSet}
 						on:setValid={(d) => setValidByMessage(d.detail)}
 						on:setValue={(d) => setValueByMessage(d.detail)}
 						schemaentry={JSON.stringify(

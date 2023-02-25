@@ -51,3 +51,10 @@ FormHostTemplateConditionalAndColumns.args = setStorybookData(
     (f) => f.name === "FormHostTemplateConditionalAndColumns"
   ) || (undefined as any)
 );
+export const FormHostTemplateWithArrayProp = Template.bind({});
+FormHostTemplateWithArrayProp.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find(
+    (f) => f.name === "FormHostTemplateWithArrayProp"
+  ) || (undefined as any)
+);

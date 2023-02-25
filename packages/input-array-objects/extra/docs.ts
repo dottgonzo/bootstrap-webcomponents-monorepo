@@ -61,7 +61,6 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				validationTip: "This field cannot be empty.",
 				params: {
 					schema: schema1,
-					label: "Array of objects",
 				},
 			},
 		},

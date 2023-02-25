@@ -71,6 +71,7 @@
 	},
 	"dependencies": {
 		"@htmlbricks/hb-input-area": "^0.19.3",
+		"@htmlbricks/hb-input-array-objects": "^0.19.3",
 		"@htmlbricks/hb-input-checkbox": "^0.19.3",
 		"@htmlbricks/hb-input-color": "^0.19.3",
 		"@htmlbricks/hb-input-date": "^0.19.3",

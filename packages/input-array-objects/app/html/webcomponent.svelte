@@ -103,7 +103,7 @@
 			}
 
 			if (schemaentry.required) {
-				if (value?.length) {
+				if (value?.length && typeof value === "object") {
 					valid = true;
 				} else {
 					valid = false;
@@ -119,7 +119,7 @@
 			arrayOfResults = [];
 		}
 
-		console.log(valid, value, "validinput");
+		console.log(valid, value, "validinput4arrayobjects");
 		setTimeout(() => {
 			if (set_value) dispatch("setValue", { value, id: schemaentry?.id });
 			if (set_valid) dispatch("setValid", { valid, id: schemaentry?.id });
@@ -160,7 +160,6 @@
 
 {#each arrayOfResults as sch (sch.id)}
 	{#if sch.id === arrayOfResults[arrayOfResults.length - 1].id}
-		<div class="array-label">{schemaentry?.params?.label ? schemaentry.params.label : "properties"}</div>
 		<hb-table
 			disablepagination="yes"
 			style={tableStyleToSet}
@@ -179,7 +178,7 @@
 				addSchema(e.detail);
 			}}
 		>
-			<span slot="submit_label">add Property</span>
+			<span slot="submit_button"><button type="button" class="btn btn-info">add Property</button></span>
 		</hb-form>
 	{/if}
 {/each}
