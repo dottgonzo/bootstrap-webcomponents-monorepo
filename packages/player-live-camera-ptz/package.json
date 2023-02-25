@@ -76,7 +76,7 @@
 		"html5-webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "d020be34748863e140d6da06b572ab3ec64756a4",
+	"gitHead": "3314bdf788ce4d05f108102beeedbac6fd4f19e4",
 	"dependencies": {
 		"@htmlbricks/hb-dialog": "^0.19.3",
 		"@htmlbricks/hb-pad-joystick": "^0.19.3",

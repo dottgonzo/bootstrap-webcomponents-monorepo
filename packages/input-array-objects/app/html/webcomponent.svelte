@@ -135,7 +135,7 @@
 		for (const r of Object.keys(detail)) {
 			newObj[r] = detail[r];
 		}
-		value = [...value, detail];
+		value = [...JSON.parse(JSON.stringify(value)), detail];
 		newRows.push(newObj);
 		tableRows = newRows;
 	}
