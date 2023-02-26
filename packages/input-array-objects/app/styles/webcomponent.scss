@@ -9,8 +9,10 @@
 }
 
 .properties-container {
-	margin: 20px 10px 20px 10px;
+	margin-top: 10px;
+	padding: 15px 10px 50px 10px;
 	display: block;
+	border: 1px solid #e0e0e0;
 }
 
 // hb-form {
@@ -19,6 +21,6 @@
 // }
 
 hb-form::part(button_container) {
-	float: right;
 	margin-right: 20px;
+	float: right;
 }
