@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-sidenav-button",
 	"displayName": "Svelte Boostrap sidenavlink",
 	"description": "Svelte Boostrap sidenavlink",
-	"version": "0.19.19",
+	"version": "0.19.20",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"

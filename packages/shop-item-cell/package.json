@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-shop-item-cell",
 	"displayName": "Svelte Shop Item Cell WebComponent",
 	"description": "Svelte Shop Item Cell WebComponent",
-	"version": "0.19.19",
+	"version": "0.19.20",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"

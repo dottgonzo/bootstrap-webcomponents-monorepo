@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-input-range",
 	"displayName": "Svelte-Bootstrap Number Input WebComponent",
 	"description": "Svelte-Bootstrap Number Input WebComponent",
-	"version": "0.19.19",
+	"version": "0.19.20",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
