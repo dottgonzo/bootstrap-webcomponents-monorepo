@@ -368,10 +368,6 @@
 	}
 </script>
 
-TO BE DONE
-<br />
-<br />
-
 <!-- {#each outputSchema as sch (sch.id)}
 	<div>
 		{sch.label} added
