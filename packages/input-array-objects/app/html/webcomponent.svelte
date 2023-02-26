@@ -161,26 +161,33 @@
 
 {#each arrayOfResults as sch (sch.id)}
 	{#if sch.id === arrayOfResults[arrayOfResults.length - 1].id}
-		<hb-table
-			disablepagination="yes"
-			style={tableStyleToSet}
-			actions={JSON.stringify(tableActions)}
-			headers={JSON.stringify(tableHeaders)}
-			rows={JSON.stringify(tableRows)}
-			on:tableaction={(e) => {
-				onTableAction(e.detail);
-			}}
-		/>
+		<div part="properties-container" class="properties-container">
+			<hb-table
+				disablepagination="yes"
+				style={tableStyleToSet}
+				actions={JSON.stringify(tableActions)}
+				headers={JSON.stringify(tableHeaders)}
+				rows={JSON.stringify(tableRows)}
+				on:tableaction={(e) => {
+					onTableAction(e.detail);
+				}}
+			/>
 
-		<hb-form
-			style={formStyleToSet}
-			schema={JSON.stringify(sch.schema)}
-			on:submit={(e) => {
-				addSchema(e.detail);
-			}}
-		>
-			<span slot="submit_button"><button type="button" class="btn btn-info">add Property</button></span>
-		</hb-form>
+			<hb-form
+				style={formStyleToSet}
+				schema={JSON.stringify(sch.schema)}
+				on:submit={(e) => {
+					addSchema(e.detail);
+				}}
+			>
+				<span class="slotted-submit" slot="submit_button"
+					><button type="button" class="btn btn-info"
+						><slot name="add-object-label">{schemaentry?.params?.addPropertyLabel ? schemaentry.params.addPropertyLabel : "add Property"}</slot
+						></button
+					></span
+				>
+			</hb-form>
+		</div>
 	{/if}
 {/each}
 

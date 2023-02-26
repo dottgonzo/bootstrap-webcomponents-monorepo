@@ -8,7 +8,17 @@
 	// width: fit-content;
 }
 
-hb-form {
+.properties-container {
 	margin: 20px 10px 20px 10px;
 	display: block;
+}
+
+// hb-form {
+// 	margin: 20px 10px 20px 10px;
+// 	display: block;
+// }
+
+hb-form::part(button_container) {
+	float: right;
+	margin-right: 20px;
 }
