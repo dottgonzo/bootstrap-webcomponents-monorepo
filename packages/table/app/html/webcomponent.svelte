@@ -534,7 +534,7 @@
 	}
 
 	function handleAddItem() {
-		dispatch("addItem", {});
+		dispatch("addItem", { id });
 	}
 </script>
 
@@ -846,7 +846,7 @@
 						><slot name="add-button-content"><i class="bi-plus" /></slot></button
 					>
 				{/if}
-				<slot name="buttons-container-slot" />
+				<slot name="buttons-container" />
 				{#if disablepagination !== true}
 					<hb-paginate
 						style="float:right;{paginateStyleToSet}"

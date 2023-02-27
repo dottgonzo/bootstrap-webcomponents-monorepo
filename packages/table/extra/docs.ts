@@ -26,6 +26,7 @@ export const storybookArgs = {
 	externalfilter: { control: { type: "boolean" } },
 	pages: { control: { type: "number" } },
 	clipboardCopyText: { action: "pagechangeEvent" },
+	addItem: { action: "addItemEvent" },
 };
 
 const cssVars: CssVar[] = [
@@ -37,7 +38,7 @@ const cssVars: CssVar[] = [
 	{ name: "--bs-danger", valueType: "color", theme: "bootstrap", defaultValue: "#f67280" },
 ];
 export const cssParts: CssPart[] = [];
-export const htmlSlots: HtmlSlot[] = [];
+export const htmlSlots: HtmlSlot[] = [{ name: "add-button-content" }, { name: "buttons-container" }];
 export const i18nLanguages: i18nLang[] = [];
 
 export const styleSetup: StyleSetup = {

@@ -84,4 +84,5 @@ export type Events = {
 	confirmActionModalForm: { action: string; id: string; confirm: boolean };
 	confirmActionModal: { action: string; id: string; confirm: boolean };
 	clipboardCopyText: { text: string };
+	addItem: { id: string };
 };
