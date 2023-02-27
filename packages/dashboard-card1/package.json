@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-dashboard-card1",
 	"displayName": "Svelte Area Code WebComponent",
 	"description": "Svelte Area Code WebComponent",
-	"version": "0.19.22",
+	"version": "0.19.23",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
