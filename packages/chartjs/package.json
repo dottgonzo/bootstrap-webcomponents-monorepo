@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-chartjs",
 	"displayName": "Svelte-Bootstrap chartjs",
 	"description": "Svelte-Bootstrap chartjs",
-	"version": "0.19.23",
+	"version": "0.19.24",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
