@@ -77,10 +77,9 @@
 			if (date && date.valueOf() > 10000 && date.valueOf() < 10000000000000) {
 				console.info("converting date");
 				value_date = date.toISOString().split("T")[0];
-				const rest = date.toISOString().split("T")[1].split(":");
-				value_hours = rest[0];
-				value_minutes = rest[1];
-				value_seconds = rest[2].split(".")[0];
+				value_hours = date.getHours();
+				value_minutes = date.getMinutes();
+				value_seconds = date.getSeconds();
 				schemaDate = {
 					id: "date",
 					type: "date",
