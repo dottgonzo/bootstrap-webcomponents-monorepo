@@ -51,7 +51,7 @@
 		// 		console.error("error parsing schema", err);
 		// 	}
 		// }
-		if (!schema) schema = [];
+		if (!schema?.length) schema = [];
 		if (!describedby) describedby = "";
 		if (!labelledby) labelledby = "";
 		if (!content) content = "";
@@ -108,7 +108,7 @@
 	>
 		<div slot="body-content">
 			<div><slot name="form-header" /></div>
-			<div><hb-form style={formStyleToSet} {schema} on:change={(e) => changeForm(e.detail)} hide_submit="yes" /></div>
+			{#if schema?.length}<div><hb-form style={formStyleToSet} {schema} on:change={(e) => changeForm(e.detail)} hide_submit="yes" /></div>{/if}
 			<div><slot name="form-footer" /></div>
 		</div>
 		{#if $$slots.header}
