@@ -63,7 +63,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				required: true,
 				label: "Last Name",
 				validationTip: "This field cannot be empty.",
-				value: "2022-06-23T13:41:10.107Z",
+				value: "2022-06-23T05:09:08.107Z",
 			},
 		},
 	},

@@ -76,7 +76,7 @@
 			console.info("now date is", date.valueOf());
 			if (date && date.valueOf() > 10000 && date.valueOf() < 10000000000000) {
 				console.info("converting date");
-				value_date = date.toISOString().split("T")[0];
+				value_date = `${date.getFullYear()}-${date.getMonth().toString().padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
 				value_hours = date.getHours();
 				value_minutes = date.getMinutes();
 				value_seconds = date.getSeconds();
@@ -127,7 +127,11 @@
 			console.log("NOW", value_date, value_hours, value_minutes);
 
 			try {
-				value = new Date(`${value_date} ${value_hours}:${value_minutes}:${value_seconds || 0}`).toISOString();
+				value = new Date(
+					`${value_date} ${value_hours.toString().padStart(2, "0")}:${value_minutes.toString().padStart(2, "0")}:${
+						value_seconds.toString().padStart(2, "0") || "00"
+					}`,
+				).toISOString();
 			} catch (err) {
 				console.error("convert error", err);
 			}
