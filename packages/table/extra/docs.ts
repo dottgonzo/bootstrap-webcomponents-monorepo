@@ -8,6 +8,7 @@ export const storybookArgs = {
 	enableselect: { control: { type: "boolean" } },
 	selectrow: { control: { type: "boolean" } },
 	disablepagination: { control: { type: "boolean" } },
+	add_item: { control: { type: "boolean" } },
 	rows: { control: { type: "array" } },
 	headers: { control: { type: "array" } },
 	actions: { control: { type: "array" } },

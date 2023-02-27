@@ -47,6 +47,7 @@
 	export let selectrow: string;
 	export let enableselect: string;
 	export let disablepagination: boolean;
+	export let add_item: boolean;
 
 	if (!id) {
 		id = null;
@@ -67,6 +68,14 @@
 			paginateStyleToSet = getChildStyleToPass(parsedStyle, paginateStyleSetup?.vars);
 			dialogStyleToSet = getChildStyleToPass(parsedStyle, dialogStyleSetup?.vars);
 			dialogformStyleToSet = getChildStyleToPass(parsedStyle, dialogformStyleSetup?.vars);
+		}
+		if (!add_item) add_item = false;
+		if (typeof add_item === "string") {
+			if (add_item === "true" || add_item === "yes") {
+				add_item = true;
+			} else {
+				add_item = false;
+			}
 		}
 		if (!modalConfirm) {
 			modalConfirm = {
@@ -523,6 +532,10 @@
 		navigator.clipboard.writeText(content);
 		dispatch("clipboardCopyText", { text: content });
 	}
+
+	function handleAddItem() {
+		dispatch("addItem", {});
+	}
 </script>
 
 <svelte:head>
@@ -812,20 +825,28 @@
 			</table>
 			<nav style="margin-top:20px" aria-label="actions on selected">
 				{#if selectactions?.length}
-					<button on:click={handleEnableSelector} class="btn btn-primary btn-sm"> <i class="bi-gear" /> </button>
-					{#each selectactions as sbutton (sbutton.name)}
-						<span style="margin-left:20px">
-							<button
-								on:click={() => {
-									handleClickOnMultipleSelectAction(sbutton.name);
-								}}
-								class="btn btn-primary btn-sm"
-							>
-								{sbutton.name}
-							</button>
-						</span>
-					{/each}
+					<button on:click={handleEnableSelector} class="btn btn-{enableselect ? 'primary' : 'secondary'} btn-sm"> <i class="bi-gear" /> </button>
+					{#if enableselect}
+						{#each selectactions as sbutton (sbutton.name)}
+							<span style="margin-left:20px">
+								<button
+									on:click={() => {
+										handleClickOnMultipleSelectAction(sbutton.name);
+									}}
+									class="btn btn-primary btn-sm"
+								>
+									{sbutton.name}
+								</button>
+							</span>
+						{/each}
+					{/if}
 				{/if}
+				{#if !enableselect && add_item}
+					<button style="margin-left:20px" on:click={handleAddItem} class="btn btn-primary btn-sm"
+						><slot name="add-button-content"><i class="bi-plus" /></slot></button
+					>
+				{/if}
+				<slot name="buttons-container-slot" />
 				{#if disablepagination !== true}
 					<hb-paginate
 						style="float:right;{paginateStyleToSet}"
