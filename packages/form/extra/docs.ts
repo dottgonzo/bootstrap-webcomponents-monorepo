@@ -177,7 +177,7 @@ const preferences = [
 		id: "lastName6kk6",
 		required: true,
 		validationTip: "This field cannot be empty.",
-		value: "2022-06-23T13:41:10.107Z",
+		value: "1984-02-27",
 	},
 ];
 const schemaFile = [
