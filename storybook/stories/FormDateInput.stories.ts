@@ -49,3 +49,10 @@ FormDateInputIn27Febb2022.args = setStorybookData(
   componentSetup.examples.find((f) => f.name === "in27Febb2022") ||
     (undefined as any)
 );
+export const FormDateInputDate27Febb2023 = Template.bind({});
+
+FormDateInputDate27Febb2023.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "date27Febb2023") ||
+    (undefined as any)
+);
