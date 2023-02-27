@@ -258,8 +258,8 @@
 		}
 	}
 	function changeSeconds(e) {
-		console.log("changeMinutes", e);
-		value_minutes = e;
+		console.log("changeSeconds", e);
+		value_seconds = e;
 	}
 </script>
 
