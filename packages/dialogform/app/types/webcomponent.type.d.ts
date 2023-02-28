@@ -20,4 +20,5 @@ export type Component = {
 export type Events = {
 	modalFormConfirm: { [key: string]: any };
 	modalShow: { id: string; show: true };
+	modalFormCancel: { id: string; error?: string };
 };

@@ -11,6 +11,7 @@
 	import type { Component, TFormSchemaGeneretor4Prop, Events } from "@app/types/webcomponent.type";
 	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
 	import { styleSetup as tableStyleSetup } from "../../node_modules/@htmlbricks/hb-table/release/docs";
+	import { styleSetup as dialogformStyleSetup } from "../../node_modules/@htmlbricks/hb-dialogform/release/docs";
 	import type { Component as FormComponent, Events as FormEvents } from "../../node_modules/@htmlbricks/hb-form/release/webcomponent.type";
 	import type { Component as TableComponent, Events as TableEvents } from "../../node_modules/@htmlbricks/hb-table/release/webcomponent.type";
 
@@ -140,14 +141,14 @@
 									placeholder: "Condition Property name...",
 									id: "conditionlabel",
 									required: true,
-									label: "Condition Label",
+									label: "Label",
 									validationTip: "This field cannot be empty.",
 								},
 								{
 									type: "text",
 									placeholder: "Condition values (separated by comma)...",
 									id: "conditionvalue",
-									label: "Condition values",
+									label: "Values",
 									validationTip: "This field cannot be empty.",
 								},
 							],
@@ -209,6 +210,7 @@
 	let parsedStyle: { [x: string]: string };
 	//  let componentStyleToSet: string = "";
 	let formStyleToSet: string = "";
+	let dialogformStyleToSet: string = "";
 	let tableStyleToSet: string = "";
 	let formComponent: HTMLElement;
 	const tableActions: TableComponent["actions"] = [
@@ -248,9 +250,11 @@
 		},
 	];
 	let tableRows: TableComponent["rows"];
+	let addPropShow: boolean = false;
 	onMount(() => {
 		addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });
 		addComponent({ repoName: "@htmlbricks/hb-table", version: pkg.version });
+		addComponent({ repoName: "@htmlbricks/hb-dialogform", version: pkg.version });
 		formComponent = component.shadowRoot.getElementById("schema") as HTMLElement;
 		console.log("formComponent", formComponent);
 	});
@@ -260,6 +264,7 @@
 			parsedStyle = parseStyle(style);
 			formStyleToSet = getChildStyleToPass(parsedStyle, formStyleSetup?.vars);
 			tableStyleToSet = getChildStyleToPass(parsedStyle, tableStyleSetup?.vars);
+			dialogformStyleToSet = getChildStyleToPass(parsedStyle, dialogformStyleSetup?.vars);
 		}
 		if (typeof debug === "string" && (debug === "true" || debug === "yes" || debug === "")) debug = true;
 		else if (debug !== true) debug = false;
@@ -302,7 +307,7 @@
 			dep = e.conditions.map((c) => {
 				return {
 					id: c.conditionlabel,
-					values: c.conditionvalue.replace(", ", ",").replace(" ,", ",").split(","),
+					values: c.conditionvalue ? c.conditionvalue.replace(", ", ",").replace(" ,", ",").split(","): undefined,
 				};
 			});
 			// 	dep = {
@@ -390,11 +395,29 @@
 	on:tableaction={(e) => {
 		removeSchema(e.detail.itemId);
 	}}
+	on:addItem={(e) => {
+		addPropShow = true;
+	}}
+	add_item="yes"
 />
-{#if !outputSchema?.length}
-	empty
-{/if}
+
 {#each schema4selectorS as sc (sc.counter)}
+	{#if sc.counter === schema4selectorS.length - 1}
+		<hb-dialogform
+			on:modalFormConfirm={(e) => {
+				addSchema(e.detail);
+				addPropShow = false;
+			}}
+			on:modalFormCancel={(e) => {
+				addPropShow = false;
+			}}
+			show={addPropShow ? "yes" : "no"}
+			schema={sc.schema}
+			style={dialogformStyleToSet}
+		/>
+	{/if}
+{/each}
+<!-- {#each schema4selectorS as sc (sc.counter)}
 	{#if sc.counter === schema4selectorS.length - 1}
 		<hb-form
 			class="mainform"
@@ -413,7 +436,7 @@
 			></hb-form
 		>
 	{/if}
-{/each}
+{/each} -->
 
 {#if debug}
 	<h2 style="margin:60px;text-align:center;color:blue">output</h2>

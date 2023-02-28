@@ -81,8 +81,12 @@
 		if (detail.confirm && formValues && formValues._valid) {
 			dispatch("modalFormConfirm", formValues);
 		} else if (!detail.confirm) {
+			dispatch("modalFormCancel", { id: id });
+
 			console.warn("form submit cancelled");
 		} else {
+			dispatch("modalFormCancel", { id: id, error: "invalid form" });
+
 			console.error("form submit invalid");
 		}
 	}
