@@ -2,7 +2,7 @@
   "name": "root",
   "private": "true",
   "devDependencies": {
-    "lerna": "^5.1.0"
+    "lerna": "^6.5.1"
   },
   "scripts": {
     "install-packages": "npx lerna bootstrap --hoist",
