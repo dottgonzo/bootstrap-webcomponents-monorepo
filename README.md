@@ -22,8 +22,8 @@ To build the components is choosed to use svelte instead of native web component
 
 ## ONLINE RESOURCES
 
-- [Storybook App](https://storybook.freewebcomponents.com)
-- [Demo App](https://demo.freewebcomponents.com)
+- [Storybook App](https://storybook.htmlbricks.borgo.studio)
+- [Demo App](https://debugger.htmlbricks.borgo.studio)
 
 ## HTML QUICK START
 

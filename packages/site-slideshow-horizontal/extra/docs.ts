@@ -28,8 +28,8 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		data: {
 			data: [
 				{ href: "https://via.placeholder.com/300x200/FFFFFF", caption: "HTMLbricks" },
-				{ href: "https://via.placeholder.com/300x200/0000FF", caption: "HTMLbricks2", externalLink: "https://demo.freewebcomponents.com" },
-				{ href: "https://via.placeholder.com/300x200/00FFFF", caption: "HTMLbricks3", link: "https://demo.freewebcomponents.com" },
+				{ href: "https://via.placeholder.com/300x200/0000FF", caption: "HTMLbricks2", externalLink: "https://debugger.htmlbricks.borgo.studio" },
+				{ href: "https://via.placeholder.com/300x200/00FFFF", caption: "HTMLbricks3", link: "https://debugger.htmlbricks.borgo.studio" },
 				{ href: "https://via.placeholder.com/300x200/a94949", caption: "HTMLbricks4", key: "htmlbricks" },
 				{ href: "https://via.placeholder.com/300x200/49a962", caption: "HTMLbricks5" },
 				{ href: "https://via.placeholder.com/300x200/49a9a0", caption: "HTMLbricks6" },
@@ -50,9 +50,9 @@ const examples: { name: string; description?: string; data: Component }[] = [
 					href: "https://via.placeholder.com/300x200/0000FF",
 					caption: "HTMLbricks2",
 					duration: "00:33",
-					externalLink: "https://demo.freewebcomponents.com",
+					externalLink: "https://debugger.htmlbricks.borgo.studio",
 				},
-				{ href: "https://via.placeholder.com/300x200/00FFFF", caption: "HTMLbricks3", link: "https://demo.freewebcomponents.com" },
+				{ href: "https://via.placeholder.com/300x200/00FFFF", caption: "HTMLbricks3", link: "https://debugger.htmlbricks.borgo.studio" },
 				{ href: "https://via.placeholder.com/300x200/a94949", caption: "HTMLbricks4", key: "htmlbricks" },
 				{ href: "https://via.placeholder.com/300x200/49a962", caption: "HTMLbricks5" },
 				{ href: "https://via.placeholder.com/300x200/49a9a0", caption: "HTMLbricks6" },

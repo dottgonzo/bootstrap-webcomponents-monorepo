@@ -48,7 +48,7 @@
 						placeholder: "Select something here...",
 						id: "type",
 						required: true,
-						label: "Selection of something",
+						label: "Type",
 						validationTip: "This field cannot be empty.",
 						params: {
 							options: [
@@ -130,6 +130,8 @@
 			label: "conditions",
 			id: "conditions",
 			params: {
+				addPropertyLabel: "add condition",
+
 				schema: [
 					{
 						id: "conditions-row",
@@ -169,6 +171,8 @@
 			id: "options",
 			validationTip: "This field cannot be empty.",
 			params: {
+				addPropertyLabel: "add option",
+
 				schema: [
 					{
 						id: "options-row",
@@ -177,17 +181,17 @@
 							columns: [
 								{
 									type: "text",
-									placeholder: "Option Property name...",
+									placeholder: "Property name...",
 									id: "optionlabel",
 									required: true,
-									label: "Option Label",
+									label: "Label",
 									validationTip: "This field cannot be empty.",
 								},
 								{
 									type: "text",
-									placeholder: "Option value...",
+									placeholder: "Value...",
 									id: "optionvalue",
-									label: "Option value",
+									label: "Value",
 									required: true,
 									validationTip: "This field cannot be empty.",
 								},
@@ -404,6 +408,7 @@
 {#each schema4selectorS as sc (sc.counter)}
 	{#if sc.counter === schema4selectorS.length - 1}
 		<hb-dialogform
+			title="Add property"
 			on:modalFormConfirm={(e) => {
 				console.log(e.detail);
 				addSchema(e.detail);

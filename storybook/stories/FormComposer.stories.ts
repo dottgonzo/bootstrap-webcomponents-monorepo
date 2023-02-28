@@ -28,3 +28,10 @@ FormComposerDefault.args = setStorybookData(
   componentSetup.examples.find((f) => f.name === "default") ||
     (undefined as any)
 );
+
+export const FormComposerDebug = Template.bind({});
+
+FormComposerDebug.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "debug") || (undefined as any)
+);

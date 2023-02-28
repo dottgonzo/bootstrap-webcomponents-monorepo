@@ -26,8 +26,8 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	// 	data: {
 	// 		config: {
 	// 			site: {
-	// 				name: "demo.freewebcomponents.com",
-	// 				url: "https://demo.freewebcomponents.com",
+	// 				name: "debugger.htmlbricks.borgo.studio",
+	// 				url: "https://debugger.htmlbricks.borgo.studio",
 	// 			},
 	// 			company: {
 	// 				name: "FWC Inc.",
@@ -42,10 +42,10 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				collectedData: { dataTypes: [], scopes: [] },
 				id: "privacy-doc-italian",
 				site: {
-					name: "demo.freewebcomponents.com",
-					url: "https://demo.freewebcomponents.com",
-					privacyPolicyUri: "https://demo.freewebcomponents.com/privacy_policy",
-					cookiePolicyUri: "https://demo.freewebcomponents.com/cookie_law",
+					name: "debugger.htmlbricks.borgo.studio",
+					url: "https://debugger.htmlbricks.borgo.studio",
+					privacyPolicyUri: "https://debugger.htmlbricks.borgo.studio/privacy_policy",
+					cookiePolicyUri: "https://debugger.htmlbricks.borgo.studio/cookie_law",
 				},
 				company: {
 					name: "FWC Inc.",
@@ -63,10 +63,10 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			data: {
 				id: "cookie-doc-italian",
 				site: {
-					name: "demo.freewebcomponents.com",
-					url: "https://demo.freewebcomponents.com",
-					privacyPolicyUri: "https://demo.freewebcomponents.com/privacy_policy",
-					cookiePolicyUri: "https://demo.freewebcomponents.com/cookie_law",
+					name: "debugger.htmlbricks.borgo.studio",
+					url: "https://debugger.htmlbricks.borgo.studio",
+					privacyPolicyUri: "https://debugger.htmlbricks.borgo.studio/privacy_policy",
+					cookiePolicyUri: "https://debugger.htmlbricks.borgo.studio/cookie_law",
 				},
 				company: {
 					name: "FWC Inc.",
@@ -149,10 +149,10 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			data: {
 				id: "cookie-doc-english",
 				site: {
-					name: "demo.freewebcomponents.com",
-					url: "https://demo.freewebcomponents.com",
-					privacyPolicyUri: "https://demo.freewebcomponents.com/privacy_policy",
-					cookiePolicyUri: "https://demo.freewebcomponents.com/cookie_law",
+					name: "debugger.htmlbricks.borgo.studio",
+					url: "https://debugger.htmlbricks.borgo.studio",
+					privacyPolicyUri: "https://debugger.htmlbricks.borgo.studio/privacy_policy",
+					cookiePolicyUri: "https://debugger.htmlbricks.borgo.studio/cookie_law",
 				},
 				company: {
 					name: "FWC Inc.",
@@ -235,10 +235,10 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			data: {
 				id: "cookie-doc-english",
 				site: {
-					name: "demo.freewebcomponents.com",
-					url: "https://demo.freewebcomponents.com",
-					privacyPolicyUri: "https://demo.freewebcomponents.com/privacy_policy",
-					cookiePolicyUri: "https://demo.freewebcomponents.com/cookie_law",
+					name: "debugger.htmlbricks.borgo.studio",
+					url: "https://debugger.htmlbricks.borgo.studio",
+					privacyPolicyUri: "https://debugger.htmlbricks.borgo.studio/privacy_policy",
+					cookiePolicyUri: "https://debugger.htmlbricks.borgo.studio/cookie_law",
 				},
 				company: {
 					name: "FWC Inc.",

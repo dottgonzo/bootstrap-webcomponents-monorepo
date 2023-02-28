@@ -19,6 +19,10 @@ export const styleSetup: StyleSetup = {
 const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
+		data: {},
+	},
+	{
+		name: "debug",
 		data: {
 			debug: true,
 		},
