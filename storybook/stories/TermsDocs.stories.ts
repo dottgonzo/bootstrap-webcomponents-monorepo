@@ -24,8 +24,10 @@ const Template: Story = (args) =>
 export const PrivacyDocItalian1 = Template.bind({});
 PrivacyDocItalian1.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples[0]
+  componentSetup.examples.find((f) => f.name === "italian") ||
+    (undefined as any)
 );
+
 export const CookieDocItalian1 = Template.bind({});
 CookieDocItalian1.args = setStorybookData(
   componentSetup.name,
