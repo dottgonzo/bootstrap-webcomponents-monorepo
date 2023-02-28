@@ -827,18 +827,21 @@
 				{#if selectactions?.length}
 					<button on:click={handleEnableSelector} class="btn btn-{enableselect ? 'primary' : 'secondary'} btn-sm"> <i class="bi-gear" /> </button>
 					{#if enableselect}
-						{#each selectactions as sbutton (sbutton.name)}
-							<span style="margin-left:20px">
-								<button
-									on:click={() => {
-										handleClickOnMultipleSelectAction(sbutton.name);
-									}}
-									class="btn btn-primary btn-sm"
-								>
-									{sbutton.name}
-								</button>
+						{#if selectactions?.length}
+							<span style="margin-left:20px" class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+								{#each selectactions as sbutton (sbutton.name)}
+									<button
+										type="button"
+										on:click={() => {
+											handleClickOnMultipleSelectAction(sbutton.name);
+										}}
+										class="btn btn-outline-primary"
+									>
+										{sbutton.name}
+									</button>
+								{/each}
 							</span>
-						{/each}
+						{/if}
 					{/if}
 				{/if}
 				{#if !enableselect && add_item}
