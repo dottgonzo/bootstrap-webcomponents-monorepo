@@ -27,7 +27,7 @@
 	export let style: string;
 	export let debug: boolean;
 
-	let outputSchema: FormComponent["schema"] = [];
+	export let output_schema: FormComponent["schema"];
 
 	const schema4selector: FormComponent["schema"] = [
 		{
@@ -217,18 +217,18 @@
 	let dialogformStyleToSet: string = "";
 	let tableStyleToSet: string = "";
 	let formComponent: HTMLElement;
-	const tableActions: TableComponent["actions"] = [
-		{
-			name: "delete",
-			type: "icon",
-			iconOrText: "x-octagon-fill",
-		},
-		// {
-		// 	name: "edit",
-		// 	type: "icon",
-		// 	iconOrText: "pencil-square",
-		// },
-	];
+	// const tableActions: TableComponent["actions"] = [
+	// 	// {
+	// 	// 	name: "delete",
+	// 	// 	type: "icon",
+	// 	// 	iconOrText: "x-octagon-fill",
+	// 	// },
+	// 	// {
+	// 	// 	name: "edit",
+	// 	// 	type: "icon",
+	// 	// 	iconOrText: "pencil-square",
+	// 	// },
+	// ];
 	const tableHeaders: TableComponent["headers"] = [
 		{
 			label: "Label",
@@ -252,6 +252,12 @@
 			label: "required",
 			key: "required",
 		},
+		{
+			label: "modifiche",
+			key: "mod",
+			type: "actions",
+			nosort: true,
+		},
 	];
 	let tableRows: TableComponent["rows"];
 	let addPropShow: boolean = false;
@@ -270,11 +276,21 @@
 			tableStyleToSet = getChildStyleToPass(parsedStyle, tableStyleSetup?.vars);
 			dialogformStyleToSet = getChildStyleToPass(parsedStyle, dialogformStyleSetup?.vars);
 		}
+		if (typeof output_schema === "string" && output_schema !== "") {
+			try {
+				console.log("parsing output_schema");
+
+				output_schema = JSON.parse(output_schema);
+			} catch (error) {
+				console.error("error parsing output_schema", error);
+			}
+		}
+		if (!output_schema) output_schema = [];
 		if (typeof debug === "string" && (debug === "true" || debug === "yes" || debug === "")) debug = true;
 		else if (debug !== true) debug = false;
 		if (!schema4selectorS) schema4selectorS = [{ counter: 0, schema: JSON.stringify(schema4selector) }];
 		const newTableRows: TableComponent["rows"] = [];
-		for (const sc of outputSchema) {
+		for (const sc of output_schema) {
 			let depsString: string;
 			let paramsString: string;
 			if (sc.params) {
@@ -290,6 +306,18 @@
 				params: paramsString,
 				required: sc.required,
 				dependencies: depsString,
+				_actions: [
+					{
+						name: "delete",
+						type: "icon",
+						iconOrText: "x-octagon-fill",
+					},
+					// {
+					// 	name: "edit",
+					// 	type: "icon",
+					// 	iconOrText: "pencil-square",
+					// },
+				],
 				// options: sc.options ? sc.options.map((o) => o.label).join(", ") : "",
 			});
 		}
@@ -346,16 +374,16 @@
 			newFormSchema.params = params;
 		}
 
-		if (outputSchema.find((f) => f.label === e.label)) {
+		if (output_schema.find((f) => f.label === e.label)) {
 			// replace previous outputScheme
-			outputSchema = outputSchema.map((f) => {
+			output_schema = output_schema.map((f) => {
 				if (f.label === e.label) {
 					return newFormSchema;
 				} else return f;
 			});
 		} else {
-			// add new outputSchema
-			outputSchema = [...outputSchema, newFormSchema];
+			// add new output_schema
+			output_schema = [...output_schema, newFormSchema];
 		}
 
 		schema4selectorS = [...schema4selectorS, { counter: schema4selectorS.length, schema: JSON.stringify(schema4selector) }];
@@ -367,17 +395,20 @@
 		// c.innerHTML=formComponent
 	}
 	function removeSchema(label: string) {
-		console.log(label, outputSchema);
-		outputSchema = outputSchema.filter((e) => e.label !== label);
+		console.log(label, output_schema);
+		const thelabel = output_schema.find((e) => e.label === label);
+		if (thelabel?.params?.default) return console.warn("cannot remove default value");
+
+		output_schema = output_schema.filter((e) => e.label !== label);
 		schema4selectorS = schema4selectorS.filter((e) => e.counter !== schema4selectorS.length - 1);
 	}
 	function dispatchDone() {
-		const toDispatch: Events["done"] = { schema: outputSchema, id };
+		const toDispatch: Events["done"] = { schema: output_schema, id };
 		dispatch("done", toDispatch);
 	}
 </script>
 
-<!-- {#each outputSchema as sch (sch.id)}
+<!-- {#each output_schema as sch (sch.id)}
 	<div>
 		{sch.label} added
 
@@ -393,17 +424,18 @@
 	id="table_specs"
 	style={tableStyleToSet}
 	disablepagination="yes"
-	actions={JSON.stringify(tableActions)}
 	headers={JSON.stringify(tableHeaders)}
 	rows={JSON.stringify(tableRows)}
-	on:tableaction={(e) => {
-		removeSchema(e.detail.itemId);
+	on:tableCustomActionClick={(e) => {
+		if (e.detail.action === "delete") removeSchema(e.detail.itemId);
 	}}
 	on:addItem={(e) => {
 		addPropShow = true;
 	}}
 	add_item="yes"
-/>
+>
+	<span slot="buttons-container"><button class="btn btn-outline-primary btn-sm" on:click={dispatchDone}>done</button></span>
+</hb-table>
 
 {#each schema4selectorS as sc (sc.counter)}
 	{#if sc.counter === schema4selectorS.length - 1}
@@ -451,8 +483,8 @@
 
 {#if debug}
 	<h2 style="margin:60px;text-align:center;color:blue">output</h2>
-	{#if outputSchema?.length}
-		<hb-form hide_submit="yes" schema={JSON.stringify(outputSchema)} style={formStyleToSet} />
+	{#if output_schema?.length}
+		<hb-form hide_submit="yes" schema={JSON.stringify(output_schema)} style={formStyleToSet} />
 	{:else}
 		...no output
 	{/if}

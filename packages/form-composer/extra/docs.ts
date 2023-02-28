@@ -3,6 +3,7 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	debug: { control: { type: "boolean" } },
+	output_schema: { control: { type: "object" } },
 	done: { action: "doneEvent" },
 };
 
@@ -25,6 +26,27 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "debug",
 		data: {
 			debug: true,
+		},
+	},
+	{
+		name: "debug-default",
+		data: {
+			debug: true,
+			output_schema: [
+				{
+					id: "name",
+					conditional: false,
+					label: "Name",
+					max: 100,
+					min: 0,
+					required: true,
+					placeholder: "Enter your name",
+					type: "text",
+					params: {
+						default: true,
+					},
+				},
+			],
 		},
 	},
 ];
