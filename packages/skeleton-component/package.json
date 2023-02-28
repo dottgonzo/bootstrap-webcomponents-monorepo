@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-skeleton-component",
 	"displayName": "Svelte-Bootstrap skeleton-component",
 	"description": "Svelte-Bootstrap skeleton-component",
-	"version": "0.19.29",
+	"version": "0.19.30",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
