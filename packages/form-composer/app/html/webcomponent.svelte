@@ -307,7 +307,7 @@
 			dep = e.conditions.map((c) => {
 				return {
 					id: c.conditionlabel,
-					values: c.conditionvalue ? c.conditionvalue.replace(", ", ",").replace(" ,", ",").split(","): undefined,
+					values: c.conditionvalue ? c.conditionvalue.replace(", ", ",").replace(" ,", ",").split(",") : undefined,
 				};
 			});
 			// 	dep = {
@@ -405,11 +405,17 @@
 	{#if sc.counter === schema4selectorS.length - 1}
 		<hb-dialogform
 			on:modalFormConfirm={(e) => {
+				console.log(e.detail);
 				addSchema(e.detail);
 				addPropShow = false;
 			}}
 			on:modalFormCancel={(e) => {
+				console.log("cancelform");
 				addPropShow = false;
+			}}
+			on:modalShow={(e) => {
+				console.log("modalShow");
+				addPropShow = e.detail.show;
 			}}
 			show={addPropShow ? "yes" : "no"}
 			schema={sc.schema}
