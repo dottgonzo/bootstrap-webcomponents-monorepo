@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-offcanvas",
 	"displayName": "Svelte Boostrap Offcanvas",
 	"description": "Svelte Boostrap Offcanvas",
-	"version": "0.19.27",
+	"version": "0.19.28",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -78,8 +78,8 @@
 	"contributors": [],
 	"gitHead": "1eb8ef943f65e70b857c6a5b5ef3465a7760ebaf",
 	"dependencies": {
-		"@htmlbricks/hb-sidebar-desktop": "^0.19.27",
-		"@htmlbricks/hb-sidenav-link": "^0.19.27",
+		"@htmlbricks/hb-sidebar-desktop": "^0.19.28",
+		"@htmlbricks/hb-sidenav-link": "^0.19.28",
 		"style-to-object": "^0.3.0"
 	}
 }
