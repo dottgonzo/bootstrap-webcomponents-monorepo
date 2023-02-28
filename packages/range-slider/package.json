@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-range-slider",
 	"displayName": "Svelte Boostrap Video Card WebComponent",
 	"description": "Svelte Boostrap Video Card WebComponent",
-	"version": "0.19.25",
+	"version": "0.19.26",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
