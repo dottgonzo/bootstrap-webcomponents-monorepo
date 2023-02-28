@@ -42,9 +42,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 					required: true,
 					placeholder: "Enter your name",
 					type: "text",
-					params: {
-						default: true,
-					},
+					value: "abbello",
 				},
 			],
 		},

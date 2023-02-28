@@ -253,6 +253,10 @@
 			key: "required",
 		},
 		{
+			label: "value",
+			key: "value",
+		},
+		{
 			label: "modifiche",
 			key: "mod",
 			type: "actions",
@@ -306,11 +310,13 @@
 				params: paramsString,
 				required: sc.required,
 				dependencies: depsString,
+				value: sc.value,
 				_actions: [
 					{
 						name: "delete",
 						type: "icon",
 						iconOrText: "x-octagon-fill",
+						disabled: sc.value ? true : false,
 					},
 					// {
 					// 	name: "edit",
@@ -397,7 +403,7 @@
 	function removeSchema(label: string) {
 		console.log(label, output_schema);
 		const thelabel = output_schema.find((e) => e.label === label);
-		if (thelabel?.params?.default) return console.warn("cannot remove default value");
+		if (thelabel?.value) return console.warn("cannot remove default value");
 
 		output_schema = output_schema.filter((e) => e.label !== label);
 		schema4selectorS = schema4selectorS.filter((e) => e.counter !== schema4selectorS.length - 1);
