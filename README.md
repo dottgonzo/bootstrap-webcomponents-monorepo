@@ -23,7 +23,7 @@ To build the components is choosed to use svelte instead of native web component
 ## ONLINE RESOURCES
 
 - [Storybook App](https://storybook.htmlbricks.borgo.studio)
-- [Demo App](https://debugger.htmlbricks.borgo.studio)
+- [Demo App](https://docs.htmlbricks.borgo.studio)
 
 ## HTML QUICK START
 
