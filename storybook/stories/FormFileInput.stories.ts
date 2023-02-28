@@ -13,15 +13,6 @@ import {
 const meta = getStorybookMeta(storybookArgs, componentSetup);
 export default meta;
 
-const inputEntry1 = {
-  type: "file",
-  placeholder: "Insert your last name here...",
-  id: "lastName",
-  required: true,
-  label: "Last Name",
-  validationTip: "This field cannot be empty.",
-};
-
 const Template: Story = (args) =>
   webComponentBind(
     args,
@@ -33,5 +24,11 @@ const Template: Story = (args) =>
 export const FormFileInputTemplate = Template.bind({});
 FormFileInputTemplate.args = setStorybookData(
   componentSetup.name,
-  componentSetup.examples[0]
+  componentSetup.examples.find((f) => f.name === "default") ||
+    (undefined as any)
+);
+export const FormFileInputImage = Template.bind({});
+FormFileInputImage.args = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "image") || (undefined as any)
 );
