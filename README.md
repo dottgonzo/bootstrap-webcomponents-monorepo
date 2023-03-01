@@ -40,7 +40,7 @@ To build the components is choosed to use svelte instead of native web component
 
 ```
 
-now you can listen for events from the component by adding:
+now you can listen for custom events from the component by adding:
 
 ```
 <script>
