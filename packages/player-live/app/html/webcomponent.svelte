@@ -108,6 +108,8 @@
 						console.error("cannot autoplay", err);
 					}
 				});
+			} else {
+				console.error("no hls support");
 			}
 		} else if (media_type === "webrtc") {
 			console.info("webrtc", mediauri);
