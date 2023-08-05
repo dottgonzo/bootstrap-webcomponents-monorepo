@@ -17,6 +17,7 @@ export type Component = {
 	is_ptz_connected?: boolean;
 	is_ptz_panel_opened?: boolean;
 	live_uri: string;
+	media_type: "hls" | "webrtc" | "auto" | "whep" | "";
 	presets?: TPreset[];
 	position?: "top" | "right-bottom" | "left-bottom" | "bottom" | "right-top" | "left-top";
 	current_preset?: string;

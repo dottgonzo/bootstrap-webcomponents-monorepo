@@ -30,6 +30,7 @@
 	export let style: string;
 
 	export let live_uri: string;
+	export let media_type: Component["media_type"]
 	export let presets: Component["presets"];
 	export let position: Component["position"];
 	export let configuration: Component["configuration"];
@@ -116,6 +117,7 @@
 	let rectClicks: TrectClicks = {};
 	$: {
 		if (!live_uri) live_uri = "";
+		if(!media_type) media_type = "auto";
 		if (!id) id = "";
 		if (style) {
 			parsedStyle = parseStyle(style);
@@ -478,6 +480,7 @@
 		no_controls="yes"
 		id="player"
 		mediauri={live_uri}
+		{media_type}
 		style={playerLiveStyleSetupToSet}
 	/>
 	<div

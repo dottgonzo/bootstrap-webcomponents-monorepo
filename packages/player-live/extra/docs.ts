@@ -5,7 +5,7 @@ export const storybookArgs = {
 	// width: { control: { type: "text" } },
 	// height: { control: { type: "text" } },
 	media_type: {
-		options: ["", "webrtc", "hls", "auto"],
+		options: ["", "webrtc", "hls", "auto", "whep"],
 		control: { type: "select" }, // Automatically inferred when 'options' is defined
 	},
 	no_controls: { control: { type: "boolean" } },

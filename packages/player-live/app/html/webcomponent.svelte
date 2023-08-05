@@ -18,6 +18,7 @@
 	import { createEventDispatcher, current_component, get_current_component } from "svelte/internal";
 	import type { Component } from "@app/types/webcomponent.type";
 	import WebrtcPlayer from "simple-webrtc-element";
+	import WebrtcWhepPlayer from "simple-webrtc-element-whep";
 
 	export let mediauri: string;
 	export let id: string;
@@ -35,6 +36,7 @@
 	let timeo: number;
 	let isLive: boolean;
 	let webrtcPlayer: WebrtcPlayer;
+	let webrtcWhepPlayer: WebrtcWhepPlayer;
 	let htmlVideo: HTMLVideoElement;
 	$: {
 		if (no_controls && (no_controls as any) !== "no" && (no_controls as any) !== "false") {
@@ -111,6 +113,27 @@
 			} else {
 				console.error("no hls support");
 			}
+		} else if (media_type === "whep") {
+			console.info("whep", mediauri);
+			try {
+				function onOffline() {
+					dispatch("liveStatus", { live: false, id });
+					isLive = false;
+				}
+				function onOnline() {
+					dispatch("liveStatus", { live: true, id });
+					isLive = true;
+				}
+				webrtcWhepPlayer = new WebrtcWhepPlayer({ videoElement, whepUri: mediauri, onOnline, onOffline });
+				try {
+					videoElement.muted = true;
+					videoElement.play();
+				} catch (err) {
+					console.error("cannot autoplay whep", err);
+				}
+			} catch (err) {
+				console.error("whep error ....", err);
+			}
 		} else if (media_type === "webrtc") {
 			console.info("webrtc", mediauri);
 			try {
@@ -128,11 +151,11 @@
 					videoElement.muted = true;
 					videoElement.play();
 				} catch (err) {
-					console.error("cannot autoplay", err);
+					console.error("cannot autoplay webrtc", err);
 				}
 			} catch (err) {
-				console.error("error ....", err);
-			}
+				console.error("webrtc error ....", err);
+			}			
 		} else {
 			console.error("unknown media type", media_type);
 		}

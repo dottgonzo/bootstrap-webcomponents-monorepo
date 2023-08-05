@@ -79,6 +79,7 @@
 	"gitHead": "1eb8ef943f65e70b857c6a5b5ef3465a7760ebaf",
 	"dependencies": {
 		"hls.js": "^1.0.10",
-		"simple-webrtc-element": "^0.0.1"
+		"simple-webrtc-element": "^0.0.1",
+		"simple-webrtc-element-whep": "^0.0.5"
 	}
 }

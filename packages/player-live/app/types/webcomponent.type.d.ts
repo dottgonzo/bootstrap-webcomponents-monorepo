@@ -3,7 +3,7 @@ export type Component = {
 	style?: string;
 	mediauri: string;
 	forcecover?: string;
-	media_type?: "hls" | "webrtc" | "auto" | "whip";
+	media_type?: "hls" | "webrtc" | "auto" | "whep";
 	replacewithtext?: {
 		title: string;
 		subtitle?: string;

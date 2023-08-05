@@ -4,6 +4,10 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	presets: { control: { type: "object" } },
 	live_uri: { control: { type: "text" } },
+	media_type: {
+		options: ["", "webrtc", "hls", "auto", "whep"],
+		control: { type: "select" }, // Automatically inferred when 'options' is defined
+	},
 	current_preset: { control: { type: "text" } },
 	is_home: { control: { type: "boolean" } },
 	is_ptz_connected: { control: { type: "boolean" } },
