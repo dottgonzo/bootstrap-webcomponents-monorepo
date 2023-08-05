@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-editor-video",
 	"displayName": "Svelte Boostrap Video Card WebComponent",
 	"description": "Svelte Boostrap Video Card WebComponent",
-	"version": "0.19.32",
+	"version": "0.19.33",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -30,8 +30,8 @@
 		"prepublish": "npm run build:release"
 	},
 	"dependencies": {
-		"@htmlbricks/hb-form": "^0.19.32",
-		"@htmlbricks/hb-range-slider": "^0.19.32",
+		"@htmlbricks/hb-form": "^0.19.33",
+		"@htmlbricks/hb-range-slider": "^0.19.33",
 		"dayjs": "^1.10.7"
 	},
 	"devDependencies": {
