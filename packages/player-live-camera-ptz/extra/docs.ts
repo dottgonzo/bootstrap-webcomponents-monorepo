@@ -53,6 +53,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			live_uri: "",
 			is_ptz_connected: true,
 			is_ptz_panel_opened: true,
+			media_type: "auto",
 		},
 	},
 
@@ -62,6 +63,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			live_uri: "",
 			is_ptz_connected: true,
 			is_ptz_panel_opened: true,
+			media_type: "auto",
 
 			presets: [
 				{
@@ -85,6 +87,8 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "withPresetSelected",
 		data: {
 			live_uri: "",
+			media_type: "auto",
+
 			is_ptz_connected: true,
 			is_ptz_panel_opened: true,
 			presets: [
@@ -110,6 +114,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "withPanelClosed",
 		data: {
 			live_uri: "",
+			media_type: "auto",
 			is_ptz_connected: true,
 			presets: [
 				{
@@ -133,6 +138,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "disconnected",
 		data: {
+			media_type: "auto",
 			live_uri: "",
 			presets: [],
 			current_preset: "preset1",
