@@ -47,6 +47,8 @@
 	export let enable_recover_password: boolean;
 	export let email: string;
 
+	export let withusername: string
+
 	// export let expectmailconfirm: string;
 
 	let checkValidity: boolean;
@@ -136,6 +138,9 @@
 		}
 		if (!email) {
 			email = "";
+		}
+				if (!withusername) {
+			withusername = "no";
 		}
 		if (!password) {
 			password = "";
@@ -236,7 +241,7 @@
 	// }
 	// console.log(getCookie(cookierequestkeys));
 
-	function checkValidityFn(type: "password" | "email" | "passwordRepeated") {
+	function checkValidityFn(type: "password" | "email" | "passwordRepeated" | "username") {
 		checkValidity = true;
 		if (type === "email") {
 			if (email.length && email.length > 3 && email.split("@").length === 2 && email.split(".")[email.split(".").length - 1]?.length > 1) return true;
@@ -244,12 +249,14 @@
 			if (password.length && password.length > 3 && passwordRepeated === password) return true;
 		} else if (type === "password") {
 			if (password.length && password.length > 3) return true;
+		} else if (type === "username") {
+			if (email.length && email.length > 3) return true;
 		}
 		return false;
 	}
 
 	async function login() {
-		if (checkValidityFn("email") && checkValidityFn("password")) {
+		if (((withusername!=="yes" && checkValidityFn("email")) || (withusername==="yes" && checkValidityFn("username"))) && checkValidityFn("password")) {
 			console.log("request");
 			if (loginuri) {
 				try {
@@ -331,9 +338,17 @@
 		sessionStorage.setItem(sessionkey, tokenStringified);
 	}
 	async function register() {
+										let requestObj:{username?:string, email?:string, password:string} 
+					if(withusername==="yes"){
+						requestObj = { username: email, password };
+					} else {
+						requestObj = { email, password };
+					}
 		if (checkValidityFn("email") && checkValidityFn("password")) {
+
 			if (registeruri) {
 				try {
+
 					let response;
 					if (requestmethod === "GET") {
 						response = await fetch(`${registeruri}`, {
@@ -349,8 +364,7 @@
 							referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 						});
 					} else {
-						let body = { email, password };
-						if (appendbodyparams) Object.assign(body, JSON.parse(appendbodyparams));
+						if (appendbodyparams) Object.assign(requestObj, JSON.parse(appendbodyparams));
 
 						response = await fetch(`${registeruri}`, {
 							method: requestmethod, // *GET, POST, PUT, DELETE, etc.
@@ -363,16 +377,16 @@
 							},
 							redirect: "follow", // manual, *follow, error
 							referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-							body: JSON.stringify(body), // body data type must match "Content-Type" header
+							body: JSON.stringify(requestObj), // body data type must match "Content-Type" header
 						});
 					}
 					const answer = await response.json();
 					answer.ok = true;
-					answer.requestSent = { email, password };
-					const cookie = {
-						email,
-						password,
-					};
+					answer.requestSent = requestObj;
+					// const cookie = {
+					// 	email,
+					// 	password,
+					// };
 					// setLoginCookie(JSON.stringify(cookie));
 
 					if (redirectoncreate) location.href = redirectoncreate;
@@ -389,13 +403,10 @@
 				// setLoginCookie(JSON.stringify(cookie));
 				// if (redirectoncreate) location.href = redirectoncreate;
 
-				dispatch("register", {
-					email,
-					password,
-				});
+				dispatch("register", requestObj);
 			}
 		} else {
-			console.error("invalid register", { email, password });
+			console.error("invalid register", requestObj);
 		}
 	}
 	const component = get_current_component();
