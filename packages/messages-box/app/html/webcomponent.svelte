@@ -12,8 +12,8 @@
 	import type { Events as messageSendEvents } from "@htmlbricks/hb-messages-send/release/webcomponent.type";
 	import type { Component } from "@app/types/webcomponent.type";
 
-	import { styleSetup as messageListStyleSetup } from "../../node_modules/@htmlbricks/hb-messages-list/release/docs";
-	import { styleSetup as messageSendStyleSetup } from "../../node_modules/@htmlbricks/hb-messages-send/release/docs";
+	import { styleSetup as messageListStyleSetup } from "@htmlbricks/hb-messages-list/release/docs";
+	import { styleSetup as messageSendStyleSetup } from "@htmlbricks/hb-messages-send/release/docs";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();

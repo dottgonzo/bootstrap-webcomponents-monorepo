@@ -1,4 +1,4 @@
-import type { Component as FormComponent } from "../../node_modules/@htmlbricks/hb-form/release/webcomponent.type";
+import type { Component as FormComponent } from "@htmlbricks/hb-form/release/webcomponent.type";
 
 export interface IFilter {
 	key: string;

@@ -22,11 +22,11 @@
 	import type { Component } from "../types/webcomponent.type";
 	import parseStyle from "style-to-object";
 
-	import { styleSetup as offcanvasStyleSetup } from "../../node_modules/@htmlbricks/hb-offcanvas/release/docs";
-	import { styleSetup as footerStyleSetup } from "../../node_modules/@htmlbricks/hb-footer/release/docs";
-	import { styleSetup as navbarStyleSetup } from "../../node_modules/@htmlbricks/hb-navbar/release/docs";
-	import { styleSetup as cookieLawBannerStyleSetup } from "../../node_modules/@htmlbricks/hb-cookie-law-banner/release/docs";
-	import { styleSetup as sidebarDesktopStyleSetup } from "../../node_modules/@htmlbricks/hb-sidebar-desktop/release/docs";
+	import { styleSetup as offcanvasStyleSetup } from "@htmlbricks/hb-offcanvas/release/docs";
+	import { styleSetup as footerStyleSetup } from "@htmlbricks/hb-footer/release/docs";
+	import { styleSetup as navbarStyleSetup } from "@htmlbricks/hb-navbar/release/docs";
+	import { styleSetup as cookieLawBannerStyleSetup } from "@htmlbricks/hb-cookie-law-banner/release/docs";
+	import { styleSetup as sidebarDesktopStyleSetup } from "@htmlbricks/hb-sidebar-desktop/release/docs";
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import { LanguageTranslator } from "wc-js-utils";
 

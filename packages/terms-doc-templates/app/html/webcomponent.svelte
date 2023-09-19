@@ -12,7 +12,7 @@
 	import itPrivacyContent from "@app/functions/privacyItContent";
 	import itCookieContent from "@app/functions/cookieItContent";
 	import enCookieContent from "@app/functions/cookieEnContent";
-	import { styleSetup as tableStyleSetup } from "../../node_modules/@htmlbricks/hb-table/release/docs";
+	import { styleSetup as tableStyleSetup } from "@htmlbricks/hb-table/release/docs";
 
 	import type { Component, IDoc, ITPrivacy } from "@app/types/webcomponent.type";
 	import { dictionary } from "@app/functions/i18n";

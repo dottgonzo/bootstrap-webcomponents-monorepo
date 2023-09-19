@@ -8,10 +8,10 @@
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import type { Component } from "@app/types/webcomponent.type";
-	import { styleSetup as stylePaperSetup } from "../../node_modules/@htmlbricks/hb-stylus-paper/release/docs";
-	import { styleSetup as styleInputFileSetup } from "../../node_modules/@htmlbricks/hb-input-file/release/docs";
-	import type { Component as paperComponent, Events as paperEvents } from "../../node_modules/@htmlbricks/hb-stylus-paper/release/webcomponent.type";
-	import type { Component as inputFileComponent, Events as inputFileEvents } from "../../node_modules/@htmlbricks/hb-input-file/release/webcomponent.type";
+	import { styleSetup as stylePaperSetup } from "@htmlbricks/hb-stylus-paper/release/docs";
+	import { styleSetup as styleInputFileSetup } from "@htmlbricks/hb-input-file/release/docs";
+	import type { Component as paperComponent, Events as paperEvents } from "@htmlbricks/hb-stylus-paper/release/webcomponent.type";
+	import type { Component as inputFileComponent, Events as inputFileEvents } from "@htmlbricks/hb-input-file/release/webcomponent.type";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();

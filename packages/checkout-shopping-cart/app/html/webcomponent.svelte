@@ -24,7 +24,7 @@
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
 	let tableStyleToSet: string = "";
-	import { styleSetup as tableStyleSetup } from "../../node_modules/@htmlbricks/hb-table/release/docs";
+	import { styleSetup as tableStyleSetup } from "@htmlbricks/hb-table/release/docs";
 
 	export let id: string;
 

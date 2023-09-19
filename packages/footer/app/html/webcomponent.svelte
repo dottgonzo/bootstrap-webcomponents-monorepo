@@ -19,7 +19,7 @@
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
-	import { styleSetup as contactItemStyleSetup } from "../../node_modules/@htmlbricks/hb-contact-item/release/docs";
+	import { styleSetup as contactItemStyleSetup } from "@htmlbricks/hb-contact-item/release/docs";
 	let contactItemStyleToSet: string = "";
 
 	export let id: string;

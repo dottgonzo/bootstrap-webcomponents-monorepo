@@ -6,7 +6,7 @@
 	import { fly, fade } from "svelte/transition";
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import pkg from "../../package.json";
-	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
+	import { styleSetup as formStyleSetup } from "@htmlbricks/hb-form/release/docs";
 	import type { Component as FormComponent } from "../../../form/app/types/webcomponent.type";
 	import parseStyle from "style-to-object";
 	import type { Component } from "../types/webcomponent.type";

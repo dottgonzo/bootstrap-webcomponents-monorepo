@@ -9,10 +9,10 @@
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import type { Component, CardRowSelected, CardRow } from "@app/types/webcomponent.type";
-	import { styleSetup as navbarStyleSetup } from "../../node_modules/@htmlbricks/hb-navbar/release/docs";
+	import { styleSetup as navbarStyleSetup } from "@htmlbricks/hb-navbar/release/docs";
 
-	import type { Component as SidenavButtonComponent } from "../../node_modules/@htmlbricks/hb-sidenav-button/release/webcomponent.type";
-	import { styleSetup as sidenavButtonStyleSetup } from "../../node_modules/@htmlbricks/hb-sidenav-button/release/docs";
+	import type { Component as SidenavButtonComponent } from "@htmlbricks/hb-sidenav-button/release/webcomponent.type";
+	import { styleSetup as sidenavButtonStyleSetup } from "@htmlbricks/hb-sidenav-button/release/docs";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();

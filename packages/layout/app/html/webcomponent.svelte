@@ -22,8 +22,8 @@
 	import type { Component } from "../types/webcomponent.type";
 	import parseStyle from "style-to-object";
 
-	import { styleSetup as layoutDesktopStyleSetup } from "../../node_modules/@htmlbricks/hb-layout-desktop/release/docs";
-	import { styleSetup as layoutMobileStyleSetup } from "../../node_modules/@htmlbricks/hb-layout-mobile/release/docs";
+	import { styleSetup as layoutDesktopStyleSetup } from "@htmlbricks/hb-layout-desktop/release/docs";
+	import { styleSetup as layoutMobileStyleSetup } from "@htmlbricks/hb-layout-mobile/release/docs";
 
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import { LanguageTranslator } from "wc-js-utils";

@@ -5,8 +5,8 @@
 	import { createEventDispatcher } from "svelte";
 	import type { FormSchemaEntry } from "@app/types/webcomponent.type";
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
-	import { styleSetup as inputNumberStyleSetup } from "../../node_modules/@htmlbricks/hb-input-number/release/docs";
-	import { styleSetup as inputDateStyleSetup } from "../../node_modules/@htmlbricks/hb-input-date/release/docs";
+	import { styleSetup as inputNumberStyleSetup } from "@htmlbricks/hb-input-number/release/docs";
+	import { styleSetup as inputDateStyleSetup } from "@htmlbricks/hb-input-date/release/docs";
 	import parseStyle from "style-to-object";
 	import pkg from "../../package.json";
 

@@ -14,10 +14,10 @@
 	import type { Events as PlayerLiveEvents } from "@htmlbricks/hb-player-live/release/webcomponent.type";
 	import type { Component, Events } from "@app/types/webcomponent.type";
 
-	import { styleSetup as playerLiveStyleSetup } from "../../node_modules/@htmlbricks/hb-player-live/release/docs";
-	import { styleSetup as padJoystickStyleSetup } from "../../node_modules/@htmlbricks/hb-pad-joystick/release/docs";
-	import { styleSetup as tableStyleSetup } from "../../node_modules/@htmlbricks/hb-table/release/docs";
-	import { styleSetup as dialogStyleSetup } from "../../node_modules/@htmlbricks/hb-dialog/release/docs";
+	import { styleSetup as playerLiveStyleSetup } from "@htmlbricks/hb-player-live/release/docs";
+	import { styleSetup as padJoystickStyleSetup } from "@htmlbricks/hb-pad-joystick/release/docs";
+	import { styleSetup as tableStyleSetup } from "@htmlbricks/hb-table/release/docs";
+	import { styleSetup as dialogStyleSetup } from "@htmlbricks/hb-dialog/release/docs";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();

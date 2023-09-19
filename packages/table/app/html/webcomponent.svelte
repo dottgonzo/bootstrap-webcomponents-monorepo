@@ -25,9 +25,9 @@
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
 
-	import { styleSetup as paginateStyleSetup } from "../../node_modules/@htmlbricks/hb-paginate/release/docs";
-	import { styleSetup as dialogStyleSetup } from "../../node_modules/@htmlbricks/hb-dialog/release/docs";
-	import { styleSetup as dialogformStyleSetup } from "../../node_modules/@htmlbricks/hb-dialogform/release/docs";
+	import { styleSetup as paginateStyleSetup } from "@htmlbricks/hb-paginate/release/docs";
+	import { styleSetup as dialogStyleSetup } from "@htmlbricks/hb-dialog/release/docs";
+	import { styleSetup as dialogformStyleSetup } from "@htmlbricks/hb-dialogform/release/docs";
 	let paginateStyleToSet: string = "";
 	let dialogStyleToSet: string = "";
 	let dialogformStyleToSet: string = "";

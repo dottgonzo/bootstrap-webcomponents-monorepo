@@ -23,8 +23,8 @@
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
-	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
-	import { styleSetup as rangeSliderStyleSetup } from "../../node_modules/@htmlbricks/hb-range-slider/release/docs";
+	import { styleSetup as formStyleSetup } from "@htmlbricks/hb-form/release/docs";
+	import { styleSetup as rangeSliderStyleSetup } from "@htmlbricks/hb-range-slider/release/docs";
 	let formStyleToSet: string = "";
 	let rangeSliderStyleToSet: string = "";
 

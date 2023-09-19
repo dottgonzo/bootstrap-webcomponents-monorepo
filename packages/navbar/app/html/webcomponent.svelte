@@ -16,7 +16,7 @@
 	import pkg from "../../package.json";
 	import type { IUserMenu } from "@app/types/webcomponent.type";
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
-	import { styleSetup as dropdownSimpleStyleSetup } from "../../node_modules/@htmlbricks/hb-dropdown-simple/release/docs";
+	import { styleSetup as dropdownSimpleStyleSetup } from "@htmlbricks/hb-dropdown-simple/release/docs";
 
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };

@@ -24,8 +24,8 @@
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
-	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
-	import { styleSetup as paymentPaypalStyleSetup } from "../../node_modules/@htmlbricks/hb-payment-paypal/release/docs";
+	import { styleSetup as formStyleSetup } from "@htmlbricks/hb-form/release/docs";
+	import { styleSetup as paymentPaypalStyleSetup } from "@htmlbricks/hb-payment-paypal/release/docs";
 	let formStyleToSet: string = "";
 	let paymentPaypalStyleToSet: string = "";
 

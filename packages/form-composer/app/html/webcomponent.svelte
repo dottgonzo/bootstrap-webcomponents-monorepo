@@ -9,11 +9,11 @@
 	import parseStyle from "style-to-object";
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import type { Component, TFormSchemaGeneretor4Prop, Events } from "@app/types/webcomponent.type";
-	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
-	import { styleSetup as tableStyleSetup } from "../../node_modules/@htmlbricks/hb-table/release/docs";
-	import { styleSetup as dialogformStyleSetup } from "../../node_modules/@htmlbricks/hb-dialogform/release/docs";
-	import type { Component as FormComponent, Events as FormEvents } from "../../node_modules/@htmlbricks/hb-form/release/webcomponent.type";
-	import type { Component as TableComponent, Events as TableEvents } from "../../node_modules/@htmlbricks/hb-table/release/webcomponent.type";
+	import { styleSetup as formStyleSetup } from "@htmlbricks/hb-form/release/docs";
+	import { styleSetup as tableStyleSetup } from "@htmlbricks/hb-table/release/docs";
+	import { styleSetup as dialogformStyleSetup } from "@htmlbricks/hb-dialogform/release/docs";
+	import type { Component as FormComponent, Events as FormEvents } from "@htmlbricks/hb-form/release/webcomponent.type";
+	import type { Component as TableComponent, Events as TableEvents } from "@htmlbricks/hb-table/release/webcomponent.type";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();

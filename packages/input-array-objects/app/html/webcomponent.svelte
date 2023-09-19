@@ -8,12 +8,12 @@
 	export let set_valid: boolean;
 	export let show_validation: "yes" | "no";
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
-	import type { Component as TableComponent, Events as TableEvents } from "../../node_modules/@htmlbricks/hb-table/release/webcomponent.type";
+	import type { Component as TableComponent, Events as TableEvents } from "@htmlbricks/hb-table/release/webcomponent.type";
 
 	import pkg from "../../package.json";
 
-	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
-	import { styleSetup as tableStyleSetup } from "../../node_modules/@htmlbricks/hb-table/release/docs";
+	import { styleSetup as formStyleSetup } from "@htmlbricks/hb-form/release/docs";
+	import { styleSetup as tableStyleSetup } from "@htmlbricks/hb-table/release/docs";
 	import type { FormSchema } from "@htmlbricks/hb-form/app/types/webcomponent.type";
 	let formStyleToSet: string = "";
 	let tableStyleToSet: string = "";

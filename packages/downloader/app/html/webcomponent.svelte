@@ -9,7 +9,7 @@
 	import parseStyle from "style-to-object";
 	let parsedStyle: { [x: string]: string };
 	export let style: string;
-	import { styleSetup as dialogStyleSetup } from "../../node_modules/@htmlbricks/hb-dialog/release/docs";
+	import { styleSetup as dialogStyleSetup } from "@htmlbricks/hb-dialog/release/docs";
 	let dialogStyleToSet: string = "";
 
 	const component = get_current_component();

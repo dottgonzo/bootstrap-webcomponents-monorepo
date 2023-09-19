@@ -2,10 +2,12 @@
   "name": "root",
   "private": "true",
   "devDependencies": {
-    "lerna": "^6.5.1"
+    "lerna": "^7.3.0"
   },
+ "workspaces": [
+   "./packages/*"
+ ],
   "scripts": {
-    "install-packages": "npx lerna bootstrap --hoist",
     "build:release": "npx lerna run build:release",
     "publish:patch": "npx lerna publish patch --force-publish --ignore-scripts --yes",
     "publish:minor": "npx lerna publish minor --force-publish --ignore-scripts --yes",

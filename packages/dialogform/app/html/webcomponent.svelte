@@ -5,12 +5,12 @@
 	import { createEventDispatcher } from "svelte";
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import pkg from "../../package.json";
-	import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
-	import { styleSetup as dialogStyleSetup } from "../../node_modules/@htmlbricks/hb-dialog/release/docs";
+	import { styleSetup as formStyleSetup } from "@htmlbricks/hb-form/release/docs";
+	import { styleSetup as dialogStyleSetup } from "@htmlbricks/hb-dialog/release/docs";
 	import parseStyle from "style-to-object";
 	import type { Component } from "@app/types/webcomponent.type";
-	import type { Events as FormEvents } from "../../node_modules/@htmlbricks/hb-form/release/webcomponent.type";
-	import type { Events as DialogEvents } from "../../node_modules/@htmlbricks/hb-dialog/release/webcomponent.type";
+	import type { Events as FormEvents } from "@htmlbricks/hb-form/release/webcomponent.type";
+	import type { Events as DialogEvents } from "@htmlbricks/hb-dialog/release/webcomponent.type";
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();

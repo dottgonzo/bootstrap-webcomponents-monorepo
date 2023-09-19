@@ -43,8 +43,8 @@
 	export let initialdate: Date;
 	export let lastdate: Date;
 
-	import { styleSetup as paginateStyleSetup } from "../../node_modules/@htmlbricks/hb-paginate/release/docs";
-	import { styleSetup as cardVideoStyleSetup } from "../../node_modules/@htmlbricks/hb-card-video/release/docs";
+	import { styleSetup as paginateStyleSetup } from "@htmlbricks/hb-paginate/release/docs";
+	import { styleSetup as cardVideoStyleSetup } from "@htmlbricks/hb-card-video/release/docs";
 	let paginateStyleToSet: string = "";
 	let cardVideoStyleToSet: string = "";
 

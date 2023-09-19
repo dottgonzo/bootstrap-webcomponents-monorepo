@@ -24,7 +24,7 @@
 		"generate-component-schema": "ts-json-schema-generator --type 'Component' --path 'app/types/webcomponent.type.d.ts' > dist/webcomponent.type.d.json",
 		"generate-events-schema": "ts-json-schema-generator --type 'Events' --path 'app/types/webcomponent.type.d.ts' > dist/webcomponent_events.type.d.json",
 		"generate-schemes": "npm run generate-events-schema && npm run generate-component-schema",
-		"copydest": "rm -rf release && mkdir -p release && mkdir -p release && cp dist/* ./release/",
+		"copydest": "rsync -avh dist/* ./release/ --delete",
 		"build-extra": "tsc --moduleResolution node --module es2020 --esModuleInterop true --outDir dist --sourceMap --skipLibCheck extra/*",
 		"build:release": "PRODUCTION=true npm run build && npm run build-extra && npm run generate-manifest && npm run copydest",
 		"prepublish": "npm run build:release"
@@ -45,7 +45,7 @@
 		"eslint-plugin-jsdoc": "^33.0.0",
 		"eslint-plugin-svelte3": "^3.2.0",
 		"monorepo-wc-packages-manifester": "^0.0.3",
-		"node-sass": "^6.0.1",
+		"node-sass": "^9.0.0",
 		"postcss": "^8.2.13",
 		"postcss-load-config": "^3.0.1",
 		"prettier": "^2.8.4",
@@ -66,7 +66,7 @@
 		"ts-node": "^9.1.1",
 		"tslib": "^2.2.0",
 		"ttypescript": "^1.5.12",
-		"typescript": "^4.2.4",
+		"typescript": "^5.2.2",
 		"typescript-transform-paths": "^2.2.3",
 		"wc-js-utils": "^0.0.1"
 	},

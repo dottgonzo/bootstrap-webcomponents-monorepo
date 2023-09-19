@@ -21,7 +21,7 @@
 	// import parseStyle from "style-to-object";
 	// let parsedStyle: { [x: string]: string };
 	// export let style: string;
-	// import { styleSetup as formStyleSetup } from "../../node_modules/@htmlbricks/hb-form/release/docs";
+	// import { styleSetup as formStyleSetup } from "@htmlbricks/hb-form/release/docs";
 	// let formStyleToSet: string = "";
 
 	export let id: string;
