@@ -1,9 +1,10 @@
+import { TCARD } from "ts-jsoncard/types";
+
 export type Component = {
 	id?: string;
 	style?: string;
-	json?: { a: number };
-	string: string;
-	boolean?: boolean;
+	data: TCARD;
+	options?: { b: number };
 };
 
 export type Events = {

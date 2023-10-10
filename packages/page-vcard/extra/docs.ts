@@ -2,9 +2,8 @@ import type { CssPart, CssVar, HtmlSlot, i18nLang, StyleSetup, ComponentSetup } 
 import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
-	json: { control: { type: "object" } },
-	string: { control: { type: "text" } },
-	boolean: { control: { type: "boolean" } },
+	data: { control: { type: "object" } },
+	options: { control: { type: "object" } },
 	event: { action: "eventEvent" },
 };
 
@@ -22,11 +21,10 @@ const examples: { name: string; description?: string; data: Component }[] = [
 	{
 		name: "default",
 		data: {
-			json: {
-				a: 0,
+			data: {
+				version: "0",
+				fullName: "John Doe",
 			},
-			string: "test",
-			boolean: false,
 		},
 	},
 ];
