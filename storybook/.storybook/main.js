@@ -1,10 +1,31 @@
-module.exports = {
+import { join, dirname } from "path";
+
+/**
+ * This function is used to resolve the absolute path of a package.
+ * It is needed in projects that use Yarn PnP or are set up within a monorepo.
+ */
+function getAbsolutePath(value) {
+  return dirname(require.resolve(join(value, "package.json")));
+}
+
+/** @type { import('@storybook/html-vite').StorybookConfig } */
+const config = {
   stories: [
-    "../stories/**/*.stories.mdx",
-    "../stories/**/*.stories.@(js|jsx|ts|tsx)",
+    "../stories/**/*.mdx",
+    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
-  addons: ["@storybook/addon-links", "@storybook/addon-essentials", "@storybook/addon-viewport"],
-  core: {
-    builder: 'webpack5',
+  addons: [
+    getAbsolutePath("@storybook/addon-links"),
+    getAbsolutePath("@storybook/addon-essentials"),
+    getAbsolutePath("@storybook/addon-interactions"),
+  ],
+  framework: {
+    name: getAbsolutePath("@storybook/html-vite"),
+    options: {},
   },
+  docs: {
+    autodocs: "tag",
+  },
+  staticDirs: ["../../packages"],
 };
+export default config;
