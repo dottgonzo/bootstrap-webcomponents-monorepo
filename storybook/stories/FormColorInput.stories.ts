@@ -9,12 +9,20 @@ import lernaPkg from "../../lerna.json";
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/skeleton-component/extra/docs";
-// More on how to set up stories at: https://storybook.js.org/docs/html/writing-stories/introduction
+} from "../../packages/input-color/extra/docs";
+
+const inputEntry1 = {
+  placeholder: "Insert color...",
+  id: "color1",
+  required: true,
+  label: "Last color",
+  validationTip: "This field cannot be empty.",
+  value: "#ffffff",
+};
 
 const meta: Meta = getStorybookMeta(storybookArgs, componentSetup);
 export default {
-  title: "Dev/Bbbbb",
+  title: "Input/FormColorInput",
   tags: ["autodocs"],
 
   parameters: meta.parameters,
@@ -33,9 +41,7 @@ export default {
   },
 };
 
-// More on writing stories with args: https://storybook.js.org/docs/html/writing-stories/args
-export const Skel = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
+export const FormColorInputTemplate = {
+  id: "BasicFormColorInput",
+  schemaentry: inputEntry1,
+};

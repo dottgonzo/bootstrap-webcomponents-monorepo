@@ -9,12 +9,11 @@ import lernaPkg from "../../lerna.json";
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/skeleton-component/extra/docs";
-// More on how to set up stories at: https://storybook.js.org/docs/html/writing-stories/introduction
+} from "../../packages/dashboard-counter-lines/extra/docs";
 
 const meta: Meta = getStorybookMeta(storybookArgs, componentSetup);
 export default {
-  title: "Dev/Bbbbb",
+  title: "Components/DashboardCounterLines",
   tags: ["autodocs"],
 
   parameters: meta.parameters,
@@ -33,9 +32,19 @@ export default {
   },
 };
 
-// More on writing stories with args: https://storybook.js.org/docs/html/writing-stories/args
-export const Skel = setStorybookData(
+export const DashboardCounterLinesSimple = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
+  componentSetup.examples[0]
+);
+export const DashboardCounterLinesWithNewTab = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[1]
+);
+export const DashboardCounterLinesWithLink = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[2]
+);
+export const DashboardCounterLinesWithEvent = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[3]
 );

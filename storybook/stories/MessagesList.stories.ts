@@ -9,12 +9,11 @@ import lernaPkg from "../../lerna.json";
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/skeleton-component/extra/docs";
-// More on how to set up stories at: https://storybook.js.org/docs/html/writing-stories/introduction
+} from "../../packages/messages-list/extra/docs";
 
 const meta: Meta = getStorybookMeta(storybookArgs, componentSetup);
 export default {
-  title: "Dev/Bbbbb",
+  title: "Messages/List",
   tags: ["autodocs"],
 
   parameters: meta.parameters,
@@ -32,10 +31,16 @@ export default {
     );
   },
 };
+meta.parameters = { layout: "fullscreen" };
 
-// More on writing stories with args: https://storybook.js.org/docs/html/writing-stories/args
-export const Skel = setStorybookData(
+export const MessageListDefault = setStorybookData(
   componentSetup.name,
   componentSetup.examples.find((f) => f.name === "default") ||
+    (undefined as any)
+);
+
+export const MessageListWithMoreMessages = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "moreMessages") ||
     (undefined as any)
 );

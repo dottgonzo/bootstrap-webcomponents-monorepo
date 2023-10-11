@@ -9,12 +9,11 @@ import lernaPkg from "../../lerna.json";
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/skeleton-component/extra/docs";
-// More on how to set up stories at: https://storybook.js.org/docs/html/writing-stories/introduction
+} from "../../packages/contact-item/extra/docs";
 
 const meta: Meta = getStorybookMeta(storybookArgs, componentSetup);
 export default {
-  title: "Dev/Bbbbb",
+  title: "Components/Contact",
   tags: ["autodocs"],
 
   parameters: meta.parameters,
@@ -33,9 +32,23 @@ export default {
   },
 };
 
-// More on writing stories with args: https://storybook.js.org/docs/html/writing-stories/args
-export const Skel = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
+export const ContactPhone = {
+  id: "ContactPhone",
+  phone: { number: 465564 },
+};
+export const ContactEmail = {
+  id: "ContactEmail",
+  email: { address: "dev@dariocaruso.info" },
+};
+export const ContactSite = {
+  id: "ContactSite",
+  site: {
+    uri: "https://dariocaruso.info",
+    label: "dariocaruso.info",
+    open: true,
+  },
+};
+export const ContactAddressgs = {
+  id: "ContactAddress",
+  address: { address: "egeg" },
+};

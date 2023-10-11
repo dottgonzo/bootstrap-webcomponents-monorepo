@@ -9,12 +9,11 @@ import lernaPkg from "../../lerna.json";
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/skeleton-component/extra/docs";
-// More on how to set up stories at: https://storybook.js.org/docs/html/writing-stories/introduction
+} from "../../packages/terms-doc-templates/extra/docs";
 
 const meta: Meta = getStorybookMeta(storybookArgs, componentSetup);
 export default {
-  title: "Dev/Bbbbb",
+  title: "Site/TermsDocs",
   tags: ["autodocs"],
 
   parameters: meta.parameters,
@@ -33,9 +32,21 @@ export default {
   },
 };
 
-// More on writing stories with args: https://storybook.js.org/docs/html/writing-stories/args
-export const Skel = setStorybookData(
+export const PrivacyDocItalian1 = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
+  componentSetup.examples.find((f) => f.name === "italian") ||
     (undefined as any)
+);
+
+export const CookieDocItalian1 = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[1]
+);
+export const CookieDocEn1 = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[2]
+);
+export const CookieDocEnEmpty = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[3]
 );

@@ -9,12 +9,11 @@ import lernaPkg from "../../lerna.json";
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/skeleton-component/extra/docs";
-// More on how to set up stories at: https://storybook.js.org/docs/html/writing-stories/introduction
+} from "../../packages/cookie-law-banner/extra/docs";
 
 const meta: Meta = getStorybookMeta(storybookArgs, componentSetup);
 export default {
-  title: "Dev/Bbbbb",
+  title: "Components/CookieLawBanner",
   tags: ["autodocs"],
 
   parameters: meta.parameters,
@@ -33,9 +32,18 @@ export default {
   },
 };
 
-// More on writing stories with args: https://storybook.js.org/docs/html/writing-stories/args
-export const Skel = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
+export const CookielawSimple = {
+  id: "CookielawSimple",
+};
+export const CookielawWithDecline = {
+  id: "CookielawWithDecline",
+  allowdecline: true,
+};
+export const CookielawEn = {
+  id: "CookielawEn",
+  i18nlang: "en",
+};
+export const CookielawIt = {
+  id: "CookielawIt",
+  i18nlang: "it",
+};

@@ -9,12 +9,11 @@ import lernaPkg from "../../lerna.json";
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/skeleton-component/extra/docs";
-// More on how to set up stories at: https://storybook.js.org/docs/html/writing-stories/introduction
+} from "../../packages/auth-social-login-button/extra/docs";
 
 const meta: Meta = getStorybookMeta(storybookArgs, componentSetup);
 export default {
-  title: "Dev/Bbbbb",
+  title: "Auth/SocialLoginButton",
   tags: ["autodocs"],
 
   parameters: meta.parameters,
@@ -33,9 +32,22 @@ export default {
   },
 };
 
-// More on writing stories with args: https://storybook.js.org/docs/html/writing-stories/args
-export const Skel = setStorybookData(
+export const LoginFacebook = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
+  componentSetup.examples[0]
+);
+
+export const LoginGitlab = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[1]
+);
+
+export const LoginGithub = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[2]
+);
+
+export const LoginGoogle = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples[3]
 );

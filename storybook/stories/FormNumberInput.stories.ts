@@ -9,12 +9,11 @@ import lernaPkg from "../../lerna.json";
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/skeleton-component/extra/docs";
-// More on how to set up stories at: https://storybook.js.org/docs/html/writing-stories/introduction
+} from "../../packages/input-number/extra/docs";
 
 const meta: Meta = getStorybookMeta(storybookArgs, componentSetup);
 export default {
-  title: "Dev/Bbbbb",
+  title: "Input/NumberInput",
   tags: ["autodocs"],
 
   parameters: meta.parameters,
@@ -33,9 +32,23 @@ export default {
   },
 };
 
-// More on writing stories with args: https://storybook.js.org/docs/html/writing-stories/args
-export const Skel = setStorybookData(
+export const FormNumberInputRequired = setStorybookData(
   componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
+  componentSetup.examples.find((f) => f.name === "required") ||
+    (undefined as any)
+);
+export const FormNumberInputwithmin = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "withmin") ||
+    (undefined as any)
+);
+export const FormNumberInputwithmax = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "withmax") ||
+    (undefined as any)
+);
+export const FormNumberInputwithminmax = setStorybookData(
+  componentSetup.name,
+  componentSetup.examples.find((f) => f.name === "withminmax") ||
     (undefined as any)
 );

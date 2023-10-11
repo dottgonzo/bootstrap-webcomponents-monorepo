@@ -9,12 +9,17 @@ import lernaPkg from "../../lerna.json";
 import {
   storybookArgs,
   componentSetup,
-} from "../../packages/skeleton-component/extra/docs";
-// More on how to set up stories at: https://storybook.js.org/docs/html/writing-stories/introduction
+} from "../../packages/card-video/extra/docs";
 
+const videosrc =
+  "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4";
+const title = "aa";
+const description = "6";
+const datetest = "2021-08-15T18:55:22.135Z";
+const youtubevideosrc = "https://www.youtube.com/embed/tgbNymZ7vqY";
 const meta: Meta = getStorybookMeta(storybookArgs, componentSetup);
 export default {
-  title: "Dev/Bbbbb",
+  title: "Components/CardVideo",
   tags: ["autodocs"],
 
   parameters: meta.parameters,
@@ -33,9 +38,18 @@ export default {
   },
 };
 
-// More on writing stories with args: https://storybook.js.org/docs/html/writing-stories/args
-export const Skel = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
+export const BasicVideoCard = {
+  videosrc,
+  title,
+  description,
+  time: datetest,
+  id: "BasicVideoCard",
+};
+export const YoutubeCard = {
+  videosrc: youtubevideosrc,
+  title,
+  description,
+  time: datetest,
+  id: "YoutubeCard",
+  provider: "youtube",
+};
