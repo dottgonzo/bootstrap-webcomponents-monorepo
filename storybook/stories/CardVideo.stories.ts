@@ -39,17 +39,21 @@ export default {
 };
 
 export const BasicVideoCard = {
-  videosrc,
-  title,
-  description,
-  time: datetest,
-  id: "BasicVideoCard",
+  args: {
+    videosrc,
+    title,
+    description,
+    time: datetest,
+    id: "BasicVideoCard",
+  },
 };
 export const YoutubeCard = {
-  videosrc: youtubevideosrc,
-  title,
-  description,
-  time: datetest,
-  id: "YoutubeCard",
-  provider: "youtube",
+  args: {
+    videosrc: youtubevideosrc,
+    title,
+    description,
+    time: datetest,
+    id: "YoutubeCard",
+    provider: "youtube",
+  },
 };

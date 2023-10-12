@@ -179,7 +179,6 @@ export const CheckoutWithPaypalOnlyPayment = {
   gateways: [paypal],
   payment: defaultPayment,
 };
-
 export const CheckoutWithGoogleOnlyPayment = {
   id: "CheckoutWithGoogleOnlyPayment",
   shipments: [
