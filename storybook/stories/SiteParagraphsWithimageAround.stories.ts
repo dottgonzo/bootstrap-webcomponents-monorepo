@@ -32,15 +32,12 @@ export default {
   },
 };
 
-export const ParagraphsAImg2 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
-export const ParagraphsAImg4 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[1]
-);
-export const ParagraphsAImg6 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[2]
-);
+export const ParagraphsAImg2 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};
+export const ParagraphsAImg4 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[1]),
+};
+export const ParagraphsAImg6 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[2]),
+};

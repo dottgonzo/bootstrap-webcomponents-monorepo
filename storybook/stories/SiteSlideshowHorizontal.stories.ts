@@ -32,11 +32,9 @@ export default {
   },
 };
 
-export const SiteSlideshowH1 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
-export const SiteSlideshowHVideos = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[1]
-);
+export const SiteSlideshowH1 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};
+export const SiteSlideshowHVideos = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[1]),
+};

@@ -32,18 +32,25 @@ export default {
   },
 };
 
-export const FormComposerDefault = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
+export const FormComposerDefault = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
+};
 
-export const FormComposerDebug = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "debug") || (undefined as any)
-);
-export const FormComposerDebugDefault = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "debug-default") ||
-    (undefined as any)
-);
+export const FormComposerDebug = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "debug") ||
+      (undefined as any)
+  ),
+};
+export const FormComposerDebugDefault = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "debug-default") ||
+      (undefined as any)
+  ),
+};

@@ -32,23 +32,31 @@ export default {
   },
 };
 
-export const FormNumberInputRequired = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "required") ||
-    (undefined as any)
-);
-export const FormNumberInputwithmin = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withmin") ||
-    (undefined as any)
-);
-export const FormNumberInputwithmax = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withmax") ||
-    (undefined as any)
-);
-export const FormNumberInputwithminmax = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withminmax") ||
-    (undefined as any)
-);
+export const FormNumberInputRequired = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "required") ||
+      (undefined as any)
+  ),
+};
+export const FormNumberInputwithmin = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withmin") ||
+      (undefined as any)
+  ),
+};
+export const FormNumberInputwithmax = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withmax") ||
+      (undefined as any)
+  ),
+};
+export const FormNumberInputwithminmax = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withminmax") ||
+      (undefined as any)
+  ),
+};

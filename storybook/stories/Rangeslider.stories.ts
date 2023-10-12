@@ -32,24 +32,32 @@ export default {
   },
 };
 
-export const BasicRangeslider = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
+export const BasicRangeslider = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
+};
 
-export const BasicRangesliderWithBubbles = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withBubbles") ||
-    (undefined as any)
-);
-export const BasicRangesliderWithValues = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withValues") ||
-    (undefined as any)
-);
-export const BasicRangesliderWithPositionValue = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withPositionValue") ||
-    (undefined as any)
-);
+export const BasicRangesliderWithBubbles = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withBubbles") ||
+      (undefined as any)
+  ),
+};
+export const BasicRangesliderWithValues = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withValues") ||
+      (undefined as any)
+  ),
+};
+export const BasicRangesliderWithPositionValue = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withPositionValue") ||
+      (undefined as any)
+  ),
+};

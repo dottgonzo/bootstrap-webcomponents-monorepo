@@ -32,13 +32,17 @@ export default {
   },
 };
 
-export const PadJoystickDefault = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
-export const PadJoystickJoystick = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "joystick") ||
-    (undefined as any)
-);
+export const PadJoystickDefault = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
+};
+export const PadJoystickJoystick = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "joystick") ||
+      (undefined as any)
+  ),
+};

@@ -32,12 +32,10 @@ export default {
   },
 };
 
-export const AreaCode = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
+export const AreaCode = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};
 
-export const AreaCodeLongText = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[1]
-);
+export const AreaCodeLongText = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[1]),
+};

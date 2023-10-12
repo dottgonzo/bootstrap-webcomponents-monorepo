@@ -32,11 +32,9 @@ export default {
   },
 };
 
-export const FormAreaTemplate = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
-export const FormAreaTemplateTequired = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[1]
-);
+export const FormAreaTemplate = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};
+export const FormAreaTemplateTequired = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[1]),
+};

@@ -32,47 +32,36 @@ export default {
   },
 };
 
-export const SiteContactsBig = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
-export const SiteContactsSmall = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[1]
-);
-export const SiteContacts = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[2]
-);
-export const SiteContactsAuto2 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[3]
-);
-export const SiteContactsAuto3 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[4]
-);
-export const SiteContactsAuto4 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[5]
-);
-export const SiteContactsAuto1 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[6]
-);
-export const SiteContactsBig2 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[7]
-);
-export const SiteContactsBig3 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[8]
-);
-export const SiteContactsBig4 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[9]
-);
-export const SiteContactsBig1 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[10]
-);
+export const SiteContactsBig = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};
+export const SiteContactsSmall = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[1]),
+};
+export const SiteContacts = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[2]),
+};
+export const SiteContactsAuto2 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[3]),
+};
+export const SiteContactsAuto3 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[4]),
+};
+export const SiteContactsAuto4 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[5]),
+};
+export const SiteContactsAuto1 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[6]),
+};
+export const SiteContactsBig2 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[7]),
+};
+export const SiteContactsBig3 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[8]),
+};
+export const SiteContactsBig4 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[9]),
+};
+export const SiteContactsBig1 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[10]),
+};

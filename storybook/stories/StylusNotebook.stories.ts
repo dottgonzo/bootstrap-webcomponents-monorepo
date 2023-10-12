@@ -32,12 +32,10 @@ export default {
   },
 };
 
-export const Main = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
+export const Main = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};
 
-export const WithLoadDraw = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[1]
-);
+export const WithLoadDraw = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[1]),
+};

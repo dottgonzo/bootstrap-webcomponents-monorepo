@@ -32,21 +32,20 @@ export default {
   },
 };
 
-export const PrivacyDocItalian1 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "italian") ||
-    (undefined as any)
-);
+export const PrivacyDocItalian1 = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "italian") ||
+      (undefined as any)
+  ),
+};
 
-export const CookieDocItalian1 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[1]
-);
-export const CookieDocEn1 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[2]
-);
-export const CookieDocEnEmpty = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[3]
-);
+export const CookieDocItalian1 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[1]),
+};
+export const CookieDocEn1 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[2]),
+};
+export const CookieDocEnEmpty = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[3]),
+};

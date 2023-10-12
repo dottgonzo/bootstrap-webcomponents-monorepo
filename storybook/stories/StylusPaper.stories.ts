@@ -32,42 +32,34 @@ export default {
   },
 };
 
-export const Main = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
+export const Main = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};
 
-export const WithPressure = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[1]
-);
+export const WithPressure = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[1]),
+};
 
-export const WithSimulatePressure = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[2]
-);
+export const WithSimulatePressure = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[2]),
+};
 
-export const WithThinBrush = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[3]
-);
+export const WithThinBrush = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[3]),
+};
 
-export const WithBigBrush = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[4]
-);
+export const WithBigBrush = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[4]),
+};
 
-export const LoadDraw = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[5]
-);
+export const LoadDraw = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[5]),
+};
 
-export const LoadImage = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[6]
-);
+export const LoadImage = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[6]),
+};
 
-export const LoadText = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[7]
-);
+export const LoadText = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[7]),
+};

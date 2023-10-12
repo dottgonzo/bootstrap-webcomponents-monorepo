@@ -32,12 +32,10 @@ export default {
   },
 };
 
-export const BasicAppointments = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
+export const BasicAppointments = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};
 
-export const EmptyAppointments = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[1]
-);
+export const EmptyAppointments = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[1]),
+};

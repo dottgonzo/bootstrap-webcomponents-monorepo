@@ -32,26 +32,34 @@ export default {
   },
 };
 
-export const FormRangeInputRequired = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "required") ||
-    (undefined as any)
-);
+export const FormRangeInputRequired = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "required") ||
+      (undefined as any)
+  ),
+};
 
-export const FormRangeInputwithmin = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withmin") ||
-    (undefined as any)
-);
+export const FormRangeInputwithmin = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withmin") ||
+      (undefined as any)
+  ),
+};
 
-export const FormRangeInputwithmax = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withmax") ||
-    (undefined as any)
-);
+export const FormRangeInputwithmax = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withmax") ||
+      (undefined as any)
+  ),
+};
 
-export const FormRangeInputwithminmax = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withminmax") ||
-    (undefined as any)
-);
+export const FormRangeInputwithminmax = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withminmax") ||
+      (undefined as any)
+  ),
+};

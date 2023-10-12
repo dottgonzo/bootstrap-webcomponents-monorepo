@@ -32,28 +32,38 @@ export default {
   },
 };
 
-export const FormDateInputDefault = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
-export const FormDateInputFrom27Febb2022 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "from27Febb2022") ||
-    (undefined as any)
-);
-export const FormDateInputTo27Febb2022 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "to27Febb2022") ||
-    (undefined as any)
-);
-export const FormDateInputIn27Febb2022 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "in27Febb2022") ||
-    (undefined as any)
-);
-export const FormDateInputDate27Febb2023 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "date27Febb2023") ||
-    (undefined as any)
-);
+export const FormDateInputDefault = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
+};
+export const FormDateInputFrom27Febb2022 = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "from27Febb2022") ||
+      (undefined as any)
+  ),
+};
+export const FormDateInputTo27Febb2022 = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "to27Febb2022") ||
+      (undefined as any)
+  ),
+};
+export const FormDateInputIn27Febb2022 = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "in27Febb2022") ||
+      (undefined as any)
+  ),
+};
+export const FormDateInputDate27Febb2023 = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "date27Febb2023") ||
+      (undefined as any)
+  ),
+};

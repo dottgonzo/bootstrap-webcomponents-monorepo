@@ -32,7 +32,6 @@ export default {
   },
 };
 
-export const PageBanner = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
+export const PageBanner = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};

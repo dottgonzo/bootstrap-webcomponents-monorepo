@@ -32,19 +32,25 @@ export default {
   },
 };
 
-export const SidenavLinkDefault = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
+export const SidenavLinkDefault = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
+};
 
-export const SidenavLinkWithPage = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withPage") ||
-    (undefined as any)
-);
-export const SidenavLinkWithSelected = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "selected") ||
-    (undefined as any)
-);
+export const SidenavLinkWithPage = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withPage") ||
+      (undefined as any)
+  ),
+};
+export const SidenavLinkWithSelected = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "selected") ||
+      (undefined as any)
+  ),
+};

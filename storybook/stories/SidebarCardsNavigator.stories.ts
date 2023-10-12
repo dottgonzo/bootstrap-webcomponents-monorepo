@@ -32,12 +32,17 @@ export default {
   },
 };
 
-export const SidebarCardsNavigator = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
-export const SidebarCardsNavigatorEmpty = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "empty") || (undefined as any)
-);
+export const SidebarCardsNavigator = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
+};
+export const SidebarCardsNavigatorEmpty = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "empty") ||
+      (undefined as any)
+  ),
+};

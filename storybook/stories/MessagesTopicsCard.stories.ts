@@ -32,14 +32,18 @@ export default {
   },
 };
 
-export const MessageTopicsCardDefault = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
-export const MessageTopicsCardSelected = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "selected") ||
-    (undefined as any),
-  {}
-);
+export const MessageTopicsCardDefault = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
+};
+export const MessageTopicsCardSelected = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "selected") ||
+      (undefined as any),
+    {}
+  ),
+};

@@ -32,27 +32,39 @@ export default {
   },
 };
 
-export const SideNavButtonDefault = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
-export const SideNavButtonSelected = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "selected") ||
-    (undefined as any)
-);
-export const SideNavButtonSwitch = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "switch") || (undefined as any)
-);
-export const SideNavButtonCheckbox = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "checkbox") ||
-    (undefined as any)
-);
+export const SideNavButtonDefault = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
+};
+export const SideNavButtonSelected = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "selected") ||
+      (undefined as any)
+  ),
+};
+export const SideNavButtonSwitch = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "switch") ||
+      (undefined as any)
+  ),
+};
+export const SideNavButtonCheckbox = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "checkbox") ||
+      (undefined as any)
+  ),
+};
 
-export const SideNavButtonRadio = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "radio") || (undefined as any)
-);
+export const SideNavButtonRadio = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "radio") ||
+      (undefined as any)
+  ),
+};

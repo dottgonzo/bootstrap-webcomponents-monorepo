@@ -32,7 +32,6 @@ export default {
   },
 };
 
-export const FormReCaptchaV2 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
+export const FormReCaptchaV2 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};

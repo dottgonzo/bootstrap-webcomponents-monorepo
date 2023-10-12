@@ -32,7 +32,6 @@ export default {
   },
 };
 
-export const SiteFaq1 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
+export const SiteFaq1 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};

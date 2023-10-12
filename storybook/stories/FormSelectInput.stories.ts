@@ -32,7 +32,6 @@ export default {
   },
 };
 
-export const FormSelectInputTemplate = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
+export const FormSelectInputTemplate = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};

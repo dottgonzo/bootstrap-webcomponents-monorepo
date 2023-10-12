@@ -33,14 +33,18 @@ export default {
 };
 meta.parameters = { layout: "fullscreen" };
 
-export const MessageListDefault = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
+export const MessageListDefault = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
+};
 
-export const MessageListWithMoreMessages = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "moreMessages") ||
-    (undefined as any)
-);
+export const MessageListWithMoreMessages = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "moreMessages") ||
+      (undefined as any)
+  ),
+};

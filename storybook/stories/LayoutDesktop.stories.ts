@@ -288,10 +288,9 @@ export default {
   },
 };
 
-export const LayoutA = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
+export const LayoutA = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};
 export const LayoutWithBigSidebar = {
   id: "LayoutWithBigSidebar",
   company: company1,

@@ -13,7 +13,7 @@ import {
 
 const meta: Meta = getStorybookMeta(storybookArgs, componentSetup);
 export default {
-  title: "Components/Calendar",
+  title: "Components/CalendarEvents",
   tags: ["autodocs"],
 
   parameters: meta.parameters,
@@ -32,12 +32,10 @@ export default {
   },
 };
 
-export const BasicCalendar = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
+export const BasicCalendar = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};
 
-export const CalendarWithEvents = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[1]
-);
+export const CalendarWithEvents = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[1]),
+};

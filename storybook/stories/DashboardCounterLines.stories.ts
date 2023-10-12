@@ -32,19 +32,15 @@ export default {
   },
 };
 
-export const DashboardCounterLinesSimple = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
-export const DashboardCounterLinesWithNewTab = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[1]
-);
-export const DashboardCounterLinesWithLink = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[2]
-);
-export const DashboardCounterLinesWithEvent = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[3]
-);
+export const DashboardCounterLinesSimple = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};
+export const DashboardCounterLinesWithNewTab = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[1]),
+};
+export const DashboardCounterLinesWithLink = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[2]),
+};
+export const DashboardCounterLinesWithEvent = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[3]),
+};

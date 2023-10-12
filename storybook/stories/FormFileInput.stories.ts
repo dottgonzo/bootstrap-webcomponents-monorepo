@@ -32,12 +32,17 @@ export default {
   },
 };
 
-export const FormFileInputTemplate = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
-export const FormFileInputImage = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "image") || (undefined as any)
-);
+export const FormFileInputTemplate = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
+};
+export const FormFileInputImage = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "image") ||
+      (undefined as any)
+  ),
+};

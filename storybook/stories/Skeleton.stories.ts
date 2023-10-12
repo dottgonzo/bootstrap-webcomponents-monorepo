@@ -32,12 +32,14 @@ export default {
   },
 };
 
-export const Skel = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any),
-  {
-    _testInnerHtml:
-      '<span style="background-color:blue" slot="skelcontent">cooontent</span>',
-  }
-);
+export const Skel = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any),
+    {
+      _testInnerHtml:
+        '<span style="background-color:blue" slot="skelcontent">cooontent</span>',
+    }
+  ),
+};

@@ -32,29 +32,39 @@ export default {
   },
 };
 
-export const PlayerLiveCameraPTZDefault = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
+export const PlayerLiveCameraPTZDefault = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
+};
 
-export const PlayerLiveCameraPTZWithPresets = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withPresets") ||
-    (undefined as any)
-);
-export const PlayerLiveCameraPTZWithPresetSelected = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withPresetSelected") ||
-    (undefined as any)
-);
-export const PlayerLiveCameraPTZWithPanelClosed = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withPanelClosed") ||
-    (undefined as any)
-);
-export const PlayerLiveCameraPTZDisconnected = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "disconnected") ||
-    (undefined as any)
-);
+export const PlayerLiveCameraPTZWithPresets = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withPresets") ||
+      (undefined as any)
+  ),
+};
+export const PlayerLiveCameraPTZWithPresetSelected = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withPresetSelected") ||
+      (undefined as any)
+  ),
+};
+export const PlayerLiveCameraPTZWithPanelClosed = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withPanelClosed") ||
+      (undefined as any)
+  ),
+};
+export const PlayerLiveCameraPTZDisconnected = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "disconnected") ||
+      (undefined as any)
+  ),
+};

@@ -32,19 +32,15 @@ export default {
   },
 };
 
-export const FormContact1 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
-export const FormContact2 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[1]
-);
-export const FormContact3 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[2]
-);
-export const FormContactWithCaptcha = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[3]
-);
+export const FormContact1 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};
+export const FormContact2 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[1]),
+};
+export const FormContact3 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[2]),
+};
+export const FormContactWithCaptcha = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[3]),
+};

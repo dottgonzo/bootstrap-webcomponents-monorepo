@@ -32,15 +32,12 @@ export default {
   },
 };
 
-export const ArchiveVerticalImgTxt = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
-export const ArchiveVerticalImgTxt2 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[1]
-);
-export const ArchiveVerticalImgTxtFixed = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[2]
-);
+export const ArchiveVerticalImgTxt = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};
+export const ArchiveVerticalImgTxt2 = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[1]),
+};
+export const ArchiveVerticalImgTxtFixed = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[2]),
+};

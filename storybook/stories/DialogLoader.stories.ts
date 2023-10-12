@@ -32,7 +32,6 @@ export default {
   },
 };
 
-export const UploaderTemplate = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[1]
-);
+export const UploaderTemplate = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[1]),
+};

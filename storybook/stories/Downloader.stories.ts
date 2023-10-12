@@ -32,7 +32,6 @@ export default {
   },
 };
 
-export const DownloaderTemplate = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
+export const DownloaderTemplate = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};

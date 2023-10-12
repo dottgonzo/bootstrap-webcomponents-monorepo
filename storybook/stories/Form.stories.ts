@@ -29,36 +29,50 @@ export default {
   },
 };
 
-export const BasicFormHost = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "BasicFormHost") ||
-    (undefined as any)
-);
-export const FormHostWithFileTemplate = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "FormHostWithFileTemplate") ||
-    (undefined as any)
-);
-export const FormHostTemplateCompiled = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "FormHostTemplateCompiled") ||
-    (undefined as any)
-);
-export const FormHostTemplateConditional = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find(
-    (f) => f.name === "FormHostTemplateConditional"
-  ) || (undefined as any)
-);
-export const FormHostTemplateConditionalAndColumns = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find(
-    (f) => f.name === "FormHostTemplateConditionalAndColumns"
-  ) || (undefined as any)
-);
-export const FormHostTemplateWithArrayProp = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find(
-    (f) => f.name === "FormHostTemplateWithArrayProp"
-  ) || (undefined as any)
-);
+export const BasicFormHost = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "BasicFormHost") ||
+      (undefined as any)
+  ),
+};
+export const FormHostWithFileTemplate = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "FormHostWithFileTemplate"
+    ) || (undefined as any)
+  ),
+};
+export const FormHostTemplateCompiled = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "FormHostTemplateCompiled"
+    ) || (undefined as any)
+  ),
+};
+export const FormHostTemplateConditional = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "FormHostTemplateConditional"
+    ) || (undefined as any)
+  ),
+};
+export const FormHostTemplateConditionalAndColumns = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "FormHostTemplateConditionalAndColumns"
+    ) || (undefined as any)
+  ),
+};
+export const FormHostTemplateWithArrayProp = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "FormHostTemplateWithArrayProp"
+    ) || (undefined as any)
+  ),
+};

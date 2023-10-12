@@ -32,20 +32,26 @@ export default {
   },
 };
 
-export const MessageBoxDefault = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
+export const MessageBoxDefault = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
+};
 
-export const MessageBoxWithAMessage = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withAMessage") ||
-    (undefined as any)
-);
+export const MessageBoxWithAMessage = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withAMessage") ||
+      (undefined as any)
+  ),
+};
 
-export const MessageBoxWithMoreMessages = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "moreMessages") ||
-    (undefined as any)
-);
+export const MessageBoxWithMoreMessages = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "moreMessages") ||
+      (undefined as any)
+  ),
+};

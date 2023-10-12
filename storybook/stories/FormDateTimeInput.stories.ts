@@ -32,35 +32,48 @@ export default {
   },
 };
 
-export const FormTextDateTimeTemplate_empty = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "empty") || (undefined as any)
-);
-export const FormTextDateTimeTemplate_emptyRequired = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "emptyRequired") ||
-    (undefined as any)
-);
-export const FormTextDateTimeTemplate_withValue = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withValue") ||
-    (undefined as any)
-);
+export const FormTextDateTimeTemplate_empty = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "empty") ||
+      (undefined as any)
+  ),
+};
+export const FormTextDateTimeTemplate_emptyRequired = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "emptyRequired") ||
+      (undefined as any)
+  ),
+};
+export const FormTextDateTimeTemplate_withValue = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withValue") ||
+      (undefined as any)
+  ),
+};
 
-export const FormTextDateTimeTemplate_maxDate27Feb2023 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "maxDate27Feb2023") ||
-    (undefined as any)
-);
+export const FormTextDateTimeTemplate_maxDate27Feb2023 = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "maxDate27Feb2023") ||
+      (undefined as any)
+  ),
+};
 
-export const FormTextDateTimeTemplate_minDate27Feb2023 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "minDate27Feb2023") ||
-    (undefined as any)
-);
+export const FormTextDateTimeTemplate_minDate27Feb2023 = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "minDate27Feb2023") ||
+      (undefined as any)
+  ),
+};
 
-export const FormTextDateTimeTemplate_rangeDate27Feb2023 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "rangeDate27Feb2023") ||
-    (undefined as any)
-);
+export const FormTextDateTimeTemplate_rangeDate27Feb2023 = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "rangeDate27Feb2023") ||
+      (undefined as any)
+  ),
+};

@@ -32,8 +32,10 @@ export default {
   },
 };
 
-export const FormArrayObjectsInputTemplate = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
+export const FormArrayObjectsInputTemplate = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
+};

@@ -32,19 +32,25 @@ export default {
   },
 };
 
-export const MessageSendDefault = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
+export const MessageSendDefault = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
+};
 
-export const MessageSendWithAMessage = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withAMessage") ||
-    (undefined as any)
-);
-export const MessageSendWithABigMessage = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "withABigMessage") ||
-    (undefined as any)
-);
+export const MessageSendWithAMessage = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withAMessage") ||
+      (undefined as any)
+  ),
+};
+export const MessageSendWithABigMessage = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "withABigMessage") ||
+      (undefined as any)
+  ),
+};

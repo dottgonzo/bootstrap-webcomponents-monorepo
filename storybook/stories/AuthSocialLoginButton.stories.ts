@@ -32,22 +32,18 @@ export default {
   },
 };
 
-export const LoginFacebook = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
+export const LoginFacebook = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};
 
-export const LoginGitlab = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[1]
-);
+export const LoginGitlab = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[1]),
+};
 
-export const LoginGithub = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[2]
-);
+export const LoginGithub = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[2]),
+};
 
-export const LoginGoogle = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[3]
-);
+export const LoginGoogle = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[3]),
+};

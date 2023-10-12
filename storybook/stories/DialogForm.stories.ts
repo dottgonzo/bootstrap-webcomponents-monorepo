@@ -32,7 +32,6 @@ export default {
   },
 };
 
-export const BasicBootstapModalWithForm = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
+export const BasicBootstapModalWithForm = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+};

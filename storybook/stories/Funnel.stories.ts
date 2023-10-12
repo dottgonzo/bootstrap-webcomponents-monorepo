@@ -116,26 +116,34 @@ export default {
   },
 };
 
-export const BasicFunnelTemplate = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "BasicFunnelTemplate") ||
-    (undefined as any)
-);
-export const BasicFunnelTemplateWith2StepsSchema = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find(
-    (f) => f.name === "BasicFunnelTemplateWith2StepsSchema"
-  ) || (undefined as any)
-);
-export const BasicFunnelTemplateWith3StepsSchema = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find(
-    (f) => f.name === "BasicFunnelTemplateWith3StepsSchema"
-  ) || (undefined as any)
-);
-export const BasicFunnelTemplateWith4StepsSchema = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find(
-    (f) => f.name === "BasicFunnelTemplateWith4StepsSchema"
-  ) || (undefined as any)
-);
+export const BasicFunnelTemplate = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "BasicFunnelTemplate") ||
+      (undefined as any)
+  ),
+};
+export const BasicFunnelTemplateWith2StepsSchema = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "BasicFunnelTemplateWith2StepsSchema"
+    ) || (undefined as any)
+  ),
+};
+export const BasicFunnelTemplateWith3StepsSchema = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "BasicFunnelTemplateWith3StepsSchema"
+    ) || (undefined as any)
+  ),
+};
+export const BasicFunnelTemplateWith4StepsSchema = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "BasicFunnelTemplateWith4StepsSchema"
+    ) || (undefined as any)
+  ),
+};

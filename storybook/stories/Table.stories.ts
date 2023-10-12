@@ -29,60 +29,75 @@ export default {
   },
 };
 
-export const BasicTable = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples[0]
-);
-export const BasicTableWithClick = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "BasicTableWithClick") ||
-    (undefined as any)
-);
-export const BasicTableWithMoreSearchAndSelect = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find(
-    (f) => f.name === "BasicTableWithMoreSearchAndSelect"
-  ) || (undefined as any)
-);
-export const BasicTableWithSearchOnNestedField = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find(
-    (f) => f.name === "BasicTableWithSearchOnNestedField"
-  ) || (undefined as any)
-);
-export const BasicTableWithSearchOnAllFields = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find(
-    (f) => f.name === "BasicTableWithSearchOnAllFields"
-  ) || (undefined as any)
-);
+// export const BasicTable = {
+//   args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
+// };
+export const BasicTableWithClick = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "BasicTableWithClick") ||
+      (undefined as any)
+  ),
+};
+export const BasicTableWithMoreSearchAndSelect = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "BasicTableWithMoreSearchAndSelect"
+    ) || (undefined as any)
+  ),
+};
+export const BasicTableWithSearchOnNestedField = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "BasicTableWithSearchOnNestedField"
+    ) || (undefined as any)
+  ),
+};
+export const BasicTableWithSearchOnAllFields = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "BasicTableWithSearchOnAllFields"
+    ) || (undefined as any)
+  ),
+};
 export const BasicTableWithDate =
   setStorybookData(
     componentSetup.name,
     componentSetup.examples.find((f) => f.name === "BasicTableWithDate") ||
       (undefined as any)
   ) || (undefined as any);
-export const BasicTableWithActions = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "BasicTableWithActions") ||
-    (undefined as any)
-);
-export const BasicTableWithActionsAndSelect = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find(
-    (f) => f.name === "BasicTableWithActionsAndSelect"
-  ) || (undefined as any)
-);
-export const BasicTableWithActionsConfirmAndForm = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find(
-    (f) => f.name === "BasicTableWithActionsConfirmAndForm"
-  ) || (undefined as any)
-);
+export const BasicTableWithActions = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "BasicTableWithActions") ||
+      (undefined as any)
+  ),
+};
+export const BasicTableWithActionsAndSelect = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "BasicTableWithActionsAndSelect"
+    ) || (undefined as any)
+  ),
+};
+export const BasicTableWithActionsConfirmAndForm = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "BasicTableWithActionsConfirmAndForm"
+    ) || (undefined as any)
+  ),
+};
 
-export const BasicTableWithTruncateAndCopy = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find(
-    (f) => f.name === "BasicTableWithTruncateAndCopy"
-  ) || (undefined as any)
-);
+export const BasicTableWithTruncateAndCopy = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "BasicTableWithTruncateAndCopy"
+    ) || (undefined as any)
+  ),
+};

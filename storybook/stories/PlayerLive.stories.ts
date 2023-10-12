@@ -32,41 +32,61 @@ export default {
   },
 };
 
-export const LiveVideoPlayer = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
-export const LiveVideoPlayerWithWidth = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "LiveVideoPlayerWithWidth") ||
-    (undefined as any)
-);
-export const LiveVideoPlayerWithHeight = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "LiveVideoPlayerWithHeight") ||
-    (undefined as any)
-);
-export const LiveVideoPlayerWithoutUri = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "LiveVideoPlayerWithoutUri") ||
-    (undefined as any)
-);
+export const LiveVideoPlayer = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
+};
+export const LiveVideoPlayerWithWidth = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "LiveVideoPlayerWithWidth"
+    ) || (undefined as any)
+  ),
+};
+export const LiveVideoPlayerWithHeight = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "LiveVideoPlayerWithHeight"
+    ) || (undefined as any)
+  ),
+};
+export const LiveVideoPlayerWithoutUri = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "LiveVideoPlayerWithoutUri"
+    ) || (undefined as any)
+  ),
+};
 
-export const LiveVideoPlayerWithText3 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "LiveVideoPlayerWithText3") ||
-    (undefined as any)
-);
+export const LiveVideoPlayerWithText3 = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "LiveVideoPlayerWithText3"
+    ) || (undefined as any)
+  ),
+};
 
-export const LiveVideoPlayerWithText2 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "LiveVideoPlayerWithText2") ||
-    (undefined as any)
-);
+export const LiveVideoPlayerWithText2 = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "LiveVideoPlayerWithText2"
+    ) || (undefined as any)
+  ),
+};
 
-export const LiveVideoPlayerWithText1 = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "LiveVideoPlayerWithText1") ||
-    (undefined as any)
-);
+export const LiveVideoPlayerWithText1 = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "LiveVideoPlayerWithText1"
+    ) || (undefined as any)
+  ),
+};

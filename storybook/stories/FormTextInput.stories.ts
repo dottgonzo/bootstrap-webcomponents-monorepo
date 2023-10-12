@@ -32,33 +32,45 @@ export default {
   },
 };
 
-export const FormTextInputTemplate = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "default") ||
-    (undefined as any)
-);
-export const FormTextInputTemplateRequired = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "defaultRequired") ||
-    (undefined as any)
-);
-export const FormTextInputTemplateRequiredWithMin = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "requiredwithmin") ||
-    (undefined as any)
-);
-export const FormTextInputTemplateRequiredWithMax = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "requiredwithmax") ||
-    (undefined as any)
-);
-export const FormTextInputTemplateRequiredWithMaxMin = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "requiredwithminmax") ||
-    (undefined as any)
-);
-export const FormTextInputTemplateRequiredWithRegex = setStorybookData(
-  componentSetup.name,
-  componentSetup.examples.find((f) => f.name === "requiredwithregex") ||
-    (undefined as any)
-);
+export const FormTextInputTemplate = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
+};
+export const FormTextInputTemplateRequired = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "defaultRequired") ||
+      (undefined as any)
+  ),
+};
+export const FormTextInputTemplateRequiredWithMin = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "requiredwithmin") ||
+      (undefined as any)
+  ),
+};
+export const FormTextInputTemplateRequiredWithMax = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "requiredwithmax") ||
+      (undefined as any)
+  ),
+};
+export const FormTextInputTemplateRequiredWithMaxMin = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "requiredwithminmax") ||
+      (undefined as any)
+  ),
+};
+export const FormTextInputTemplateRequiredWithRegex = {
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "requiredwithregex") ||
+      (undefined as any)
+  ),
+};
