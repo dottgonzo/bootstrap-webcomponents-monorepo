@@ -18,15 +18,18 @@ export const ${package.replace(/-/g, "")}${i} = {
 `;
     }
 
-    const story = `import {
+    const story = `
+import "./main.css";
+import {
   webComponentBind,
   getStorybookMeta,
   setStorybookData,
 } from "storybook-wc-utils";
+import type { Meta } from "@storybook/html";
 import lernaPkg from "../../lerna.json";
 import { storybookArgs, componentSetup } from "../../packages/${package}/extra/docs";
 
-const meta = getStorybookMeta(storybookArgs, componentSetup);
+const meta: Meta = getStorybookMeta(storybookArgs, componentSetup);
 export default {
   title: "${manifest.category}/${package.replace(/-/g, "")}",
   tags: ["autodocs"],
@@ -47,7 +50,7 @@ ${ex}
 `;
 
     await fs.writeFile(
-      `./stories/${package.replace(/-/g, "")}.stories.js`,
+      `./stories/${package.replace(/-/g, "")}.stories.ts`,
       story
     );
   }
