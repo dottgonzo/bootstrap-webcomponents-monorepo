@@ -193,55 +193,67 @@ const brandandcontacts1 = {};
 const footerbottom1 = {};
 
 export const Footer = {
-  id: "Footer",
-  company: company1,
-  brandandcontacts: brandandcontacts1,
-  columns: columns1,
-  footerbottom: footerbottom1,
-  policies: policies1,
-  contacts: contacts1,
-  socials: socials1,
+  args: {
+    id: "Footer",
+    company: company1,
+    brandandcontacts: brandandcontacts1,
+    columns: columns1,
+    footerbottom: footerbottom1,
+    policies: policies1,
+    contacts: contacts1,
+    socials: socials1,
+  },
 };
 
 export const FooterMobile = {
-  id: "FooterMobile",
-  company: company1,
-  brandandcontacts: brandandcontacts1,
-  columns: columns1,
-  footerbottom: footerbottom1,
-  policies: policies1,
-  parameters: {
-    viewport: {
-      defaultViewport: "iphonex",
+  args: {
+    id: "FooterMobile",
+    company: company1,
+    brandandcontacts: brandandcontacts1,
+    columns: columns1,
+    footerbottom: footerbottom1,
+    policies: policies1,
+    parameters: {
+      viewport: {
+        defaultViewport: "iphonex",
+      },
     },
   },
 };
 
 export const FooterWithBrand = {
-  id: "FooterWithBrand",
-  company: company1,
-  brandandcontacts: brandandcontacts1,
+  args: {
+    id: "FooterWithBrand",
+    company: company1,
+    brandandcontacts: brandandcontacts1,
+  },
 };
 export const FooterWithColumns = {
-  id: "FooterWithColumns",
-  company: company1,
-  contacts: contacts1,
+  args: {
+    id: "FooterWithColumns",
+    company: company1,
+    contacts: contacts1,
 
-  columns: columns1,
+    columns: columns1,
+  },
 };
 export const FooterWithBottom = {
-  id: "FooterWithBottom",
-  footerbottom: footerbottom1,
-  company: company1,
+  args: {
+    id: "FooterWithBottom",
+    footerbottom: footerbottom1,
+    company: company1,
+  },
 };
 export const FooterSmall = {
-  id: "FooterSmall",
-  company: company1,
-  brandandcontacts: brandandcontacts1,
-  columns: columns1,
-  footerbottom: footerbottom1,
-  policies: policies1,
-  contacts: contacts1,
-  socials: socials1,
-  type: "small",
+  args: {
+    id: "FooterSmall",
+    company: company1,
+    brandandcontacts: brandandcontacts1,
+    columns: columns1,
+    footerbottom: footerbottom1,
+    policies: policies1,
+    contacts: contacts1,
+    socials: socials1,
+    type: "small",
+  },
 };

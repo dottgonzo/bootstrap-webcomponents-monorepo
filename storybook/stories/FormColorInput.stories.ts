@@ -42,6 +42,8 @@ export default {
 };
 
 export const FormColorInputTemplate = {
-  id: "BasicFormColorInput",
-  schemaentry: inputEntry1,
+  args: {
+    id: "BasicFormColorInput",
+    schemaentry: inputEntry1,
+  },
 };

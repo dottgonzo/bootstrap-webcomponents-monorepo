@@ -210,20 +210,26 @@ const productHeader = [
 ];
 
 export const ProductComparison = {
-  id: "ProductComparison",
-  headers: productHeader,
-  products,
-  options: { currency: "€" },
+  args: {
+    id: "ProductComparison",
+    headers: productHeader,
+    products,
+    options: { currency: "€" },
+  },
 };
 export const ProductComparisonWithSale = {
-  id: "ProductComparisonWithSale",
-  headers: productHeader,
-  products: products2,
-  options: { currency: "€", preferredProductId: "prrr3" },
+  args: {
+    id: "ProductComparisonWithSale",
+    headers: productHeader,
+    products: products2,
+    options: { currency: "€", preferredProductId: "prrr3" },
+  },
 };
 export const Product3Comparison = {
-  id: "Product3Comparison",
-  headers: productHeader,
-  products: products3,
-  options: { currency: "€", preferredProductId: "prrr3" },
+  args: {
+    id: "Product3Comparison",
+    headers: productHeader,
+    products: products3,
+    options: { currency: "€", preferredProductId: "prrr3" },
+  },
 };

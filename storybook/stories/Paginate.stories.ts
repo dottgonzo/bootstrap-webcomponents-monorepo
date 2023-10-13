@@ -33,15 +33,21 @@ export default {
 };
 
 export const BasicPagination1 = {
-  pages: 1,
-  id: "BasicPagination1",
+  args: {
+    pages: 1,
+    id: "BasicPagination1",
+  },
 };
 export const BasicPagination4 = {
-  pages: 4,
-  id: "BasicPagination4",
+  args: {
+    pages: 4,
+    id: "BasicPagination4",
+  },
 };
 export const BasicPagination12 = {
-  pages: 12,
-  page: 2,
-  id: "BasicPagination12",
+  args: {
+    pages: 12,
+    page: 2,
+    id: "BasicPagination12",
+  },
 };

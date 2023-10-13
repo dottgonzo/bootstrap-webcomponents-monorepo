@@ -292,59 +292,69 @@ export const LayoutA = {
   args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
 };
 export const LayoutWithBigSidebar = {
-  id: "LayoutWithBigSidebar",
-  company: company1,
-  contacts: contacts1,
-  socials: socials1,
-  navlinks: navlinksMany,
-  usermenu: usermenu1,
-  sidebar: { title: "brand" },
+  args: {
+    id: "LayoutWithBigSidebar",
+    company: company1,
+    contacts: contacts1,
+    socials: socials1,
+    navlinks: navlinksMany,
+    usermenu: usermenu1,
+    sidebar: { title: "brand" },
+  },
 };
 export const LayoutWithBigSidebarAndBigText = {
-  id: "LayoutWithBigSidebarAndBigText",
-  company: company1,
-  contacts: contacts1,
-  socials: socials1,
-  navlinks: navlinksMany,
-  usermenu: usermenu1,
-  sidebar: { title: "brand" },
-  _testInnerHtml:
-    '<div slot="page">paddddddddddddddddddddddddddddddddddddddddddge<br/>\
+  args: {
+    id: "LayoutWithBigSidebarAndBigText",
+    company: company1,
+    contacts: contacts1,
+    socials: socials1,
+    navlinks: navlinksMany,
+    usermenu: usermenu1,
+    sidebar: { title: "brand" },
+    _testInnerHtml:
+      '<div slot="page">paddddddddddddddddddddddddddddddddddddddddddge<br/>\
     ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>\
     ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao\
     <br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>\
     ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao\
     <br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>\
     ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao<br/>ciao</div>',
+  },
 };
 export const LayoutAWithPage = {
-  id: "LayoutAWithPage",
-  company: company1,
-  contacts: contacts1,
-  socials: socials1,
-  navlinks: navlinks2,
-  pagename: "settings",
-  usermenu: usermenu1,
-  cookielaw: "yes",
-  _testInnerHtml:
-    '<div slot="page">paddddddddddddddddddddddddddddddddddddddddddge</div><div slot="nav-right-slot">rghtslot</div>',
+  args: {
+    id: "LayoutAWithPage",
+    company: company1,
+    contacts: contacts1,
+    socials: socials1,
+    navlinks: navlinks2,
+    pagename: "settings",
+    usermenu: usermenu1,
+    cookielaw: "yes",
+    _testInnerHtml:
+      '<div slot="page">paddddddddddddddddddddddddddddddddddddddddddge</div><div slot="nav-right-slot">rghtslot</div>',
+  },
 };
 export const LayoutAWithoutBurger = {
-  id: "LayoutAWithoutBurger",
-  company: company1,
-  contacts: contacts1,
-  socials: socials1,
-  pagename: "settings",
-  usermenu: usermenu1,
-  cookielaw: "yes",
+  args: {
+    id: "LayoutAWithoutBurger",
+    company: company1,
+    contacts: contacts1,
+    socials: socials1,
+    pagename: "settings",
+    usermenu: usermenu1,
+    cookielaw: "yes",
+  },
 };
 export const LayoutAWithoutNavSlotted = {
-  id: "LayoutAWithoutNavSlotted",
-  company: company1,
-  contacts: contacts1,
-  socials: socials1,
-  pagename: "settings",
-  usermenu: usermenu1,
-  cookielaw: "yes",
-  _testInnerHtml: '<div slot="nav-right-slot">right-</div>',
+  args: {
+    id: "LayoutAWithoutNavSlotted",
+    company: company1,
+    contacts: contacts1,
+    socials: socials1,
+    pagename: "settings",
+    usermenu: usermenu1,
+    cookielaw: "yes",
+    _testInnerHtml: '<div slot="nav-right-slot">right-</div>',
+  },
 };

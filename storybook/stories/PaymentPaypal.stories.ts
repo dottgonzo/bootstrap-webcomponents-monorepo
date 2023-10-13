@@ -33,7 +33,9 @@ export default {
 };
 
 export const SimplePaypal = {
-  id: "SimplePaypal",
-  label: "bbbb",
-  paypalid: "test",
+  args: {
+    id: "SimplePaypal",
+    label: "bbbb",
+    paypalid: "test",
+  },
 };

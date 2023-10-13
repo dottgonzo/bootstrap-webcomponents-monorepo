@@ -105,16 +105,22 @@ export default {
 };
 
 export const BasicVideoeditor = {
-  id: "BasicVideoeditor",
-  src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+  args: {
+    id: "BasicVideoeditor",
+    src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+  },
 };
 export const BasicVideoeditorWithTrack = {
-  id: "BasicVideoeditorWithTrack",
-  track,
-  src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+  args: {
+    id: "BasicVideoeditorWithTrack",
+    track,
+    src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+  },
 };
 export const BasicVideoeditorWithForm = {
-  id: "BasicVideoeditorWithForm",
-  form,
-  src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+  args: {
+    id: "BasicVideoeditorWithForm",
+    form,
+    src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+  },
 };

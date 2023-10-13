@@ -43,194 +43,204 @@ const googlepay = {
   gatewayMerchantId: "exampleGatewayMerchantId",
 };
 export const PageCheckoutPaypal = {
-  id: "PageCheckoutPaypal",
-  shipments: [
-    {
-      price: 10,
-      currency: "€",
-
-      arriveDate: "2022-01-20T08:03:57.562Z",
-      available: true,
-      label: "zio barca",
-      id: "ziobarca",
-    },
-    {
-      price: 20,
-
-      arriveDate: "2022-01-21T02:22:57.562Z",
-      available: true,
-      label: "zio barca2",
-      id: "ziobarca2",
-      currency: "€",
-    },
-  ],
-  gateways: [defaultgw, googlepay],
-  payment: {
-    countryCode: "IT",
-    items: [
+  args: {
+    id: "PageCheckoutPaypal",
+    shipments: [
       {
-        unitaryPrice: 2,
-        taxPercentage: 3,
-        name: "testitem",
+        price: 10,
+        currency: "€",
+
+        arriveDate: "2022-01-20T08:03:57.562Z",
+        available: true,
+        label: "zio barca",
+        id: "ziobarca",
       },
       {
-        unitaryPrice: 5,
-        taxPercentage: 7,
-        name: "testitem2",
+        price: 20,
+
+        arriveDate: "2022-01-21T02:22:57.562Z",
+        available: true,
+        label: "zio barca2",
+        id: "ziobarca2",
+        currency: "€",
       },
     ],
+    gateways: [defaultgw, googlepay],
+    payment: {
+      countryCode: "IT",
+      items: [
+        {
+          unitaryPrice: 2,
+          taxPercentage: 3,
+          name: "testitem",
+        },
+        {
+          unitaryPrice: 5,
+          taxPercentage: 7,
+          name: "testitem2",
+        },
+      ],
+    },
   },
 };
 
 export const PageCheckoutPaypalWithUser = {
-  id: "PageCheckoutPaypalWithUser",
-  shipments: [
-    {
-      price: 10,
-      currency: "€",
-
-      arriveDate: "2022-01-20T08:03:57.562Z",
-      available: true,
-      label: "zio barca",
-      id: "ziobarca",
-    },
-    {
-      price: 20,
-      currency: "€",
-
-      arriveDate: "2022-01-21T02:22:57.562Z",
-      available: true,
-      label: "zio barca2",
-      id: "ziobarca2",
-    },
-  ],
-
-  user: {
-    fullName: "fdfff fffff",
-    addressWithNumber: "addreess 43",
-    city: "ff",
-    nationality: "effe",
-    zip: "3434",
-  },
-  gateways: [defaultgw, googlepay],
-  payment: {
-    countryCode: "IT",
-    items: [
+  args: {
+    id: "PageCheckoutPaypalWithUser",
+    shipments: [
       {
-        unitaryPrice: 2,
-        taxPercentage: 3,
-        name: "testitem",
+        price: 10,
+        currency: "€",
+
+        arriveDate: "2022-01-20T08:03:57.562Z",
+        available: true,
+        label: "zio barca",
+        id: "ziobarca",
       },
       {
-        unitaryPrice: 5,
-        taxPercentage: 7,
-        name: "testitem2",
+        price: 20,
+        currency: "€",
+
+        arriveDate: "2022-01-21T02:22:57.562Z",
+        available: true,
+        label: "zio barca2",
+        id: "ziobarca2",
       },
     ],
+
+    user: {
+      fullName: "fdfff fffff",
+      addressWithNumber: "addreess 43",
+      city: "ff",
+      nationality: "effe",
+      zip: "3434",
+    },
+    gateways: [defaultgw, googlepay],
+    payment: {
+      countryCode: "IT",
+      items: [
+        {
+          unitaryPrice: 2,
+          taxPercentage: 3,
+          name: "testitem",
+        },
+        {
+          unitaryPrice: 5,
+          taxPercentage: 7,
+          name: "testitem2",
+        },
+      ],
+    },
   },
 };
 
 export const PageCheckoutPaypalWithUserAndShipment = {
-  id: "PageCheckoutPaypalWithUserAndShipment",
-  shipments: [
-    {
-      price: 10,
-      currency: "€",
-
-      arriveDate: "2022-01-20T08:03:57.562Z",
-      available: true,
-      label: "zio barca",
-      id: "ziobarca",
-      standard: true,
-    },
-    {
-      price: 20,
-      currency: "€",
-      arriveDate: "2022-01-21T02:22:57.562Z",
-      available: true,
-      label: "zio barca2",
-      id: "ziobarca2",
-    },
-  ],
-  user: {
-    fullName: "fdfff fffff",
-    addressWithNumber: "addreess 43",
-    city: "ff",
-    nationality: "effe",
-    zip: "3434",
-  },
-  gateways: [defaultgw, googlepay],
-  payment: {
-    countryCode: "IT",
-    items: [
+  args: {
+    id: "PageCheckoutPaypalWithUserAndShipment",
+    shipments: [
       {
-        unitaryPrice: 2,
-        taxPercentage: 3,
-        name: "testitem",
+        price: 10,
+        currency: "€",
+
+        arriveDate: "2022-01-20T08:03:57.562Z",
+        available: true,
+        label: "zio barca",
+        id: "ziobarca",
+        standard: true,
       },
       {
-        unitaryPrice: 5,
-        taxPercentage: 7,
-        name: "testitem2",
+        price: 20,
+        currency: "€",
+        arriveDate: "2022-01-21T02:22:57.562Z",
+        available: true,
+        label: "zio barca2",
+        id: "ziobarca2",
       },
     ],
+    user: {
+      fullName: "fdfff fffff",
+      addressWithNumber: "addreess 43",
+      city: "ff",
+      nationality: "effe",
+      zip: "3434",
+    },
+    gateways: [defaultgw, googlepay],
+    payment: {
+      countryCode: "IT",
+      items: [
+        {
+          unitaryPrice: 2,
+          taxPercentage: 3,
+          name: "testitem",
+        },
+        {
+          unitaryPrice: 5,
+          taxPercentage: 7,
+          name: "testitem2",
+        },
+      ],
+    },
   },
 };
 
 export const PageCheckoutPaypalService = {
-  id: "PageCheckoutPaypalService",
-  shipments: [],
-  user: {
-    fullName: "fdfff fffff",
-    addressWithNumber: "addreess 43",
-    city: "ff",
-    nationality: "effe",
-    zip: "3434",
-    fixed: true,
-  },
-  gateways: [defaultgw, googlepay],
-  payment: {
-    countryCode: "IT",
-    items: [
-      {
-        unitaryPrice: 2,
-        taxPercentage: 3,
-        name: "testitem",
-      },
-      {
-        unitaryPrice: 5,
-        taxPercentage: 7,
-        name: "testitem2",
-      },
-    ],
+  args: {
+    id: "PageCheckoutPaypalService",
+    shipments: [],
+    user: {
+      fullName: "fdfff fffff",
+      addressWithNumber: "addreess 43",
+      city: "ff",
+      nationality: "effe",
+      zip: "3434",
+      fixed: true,
+    },
+    gateways: [defaultgw, googlepay],
+    payment: {
+      countryCode: "IT",
+      items: [
+        {
+          unitaryPrice: 2,
+          taxPercentage: 3,
+          name: "testitem",
+        },
+        {
+          unitaryPrice: 5,
+          taxPercentage: 7,
+          name: "testitem2",
+        },
+      ],
+    },
   },
 };
 export const PageCheckoutCompleted = {
-  id: "PageCheckoutCompleted",
-  shipments: [],
-  user: {
-    fullName: "fdfff fffff",
-    addressWithNumber: "addreess 43",
-    city: "ff",
-    nationality: "effe",
-    zip: "3434",
-    fixed: true,
+  args: {
+    id: "PageCheckoutCompleted",
+    shipments: [],
+    user: {
+      fullName: "fdfff fffff",
+      addressWithNumber: "addreess 43",
+      city: "ff",
+      nationality: "effe",
+      zip: "3434",
+      fixed: true,
+    },
+    gateways: [defaultgw, googlepay],
+    payment: {
+      countryCode: "IT",
+      items: [
+        {
+          unitaryPrice: 2,
+          taxPercentage: 3,
+          name: "testitem",
+        },
+        {
+          unitaryPrice: 5,
+          taxPercentage: 7,
+          name: "testitem2",
+        },
+      ],
+    },
+    completed: "yes",
   },
-  gateways: [defaultgw, googlepay],
-  payment: {
-    countryCode: "IT",
-    items: [
-      {
-        unitaryPrice: 2,
-        taxPercentage: 3,
-        name: "testitem",
-      },
-      {
-        unitaryPrice: 5,
-        taxPercentage: 7,
-        name: "testitem2",
-      },
-    ],
-  },
-  completed: "yes",
 };

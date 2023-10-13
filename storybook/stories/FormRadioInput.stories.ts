@@ -64,12 +64,16 @@ export default {
 };
 
 export const FormRadioInputTemplate = {
-  id: "FormRadioInputTemplate",
-  schemaentry: inputEntry1,
+  args: {
+    id: "FormRadioInputTemplate",
+    schemaentry: inputEntry1,
+  },
 };
 
 export const FormRadioInputTemplate2s = {
-  id: "FormRadioInputTemplate2",
-  schemaentry: inputEntry2,
-  show_validation: true,
+  args: {
+    id: "FormRadioInputTemplate2",
+    schemaentry: inputEntry2,
+    show_validation: true,
+  },
 };

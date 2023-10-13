@@ -237,75 +237,97 @@ const groups1 = [
 ];
 
 export const BasicOffcanvas = {
-  id: "BasicOffcanvas",
-  navlinks: navlinks0,
+  args: {
+    id: "BasicOffcanvas",
+    navlinks: navlinks0,
+  },
 };
 export const BasicOffcanvasOpen = {
-  opened: true,
-  id: "BasicOffcanvasOpen",
-  navlinks: navlinks0,
+  args: {
+    opened: true,
+    id: "BasicOffcanvasOpen",
+    navlinks: navlinks0,
+  },
 };
 export const BasicOffcanvasOnSettings = {
-  opened: true,
-  id: "BasicOffcanvasOnSettings",
-  navlinks: navlinks0,
-  navpage: "settings",
+  args: {
+    opened: true,
+    id: "BasicOffcanvasOnSettings",
+    navlinks: navlinks0,
+    navpage: "settings",
+  },
 };
 export const BasicOffcanvasWithGroups = {
-  opened: true,
-  id: "BasicOffcanvasWithGroups",
-  navlinks: navlinks1b,
-  groups: groups1,
+  args: {
+    opened: true,
+    id: "BasicOffcanvasWithGroups",
+    navlinks: navlinks1b,
+    groups: groups1,
+  },
 };
 export const BasicOffcanvasWithGroupsOnSettings = {
-  opened: true,
-  id: "BasicOffcanvasWithGroupsOnSettings",
-  navlinks: navlinks1,
-  groups: groups1,
-  navpage: "settings",
+  args: {
+    opened: true,
+    id: "BasicOffcanvasWithGroupsOnSettings",
+    navlinks: navlinks1,
+    groups: groups1,
+    navpage: "settings",
+  },
 };
 export const BasicOffcanvasWithAutoGroupsOnSettings = {
-  opened: true,
-  id: "BasicOffcanvasWithAutoGroupsOnSettings",
-  navlinks: navlinks1,
-  navpage: "settings",
+  args: {
+    opened: true,
+    id: "BasicOffcanvasWithAutoGroupsOnSettings",
+    navlinks: navlinks1,
+    navpage: "settings",
+  },
 };
 
 export const BasicOffcanvasWithAutoGroupsOnSettingsAndBadge = {
-  opened: true,
-  id: "BasicOffcanvasWithAutoGroupsOnSettingsAndBadge",
-  navlinks: navlinks2,
-  navpage: "settings",
+  args: {
+    opened: true,
+    id: "BasicOffcanvasWithAutoGroupsOnSettingsAndBadge",
+    navlinks: navlinks2,
+    navpage: "settings",
+  },
 };
 export const OffcanvasWithFooter = {
-  opened: true,
-  id: "OffcanvasWithFooter",
-  navlinks: navlinks2,
-  navpage: "settings",
-  enablefooter: true,
+  args: {
+    opened: true,
+    id: "OffcanvasWithFooter",
+    navlinks: navlinks2,
+    navpage: "settings",
+    enablefooter: true,
+  },
 };
 
 export const OffcanvasWithFooterCustom = {
-  opened: true,
-  id: "OffcanvasWithFooterCustom",
-  navlinks: navlinks2,
-  navpage: "settings",
-  enablefooter: true,
+  args: {
+    opened: true,
+    id: "OffcanvasWithFooterCustom",
+    navlinks: navlinks2,
+    navpage: "settings",
+    enablefooter: true,
+  },
 };
 
 export const OffcanvasWithFooterCustomDesktop = {
-  opened: true,
-  id: "OffcanvasWithFooterCustomDesktop",
-  navlinks: navlinks2,
-  navpage: "settings",
-  enablefooter: true,
-  type: "open",
+  args: {
+    opened: true,
+    id: "OffcanvasWithFooterCustomDesktop",
+    navlinks: navlinks2,
+    navpage: "settings",
+    enablefooter: true,
+    type: "open",
+  },
 };
 export const OffcanvasMultilevel = {
-  opened: true,
-  id: "OffcanvasMultilevel",
-  navlinks: navlinks3,
-  navpage: "settings",
-  enablefooter: true,
-  type: "open",
+  args: {
+    opened: true,
+    id: "OffcanvasMultilevel",
+    navlinks: navlinks3,
+    navpage: "settings",
+    enablefooter: true,
+    type: "open",
+  },
 };

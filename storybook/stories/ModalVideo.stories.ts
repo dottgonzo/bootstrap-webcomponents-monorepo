@@ -33,10 +33,14 @@ export default {
 };
 
 export const VideoModalTemplateFill = {
-  id: "BasicVideoModalFill",
-  uri: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+  args: {
+    id: "BasicVideoModalFill",
+    uri: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+  },
 };
 
 export const VideoModalTemplate = {
-  id: "BasicVideoModal",
+  args: {
+    id: "BasicVideoModal",
+  },
 };

@@ -96,16 +96,20 @@ export default {
 };
 
 export const BasicVideoGallery = {
-  cards,
-  headers,
-  id: "BasicVideoGallery",
+  args: {
+    cards,
+    headers,
+    id: "BasicVideoGallery",
+  },
 };
 
 export const BasicVideoGalleryRest = {
-  cards,
-  headers,
-  id: "BasicVideoGalleryRest",
-  externalfilter: true,
+  args: {
+    cards,
+    headers,
+    id: "BasicVideoGalleryRest",
+    externalfilter: true,
+  },
 };
 
 // BasicVideoGallery.parameters = {

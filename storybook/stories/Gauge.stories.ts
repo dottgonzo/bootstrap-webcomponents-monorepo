@@ -30,10 +30,12 @@ export default {
 };
 
 export const GaugesTemplate = {
-  id: "GaugesTemplate",
-  options: {
-    value: 50,
-    min: 0,
-    max: 100,
+  args: {
+    id: "GaugesTemplate",
+    options: {
+      value: 50,
+      min: 0,
+      max: 100,
+    },
   },
 };

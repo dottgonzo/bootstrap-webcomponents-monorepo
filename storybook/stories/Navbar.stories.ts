@@ -59,42 +59,54 @@ export default {
 };
 
 export const BasicNavbar = {
-  id: "BasicNavbar",
-  companybrandname: "testbrand",
-  companylogouri:
-    "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg",
+  args: {
+    id: "BasicNavbar",
+    companybrandname: "testbrand",
+    companylogouri:
+      "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg",
+  },
 };
 export const BasicNavbarWithTitle = {
-  id: "BasicNavbarWithTitle",
-  companybrandname: "testbrand2",
-  pagetitle: "pagetest",
+  args: {
+    id: "BasicNavbarWithTitle",
+    companybrandname: "testbrand2",
+    pagetitle: "pagetest",
+  },
 };
 export const BasicNavbarWithTitleOpen = {
-  id: "BasicNavbarWithTitleOpen",
-  companybrandname: "testbrand2",
-  pagetitle: "pagetest",
-  switchopen: true,
+  args: {
+    id: "BasicNavbarWithTitleOpen",
+    companybrandname: "testbrand2",
+    pagetitle: "pagetest",
+    switchopen: true,
+  },
 };
 export const NavbarSlotted = {
-  id: "NavbarSlotted",
-  companybrandname: "testbrand2",
-  pagetitle: "pagetest",
-  switchopen: true,
-  _testInnerHtml: '<div slot="right-slot">slott</div>',
+  args: {
+    id: "NavbarSlotted",
+    companybrandname: "testbrand2",
+    pagetitle: "pagetest",
+    switchopen: true,
+    _testInnerHtml: '<div slot="right-slot">slott</div>',
+  },
 };
 export const NavbarWithUserMenu = {
-  id: "NavbarWithUserMenu",
-  companybrandname: "testbrand",
-  companylogouri:
-    "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg",
-  usermenu: usermenu1,
+  args: {
+    id: "NavbarWithUserMenu",
+    companybrandname: "testbrand",
+    companylogouri:
+      "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg",
+    usermenu: usermenu1,
+  },
 };
 export const NavbarNoBurger = {
-  id: "NavbarNoBurger",
-  companybrandname: "testbrand",
-  companylogouri:
-    "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg",
-  usermenu: usermenu1,
-  noburger: true,
-  _testInnerHtml: '<div slot="right-slot">s</div>',
+  args: {
+    id: "NavbarNoBurger",
+    companybrandname: "testbrand",
+    companylogouri:
+      "https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg",
+    usermenu: usermenu1,
+    noburger: true,
+    _testInnerHtml: '<div slot="right-slot">s</div>',
+  },
 };

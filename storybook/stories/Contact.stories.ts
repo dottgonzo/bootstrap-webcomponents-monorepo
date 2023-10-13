@@ -33,22 +33,30 @@ export default {
 };
 
 export const ContactPhone = {
-  id: "ContactPhone",
-  phone: { number: 465564 },
+  args: {
+    id: "ContactPhone",
+    phone: { number: 465564 },
+  },
 };
 export const ContactEmail = {
-  id: "ContactEmail",
-  email: { address: "dev@dariocaruso.info" },
+  args: {
+    id: "ContactEmail",
+    email: { address: "dev@dariocaruso.info" },
+  },
 };
 export const ContactSite = {
-  id: "ContactSite",
-  site: {
-    uri: "https://dariocaruso.info",
-    label: "dariocaruso.info",
-    open: true,
+  args: {
+    id: "ContactSite",
+    site: {
+      uri: "https://dariocaruso.info",
+      label: "dariocaruso.info",
+      open: true,
+    },
   },
 };
 export const ContactAddressgs = {
-  id: "ContactAddress",
-  address: { address: "egeg" },
+  args: {
+    id: "ContactAddress",
+    address: { address: "egeg" },
+  },
 };

@@ -33,7 +33,9 @@ export default {
 };
 
 export const TinyEditorTemplate = {
-  id: "TinyEditorTemplate",
+  args: {
+    id: "TinyEditorTemplate",
+  },
 };
 
 export const TinyEditorTemplateWithUploadUrl = {

@@ -33,12 +33,16 @@ export default {
 };
 
 export const DashboardIndicator = {
-  id: "DashboardIndicator",
+  args: {
+    id: "DashboardIndicator",
+  },
 };
 export const DashboardIndicatorFull = {
-  id: "DashboardIndicatorFull",
-  number: 10,
-  label: "ritestamento",
-  icon: "window",
-  link_label: "testaggio",
+  args: {
+    id: "DashboardIndicatorFull",
+    number: 10,
+    label: "ritestamento",
+    icon: "window",
+    link_label: "testaggio",
+  },
 };

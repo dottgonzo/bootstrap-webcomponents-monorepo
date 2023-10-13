@@ -33,7 +33,9 @@ export default {
 };
 
 export const Searchbar1 = {
-  id: "Searchbar1",
-  action: "http://localhost:3000/search",
-  resultitemtitlekey: "productName",
+  args: {
+    id: "Searchbar1",
+    action: "http://localhost:3000/search",
+    resultitemtitlekey: "productName",
+  },
 };

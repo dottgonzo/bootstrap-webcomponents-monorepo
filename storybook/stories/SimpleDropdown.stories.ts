@@ -59,39 +59,43 @@ export default {
 };
 
 export const BasicSimpleDropdown = {
-  id: "BasicSimpleDropdown",
-  list: [
-    {
-      key: "ciao",
-      label: "bao",
-    },
-    {
-      key: "ciao2",
-      label: "bao2",
-    },
-    {
-      key: "ciao3",
-      label: "bao3",
-      linkHref: "fefeef",
-    },
-  ],
+  args: {
+    id: "BasicSimpleDropdown",
+    list: [
+      {
+        key: "ciao",
+        label: "bao",
+      },
+      {
+        key: "ciao2",
+        label: "bao2",
+      },
+      {
+        key: "ciao3",
+        label: "bao3",
+        linkHref: "fefeef",
+      },
+    ],
+  },
 };
 
 export const BasicSimpleDropdownRight = {
-  id: "BasicSimpleDropdownRight",
-  list: [
-    {
-      key: "ciao",
-      label: "bao",
-    },
-    {
-      key: "ciao2",
-      label: "bao2",
-    },
-    {
-      key: "ciao3",
-      label: "bao3",
-      linkHref: "fefeef",
-    },
-  ],
+  args: {
+    id: "BasicSimpleDropdownRight",
+    list: [
+      {
+        key: "ciao",
+        label: "bao",
+      },
+      {
+        key: "ciao2",
+        label: "bao2",
+      },
+      {
+        key: "ciao3",
+        label: "bao3",
+        linkHref: "fefeef",
+      },
+    ],
+  },
 };

@@ -33,38 +33,42 @@ export default {
 };
 
 export const CheckoutShoppingCart = {
-  id: "CheckoutShoppingCart",
-  payment: {
-    items: [
-      {
-        unitaryPrice: 2,
-        taxPercentage: 3,
-        name: "testitem",
-      },
-      {
-        unitaryPrice: 5,
-        taxPercentage: 7,
-        name: "testitem2",
-      },
-    ],
+  args: {
+    id: "CheckoutShoppingCart",
+    payment: {
+      items: [
+        {
+          unitaryPrice: 2,
+          taxPercentage: 3,
+          name: "testitem",
+        },
+        {
+          unitaryPrice: 5,
+          taxPercentage: 7,
+          name: "testitem2",
+        },
+      ],
+    },
   },
 };
 
 export const CheckoutShoppingCartCompleted = {
-  id: "CheckoutShoppingCartCompleted",
-  payment: {
-    items: [
-      {
-        unitaryPrice: 2,
-        taxPercentage: 3,
-        name: "testitem",
-      },
-      {
-        unitaryPrice: 5,
-        taxPercentage: 7,
-        name: "testitem2",
-      },
-    ],
-    completed: "yes",
+  args: {
+    id: "CheckoutShoppingCartCompleted",
+    payment: {
+      items: [
+        {
+          unitaryPrice: 2,
+          taxPercentage: 3,
+          name: "testitem",
+        },
+        {
+          unitaryPrice: 5,
+          taxPercentage: 7,
+          name: "testitem2",
+        },
+      ],
+      completed: "yes",
+    },
   },
 };

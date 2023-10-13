@@ -54,190 +54,204 @@ const defaultPayment = {
 };
 
 export const CheckoutPaypal = {
-  id: "CheckoutPaypal",
-  shipments: [
-    {
-      price: 10,
-      currency: "€",
+  args: {
+    id: "CheckoutPaypal",
+    shipments: [
+      {
+        price: 10,
+        currency: "€",
 
-      arriveDate: "2022-01-20T08:03:57.562Z",
-      available: true,
-      label: "zio barca",
-      id: "ziobarca",
-    },
-    {
-      price: 20,
-      currency: "€",
+        arriveDate: "2022-01-20T08:03:57.562Z",
+        available: true,
+        label: "zio barca",
+        id: "ziobarca",
+      },
+      {
+        price: 20,
+        currency: "€",
 
-      arriveDate: "2022-01-21T02:22:57.562Z",
-      available: true,
-      label: "zio barca2",
-      id: "ziobarca2",
-    },
-  ],
-  gateways: [paypal],
-  payment: defaultPayment,
+        arriveDate: "2022-01-21T02:22:57.562Z",
+        available: true,
+        label: "zio barca2",
+        id: "ziobarca2",
+      },
+    ],
+    gateways: [paypal],
+    payment: defaultPayment,
+  },
 };
 
 export const CheckoutPaypalWithUser = {
-  id: "CheckoutPaypalWithUser",
-  shipments: [
-    {
-      price: 10,
-      currency: "€",
+  args: {
+    id: "CheckoutPaypalWithUser",
+    shipments: [
+      {
+        price: 10,
+        currency: "€",
 
-      arriveDate: "2022-01-20T08:03:57.562Z",
-      available: true,
-      label: "zio barca",
-      id: "ziobarca",
-    },
-    {
-      price: 20,
-      currency: "€",
+        arriveDate: "2022-01-20T08:03:57.562Z",
+        available: true,
+        label: "zio barca",
+        id: "ziobarca",
+      },
+      {
+        price: 20,
+        currency: "€",
 
-      arriveDate: "2022-01-21T02:22:57.562Z",
-      available: true,
-      label: "zio barca2",
-      id: "ziobarca2",
+        arriveDate: "2022-01-21T02:22:57.562Z",
+        available: true,
+        label: "zio barca2",
+        id: "ziobarca2",
+      },
+    ],
+    user: {
+      fullName: "fdfff fffff",
+      addressWithNumber: "addreess 43",
+      city: "ff",
+      nationality: "effe",
+      zip: "3434",
     },
-  ],
-  user: {
-    fullName: "fdfff fffff",
-    addressWithNumber: "addreess 43",
-    city: "ff",
-    nationality: "effe",
-    zip: "3434",
+    gateways: [paypal],
+    payment: defaultPayment,
   },
-  gateways: [paypal],
-  payment: defaultPayment,
 };
 
 export const CheckoutPaypalWithUserAndShipping = {
-  id: "CheckoutPaypalWithUserAndShipping",
-  shipments: [
-    {
-      price: 10,
-      currency: "€",
+  args: {
+    id: "CheckoutPaypalWithUserAndShipping",
+    shipments: [
+      {
+        price: 10,
+        currency: "€",
 
-      arriveDate: "2022-01-20T08:03:57.562Z",
-      available: true,
-      label: "zio barca",
-      id: "ziobarca",
-      selected: true,
-    },
-    {
-      price: 20,
-      currency: "€",
+        arriveDate: "2022-01-20T08:03:57.562Z",
+        available: true,
+        label: "zio barca",
+        id: "ziobarca",
+        selected: true,
+      },
+      {
+        price: 20,
+        currency: "€",
 
-      arriveDate: "2022-01-21T02:22:57.562Z",
-      available: true,
-      label: "zio barca2",
-      id: "ziobarca2",
+        arriveDate: "2022-01-21T02:22:57.562Z",
+        available: true,
+        label: "zio barca2",
+        id: "ziobarca2",
+      },
+    ],
+    user: {
+      fullName: "fdfff fffff",
+      addressWithNumber: "addreess 43",
+      city: "ff",
+      nationality: "effe",
+      zip: "3434",
     },
-  ],
-  user: {
-    fullName: "fdfff fffff",
-    addressWithNumber: "addreess 43",
-    city: "ff",
-    nationality: "effe",
-    zip: "3434",
+    gateways: [paypal, googlepay],
+    payment: defaultPayment,
   },
-  gateways: [paypal, googlepay],
-  payment: defaultPayment,
 };
 
 export const CheckoutWithPaypalOnlyPayment = {
-  id: "CheckoutWithPaypalOnlyPayment",
-  shipments: [
-    {
-      price: 10,
-      currency: "€",
+  args: {
+    id: "CheckoutWithPaypalOnlyPayment",
+    shipments: [
+      {
+        price: 10,
+        currency: "€",
 
-      arriveDate: "2022-01-20T08:03:57.562Z",
-      available: true,
-      label: "zio barca",
-      id: "ziobarca",
-      selected: true,
-    },
-    {
-      price: 20,
-      currency: "€",
+        arriveDate: "2022-01-20T08:03:57.562Z",
+        available: true,
+        label: "zio barca",
+        id: "ziobarca",
+        selected: true,
+      },
+      {
+        price: 20,
+        currency: "€",
 
-      arriveDate: "2022-01-21T02:22:57.562Z",
-      available: true,
-      label: "zio barca2",
-      id: "ziobarca2",
+        arriveDate: "2022-01-21T02:22:57.562Z",
+        available: true,
+        label: "zio barca2",
+        id: "ziobarca2",
+      },
+    ],
+    user: {
+      fullName: "fdfff fffff",
+      addressWithNumber: "addreess 43",
+      city: "ff",
+      nationality: "effe",
+      zip: "3434",
     },
-  ],
-  user: {
-    fullName: "fdfff fffff",
-    addressWithNumber: "addreess 43",
-    city: "ff",
-    nationality: "effe",
-    zip: "3434",
+    gateways: [paypal],
+    payment: defaultPayment,
   },
-  gateways: [paypal],
-  payment: defaultPayment,
 };
 export const CheckoutWithGoogleOnlyPayment = {
-  id: "CheckoutWithGoogleOnlyPayment",
-  shipments: [
-    {
-      price: 10,
-      currency: "€",
+  args: {
+    id: "CheckoutWithGoogleOnlyPayment",
+    shipments: [
+      {
+        price: 10,
+        currency: "€",
 
-      arriveDate: "2022-01-20T08:03:57.562Z",
-      available: true,
-      label: "zio barca",
-      id: "ziobarca",
-      selected: true,
-    },
-    {
-      price: 20,
-      currency: "€",
+        arriveDate: "2022-01-20T08:03:57.562Z",
+        available: true,
+        label: "zio barca",
+        id: "ziobarca",
+        selected: true,
+      },
+      {
+        price: 20,
+        currency: "€",
 
-      arriveDate: "2022-01-21T02:22:57.562Z",
-      available: true,
-      label: "zio barca2",
-      id: "ziobarca2",
+        arriveDate: "2022-01-21T02:22:57.562Z",
+        available: true,
+        label: "zio barca2",
+        id: "ziobarca2",
+      },
+    ],
+    user: {
+      fullName: "fdfff fffff",
+      addressWithNumber: "addreess 43",
+      city: "ff",
+      nationality: "effe",
+      zip: "3434",
     },
-  ],
-  user: {
-    fullName: "fdfff fffff",
-    addressWithNumber: "addreess 43",
-    city: "ff",
-    nationality: "effe",
-    zip: "3434",
+    gateways: [googlepay],
+    payment: defaultPayment,
   },
-  gateways: [googlepay],
-  payment: defaultPayment,
 };
 
 export const CheckoutWithGoogleSubscribe = {
-  id: "CheckoutWithGoogleSubscribe",
-  shipments: [],
-  user: {
-    fullName: "fdfff fffff",
-    addressWithNumber: "addreess 43",
-    city: "ff",
-    nationality: "effe",
-    zip: "3434",
+  args: {
+    id: "CheckoutWithGoogleSubscribe",
+    shipments: [],
+    user: {
+      fullName: "fdfff fffff",
+      addressWithNumber: "addreess 43",
+      city: "ff",
+      nationality: "effe",
+      zip: "3434",
+    },
+    gateways: [googlepay],
+    payment: Object.assign({}, defaultPayment, { type: "subscribe" }),
   },
-  gateways: [googlepay],
-  payment: Object.assign({}, defaultPayment, { type: "subscribe" }),
 };
 
 export const CheckoutCompleted = {
-  id: "CheckoutCompleted",
-  shipments: [],
-  user: {
-    fullName: "fdfff fffff",
-    addressWithNumber: "addreess 43",
-    city: "ff",
-    nationality: "effe",
-    zip: "3434",
+  args: {
+    id: "CheckoutCompleted",
+    shipments: [],
+    user: {
+      fullName: "fdfff fffff",
+      addressWithNumber: "addreess 43",
+      city: "ff",
+      nationality: "effe",
+      zip: "3434",
+    },
+    gateways: [googlepay],
+    payment: defaultPayment,
+    completed: "yes",
   },
-  gateways: [googlepay],
-  payment: defaultPayment,
-  completed: "yes",
 };

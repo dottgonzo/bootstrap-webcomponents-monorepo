@@ -33,17 +33,25 @@ export default {
 };
 
 export const CookielawSimple = {
-  id: "CookielawSimple",
+  args: {
+    id: "CookielawSimple",
+  },
 };
 export const CookielawWithDecline = {
-  id: "CookielawWithDecline",
-  allowdecline: true,
+  args: {
+    id: "CookielawWithDecline",
+    allowdecline: true,
+  },
 };
 export const CookielawEn = {
-  id: "CookielawEn",
-  i18nlang: "en",
+  args: {
+    id: "CookielawEn",
+    i18nlang: "en",
+  },
 };
 export const CookielawIt = {
-  id: "CookielawIt",
-  i18nlang: "it",
+  args: {
+    id: "CookielawIt",
+    i18nlang: "it",
+  },
 };

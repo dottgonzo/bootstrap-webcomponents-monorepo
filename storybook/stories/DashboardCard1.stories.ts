@@ -33,27 +33,31 @@ export default {
 };
 
 export const DashboardCard1Template = {
-  id: "DashboardCard1Template",
-  header: {
-    label: "label",
-    icon: "window",
-    badge: "badge",
+  args: {
+    id: "DashboardCard1Template",
+    header: {
+      label: "label",
+      icon: "window",
+      badge: "badge",
+    },
+    _testInnerHtml:
+      '<div style="background-color:red" slot="content">cooontent</div>',
   },
-  _testInnerHtml:
-    '<div style="background-color:red" slot="content">cooontent</div>',
 };
 export const DashboardCard1TemplateNoBorder = {
-  id: "DashboardCard1TemplateNoBorder",
-  header: {
-    label: "no border",
-    icon: "window",
-    badge: "badge2",
+  args: {
+    id: "DashboardCard1TemplateNoBorder",
+    header: {
+      label: "no border",
+      icon: "window",
+      badge: "badge2",
+    },
+    body: { noborder: true },
+    _testInnerHtml:
+      '<div style="background-color:red" slot="content">cooontent</div>',
   },
-  body: { noborder: true },
-  _testInnerHtml:
-    '<div style="background-color:red" slot="content">cooontent</div>',
 };
-// export const DashboardCard1TemplateWithPlaceholder= {
+// export const DashboardCard1TemplateWithPlaceholder={args:{
 //   id: "DashboardCard1TemplateWithPlaceholder",
 //   header: {
 //     label: "label",

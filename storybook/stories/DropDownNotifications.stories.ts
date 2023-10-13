@@ -33,8 +33,9 @@ export default {
 };
 
 export const DropdownNotifications1 = {
-  id: "DropdownNotifications1",
-  _testInnerHtml: `<hb-notification-item avatar="LI" url="https://example.com/1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  args: {
+    id: "DropdownNotifications1",
+    _testInnerHtml: `<hb-notification-item avatar="LI" url="https://example.com/1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     <span slot="ext">30 min ago</span>
   </hb-notification-item>
   <hb-notification-item avatar="https://picsum.photos/10/10">Etiam quis lacus nec massa pulvinar aliquet.
@@ -49,13 +50,15 @@ export const DropdownNotifications1 = {
   </hb-notification-item>
   <hb-notification-item avatar="https://picsum.photos/200/100" url="https://example.com/6">Ut aliquam sapien non eros facilisis feugiat.
   </hb-notification-item>`,
-  clearurl: "https://example.com",
-  viewurl: "https://example.org",
+    clearurl: "https://example.com",
+    viewurl: "https://example.org",
+  },
 };
 
 export const DropdownNotifications2 = {
-  id: "DropdownNotifications2",
-  _testInnerHtml: `<hb-notification-item avatar="LI" url="https://example.com/1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  args: {
+    id: "DropdownNotifications2",
+    _testInnerHtml: `<hb-notification-item avatar="LI" url="https://example.com/1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     <span slot="ext">30 min ago</span>
   </hb-notification-item>
   <hb-notification-item avatar="https://picsum.photos/10/10">Etiam quis lacus nec massa pulvinar aliquet.
@@ -70,4 +73,5 @@ export const DropdownNotifications2 = {
   </hb-notification-item>
   <hb-notification-item avatar="https://picsum.photos/200/100" url="https://example.com/6">Ut aliquam sapien non eros facilisis feugiat.
   </hb-notification-item>`,
+  },
 };
