@@ -236,84 +236,68 @@ const groups1 = [
 ];
 
 export const BasicSidebarDesktopDefault = {
-  args: {
-    args: setStorybookData(
-      componentSetup.name,
-      componentSetup.examples.find((f) => f.name === "default") ||
-        (undefined as any)
-    ),
-  },
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "default") ||
+      (undefined as any)
+  ),
 };
 
 export const BasicSidebarOnSettings = {
-  args: {
-    args: setStorybookData(
-      componentSetup.name,
-      componentSetup.examples.find((f) => f.name === "sidebarOnSettings") ||
-        (undefined as any)
-    ),
-  },
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "sidebarOnSettings") ||
+      (undefined as any)
+  ),
 };
 
 export const BasicSidebarWithGroups = {
-  args: {
-    args: setStorybookData(
-      componentSetup.name,
-      componentSetup.examples.find((f) => f.name === "sidebarWithGroups") ||
-        (undefined as any)
-    ),
-  },
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "sidebarWithGroups") ||
+      (undefined as any)
+  ),
 };
 
 export const BasicSidebarWithGroupsOnSettings = {
-  args: {
-    args: setStorybookData(
-      componentSetup.name,
-      componentSetup.examples.find(
-        (f) => f.name === "sidebarWithGroupsOnSettings"
-      ) || (undefined as any)
-    ),
-  },
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "sidebarWithGroupsOnSettings"
+    ) || (undefined as any)
+  ),
 };
 
 export const BasicSidebarWithAutoGroupsOnSettings = {
-  args: {
-    args: setStorybookData(
-      componentSetup.name,
-      componentSetup.examples.find(
-        (f) => f.name === "sidebarWithAutoGroupsOnSettings"
-      ) || (undefined as any)
-    ),
-  },
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "sidebarWithAutoGroupsOnSettings"
+    ) || (undefined as any)
+  ),
 };
 
 export const BasicSidebarWithAutoGroupsOnSettingsAndBadge = {
-  args: {
-    args: setStorybookData(
-      componentSetup.name,
-      componentSetup.examples.find(
-        (f) => f.name === "sidebarWithAutoGroupsOnSettingsAndBadge"
-      ) || (undefined as any)
-    ),
-  },
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find(
+      (f) => f.name === "sidebarWithAutoGroupsOnSettingsAndBadge"
+    ) || (undefined as any)
+  ),
 };
 
 export const BasicSidebarWithFooter = {
-  args: {
-    args: setStorybookData(
-      componentSetup.name,
-      componentSetup.examples.find((f) => f.name === "sidebarWithFooter") ||
-        (undefined as any)
-    ),
-  },
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "sidebarWithFooter") ||
+      (undefined as any)
+  ),
 };
 
 export const BasicSidebarMultilevel = {
-  args: {
-    args: setStorybookData(
-      componentSetup.name,
-      componentSetup.examples.find((f) => f.name === "sidebarMultilevel") ||
-        (undefined as any)
-    ),
-  },
+  args: setStorybookData(
+    componentSetup.name,
+    componentSetup.examples.find((f) => f.name === "sidebarMultilevel") ||
+      (undefined as any)
+  ),
 };
