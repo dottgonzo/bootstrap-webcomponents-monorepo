@@ -35,7 +35,7 @@
 	let month: number;
 	let year: number;
 
-	let eventsOfThisMonthByDay: { day: number; events: IEvent[] }[];
+	let eventsOfThisMonthByDay: { day: number; events: IEvent[] }[] = [];
 
 	const holidays = new Holidays("IT");
 
@@ -141,7 +141,7 @@
 {/if}
 
 <div id="appointments_container">
-	{#if eventsOfThisMonthByDay.length}
+	{#if eventsOfThisMonthByDay?.length}
 		{#each eventsOfThisMonthByDay as e (e.day)}
 			<div class="events_day">
 				<span class="events_day_fullname">{longDayDateFormat.format(dayjs(e.events[0].date).toDate())}</span>
