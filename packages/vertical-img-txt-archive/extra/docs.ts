@@ -119,7 +119,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		},
 	},
 	{
-		name: "default2",
+		name: "default3",
 		data: {
 			size: 4,
 			collection: [
