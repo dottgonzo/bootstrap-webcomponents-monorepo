@@ -8,7 +8,6 @@ COPY ./storybook/.storybook ./.storybook
 RUN mv ./.storybook/production.js ./.storybook/main.js
 COPY ./storybook/storiesGenerator.js ./
 COPY ./packages /packages
-RUN 
 RUN node ./storiesGenerator.js
 RUN npm run build-storybook
 RUN rm -rf ./packages
