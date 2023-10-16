@@ -1,1 +1,0 @@
-# skeleton web component
