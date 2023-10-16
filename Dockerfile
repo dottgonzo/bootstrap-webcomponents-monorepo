@@ -1,12 +1,15 @@
-FROM node:16-alpine as builder
+FROM node:20-alpine as builder
 WORKDIR /storybook
 COPY ./storybook/package.json ./
 COPY ./storybook/package-lock.json ./
 RUN npm i
 COPY ./lerna.json /
 COPY ./storybook/.storybook ./.storybook
-COPY ./storybook/stories ./stories
+COPY ./storybook/storiesGenerator.js ./
+COPY ./packages /packages
+RUN node ./storiesGenerator.js
 RUN npm run build-storybook
+RUN rm -rf ./packages
 
 FROM nginx:alpine
 # COPY ./docker_nginx.conf /etc/nginx/default.conf
