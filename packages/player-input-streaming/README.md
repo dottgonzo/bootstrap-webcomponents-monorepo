@@ -1,1 +1,1 @@
-# skeleton web component
+# player input web component

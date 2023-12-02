@@ -1,1 +1,1 @@
-# skeleton web component
+# site slideshow horizontal web component

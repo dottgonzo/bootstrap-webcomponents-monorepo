@@ -1,1 +1,1 @@
-# skeleton web component
+# message box web component

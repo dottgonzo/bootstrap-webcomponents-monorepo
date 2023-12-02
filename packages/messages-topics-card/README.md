@@ -1,1 +1,1 @@
-# skeleton web component
+# message topics card web component
