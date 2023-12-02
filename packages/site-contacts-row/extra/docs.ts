@@ -24,7 +24,7 @@ const exampleData = {
 	addresses: { addresses: [{ address: "Acacia Avenue 666, London UK", latLng: [0, 0], name: "office" }] },
 	emails: { emails: [{ label: "email 1", address: "dev@dariocaruso.info", name: "dev" }] },
 	phones: { phones: [{ number: "+666 666 666 666", name: "main" }] },
-	websites: { websites: [{ label: "website 1 1", url: "https://docs.htmlbricks.borgo.studio", name: "webcomponents" }] },
+	websites: { websites: [{ label: "website 1 1", url: "https://docs.htmlbricks.kernel.online", name: "webcomponents" }] },
 	availability: { times: ["8 - 20"], appointment: true },
 };
 

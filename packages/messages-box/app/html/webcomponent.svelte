@@ -80,12 +80,23 @@
 	addComponent({ repoName: "@htmlbricks/hb-messages-send", version: pkg.version });
 </script>
 
-{#if authors?.length && messages?.length}
-	<hb-messages-list {messages} {authors} {options} style={messagesListStyleSetupToSet + "position:relative;top:30px"} />
-	<div style="display:block;position:absolute;bottom:0px;width:100%;overflow:hidden">
-		<hb-messages-send text={textMessage} style={messagesSendStyleSetupToSet} on:sendMessage={(e) => sendMessageEvent(e.detail)} />
-	</div>
-{/if}
+<div id="container">
+	{#if authors?.length && messages?.length}
+		<div id="message-list">
+			<hb-messages-list {messages} {authors} {options} style={messagesListStyleSetupToSet} class="msglist" part="msglist" />
+		</div>
+
+		<div id="prompt">
+			<hb-messages-send
+				text={textMessage}
+				part="msgsend"
+				class="msgsend"
+				style={messagesSendStyleSetupToSet}
+				on:sendMessage={(e) => sendMessageEvent(e.detail)}
+			/>
+		</div>
+	{/if}
+</div>
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
