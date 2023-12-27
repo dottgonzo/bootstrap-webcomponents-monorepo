@@ -1,1 +1,1 @@
-# skeleton web component
+# animated container web component

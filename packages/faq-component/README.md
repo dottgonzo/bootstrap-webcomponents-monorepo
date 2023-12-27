@@ -1,1 +1,1 @@
-# skeleton web component
+# faq web component

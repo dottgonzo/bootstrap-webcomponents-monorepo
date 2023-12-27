@@ -1,1 +1,1 @@
-# skeleton web component
+# paragraphs around web component

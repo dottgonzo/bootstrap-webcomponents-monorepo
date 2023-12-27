@@ -1,1 +1,1 @@
-# skeleton web component
+# dashboard counter lines web component

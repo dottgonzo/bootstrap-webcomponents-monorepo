@@ -1,1 +1,1 @@
-# skeleton web component
+# message send web component

@@ -1,1 +1,1 @@
-# skeleton web component
+# form composer web component

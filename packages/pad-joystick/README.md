@@ -1,1 +1,1 @@
-# skeleton web component
+# pad joystick web component

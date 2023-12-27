@@ -1,1 +1,1 @@
-# skeleton web component
+# site contacts web component

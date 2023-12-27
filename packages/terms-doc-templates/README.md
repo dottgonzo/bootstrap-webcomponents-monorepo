@@ -1,1 +1,1 @@
-# skeleton web component
+# terms web component

@@ -1,1 +1,1 @@
-# skeleton web component
+# sidebar card web component

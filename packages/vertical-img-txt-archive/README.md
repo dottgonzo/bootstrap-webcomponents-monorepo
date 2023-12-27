@@ -1,1 +1,1 @@
-# skeleton web component
+# vertical image web component
