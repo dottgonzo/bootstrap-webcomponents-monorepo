@@ -31,3 +31,7 @@ export const Base = {
   args: setStorybookData(componentSetup.name, componentSetup.examples[0]),
 };
 
+export const checked = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[1]),
+};
+

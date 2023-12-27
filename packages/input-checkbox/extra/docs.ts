@@ -33,9 +33,22 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		data: {
 			schemaentry: {
 				placeholder: "Insert your last name here...",
-				id: "lastName",
+				id: "testcheckbox",
 				required: true,
-				label: "Last Name",
+				label: "Check Box",
+				validationTip: "This field cannot be empty.",
+			},
+		},
+	},
+	{
+		name: "checked",
+		data: {
+			schemaentry: {
+				placeholder: "Insert your last name here...",
+				id: "testcheckboxchecked",
+				required: true,
+				value: true,
+				label: "Check Box",
 				validationTip: "This field cannot be empty.",
 			},
 		},

@@ -36,6 +36,8 @@
 		} else {
 			set_valid = true;
 		}
+		value = value != null ? value : (schemaentry?.value as boolean);
+
 		if (typeof value === "string") {
 			if (value === "false" || value === "no") {
 				value = false;
