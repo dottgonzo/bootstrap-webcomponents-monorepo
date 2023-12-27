@@ -83,6 +83,31 @@ const examples: { name: string; description?: string; data: Component }[] = [
 			},
 		},
 	},
+	{
+		name: "withzero",
+		data: {
+			schemaentry: {
+				placeholder: "Insert your last name here...",
+				id: "lastName",
+				label: "Last Name",
+				validationTip: "This field cannot be empty.",
+				value: 0,
+			},
+		},
+	},
+	{
+		name: "withzerorequired",
+		data: {
+			schemaentry: {
+				placeholder: "Insert your last name here...",
+				id: "lastName",
+				required: true,
+				label: "Last Name",
+				validationTip: "This field cannot be empty.",
+				value: 0,
+			},
+		},
+	},
 ];
 export const componentSetup: ComponentSetup & { examples: { name: string; description?: string; data: Component }[] } = {
 	definitions: null as any,

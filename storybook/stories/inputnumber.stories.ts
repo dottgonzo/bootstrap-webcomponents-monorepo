@@ -43,3 +43,11 @@ export const withminmax = {
   args: setStorybookData(componentSetup.name, componentSetup.examples[3]),
 };
 
+export const withzero = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[4]),
+};
+
+export const withzerorequired = {
+  args: setStorybookData(componentSetup.name, componentSetup.examples[5]),
+};
+
