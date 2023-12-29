@@ -1,4 +1,4 @@
-import type { Component as FormComponent } from "@htmlbricks/hb-form/release/webcomponent.type";
+import type { Component as FormComponent, Events as FormEvents } from "@htmlbricks/hb-form/release/webcomponent.type";
 
 export type Component = {
 	id?: string;
@@ -21,4 +21,5 @@ export type Events = {
 	modalFormConfirm: { [key: string]: any };
 	modalShow: { id: string; show: true };
 	modalFormCancel: { id: string; error?: string };
+	changeForm: FormEvents["change"];
 };

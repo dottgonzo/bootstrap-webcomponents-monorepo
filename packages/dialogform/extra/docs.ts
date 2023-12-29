@@ -14,7 +14,9 @@ export const storybookArgs = {
 	content: { control: { type: "text" } },
 	closelabel: { control: { type: "text" } },
 	confirmlabel: { control: { type: "text" } },
+
 	modalShow: { action: "modalShow" },
+	changeForm: { action: "changeForm" },
 	modalFormConfirm: { action: "modalFormConfirm" },
 	modalFormCancel: { action: "modalFormCancel" },
 };

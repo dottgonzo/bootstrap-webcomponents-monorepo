@@ -75,7 +75,7 @@
 		dispatch("modalShow", detail);
 	}
 	function changeForm(detail: FormEvents["change"]) {
-		console.log("dialogform: form change", detail);
+		dispatch("changeForm", detail);
 		if (detail._valid) formIsValid = true;
 		else formIsValid = false;
 		delete detail._id;
