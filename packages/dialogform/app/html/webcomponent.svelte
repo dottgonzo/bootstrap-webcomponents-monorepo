@@ -35,7 +35,10 @@
 	export let content: Component["content"];
 	export let closelabel: Component["closelabel"];
 	export let confirmlabel: Component["confirmlabel"];
+	let formIsValid: boolean;
+
 	$: {
+		if (!formIsValid) formIsValid = false;
 		if (!id) id = "";
 		if (style) {
 			parsedStyle = parseStyle(style);
@@ -72,6 +75,7 @@
 		dispatch("modalShow", detail);
 	}
 	function changeForm(detail: FormEvents["change"]) {
+		console.log("dialogform: form change", detail);
 		if (detail._valid) formIsValid = true;
 		else formIsValid = false;
 		delete detail._id;
@@ -90,7 +94,6 @@
 			console.error("form submit invalid");
 		}
 	}
-	let formIsValid: boolean = false;
 </script>
 
 <span>
