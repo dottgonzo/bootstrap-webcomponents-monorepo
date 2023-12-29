@@ -263,7 +263,7 @@
 			fileType = types[theFile?.name?.split(".")?.pop()?.toLowerCase()] || "unknown file type";
 			imgPreview = URL.createObjectURL(theFile);
 		}
-		valid = schemaentry ? !schemaentry?.required || (value != null && theFile?.name) : false;
+		valid = schemaentry ? (!schemaentry?.required || (value != null && theFile?.name) ? true : false) : false;
 
 		console.log(valid, value, "validinput");
 		setTimeout(() => {
