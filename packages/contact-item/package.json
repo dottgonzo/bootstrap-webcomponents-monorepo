@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-contact-item",
 	"displayName": "Svelte Contact WebComponent",
 	"description": "Svelte Contact WebComponent",
-	"version": "0.20.2",
+	"version": "0.20.3",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"

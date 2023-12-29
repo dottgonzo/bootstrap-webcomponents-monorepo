@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-dashboard-counter-lines",
 	"displayName": "Svelte-Bootstrap dashboard-counter-lines",
 	"description": "Svelte-Bootstrap dashboard-counter-lines",
-	"version": "0.20.2",
+	"version": "0.20.3",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
