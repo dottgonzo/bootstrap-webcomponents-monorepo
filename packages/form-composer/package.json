@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-form-composer",
 	"displayName": "Svelte-Bootstrap form-composer",
 	"description": "Svelte-Bootstrap form-composer",
-	"version": "0.20.4",
+	"version": "0.20.5",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -77,9 +77,9 @@
 	"contributors": [],
 	"gitHead": "55c748e47893b9ddc419fb45b9920e5e47fc8323",
 	"dependencies": {
-		"@htmlbricks/hb-dialogform": "^0.20.4",
-		"@htmlbricks/hb-form": "^0.20.4",
-		"@htmlbricks/hb-table": "^0.20.4",
+		"@htmlbricks/hb-dialogform": "^0.20.5",
+		"@htmlbricks/hb-form": "^0.20.5",
+		"@htmlbricks/hb-table": "^0.20.5",
 		"style-to-object": "^0.3.0"
 	}
 }
