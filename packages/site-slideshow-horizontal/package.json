@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-site-slideshow-horizontal",
 	"displayName": "Svelte-Bootstrap site-slideshow-horizontal",
 	"description": "Svelte-Bootstrap site-slideshow-horizontal",
-	"version": "0.20.1",
+	"version": "0.20.2",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"

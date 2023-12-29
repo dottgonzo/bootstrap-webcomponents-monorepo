@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-site-paragraph-with-image",
 	"displayName": "Svelte-Bootstrap site-paragraph-with-image",
 	"description": "Svelte-Bootstrap site-paragraph-with-image",
-	"version": "0.20.1",
+	"version": "0.20.2",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
