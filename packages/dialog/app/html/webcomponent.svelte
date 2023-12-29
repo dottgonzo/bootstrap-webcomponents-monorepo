@@ -86,7 +86,7 @@
 	$: {
 		if (!disable_confirm) disable_confirm = false;
 		if (!confirm_btn_class) confirm_btn_class = "primary";
-		else if (typeof disable_confirm === "string")
+		if (typeof disable_confirm === "string")
 			disable_confirm = (disable_confirm as string).toLowerCase() === "true" || (disable_confirm as string).toLowerCase() === "yes";
 		if (show === "yes") {
 			modalOpen();
