@@ -58,9 +58,12 @@
 </script>
 
 <div part="testpart" on:click={() => dispatchCustomEvent()} id="skeletontest">{string}</div>
-{#if json && typeof json === "object"}<div>
-		{#each Object.keys(json) as l} <span>{l}: {json[l]}</span>{/each}
-	</div>{/if}
+{#if json && typeof json === "object"}
+	<div>
+		{#each Object.keys(json) as l}
+			<span>{l}: {json[l]}</span>{/each}
+	</div>
+{/if}
 <div part="testpart">{boolean}</div>
 slot: <slot name="skelcontent" /> /endslot<br />
 slot debug: {Object.keys($$slots)[0]}/endslot
