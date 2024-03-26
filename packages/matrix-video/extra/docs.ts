@@ -3,7 +3,7 @@ import type { Component } from "../app/types/webcomponent.type";
 
 export const storybookArgs = {
 	items: { control: { type: "object" } },
-	itemClick: { action: "itemClickEvent" },
+	selectItem: { action: "selectItemEvent" },
 };
 
 const cssVars: CssVar[] = [];
@@ -24,6 +24,21 @@ const examples: { name: string; description?: string; data: Component }[] = [
 				{
 					type: "iframe",
 					id: "1",
+					uri: "http://127.0.0.1:8889/test/",
+				},
+				{
+					type: "iframe",
+					id: "2",
+					uri: "http://127.0.0.1:8889/test/",
+				},
+				{
+					type: "iframe",
+					id: "3",
+					uri: "http://127.0.0.1:8889/test/",
+				},
+				{
+					type: "iframe",
+					id: "4",
 					uri: "http://127.0.0.1:8889/test/",
 				},
 			],

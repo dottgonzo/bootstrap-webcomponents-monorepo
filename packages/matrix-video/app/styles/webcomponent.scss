@@ -6,4 +6,39 @@
 	// align-items: center;
 	// background-color: red;
 	// width: fit-content;
+	width:100%;
+	display:block;
+}
+#matrix {
+
+}
+
+#cssonly{
+	display: grid;
+		gap: 10px;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		/* Play with min-value */
+
+overflow: hidden;
+}
+.player {
+	/* To visualize empty space */
+	aspect-ratio: 16/9;
+	/*
+    "contain" to see full original image with eventual empty space
+    "cover" to fill empty space with truncating
+    "fill" to stretch
+  */
+	object-fit: fill;
+	width: 100%;
+	height: 100%;
+	max-height: 100%;
+}
+
+iframe{
+	border: none;
+	width:100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
 }
