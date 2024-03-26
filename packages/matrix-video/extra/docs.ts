@@ -41,6 +41,16 @@ const examples: { name: string; description?: string; data: Component }[] = [
 					id: "4",
 					uri: "http://127.0.0.1:8889/test/",
 				},
+				{
+					type: "iframe",
+					id: "5",
+					uri: "http://127.0.0.1:8889/test/",
+				},
+				{
+					type: "iframe",
+					id: "6",
+					uri: "http://127.0.0.1:8889/test/",
+				},
 			],
 		},
 	},

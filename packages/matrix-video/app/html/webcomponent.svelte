@@ -168,7 +168,7 @@
 		{#each drawItems as row (row.row)}
 			<div class="row">
 				{#each row.items as i (i.id)}
-					<div class="player" on:mouseleave={(e) => selectItem()} on:mouseenter={(e) => selectItem(i.id)} id="select_{i.id}">
+					<div class="col" on:mouseleave={(e) => selectItem()} on:mouseenter={(e) => selectItem(i.id)} id="select_{i.id}">
 						{#if i.type === "iframe"}
 							<iframe title={i.title} src={i.uri}></iframe>
 						{/if}
@@ -181,5 +181,5 @@
 
 <style lang="scss">
 	@import "../styles/webcomponent.scss";
-	// @import "../styles/bootstrap.scss";
+	@import "../styles/bootstrap.scss";
 </style>
