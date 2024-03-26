@@ -61,7 +61,8 @@
 {#if json && typeof json === "object"}
 	<div>
 		{#each Object.keys(json) as l}
-			<span>{l}: {json[l]}</span>{/each}
+			<span>{l}: {json[l]}</span>
+		{/each}
 	</div>
 {/if}
 <div part="testpart">{boolean}</div>
