@@ -18,14 +18,14 @@
 		overflow: hidden;
 }
 
-#cssonly{
-	display: grid;
-		gap: 10px;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		/* Play with min-value */
+// #cssonly{
+// 	display: grid;
+// 		gap: 10px;
+// 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+// 		/* Play with min-value */
 
-overflow: hidden;
-}
+// overflow: hidden;
+// }
 .player {
 	/* To visualize empty space */
 	aspect-ratio: 16/9;
