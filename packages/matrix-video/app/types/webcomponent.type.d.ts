@@ -5,5 +5,6 @@ export type Component = {
 };
 
 export type Events = {
-	selectItem: { id?: string; selected: boolean };
+	hoverItem: { id?: string; selected: boolean };
+	clickItem: { id: string };
 };

@@ -43,9 +43,25 @@
 			// (only works for 1 or 2 items at the moment
 			const videoAspectRatio = 16 / 9;
 			const containerAspectRatio = w / h;
-			let optimalRows = 1;
-			let optimalCols = 1;
-			if (items.length !== 1) {
+			let optimalRows: number;
+			let optimalCols: number;
+			if (items.length === 1) {
+				optimalRows = 1;
+				optimalCols = 1;
+			} else if (w < 450) {
+				optimalCols = 1;
+				optimalRows = items.length;
+			} else if (items.length === 2) {
+				if (containerAspectRatio > videoAspectRatio) {
+					// Window is wider than the video aspect ratio (landscape orientation)
+					optimalRows = 1;
+					optimalCols = 2;
+				} else {
+					// Window is taller than the video aspect ratio (portrait orientation)
+					optimalRows = 2;
+					optimalCols = 1;
+				}
+			} else {
 				// Calculate for both landscape and portrait orientations
 				if (containerAspectRatio > videoAspectRatio) {
 					// Window is wider than the video aspect ratio (landscape orientation)
@@ -82,25 +98,25 @@
 						}
 					}
 				}
-				rows = optimalRows;
-				cols = optimalCols;
 			}
-		}
-		if (rows && cols) {
-			const newDrawItems: { row: number; items: Component["items"] }[] = [];
-			for (let i = 0; i < rows; i++) {
-				for (let j = 0; j < cols; j++) {
-					const item = items[i * cols + j];
-					if (item) {
-						if (!newDrawItems[i]) {
-							newDrawItems[i] = { row: i, items: [] };
+			rows = optimalRows;
+			cols = optimalCols;
+			if (rows && cols) {
+				const newDrawItems: { row: number; items: Component["items"] }[] = [];
+				for (let i = 0; i < rows; i++) {
+					for (let j = 0; j < cols; j++) {
+						const item = items[i * cols + j];
+						if (item) {
+							if (!newDrawItems[i]) {
+								newDrawItems[i] = { row: i, items: [] };
+							}
+							newDrawItems[i].items[j] = item;
 						}
-						newDrawItems[i].items[j] = item;
 					}
 				}
+				drawItems = newDrawItems;
+				console.log(drawItems, rows, cols, "drawItems");
 			}
-			drawItems = newDrawItems;
-			console.log(drawItems, rows, cols, "drawItems");
 		}
 	}
 	function setSize() {
@@ -144,9 +160,24 @@
 		setSize();
 	});
 
-	function selectItem(id?: string) {
+	function hoverItem(id?: string) {
 		videoSelectedId = id;
-		dispatch("selectItem", { id, selected: videoSelectedId ? true : false });
+		dispatch("hoverItem", { id, selected: videoSelectedId ? true : false });
+	}
+	function dispatchClickSelected() {
+		if (videoSelectedId) dispatch("clickItem", { id: videoSelectedId });
+		else console.info("No video selected");
+	}
+
+	function iframeFix(e: any) {
+		const iframe: HTMLIFrameElement = e;
+		try {
+			iframe.contentWindow?.document.addEventListener("click", () => {
+				dispatchClickSelected();
+			});
+		} catch (err) {
+			console.warn("error adding click event to iframe", err);
+		}
 	}
 </script>
 
@@ -163,6 +194,7 @@
 		{/each}
 	{/if}
 </div> -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div id="matrix">
 	{#if items && typeof items === "object"}
 		{#each drawItems as row (row.row)}
@@ -171,12 +203,18 @@
 					<div
 						class="col"
 						style="padding-right:0px;padding-left:0px;--bs-gutter-x: 0px;"
-						on:mouseleave={(e) => selectItem()}
-						on:mouseenter={(e) => selectItem(i.id)}
+						on:mouseleave={(e) => hoverItem()}
+						on:mouseenter={(e) => hoverItem(i.id)}
 						id="select_{i.id}"
 					>
 						{#if i.type === "iframe"}
-							<iframe title={i.title} src={i.uri}></iframe>
+							<iframe title={i.title} src={i.uri} on:load={(e) => iframeFix(e.target)}></iframe>
+						{:else if i.type === "video"}
+							<!-- svelte-ignore a11y-media-has-caption -->
+							<video controls>
+								<source title={i.title} src={i.uri} type="video/mp4" />
+								Your browser does not support the video tag.
+							</video>
 						{/if}
 					</div>
 				{/each}
