@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-pad-joystick",
 	"displayName": "Svelte-Bootstrap pad-joystick",
 	"description": "Svelte-Bootstrap pad-joystick",
-	"version": "0.20.7",
+	"version": "0.20.8",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
