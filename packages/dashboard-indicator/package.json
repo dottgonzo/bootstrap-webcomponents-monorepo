@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-dashboard-indicator",
 	"displayName": "Svelte Area Code WebComponent",
 	"description": "Svelte Area Code WebComponent",
-	"version": "0.20.8",
+	"version": "0.20.9",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
