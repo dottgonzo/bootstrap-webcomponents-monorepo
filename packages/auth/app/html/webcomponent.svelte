@@ -476,7 +476,7 @@
 	{#if oauth2providers?.length}
 		<div class="d-flex justify-content-center mt-1">
 			<ul class="social-icons">
-				{#each oauth2providers as p (p.name + p.url)}
+				{#each oauth2providers as p (p.name)}
 					<li>
 						<hb-auth-social-login-button
 							provider={JSON.stringify({ name: p.name, url: p.url, params: p.params })}
