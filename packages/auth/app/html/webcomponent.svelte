@@ -485,6 +485,7 @@
 							provider={JSON.stringify({ name: p.name, url: p.url, params: p.params })}
 							auth_cookie_name="{sessionkey},"
 							social_auth_server_url
+							redirectonlogin
 							on:oauthFlowInit={(e) => {
 								dispatch("oauthFlowInit", e.detail);
 							}}

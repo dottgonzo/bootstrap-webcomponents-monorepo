@@ -22,6 +22,7 @@
 
 	export let auth_cookie_name: string;
 	export let social_auth_server_url: string;
+	export let redirectonlogin: string;
 
 	$: {
 		if (!id) {
@@ -32,6 +33,9 @@
 		}
 		if (!social_auth_server_url) {
 			social_auth_server_url = null;
+		}
+		if (!redirectonlogin) {
+			redirectonlogin = null;
 		}
 
 		if (typeof provider === "string") {
@@ -121,7 +125,11 @@
 			})
 				.then((a) => {
 					console.log("auth", a);
-					dispatch("oauthFlowSuccess", { token: a });
+					if (redirectonlogin) {
+						location.href = redirectonlogin;
+					} else {
+						dispatch("oauthFlowSuccess", { token: a });
+					}
 				})
 				.catch((c) => console.error("flowerr", c));
 		}

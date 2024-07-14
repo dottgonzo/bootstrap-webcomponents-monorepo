@@ -5,6 +5,7 @@ export type Component = {
 	style?: string;
 	social_auth_server_url?: string;
 	auth_cookie_name?: string;
+	redirectonlogin?: string;
 	provider: {
 		url?: string;
 		name: IProvider;
