@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-navbar",
 	"displayName": "Svelte Navbar WebComponent",
 	"description": "Svelte Navbar WebComponent",
-	"version": "0.20.11",
+	"version": "0.20.12",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -70,7 +70,7 @@
 		"wc-js-utils": "^0.0.1"
 	},
 	"dependencies": {
-		"@htmlbricks/hb-dropdown-simple": "^0.20.11"
+		"@htmlbricks/hb-dropdown-simple": "^0.20.12"
 	},
 	"keywords": [
 		"svelte",

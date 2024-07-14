@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-cookie-law-banner",
 	"displayName": "Svelte cookielaw WebComponent",
 	"description": "Svelte cookielaw WebComponent",
-	"version": "0.20.11",
+	"version": "0.20.12",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"

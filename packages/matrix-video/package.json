@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-matrix-video",
 	"displayName": "Svelte-Bootstrap matrix-video",
 	"description": "Svelte-Bootstrap matrix-video",
-	"version": "0.20.11",
+	"version": "0.20.12",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
