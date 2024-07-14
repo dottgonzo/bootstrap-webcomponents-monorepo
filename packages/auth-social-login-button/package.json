@@ -76,5 +76,8 @@
 		"html5-webcomponents"
 	],
 	"contributors": [],
-	"gitHead": "f4f2852d778fc6f835bafa2b1d9ce7ef94cce660"
+	"gitHead": "f4f2852d778fc6f835bafa2b1d9ce7ef94cce660",
+	"dependencies": {
+		"simple-serverless-auth-client": "^0.0.5"
+	}
 }

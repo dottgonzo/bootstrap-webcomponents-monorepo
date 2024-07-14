@@ -4,6 +4,7 @@ import type { Component } from "../app/types/webcomponent.type";
 export const storybookArgs = {
 	provider: { control: { type: "object" } },
 	oauthFlowInit: { action: "oauthFlowInitEvent" },
+	oauthFlowSuccess: { action: "oauthFlowSuccessEvent" },
 	oauthFlowCustom: { action: "oauthFlowCustomEvent" },
 };
 

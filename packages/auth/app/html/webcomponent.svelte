@@ -26,6 +26,7 @@
 	export let i18nlang: string;
 
 	export let sessionkey: string;
+	export let social_auth_server_url: string;
 
 	export let redirectonlogin: string;
 	export let redirectoncreate: string;
@@ -80,7 +81,9 @@
 		if (!passwordpattern) {
 			passwordpattern = null;
 		}
-
+		if (!social_auth_server_url) {
+			social_auth_server_url = null;
+		}
 		if (!redirectonlogin) {
 			redirectonlogin = null;
 		}
@@ -480,8 +483,13 @@
 					<li>
 						<hb-auth-social-login-button
 							provider={JSON.stringify({ name: p.name, url: p.url, params: p.params })}
+							auth_cookie_name="{sessionkey},"
+							social_auth_server_url
 							on:oauthFlowInit={(e) => {
 								dispatch("oauthFlowInit", e.detail);
+							}}
+							on:oauthFlowSuccess={(e) => {
+								dispatch("oauthFlowSuccess", e.detail);
 							}}
 							on:oauthFlowCustom={(e) => {
 								dispatch("oauthFlowCustom", e.detail);

@@ -11,16 +11,27 @@
 	 *
 	 */
 
-	import type { Component } from "@app/types/webcomponent.type";
+	import type { Component, Events } from "@app/types/webcomponent.type";
 	// import "@fortawesome/fontawesome-free";
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component, onMount } from "svelte/internal";
+	import Authorize from "simple-serverless-auth-client";
+
 	export let id: string;
 	export let provider: Component["provider"];
+
+	export let auth_cookie_name: string;
+	export let social_auth_server_url: string;
 
 	$: {
 		if (!id) {
 			id = null;
+		}
+		if (!auth_cookie_name) {
+			auth_cookie_name = null;
+		}
+		if (!social_auth_server_url) {
+			social_auth_server_url = null;
 		}
 
 		if (typeof provider === "string") {
@@ -101,6 +112,21 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
+
+	function serverSocialLogin(provider: Events["oauthFlowInit"]) {
+		if (auth_cookie_name && social_auth_server_url) {
+			Authorize.socialLoginOauthAnswer(provider, {
+				authUrl: social_auth_server_url,
+				authCookieName: auth_cookie_name,
+			})
+				.then((a) => {
+					console.log("auth", a);
+					dispatch("oauthFlowSuccess", { token: a });
+				})
+				.catch((c) => console.error("flowerr", c));
+		}
+	}
+
 	function detectByUri() {
 		console.info("detecting by uri", location.href);
 		if (provider?.name) {
@@ -108,6 +134,7 @@
 				console.info("google auth login detected");
 
 				const token = location.href.split("access_token=")[1].split("&")[0];
+				serverSocialLogin({ provider: provider.name, token });
 				dispatch("oauthFlowInit", { provider: provider.name, token });
 			}
 			if (
@@ -119,6 +146,7 @@
 			) {
 				console.info("github auth login detected");
 				const token = location.href.split("code=")[1].split("&")[0];
+				serverSocialLogin({ provider: provider.name, token, tmpCode: token });
 				dispatch("oauthFlowInit", { provider: provider.name, token, tmpCode: token });
 			}
 			if (
@@ -132,17 +160,19 @@
 
 				const token = location.href.split("code=")[1].split("&")[0];
 				const state = location.href.split("state=")[1].split("&")[0];
+				const redirect_uri = location.href
+					.replace("&state=", "")
+					.replace("?state=", "")
+					.replace("&code=", "")
+					.replace("?code=", "")
+					.replace(token, "")
+					.replace(state, "");
+				serverSocialLogin({ provider: provider.name, token, tmpCode: token, redirect_uri });
 				dispatch("oauthFlowInit", {
 					provider: provider.name,
 					token,
 					tmpCode: token,
-					redirect_uri: location.href
-						.replace("&state=", "")
-						.replace("?state=", "")
-						.replace("&code=", "")
-						.replace("?code=", "")
-						.replace(token, "")
-						.replace(state, ""),
+					redirect_uri: redirect_uri,
 				});
 			}
 			// if (
@@ -178,6 +208,16 @@
 			) {
 				const token = location.href.split("code=")[1].split("&")[0];
 				const state = location.href.split("state=")[1].split("&")[0];
+				const redirect_uri = location.href
+					.replace("&state=", "")
+					.replace("?state=", "")
+					.replace("&code=", "")
+					.replace("?code=", "")
+					.replace(token, "")
+					.replace(state, "");
+
+				serverSocialLogin({ provider: provider.name, token, tmpCode: token, redirect_uri });
+
 				dispatch("oauthFlowInit", {
 					provider: provider.name,
 					token,

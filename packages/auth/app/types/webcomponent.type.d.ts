@@ -8,6 +8,7 @@ export type Component = {
 	i18nlang?: string;
 
 	sessionkey?: string;
+	social_auth_server_url?: string;
 
 	redirectonlogin?: string;
 	redirectoncreate?: string;
@@ -33,5 +34,6 @@ export type Events = {
 	recoverOrActivate: { password: string; recoverycode: string; email: string }; // only one good..
 	recoverPassword: { email: string };
 	oauthFlowInit: { token?: string; provider: SocialLoginButtonComponent["provider"]["name"]; tmpCode?: string; redirect_uri?: string };
+	oauthFlowSuccess: { token: string };
 	oauthFlowCustom: { provider: SocialLoginButtonComponent["provider"]["name"] };
 };
