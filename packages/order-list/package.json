@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-order-list",
 	"displayName": "Svelte Order List WebComponent",
 	"description": "Svelte Order List WebComponent",
-	"version": "0.20.9",
+	"version": "0.20.10",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
