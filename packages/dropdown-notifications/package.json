@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-dropdown-notifications",
 	"displayName": "Svelte Dropdown Notifications WebComponent",
 	"description": "Svelte Dropdown Notifications WebComponent",
-	"version": "0.20.12",
+	"version": "0.20.13",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"

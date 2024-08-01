@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-input-color",
 	"displayName": "Svelte-Bootstrap Color Input WebComponent",
 	"description": "Svelte-Bootstrap Color Input WebComponent",
-	"version": "0.20.12",
+	"version": "0.20.13",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
