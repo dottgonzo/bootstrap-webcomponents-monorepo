@@ -23,9 +23,9 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		data: {
 			items: [
 				{
-					type: "iframe",
+					type: "mediamtx-webrtc",
 					id: "1",
-					uri: "http://127.0.0.1:8889/test/",
+					uri: "https://vpn0.devicesmng.kernel.online/slave_10.33.88.212_fakeh264flux2",
 				},
 				{
 					type: "iframe",

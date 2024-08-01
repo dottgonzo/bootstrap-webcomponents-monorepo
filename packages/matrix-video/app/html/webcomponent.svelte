@@ -209,6 +209,10 @@
 					>
 						{#if i.type === "iframe"}
 							<iframe title={i.title} src={i.uri} on:load={(e) => iframeFix(e.target)}></iframe>
+						{:else if i.type === "mediamtx-webrtc"}
+							<hb-player-live media_type="whep" mediauri="{i.uri}/whep"></hb-player-live>
+						{:else if i.type === "mediamtx-webrtc-ptz"}
+							<hb-player-live-camera-ptz media_type="whep" live_uri="{i.uri}/whep"></hb-player-live-camera-ptz>
 						{:else if i.type === "video"}
 							<!-- svelte-ignore a11y-media-has-caption -->
 							<video controls>
