@@ -30,7 +30,7 @@ export const styleSetup: StyleSetup = {
 	parts: cssParts,
 };
 
-const mediauri = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
+const mediauri = "https://vpn0.devicesmng.kernel.online/slave_10.33.88.212_fakeh264flux2/whep";
 const replacewithtext1 = {
 	title: "title",
 };
@@ -55,6 +55,7 @@ const examples: { name: string; description?: string; data: Component }[] = [
 		name: "LiveVideoPlayerWithWidth",
 		data: {
 			mediauri,
+			media_type: "whep",
 		},
 	},
 	{

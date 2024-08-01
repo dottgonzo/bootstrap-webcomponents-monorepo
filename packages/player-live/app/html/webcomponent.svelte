@@ -155,7 +155,7 @@
 				}
 			} catch (err) {
 				console.error("webrtc error ....", err);
-			}			
+			}
 		} else {
 			console.error("unknown media type", media_type);
 		}
