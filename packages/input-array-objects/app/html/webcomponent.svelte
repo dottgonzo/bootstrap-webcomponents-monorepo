@@ -3,12 +3,13 @@
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
-	import type { TextSchemaEntry } from "@app/types/webcomponent.type";
+	import type { FormSchemaEntry } from "@app/types/webcomponent.type";
 	export let set_value: boolean;
 	export let set_valid: boolean;
 	export let show_validation: "yes" | "no";
 	import { addComponent, getChildStyleToPass } from "wc-js-utils/main";
 	import type { Component as TableComponent, Events as TableEvents } from "@htmlbricks/hb-table/release/webcomponent.type";
+	import parseStyle from "style-to-object";
 
 	import pkg from "../../package.json";
 
@@ -21,7 +22,7 @@
 	export let schemaentry: FormSchemaEntry;
 	export let style: string;
 
-	let value: string;
+	let value: any[];
 	let valid = false;
 
 	let tableHeaders: TableComponent["headers"] = [];
@@ -38,7 +39,7 @@
 		// 	iconOrText: "pencil-square",
 		// },
 	];
-	let arrayOfResults: FormSchemaEntry[] = [];
+	let arrayOfResults: { schema: FormSchema; id: string }[] = [];
 
 	const component = get_current_component();
 	const svelteDispatch = createEventDispatcher();
@@ -46,6 +47,7 @@
 		svelteDispatch(name, detail);
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
+	let parsedStyle: { [x: string]: string };
 
 	$: {
 		if (style) {
@@ -128,21 +130,28 @@
 
 	function addSchema(detail: any) {
 		console.log(detail);
-		const newSchema = { schema: schemaentry.params.schema, id: Date.now().toString() };
+		const newDate = Date.now().toString();
+		const newSchema = { schema: schemaentry.params.schema, id: newDate };
 		arrayOfResults = [...arrayOfResults, newSchema];
 		const newRows = JSON.parse(JSON.stringify(tableRows));
-		const newObj = { _id: Date.now().toString() };
+		const newObj = { _id: newDate };
 		for (const r of Object.keys(detail)) {
 			newObj[r] = detail[r];
 		}
+		detail._objId = newDate;
 		value = [...JSON.parse(JSON.stringify(value)), detail];
 		newRows.push(newObj);
 		tableRows = newRows;
 	}
 	function onTableAction(detail: { action: "delete"; itemId: string }) {
 		console.log(detail, "detail");
+		console.log(value, arrayOfResults, "value1");
+
+		arrayOfResults = JSON.parse(JSON.stringify(arrayOfResults.filter((f) => f.id !== detail.itemId)));
+		console.log(value, arrayOfResults, "value2");
+
 		tableRows = JSON.parse(JSON.stringify(tableRows.filter((f) => f._id !== detail.itemId)));
-		value = JSON.parse(JSON.stringify(value.filter((f) => f._id !== detail.itemId)));
+		value = JSON.parse(JSON.stringify(value.filter((f) => f._objId !== detail.itemId)));
 	}
 
 	addComponent({ repoName: "@htmlbricks/hb-form", version: pkg.version });

@@ -1,4 +1,4 @@
-export type TextSchemaEntry = {
+export type FormSchemaEntry = {
 	/**
 	 * This will be both the key of the object when submitting the form's data,
 	 * and also the id in the DOM.
@@ -37,7 +37,7 @@ export type Component = {
 	set_value?: boolean;
 	set_valid?: boolean;
 	show_validation?: "yes" | "no";
-	schemaentry: TextSchemaEntry;
+	schemaentry: FormSchemaEntry[];
 };
 
 export type Events = { setValue: { value: string }; setValid: { valid: boolean } };
