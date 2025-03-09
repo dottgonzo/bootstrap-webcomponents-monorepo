@@ -50,12 +50,6 @@
 		if (!forcecover) {
 			forcecover = null;
 		}
-		if (!media_type) media_type = "auto";
-		if (media_type === "auto" && (mediauri?.includes("http://") || mediauri?.includes("https://"))) {
-			media_type = "hls";
-		} else if (media_type === "auto" && (mediauri?.includes("wss://") || mediauri?.includes("ws://"))) {
-			media_type = "webrtc";
-		}
 
 		if (!replacewithtext) {
 			replacewithtext = null;
@@ -78,6 +72,7 @@
 		component.dispatchEvent && component.dispatchEvent(new CustomEvent(name, { detail }));
 	}
 	function setVideo(videoElement: HTMLVideoElement) {
+		console.log("setttviiiii", media_type);
 		htmlVideo = videoElement;
 		dispatch("htmlVideoInit", { htmlVideoElement: htmlVideo, id });
 
@@ -117,13 +112,17 @@
 			console.info("whep", mediauri);
 			try {
 				function onOffline() {
+					console.info("offline whep");
+
 					dispatch("liveStatus", { live: false, id });
 					isLive = false;
 				}
 				function onOnline() {
+					console.info("online whep");
 					dispatch("liveStatus", { live: true, id });
 					isLive = true;
 				}
+				console.info("whep", mediauri);
 				webrtcWhepPlayer = new WebrtcWhepPlayer({ videoElement, whepUri: mediauri, onOnline, onOffline });
 				try {
 					videoElement.muted = true;
@@ -211,9 +210,14 @@
 				// return timeo ? clearTimeout(timeo) : undefined;
 			});
 		return () => {
+			console.log("destroying player");
 			if (timeo) {
 				console.log("destroy live checker");
 				clearTimeout(timeo);
+			}
+			if (webrtcWhepPlayer) {
+				webrtcWhepPlayer.restartTimeout = null;
+				webrtcWhepPlayer.onError(new Error("destroyed"));
 			}
 		};
 	});
@@ -225,7 +229,7 @@
 
 <!-- svelte-ignore a11y-media-has-caption -->
 <div part="container" style="width: 100%;position:relative">
-	{#if mediauri}
+	{#if mediauri && media_type}
 		<video id="video" controls={no_controls ? false : true} part="video" use:setVideo class="video" autoplay />
 	{/if}
 	{#if forcecover || (mediauri && !isLive && (replacewithtext?.title || replacewithtext?.subtitle || replacewithtext?.text))}

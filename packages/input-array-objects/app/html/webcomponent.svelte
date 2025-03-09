@@ -144,11 +144,7 @@
 		tableRows = newRows;
 	}
 	function onTableAction(detail: { action: "delete"; itemId: string }) {
-		console.log(detail, "detail");
-		console.log(value, arrayOfResults, "value1");
-
 		arrayOfResults = JSON.parse(JSON.stringify(arrayOfResults.filter((f) => f.id !== detail.itemId)));
-		console.log(value, arrayOfResults, "value2");
 
 		tableRows = JSON.parse(JSON.stringify(tableRows.filter((f) => f._id !== detail.itemId)));
 		value = JSON.parse(JSON.stringify(value.filter((f) => f._objId !== detail.itemId)));
