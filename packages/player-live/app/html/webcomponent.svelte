@@ -216,11 +216,7 @@
 				clearTimeout(timeo);
 			}
 			if (webrtcWhepPlayer) {
-				webrtcWhepPlayer.pc.close();
-				webrtcWhepPlayer.pc = null;
-				fetch(webrtcWhepPlayer.sessionUrl, {
-					method: "DELETE",
-				});
+				webrtcWhepPlayer.close();
 			}
 		};
 	});
