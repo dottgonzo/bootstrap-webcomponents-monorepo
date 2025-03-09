@@ -216,8 +216,11 @@
 				clearTimeout(timeo);
 			}
 			if (webrtcWhepPlayer) {
-				webrtcWhepPlayer.restartTimeout = null;
-				webrtcWhepPlayer.onError(new Error("destroyed"));
+				webrtcWhepPlayer.pc.close();
+				webrtcWhepPlayer.pc = null;
+				fetch(webrtcWhepPlayer.sessionUrl, {
+					method: "DELETE",
+				});
 			}
 		};
 	});
