@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-vertical-img-txt-archive",
 	"displayName": "Svelte-Bootstrap vertical-img-txt-archive",
 	"description": "Svelte-Bootstrap vertical-img-txt-archive",
-	"version": "0.20.16",
+	"version": "0.20.17",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
