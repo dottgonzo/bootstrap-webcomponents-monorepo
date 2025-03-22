@@ -30,7 +30,7 @@
 			}
 		}
 		if (
-			(schemaentry?.value || schemaentry?.value === 0 || schemaentry?.value === "") &&
+			(schemaentry?.value || schemaentry?.value === 0 || (schemaentry?.value as any) === "") &&
 			((!old_schemaentry_value && old_schemaentry_value !== 0 && old_schemaentry_value !== "") || old_schemaentry_value !== schemaentry?.value)
 		) {
 			console.info("insert new value");
@@ -123,6 +123,14 @@
 		required={schemaentry?.required}
 		placeholder={schemaentry?.placeholder}
 		readonly={schemaentry?.readonly}
+		on:keypress={(e) => {
+			if (e.key === "Enter") {
+				// Cancel the default action, if needed
+				e.preventDefault();
+				// Trigger the button element with a click
+				dispatch("clickEnter", { value, valid, id: schemaentry?.id });
+			}
+		}}
 	/>
 {/if}
 

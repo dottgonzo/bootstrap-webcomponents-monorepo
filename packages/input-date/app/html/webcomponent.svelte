@@ -90,6 +90,14 @@
 	required={schemaentry?.required}
 	placeholder={schemaentry?.placeholder}
 	readonly={schemaentry?.readonly}
+	on:keypress={(e) => {
+		if (e.key === "Enter") {
+			// Cancel the default action, if needed
+			e.preventDefault();
+			// Trigger the button element with a click
+			dispatch("clickEnter", { value, valid, id: schemaentry?.id });
+		}
+	}}
 />
 {#if schemaentry?.validationTip && show_validation === "yes"}
 	<div part="invalid-feedback" class="invalid-feedback mb-1">

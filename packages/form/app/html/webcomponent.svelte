@@ -354,6 +354,7 @@
 										set_value
 										set_valid
 										{show_validation}
+										on:clickEnter={() => onSubmit()}
 									/>
 								{:else if component === "hb-input-color"}
 									<hb-input-color
@@ -422,6 +423,7 @@
 										set_value
 										set_valid
 										{show_validation}
+										on:clickEnter={() => onSubmit()}
 									/>
 								{:else if component === "hb-input-date"}
 									<hb-input-date
@@ -439,6 +441,7 @@
 										set_value
 										set_valid
 										{show_validation}
+										on:clickEnter={() => onSubmit()}
 									/>
 								{:else if component === "hb-input-datetime"}
 									<hb-input-datetime
@@ -456,6 +459,7 @@
 										set_value
 										set_valid
 										{show_validation}
+										on:clickEnter={() => onSubmit()}
 									/>
 								{:else if component === "hb-input-checkbox"}
 									<hb-input-checkbox
@@ -491,6 +495,7 @@
 										set_value
 										set_valid
 										{show_validation}
+										on:clickEnter={() => onSubmit()}
 									/>
 								{:else if component === "hb-input-area"}
 									<hb-input-area
@@ -508,6 +513,7 @@
 										set_value
 										set_valid
 										{show_validation}
+										on:clickEnter={() => onSubmit()}
 									/>
 								{:else if component === "hb-input-radio"}
 									<hb-input-radio
@@ -571,6 +577,7 @@
 						set_value
 						set_valid
 						{show_validation}
+						on:clickEnter={() => onSubmit()}
 					/>
 				{:else if component === "hb-input-array-objects"}
 					<hb-input-array-objects
@@ -656,6 +663,7 @@
 						set_value
 						set_valid
 						{show_validation}
+						on:clickEnter={() => onSubmit()}
 					/>
 				{:else if component === "hb-input-date"}
 					<hb-input-date
@@ -673,6 +681,7 @@
 						set_value
 						set_valid
 						{show_validation}
+						on:clickEnter={() => onSubmit()}
 					/>
 				{:else if component === "hb-input-datetime"}
 					<hb-input-datetime
@@ -690,6 +699,7 @@
 						set_value
 						set_valid
 						{show_validation}
+						on:clickEnter={() => onSubmit()}
 					/>
 				{:else if component === "hb-input-checkbox"}
 					<hb-input-checkbox
@@ -724,6 +734,7 @@
 						set_value
 						set_valid
 						{show_validation}
+						on:clickEnter={() => onSubmit()}
 					/>
 				{:else if component === "hb-input-area"}
 					<hb-input-area
@@ -741,6 +752,7 @@
 						set_value
 						set_valid
 						{show_validation}
+						on:clickEnter={() => onSubmit()}
 					/>
 				{:else if component === "hb-input-radio"}
 					<hb-input-radio

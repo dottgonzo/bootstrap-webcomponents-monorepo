@@ -44,4 +44,8 @@ export type Component = {
 	show_validation?: "yes" | "no";
 	schemaentry: FormSchemaEntry;
 };
-export type Events = { setValue: { value: string }; setValid: { valid: boolean } };
+export type Events = {
+	setValue: { value: string; id?: string };
+	setValid: { valid: boolean; id?: string };
+	clickEnter: { value: string; valid: boolean; id?: string };
+};

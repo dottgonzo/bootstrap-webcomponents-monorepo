@@ -8,6 +8,7 @@ export const storybookArgs = {
 	set_value: { control: { type: "boolean" } },
 	setValid: { action: "setValid" },
 	setValue: { action: "setValue" },
+	clickEnter: { action: "clickEnter" },
 };
 
 const cssVars: CssVar[] = [
