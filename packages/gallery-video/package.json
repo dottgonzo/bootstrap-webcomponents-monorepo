@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-gallery-video",
 	"displayName": "Svelte Boostrap Video Gallery WebComponent",
 	"description": "Svelte Boostrap Video Gallery WebComponent",
-	"version": "0.20.17",
+	"version": "0.20.18",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
@@ -76,8 +76,8 @@
 	],
 	"contributors": [],
 	"dependencies": {
-		"@htmlbricks/hb-card-video": "^0.20.17",
-		"@htmlbricks/hb-paginate": "^0.20.17",
+		"@htmlbricks/hb-card-video": "^0.20.18",
+		"@htmlbricks/hb-paginate": "^0.20.18",
 		"dayjs": "^1.10.7"
 	},
 	"gitHead": "f4f2852d778fc6f835bafa2b1d9ce7ef94cce660"

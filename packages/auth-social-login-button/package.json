@@ -2,7 +2,7 @@
 	"name": "@htmlbricks/hb-auth-social-login-button",
 	"displayName": "Svelte Boostrap Login and Register WebComponent",
 	"description": "Svelte Boostrap Login and Register WebComponent",
-	"version": "0.20.17",
+	"version": "0.20.18",
 	"main": "release/release.js",
 	"publishConfig": {
 		"access": "public"
