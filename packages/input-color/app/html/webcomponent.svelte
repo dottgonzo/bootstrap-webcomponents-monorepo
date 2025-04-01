@@ -3,9 +3,8 @@
 <script lang="ts">
 	import { get_current_component, onMount } from "svelte/internal";
 	import { createEventDispatcher } from "svelte";
-	import type { TextSchemaEntry } from "@app/types/webcomponent.type";
+	import type { FormSchemaEntry } from "@app/types/webcomponent.type";
 
-	import AColorPicker from "a-color-picker";
 	import debounce from "debounce";
 	import htmlColors from "html-colors";
 	import rgbHex from "rgb-hex";
@@ -68,7 +67,7 @@
 
 	function resetVal() {
 		console.log("resetval", colorVal, value);
-		value = colorVal;
+		value = colorVal as any;
 	}
 </script>
 
